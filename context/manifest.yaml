@@ -1,0 +1,111 @@
+version: 1
+last_updated: 2026-07-02
+
+summary: >
+  Personal source-of-truth manifest for Kim Daejeong's profile, resume homepage,
+  agent workflow, writing, and JD analysis workspace.
+
+roles:
+  profile_curator:
+    name: Profile Curator
+    concerns:
+      - canonical identity
+      - career summary
+      - capability map
+      - contribution confidence
+    flow:
+      - read: context/profile.md
+      - read: profile/README.md
+      - read: docs/resume/README.md
+      - update: profile/*
+    owns:
+      - profile/
+      - context/profile.md
+
+  resume_editor:
+    name: Resume / Homepage Editor
+    concerns:
+      - homepage headline
+      - resume sections
+      - public-safe copy
+      - case-study framing
+    flow:
+      - read: profile/identity.md
+      - read: profile/career.md
+      - read: profile/capabilities.md
+      - read: profile/contribution.md
+      - read: docs/resume/04-resume-content-brief.md
+      - read: docs/resume/05-contribution-ax-positioning-draft.md
+      - update: docs/resume/
+    owns:
+      - docs/resume/
+
+  agent_ax_editor:
+    name: Agent / AX Editor
+    concerns:
+      - agent workflow
+      - AX positioning
+      - OpenDesign handoff
+      - MCP/source-of-truth routing
+    flow:
+      - read: profile/agent-workflow.md
+      - read: docs/resume/03-agent-workflow-evidence.md
+      - read: docs/resume/05-contribution-ax-positioning-draft.md
+      - update: profile/agent-workflow.md
+      - update: docs/resume/
+    owns:
+      - profile/agent-workflow.md
+
+  writing_editor:
+    name: Writing Editor
+    concerns:
+      - public article themes
+      - blog backlog
+      - case-study essays
+      - technical narrative
+    flow:
+      - read: profile/writing.md
+      - read: profile/contribution.md
+      - read: docs/resume/04-resume-content-brief.md
+      - update: profile/writing.md
+      - update: docs/resume/
+    owns:
+      - profile/writing.md
+
+  jd_analyst:
+    name: JD Analyst
+    concerns:
+      - market skill demand
+      - backend/platform/infra/AI automation JDs
+      - evidence-to-gap mapping
+      - gap closing roadmap
+    flow:
+      - read: profile/capabilities.md
+      - read: profile/contribution.md
+      - read: docs/resume/05-contribution-ax-positioning-draft.md
+      - create: docs/resume/06-jd-market-skill-map.md
+      - create: docs/resume/07-gap-closing-roadmap.md
+    owns:
+      - docs/resume/06-jd-market-skill-map.md
+      - docs/resume/07-gap-closing-roadmap.md
+
+agents:
+  codex:
+    entry: AGENTS.md
+    first_read:
+      - context/manifest.yaml
+      - context/index.md
+      - context/current-state.md
+      - profile/README.md
+
+document_policy:
+  routing_rule: rules/document-routing.md
+  evidence_labels:
+    - Source-backed
+    - Code-backed
+    - Tool-backed
+    - Inference
+    - Assumption
+    - Unverified
+    - Unknown
+
