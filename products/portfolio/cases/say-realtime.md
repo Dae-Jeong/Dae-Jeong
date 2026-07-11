@@ -8,28 +8,49 @@ claim_ids: [centurion.say-realtime-ai]
 claim_strength: co-led
 ---
 
-## 문제
+## Executive Summary
 
-실시간 AI 상담에서 세션이 제대로 종료되지 않으면 유령(zombie) 세션이 리소스와 비용을 계속 소모합니다. 재연결 시 경쟁 조건(race)으로 세션이 꼬이고, STT/LLM provider 전환 때마다 backend가 흔들리는 구조였습니다.
+실시간 AI 상담 backend에서 zombie session, reconnect race, provider 전환 경계를 안정화했습니다. session lifecycle과 STT/LLM provider abstraction, translation/audio pipeline을 다룬 cluster의 공동 주 기여 범위입니다.
 
-## 접근
+## My Scope
 
-- 세션 lifecycle을 명시적으로 관리 — 종료 판정, GC TTL, 재연결 race 방지를 runtime의 책임으로
-- provider를 추상화해 교체 가능하게 — 인증 방식·언어 코드 같은 provider별 차이를 경계 뒤로 격리
+- WebSocket session lifecycle, reconnect·GC, provider boundary 안정화 공동 주 기여
+- realtime STT 복수 지원, translation/audio pipeline과 dashboard AI analysis 연계
+- SAY 상담 제품 전체 또는 realtime backend 전체의 단독 구축이 아닌 `co-led` 범위
 
-## 구현
+## Problem And Constraints
+
+실시간 상담 session이 종료되지 않으면 zombie session이 남아 resource와 cost를 계속 사용합니다. 동일 사용자의 reconnect가 기존 session 정리와 겹치면 race가 발생하고, audio event의 순서가 어긋나면 잘못된 응답이 연결될 수 있습니다.
+
+STT/LLM provider마다 인증, 언어 코드, session 종료 조건이 다르지만, provider 전환이 상담 runtime 전체를 흔들어서는 안 됐습니다. 동시에 WebSocket 연결의 실시간성과 translation/audio 처리 순서를 유지해야 했습니다.
+
+## Decision And Alternatives
+
+- session의 생성·전환·종료·GC를 runtime의 명시적인 lifecycle로 관리하고 reconnect race를 이 경계에서 제한했습니다.
+- provider별 차이는 abstraction layer 뒤로 격리하되, 공통화할 수 없는 종료·인증 semantics는 adapter가 소유하도록 했습니다.
+- Trade-off: abstraction은 provider 교체 범위를 줄이지만 차이를 완전히 제거하지 못합니다. staggered audio/translation pipeline도 provider 호출 시점을 나누는 대신 sequence 관리 복잡도를 높입니다.
+
+## System Design And Implementation
 
 diagram: 상담 클라이언트 -> WebSocket runtime (세션 lifecycle 관리) -> STT/LLM provider 추상화 계층 -> 번역·오디오 파이프라인 -> [soft] dashboard AI 분석 (structured output · fallback)
 
-- zombie session 방지, GC TTL, reconnect race 해결, turn-complete 기반 세션 전환
-- realtime STT provider 복수 지원과 staggered 파이프라인, 오디오 시퀀스 매칭, 이중->단일 번역 세션 리팩토링
-- dashboard AI 분석 — LLM structured output 스키마 + fallback 보장, 5축 인사이트 집계
+- zombie session 방지, GC TTL, reconnect race 처리, turn-complete 기반 session 전환
+- realtime STT 복수 지원과 staggered pipeline, audio sequence matching, 이중->단일 translation session refactoring
+- dashboard AI analysis에 structured output schema와 fallback을 두고 5축 insight 집계
 
-## 운영/결과
+## Failure Modes And Operation
 
-- dev/prod AI 리소스 분리, provider 마이그레이션 As-Is/To-Be 문서화 — 전환을 반복 가능한 절차로
-- 결제 정수 overflow·dashboard 경계 테스트 등 운영 케이스를 테스트로 고정
+- 종료되지 않은 session은 GC TTL로 회수하고 reconnect 시 기존 session과 신규 연결의 경쟁 조건을 제한
+- audio sequence matching으로 비동기 결과가 다른 turn에 연결되는 위험을 방지
+- structured output 파싱 실패 시 fallback을 보장하고 dashboard boundary test로 회귀 고정
+- dev/prod AI resource를 분리하고 provider migration을 As-Is/To-Be 문서로 관리
+
+## Evidence, Result, And Limits
+
+- Code-backed: lifecycle, reconnect, provider adapter, translation/audio, structured output·fallback 변경이 확인됨
+- Documentation/test-backed: resource separation, migration procedure, dashboard boundary case가 확인됨
+- Limits: public realtime traffic·latency·availability 수치는 없으며, Application Insights의 HTTP sample은 전체 WebSocket workload를 대표하지 않음
 
 ## Stack
 
-FastAPI · WebSocket · realtime STT/LLM providers · 오디오/번역 파이프라인 · structured output
+FastAPI · WebSocket · realtime STT/LLM providers · audio/translation pipeline · structured output
