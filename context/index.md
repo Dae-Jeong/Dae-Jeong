@@ -1,45 +1,34 @@
 ---
 type: index
-title: Context Index
-description: Routing map for Dae-Jeong personal profile and resume workspace.
-timestamp: 2026-07-02
-tags: [context, routing, profile, resume]
+title: Context Router
+description: 작업 의도별로 필요한 최소 source-of-truth만 안내하는 router.
+timestamp: 2026-07-11
+tags: [context, routing, progressive-disclosure]
 ---
 
-# Context Index
+# Context Router
 
-이 문서는 이 repo에서 어떤 정보를 어디서 읽고 어디에 적재할지 정하는 라우터다.
+## 최소 읽기 순서
 
-## 읽는 순서
-
-| 상황 | 읽을 문서 |
+| 상황 | 읽기 |
 | --- | --- |
-| 어떤 작업이든 시작할 때 | `context/manifest.yaml`, `context/current-state.md`, `profile/README.md` |
-| 김대정에 대한 짧은 canonical profile이 필요할 때 | `context/profile.md` |
-| 자기소개, bio, headline을 작성할 때 | `profile/identity.md`, `docs/resume/04-resume-content-brief.md`, `docs/resume/05-contribution-ax-positioning-draft.md` |
-| 경력과 회사 프로젝트를 정리할 때 | `profile/career.md`, `profile/contribution.md`, `docs/resume/02-company-work-evidence.md`, `docs/resume/06-workspace-project-audit.md` |
-| BE/Infra/Agent/AX 역량을 정리할 때 | `profile/capabilities.md`, `profile/agent-workflow.md`, `docs/resume/06-workspace-project-audit.md` |
-| JD 분석을 할 때 | `profile/capabilities.md`, `profile/contribution.md`, `docs/resume/05-contribution-ax-positioning-draft.md`, `docs/resume/06-workspace-project-audit.md` |
-| 새 문서 위치를 판단할 때 | `rules/document-routing.md` |
+| 현재 진행 상태 | [current-state.md](current-state.md) |
+| 한 줄 소개와 branding | [../profile/identity.md](../profile/identity.md) |
+| 경력 timeline | [../profile/career.md](../profile/career.md) |
+| 역량과 기여 범위 | [../profile/capabilities.md](../profile/capabilities.md), [../profile/contribution.md](../profile/contribution.md) |
+| claim 검증 | [../evidence/README.md](../evidence/README.md) |
+| 이력서 | [../products/resume/README.md](../products/resume/README.md) |
+| 포트폴리오 | [../products/portfolio/README.md](../products/portfolio/README.md) |
+| 홈페이지 | [../products/homepage/README.md](../products/homepage/README.md) |
+| JD 분석 | [../products/jd/README.md](../products/jd/README.md) |
+| 문서 위치 판단 | [../rules/document-routing.md](../rules/document-routing.md) |
 
-## Source Of Truth 규칙
+## Context Budget
 
-- 김대정의 안정적인 profile 정보는 `profile/`에 둔다.
-- 짧은 소개와 현재 positioning snapshot은 `context/profile.md`에 둔다.
-- resume homepage, JD, case-study, claim 검증 산출물은 `docs/resume/`에 둔다.
-- routing, evidence, 문서 위치 기준은 `rules/`에 둔다.
-- 오래될 수 있는 정보는 `context/current-state.md`에 snapshot으로 둔다.
+현재 질문에 필요한 최소 문서만 읽는다. `context/`는 지식 저장소가 아니라 router와 snapshot이며, 긴 근거·초안·산출물을 추가하지 않는다.
 
-## 디렉토리 역할
+## Canonical And Derived
 
-| 경로 | 역할 | 비고 |
-| --- | --- | --- |
-| `context/` | agent와 작업자가 처음 읽는 라우팅/현재 상태 | 짧게 유지 |
-| `profile/` | 김대정 개인 profile 원장 | 공개 페이지와 resume의 재료 |
-| `docs/resume/` | 분석, 초안, JD map, case-study draft | 작업 산출물 |
-| `rules/` | 문서 라우팅과 evidence 기준 | 새 문서 생성 전 확인 |
-| `docs/superpowers/` | skill 기반 plan/spec 기록 | 실행 흔적 |
-
-## 현재 주요 결론
-
-김대정의 현재 public positioning은 "backend engineer who uses AI"보다 "BE/AI backend/Infra를 직접 구축해본 엔지니어가 agentic workflow와 AX로 조직 병목을 해결하려는 사람"에 가깝다.
+- canonical: `profile/`, `evidence/`, `products/*/decisions.md`, `products/*/content-contract.md`, `rules/`
+- derived snapshot: `context/current-state.md`, `context/profile.md`
+- non-canonical history: `archive/`

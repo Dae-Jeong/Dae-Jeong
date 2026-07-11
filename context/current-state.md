@@ -1,37 +1,37 @@
 ---
 type: current-state
 title: Current State
-description: Current working state for the personal profile and resume workspace.
-timestamp: 2026-07-02
-tags: [current-state, resume, profile]
+description: Current migration and resume work state; this file is a derived snapshot.
+timestamp: 2026-07-11
+canonical: false
+derived_from: [profile/, evidence/claims/, products/]
+tags: [current-state, migration, resume]
 ---
 
 # Current State
 
-## Status
+## Active Work
 
-- `docs/resume/`에 기존 Oopy resume 분석, 회사 프로젝트 근거, agent workflow 근거, resume content brief, BE/Infra/AX positioning draft가 생성되어 있다.
-- `context/`, `profile/`, `rules/`, root `AGENTS.md`가 추가되어 mediness-inspired source-of-truth 구조가 세팅되어 있다.
-- `~/workspace` 전체 git repo sweep을 `docs/resume/06-workspace-project-audit.md`에 정리했고, commit signal이 없는 repo는 skip 처리했다. 사용자 정정에 따라 `PROTON`은 SAY project cluster로 묶고, `RAY-BE-API`, `PCS-BE-API`, `say-game-be`는 이력서 우선순위에서 제외했다. 핵심 결과는 `profile/contribution.md`, `profile/capabilities.md`, `profile/career.md`에 반영했다.
-- 프로젝트별 작업 내역은 `docs/resume/06-project-work-log.md`에 원장 형태로 정리했다. 다음 단계는 이 작업 목록을 contribution bullet로 압축하는 것이다.
-- 임팩트 사례 후보는 `docs/resume/06-impact-case-candidates.md`에 사실 기반으로 선별했다. 우선순위는 thready, BAY, NEXUS, SAY cluster, infra cluster 순서다.
-- 강점/특징 정리는 `docs/resume/06-strengths-and-traits.md`에 내부 기록으로 남겼다. 헬스케어/병원 도메인 경험은 evidence cluster로만 두고, 전체 identity는 AI product, product backend, infra, agent-readable workflow를 포괄한다.
-- 다음 큰 단계는 JD 30~50개 수집 후 market skill map과 gap closing roadmap을 만드는 것이다.
+- `Profile -> Evidence -> Products` knowledge harness migration in progress.
+- 기존 A4 이력서 초안은 public-ready v1이 아니라 v0 baseline으로 재분류됐다.
+- 1차 personal brand는 `Backend Engineer for AI Product Systems`, 차별점은 `Agent-readable Engineering Workflow`다.
+- Daejeong Design은 별도 repo에서 도구 개발을 진행하며 이 repo는 profile/evidence/resume content source를 소유한다.
 
-## Active Positioning
+## Migration Status
 
-> BE/Infra를 직접 구축해본 엔지니어가, AI agent를 개인 생산성 도구를 넘어 조직의 AX 문제 해결 방식으로 확장하고 있다.
+| Layer | Status |
+| --- | --- |
+| portable runtime | complete |
+| root routing hubs | in progress |
+| evidence/claim registry | pending |
+| profile normalization | pending |
+| product migration | pending |
+| clean-clone verification | pending |
 
-## Current Priorities
+## Next
 
-1. `profile/`을 김대정에 대한 canonical source of truth로 안정화한다.
-2. `docs/resume/`의 분석 결과를 homepage/resume/JD 작업에 계속 연결한다.
-3. JD scraping으로 시장 요구 역량을 검증한다.
-4. OpenDesign 기반 design handoff와 agent workflow를 public section 초안으로 발전시킨다.
-5. workspace audit의 high-signal repo와 supporting repo를 public-safe case study 후보로 좁힌다.
-
-## Open Questions
-
-- 회사 프로젝트에서 public disclosure 가능한 고객사/브랜드 범위는 아직 `Unknown`.
-- Git history/PR 기준 직접 기여 범위는 추가 확인 필요.
-- JD 분석 전까지 market skill demand는 `Assumption`.
+1. claim registry와 workspace validator 구축
+2. 기존 resume research를 evidence와 archive로 분리
+3. resume/portfolio/homepage/JD product 경계 이관
+4. clean clone 검증
+5. 별도 plan으로 resume master v1 제작

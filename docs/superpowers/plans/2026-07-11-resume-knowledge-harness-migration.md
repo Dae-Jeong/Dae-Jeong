@@ -190,30 +190,17 @@ Expected: a commit is created and the only remaining untracked/modified paths ar
 - Consumes: Python scripts and HTML resume sources
 - Produces: `uv sync` environment and optional external source alias contract
 
-- [ ] **Step 1: Pin Python and dependencies**
+- [ ] **Step 1: Initialize and manage Python metadata through uv**
 
-Create `.python-version`:
+Do not edit `pyproject.toml`, `.python-version`, or dependency entries manually. Run:
 
-```text
-3.12
+```bash
+uv init --bare --name daejeong-profile-harness --python 3.12 --no-package
+uv python pin 3.12
+uv add 'playwright==1.61.0' 'PyYAML==6.0.3'
 ```
 
-Create `pyproject.toml`:
-
-```toml
-[project]
-name = "daejeong-profile-harness"
-version = "0.1.0"
-description = "Portable profile, evidence, resume, portfolio, and JD knowledge harness"
-requires-python = ">=3.12,<3.13"
-dependencies = [
-  "playwright==1.61.0",
-  "PyYAML==6.0.3",
-]
-
-[tool.uv]
-package = false
-```
+Expected: uv creates `pyproject.toml`, `.python-version`, and `uv.lock` and records both dependencies.
 
 - [ ] **Step 2: Generate the lockfile and install Chromium**
 

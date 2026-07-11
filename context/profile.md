@@ -1,34 +1,30 @@
 ---
 type: profile-snapshot
-title: Kim Daejeong Profile Snapshot
-description: Short canonical profile snapshot for routing and quick context.
-timestamp: 2026-07-02
-tags: [profile, identity, resume, ax]
+title: Compact Profile Snapshot
+description: Agent routing용 compact profile; canonical profile 문서에서 파생됨.
+timestamp: 2026-07-11
+canonical: false
+derived_from: [profile/identity.md, profile/career.md, profile/capabilities.md]
+tags: [profile, snapshot, derived]
 ---
 
-# Kim Daejeong Profile Snapshot
+# Compact Profile Snapshot
 
-## One-Line
+## Positioning
 
-제품의 복잡한 운영 문제를 backend architecture와 agent-readable workflow로 풀어내는 엔지니어.
+AI 제품을 운영 가능한 시스템으로 만드는 백엔드 엔지니어.
 
-## Current Positioning
+## Category
 
-김대정은 AI product와 product backend의 복잡한 운영 문제를 backend/infra system으로 풀어온 engineer다. FastAPI, NestJS 기반으로 SSO, async messaging, realtime event, AI provider lifecycle, Azure/Terraform infra, CI/CD를 다뤄왔다. 최근 positioning은 BE/AI backend/Infra 구축 경험을 바탕으로 AI agent를 조직의 AX layer로 확장하는 쪽이다.
+- Primary: Backend Engineer
+- Specialty: AI Product Systems
+- Differentiator: Agent-readable Engineering Workflow
 
-## Core Themes
+## Evidence Anchors
 
-- Backend systems: SSO, API, domain boundary, async worker, SSE/WebSocket, gateway
-- AI backend systems: STT/LLM provider lifecycle, realtime consultation, RAG/generation quality
-- Infra and operations: Azure, Terraform, Docker, ACR, GitHub Actions
-- Product/system thinking: AI content operations, multi-brand product backend, commerce/inventory/order, service boundary
-- Agent/AX workflow: `AGENTS.md`, source-of-truth docs, MCP, task/report, OpenDesign handoff
-- Writing: backend architecture, agent workflow, AX, product engineering
+- Thready: backend 전면 재구축과 AI 생성 품질 시스템
+- Centurion: async/realtime/auth product backend
+- BE Template: 조직 표준 backend와 agent context system
+- mediness: agent-readable 제품 운영 workflow
 
-## Canonical Sources
-
-- Full profile index: [profile/README.md](../profile/README.md)
-- Resume workspace: [docs/resume/README.md](../docs/resume/README.md)
-- Contribution and AX draft: [docs/resume/05-contribution-ax-positioning-draft.md](../docs/resume/05-contribution-ax-positioning-draft.md)
-- Workspace project audit: [docs/resume/06-workspace-project-audit.md](../docs/resume/06-workspace-project-audit.md)
-- Strengths and traits: [docs/resume/06-strengths-and-traits.md](../docs/resume/06-strengths-and-traits.md)
+세부 내용과 표현 강도는 [profile 원장](../profile/README.md)과 [evidence hub](../evidence/README.md)를 따른다.

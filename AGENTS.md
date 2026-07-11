@@ -1,57 +1,59 @@
 # AGENTS
 
-이 repo는 김대정의 profile, resume homepage, agent workflow, writing, JD 분석을 위한 개인 source-of-truth workspace다.
+이 repo는 김대정의 profile, evidence, resume, portfolio, homepage, agent workflow, writing, JD 분석을 위한 portable source-of-truth workspace다.
 
-Codex, Claude, 또는 다른 문서/코딩 agent가 이 repo에서 작업할 때는 이 문서를 따른다.
+## 시작할 때 읽는 문서
 
-## 시작할 때 읽을 문서
+1. [context/manifest.yaml](context/manifest.yaml) - layer ownership과 작업별 read/write flow
+2. [context/index.md](context/index.md) - 최소 context router
+3. [context/current-state.md](context/current-state.md) - 현재 진행 상태
+4. 작업 대상 hub의 `README.md`
 
-세션을 시작하면 먼저 아래를 읽는다.
+이력서 작업은 [products/resume/README.md](products/resume/README.md), claim 검증은 [evidence/README.md](evidence/README.md)를 추가로 읽는다.
 
-1. [context/manifest.yaml](context/manifest.yaml) — 작업 목적별 읽는 순서와 쓰는 위치
-2. [context/index.md](context/index.md) — repo 전체 source-of-truth 라우터
-3. [context/current-state.md](context/current-state.md) — 현재 작업 상태와 다음 단계
-4. [profile/README.md](profile/README.md) — 김대정 profile 원장 인덱스
+새 문서를 만들거나 역할을 바꾸기 전에는 [rules/document-routing.md](rules/document-routing.md)를 읽는다.
 
-이력서, 홈페이지, JD, agent/AX 관련 작업이면 `docs/resume/README.md`도 확인한다.
+## Layer Ownership
 
-새 문서를 만들거나 기존 문서의 역할을 바꿀 때는 [rules/document-routing.md](rules/document-routing.md)를 먼저 읽는다.
-
-## Source Of Truth 구조
-
-| 경로 | 역할 | 먼저 볼 파일 |
+| Layer | Owns | Does not own |
 | --- | --- | --- |
-| `context/` | repo 라우팅, 현재 상태, 짧은 canonical profile snapshot | `context/index.md` |
-| `profile/` | 김대정에 대한 canonical source of truth | `profile/README.md` |
-| `docs/resume/` | 이력서 홈페이지, JD, positioning 작업 산출물 | `docs/resume/README.md` |
-| `rules/` | 문서 위치와 변경 라우팅 규칙 | `rules/document-routing.md` |
-| `docs/superpowers/` | agent 실행 계획과 skill 기반 작업 기록 | 필요한 plan/spec 문서 |
-| `skills/` | tool-agnostic agent 스킬 (Claude/Codex/GPT 공용) | 각 스킬의 `SKILL.md` |
-
-## Skills (agent 공용)
-
-tool-agnostic 스킬은 `skills/`에 둔다. Claude Code는 `.claude/skills/`의 symlink로 자동 발견하고, Codex 등 다른 agent는 아래 표에서 찾아 해당 `SKILL.md`를 읽고 그대로 따른다. 스킬 포맷은 오픈 Agent Skills 규격(YAML frontmatter `name`/`description` + markdown 본문)이다.
-
-| Skill | 위치 | 용도 |
-| --- | --- | --- |
-| tailor-resume | [skills/tailor-resume/SKILL.md](skills/tailor-resume/SKILL.md) | 특정 회사/JD 맞춤 이력서 생성 — 검증된 profile 소스 기반, 15초 hooking 원칙 |
-
-## 작업별 라우팅
-
-| 작업 | 읽기 | 쓰기 |
-| --- | --- | --- |
-| 자기소개/hero/bio 작성 | `profile/identity.md`, `docs/resume/04-*`, `05-*` | `profile/identity.md` 또는 `docs/resume/` |
-| 경력/회사 프로젝트 정리 | `profile/career.md`, `profile/contribution.md`, `docs/resume/02-*`, `06-*` | `profile/career.md`, `profile/contribution.md` |
-| BE/Infra 역량 정리 | `profile/capabilities.md`, `docs/resume/02-*`, `05-*`, `06-*` | `profile/capabilities.md` |
-| Agent/AX 섹션 작성 | `profile/agent-workflow.md`, `docs/resume/03-*`, `05-*` | `profile/agent-workflow.md` |
-| 글감/블로그 기획 | `profile/writing.md`, `docs/resume/04-*`, `05-*` | `profile/writing.md` |
-| workspace 프로젝트 분석 | `docs/resume/06-*`, `profile/contribution.md`, `profile/capabilities.md` | `docs/resume/06-*`, `profile/contribution.md`, `profile/capabilities.md`, `profile/career.md` |
-| JD 분석 | `docs/resume/05-*`, `06-*` | `docs/resume/07-*`, `08-*` |
+| `context/` | routing, current snapshot | canonical profile facts |
+| `profile/` | stable personal source of truth | raw Git evidence, output layout |
+| `evidence/` | verified facts, claim strength, public scope | resume prose hierarchy |
+| `products/` | output contracts and artifacts | raw evidence |
+| `rules/` | cross-product policy | task-specific progress |
+| `skills/` | executable workflows and adapters | duplicated canonical policy |
+| `archive/` | superseded history | active dependencies |
 
 ## 작성 원칙
 
-- `profile/`은 짧고 안정적인 원장이다. 긴 근거와 분석은 `docs/resume/`에 둔다.
-- 같은 내용을 여러 파일에 복사하지 말고 링크한다.
-- 공개 문구를 만들 때 `Unknown`, `Unverified`, `Inference`, `Assumption`을 구분한다.
-- 회사 프로젝트 claim은 repo 문서, 코드, Git history, PR, 운영 문서 근거가 있을 때만 강하게 쓴다.
-- 민감한 고객사 정보, credential, raw private conversation, 내부 운영 비밀은 기록하지 않는다.
+- 한 사실에는 한 canonical owner만 둔다.
+- public claim은 evidence record와 stable claim ID를 먼저 만든다.
+- `profile/`은 짧고 안정적으로 유지하고 긴 근거는 `evidence/`에 둔다.
+- resume, portfolio, homepage는 서로를 source로 사용하지 않고 `profile/`과 `evidence/`를 소비한다.
+- `Unknown`, `Unverified`, `Inference`, `Assumption`을 구분한다.
+- 고객사/브랜드명, provider 실명, 팀원 실명, private path, credential, raw private conversation을 public output에 기록하지 않는다.
+- 활성 문서에는 PC별 절대경로를 기록하지 않는다. 외부 source는 logical alias로 기록한다.
+- archive 문서를 active source로 참조하지 않는다.
+
+## Skills
+
+tool-agnostic skill의 canonical 위치는 `skills/`다. tool-specific 폴더는 adapter만 둔다.
+
+| Skill | 위치 | 용도 |
+| --- | --- | --- |
+| tailor-resume | [skills/tailor-resume/SKILL.md](skills/tailor-resume/SKILL.md) | 검증된 claim 기반 회사/JD 맞춤 이력서 생성 |
+
+## 검증
+
+```bash
+uv run python scripts/validate_workspace.py
+```
+
+PDF나 HTML을 변경하면 renderer와 시각 검증까지 수행한다.
+
+## Project Tooling
+
+- Python runtime과 dependency는 `uv`가 관리한다.
+- `pyproject.toml`, `.python-version`, `uv.lock`의 dependency/runtime 항목을 직접 편집하지 않는다.
+- 초기화는 `uv init`, Python pin은 `uv python pin`, dependency 변경은 `uv add`/`uv remove`, 동기화는 `uv sync`를 사용한다.

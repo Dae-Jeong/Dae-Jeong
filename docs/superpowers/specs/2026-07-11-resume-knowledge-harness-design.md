@@ -286,6 +286,7 @@ Clone-only workflow는 이 파일이 없어도 실패하지 않는다. `--deep` 
 
 - Python `3.12`
 - `uv` 기반 environment와 lockfile
+- `pyproject.toml`, `.python-version`, `uv.lock`의 runtime/dependency 변경은 `uv init`, `uv python pin`, `uv add`/`uv remove`로만 수행한다.
 - `playwright==1.61.0`
 - `PyYAML==6.0.3`
 - `scripts/validate_workspace.py`가 active docs metadata, links, absolute paths, claim IDs, artifact mappings를 검사한다.

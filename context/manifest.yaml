@@ -1,113 +1,60 @@
-version: 1
-last_updated: 2026-07-02
+version: 2
+last_updated: 2026-07-11
 
 summary: >
-  Personal source-of-truth manifest for Kim Daejeong's profile, resume homepage,
-  agent workflow, writing, and JD analysis workspace.
+  Portable source-of-truth manifest for Kim Daejeong's profile, evidence,
+  resume, portfolio, homepage, agent workflow, writing, and JD analysis.
+
+layers:
+  context:
+    owns: [routing, current_snapshot]
+    canonical: false
+  profile:
+    owns: [identity, career, capabilities, credentials, contribution, agent_workflow, writing]
+    canonical: true
+  evidence:
+    owns: [verified_facts, claims, confidence, public_scope, audits]
+    canonical: true
+  products:
+    owns: [resume, portfolio, homepage, jd_analysis]
+    canonical: true
+  rules:
+    owns: [document_routing, evidence_policy, public_safety]
+    canonical: true
+  skills:
+    owns: [executable_adapters]
+    canonical: false
+  archive:
+    owns: [superseded_history]
+    canonical: false
 
 roles:
   profile_curator:
-    name: Profile Curator
-    concerns:
-      - canonical identity
-      - career summary
-      - capability map
-      - contribution confidence
-    flow:
-      - read: context/profile.md
-      - read: profile/README.md
-      - read: docs/resume/README.md
-      - read: docs/resume/06-workspace-project-audit.md
-      - update: profile/*
-    owns:
-      - profile/
-      - context/profile.md
-
+    read: [profile/README.md, evidence/README.md]
+    write: [profile/]
+  evidence_curator:
+    read: [rules/evidence-policy.md, rules/public-safety.md]
+    write: [evidence/]
   resume_editor:
-    name: Resume / Homepage Editor
-    concerns:
-      - homepage headline
-      - resume sections
-      - public-safe copy
-      - case-study framing
-    flow:
-      - read: profile/identity.md
-      - read: profile/career.md
-      - read: profile/capabilities.md
-      - read: profile/contribution.md
-      - read: docs/resume/04-resume-content-brief.md
-      - read: docs/resume/05-contribution-ax-positioning-draft.md
-      - read: docs/resume/06-workspace-project-audit.md
-      - update: docs/resume/
-    owns:
-      - docs/resume/
-
-  agent_ax_editor:
-    name: Agent / AX Editor
-    concerns:
-      - agent workflow
-      - AX positioning
-      - OpenDesign handoff
-      - MCP/source-of-truth routing
-    flow:
-      - read: profile/agent-workflow.md
-      - read: docs/resume/03-agent-workflow-evidence.md
-      - read: docs/resume/05-contribution-ax-positioning-draft.md
-      - update: profile/agent-workflow.md
-      - update: docs/resume/
-    owns:
-      - profile/agent-workflow.md
-
-  writing_editor:
-    name: Writing Editor
-    concerns:
-      - public article themes
-      - blog backlog
-      - case-study essays
-      - technical narrative
-    flow:
-      - read: profile/writing.md
-      - read: profile/contribution.md
-      - read: docs/resume/04-resume-content-brief.md
-      - update: profile/writing.md
-      - update: docs/resume/
-    owns:
-      - profile/writing.md
-
+    read: [products/resume/README.md, profile/, evidence/claims/]
+    write: [products/resume/]
+  portfolio_editor:
+    read: [products/portfolio/README.md, evidence/projects/, evidence/claims/]
+    write: [products/portfolio/]
+  homepage_editor:
+    read: [products/homepage/README.md, profile/, evidence/claims/]
+    write: [products/homepage/]
   jd_analyst:
-    name: JD Analyst
-    concerns:
-      - market skill demand
-      - backend/platform/infra/AI automation JDs
-      - evidence-to-gap mapping
-      - gap closing roadmap
-    flow:
-      - read: profile/capabilities.md
-      - read: profile/contribution.md
-      - read: docs/resume/05-contribution-ax-positioning-draft.md
-      - read: docs/resume/06-workspace-project-audit.md
-      - create: docs/resume/07-jd-market-skill-map.md
-      - create: docs/resume/08-gap-closing-roadmap.md
-    owns:
-      - docs/resume/07-jd-market-skill-map.md
-      - docs/resume/08-gap-closing-roadmap.md
+    read: [products/jd/README.md, profile/capabilities.md, evidence/claims/]
+    write: [products/jd/]
 
 agents:
   codex:
     entry: AGENTS.md
-    first_read:
-      - context/manifest.yaml
-      - context/index.md
-      - context/current-state.md
-      - profile/README.md
+    first_read: [context/manifest.yaml, context/index.md, context/current-state.md]
 
 document_policy:
   routing_rule: rules/document-routing.md
-  evidence_labels:
-    - Source-backed
-    - Code-backed
-    - Tool-backed
-    - Inference
-    - Assumption
-    - Unverified
-    - Unknown
+  evidence_rule: rules/evidence-policy.md
+  public_safety_rule: rules/public-safety.md
+  local_source_example: config/source-roots.example.yaml
