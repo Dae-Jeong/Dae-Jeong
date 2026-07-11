@@ -1,0 +1,26 @@
+schema_version: 1
+project: nexus
+claims:
+  - id: nexus.backend-architecture
+    statement: 외부 병원 product backend monorepo의 service boundary, migration·domain audit, docs governance 주도
+    strength: led
+    confidence: high
+    public: true
+    evidence: [evidence/projects/nexus.md#backend-architecture]
+    allowed_copy:
+      - 병원 product backend monorepo의 service boundary와 migration·domain audit 주도
+    forbidden_copy:
+      - 고객사명
+      - 병원 SaaS 전체 단독 구축
+    verified_at: 2026-07-04
+  - id: nexus.terraform-infra
+    statement: NEXUS Terraform IaC 구축 전담
+    strength: owned
+    confidence: high
+    public: true
+    evidence: [evidence/projects/nexus.md#terraform-infra]
+    allowed_copy:
+      - 외부 product Terraform IaC 구축 전담
+    forbidden_copy:
+      - 고객 resource 상세
+    verified_at: 2026-07-04

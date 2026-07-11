@@ -1,0 +1,71 @@
+schema_version: 1
+project: centurion
+claims:
+  - id: centurion.bay-async-backend
+    statement: BAY 주문·재고 backend와 RabbitMQ·TaskIQ worker flow, retry, test·CI·onboarding 구축 주도
+    strength: led
+    confidence: high
+    public: true
+    evidence: [evidence/projects/centurion.md#bay-async-backend]
+    allowed_copy:
+      - 주문·재고 API와 RabbitMQ·TaskIQ 비동기 worker, retry, test·CI·onboarding 구축 주도
+    forbidden_copy:
+      - Centurion backend 전체 단독 구축
+      - Celery에서 TaskIQ로 전환
+    verified_at: 2026-07-04
+  - id: centurion.say-realtime-ai
+    statement: SAY realtime AI 상담 backend의 세션 lifecycle과 STT/LLM provider 경계, translation/audio pipeline 공동 주 기여
+    strength: co-led
+    confidence: high
+    public: true
+    evidence: [evidence/projects/centurion.md#say-realtime-ai]
+    allowed_copy:
+      - realtime AI 상담 backend의 세션 lifecycle과 provider 경계 안정화 공동 주 기여
+    forbidden_copy:
+      - provider 실명
+      - 상담 backend 전체 단독 구축
+    verified_at: 2026-07-04
+  - id: centurion.day-product-integration
+    statement: DAY 예약 정책을 backend 판단, frontend 표시, QA seed/test, release docs로 연결
+    strength: led
+    confidence: high
+    public: true
+    evidence: [evidence/projects/centurion.md#day-product-integration]
+    allowed_copy:
+      - 예약 정책의 backend·frontend·QA·release 연결 리드
+    forbidden_copy:
+      - DAY 제품 전체 단독 구축
+    verified_at: 2026-07-04
+  - id: centurion.ray-backend
+    statement: RAY 시설 현황, 긴급 호출, BAY 연동 backend 주 기여
+    strength: contributed
+    confidence: high
+    public: true
+    evidence: [evidence/projects/centurion.md#ray-backend]
+    allowed_copy:
+      - 시설 현황·긴급 호출·재고 연동 backend 주 기여
+    forbidden_copy:
+      - RAY backend 전담 구축
+    verified_at: 2026-07-04
+  - id: centurion.sso-session
+    statement: multi-service SSO session 정책, duplicate login, E2E 담당·참여
+    strength: contributed
+    confidence: high
+    public: true
+    evidence: [evidence/projects/centurion.md#sso-session]
+    allowed_copy:
+      - multi-service 인증·세션 정책과 duplicate login·E2E 담당
+    forbidden_copy:
+      - SSO 전체 구축
+    verified_at: 2026-07-04
+  - id: centurion.shared-infra
+    statement: 메인 제품 Azure/Terraform infra 공동 구축과 runbook·문서화 리드
+    strength: co-led
+    confidence: high
+    public: true
+    evidence: [evidence/projects/centurion.md#shared-infra]
+    allowed_copy:
+      - Azure/Terraform infra 공동 구축과 runbook·문서화 리드
+    forbidden_copy:
+      - 메인 infra 단독 구축
+    verified_at: 2026-07-04

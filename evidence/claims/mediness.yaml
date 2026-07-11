@@ -1,0 +1,27 @@
+schema_version: 1
+project: mediness
+claims:
+  - id: mediness.product-operations
+    statement: 제품팀의 일정·이슈·릴리스 운영을 pipeline registry와 decision·spec·work·release gate로 구조화하고 리드
+    strength: led
+    confidence: high
+    public: true
+    evidence: [evidence/projects/mediness.md#product-operations]
+    allowed_copy:
+      - pipeline registry와 release gate 기반 제품팀 일정·이슈·릴리스 운영 리드
+    forbidden_copy:
+      - 제품 기획 전담
+      - 조직 전체 운영 총괄
+    verified_at: 2026-07-04
+  - id: mediness.daily-briefing
+    statement: 협업 도구 활동을 집계하는 daily briefing agent 구축·운영
+    strength: owned
+    confidence: high
+    public: true
+    evidence: [evidence/projects/mediness.md#daily-briefing]
+    allowed_copy:
+      - 협업 도구 활동 집계와 blocker triage를 지원하는 daily briefing agent 구축·운영
+    forbidden_copy:
+      - 내부 제품 수치
+      - 사람의 운영 업무 완전 자동화
+    verified_at: 2026-07-04

@@ -1,0 +1,38 @@
+schema_version: 1
+project: thready
+claims:
+  - id: thready.backend-rebuild
+    statement: FastAPI 기반 backend 전면 재구축과 v1.1.0 cutover 이후 개발·운영 전담
+    strength: owned
+    confidence: high
+    public: true
+    evidence: [evidence/projects/thready.md#backend-rebuild]
+    allowed_copy:
+      - FastAPI 기반 backend 전면 재구축 및 이후 개발·운영 전담
+    forbidden_copy:
+      - 제품 전체 단독 구축
+      - frontend 포함 전체 제품 전면 재구축
+    verified_at: 2026-07-05
+  - id: thready.generation-quality-system
+    statement: typed prompt builder, LLM judge, 평가 루프, 관측 로깅 기반 생성 품질 시스템 구축
+    strength: owned
+    confidence: high
+    public: true
+    evidence: [evidence/projects/thready.md#generation-quality-system]
+    allowed_copy:
+      - typed prompt builder, LLM judge, 평가 루프, 관측 로깅 기반 생성 품질 시스템 구축
+    forbidden_copy:
+      - 생성 품질 완전 해결
+      - 품질 N배 개선
+    verified_at: 2026-07-05
+  - id: thready.release-operation
+    statement: backend cutover 이후 release, QA, task 구조를 통한 개발·운영 수행
+    strength: owned
+    confidence: high
+    public: true
+    evidence: [evidence/projects/thready.md#release-operation]
+    allowed_copy:
+      - release·QA·task 구조 기반 backend 운영
+    forbidden_copy:
+      - 무중단 운영 보장
+    verified_at: 2026-07-05

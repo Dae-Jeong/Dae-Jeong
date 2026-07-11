@@ -1,0 +1,48 @@
+schema_version: 1
+project: career
+claims:
+  - id: career.medisolve-role-evolution
+    statement: MediSolve AI에 Backend Engineer로 합류해 Tech Lead, PO, AI agent 관련 역할을 병행
+    strength: led
+    confidence: high
+    public: true
+    evidence: [evidence/projects/mediness.md#role-boundary]
+    allowed_copy:
+      - Backend Engineer 합류 후 Tech Lead·PO·AI agent 역할 병행
+    forbidden_copy:
+      - 공식 직함이 모두 Tech Lead / PO / AI Agent Engineer라고 단정
+      - 제품 기획 전담
+    verified_at: 2026-07-04
+  - id: career.ai-pm-backend-continuity
+    statement: Vision AI Engineer, PM, Backend Engineer 경험이 AI product system 관점으로 연결됨
+    strength: contributed
+    confidence: high
+    public: true
+    evidence: [evidence/projects/previous-career.md#role-continuity]
+    allowed_copy:
+      - Vision AI에서 PM을 거쳐 Backend Engineer로 확장한 product-system 경험
+    forbidden_copy:
+      - 전 직무 최고 책임자
+    verified_at: 2026-07-06
+  - id: career.memento-payment
+    statement: 예약·결제 backend의 선결제, 환불·마일리지·티켓 rollback correctness 개선
+    strength: contributed
+    confidence: high
+    public: true
+    evidence: [evidence/projects/previous-career.md#memento-payment]
+    allowed_copy:
+      - 예약·결제 backend의 선결제와 환불·마일리지·티켓 rollback 안정화
+    forbidden_copy:
+      - 결제 장애 완전 해결
+    verified_at: 2026-07-05
+  - id: career.tellingme-backend-infra
+    statement: TellingMe 개인 프로젝트의 Spring Boot backend와 AWS 배포·모니터링 리드
+    strength: led
+    confidence: high
+    public: true
+    evidence: [evidence/projects/previous-career.md#tellingme]
+    allowed_copy:
+      - Spring Boot backend와 AWS 배포·모니터링 리드
+    forbidden_copy:
+      - 미검증 endpoint·package 수치
+    verified_at: 2026-07-06

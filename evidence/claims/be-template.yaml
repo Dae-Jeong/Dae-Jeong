@@ -1,0 +1,25 @@
+schema_version: 1
+project: be-template
+claims:
+  - id: be-template.backend-standard
+    statement: layered architecture, DI, ADR, convention, runbook 기반 조직 표준 FastAPI template 설계·구축 전담
+    strength: owned
+    confidence: high
+    public: true
+    evidence: [evidence/projects/be-template.md#backend-standard]
+    allowed_copy:
+      - layered architecture·DI·ADR·convention·runbook 기반 조직 표준 FastAPI template 설계·구축 전담
+    forbidden_copy:
+      - 조직의 모든 backend 표준 단독 결정
+    verified_at: 2026-07-04
+  - id: be-template.agent-context
+    statement: 계층적 agent context와 반복 작업 automation skill을 backend template에 내장
+    strength: owned
+    confidence: high
+    public: true
+    evidence: [evidence/projects/be-template.md#agent-context]
+    allowed_copy:
+      - agent context system과 반복 작업 automation skill 내장
+    forbidden_copy:
+      - agent가 즉시 모든 작업 가능
+    verified_at: 2026-07-04
