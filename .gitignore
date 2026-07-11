@@ -1,0 +1,17 @@
+# Local agent/plugin installations
+.agents/
+skills-lock.json
+
+# Tool runtime and render scratch
+.playwright-mcp/
+.worktrees/
+.tmp/
+tmp/
+.local/
+.venv/
+__pycache__/
+*.py[cod]
+
+# Raw JD corpus is refreshed locally; derived reports are committed.
+docs/resume/jd-corpus/
+products/jd/corpus/

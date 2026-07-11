@@ -25,7 +25,9 @@ tags: [profile, source-of-truth, resume]
 
 - 공개 문구를 만들 때는 먼저 `identity.md`를 본다.
 - 경력이나 프로젝트 claim을 만들 때는 `career.md`와 `contribution.md`를 본다.
+- 강점/특징/public positioning을 재정리할 때는 `docs/resume/06-strengths-and-traits.md`를 본다.
 - JD와 skill gap을 분석할 때는 `capabilities.md`와 `docs/resume/05-contribution-ax-positioning-draft.md`를 같이 본다.
+- workspace project evidence가 필요하면 `docs/resume/06-workspace-project-audit.md`를 본다.
 - agent/AX 섹션을 만들 때는 `agent-workflow.md`를 원장으로 쓴다.
 
 ## Evidence Links
@@ -37,4 +39,5 @@ tags: [profile, source-of-truth, resume]
 - Agent workflow 근거: [../docs/resume/03-agent-workflow-evidence.md](../docs/resume/03-agent-workflow-evidence.md)
 - Resume content brief: [../docs/resume/04-resume-content-brief.md](../docs/resume/04-resume-content-brief.md)
 - BE/Infra/AX positioning: [../docs/resume/05-contribution-ax-positioning-draft.md](../docs/resume/05-contribution-ax-positioning-draft.md)
-
+- Workspace project audit: [../docs/resume/06-workspace-project-audit.md](../docs/resume/06-workspace-project-audit.md)
+- Strengths and traits: [../docs/resume/06-strengths-and-traits.md](../docs/resume/06-strengths-and-traits.md)

@@ -12,6 +12,11 @@ tags: [resume, company-work, medisolve-ai, backend, infra]
 
 이 문서는 회사에서 진행한 업무를 public resume/homepage claim으로 전환하기 위한 내부 근거 정리다. 주로 `/Users/marin/workspace` 아래 로컬 repo를 확인했다.
 
+Framing note:
+
+- 이 문서에는 프로젝트 원문 근거 때문에 병원/헬스케어 도메인 표현이 남아 있다.
+- 공개 홈페이지/이력서에서는 이를 산업 특화 정체성으로 쓰지 않고, 복잡한 product backend와 infra/agent workflow를 다룬 evidence cluster로만 사용한다.
+
 Checked repositories:
 
 - `/Users/marin/workspace/CENTURION_DAY`
@@ -30,7 +35,7 @@ Not fully inspected yet:
 
 Source-backed version:
 
-> MediSolve AI에서 피부과/성형외과 멀티 브랜드 병원 운영 플랫폼의 backend, authentication, async messaging, realtime notification, Azure infra/deploy flow를 설계하고 운영했다. FastAPI/NestJS 기반 서비스와 Terraform/Azure 기반 인프라, project-level agent workflow를 함께 다뤘다.
+> MediSolve AI에서 multi-brand product backend와 AI product의 backend, authentication, async messaging, realtime notification, Azure infra/deploy flow를 설계하고 운영했다. FastAPI/NestJS 기반 서비스와 Terraform/Azure 기반 인프라, project-level agent workflow를 함께 다뤘다.
 
 Risk:
 
@@ -61,14 +66,14 @@ Code-backed evidence:
 
 Resume-ready bullets:
 
-- FastAPI/Python 기반 multi-brand hospital management backend monorepo를 운영하며 `api-gateway`, `admin-api`, `homepage-api`, shared module 경계를 다뤘다.
-- HQ/Branch 권한 분리, 브랜드별 독립 배포, i18n, reservation/product/customer/content domain을 포함한 병원 운영 플랫폼 구조를 설계/정리했다.
+- FastAPI/Python 기반 multi-brand product backend monorepo를 운영하며 `api-gateway`, `admin-api`, `homepage-api`, shared module 경계를 다뤘다.
+- HQ/Branch 권한 분리, 브랜드별 독립 배포, i18n, reservation/product/customer/content domain을 포함한 운영 플랫폼 구조를 설계/정리했다.
 - Router-Schema-Service-Validator-Repository-Model 계층 규칙을 문서화하고, business validation과 exception ownership을 분리했다.
 - Playwright/Docker MCP와 project `AGENTS.md`를 통해 browser/debug/container 작업을 agent workflow에 연결했다.
 
 Case-study candidate:
 
-- `NEXUS: multi-brand hospital SaaS backend monorepo and agent-team operating model`
+- `NEXUS: multi-brand product backend monorepo and agent-team operating model`
 
 ## SSO-BE-API
 
@@ -183,23 +188,23 @@ Code-backed evidence:
 
 ### What This Means
 
-Infra는 "서비스를 만들었다" 수준을 넘어 hospital/onboarding scale과 tenant isolation을 고민한 근거다.
+Infra는 "서비스를 만들었다" 수준을 넘어 onboarding scale과 tenant/service isolation을 고민한 근거다.
 
 Resume-ready bullets:
 
 - Terraform으로 Centurion B2B Azure infra를 관리하고, B2B/B2C 경계와 shared ACR 외 리소스 분리 원칙을 문서화했다.
 - Dev/STG/Demo/Prod VM, service deploy script, ACR image build/push, GitHub Actions deploy flow를 운영 문서화했다.
-- 병원별 독립 VNet/DB/VM 확장 구조와 이후 CI/CD/K8s 확장 로드맵을 정리했다.
+- tenant/service별 독립 VNet/DB/VM 확장 구조와 이후 CI/CD/K8s 확장 로드맵을 정리했다.
 
 Case-study candidate:
 
-- `Infra: 병원별 독립 Azure infra와 Terraform 기반 확장 전략`
+- `Infra: tenant/service별 독립 Azure infra와 Terraform 기반 확장 전략`
 
 ## Public Resume Claims By Confidence
 
 ### High Confidence
 
-- Multi-brand hospital management system backend work
+- Multi-brand product backend work
 - FastAPI/Python and NestJS/TypeScript backend work
 - SSO with JWT/Redis/JTI/session guard concepts
 - SSE realtime notification design in RAY
@@ -223,9 +228,8 @@ Case-study candidate:
 
 Short version:
 
-> MediSolve AI에서 병원 운영 SaaS의 backend and infra layer를 맡아 multi-brand architecture, centralized SSO, async messaging, realtime notification, and Azure deployment workflow를 구축했다. 동시에 project-level AGENTS, MCP, design/planning agent roles를 정리해 AI agent가 실제 개발 조직의 문서/설계/구현 흐름에 들어오도록 운영했다.
+> MediSolve AI에서 product backend와 AI product의 backend/infra layer를 맡아 multi-brand architecture, centralized SSO, async messaging, realtime notification, AI provider lifecycle, and Azure deployment workflow를 구축/정리했다. 동시에 project-level AGENTS, MCP, design/planning agent roles를 정리해 AI agent가 실제 개발 조직의 문서/설계/구현 흐름에 들어오도록 운영했다.
 
 Long version:
 
-> 피부과/성형외과 병원 운영 플랫폼에서 backend service boundary, authentication/session policy, async worker, realtime event delivery, and Azure deployment architecture를 다뤘다. FastAPI/Python 기반 BAY/RAY/NEXUS와 NestJS/Prisma 기반 SSO를 연결했고, RabbitMQ/TaskIQ/SSE/Terraform/GitHub Actions를 이용해 서비스 간 결합도를 낮추고 운영 흐름을 문서화했다. 이 과정에서 `AGENTS.md`, MCP, role-based planning/design/backend agents를 활용해 요구사항-화면기획-와이어프레임-구현으로 이어지는 agentic workflow를 실험하고 정리했다.
-
+> product backend와 AI product context에서 backend service boundary, authentication/session policy, async worker, realtime event delivery, AI provider lifecycle, and Azure deployment architecture를 다뤘다. FastAPI/Python 기반 BAY/NEXUS/SAY 계열 서비스와 NestJS/Prisma 기반 SSO를 연결했고, RabbitMQ/TaskIQ/WebSocket/SSE/Terraform/GitHub Actions를 이용해 서비스 간 결합도를 낮추고 운영 흐름을 문서화했다. 이 과정에서 `AGENTS.md`, MCP, role-based planning/design/backend agents를 활용해 요구사항-화면기획-와이어프레임-구현으로 이어지는 agentic workflow를 실험하고 정리했다.

@@ -8,6 +8,10 @@ tags: [resume, contribution, backend, infra, ax, agent-workflow]
 
 # Contribution And AX Positioning Draft
 
+## Framing Update
+
+2026-07-02 기준 현재 공개 포지셔닝은 병원/헬스케어 특화가 아니라 `AI product + product backend + infra + agent-readable workflow`다. 아래 초안의 병원/헬스케어 표현은 프로젝트 근거로만 해석하고, 홈페이지/이력서 headline이나 summary에서는 특정 산업 전문성처럼 쓰지 않는다.
+
 ## Purpose
 
 이 문서는 회사 프로젝트 기여도를 "내가 무엇을 만들었는가"에서 끝내지 않고, 새 이력서 홈페이지에서 아래 인상을 만들기 위한 1차 초벌이다.
@@ -20,11 +24,11 @@ tags: [resume, contribution, backend, infra, ax, agent-workflow]
 
 ### Short Version
 
-> 저는 병원 SaaS의 backend와 infra를 직접 구축하며 인증, 비동기 작업, 실시간 알림, 배포, 운영 문서화의 병목을 경험했습니다. 최근에는 이 경험을 바탕으로 AI agent를 단순 코딩 보조가 아니라, 조직의 요구사항, 문서, 코드, 디자인 handoff, 운영 절차를 연결하는 AX layer로 활용하는 데 관심을 두고 있습니다.
+> 저는 product backend와 AI product infra를 직접 구축하며 인증, 비동기 작업, 실시간 이벤트, 배포, 운영 문서화의 병목을 경험했습니다. 최근에는 이 경험을 바탕으로 AI agent를 단순 코딩 보조가 아니라, 조직의 요구사항, 문서, 코드, 디자인 handoff, 운영 절차를 연결하는 AX layer로 활용하는 데 관심을 두고 있습니다.
 
 ### Stronger Homepage Version
 
-> 저는 FastAPI/NestJS 기반 병원 운영 SaaS와 Azure infra를 구축해온 backend engineer입니다. SSO, RabbitMQ/TaskIQ, SSE, Terraform, GitHub Actions 같은 시스템을 다루며 기술 문제보다 더 자주 반복되는 조직 문제를 봤습니다. 요구사항이 코드까지 정확히 전달되지 않고, 문서와 구현이 어긋나며, 팀원이 매번 context를 다시 복원하는 문제입니다. 그래서 AI agent를 코드 생성 도구가 아니라, 조직의 지식과 실행을 연결하는 AX layer로 보고 있습니다.
+> 저는 FastAPI/NestJS 기반 product backend와 Azure infra를 구축해온 backend/AI systems engineer입니다. SSO, RabbitMQ/TaskIQ, WebSocket/SSE, Terraform, GitHub Actions 같은 시스템을 다루며 기술 문제보다 더 자주 반복되는 조직 문제를 봤습니다. 요구사항이 코드까지 정확히 전달되지 않고, 문서와 구현이 어긋나며, 팀원이 매번 context를 다시 복원하는 문제입니다. 그래서 AI agent를 코드 생성 도구가 아니라, 조직의 지식과 실행을 연결하는 AX layer로 보고 있습니다.
 
 ### English Version
 
@@ -32,13 +36,14 @@ tags: [resume, contribution, backend, infra, ax, agent-workflow]
 
 ## Contribution Model
 
-기여도는 code line count로 보지 않는다. 현재 포지셔닝에서는 아래 4축으로 판단한다.
+기여도는 code line count로 보지 않는다. 현재 포지셔닝에서는 아래 5축으로 판단한다.
 
 | Axis | What It Proves | Evidence Examples | Resume Use |
 | --- | --- | --- | --- |
 | Backend Capability | 복잡한 domain/service boundary를 구현할 수 있음 | API, SSO, validation, repository/service layer, async worker, SSE | BE 실력의 기본 신뢰 |
+| AI Backend Capability | AI runtime/provider/quality 문제를 backend system으로 다룰 수 있음 | STT/LLM provider, WebSocket consultation, RAG, generation quality/observability | AI product engineering 신뢰 |
 | Infra Capability | 만든 시스템을 배포/운영 가능한 형태로 가져갈 수 있음 | Terraform, Azure, Docker, ACR, GitHub Actions, deploy docs | production 감각 |
-| Product/System Thinking | 기술을 제품 운영 문제와 연결할 수 있음 | multi-brand, HQ/Branch, 병원 workflow, service isolation | senior/lead 인상 |
+| Product/System Thinking | 기술을 제품 운영 문제와 연결할 수 있음 | multi-brand, HQ/Branch, domain workflow, service isolation | senior/lead 인상 |
 | Agent/AX Capability | 반복 병목을 agent-readable process로 바꿀 수 있음 | `AGENTS.md`, MCP, source-of-truth docs, task/report, OpenDesign | 차별점 |
 
 ## Project Contribution Draft
@@ -47,12 +52,12 @@ tags: [resume, contribution, backend, infra, ax, agent-workflow]
 
 Contribution framing:
 
-> Multi-brand hospital SaaS를 하나의 codebase와 독립 운영 구조로 다루는 backend/product system 구축 경험.
+> Multi-brand product backend를 하나의 codebase와 독립 운영 구조로 다루는 backend/product system 구축 경험.
 
 What I can claim now:
 
 - FastAPI 기반 backend monorepo에서 `api-gateway`, `admin-api`, `homepage-api`, `shared` 경계를 다뤘다.
-- 병원 브랜드별 독립 운영, HQ/Branch 권한 분리, 예약/상품/고객/콘텐츠 domain을 다루는 platform 구조를 정리했다.
+- 브랜드/운영 단위별 독립 운영, HQ/Branch 권한 분리, 예약/상품/고객/콘텐츠 domain을 다루는 platform 구조를 정리했다.
 - Router -> Schema -> Service -> Validator -> Repository -> Model 계층 규칙과 business validation ownership을 문서화했다.
 - project `AGENTS.md`를 통해 backend/frontend/design/planning agent 역할과 ownership을 정리했다.
 
@@ -65,7 +70,7 @@ Contribution type:
 
 Resume copy:
 
-> Multi-brand hospital SaaS의 backend monorepo와 service boundary를 설계/운영하며, 브랜드별 독립 운영과 HQ/Branch 권한 분리를 지원하는 platform 구조를 정리했습니다.
+> Multi-brand product backend monorepo와 service boundary를 설계/운영하며, 브랜드별 독립 운영과 HQ/Branch 권한 분리를 지원하는 platform 구조를 정리했습니다.
 
 AX copy:
 
@@ -189,7 +194,7 @@ What I can claim now:
 - Terraform 기반 Centurion B2B Azure infra repo가 확인된다.
 - B2B/B2C infra separation과 shared ACR boundary가 문서화되어 있다.
 - dev/stg/demo/prod VM, service deploy script, ACR image build/push, GitHub Actions deploy path가 정리되어 있다.
-- 병원별 independent VNet/DB/VM 확장 구조와 future CI/CD/K8s roadmap이 문서화되어 있다.
+- tenant/service별 independent VNet/DB/VM 확장 구조와 future CI/CD/K8s roadmap이 문서화되어 있다.
 
 Contribution type:
 
@@ -200,7 +205,7 @@ Contribution type:
 
 Resume copy:
 
-> Terraform/Azure 기반 infra 문서와 deploy flow를 정리하고, 병원별 독립 VNet/DB/VM 구조로 B2B SaaS 확장 전략을 설계했습니다.
+> Terraform/Azure 기반 infra 문서와 deploy flow를 정리하고, tenant/service별 독립 VNet/DB/VM 구조로 B2B SaaS 확장 전략을 설계했습니다.
 
 AX copy:
 
@@ -218,7 +223,7 @@ Needs verification:
 
 | Organizational Problem | Observed In | AX Direction |
 | --- | --- | --- |
-| 요구사항이 구현까지 정확히 전달되지 않음 | multi-domain hospital SaaS, FE/BE/design handoff | policy -> spec -> wireframe -> implementation artifact chain |
+| 요구사항이 구현까지 정확히 전달되지 않음 | multi-domain product backend, FE/BE/design handoff | policy -> spec -> wireframe -> implementation artifact chain |
 | 문서와 코드가 어긋남 | backend policies, infra docs, service flows | source-of-truth routing, doc-to-code review, agent checklist |
 | context 복원 비용이 큼 | 여러 repo, 여러 서비스, onboarding docs | `AGENTS.md`, repo map, task/report, briefing |
 | 운영 지식이 사람에게 묶임 | deploy, infra, DB tunnel, worker restart | runbook, MCP, Docker/Playwright operations |
@@ -233,7 +238,7 @@ Needs verification:
 
 ### Level 2: Engineering Leader
 
-> multi-brand hospital SaaS에서 service boundary, auth/session policy, async worker, realtime event, infra isolation을 다뤘고, 이를 문서/운영 규칙으로 정리해 팀이 유지보수 가능한 구조를 만들었습니다.
+> multi-brand product backend에서 service boundary, auth/session policy, async worker, realtime event, infra isolation을 다뤘고, 이를 문서/운영 규칙으로 정리해 팀이 유지보수 가능한 구조를 만들었습니다.
 
 ### Level 3: AX/Agent Differentiation
 
@@ -243,11 +248,11 @@ Needs verification:
 
 ### Option A: Balanced
 
-> Backend engineer with experience building hospital SaaS systems across SSO, async messaging, realtime notification, and Azure infra. I am now extending that experience into agentic workflows that help teams turn product context, documentation, code, and operations into executable organizational knowledge.
+> Backend and AI systems engineer with experience building product backend systems across SSO, async messaging, realtime event delivery, AI provider lifecycle, and Azure infra. I am now extending that experience into agentic workflows that help teams turn product context, documentation, code, and operations into executable organizational knowledge.
 
 ### Option B: Korean Public Profile
 
-> 병원 SaaS의 backend와 infra를 구축해온 엔지니어입니다. SSO, RabbitMQ/TaskIQ, SSE, Terraform/Azure 배포를 다뤘고, 최근에는 AI agent를 활용해 제품 문서와 코드, 디자인 handoff, 운영 절차를 연결하는 AX workflow를 만드는 데 관심이 있습니다.
+> AI product와 product backend의 backend/infra를 구축해온 엔지니어입니다. SSO, RabbitMQ/TaskIQ, WebSocket/SSE, AI provider lifecycle, Terraform/Azure 배포를 다뤘고, 최근에는 AI agent를 활용해 제품 문서와 코드, 디자인 handoff, 운영 절차를 연결하는 AX workflow를 만드는 데 관심이 있습니다.
 
 ### Option C: More Senior
 
@@ -307,8 +312,8 @@ JD를 스크래핑할 때 각 공고에서 아래 필드를 추출한다.
 
 JD 스크래핑 후 만들 문서:
 
-- `06-jd-market-skill-map.md`: JD별 요구역량 빈도와 내 evidence 매핑
-- `07-gap-closing-roadmap.md`: 부족 역량을 2~6주 단위로 채우는 학습/프로젝트 계획
+- `07-jd-market-skill-map.md`: JD별 요구역량 빈도와 내 evidence 매핑
+- `08-gap-closing-roadmap.md`: 부족 역량을 2~6주 단위로 채우는 학습/프로젝트 계획
 
 ### Likely Skills To Validate
 
@@ -324,8 +329,7 @@ Verification:
 
 ## Immediate Next Step
 
-1. Git history/PR 기준으로 `NEXUS`, `SSO`, `BAY`, `RAY`, `INFRA` 직접 기여 범위를 한 번 더 확인한다.
+1. Git history/PR 기준으로 `NEXUS`, `BAY`, `thready`, `SAY/PROTON`, `INFRA` 직접 기여 범위를 한 번 더 확인한다.
 2. Public-safe disclosure boundary를 정한다.
 3. JD 30~50개를 수집해 skill frequency를 뽑는다.
 4. `내가 이미 가진 evidence`, `문장화할 것`, `보강할 것`으로 분리한다.
-

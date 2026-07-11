@@ -27,8 +27,9 @@ tags: [rules, routing, documentation]
 | agent workflow evidence | `docs/resume/03-*` | 긴 근거와 external workspace references |
 | homepage/resume content brief | `docs/resume/04-*` | public copy 초안 |
 | BE/Infra/AX positioning 초벌 | `docs/resume/05-*` | positioning 작업 산출물 |
-| JD skill map | `docs/resume/06-*` | 시장 분석 산출물 |
-| gap closing roadmap | `docs/resume/07-*` | 실행 계획 산출물 |
+| workspace project audit | `docs/resume/06-*` | local repo 기반 기여도 분석 산출물 |
+| JD skill map | `docs/resume/07-*` | 시장 분석 산출물 |
+| gap closing roadmap | `docs/resume/08-*` | 실행 계획 산출물 |
 
 ## Evidence Rules
 
@@ -55,4 +56,3 @@ Public resume copy에는 `High`와 신중한 `Medium`만 사용한다. `Low`와 
 2. 특정 분석/초안/시장조사 산출물인가? 그러면 `docs/resume/`.
 3. 문서 위치와 운영 규칙인가? 그러면 `rules/`.
 4. 현재 상태 snapshot인가? 그러면 `context/current-state.md`.
-

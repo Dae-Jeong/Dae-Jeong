@@ -17,6 +17,7 @@ roles:
       - read: context/profile.md
       - read: profile/README.md
       - read: docs/resume/README.md
+      - read: docs/resume/06-workspace-project-audit.md
       - update: profile/*
     owns:
       - profile/
@@ -36,6 +37,7 @@ roles:
       - read: profile/contribution.md
       - read: docs/resume/04-resume-content-brief.md
       - read: docs/resume/05-contribution-ax-positioning-draft.md
+      - read: docs/resume/06-workspace-project-audit.md
       - update: docs/resume/
     owns:
       - docs/resume/
@@ -83,11 +85,12 @@ roles:
       - read: profile/capabilities.md
       - read: profile/contribution.md
       - read: docs/resume/05-contribution-ax-positioning-draft.md
-      - create: docs/resume/06-jd-market-skill-map.md
-      - create: docs/resume/07-gap-closing-roadmap.md
+      - read: docs/resume/06-workspace-project-audit.md
+      - create: docs/resume/07-jd-market-skill-map.md
+      - create: docs/resume/08-gap-closing-roadmap.md
     owns:
-      - docs/resume/06-jd-market-skill-map.md
-      - docs/resume/07-gap-closing-roadmap.md
+      - docs/resume/07-jd-market-skill-map.md
+      - docs/resume/08-gap-closing-roadmap.md
 
 agents:
   codex:
@@ -108,4 +111,3 @@ document_policy:
     - Assumption
     - Unverified
     - Unknown
-

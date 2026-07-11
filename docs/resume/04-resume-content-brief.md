@@ -8,6 +8,10 @@ tags: [resume, homepage, portfolio, agent-workflow, writing]
 
 # Resume Homepage Content Brief
 
+## Framing Update
+
+2026-07-02 기준 현재 공개 포지셔닝은 병원/헬스케어 특화가 아니라 `AI product + product backend + infra + agent-readable workflow`다. 병원/헬스케어 도메인 표현은 프로젝트 근거로만 사용하고, hero/summary/case-study 제목에서는 특정 산업 전문성처럼 읽히지 않게 한다.
+
 ## Target Positioning
 
 ### One-Line
@@ -22,7 +26,7 @@ English:
 
 ### Longer Bio
 
-> 저는 병원 운영 SaaS, SSO, 비동기 메시징, 실시간 알림, Azure infra를 다뤄온 backend engineer입니다. FastAPI, NestJS, Spring Boot 기반으로 service boundary와 transaction/session/workflow 문제를 풀어왔고, 최근에는 `AGENTS.md`, MCP, task/report 구조, OpenDesign 기반 design handoff를 활용해 AI agent가 실제 개발 흐름에 들어올 수 있는 운영 체계를 만들고 있습니다.
+> 저는 AI product와 product backend, SSO, 비동기 메시징, 실시간 이벤트, Azure infra를 다뤄온 backend/AI systems engineer입니다. FastAPI, NestJS, Spring Boot 기반으로 service boundary와 transaction/session/workflow 문제를 풀어왔고, 최근에는 `AGENTS.md`, MCP, task/report 구조, OpenDesign 기반 design handoff를 활용해 AI agent가 실제 개발 흐름에 들어올 수 있는 운영 체계를 만들고 있습니다.
 
 ## Homepage Information Architecture
 
@@ -32,7 +36,7 @@ Priority: `Resume > Agent > Writing`
 | --- | --- | --- |
 | Home | "나는 어떤 사람인가"를 10초 안에 전달 | headline, current role, 3 proof cards |
 | Resume | 경력/기술/성과를 전통적 이력서 형식으로 정리 | Oopy resume + company evidence |
-| Case Studies | claim을 신뢰 가능한 문제 해결 기록으로 전환 | NEXUS, SSO, BAY, RAY, infra, TellingMe, SellerCanvas |
+| Case Studies | claim을 신뢰 가능한 문제 해결 기록으로 전환 | thready, BAY, NEXUS, SAY cluster, infra, TellingMe, SellerCanvas |
 | Agent | AI agent를 실제 업무 운영 계층으로 쓰는 방식 설명 | `agentspace`, project `AGENTS.md`, MCP, Codex orchestration, OpenDesign |
 | Writing | 기술/제품/agent 운영에 관한 글 목록 | internal docs를 public essay로 변환 |
 | About | PM/AI/backend/UX 활동을 연결한 개인 서사 | Oopy intro + activities |
@@ -45,7 +49,7 @@ Recommended hero copy:
 김대정
 Backend Architect for Product Systems and Agentic Workflows
 
-병원 운영 SaaS, SSO, 비동기 메시징, 실시간 알림, Azure infra를 설계하고 운영합니다.
+AI product와 product backend, SSO, 비동기 메시징, 실시간 이벤트, Azure infra를 설계하고 운영합니다.
 요즘은 AI agent가 제품 문서, 코드, 디자인 handoff를 함께 읽고 실행할 수 있는 구조를 만들고 있습니다.
 ```
 
@@ -68,12 +72,12 @@ Role:
 
 Recommended bullets:
 
-- 피부과/성형외과 multi-brand hospital management platform에서 backend service boundary, authentication, async messaging, realtime notification, infra/deploy workflow를 설계하고 운영.
-- FastAPI/Python 기반 BAY/RAY/NEXUS 계열 서비스와 NestJS/Prisma 기반 SSO를 연결해 병원 운영 SaaS의 인증, 재고, 시술, 알림 흐름을 구성.
+- multi-brand product backend platform에서 service boundary, authentication, async messaging, realtime notification, infra/deploy workflow를 설계하고 운영.
+- FastAPI/Python 기반 BAY/NEXUS 계열 서비스와 NestJS/Prisma 기반 SSO를 연결해 product backend의 인증, 재고, 예약, 알림 흐름을 구성.
 - Redis/JTI 기반 SSO session validation, duplicate login policy, service-group logout 등 multi-service authentication 문제를 구조화.
 - TaskIQ/RabbitMQ 기반 async worker로 알림톡 발송과 inventory integration을 API request flow에서 분리.
 - `sse-starlette` 기반 SSE realtime channel로 procedure status/notification event를 client에 전달하는 구조 설계.
-- Terraform/Azure/GitHub Actions/ACR 기반 deploy and infra documentation을 정리하고, 병원별 독립 infra 확장 방향을 설계.
+- Terraform/Azure/GitHub Actions/ACR 기반 deploy and infra documentation을 정리하고, tenant/service별 infra isolation과 확장 방향을 설계.
 - Project `AGENTS.md`, MCP, planning/design/backend agent roles를 통해 요구사항-스펙-와이어프레임-구현의 agent workflow를 문서화.
 
 Avoid until verified:
@@ -92,7 +96,7 @@ Role:
 
 Recommended bullets:
 
-- FastAPI/SQLAlchemy/MySQL 기반 병원 운영 backend에서 결제, 알림톡, 직원 일정 관리 도메인을 개발.
+- FastAPI/SQLAlchemy/MySQL 기반 운영 backend에서 결제, 알림톡, 직원 일정 관리 도메인을 개발.
 - Stripe Hong Kong API와 Notifly 기반 알림톡 workflow를 연동해 결제/예약/마케팅 운영 흐름을 backend로 구현.
 - Check 서비스에서 직원 일정 관리 admin을 기획부터 API/schema/auth 구현까지 0->1로 구축.
 
@@ -128,11 +132,11 @@ Verification needed:
 
 ## Case Study Backlog
 
-### 1. NEXUS: Multi-Brand Hospital SaaS Architecture
+### 1. NEXUS: Multi-Brand Product Backend Architecture
 
 Problem:
 
-- 여러 병원 브랜드를 하나의 codebase로 관리하면서 브랜드별 독립 운영, HQ/Branch 권한, homepage/admin/crm 경계를 나눠야 했다.
+- 여러 브랜드/운영 단위를 하나의 codebase로 관리하면서 독립 운영, HQ/Branch 권한, homepage/admin/crm 경계를 나눠야 했다.
 
 Key points:
 
@@ -201,11 +205,11 @@ Proof:
 
 - `RAY-BE-API/docs/sse-design-starlette.md`
 
-### 5. Infra: Terraform-Based Azure Hospital Expansion
+### 5. Infra: Terraform-Based Azure Product/Tenant Expansion
 
 Problem:
 
-- 병원별 infra isolation과 service deployment path를 관리해야 했다.
+- tenant/service별 infra isolation과 service deployment path를 관리해야 했다.
 
 Key points:
 
@@ -213,7 +217,7 @@ Key points:
 - B2B/B2C separation
 - shared ACR only
 - dev/stg/prod VM and deployment docs
-- future hospital module/CI/CD/K8s roadmap
+- future tenant module/CI/CD/K8s roadmap
 
 Proof:
 
@@ -297,7 +301,7 @@ Writing should start as curated engineering notes, not generic blog posts.
 3. `Redis/JTI로 multi-service duplicate login을 다루는 법`
 4. `FastAPI에서 SSE를 단순하게 시작하는 방법`
 5. `TaskIQ와 RabbitMQ로 API와 worker 책임 분리하기`
-6. `병원 SaaS에서 HQ/Branch 권한 경계를 설계하는 법`
+6. `multi-tenant product backend에서 HQ/Branch 권한 경계를 설계하는 법`
 7. `OpenDesign으로 spec과 prototype 사이를 줄이는 실험`
 8. `PM에서 backend engineer로 돌아왔을 때 더 잘 보이게 된 것들`
 
@@ -316,7 +320,7 @@ Visual tone:
 Information density:
 
 - Recruiter path: Home -> Resume -> PDF/download/contact.
-- Engineering leader path: Home -> Case Studies -> SSO/BAY/RAY/NEXUS.
+- Engineering leader path: Home -> Case Studies -> thready/BAY/NEXUS/SAY.
 - Agent-curious path: Home -> Agent -> Writing.
 
 ## Immediate Next Content Tasks
@@ -339,4 +343,3 @@ Unknown:
 Inference:
 
 - The strongest new positioning is not "backend engineer who uses AI" but "backend/product engineer who turns product systems into agent-readable workflows".
-

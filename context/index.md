@@ -17,9 +17,9 @@ tags: [context, routing, profile, resume]
 | 어떤 작업이든 시작할 때 | `context/manifest.yaml`, `context/current-state.md`, `profile/README.md` |
 | 김대정에 대한 짧은 canonical profile이 필요할 때 | `context/profile.md` |
 | 자기소개, bio, headline을 작성할 때 | `profile/identity.md`, `docs/resume/04-resume-content-brief.md`, `docs/resume/05-contribution-ax-positioning-draft.md` |
-| 경력과 회사 프로젝트를 정리할 때 | `profile/career.md`, `profile/contribution.md`, `docs/resume/02-company-work-evidence.md` |
-| BE/Infra/Agent/AX 역량을 정리할 때 | `profile/capabilities.md`, `profile/agent-workflow.md` |
-| JD 분석을 할 때 | `docs/resume/05-contribution-ax-positioning-draft.md`의 `JD Scraping Preparation` |
+| 경력과 회사 프로젝트를 정리할 때 | `profile/career.md`, `profile/contribution.md`, `docs/resume/02-company-work-evidence.md`, `docs/resume/06-workspace-project-audit.md` |
+| BE/Infra/Agent/AX 역량을 정리할 때 | `profile/capabilities.md`, `profile/agent-workflow.md`, `docs/resume/06-workspace-project-audit.md` |
+| JD 분석을 할 때 | `profile/capabilities.md`, `profile/contribution.md`, `docs/resume/05-contribution-ax-positioning-draft.md`, `docs/resume/06-workspace-project-audit.md` |
 | 새 문서 위치를 판단할 때 | `rules/document-routing.md` |
 
 ## Source Of Truth 규칙
@@ -42,5 +42,4 @@ tags: [context, routing, profile, resume]
 
 ## 현재 주요 결론
 
-김대정의 현재 public positioning은 "backend engineer who uses AI"보다 "BE/Infra를 직접 구축해본 엔지니어가 agentic workflow와 AX로 조직 병목을 해결하려는 사람"에 가깝다.
-
+김대정의 현재 public positioning은 "backend engineer who uses AI"보다 "BE/AI backend/Infra를 직접 구축해본 엔지니어가 agentic workflow와 AX로 조직 병목을 해결하려는 사람"에 가깝다.

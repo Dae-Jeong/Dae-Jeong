@@ -14,13 +14,14 @@ tags: [profile, identity, resume, ax]
 
 ## Current Positioning
 
-김대정은 병원 SaaS의 backend와 infra를 구축해온 engineer다. FastAPI, NestJS, Spring Boot 기반으로 SSO, async messaging, realtime notification, Azure infra, CI/CD를 다뤄왔다. 최근 positioning은 BE/Infra 구축 경험을 바탕으로 AI agent를 조직의 AX layer로 확장하는 쪽이다.
+김대정은 AI product와 product backend의 복잡한 운영 문제를 backend/infra system으로 풀어온 engineer다. FastAPI, NestJS 기반으로 SSO, async messaging, realtime event, AI provider lifecycle, Azure/Terraform infra, CI/CD를 다뤄왔다. 최근 positioning은 BE/AI backend/Infra 구축 경험을 바탕으로 AI agent를 조직의 AX layer로 확장하는 쪽이다.
 
 ## Core Themes
 
-- Backend systems: SSO, API, domain boundary, async worker, SSE
+- Backend systems: SSO, API, domain boundary, async worker, SSE/WebSocket, gateway
+- AI backend systems: STT/LLM provider lifecycle, realtime consultation, RAG/generation quality
 - Infra and operations: Azure, Terraform, Docker, ACR, GitHub Actions
-- Product/system thinking: multi-brand hospital SaaS, HQ/Branch, service boundary
+- Product/system thinking: AI content operations, multi-brand product backend, commerce/inventory/order, service boundary
 - Agent/AX workflow: `AGENTS.md`, source-of-truth docs, MCP, task/report, OpenDesign handoff
 - Writing: backend architecture, agent workflow, AX, product engineering
 
@@ -29,4 +30,5 @@ tags: [profile, identity, resume, ax]
 - Full profile index: [profile/README.md](../profile/README.md)
 - Resume workspace: [docs/resume/README.md](../docs/resume/README.md)
 - Contribution and AX draft: [docs/resume/05-contribution-ax-positioning-draft.md](../docs/resume/05-contribution-ax-positioning-draft.md)
-
+- Workspace project audit: [docs/resume/06-workspace-project-audit.md](../docs/resume/06-workspace-project-audit.md)
+- Strengths and traits: [docs/resume/06-strengths-and-traits.md](../docs/resume/06-strengths-and-traits.md)

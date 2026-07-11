@@ -26,17 +26,27 @@ Codex, Claude, 또는 다른 문서/코딩 agent가 이 repo에서 작업할 때
 | `docs/resume/` | 이력서 홈페이지, JD, positioning 작업 산출물 | `docs/resume/README.md` |
 | `rules/` | 문서 위치와 변경 라우팅 규칙 | `rules/document-routing.md` |
 | `docs/superpowers/` | agent 실행 계획과 skill 기반 작업 기록 | 필요한 plan/spec 문서 |
+| `skills/` | tool-agnostic agent 스킬 (Claude/Codex/GPT 공용) | 각 스킬의 `SKILL.md` |
+
+## Skills (agent 공용)
+
+tool-agnostic 스킬은 `skills/`에 둔다. Claude Code는 `.claude/skills/`의 symlink로 자동 발견하고, Codex 등 다른 agent는 아래 표에서 찾아 해당 `SKILL.md`를 읽고 그대로 따른다. 스킬 포맷은 오픈 Agent Skills 규격(YAML frontmatter `name`/`description` + markdown 본문)이다.
+
+| Skill | 위치 | 용도 |
+| --- | --- | --- |
+| tailor-resume | [skills/tailor-resume/SKILL.md](skills/tailor-resume/SKILL.md) | 특정 회사/JD 맞춤 이력서 생성 — 검증된 profile 소스 기반, 15초 hooking 원칙 |
 
 ## 작업별 라우팅
 
 | 작업 | 읽기 | 쓰기 |
 | --- | --- | --- |
 | 자기소개/hero/bio 작성 | `profile/identity.md`, `docs/resume/04-*`, `05-*` | `profile/identity.md` 또는 `docs/resume/` |
-| 경력/회사 프로젝트 정리 | `profile/career.md`, `profile/contribution.md`, `docs/resume/02-*` | `profile/career.md`, `profile/contribution.md` |
-| BE/Infra 역량 정리 | `profile/capabilities.md`, `docs/resume/02-*`, `05-*` | `profile/capabilities.md` |
+| 경력/회사 프로젝트 정리 | `profile/career.md`, `profile/contribution.md`, `docs/resume/02-*`, `06-*` | `profile/career.md`, `profile/contribution.md` |
+| BE/Infra 역량 정리 | `profile/capabilities.md`, `docs/resume/02-*`, `05-*`, `06-*` | `profile/capabilities.md` |
 | Agent/AX 섹션 작성 | `profile/agent-workflow.md`, `docs/resume/03-*`, `05-*` | `profile/agent-workflow.md` |
 | 글감/블로그 기획 | `profile/writing.md`, `docs/resume/04-*`, `05-*` | `profile/writing.md` |
-| JD 분석 | `docs/resume/05-*`의 JD 준비 항목 | `docs/resume/06-*`, `07-*` |
+| workspace 프로젝트 분석 | `docs/resume/06-*`, `profile/contribution.md`, `profile/capabilities.md` | `docs/resume/06-*`, `profile/contribution.md`, `profile/capabilities.md`, `profile/career.md` |
+| JD 분석 | `docs/resume/05-*`, `06-*` | `docs/resume/07-*`, `08-*` |
 
 ## 작성 원칙
 
@@ -45,4 +55,3 @@ Codex, Claude, 또는 다른 문서/코딩 agent가 이 repo에서 작업할 때
 - 공개 문구를 만들 때 `Unknown`, `Unverified`, `Inference`, `Assumption`을 구분한다.
 - 회사 프로젝트 claim은 repo 문서, 코드, Git history, PR, 운영 문서 근거가 있을 때만 강하게 쓴다.
 - 민감한 고객사 정보, credential, raw private conversation, 내부 운영 비밀은 기록하지 않는다.
-

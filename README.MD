@@ -37,7 +37,8 @@ AGENTS.md       agent 진입점
 
 ## 다음 큰 작업
 
-1. JD 30~50개를 수집해 backend/platform/infra/AI automation/AX 시장 요구 역량을 분석한다.
-2. `docs/resume/06-jd-market-skill-map.md`에 내 evidence와 JD 요구사항을 매핑한다.
-3. `docs/resume/07-gap-closing-roadmap.md`에 부족한 역량을 채우는 계획을 만든다.
-4. profile 원장을 기반으로 이력서 홈페이지의 `Resume`, `Agent`, `Writing` 섹션을 구현한다.
+1. workspace audit의 high-signal repo를 public-safe case study 후보로 좁힌다.
+2. JD 30~50개를 수집해 backend/platform/infra/AI automation/AX 시장 요구 역량을 분석한다.
+3. `docs/resume/07-jd-market-skill-map.md`에 내 evidence와 JD 요구사항을 매핑한다.
+4. `docs/resume/08-gap-closing-roadmap.md`에 부족한 역량을 채우는 계획을 만든다.
+5. profile 원장을 기반으로 이력서 홈페이지의 `Resume`, `Agent`, `Writing` 섹션을 구현한다.
