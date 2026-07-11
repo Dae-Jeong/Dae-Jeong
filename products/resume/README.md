@@ -25,9 +25,9 @@ tags: [resume, product, master]
 | Path | Status | Role |
 | --- | --- | --- |
 | [master/v0/](master/v0/) | baseline | 기존 초안을 보존한 구조·시각 inventory. public-ready 아님 |
-| `master/v1/` | planned | evidence-linked general A4 master |
+| [master/v1/](master/v1/) | active | evidence-linked Korean A4 general master |
 | `tailored/` | generated/local | 특정 JD에 맞춰 v1에서 선별한 지원 산출물 |
 
-v1을 만들 때 v0 문구를 자동 승격하지 않는다. 모든 public bullet은 claim registry에서 다시 선택하고 `claim-map.yaml`에 연결한다.
+v1의 모든 public bullet은 claim registry에서 선택하고 `claim-map.yaml`과 HTML `data-claim`으로 연결한다. v0 문구는 새 산출물의 content source로 사용하지 않는다.
 
-Next execution plan: [Resume Master v1](../../docs/superpowers/plans/2026-07-11-resume-master-v1.md)
+Execution record: [Resume Master v1 plan](../../docs/superpowers/plans/2026-07-11-resume-master-v1.md)

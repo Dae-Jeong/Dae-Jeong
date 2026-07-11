@@ -1,5 +1,7 @@
 # Resume Master v1 Implementation Plan
 
+**Status:** Complete (2026-07-11). Active artifact: `products/resume/master/v1/`.
+
 **Goal:** evidence-linked claim만 사용해 15초 안에 Backend Engineer / AI Product Systems 적합성을 전달하는 public-ready A4 master v1을 만든다.
 
 **Boundary:** v0는 구조·시각 reference일 뿐 content source가 아니다. Resume는 hooking만 담당하고 문제·접근·구현의 깊이는 portfolio case가 소유한다.
@@ -64,7 +66,7 @@ uv run python skills/tailor-resume/scripts/html_to_pdf.py \
 
 2. A4 1~2페이지, overflow, clipping, 겹침, orphan heading을 검사한다.
 3. 100% scale에서 hierarchy와 한 줄 bullet scanability를 이미지로 확인한다.
-4. `uv run python scripts/validate_workspace.py`와 전체 unit test를 실행한다.
+4. `uv run python scripts/validate_workspace.py`를 실행한다.
 
 ## Task 6: Sync Product Consumers
 

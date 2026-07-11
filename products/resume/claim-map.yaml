@@ -1,10 +1,41 @@
 schema_version: 1
 artifact: products/resume/master/v1/resume.html
-status: planned
+status: active
 sections:
-  summary: []
-  capabilities: []
-  projects: []
-  career: []
-  agent_workflow: []
-  credentials: []
+  summary:
+    - career.medisolve-role-evolution
+    - thready.backend-rebuild
+    - mediness.product-operations
+  capabilities:
+    - thready.generation-quality-system
+    - centurion.bay-async-backend
+    - centurion.say-realtime-ai
+    - nexus.backend-architecture
+    - nexus.terraform-infra
+    - centurion.shared-infra
+    - be-template.backend-standard
+    - be-template.agent-context
+    - mediness.product-operations
+    - mediness.daily-briefing
+  projects:
+    - thready.backend-rebuild
+    - thready.generation-quality-system
+    - thready.release-operation
+    - centurion.bay-async-backend
+    - centurion.say-realtime-ai
+    - be-template.backend-standard
+    - be-template.agent-context
+  career:
+    - career.medisolve-role-evolution
+    - career.memento-payment
+    - career.ai-pm-backend-continuity
+    - career.tellingme-backend-infra
+  agent_workflow:
+    - mediness.product-operations
+    - mediness.daily-briefing
+    - be-template.agent-context
+  credentials:
+    - credentials.education
+    - credentials.ces-2024
+    - credentials.page-output-patent
+    - credentials.adsp
