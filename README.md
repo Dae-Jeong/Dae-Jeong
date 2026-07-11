@@ -50,6 +50,7 @@ external sources / Git / user confirmation
 uv sync
 uv run playwright install chromium
 uv run python scripts/validate_workspace.py
+uv run python scripts/verify_portable_clone.py
 ```
 
 외부 source repo를 다시 검증해야 할 때만 [config/source-roots.example.yaml](config/source-roots.example.yaml)을 `.local/source-roots.yaml`로 복사하고 현재 PC의 경로를 설정한다.

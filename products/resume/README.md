@@ -29,3 +29,5 @@ tags: [resume, product, master]
 | `tailored/` | generated/local | 특정 JD에 맞춰 v1에서 선별한 지원 산출물 |
 
 v1을 만들 때 v0 문구를 자동 승격하지 않는다. 모든 public bullet은 claim registry에서 다시 선택하고 `claim-map.yaml`에 연결한다.
+
+Next execution plan: [Resume Master v1](../../docs/superpowers/plans/2026-07-11-resume-master-v1.md)

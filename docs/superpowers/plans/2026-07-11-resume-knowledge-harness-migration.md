@@ -4,6 +4,8 @@
 
 **Goal:** 현재 이력서 workspace를 다른 PC에서 clone해도 profile, evidence, resume, portfolio, JD workflow를 이어갈 수 있는 portable knowledge harness로 이관한다.
 
+**Status:** Complete (2026-07-11). Temporary `git clone --no-local` verification passed; resume master v1 remains a separate project.
+
 **Architecture:** 안정적인 개인 원장은 `profile/`, 검증 근거와 public claim은 `evidence/`, 목적별 계약과 산출물은 `products/`가 소유한다. 활성 문서는 repo-relative link와 logical source alias만 사용하고, 실제 외부 경로는 ignored `.local/source-roots.yaml`에서만 연결한다.
 
 **Tech Stack:** Markdown + OKF-style YAML frontmatter, YAML claim registry, Python 3.12, PyYAML 6.0.3, Playwright 1.61.0, uv, HTML/CSS/PDF
@@ -981,7 +983,7 @@ Skip this commit only if Step 5 already included the exact final verifier and ar
 **Files:**
 - Modify: `context/current-state.md`
 - Modify: `products/resume/README.md`
-- Create: `docs/superpowers/plans/2026-07-11-resume-master-v1.md` in the next planning session, not this migration
+- Create: `docs/superpowers/plans/2026-07-11-resume-master-v1.md` as the next bounded project, without implementing v1 in this migration
 
 **Interfaces:**
 - Consumes: passing portable harness
