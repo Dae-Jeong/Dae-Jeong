@@ -1,16 +1,17 @@
 ---
 type: project-audit
 title: Workspace Project Audit
-description: First-pass audit of ~/workspace projects for contribution evidence, backend/infra capability, and agent/AX positioning.
+description: First-pass audit of workspace repositories for contribution evidence, backend/infra capability, and agent/AX positioning.
 timestamp: 2026-07-02
 tags: [workspace, contribution, backend, infra, ax, evidence]
+source_roots: [workspace]
 ---
 
 # Workspace Project Audit
 
 ## Scope
 
-이 문서는 `/Users/marin/workspace`에 있는 프로젝트들을 이력서/홈페이지/profile 관점에서 1차 분석한 결과다.
+이 문서는 `workspace:` source root에 연결된 프로젝트들을 이력서/홈페이지/profile 관점에서 1차 분석한 결과다.
 
 Purpose:
 
@@ -67,7 +68,7 @@ Important caveat:
 These should become public case studies or strong resume bullets first.
 
 1. `thready`
-   - Why: user's main project and highest author signal across `~/workspace`.
+   - Why: user's main project and highest author signal across the `workspace:` source root.
    - Evidence: KimMarin 1180 commits; touched `backend`, `frontend`, `frontend-react`, `tasks`, `docs`, `scripts`, `.github`, `wiki`.
    - Claim angle: AI generation quality, model/runtime routing, observability, release QA, full-stack product operation, agent workflow.
 
@@ -125,7 +126,7 @@ User grouping corrections:
 
 ## Full Workspace Sweep Result
 
-The second sweep checked every git repo directly under `/Users/marin/workspace`.
+The second sweep checked every git repo directly under the `workspace:` source root.
 
 Summary:
 
@@ -236,7 +237,7 @@ Verified facts:
 
 Contribution interpretation:
 
-- This is the strongest "AI product engineering" evidence in `~/workspace`.
+- This is the strongest "AI product engineering" evidence in the `workspace:` source root.
 - It shows not only backend, but also quality contract, observability, release, QA, docs/tasks, and agent workflow.
 
 Public-safe draft:

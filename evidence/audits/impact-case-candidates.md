@@ -4,13 +4,14 @@ title: Impact Case Candidates
 description: Fact-first shortlist of high-impact project cases before writing final resume and homepage contribution copy.
 timestamp: 2026-07-02
 tags: [workspace, impact, case-study, contribution, resume, evidence]
+source_roots: [workspace, agentspace]
 ---
 
 # Impact Case Candidates
 
 ## Purpose
 
-이 문서는 [06-project-work-log.md](06-project-work-log.md)의 작업 목록에서 이력서/홈페이지에 쓸 만한 임팩트 사례를 뽑기 위한 중간 산출물이다.
+이 문서는 [project-work-log.md](project-work-log.md)의 작업 목록에서 이력서/홈페이지에 쓸 만한 임팩트 사례를 뽑기 위한 중간 산출물이다.
 
 아직 최종 이력서 문장이 아니다. 현재 목표는 아래 두 가지다.
 

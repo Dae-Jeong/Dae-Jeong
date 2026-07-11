@@ -4,6 +4,7 @@ title: Project Work Log
 description: Git-evidence backed list of work streams before converting them into resume contribution statements.
 timestamp: 2026-07-02
 tags: [workspace, work-log, contribution, evidence, resume]
+source_roots: [workspace, agentspace]
 ---
 
 # Project Work Log

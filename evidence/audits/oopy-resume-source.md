@@ -5,6 +5,7 @@ description: Existing Oopy/Notion resume content inventory and reusable resume c
 resource: https://daejeongkim.oopy.io/
 timestamp: 2026-07-02
 tags: [resume, oopy, notion, source-analysis]
+source_roots: []
 ---
 
 # Oopy Resume Source Analysis
@@ -15,7 +16,7 @@ tags: [resume, oopy, notion, source-analysis]
 - Original Notion URL from user: `https://v4chelsea.notion.site/10c1a3427113808a94f3ffe6db797783`
 - Checked date: 2026-07-02 Asia/Seoul
 - Extraction method: Oopy page `__NEXT_DATA__` + Notion public `loadPageChunk` expansion
-- Local extraction artifacts: `/tmp/daejeong-oopy/extracted-expanded.md`, `/tmp/daejeong-oopy/record-map-expanded.json`
+- Local extraction artifacts were temporary and are not required by the portable workspace.
 - Tool-backed snapshot: expanded extraction had 454 markdown lines and an expanded record map.
 
 ## Existing Positioning
@@ -204,4 +205,3 @@ The current Oopy resume is conventional and backend-focused. The new homepage ne
 - OpenDesign design harness: how design artifacts, wireframes, UI specs, and agent-driven design can be part of the engineering workflow.
 - Writing system: technical writing, postmortems, design notes, case-study logs, and working memos.
 - Evidence depth: each strong claim should link to a case-study page or internal evidence snippet.
-
