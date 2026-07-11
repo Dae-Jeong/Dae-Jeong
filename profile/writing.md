@@ -1,39 +1,31 @@
 ---
 type: profile
 title: Writing
-description: Writing direction and article backlog for Kim Daejeong.
-timestamp: 2026-07-02
-tags: [writing, blog, homepage]
+description: Canonical public writing themes and article backlog.
+timestamp: 2026-07-11
+tags: [writing, articles, backlog]
 ---
 
 # Writing
 
-## Writing Positioning
+Writing은 resume claim을 반복하는 홍보 문구가 아니라 판단 과정과 운영 경험을 공개 검증하는 proof layer다.
 
-Writing은 단순 블로그가 아니라 backend, product system, agent workflow, AX를 설명하는 public proof layer다.
+## Themes
 
-## Categories
-
-| Category | Purpose |
+| Theme | Scope |
 | --- | --- |
-| Backend Architecture | 인증, 비동기 메시징, 실시간 이벤트, infra를 구조적으로 설명 |
-| Agent Workflow | AI agent를 개발 조직의 운영 계층으로 쓰는 법 |
-| Product Engineering | PM/AI/backend 경험을 연결한 제품 개발 관점 |
-| Design Harness | OpenDesign과 spec-to-prototype handoff 실험 |
+| AI Product Backend | generation quality, evaluation, provider/session lifecycle |
+| Backend Systems | async worker, auth/session, realtime runtime |
+| Engineering Standard | backend template, ADR, runbook, context system |
+| Agent-Readable Workflow | source-of-truth, evidence gate, decision/spec/work pipeline |
+| Design Harness | Daejeong Design and spec-to-prototype experiments after implementation evidence exists |
 
-## Article Backlog
+## Backlog
 
-1. `AGENTS.md는 prompt가 아니라 project operating contract다`
-2. `AI agent가 헛똑똑해지는 이유: source-of-truth 없이 chat memory만 믿을 때`
-3. `Redis/JTI로 multi-service duplicate login을 다루는 법`
-4. `FastAPI에서 SSE를 단순하게 시작하는 방법`
-5. `TaskIQ와 RabbitMQ로 API와 worker 책임 분리하기`
-6. `multi-tenant product backend에서 HQ/Branch 권한 경계를 설계하는 법`
-7. `OpenDesign으로 spec과 prototype 사이를 줄이는 실험`
-8. `PM에서 backend engineer로 돌아왔을 때 더 잘 보이게 된 것들`
+1. AI 생성 품질을 prompt 감각이 아니라 evaluation system으로 다루기
+2. Realtime AI 상담에서 session lifecycle이 backend 문제인 이유
+3. Source-of-truth 없이 chat memory만 믿을 때 agent가 실패하는 방식
+4. Backend template에 agent context를 내장한 이유
+5. 이력서 bullet을 evidence claim으로 관리하는 방법
 
-## Publishing Rule
-
-- 내부 프로젝트를 글감으로 쓸 때는 회사명, 고객사명, 운영 수치, 민감 도메인을 제거한다.
-- 기술 글은 "문제 -> 설계 선택 -> trade-off -> 운영 기준 -> 다음 확장" 순서로 쓴다.
-- agent 글은 도구 나열이 아니라 workflow와 evidence를 중심으로 쓴다.
+Public article은 관련 evidence와 public-safety gate를 먼저 통과한다.
