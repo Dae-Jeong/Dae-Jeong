@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""jd-corpus를 집계해 12-jd-feature-map.md 와 13-jd-gap-map.md 를 생성한다.
+"""Local JD corpus를 집계해 feature map과 gap map을 생성한다.
 
-사용법: python3 scripts/jd/build_report.py
+사용법: uv run python scripts/jd/build_report.py
 """
 import json
 import re
@@ -10,10 +10,11 @@ from datetime import date
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-CORPUS = ROOT / "docs" / "resume" / "jd-corpus"
-PROFILE = json.loads((Path(__file__).parent / "profile_skills.json").read_text(encoding="utf-8"))
-FEATURE_MAP = ROOT / "docs" / "resume" / "12-jd-feature-map.md"
-GAP_MAP = ROOT / "docs" / "resume" / "13-jd-gap-map.md"
+PRODUCT = ROOT / "products" / "jd"
+CORPUS = PRODUCT / "corpus"
+PROFILE = json.loads((PRODUCT / "profile-skills.json").read_text(encoding="utf-8"))
+FEATURE_MAP = PRODUCT / "reports" / "feature-map.md"
+GAP_MAP = PRODUCT / "reports" / "gap-map.md"
 
 CORE_ROLES = {"backend-python", "ai-backend-llm", "ai-agent-ax"}
 
@@ -136,7 +137,7 @@ def main():
         "",
         f"- 생성일: {today} / 수집일: {', '.join(collected)}",
         f"- 표본: 총 {len(jds)}건 ({', '.join(f'{r} {len(v)}건' for r, v in sorted(roles.items()))})",
-        "- 재생성: `python3 scripts/jd/build_report.py`",
+        "- 재생성: `uv run python scripts/jd/build_report.py`",
         "- ⚠️ 특정 시점 표본 기반 — 트렌드 일반화 주의.",
         "",
     ]
@@ -193,7 +194,7 @@ def main():
         "",
         f"- 생성일: {today} / 주력 직군(backend-python, ai-backend-llm, ai-agent-ax) 고유 JD {len(core_analyzed)}건 기준",
         "- 수요 점수 = 자격요건 언급 x2 + 우대 언급 x1",
-        "- 스킬 보유 판정 근거: `scripts/jd/profile_skills.json` (capabilities.md + claim strength 표)",
+        "- 스킬 보유 판정 근거: `products/jd/profile-skills.json` (profile capabilities + evidence claims)",
         "",
         "## 1. Gap — 수요는 있는데 근거 없는 스킬 (보완 우선순위)",
         "",
@@ -235,10 +236,10 @@ def main():
         "",
         "## 5. 부족한 정보 (스킬 외 — 수동 관리 항목)",
         "",
-        "- [ ] 학력/자격 정보 — 현재 profile 문서에 없음",
-        "- [ ] STUDIO LAB 수상/특허 public source 검증",
+        "- [x] 학력/자격 정보 — `profile/credentials.md`에서 관리",
+        "- [x] 수상/특허 public source — credentials claim registry에서 관리",
         "- [ ] 공개 포트폴리오/GitHub 링크 (BE Template은 org private — 대체 증빙 필요)",
-        "- [ ] provider 실명(Gemini 등) 공개 여부 확정",
+        "- [x] provider 실명 비공개 — public-safety rule로 고정",
         "",
         "## 6. 표본 한계",
         "",

@@ -2,15 +2,15 @@
 type: jd-gap-map
 title: JD Gap Map
 description: 주력 직군 JD 수요 대비 profile 스킬 gap 리포트 (scripts/jd/build_report.py 자동 생성).
-timestamp: 2026-07-05
+timestamp: 2026-07-11
 tags: [jd, gap-map, auto-generated]
 ---
 
 # JD Gap Map
 
-- 생성일: 2026-07-05 / 주력 직군(backend-python, ai-backend-llm, ai-agent-ax) 고유 JD 60건 기준
+- 생성일: 2026-07-11 / 주력 직군(backend-python, ai-backend-llm, ai-agent-ax) 고유 JD 60건 기준
 - 수요 점수 = 자격요건 언급 x2 + 우대 언급 x1
-- 스킬 보유 판정 근거: `scripts/jd/profile_skills.json` (capabilities.md + claim strength 표)
+- 스킬 보유 판정 근거: `products/jd/profile-skills.json` (profile capabilities + evidence claims)
 
 ## 1. Gap — 수요는 있는데 근거 없는 스킬 (보완 우선순위)
 
@@ -81,10 +81,10 @@ tags: [jd, gap-map, auto-generated]
 
 ## 5. 부족한 정보 (스킬 외 — 수동 관리 항목)
 
-- [ ] 학력/자격 정보 — 현재 profile 문서에 없음
-- [ ] STUDIO LAB 수상/특허 public source 검증
+- [x] 학력/자격 정보 — `profile/credentials.md`에서 관리
+- [x] 수상/특허 public source — credentials claim registry에서 관리
 - [ ] 공개 포트폴리오/GitHub 링크 (BE Template은 org private — 대체 증빙 필요)
-- [ ] provider 실명(Gemini 등) 공개 여부 확정
+- [x] provider 실명 비공개 — public-safety rule로 고정
 
 ## 6. 표본 한계
 

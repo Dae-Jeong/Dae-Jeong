@@ -1,5 +1,5 @@
 {
-  "generated_from": "profile/capabilities.md + docs/resume/09 claim strength 표 (2026-07-05)",
+  "generated_from": "profile/capabilities.md + evidence/claims/*.yaml (2026-07-11)",
   "note": "strong = Git/repo 근거로 검증된 보유 스킬, partial = 경험은 있으나 깊이/근거 제한, none = 근거 없음(gap 후보)",
   "skills": {
     "Python": "strong",

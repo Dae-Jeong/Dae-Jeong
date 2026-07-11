@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""원티드 JD 수집기 — 직군별 쿼리로 검색하고 상세 JD를 jd-corpus에 저장한다.
+"""원티드 JD 수집기 — 직군별 쿼리로 검색하고 local corpus에 저장한다.
 
-사용법: python3 scripts/jd/collect_wanted.py [직군당 수집 건수, 기본 20]
+사용법: uv run python scripts/jd/collect_wanted.py [직군당 수집 건수, 기본 20]
 """
 import json
 import sys
@@ -13,9 +13,9 @@ from pathlib import Path
 
 BASE = "https://www.wanted.co.kr/api/v4"
 HEADERS = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)"}
-CORPUS = Path(__file__).resolve().parents[2] / "docs" / "resume" / "jd-corpus" / "wanted"
+CORPUS = Path(__file__).resolve().parents[2] / "products" / "jd" / "corpus" / "wanted"
 
-# 직군 정의는 docs/resume/11-jd-analysis-flow.md 를 따른다.
+# 직군 정의는 products/jd/README.md를 따른다.
 # 원티드 검색은 다단어 한글 쿼리에서 0건을 반환하므로 단일 키워드 또는 tag 검색(tag:<id>)을 쓴다.
 # tag 899 = 파이썬 개발자 직군.
 ROLE_QUERIES = {

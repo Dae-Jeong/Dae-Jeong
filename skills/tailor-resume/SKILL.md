@@ -1,93 +1,91 @@
 ---
 name: tailor-resume
-description: 특정 회사/JD에 맞춘 이력서 HTML을 생성한다. 검증된 profile 소스(claim strength 표, 공개 가드레일)에서만 재료를 선별해, 채용 담당자가 15초 안에 적합성을 판단할 수 있는 맞춤 이력서와 JD 매칭 리포트를 만든다. 사용 시점 — (1) "/tailor-resume [JD URL 또는 텍스트]" (2) "OO 회사에 지원할 이력서 만들어줘", "이 JD에 맞춰 이력서 조정해줘" 같은 요청 (3) 채용 공고 URL과 함께 맞춤 이력서를 요청할 때.
+description: Use when a user asks to create or adapt a resume for a specific company or job description, supplies a recruiting URL or JD text, or requests a matched resume and portfolio package.
 ---
 
 # Tailor Resume
 
-특정 회사의 JD에 맞춘 이력서를 검증된 profile 소스에서 생성한다.
+특정 JD에 맞춘다는 것은 사실을 다시 쓰는 일이 아니라 검증된 claim을 선택하고 배열하는 일이다.
 
-핵심 관점 두 가지:
+## Before Starting
 
-1. **근거를 유지한 맞춤** — 재료는 소스에 있는 것만 쓴다. JD에 맞춘다는 것은 사실을 바꾸는 게 아니라 선별·배열하는 것이다.
-2. **선별이 곧 가치** — 모든 내용을 나열하지 않는다. 채용 담당자가 15초 안에 "이 지원자는 우리에게 적합하다"를 판단하게 만드는 것이 목표다.
+1. [source contract](references/source-contract.md)를 읽는다.
+2. [content rules adapter](references/content-rules.md)가 가리키는 canonical resume contract를 읽는다.
+3. `uv sync`로 선언된 runtime을 준비한다.
 
 ## Workflow
 
-### 1. JD 입수
+### 1. Acquire and Normalize the JD
 
-- URL이면 사용 가능한 웹 fetch 수단(fetch 도구 또는 curl)으로 수집. JS 렌더링 페이지(점핏/랠릿/로켓펀치 등)면 Playwright 같은 브라우저 도구로 직접 열어서 읽는다. 원티드 URL(`wanted.co.kr/wd/{id}`)이면 API가 더 정확하다:
-  `curl -s "https://www.wanted.co.kr/api/v4/jobs/{id}" -H "User-Agent: Mozilla/5.0"` → `job.detail.{requirements,preferred_points,main_tasks}`, `job.position`, `annual_from/to`
-- 텍스트/파일이면 그대로 사용.
-- 회사명을 확인한다 (출력 파일명에 필요).
+- URL이면 가능한 browser/fetch 수단으로 원문을 읽는다. 원티드는 공개 API detail을 우선할 수 있다.
+- 텍스트나 파일이면 제공된 내용을 그대로 사용한다.
+- 자격 요건, 우대 사항, 기술, 연차, 도메인, AI/LLM/agent 신호를 구분한다.
+- 회사명은 보고서에만 쓰고 public output path에는 넣지 않는다.
 
-### 2. JD 분석
+### 2. Decide the Hook
 
-다음을 추출한다:
+회사가 가장 원하는 조건 2~3개를 판정한다. 이것이 요약과 capability 순서의 기준이다. 시장 참고가 필요하면 `products/jd/reports/`를 읽되 특정 JD 원문을 우선한다.
 
-- 자격 요건 / 우대 사항 (구분 유지)
-- 기술 스택 키워드, 요구 연차, 도메인
-- 회사가 가장 원하는 것 2~3개 판정 — 이것이 hooking 대상이다
-- AI/LLM/agent 관련 요구 — 있으면 Agent Workflow 섹션 강조 근거
+### 3. Match Claims
 
-### 3. 소스 매칭
+- JD 요구마다 `evidence/claims/*.yaml`의 stable claim ID를 연결한다.
+- `products/jd/profile-skills.json`의 `none`은 gap으로 기록한다.
+- `partial`은 evidence가 허용하는 범위로만 쓴다.
+- 대응 claim이 없으면 내용을 만들지 않고 gap으로 남긴다.
 
-[references/source-contract.md](references/source-contract.md)를 읽고 소스 파일에서 재료를 수집한다.
+### 4. Compose Inside the Fixed Contract
 
-- JD의 각 요구 항목에 대응하는 검증된 근거를 찾는다. 탐색 깊이: 10번 bullet → impact case → work log (grep).
-- `scripts/jd/profile_skills.json` 기준: `none` 스킬은 이력서에 올리지 않는다. `partial`은 실제 근거 수준으로만 서술.
-- 대응 근거가 없는 요구는 gap으로 기록한다 — 채우려 하지 않는다.
+- `assets/resume-template.html`의 `[[SLOT:...]]`만 채운다.
+- FIXED contact와 credentials 영역은 source 확인 없이 변경하지 않는다.
+- 요약은 JD 핵심 2~3개와 primary category를 3~4줄 안에서 연결한다.
+- 상세한 문제·선택·구현 설명은 resume에서 제거하고 portfolio case로 보낸다.
+- 선택한 claim ID를 지원 산출물의 `claim-map.yaml`에 section별로 기록한다.
 
-### 4. 맞춤 구성 — 정적 프레임 안에서 선별
+### 5. Build the Resume
 
-스킬 동봉 템플릿 `assets/resume-template.html`을 베이스로 사용한다. 섹션 구성/개수/분량 규칙은 [references/content-rules.md](references/content-rules.md)를 따른다 — **이력서는 정적 프레임이고, JD 맞춤은 "무엇을 고르고 어떤 순서로 놓는가"로만 한다.**
+local-only output:
 
-- `[[SLOT:...]]`만 채우고 FIXED 영역(연락처, 수상·특허·교육, 푸터)은 유지.
-- 이력서는 hooking, 깊이는 포트폴리오 몫 — 2문장 이상의 설명이 필요해지는 내용은 넣지 않는다 (content-rules의 이력서/포트폴리오 분리표 준수).
-- 요약은 JD 핵심 요구 2~3개에 직접 대응하도록 재작성 (15초 테스트).
-- 슬롯에 넣을 전체 콘텐츠 예시는 `docs/resume/14-resume-draft-v1.html` 참고.
+```text
+products/resume/tailored/{application-id}/
+  resume.html
+  resume.pdf
+  portfolio.html
+  claim-map.yaml
+  match-report.md
+```
 
-### 5. 이력서 출력
+`application-id`는 회사명이 아닌 opaque identifier를 사용한다.
 
-- HTML: `docs/resume/tailored/{회사명-slug}/resume.html`
-- PDF: `python3 skills/tailor-resume/scripts/html_to_pdf.py [HTML 경로]` — 같은 위치에 `resume.pdf` 생성 (Python playwright 필요, A4/@page CSS 존중)
+PDF 변환:
 
-### 6. 포트폴리오 조립 — 지원 패키지 완성
+```bash
+uv run python skills/tailor-resume/scripts/html_to_pdf.py \
+  products/resume/tailored/{application-id}/resume.html
+```
 
-`assets/portfolio-template.html` 베이스. 설계: `docs/resume/15-portfolio-pipeline-design.md`.
+### 6. Assemble the Portfolio
 
-- **이력서 04 대표 프로젝트와 1:1** — 같은 케이스, 같은 순서로 `docs/resume/cases/{slug}.md`를 로드해 조립.
-- 케이스가 cases/에 없으면 그 자리에서 쓰지 않는다 — 라이브러리에 먼저 추가(cases/README 규칙) 후 조립.
-- 케이스 md의 `diagram:` 라인은 `->` 구분 노드로, `[soft]` 접두는 soft 노드로 변환.
-- 인트로는 이력서 01과 동일 논지 2~3줄 (확장 금지). casenav는 케이스 수에 맞게 생성.
-- 출력: `docs/resume/tailored/{회사명-slug}/portfolio.html`. 이력서 contact에 포트폴리오 링크를 넣고 PDF 재생성.
-- 렌더링 확인 후 대화 응답에 매칭 리포트를 요약한다:
-  - JD 핵심 요구 - 대응 근거 (어떤 프로젝트/경험이 매칭됐는지)
-  - Gap: 대응 근거가 없는 요구 (정직하게)
-  - 선별 내역: 무엇을 앞세우고, 무엇을 압축/제거했는지
+- `assets/portfolio-template.html`을 사용한다.
+- 이력서 대표 프로젝트와 동일한 case를 같은 순서로 `products/portfolio/cases/`에서 로드한다.
+- case가 없으면 지원 폴더에서 새로 쓰지 않는다. evidence와 claim을 등록한 뒤 canonical library에 추가한다.
+- case의 `diagram:`은 `->` node와 `[soft]` node convention으로 변환한다.
+- portfolio intro는 resume 요약과 논지를 공유하되 새로운 claim을 추가하지 않는다.
+- page에는 `noindex`를 설정하고 resume와 서로 연결한다.
 
-### 7. 신뢰성 검증 — 전달 전 마지막 게이트
+### 7. Verify Before Delivery
 
-완성된 이력서·포트폴리오를 **채용담당자 관점에서** 다시 읽고 짚는다:
+1. `uv run python scripts/validate_workspace.py`
+2. JD 요구별 match 또는 gap이 모두 기록됐는지 확인
+3. 모든 bullet이 claim ID와 evidence로 역추적되는지 확인
+4. allowed copy와 public-safety 상한을 넘지 않는지 확인
+5. PDF가 A4 1~2페이지이고 잘림·겹침이 없는지 render image로 확인
+6. portfolio case와 resume 프로젝트의 집합·순서가 동일한지 확인
+7. 면접에서 근거를 설명할 수 없는 문장을 완화하거나 제거
 
-- 안 믿길 것 같은 서술 — 근거가 소스에 있으면 표현을 조정해 근거를 드러내고, 없으면 완화하거나 제거
-- 면접 검증 질문("어떻게 측정했나", "정말 직접 했나")에 방어할 수 없는 표현
-- 전임자/기존 코드 폄하로 읽힐 수 있는 문제 서술
-- 발견·수정 내역은 매칭 리포트에 포함
+## Guardrails
 
-## 절대 가드레일 (맞춤 조정보다 우선)
-
-1. **사실 창조 금지** — 소스에 없는 경험/스킬/수치를 만들지 않는다. JD가 요구해도 없으면 gap이다.
-2. **Claim strength 준수** — `docs/resume/09`의 "Claim strength — Git 검증 결과" 표가 표현 강도의 상한이다 (전담/주도/공동/참여 구분).
-3. **공개 가드레일** — 09의 Public Safety Guardrails 준수: provider 실명 금지, 고객사/브랜드명 금지, 팀원 실명 금지, 커밋 수치 금지, 주소는 시 단위.
-4. **왜곡 금지** — 선별/배열/압축은 자유, 의미 변경은 금지.
-
-## 완료 기준
-
-- [ ] JD의 자격 요건 각각에 대해 매칭 근거 또는 gap이 판정됨
-- [ ] 첫 화면이 15초 테스트를 통과함 (요약이 JD 핵심 요구에 직접 대응)
-- [ ] 분량 A4 1~1.5장 이내
-- [ ] 모든 bullet이 소스 파일로 역추적 가능, claim strength 상한 초과 없음
-- [ ] 출력 HTML 렌더링 + PDF 생성 확인 (A4, 페이지 수 1~2 이내)
-- [ ] 포트폴리오가 이력서 04와 1:1 sync (같은 케이스·같은 순서), 모든 케이스가 cases/ 라이브러리 출처
-- [ ] 신뢰성 검증 통과 — 채용담당자가 안 믿을 서술 0건 (근거 노출 또는 완화 완료)
+- 소스에 없는 경험, 스킬, 수치, business outcome을 만들지 않는다.
+- claim registry의 strength와 allowed copy를 넘지 않는다.
+- provider, 고객사, 팀원 실명, private path, commit count를 공개하지 않는다.
+- 전임자나 기존 구현을 폄하하는 문제 서술을 사용하지 않는다.
+- archive와 resume v0를 content source로 사용하지 않는다.
