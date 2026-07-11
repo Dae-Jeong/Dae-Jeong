@@ -1,9 +1,11 @@
 ---
+type: portfolio-case
 case: thready-rebuild
 title: 운영 중인 AI 콘텐츠 생성 제품의 backend 전면 재구축과 생성 품질의 시스템화
 resume_tag: THREADY
 origin: MediSolve AI · 2025.04 —
-claim_strength: backend 재구축·운영 전담 (Git 검증 — 09 표 참조)
+claim_ids: [thready.backend-rebuild, thready.generation-quality-system, thready.release-operation]
+claim_strength: owned
 ---
 
 ## 문제

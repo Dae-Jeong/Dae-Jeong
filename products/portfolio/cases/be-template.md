@@ -1,9 +1,11 @@
 ---
+type: portfolio-case
 case: be-template
 title: 조직 표준 backend 템플릿 — 아키텍처 표준과 agent 컨텍스트 시스템을 한 번에
 resume_tag: BE TEMPLATE
 origin: MediSolve AI · 조직 표준
-claim_strength: 전담 설계·구축 (Git 검증 96/97 — 내부용, 공개 표기 금지)
+claim_ids: [be-template.backend-standard, be-template.agent-context]
+claim_strength: owned
 ---
 
 ## 문제
@@ -17,16 +19,16 @@ claim_strength: 전담 설계·구축 (Git 검증 96/97 — 내부용, 공개 �
 
 ## 구현
 
-diagram: layered 아키텍처 (Router -> Service -> Repo) -> DI · @transactional · 타입 안전성(Pyright) -> ADR 27건 · 컨벤션 · runbook -> [soft] agent context system (4-tier CLAUDE.md · skills)
+diagram: layered 아키텍처 (Router -> Service -> Repo) -> DI · @transactional · 타입 안전성(Pyright) -> ADR · 컨벤션 · runbook -> [soft] agent context system (계층적 context · skills)
 
-- 응답 wrapper 4-케이스 매트릭스, ErrorCode 도메인 prefix 체계, contract test 31건
+- 응답 wrapper matrix, ErrorCode 도메인 prefix 체계, contract test
 - 옵션화 설계 — 멀티테넌트 / ID 타입 / 인증 방식(JWT·SSO) / 스토리지(local·S3·Azure)
 - 영역별 컨텍스트 자동 발동 + `init-project`·`add-domain`·`db-reset`·`local-setup` 자동화 skill
 
 ## 운영/결과
 
 - Hub-and-Spoke 단방향 문서 라우팅 — 단일 진입점(README)에서 작업 의도별 source-of-truth로 분기
-- 새 프로젝트의 구조 논의·셋업 비용을 템플릿이 흡수하도록 설계 — 도메인 추가·로컬 셋업이 skill 실행 한 번으로 완료
+- 새 프로젝트의 구조 논의·셋업 비용을 템플릿이 흡수하도록 설계 — 도메인 추가·로컬 셋업 workflow 자동화
 
 ## Stack
 

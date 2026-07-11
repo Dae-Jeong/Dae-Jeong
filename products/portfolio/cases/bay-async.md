@@ -1,9 +1,11 @@
 ---
+type: portfolio-case
 case: bay-async
 title: 주문·재고 backend의 비동기 아키텍처 — 실패 가능한 작업을 API에서 분리
 resume_tag: BAY
 origin: MediSolve AI · Centurion 재고 관리
-claim_strength: 구축·설계 주도 (Git 검증 — 영역별 커밋 확인, 09 표 참조)
+claim_ids: [centurion.bay-async-backend]
+claim_strength: led
 ---
 
 ## 문제
@@ -13,13 +15,13 @@ claim_strength: 구축·설계 주도 (Git 검증 — 영역별 커밋 확인, 0
 ## 접근
 
 - API는 판정과 저장까지만 책임지고, 실패 가능성이 있는 작업은 worker로 분리
-- 재고 차감 실패는 재시도로 복구 — 기존 Celery 기반 구조를 정리하고 TaskIQ로 전환
+- 재고 차감 실패는 worker retry로 복구하고 API 응답 경계와 분리
 
 ## 구현
 
 diagram: API (주문·상품·재고 판정) -> RabbitMQ -> TaskIQ worker (알림톡 발송 · 재고 연동) -> [soft] retry (재고 차감 실패 복구)
 
-- 알림톡/Celery 제거 후 TaskIQ 전환 — staged 설정, worker context 주입, RabbitMQ 연결 옵션 정리
+- TaskIQ staged 설정, worker context 주입, RabbitMQ 연결 옵션 정리
 - 주문 취소·pending 조회 최적화, 상품 목록/필터 API, cursor pagination
 - Object Mother 패턴 API 테스트 인프라 + Docker 기반 CI — 비동기 흐름의 회귀를 테스트로 방지
 

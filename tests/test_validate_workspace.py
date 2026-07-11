@@ -49,6 +49,17 @@ claims:
             )
             self.assertEqual([], validate(root))
 
+    def test_rejects_unknown_product_claim_id(self):
+        with TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            product = root / "products" / "portfolio"
+            product.mkdir(parents=True)
+            (product / "case.md").write_text(
+                "---\ntype: portfolio-case\nclaim_ids: [missing.claim]\n---\n# Case\n",
+                encoding="utf-8",
+            )
+            self.assertTrue(any("product claim" in error for error in validate(root)))
+
 
 if __name__ == "__main__":
     unittest.main()

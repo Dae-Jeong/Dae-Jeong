@@ -1,9 +1,11 @@
 ---
+type: portfolio-case
 case: say-realtime
 title: 실시간 AI 상담 backend — 세션 lifecycle 안정화와 provider 추상화
 resume_tag: SAY
 origin: MediSolve AI · Centurion 상담 관리
-claim_strength: cluster 단위 주도 (SAY 공동 주 기여 + 연계 백오피스 주도 — 09 표 참조). provider 실명 공개 금지 — "realtime LLM/STT provider"로 일반화
+claim_ids: [centurion.say-realtime-ai]
+claim_strength: co-led
 ---
 
 ## 문제

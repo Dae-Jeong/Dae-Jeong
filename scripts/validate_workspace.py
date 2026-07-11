@@ -190,6 +190,27 @@ def _validate_claim_map(root: Path) -> list[str]:
     return errors
 
 
+def _validate_product_claim_refs(root: Path) -> list[str]:
+    claims, _ = _load_claims(root)
+    known = {claim.get("id") for claim in claims}
+    errors: list[str] = []
+    base = root / "products"
+    if not base.exists():
+        return errors
+    for path in sorted(base.rglob("*.md")):
+        meta = _frontmatter(path.read_text(encoding="utf-8")) or {}
+        claim_ids = meta.get("claim_ids", [])
+        if not isinstance(claim_ids, list):
+            errors.append(f"product claim: {path.relative_to(root)} claim_ids must be a list")
+            continue
+        for claim_id in claim_ids:
+            if claim_id not in known:
+                errors.append(
+                    f"product claim: {path.relative_to(root)} references unknown claim {claim_id}"
+                )
+    return errors
+
+
 def validate(root: Path) -> list[str]:
     """Return stable validation failures; an empty list means pass."""
     root = root.resolve()
@@ -199,6 +220,7 @@ def validate(root: Path) -> list[str]:
         + _validate_claims(root)
         + _validate_links(root)
         + _validate_claim_map(root)
+        + _validate_product_claim_refs(root)
     )
 
 

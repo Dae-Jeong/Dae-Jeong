@@ -1,14 +1,16 @@
 ---
+type: portfolio-case
 case: mediness-ops
 title: agent 기반 제품 운영 시스템 — 리드 업무를 회의가 아니라 시스템으로
 resume_tag: MEDINESS
 origin: MediSolve AI · 제품 운영
-claim_strength: 구축·운영 (제품팀 일정·이슈·릴리스 리드. 기획 주도 표현 금지 — 기획 전담·경영진 별도 존재)
+claim_ids: [mediness.product-operations, mediness.daily-briefing]
+claim_strength: led
 ---
 
 ## 문제
 
-7~8개 제품의 일정·이슈·릴리스 상태가 회의와 개인의 기억에 의존했습니다. 어떤 제품이 어느 단계인지, 어떤 블로커가 살아있는지를 확인하는 비용이 매일 반복됐습니다.
+여러 제품의 일정·이슈·릴리스 상태가 회의와 개인의 기억에 의존했습니다. 어떤 제품이 어느 단계인지, 어떤 블로커가 살아있는지를 확인하는 비용이 매일 반복됐습니다.
 
 ## 접근
 
