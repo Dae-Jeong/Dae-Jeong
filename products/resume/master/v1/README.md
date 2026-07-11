@@ -23,5 +23,8 @@ tags: [resume, v1, active, korean]
 - differentiator: mediness와 BE Template 기반 Agent-readable Workflow
 - claim/public-safety validator: pass
 - A4 render: 2 pages, 594.96 x 841.92 pt
+- Playwright desktop QA: 1440 x 1000, horizontal overflow 0, overlap 0
+- Playwright mobile QA: 375 x 812, horizontal overflow 0, overlap 0, capability 1-column, workflow 2-column
+- browser console: 0 errors, 0 warnings
 
 v0는 [historical baseline](../v0/README.md)으로만 유지한다.
