@@ -19,6 +19,13 @@ tags: [resume, contract, content]
 
 Canonical positioning은 [profile/identity.md](../../profile/identity.md)를 따른다.
 
+## Audience And Handoff
+
+- Primary reader: recruiter. Secondary reader: engineering manager.
+- Resume는 인터뷰 여부를 판단할 수 있는 category, specialty, ownership, selected proof만 전달한다.
+- 문제 배경, 제약, 대안, trade-off, failure mode는 portfolio case로 보낸다.
+- flagship claim은 동일 claim ID를 사용하는 portfolio case 또는 명시된 backlog와 연결한다.
+
 ## Static Frame
 
 | Zone | # | Section | Contract |
@@ -57,4 +64,4 @@ Canonical positioning은 [profile/identity.md](../../profile/identity.md)를 따
 3. Strength test: allowed copy보다 강한 역할 표현이 없음
 4. Public test: provider·고객사·팀원·private path·미검증 수치가 없음
 5. Layout test: A4 1~1.5장, 100% scale에서 잘림·겹침 없음
-6. Portfolio split: 문제·접근·구현 상세가 이력서에 중복되지 않음
+6. Portfolio split: scope·decision·trade-off·failure mode·limits가 이력서에 중복되지 않고 portfolio case로 연결됨

@@ -20,9 +20,21 @@ tags: [portfolio, cases, library]
 | [bay-async.md](bay-async.md) | BAY | backend 비동기 아키텍처 | 구축·설계 주도 |
 | [say-realtime.md](say-realtime.md) | SAY | realtime AI backend | cluster 단위 주도 |
 
+## Resume Coverage
+
+| Resume selected proof | Portfolio case | Claim coverage |
+| --- | --- | --- |
+| Thready | [thready-rebuild.md](thready-rebuild.md) | backend rebuild, quality system, release operation |
+| Centurion | [bay-async.md](bay-async.md), [say-realtime.md](say-realtime.md) | async backend, realtime AI |
+| BE Template | [be-template.md](be-template.md) | backend standard, agent context |
+
+[mediness-ops.md](mediness-ops.md)는 selected-project claim이 아니라 Agent-Readable Operations differentiator의 기술·운영 근거다.
+
 ## 작성 규칙
 
-- 구조 고정: `문제 -> 접근 -> 구현 -> 운영/결과 -> Stack`. 각 소섹션은 2~4줄/bullet.
+- 구조 고정: `Executive Summary -> My Scope -> Problem And Constraints -> Decision And Alternatives -> System Design And Implementation -> Failure Modes And Operation -> Evidence, Result, And Limits -> Stack`.
+- `Executive Summary`는 recruiter도 이해할 수 있는 2~3문장으로 problem, decision, contribution strength를 요약한다.
+- 기술담당자를 위해 constraints, 실제 대안, trade-off, failure mode, operating evidence, limits를 본문에서 분리한다.
 - frontmatter의 `claim_ids`가 [claim registry](../../../evidence/claims/README.md)를 직접 가리킨다. 케이스 본문은 해당 claim의 strength와 allowed copy 상한을 넘지 못한다.
 - 공개 가드레일 상속: provider 실명 X, 고객사/브랜드명 X, 팀원 실명 X, 커밋 수 X, 미검증 수치 X.
 - **전임자/기존 코드 폄하 금지** — "빠른 검증에 맞춘 초기 구조" 같은 중립 서술.
