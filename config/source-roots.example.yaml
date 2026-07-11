@@ -1,0 +1,5 @@
+schema_version: 1
+roots:
+  workspace: /replace/with/workspace/root
+  agentspace: /replace/with/agentspace/root
+  wiki: /replace/with/wiki/root

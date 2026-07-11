@@ -21,8 +21,11 @@ def main():
     with sync_playwright() as p:
         browser = p.chromium.launch()
         page = browser.new_page()
-        page.goto(src.as_uri())
-        page.wait_for_load_state("networkidle")  # 웹폰트(IBM Plex) 로드 대기
+        page.goto(src.as_uri(), wait_until="domcontentloaded")
+        try:
+            page.wait_for_function("document.fonts.status === 'loaded'", timeout=5_000)
+        except Exception:  # Font fallback is allowed by the portability contract.
+            pass
         page.pdf(path=str(out), prefer_css_page_size=True, print_background=True)
         browser.close()
 
