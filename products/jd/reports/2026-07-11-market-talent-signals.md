@@ -112,6 +112,7 @@ ambiguous product problem
 
 - product ownership과 engineering standard를 함께 요구한다.
 - Tech Lead는 기존 원티드 표본에서 대부분 6년 이상을 요구해 title보다 실제 scope와 evidence로 접근하는 것이 안전하다.
+- 리드급 공고는 비즈니스 방향을 기술 전략으로 번역해 조직을 정렬하는 역할과, 공통 인프라·운영 표준의 기준 설정·운영 리스크 의사결정 책임을 명시한다. 알고케어 Tech Lead의 "경영진의 비즈니스 방향성을 기술적으로 해석하고 실행 가능한 형태로 팀에 전달하여 조직의 정렬을 이끕니다", 실비아헬스 Platform Engineer의 "공통 인프라와 배포 구조의 기준을 설정하고 우선순위를 판단"이 대표 문구다 (2026-07-14 확인).
 
 ## Fit For Kim Daejeong
 
@@ -164,8 +165,10 @@ Lower-priority fit:
 
 - Wanted: [ATCI Software Engineer, AI Agent](https://www.wanted.co.kr/wd/349626)
 - Wanted: [Golden Planet AI Agent Backend Engineer](https://www.wanted.co.kr/wd/337842)
+- Wanted: [Algocare Backend Tech Lead](https://www.wanted.co.kr/wd/336370) (2026-07-14 확인, 상시채용)
 - Jumpit/Saramin: [DeepAuto Financial Backend Engineer](https://jumpit.saramin.co.kr/position/54200944)
 - Jumpit/Saramin: [Algocare Product Engineer, Backend](https://jumpit.saramin.co.kr/position/51616397)
+- Jumpit/Saramin: [Silvia Health Platform Engineer](https://jumpit.saramin.co.kr/position/53217405) (2026-07-14 확인, 마감 표기 불명확)
 - Groupby: [똑똑한개발자 AI Agent Engineer](https://groupby.kr/positions/10376)
 - RocketPunch: [TeamSparta AI Agent Engineer](https://www.rocketpunch.com/jobs/157279)
 - RocketPunch: [Itall AI/LLM Service Backend Engineer](https://www.rocketpunch.com/jobs/158224)

@@ -2,7 +2,7 @@
 type: profile
 title: Identity
 description: Canonical personal category, positioning, bio, and branding guardrails.
-timestamp: 2026-07-11
+timestamp: 2026-07-14
 tags: [identity, positioning, branding]
 ---
 
@@ -35,6 +35,7 @@ FastAPI/NestJS 기반 product backend, AI generation quality, async/realtime pro
 2. AI product runtime과 quality system 경험으로 전문 영역을 좁힌다.
 3. Agent workflow는 별도 직군이 아니라 engineering execution의 차별점으로 제시한다.
 4. PM/Vision AI 경험은 product-system 관점의 배경으로만 사용한다.
+5. 리드 경험은 "무엇을 왜 만들고 어떤 기준으로 운영할지 결정한 뒤, 사람·agent·시스템의 실행을 정렬한다"는 작동 방식으로 서술한다. Director 등 직함으로 표현하지 않는다.
 
 ## Guardrails
 

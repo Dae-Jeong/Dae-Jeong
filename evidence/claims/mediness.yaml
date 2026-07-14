@@ -9,10 +9,12 @@ claims:
     evidence: [evidence/projects/mediness.md#product-operations]
     allowed_copy:
       - pipeline registry와 release gate 기반 제품팀 일정·이슈·릴리스 운영 리드
+      - 제품 결정을 BE·FE·QA·release gate 실행으로 연결하는 제품 운영 리드
     forbidden_copy:
       - 제품 기획 전담
       - 조직 전체 운영 총괄
-    verified_at: 2026-07-04
+      - 전사 문서 pipeline 규칙 단독 설계
+    verified_at: 2026-07-14
   - id: mediness.daily-briefing
     statement: 협업 도구 활동을 집계하는 daily briefing agent 구축·운영
     strength: owned

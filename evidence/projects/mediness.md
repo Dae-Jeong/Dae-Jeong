@@ -2,7 +2,7 @@
 type: project-evidence
 title: Mediness Product Operations Evidence
 description: Agent-readable product operations, daily briefing, and role boundary evidence.
-timestamp: 2026-07-11
+timestamp: 2026-07-14
 source_roots: [agentspace]
 tags: [mediness, agent-workflow, product-operations, evidence]
 ---
@@ -14,8 +14,10 @@ Source locator: `agentspace:mediness`
 ## Product Operations
 
 - Source-backed: product pipeline registry, decision log, SPEC, Work Package, release gate, version cut structure가 확인됐다.
+- Source-backed: Work Package status board의 Backend/Frontend/QA/Ops owner lane 구분과, QA 체크·approval을 release 조건으로 두는 release gate 연결 구조가 확인됐다 (2026-07-14).
 - Tool-backed: 일정, blocker, release 상태를 반복적으로 갱신한 운영 기록이 확인됐다.
 - Contribution boundary: 제품팀 일정·이슈·릴리스 운영 리드와 기획 결정 참여. 제품 기획 전담은 아니다.
+- Contribution boundary: 전사 문서 pipeline 규칙 정의는 다른 저자가 주도했고, 김대정은 제품 단위 SPEC·Work Package·Decision·release gate 적용·운영을 리드했다 (git 저자 기록 확인, 2026-07-14).
 
 ## Daily Briefing
 
