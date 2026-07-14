@@ -12,7 +12,7 @@ sections:
     - centurion.say-realtime-ai
     - nexus.backend-architecture
     - nexus.terraform-infra
-    - centurion.shared-infra
+    - infra.company-azure-ownership
     - be-template.backend-standard
     - be-template.agent-context
     - mediness.product-operations

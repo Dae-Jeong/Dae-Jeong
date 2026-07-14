@@ -17,6 +17,7 @@ tags: [contribution, ownership, claims]
 | Centurion RAY | backend 주 기여, 한 줄 claim | [claims](../evidence/claims/centurion.yaml) |
 | Centurion SSO | session policy·duplicate login·E2E 담당/참여 | [claims](../evidence/claims/centurion.yaml) |
 | NEXUS | backend architecture 주도, Terraform IaC 전담 | [claims](../evidence/claims/nexus.yaml) |
+| Company Azure infra | infra repository 전체와 Azure/Terraform infra 설계·구축·운영 담당 | [claims](../evidence/claims/infrastructure.yaml) |
 | BE Template | organization FastAPI template 설계·구축 전담 | [claims](../evidence/claims/be-template.yaml) |
 | mediness | 제품팀 일정·이슈·릴리스 운영 리드, workflow 구축·운영 | [claims](../evidence/claims/mediness.yaml) |
 | Memento | reservation/payment backend 안정화 기여 | [claims](../evidence/claims/career.yaml) |

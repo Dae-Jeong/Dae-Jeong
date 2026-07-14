@@ -1,0 +1,16 @@
+schema_version: 1
+project: infrastructure
+claims:
+  - id: infra.company-azure-ownership
+    statement: MediSolve AI Azure infrastructure repositories and ongoing infrastructure management owned across B2B, B2C, NEXUS, and product environments
+    strength: owned
+    confidence: high
+    public: true
+    evidence: [evidence/projects/infrastructure.md#company-azure-ownership]
+    allowed_copy:
+      - 회사 Azure/Terraform infra 전반의 설계·구축·운영 담당
+      - B2B/B2C·제품·환경별 resource boundary와 deploy/runbook 관리
+    forbidden_copy:
+      - 모든 Azure resource를 최초부터 단독 생성
+      - 정확한 고객·resource·cost·security detail
+    verified_at: 2026-07-11

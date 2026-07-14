@@ -17,6 +17,8 @@ tags: [jd, recruiting, gap-analysis, product]
 1. **JD feature map** — 직군별 요구 특징 집계
 2. **Gap map** — 내 profile 대비 강점/공백, 이력서 강조점 조정안
 
+시점별 cross-platform 정성 분석은 [reports/2026-07-11-market-talent-signals.md](reports/2026-07-11-market-talent-signals.md)에 별도로 보존한다.
+
 ## 대상 직군 (5개)
 
 | # | 직군 쿼리 | 내 포지셔닝과의 관계 |

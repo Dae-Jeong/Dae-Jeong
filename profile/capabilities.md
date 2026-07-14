@@ -13,7 +13,7 @@ tags: [capabilities, backend, ai-product, infra, agent-workflow]
 | Product Backend | domain API, auth/session, worker, integration, test/documentation layer 설계·구축 | Centurion, NEXUS | High |
 | AI Product Backend | generation runtime, prompt contract, LLM evaluation, realtime provider/session lifecycle 운영 | Thready, SAY | High |
 | Async And Realtime | RabbitMQ/TaskIQ worker, retry, WebSocket/SSE, session lifecycle 처리 | BAY, SAY | High |
-| Infra-Aware Delivery | Terraform, Azure/AWS, Docker, GitHub Actions, deploy/runbook 연결 | NEXUS, Centurion, TellingMe | High/Medium by scope |
+| Infra-Aware Delivery | Terraform, Azure/AWS, Docker, GitHub Actions, deploy/runbook 연결 | Company Azure infra, NEXUS, Centurion, TellingMe | High |
 | Engineering Standard | layered architecture, DI, ADR, convention, runbook, project bootstrap 설계 | BE Template | High |
 | Agent-Readable Workflow | source-of-truth routing, decision/spec/work/release gate, daily briefing, evidence gate 운영 | mediness, BE Template | High for evidence; emerging public category |
 

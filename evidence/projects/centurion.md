@@ -41,8 +41,9 @@ DAY, BAY, RAY, SAY는 별도 제품이 아니라 Centurion CRM & ERP 제품을 �
 
 ## Shared Infra
 
-- Code-backed: Azure/Terraform resource와 deploy/runbook documentation에 공동 기여가 확인됐다.
-- Contribution boundary: main infra 공동 구축과 runbook·문서화 리드. 단독 구축은 아니다.
+- Code-backed: Azure/Terraform resource와 deploy/runbook documentation의 구축·운영 범위가 확인됐다.
+- User-confirmed: 회사 infra repository 전체와 Azure infra 운영·관리를 담당한다.
+- Contribution boundary: Centurion infra 구축·운영은 `owned`로 표현할 수 있다. 회사 전체 범위는 [Company Azure Infrastructure Evidence](infrastructure.md)를 따른다.
 
 ## Public Disclosure
 

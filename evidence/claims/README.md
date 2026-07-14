@@ -19,6 +19,7 @@ tags: [claims, evidence, registry]
 | `thready.yaml` | AI content product backend and quality system |
 | `centurion.yaml` | BAY/SAY/DAY/RAY/SSO/infra |
 | `nexus.yaml` | external product backend and IaC |
+| `infrastructure.yaml` | company-wide Azure/Terraform infrastructure ownership |
 | `be-template.yaml` | organization backend standard |
 | `mediness.yaml` | agent-readable product operations |
 

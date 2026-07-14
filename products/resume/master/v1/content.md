@@ -40,8 +40,8 @@ tags: [resume, v1, content, korean]
 
 ### Infra-Aware Delivery
 
+- 회사 Azure/Terraform infra 전반을 담당하며 B2B/B2C·제품·환경별 resource boundary, 배포, runbook 관리 (`infra.company-azure-ownership`)
 - 외부 product Terraform IaC 구축 전담 (`nexus.terraform-infra`)
-- Azure/Terraform infra 공동 구축과 runbook·문서화 리드 (`centurion.shared-infra`)
 
 ### Engineering Standard
 

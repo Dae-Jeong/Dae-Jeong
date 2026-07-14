@@ -59,13 +59,14 @@ claims:
       - SSO 전체 구축
     verified_at: 2026-07-04
   - id: centurion.shared-infra
-    statement: 메인 제품 Azure/Terraform infra 공동 구축과 runbook·문서화 리드
-    strength: co-led
+    statement: Centurion Azure/Terraform infra 구축·운영과 runbook·문서화 담당
+    strength: owned
     confidence: high
     public: true
     evidence: [evidence/projects/centurion.md#shared-infra]
     allowed_copy:
-      - Azure/Terraform infra 공동 구축과 runbook·문서화 리드
+      - Centurion Azure/Terraform infra 구축·운영과 runbook·문서화 담당
     forbidden_copy:
-      - 메인 infra 단독 구축
-    verified_at: 2026-07-04
+      - 모든 Azure resource를 최초부터 단독 생성
+      - 정확한 resource·cost·security detail
+    verified_at: 2026-07-11
