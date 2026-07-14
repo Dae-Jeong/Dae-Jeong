@@ -3,8 +3,9 @@ artifact: products/resume/master/v1/resume.html
 status: active
 sections:
   summary:
-    - career.medisolve-role-evolution
     - thready.backend-rebuild
+    - thready.production-operation-quality
+    - career.medisolve-role-evolution
     - mediness.product-operations
   capabilities:
     - thready.generation-quality-system

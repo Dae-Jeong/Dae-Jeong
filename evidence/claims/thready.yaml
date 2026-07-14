@@ -25,6 +25,19 @@ claims:
       - 생성 품질 완전 해결
       - 품질 N배 개선
     verified_at: 2026-07-05
+  - id: thready.production-operation-quality
+    statement: AI 콘텐츠 생성 production backend를 월 수만 건 규모 요청, HTTP 5xx 1% 미만으로 운영 유지
+    strength: owned
+    confidence: high
+    public: true
+    evidence: [evidence/projects/thready.md#production-operation-quality]
+    allowed_copy:
+      - 월 수만 건 규모 요청을 처리하는 production backend를 HTTP 5xx 1% 미만으로 운영
+    forbidden_copy:
+      - 정확한 요청 수·오류율·traffic 수치
+      - 무중단 운영 보장
+      - 전후 비교 기반 개선 배수
+    verified_at: 2026-07-15
   - id: thready.release-operation
     statement: backend cutover 이후 release, QA, task 구조를 통한 개발·운영 수행
     strength: owned

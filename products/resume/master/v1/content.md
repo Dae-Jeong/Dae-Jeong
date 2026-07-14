@@ -17,8 +17,9 @@ tags: [resume, v1, content, korean]
 
 ## Summary
 
-- Backend Engineer 합류 후 Tech Lead·PO·AI agent 역할 병행 (`career.medisolve-role-evolution`)
 - AI 콘텐츠 생성 backend 전면 재구축과 이후 개발·운영 전담 (`thready.backend-rebuild`)
+- 월 수만 건 규모 요청을 처리하는 production backend를 HTTP 5xx 1% 미만으로 운영 (`thready.production-operation-quality`)
+- Backend Engineer 합류 후 Tech Lead·PO·AI agent 역할 병행 (`career.medisolve-role-evolution`)
 - 제품 일정·이슈·릴리스 운영을 agent-readable workflow로 구조화·리드 (`mediness.product-operations`)
 
 ## Capabilities

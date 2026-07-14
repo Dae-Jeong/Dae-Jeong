@@ -16,6 +16,7 @@ tags: [public-safety, privacy, resume]
 - 공개 GitHub 계정 `github.com/Dae-Jeong`
 - 시 단위 거주지
 - claim registry에서 `public: true`인 표현
+- claim registry로 승격된 범위화(banded) 운영 수치 — 예: `월 수만 건 규모`, `1% 미만`
 
 ## Forbidden
 
@@ -23,7 +24,7 @@ tags: [public-safety, privacy, resume]
 - STT/LLM provider 실명
 - 팀원 실명
 - credential, private URL, source code path, 내부 conversation
-- 공개 목적이 없는 commit count와 내부 운영 수치
+- 공개 목적이 없는 commit count와 정확한 내부 운영 수치
 - claim registry의 `forbidden_copy`
 - `low`, `unknown`, `public: false` claim
 

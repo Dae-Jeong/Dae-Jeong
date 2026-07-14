@@ -28,6 +28,12 @@ Source locator: `workspace:thready`
 - Code-backed: v1.2-v1.5 사이 release/QA/task structure와 backend operation 변경이 확인됐다.
 - Public-safe summary: release·QA·task 구조 기반 backend 운영.
 
+## Production Operation Quality
+
+- Tool-backed: Azure App Service platform metric 30일 집계(2026-06-15~2026-07-15)에서 요청 50,650건, HTTP 5xx 133건(0.26%)을 확인했다. 2026-07-11 스냅샷(약 41k, 0.32%)과 일관된다. 정확 수치는 내부 검증용이다.
+- Measurement boundary: 현재 운영 상태의 증거다. "개선" claim에는 변경 전후 기간과 commit/PR 연결이 추가로 필요하다.
+- Public wording: 범위화 표현(월 수만 건 규모, HTTP 5xx 1% 미만)만 공개한다.
+
 ## Public Disclosure
 
 - 제품명 Thready와 AI 콘텐츠 생성 제품 설명은 공개 가능하다.

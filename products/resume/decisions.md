@@ -18,7 +18,7 @@ tags: [resume, decisions, positioning]
 | Resume는 15초 hooking, portfolio는 depth | 문제·의사결정·구현 서사를 A4에 중복하지 않는다. |
 | General master 먼저, JD tailoring은 선별 | 회사별 문서를 새로 쓰지 않고 검증된 master에서 재배열한다. |
 | 기존 `14-resume-draft-v1`은 v0로 재분류 | 구조 inventory는 유효하지만 evidence mapping과 공개 검증이 완료되지 않았다. |
-| 목표 분량은 A4 1~1.5장 | 경력 상세 나열보다 역량과 대표 claim의 스캔성을 우선한다. |
+| 목표 분량은 A4 2장 이내 | 2026-07-15 개정 (기존 1~1.5장). 실측 v1이 2장이고 outcome claim 추가 여지를 확보한다. 스캔성은 요약·핵심 역량이 1장 안에 들어오는 것으로 유지한다. |
 
 ## Non-Goals
 

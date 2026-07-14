@@ -63,5 +63,5 @@ Canonical positioning은 [profile/identity.md](../../profile/identity.md)를 따
 2. Evidence test: 모든 성과 bullet이 stable claim ID에 연결됨
 3. Strength test: allowed copy보다 강한 역할 표현이 없음
 4. Public test: provider·고객사·팀원·private path·미검증 수치가 없음
-5. Layout test: A4 1~1.5장, 100% scale에서 잘림·겹침 없음
+5. Layout test: A4 2장 이내, 요약·핵심 역량은 1장 안, 100% scale에서 잘림·겹침 없음
 6. Portfolio split: scope·decision·trade-off·failure mode·limits가 이력서에 중복되지 않고 portfolio case로 연결됨
