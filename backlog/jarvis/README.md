@@ -21,11 +21,13 @@ tags: [backlog, jarvis, labs]
 
 ## 연결
 
+- [OSS 후보 조사](oss-research.md)
 - [Personal Site Architecture Design](../../docs/superpowers/specs/2026-07-15-personal-site-architecture-design.md) — labs 서비스 프레임워크
 - Open questions (착수 시 결정):
   - wiki 공개 범위 — public-safe 큐레이션 subset vs auth 걸린 개인용 (후자면 site non-goal인 auth 해제 필요, Supabase auth 후보).
   - 대화·임베딩 저장 위치 (Supabase schema `jarvis`).
   - wake 감지의 브라우저 상시 마이크 권한 UX.
+  - 대화 언어 — 한국어 음성이면 TTS 선택 재검토 필요 (kokoro-js 한국어 ⚠️ 미지원 추정, [OSS 조사](oss-research.md) 참조).
 
 ## 승격
 
