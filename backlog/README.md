@@ -27,3 +27,4 @@ Status: `idea`(등록) → `spec`(설계 확정) → `wip`(착수) → `done` ·
 | [stock-radar](stock-radar/README.md) | 주식 관련 labs 서비스 — 구체 개념 미정 | idea | 2026-07-15 |
 | [resume-page](resume-page/README.md) | `/resume` 웹 이력서 + PDF — 공개 URL 블로커 해소 (콘텐츠는 products/resume 소유) | spec | 2026-07-15 |
 | [portfolio-page](portfolio-page/README.md) | `/portfolio` case 5건 목록·상세 (콘텐츠는 products/portfolio 소유) | spec | 2026-07-15 |
+| [daejeong-design](daejeong-design/README.md) | agent 기반 디자인 워크스페이스(open-design 포크) — 도구는 별도 repo, 여기선 파이프라인·노출·증거 기획 | wip | 2026-07-15 |
