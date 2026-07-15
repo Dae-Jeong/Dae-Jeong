@@ -189,6 +189,26 @@ flowchart LR
 | 2 | visitor profile chat을 labs 기능 1호로 (AI SDK; runtime은 serverless 또는 k8s 1호 워크로드로 착수 시 결정, 데이터 필요 시 Supabase 도입) | 2026-07-02/04 chat 설계 실행 |
 | 3 | 발생 시: 기능 추가(k8s), Supabase 확장, 검색 고도화 | 해당 필요가 실제로 발생 |
 
+## Feature Backlog
+
+구현 전 기획 기록. 착수 시 각자 task 문서로 상세화한다.
+
+### 1. Blog 세팅 (Phase 1 범위)
+
+- 다음 구현 세션 범위 확정: `site/` scaffold + `/blog` + `/write-post` skill.
+- 오픈소스 베이스는 사용자 선택 대기 — 후보 비교는 Wiki `nextjs-blog-starters` (2026-07-15 조사, Fumadocs 1순위 추천).
+- AI 글쓰기 흐름: 주제 지시 → agent가 초안 MDX 생성(frontmatter + `status: draft`) → public-safety·claim 상한 체크 → git diff 검수 → `status: published` 커밋 = 발행. 업로드 UI 없음.
+
+### 2. Jarvis (labs 서비스 후보)
+
+- 개념: 개인 wiki 지식을 Obsidian처럼 연결해 보여주는 페이지(graph/backlink 뷰) + 그 내용을 근거로 대화하는 LLM chat.
+- Jarvis mode: 아이언맨 방식 wake — **손뼉 두 번(double clap) 감지로 assistant 기상 → STT 음성 대화**. clap detection·wake word·STT 관련 오픈소스 조사는 착수 시(후보군 多).
+- Evidence 연결: realtime STT/LLM 경험(SAY claim)의 개인 production case가 되고, k8s 1호 워크로드 후보.
+- Open questions (착수 시 결정):
+  - wiki 공개 범위 — 개인 wiki에는 비공개 내용이 섞여 있으므로 public-safe 큐레이션 subset으로 갈지, auth 걸린 개인용으로 갈지 (후자면 non-goal인 auth 해제 필요, Supabase auth 후보).
+  - 대화·임베딩 저장 위치 (Supabase schema `jarvis`).
+  - wake 감지의 브라우저 상시 마이크 권한 UX.
+
 ## Non-Goals
 
 핵심 사이트의 DB·auth, 댓글, 커스텀 analytics, i18n, monorepo 도구, CMS, 자동 sync. 서비스 프레임워크 쪽도 서비스 템플릿, 공용 SDK·디자인 시스템, API gateway, 이벤트 버스, SSO, health check 자동화를 미리 짓지 않는다. 전부 두 번째 필요가 생길 때 추가한다. 기능 데이터는 core가 아니라 Supabase(Phase 2) 범위로 분리한다.
