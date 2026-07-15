@@ -13,6 +13,7 @@ tags: [context, routing, progressive-disclosure]
 | 상황 | 읽기 |
 | --- | --- |
 | 현재 진행 상태 | [current-state.md](current-state.md) |
+| 아이디어 등록·상태 | [backlog.md](backlog.md) |
 | 한 줄 소개와 branding | [../profile/identity.md](../profile/identity.md) |
 | 경력 timeline | [../profile/career.md](../profile/career.md) |
 | 역량과 기여 범위 | [../profile/capabilities.md](../profile/capabilities.md), [../profile/contribution.md](../profile/contribution.md) |

@@ -32,6 +32,7 @@ tags: [rules, routing, source-of-truth]
 | market corpus contract and derived reports | `products/jd/` |
 | evidence labels and public restrictions | `rules/` |
 | current task snapshot | `context/current-state.md` |
+| idea backlog와 기획 상태 | `context/backlog.md` |
 
 ## Duplication Rule
 
