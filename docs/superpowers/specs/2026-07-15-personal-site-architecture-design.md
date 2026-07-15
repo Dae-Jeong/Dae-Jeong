@@ -56,6 +56,41 @@ marinkim.xyz, www     → Vercel (Next.js core) — 핵심 경로, 항상 가용
 Supabase              → 기능 공용 데이터 층, 서비스별 schema 분리 (Phase 2)
 ```
 
+```mermaid
+flowchart TB
+    V((방문자))
+
+    subgraph VERCEL["Vercel · marinkim.xyz — 항상 가용 (채용 경로)"]
+        HOME["/ ─ 프로필 랜딩"]
+        RESUME["/resume ─ 이력서 + PDF"]
+        PORTFOLIO["/portfolio ─ case 5건"]
+        BLOG["/blog ─ 글 (MDX)"]
+        LABS["/labs ─ 기능·서비스 관문"]
+        DETAIL["/labs/{svc} ─ 상세 페이지<br/>(소개·스택·운영 기록)"]
+    end
+
+    subgraph K8S["k8s · wildcard *.marinkim.xyz (클러스터 위치 미정)"]
+        S1["stock.marinkim.xyz"]
+        S2["chat.marinkim.xyz (Phase 2)"]
+        SN["{svc}.marinkim.xyz ..."]
+    end
+
+    SUPA[("Supabase<br/>서비스별 schema · Phase 2")]
+
+    V --> HOME
+    HOME --> RESUME
+    HOME --> PORTFOLIO
+    HOME --> BLOG
+    HOME --> LABS
+    LABS --> DETAIL
+    DETAIL -- 열기 --> S1
+    DETAIL -- 열기 --> S2
+    DETAIL -- 열기 --> SN
+    S1 -.-> SUPA
+    S2 -.-> SUPA
+    SN -.-> SUPA
+```
+
 ## Route Structure
 
 ```text
@@ -119,6 +154,32 @@ summary: 한 줄 소개
 3. registry 파일 추가 — `/labs` 카드·상세 페이지 노출
 
 core 사이트 코드는 건드리지 않는다. 서비스 상세 페이지와 운영 기록은 evidence로 축적되어 claim 승격 경로(k8s 등 gap 해소)에 연결된다.
+
+```mermaid
+flowchart LR
+    subgraph DJ["Dae-Jeong repo (private · source of truth)"]
+        EV["evidence/<br/>claim registry"]
+        REG["site/content/services/*.md<br/>(labs registry)"]
+        SITE["site/<br/>Next.js core"]
+    end
+
+    subgraph SVCREPO["서비스 repo × N (스택 자유)"]
+        SR["stock-radar, ..."]
+    end
+
+    PLAT["platform repo<br/>k8s 구성·manifest<br/>(k8s 착수 시 생성)"]
+
+    VERC["Vercel"]
+    K8SC["k8s cluster"]
+
+    EV -- "export 스크립트<br/>(public: true만 통과)" --> SITE
+    REG --> SITE
+    SITE -- deploy --> VERC
+    SR -- deploy --> K8SC
+    PLAT -- "ingress·TLS·namespace" --> K8SC
+    K8SC -. "운영 기록 축적" .-> EV
+    EV -. "claim 승격 → 이력서 gap 해소" .-> SITE
+```
 
 ## Phases
 
