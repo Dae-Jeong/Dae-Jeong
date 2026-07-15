@@ -191,7 +191,7 @@ flowchart LR
 
 ## Feature Backlog
 
-기획 아이디어의 등록·상태 추적은 [context/backlog.md](../../../context/backlog.md)가 소유한다. 이 spec에는 착수가 확정된 아키텍처 결정만 기록한다.
+기획 아이디어의 등록·상태 추적은 [backlog/](../../../backlog/README.md)가 소유한다 (아이디어당 폴더). 이 spec에는 착수가 확정된 아키텍처 결정만 기록한다.
 
 ## Non-Goals
 

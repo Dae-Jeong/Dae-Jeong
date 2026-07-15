@@ -28,7 +28,7 @@
 ## 작성 원칙
 
 - 한 사실에는 한 canonical owner만 둔다.
-- 대화에서 새 기획·아이디어가 나오면 [context/backlog.md](context/backlog.md)에 등록한다. 착수 확정 시 spec/task로 승격한다.
+- 대화에서 새 기획·아이디어가 나오면 [backlog/](backlog/README.md)에 아이디어당 폴더로 등록한다 ([_template.md](backlog/_template.md) 준수). 착수 확정 시 spec/task로 승격한다.
 - public claim은 evidence record와 stable claim ID를 먼저 만든다.
 - `profile/`은 짧고 안정적으로 유지하고 긴 근거는 `evidence/`에 둔다.
 - resume, portfolio, homepage는 서로를 source로 사용하지 않고 `profile/`과 `evidence/`를 소비한다.

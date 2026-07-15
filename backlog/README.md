@@ -1,0 +1,25 @@
+---
+type: index
+title: Idea Backlog
+description: 떠오른 기획·아이디어를 폴더 단위로 적재하는 단일 inbox. 착수 확정 시 spec/task로 승격한다.
+timestamp: 2026-07-15
+tags: [backlog, ideas, planning]
+---
+
+# Idea Backlog
+
+아이디어의 단일 적재 공간. 운영 규칙:
+
+1. 아이디어 하나 = 폴더 하나. [_template.md](_template.md)를 복사해 `{id}/README.md`로 시작한다.
+2. 조사 자료·스케치·참고 링크는 해당 아이디어 폴더 안에 쌓는다.
+3. 착수가 확정되면 spec/task 문서로 승격하고, README에는 승격 링크와 상태만 남긴다.
+4. 이 index 표는 폴더 추가·상태 변경 시 함께 갱신한다.
+
+Status: `idea`(등록) → `spec`(설계 확정) → `wip`(착수) → `done` · `hold` · `drop`
+
+## Ideas
+
+| Id | 한 줄 | Status | 등록 |
+| --- | --- | --- | --- |
+| [blog-setup](blog-setup/README.md) | site scaffold + `/blog` + `/write-post` skill — OSS 베이스 선택 대기 | spec | 2026-07-15 |
+| [jarvis](jarvis/README.md) | wiki 연결 뷰 + 근거 chat + double-clap wake·STT 음성 — labs 서비스·k8s 1호 후보 | idea | 2026-07-15 |

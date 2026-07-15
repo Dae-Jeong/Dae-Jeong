@@ -11,7 +11,7 @@ from typing import Any
 import yaml
 
 
-CONCEPT_DIRS = ("context", "profile", "evidence", "products", "rules")
+CONCEPT_DIRS = ("context", "profile", "evidence", "products", "rules", "backlog")
 SCAN_DIRS = CONCEPT_DIRS + ("skills", "scripts")
 TEXT_SUFFIXES = {".md", ".yaml", ".yml", ".json", ".py", ".html"}
 FORBIDDEN_PATH_PATTERNS = (
