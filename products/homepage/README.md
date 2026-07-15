@@ -15,3 +15,4 @@ Homepage는 profile과 evidence를 public navigation surface로 조립하는 con
 - public-safe [profile](../../profile/README.md)과 [claims](../../evidence/claims/README.md)만 사용한다.
 - Open Design mock은 design consumer이며 source of truth가 아니다.
 - Daejeong Design의 도구 구현은 별도 repository가 소유한다.
+- 사이트 구현은 이 repo의 `site/`에 둔다 — [Personal Site Architecture Design (2026-07-15)](../../docs/superpowers/specs/2026-07-15-personal-site-architecture-design.md).
