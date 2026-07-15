@@ -25,3 +25,5 @@ Status: `idea`(등록) → `spec`(설계 확정) → `wip`(착수) → `done` ·
 | [jarvis](jarvis/README.md) | wiki 연결 뷰 + 근거 chat + double-clap wake·STT 음성 — labs 서비스·k8s 1호 후보 | idea | 2026-07-15 |
 | [visitor-chat](visitor-chat/README.md) | 방문자용 profile chat — 설계 확정(2026-07-02/04), site Phase 2 labs 기능 1호 | spec | 2026-07-15 |
 | [stock-radar](stock-radar/README.md) | 주식 관련 labs 서비스 — 구체 개념 미정 | idea | 2026-07-15 |
+| [resume-page](resume-page/README.md) | `/resume` 웹 이력서 + PDF — 공개 URL 블로커 해소 (콘텐츠는 products/resume 소유) | spec | 2026-07-15 |
+| [portfolio-page](portfolio-page/README.md) | `/portfolio` case 5건 목록·상세 (콘텐츠는 products/portfolio 소유) | spec | 2026-07-15 |
