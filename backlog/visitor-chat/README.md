@@ -19,6 +19,7 @@ tags: [backlog, chat, site, labs]
 - 스택: Vercel AI SDK + assistant-ui. runtime은 serverless 또는 k8s 1호 워크로드로 착수 시 결정.
 - curated Q&A fallback 포함, public-safe claim만 답변 근거로 사용.
 - UX 패턴 확정 (2026-07-16): **전 페이지 우하단 런처(채널톡 패턴) + `/chat` 풀 대화 화면(GPT형, 근거 rail 포함)**. root hero는 meta 표를 유지하고 chat을 고정 배치하지 않는다. 프로토타입은 D2 Profile 프로젝트의 `root-phase2-prototype.html`(런처 포함)과 `chat-page-prototype.html`.
+- 답변 구조 3층 (2026-07-16): ① 답변 텍스트(claim 표현만, 프로젝트 언급은 inline link) ② evidence chip(claim ID — 출처 증명) ③ related link(언급된 프로젝트의 case/route로 가는 탐색 동선). chat이 사이트 전체의 관문 역할을 하도록 답변마다 다음 행동을 제공한다.
 
 ## 연결
 
