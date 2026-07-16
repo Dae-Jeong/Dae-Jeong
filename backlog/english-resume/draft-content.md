@@ -24,7 +24,7 @@ tags: [backlog, resume, english, draft]
 - Rebuilt an AI content generation backend end to end; own development and operations since cutover (`thready.backend-rebuild`)
 - Operate a production backend serving tens of thousands of monthly requests with a ~0.3% HTTP 5xx rate (99.7%+ success) (`thready.production-operation-quality`)
 - Joined as a Backend Engineer, while also serving as Tech Lead and Product Owner (`career.medisolve-role-evolution`)
-- Built and run a release workflow where AI agents read specs, track issues, and gate releases (`mediness.product-operations`)
+- Built and now run a release workflow where AI agents read specs, track issues, and gate releases (`mediness.product-operations`)
 
 ## Capabilities
 
