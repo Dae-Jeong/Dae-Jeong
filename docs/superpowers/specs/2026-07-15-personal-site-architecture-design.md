@@ -189,6 +189,13 @@ flowchart LR
 | 2 | visitor profile chat을 labs 기능 1호로 (AI SDK; runtime은 serverless 또는 k8s 1호 워크로드로 착수 시 결정, 데이터 필요 시 Supabase 도입) | 2026-07-02/04 chat 설계 실행 |
 | 3 | 발생 시: 기능 추가(k8s), Supabase 확장, 검색 고도화 | 해당 필요가 실제로 발생 |
 
+## Design Baseline (2026-07-16)
+
+- 디자인 산출물은 D2 "Profile" 프로젝트가 소유한다 (작업 경계 결정). 기준 파일 3개: `index.html`(완결형 프로필 v2), `root-phase2-prototype.html`(다이어트 root + 전역 Ask 런처), `chat-page-prototype.html`(`/chat` 풀 대화, 근거 rail).
+- root 진화 3단: 사이트 전 = 완결형 한 장 → Phase 1 = 다이어트(hero+meta 표+summary+selected proof+routes) → Phase 2 = 전역 런처 + `/chat` route 활성.
+- visitor chat UX(전역 런처, `/chat`, 답변 3층 구조)의 상세 결정은 [backlog/visitor-chat](../../../backlog/visitor-chat/README.md)이 소유한다.
+- 디자인 토큰 계약: Mono 시스템 (IBM Plex Mono + Pretendard 한글, 모노크롬 + 그린 액센트 1점 `#168a46`, `word-break: keep-all`).
+
 ## Feature Backlog
 
 기획 아이디어의 등록·상태 추적은 [backlog/](../../../backlog/README.md)가 소유한다 (아이디어당 폴더). 이 spec에는 착수가 확정된 아키텍처 결정만 기록한다.
