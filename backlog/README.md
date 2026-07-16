@@ -29,3 +29,4 @@ Status: `idea`(등록) → `spec`(설계 확정) → `wip`(착수) → `done` ·
 | [portfolio-page](portfolio-page/README.md) | `/portfolio` case 5건 목록·상세 (콘텐츠는 products/portfolio 소유) | spec | 2026-07-15 |
 | [daejeong-design](daejeong-design/README.md) | agent 기반 디자인 워크스페이스(open-design 포크) — 도구는 별도 repo, 여기선 파이프라인·노출·증거 기획 | wip | 2026-07-15 |
 | [minigame](minigame/README.md) | 미니게임 아케이드 — 앱 하나에 여러 게임 (미니게임 천국 스타일), 개별 게임 미정 | idea | 2026-07-15 |
+| [english-resume](english-resume/README.md) | 영문 이력서 마스터 트랙 — claim 기반 재작성, 영문 표현 상한 정의 선행 | idea | 2026-07-16 |

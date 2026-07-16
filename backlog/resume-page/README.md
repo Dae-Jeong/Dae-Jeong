@@ -16,6 +16,8 @@ marinkim.xyz `/resume`에서 웹 이력서를 보여주고 PDF를 내려받게 �
 ## 메모
 
 - Phase 1 최소 경로: 화면 QA까지 끝난 기존 responsive `resume.html`을 그대로 서빙 + PDF (site spec 결정). Next 네이티브 이력서 뷰는 발생 시.
+- 화면 디자인 확정 (2026-07-16): D2 Profile 프로젝트 `resume-page-prototype.html` — 문서형 본문(섹션 01~07, contract frame 준수) + 우측 sticky rail(PDF 다운로드·KO/EN 토글·목차). EN 토글은 [english-resume](../english-resume/README.md) 완성 전까지 "준비 중".
+- 공개 웹 연락처 결정 (2026-07-16): email·GitHub·시 단위 거주지만 노출. **전화번호는 PDF 배포본에만** (공개 웹 스팸 수집 방지).
 - 콘텐츠 canonical은 [products/resume/](../../products/resume/README.md) — 이 entry는 **site 노출 기획만** 추적한다. 콘텐츠는 export 스크립트로만 유입 (public: true claim 필터).
 
 ## 연결
