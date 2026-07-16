@@ -30,6 +30,7 @@ sections:
     - career.medisolve-role-evolution
     - career.thedaylabs-freelance
     - career.memento-payment
+    - career.sellercanvas-product-system
     - career.ai-pm-backend-continuity
     - career.tellingme-backend-infra
   agent_workflow:

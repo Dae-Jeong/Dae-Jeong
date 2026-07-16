@@ -15,6 +15,17 @@ tags: [career, credentials, tellingme, evidence]
 - Public narrative: AI와 PM 경험은 우회 경력이 아니라 AI product를 product/system 관점으로 보는 배경이다.
 - Guardrail: 이전 역할을 현재 primary category보다 앞세우지 않는다.
 
+## Studio Lab And SellerCanvas
+
+- Source-backed (공개 보도, 2026-07-17 확인): SellerCanvas는 상품 이미지를 Vision AI로 분석해 상세페이지(디자인·카피·레이아웃·SEO)를 30초 안에 자동 생성하는 생성형 AI 커머스 콘텐츠 제품이다. CES 2024 AI 부문 Best of Innovation 수상. STUDIO LAB은 삼성전자 C랩 스핀오프.
+  - https://www.aitimes.com/news/articleView.html?idxno=155218
+  - https://www.asiaa.co.kr/news/articleView.html?idxno=162600
+  - https://sellercanvas.com/
+- User-confirmed (2026-07-17): 역할 진행은 AI Engineer → PM → Backend이지만 **PM이 메인 롤**이었다. 이 시기의 시스템 구축은 개발 시스템이 아니라 **"제품이 원활하게 돌아가는 시스템"을 기획·구축**하는 일이었다.
+- Narrative: LLM 붐 이전(2021–22)부터 Vision AI 기반 생성 제품의 제품 시스템을 기획·구축했다 — 현재의 제품 운영 시스템(decision·spec·release gate) 리드와 같은 근육의 이전 형태다.
+- ⚠️ Inference: 특허 「페이지 출력 방법」(2022 출원)은 명칭·시기상 SellerCanvas 계열 작업으로 추정 — 확정 전 연결 표현 금지.
+- Contribution boundary: PM 메인 시기를 backend 깊이로 포장하지 않는다. 제품 전체 단독 기획·총괄로 표현하지 않는다.
+
 ## Memento Payment
 
 - Code-backed: Stripe/prepayment, refund, mileage, ticket rollback, payment-history correctness 관련 backend 변경이 확인됐다.

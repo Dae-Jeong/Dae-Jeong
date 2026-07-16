@@ -84,7 +84,7 @@ tags: [resume, v1, content, korean]
 - 더데이랩스 · Freelance · 2025.02-2025.04: 현 MediSolve AI 대표와 프리랜서로 협업 시작 — 창업과 함께 합류 (`career.thedaylabs-freelance`)
 - Memento AI · Backend Engineer · 2024.10-2025.01: 예약·결제 backend의 선결제와 환불·마일리지·티켓 rollback 안정화 — 회사 폐업으로 재직 종료 (`career.memento-payment`)
 - 개인 프로젝트 · TellingMe · 2024.01-2024.12: Spring Boot backend와 AWS 배포·모니터링 리드, Memento 재직과 병행 (`career.tellingme-backend-infra`)
-- STUDIO LAB · AI Engineer -> PM -> Backend Engineer · 2021.12-2024.01: Vision AI·PM·backend를 연결한 product-system 경험 (`career.ai-pm-backend-continuity`)
+- STUDIO LAB · AI Engineer -> PM -> Backend Engineer · 2021.12-2024.01: SellerCanvas(생성형 AI 커머스 콘텐츠, CES 2024 최고혁신상 제품)의 PM 메인 역할로 제품 시스템 기획·구축 (`career.sellercanvas-product-system`)
 - 아이즈솔 · Vision AI Engineer · 2020.08-2021.06: Vision AI에서 시작한 AI product engineering 경력 (`career.ai-pm-backend-continuity`)
 
 ## Agent Workflow

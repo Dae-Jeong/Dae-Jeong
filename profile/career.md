@@ -23,6 +23,8 @@ tags: [career, timeline, role]
 
 Vision AI에서 시작해 PM을 거쳐 Backend Engineer로 확장했다. 현재 primary category는 Backend Engineer이며, 이전 AI/PM 경험은 AI product를 runtime과 product operation 관점에서 다루는 배경이다.
 
+STUDIO LAB 시절의 메인 롤은 PM이었고, 그때의 시스템 구축은 개발 시스템이 아니라 "제품이 원활하게 돌아가는 시스템"을 기획·구축하는 일이었다. LLM 붐 이전부터 이어진 이 제품-시스템 설계 근육이 현재의 제품 운영 시스템(decision·spec·release gate) 리드와 agent-readable workflow로 이어진다.
+
 MediSolve AI에서는 Backend Engineer로 합류한 뒤 제품팀의 일정·이슈·릴리스 운영을 리드하고 Tech Lead·PO·AI agent 관련 역할을 병행했다. 제품 기획 전담으로 표현하지 않는다.
 
 ## Project Anchors

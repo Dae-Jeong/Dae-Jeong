@@ -25,6 +25,20 @@ claims:
     forbidden_copy:
       - 전 직무 최고 책임자
     verified_at: 2026-07-06
+  - id: career.sellercanvas-product-system
+    statement: 생성형 AI 커머스 콘텐츠 제품 SellerCanvas에서 PM 메인 롤로 제품이 원활하게 돌아가는 시스템을 기획·구축
+    strength: led
+    confidence: high
+    public: true
+    evidence: [evidence/projects/previous-career.md#studio-lab-and-sellercanvas]
+    allowed_copy:
+      - SellerCanvas(생성형 AI 커머스 콘텐츠, CES 2024 최고혁신상 제품)의 PM 메인 역할로 제품 시스템 기획·구축
+      - LLM 붐 이전부터 Vision AI 기반 생성 제품의 제품 시스템을 기획·구축
+    forbidden_copy:
+      - 제품 전체 단독 기획·총괄
+      - 매출·전환율 등 미검증 수치
+      - 특허와 SellerCanvas의 연결 (확정 전)
+    verified_at: 2026-07-17
   - id: career.memento-payment
     statement: 예약·결제 backend의 선결제, 환불·마일리지·티켓 rollback correctness 개선
     strength: contributed
