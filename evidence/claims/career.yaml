@@ -9,6 +9,7 @@ claims:
     evidence: [evidence/projects/mediness.md#role-boundary]
     allowed_copy:
       - Backend Engineer 합류 후 Tech Lead·PO·AI agent 역할 병행
+      - Backend Engineer 합류 후 Tech Lead·PO 역할 병행
     forbidden_copy:
       - 공식 직함이 모두 Tech Lead / PO / AI Agent Engineer라고 단정
       - 제품 기획 전담
@@ -32,9 +33,22 @@ claims:
     evidence: [evidence/projects/previous-career.md#memento-payment]
     allowed_copy:
       - 예약·결제 backend의 선결제와 환불·마일리지·티켓 rollback 안정화
+      - 재직 종료 사유는 회사 폐업
     forbidden_copy:
       - 결제 장애 완전 해결
-    verified_at: 2026-07-05
+    verified_at: 2026-07-16
+  - id: career.thedaylabs-freelance
+    statement: Memento 폐업 후 더데이랩스에서 프리랜서로 근무 (2025.02-2025.04)
+    strength: contributed
+    confidence: high
+    public: true
+    evidence: [evidence/projects/previous-career.md#career-gaps-and-freelance]
+    allowed_copy:
+      - 더데이랩스 프리랜서 (2025.02-2025.04)
+    forbidden_copy:
+      - 해당 기간의 구체 업무 성과 서술 (근거 확인 전)
+      - 2025.10 repo 활동의 공개 표기
+    verified_at: 2026-07-16
   - id: career.tellingme-backend-infra
     statement: TellingMe 개인 프로젝트의 Spring Boot backend와 AWS 배포·모니터링 리드
     strength: led

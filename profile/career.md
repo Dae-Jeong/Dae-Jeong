@@ -2,7 +2,7 @@
 type: profile
 title: Career
 description: Canonical career timeline and role evolution.
-timestamp: 2026-07-11
+timestamp: 2026-07-16
 tags: [career, timeline, role]
 ---
 
@@ -13,8 +13,9 @@ tags: [career, timeline, role]
 | Period | Organization | Role | Anchor |
 | --- | --- | --- | --- |
 | 2025.04-current | MediSolve AI | Backend Engineer; Tech Lead·PO·AI agent 역할 병행 | Thready, Centurion, NEXUS, BE Template, mediness |
-| 2024.10-2025.01 | Memento AI | Backend Engineer; PM Intern 1개월 병행 | reservation/payment backend |
-| 2024.01-2024.12 | TellingMe | Personal project, Backend Lead & Infra | Spring Boot backend, AWS deployment |
+| 2025.02-2025.04 | 더데이랩스 | Freelance (Memento 폐업 후 합류 전) | freelance engagement |
+| 2024.10-2025.01 | Memento AI | Backend Engineer; PM Intern 1개월 병행 — 회사 폐업으로 종료 | reservation/payment backend |
+| 2024.01-2024.12 | TellingMe | Personal project (Memento 재직과 병행), Backend Lead & Infra | Spring Boot backend, AWS deployment |
 | 2021.12-2024.01 | STUDIO LAB | AI Engineer -> PM -> Backend Engineer | SellerCanvas |
 | 2020.08-2021.06 | 아이즈솔 | Vision AI Engineer | Kidsly |
 

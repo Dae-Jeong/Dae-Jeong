@@ -18,8 +18,8 @@ tags: [resume, v1, content, korean]
 ## Summary
 
 - AI 콘텐츠 생성 backend 전면 재구축과 이후 개발·운영 전담 (`thready.backend-rebuild`)
-- 월 수만 건 규모 요청을 처리하는 production backend를 HTTP 5xx 1% 미만으로 운영 (`thready.production-operation-quality`)
-- Backend Engineer 합류 후 Tech Lead·PO·AI agent 역할 병행 (`career.medisolve-role-evolution`)
+- 월 수만 건 규모 요청을 처리하는 production backend를 HTTP 5xx 0.3% 수준으로 운영 (`thready.production-operation-quality`)
+- Backend Engineer 합류 후 Tech Lead·PO 역할 병행 (`career.medisolve-role-evolution`)
 - 제품 일정·이슈·릴리스 운영을 agent-readable workflow로 구조화·리드 (`mediness.product-operations`)
 
 ## Capabilities
@@ -80,9 +80,10 @@ tags: [resume, v1, content, korean]
 
 ## Career
 
-- MediSolve AI · Backend Engineer · 2025.04-current: AI product backend와 제품 운영·engineering standard 담당, Tech Lead·PO·AI agent 역할 병행 (`career.medisolve-role-evolution`)
-- Memento AI · Backend Engineer · 2024.10-2025.01: 예약·결제 backend의 선결제와 환불·마일리지·티켓 rollback 안정화 (`career.memento-payment`)
-- TellingMe · Backend Lead & Infra · 2024.01-2024.12: Spring Boot backend와 AWS 배포·모니터링 리드 (`career.tellingme-backend-infra`)
+- MediSolve AI · Backend Engineer · 2025.04-current: AI product backend와 제품 운영·engineering standard 담당, Tech Lead·PO 역할 병행 (`career.medisolve-role-evolution`)
+- 더데이랩스 · Freelance · 2025.02-2025.04: Memento 폐업 후 MediSolve 합류 전 프리랜서 근무 (`career.thedaylabs-freelance`)
+- Memento AI · Backend Engineer · 2024.10-2025.01: 예약·결제 backend의 선결제와 환불·마일리지·티켓 rollback 안정화 — 회사 폐업으로 재직 종료 (`career.memento-payment`)
+- 개인 프로젝트 · TellingMe · 2024.01-2024.12: Spring Boot backend와 AWS 배포·모니터링 리드, Memento 재직과 병행 (`career.tellingme-backend-infra`)
 - STUDIO LAB · AI Engineer -> PM -> Backend Engineer · 2021.12-2024.01: Vision AI·PM·backend를 연결한 product-system 경험 (`career.ai-pm-backend-continuity`)
 - 아이즈솔 · Vision AI Engineer · 2020.08-2021.06: Vision AI에서 시작한 AI product engineering 경력 (`career.ai-pm-backend-continuity`)
 

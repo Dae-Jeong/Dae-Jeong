@@ -28,6 +28,7 @@ sections:
     - be-template.agent-context
   career:
     - career.medisolve-role-evolution
+    - career.thedaylabs-freelance
     - career.memento-payment
     - career.ai-pm-backend-continuity
     - career.tellingme-backend-infra

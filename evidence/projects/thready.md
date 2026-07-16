@@ -32,7 +32,7 @@ Source locator: `workspace:thready`
 
 - Tool-backed: Azure App Service platform metric 30일 집계(2026-06-15~2026-07-15)에서 요청 50,650건, HTTP 5xx 133건(0.26%)을 확인했다. 2026-07-11 스냅샷(약 41k, 0.32%)과 일관된다. 정확 수치는 내부 검증용이다.
 - Measurement boundary: 현재 운영 상태의 증거다. "개선" claim에는 변경 전후 기간과 commit/PR 연결이 추가로 필요하다.
-- Public wording: 범위화 표현(월 수만 건 규모, HTTP 5xx 1% 미만)만 공개한다.
+- Public wording: 범위화 표현(월 수만 건 규모, HTTP 5xx 0.3% 수준 / 성공률 99.7%+)만 공개한다. 기존 "1% 미만" 밴딩은 실측(0.26~0.32%)보다 나쁘게 읽혀 2026-07-16 persona review에서 역효과로 판정 — 실측에 근접한 상한으로 재조정했다.
 
 ## Public Disclosure
 
