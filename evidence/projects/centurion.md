@@ -13,6 +13,12 @@ Source locators: `workspace:BAY-BE-API`, `workspace:SAY-BE-API`, `workspace:PROT
 
 DAY, BAY, RAY, SAY는 별도 제품이 아니라 Centurion CRM & ERP 제품을 구성하는 feature다.
 
+## Origin
+
+- User-confirmed (2026-07-17): Centurion은 더데이랩스의 첫 제품으로 시작해 MediSolve AI 창업과 함께 그대로 이관됐다. 피부과 도메인의 CRM으로 출발했다.
+- Code-backed: 제품 시작 시점(더데이랩스 프리랜서 기간)부터 backend를 구축했다 — `workspace:BAY-BE-API` 2025-03-18 first initialize와 정합 ([previous-career](previous-career.md#career-gaps-and-freelance)).
+- Public wording: "피부과 CRM으로 시작한 Centurion을 제품 시작 시점부터 구축"까지 허용. ⚠️ "피부과 생태계를 관장하는 시스템" 같은 제품 전략 서술은 회사 공개 자료 확인 전까지 공개 표기 보류.
+
 ## BAY Async Backend
 
 - Code-backed: order, product, inventory API와 TaskIQ/RabbitMQ worker, inventory retry, API test infrastructure, Docker CI, onboarding documents가 확인됐다.

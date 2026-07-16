@@ -49,7 +49,7 @@ tags: [backlog, resume, english, draft]
 - Rebuilt the FastAPI backend end to end; owned development and operations after cutover (`thready.backend-rebuild`, `thready.release-operation`)
 - Built the generation quality system — typed prompt builder, LLM judge, evaluation loop, observability logging (`thready.generation-quality-system`)
 
-### Centurion · Product backend
+### Centurion · Dermatology CRM backend (built from product inception)
 
 - Led order/inventory APIs, RabbitMQ/TaskIQ async workers, retry, and test/CI/onboarding setup (`centurion.bay-async-backend`)
 - Co-led session lifecycle and provider-boundary stabilization for a realtime AI consultation backend (`centurion.say-realtime-ai`)

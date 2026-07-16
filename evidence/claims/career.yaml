@@ -60,9 +60,11 @@ claims:
     allowed_copy:
       - 더데이랩스 프리랜서 (2025.02-2025.04)
       - 현 MediSolve AI 대표와 프리랜서로 협업 시작 — Centurion 초기 backend 구축과 개발팀 시스템·backend 기준 수립, 창업과 함께 합류
+      - 피부과 CRM Centurion을 제품 시작 시점부터 구축
     forbidden_copy:
       - 해당 기간의 성과 수치
       - 2025.10 repo 활동의 공개 표기
+      - 제품 전략 서술 (생태계 관장 등 — 회사 공개 자료 확인 전)
     verified_at: 2026-07-17
   - id: career.tellingme-backend-infra
     statement: TellingMe 개인 프로젝트의 Spring Boot backend와 AWS 배포·모니터링 리드
