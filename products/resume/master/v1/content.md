@@ -68,7 +68,7 @@ tags: [resume, v1, content, korean]
 - FastAPI 기반 backend 전면 재구축과 cutover 이후 개발·운영 전담 (`thready.backend-rebuild`, `thready.release-operation`)
 - typed prompt builder, LLM judge, 평가 루프, 관측 로깅 기반 생성 품질 시스템 구축 (`thready.generation-quality-system`)
 
-### Centurion · 피부과 CRM Product Backend (제품 시작 시점부터 구축)
+### Centurion · 피부과 운영 AI 메디컬 플랫폼 (제품 시작 시점부터 구축)
 
 - 주문·재고 API와 RabbitMQ·TaskIQ 비동기 worker, retry, test·CI·onboarding 구축 주도 (`centurion.bay-async-backend`)
 - realtime AI 상담 backend의 세션 lifecycle과 provider 경계 안정화 공동 주 기여 (`centurion.say-realtime-ai`)
