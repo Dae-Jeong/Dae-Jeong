@@ -38,4 +38,5 @@ Source locators: `workspace:MEDISOLVEAI-INFRA`, `workspace:MEDISOLVEAI-B2C-INFRA
 ## Public Disclosure
 
 - 공개 가능: 회사 Azure/Terraform infra 전반 담당, B2B/B2C·제품·환경 boundary, deploy/runbook 운영.
+- Source-backed (2026-07-17): 회사가 한국마이크로소프트 협약과 Azure 기반 인프라를 공개 보도함 (매일신문 2026-04-22) — 이력서에서 Azure 기반 언급은 회사 기밀이 아님이 확인됨.
 - 기본 비공개: subscription/resource/customer 이름, 정확한 resource 수, traffic, cost, security configuration.

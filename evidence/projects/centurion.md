@@ -17,7 +17,15 @@ DAY, BAY, RAY, SAY는 별도 제품이 아니라 Centurion CRM & ERP 제품을 �
 
 - User-confirmed (2026-07-17): Centurion은 더데이랩스의 첫 제품으로 시작해 MediSolve AI 창업과 함께 그대로 이관됐다. 피부과 도메인의 CRM으로 출발했다.
 - Code-backed: 제품 시작 시점(더데이랩스 프리랜서 기간)부터 backend를 구축했다 — `workspace:BAY-BE-API` 2025-03-18 first initialize와 정합 ([previous-career](previous-career.md#career-gaps-and-freelance)).
-- Public wording: "피부과 CRM으로 시작한 Centurion을 제품 시작 시점부터 구축"까지 허용. ⚠️ "피부과 생태계를 관장하는 시스템" 같은 제품 전략 서술은 회사 공개 자료 확인 전까지 공개 표기 보류.
+- Public wording: "피부과 CRM으로 시작한 Centurion을 제품 시작 시점부터 구축"까지 허용. ⚠️ "피부과 생태계를 관장하는 시스템" 표현은 보도에서 미확인 — 공개 표기 보류 유지.
+
+## Company Public Coverage (2026-07-17 확인)
+
+- Source-backed: 메디솔브에이아이가 2026-03-25 "AI 메디컬 플랫폼 '센츄리온(centurion)' 시리즈" 공식 론칭 행사를 개최했다 — 도메인은 피부과 운영, `say`는 "상담 실장 옆에서 실시간 AI 어드바이스를 제공하는 솔루션", `centurion watch`는 "AI 기반 리뷰 모니터링 솔루션"으로 공개됨. https://www.mdtoday.co.kr/news/view/1065601112133242
+- Source-backed: 한국마이크로소프트와 업무협약 — Azure 기반 클라우드 인프라·AI 기술로 병원 운영 통합 솔루션 고도화·글로벌 진출 (매일신문 2026-04-22). https://www.imaeil.com/page/view/2026042213570957581
+- Source-backed: BAY 공개 서비스 URL 존재 — https://bay.centurion.ai.kr/
+- 공개 표현 허용 범위 확장: 회사 공식 표현인 "AI 메디컬 플랫폼 센츄리온", "피부과 운영", "병원 운영 통합 솔루션"은 개인 산출물에서 사용 가능하다.
+- 유지되는 경계: 고객사명(보도에 등장하더라도 개인 산출물에서는 비공개 유지), 보도에 없는 전략 서술.
 
 ## BAY Async Backend
 
