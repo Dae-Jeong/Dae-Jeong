@@ -25,6 +25,7 @@ tags: [backlog, daejeong-design, design, agent-workflow]
 ## 연결
 
 - `wiki:daejeong-design` — 사용법, d2 CLI, od↔d2 네이밍 계약
+- 알려진 버그 (2026-07-16): 후속 run의 `--message`가 spawned agent에 빈 입력으로 전달 — 리포트는 D2 repo `docs/bug-report-run-message-relay.md`. 해소 전까지 반복 수정은 파일 직접 편집으로 우회 중. dogfooding claim 승격의 선행 조건.
 - [Personal Site Architecture Design](../../docs/superpowers/specs/2026-07-15-personal-site-architecture-design.md) — labs 노출 시
 
 ## 승격
