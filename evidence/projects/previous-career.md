@@ -32,7 +32,9 @@ tags: [career, credentials, tellingme, evidence]
 
 - User-confirmed (2026-07-16): 2021.06–2021.12 공백은 AI 엔지니어로 서울 취업을 준비한 기간이다. 이력서에는 표기하지 않고 면접 답변으로 사용한다.
 - User-confirmed (2026-07-16): Memento 폐업 후 MediSolve 합류 전인 2025.02–2025.04에 더데이랩스에서 프리랜서로 근무했다.
-- Code-backed (별도 시점): `workspace:thedaylabs-infra`에 KimMarin 단독 저자 커밋(Azure VM·Blob·docker-compose 배포)이 확인되나 커밋 시점이 2025-10이라 프리랜서 기간(02–04)의 업무 근거로 사용하지 않는다. ⚠️ 2025-10 활동의 성격(지속 계약 여부)은 미확인 — 공개 표기는 2025.02–04 기간과 프리랜서 사실까지만.
+- Code-backed (별도 시점): `workspace:thedaylabs-infra`에 KimMarin 단독 저자 커밋(Azure VM·Blob·docker-compose 배포)이 확인되나 커밋 시점이 2025-10이라 프리랜서 기간(02–04)의 업무 근거로 사용하지 않는다.
+- User-confirmed (2026-07-17): 더데이랩스와 MediSolve AI는 **대표가 같다** — 더데이랩스에서 프리랜서로 협업을 시작했고, 대표가 MediSolve AI를 창업하면서 엔지니어로 합류해 업무가 연속된다. 2025-10 repo 활동은 부업이 아니라 이 연속 관계 안의 회사 infra 운영으로 설명되며, thedaylabs-infra가 회사 infra source 목록([infrastructure.md](infrastructure.md))에 포함된 것과 정합한다.
+- Public wording: "현 MediSolve AI 대표의 더데이랩스에서 프리랜서로 협업 시작 — 창업과 함께 합류" 서사까지 허용. 해당 기간의 구체 업무 성과 서술은 근거 확인 전까지 금지 유지.
 
 ## Education
 

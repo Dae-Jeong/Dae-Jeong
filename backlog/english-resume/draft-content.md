@@ -62,7 +62,7 @@ tags: [backlog, resume, english, draft]
 ## Career
 
 - MediSolve AI · Backend Engineer · Apr 2025 – Present: AI product backend, product operations, engineering standards; also serving as Tech Lead and Product Owner (`career.medisolve-role-evolution`)
-- TheDayLabs · Freelance · Feb 2025 – Apr 2025: Freelance engagement between Memento's closure and joining MediSolve (`career.thedaylabs-freelance`) — ⚠️ 공식 영문 사명 미확인 (더데이랩스)
+- TheDayLabs · Freelance · Feb 2025 – Apr 2025: Began working with MediSolve AI's founder as a freelancer; joined full-time when the company was founded (`career.thedaylabs-freelance`) — ⚠️ 공식 영문 사명 미확인 (더데이랩스)
 - Memento AI · Backend Engineer · Oct 2024 – Jan 2025: Fixed correctness bugs in prepayment, refund, mileage, and ticket rollback flows for a reservation/payment backend; role ended when the company ceased operations (`career.memento-payment`)
 - TellingMe · Side Project · Jan 2024 – Dec 2024: Led the Spring Boot backend and AWS deployment/monitoring; run concurrently with the Memento role (`career.tellingme-backend-infra`) — 이력서에서는 Projects 섹션으로 분리 표기
 - STUDIO LAB · AI Engineer → PM → Backend Engineer · Dec 2021 – Jan 2024: Product-system experience connecting Vision AI, PM, and backend (`career.ai-pm-backend-continuity`)

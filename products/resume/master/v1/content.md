@@ -81,7 +81,7 @@ tags: [resume, v1, content, korean]
 ## Career
 
 - MediSolve AI · Backend Engineer · 2025.04-current: AI product backend와 제품 운영·engineering standard 담당, Tech Lead·PO 역할 병행 (`career.medisolve-role-evolution`)
-- 더데이랩스 · Freelance · 2025.02-2025.04: Memento 폐업 후 MediSolve 합류 전 프리랜서 근무 (`career.thedaylabs-freelance`)
+- 더데이랩스 · Freelance · 2025.02-2025.04: 현 MediSolve AI 대표와 프리랜서로 협업 시작 — 창업과 함께 합류 (`career.thedaylabs-freelance`)
 - Memento AI · Backend Engineer · 2024.10-2025.01: 예약·결제 backend의 선결제와 환불·마일리지·티켓 rollback 안정화 — 회사 폐업으로 재직 종료 (`career.memento-payment`)
 - 개인 프로젝트 · TellingMe · 2024.01-2024.12: Spring Boot backend와 AWS 배포·모니터링 리드, Memento 재직과 병행 (`career.tellingme-backend-infra`)
 - STUDIO LAB · AI Engineer -> PM -> Backend Engineer · 2021.12-2024.01: Vision AI·PM·backend를 연결한 product-system 경험 (`career.ai-pm-backend-continuity`)
