@@ -16,6 +16,7 @@ tags: [backlog, daejeong-design, design, agent-workflow]
 ## 메모
 
 - 도구 개발 자체는 별도 repo(daejeong-design)가 소유하고 현재 진행 중 — 이 entry는 **이 harness와의 접점 기획만** 추적한다.
+- 작업 경계 (2026-07-16 확정): 이력서·포트폴리오 페이지 디자인 작업은 **D2의 "Profile" 프로젝트 내부에서만** 진행한다. 디자인 버전 분리도 그 프로젝트 안에서 하고, 이 repo에는 디자인 산출물을 두지 않는다 (content source 역할만).
 - 접점 기획 3가지:
   1. **디자인 파이프라인** — resume/portfolio/site 디자인 산출을 D2로 생성 (harness는 content source, D2는 design consumer — 기존 경계 결정 유지).
   2. **노출 후보** — 자기 도구를 `/labs` 상세 페이지로 소개하거나 서비스로 노출.
