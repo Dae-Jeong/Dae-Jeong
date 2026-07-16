@@ -39,7 +39,7 @@ Agent Workflow는 별도 nav가 아니라 Home/case 서술의 differentiator로 
 
 ## Selected Proof
 
-- Thready: backend 전면 재구축·운영 전담과 생성 품질 시스템 — 월 수만 건 규모 요청을 HTTP 5xx 1% 미만으로 운영
+- Thready: backend 전면 재구축·운영 전담과 생성 품질 시스템 — 월 수만 건 규모 요청을 HTTP 5xx 0.3% 수준으로 운영
 - Centurion: 주문·재고 async backend 구축 주도와 realtime AI backend 공동 주 기여
 - BE Template: 조직 표준 FastAPI template 설계·구축 전담과 agent context system
 - Agent Workflow: 제품 운영 pipeline·release gate와 daily briefing agent

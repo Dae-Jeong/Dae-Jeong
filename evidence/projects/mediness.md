@@ -27,7 +27,7 @@ Source locator: `agentspace:mediness`
 ## Role Boundary
 
 - User-confirmed: Backend Engineer로 합류한 뒤 Tech Lead, PO, AI agent 관련 역할을 병행했다.
-- Public wording: 공식 직함 나열보다 `Backend Engineer · Tech Lead/PO/AI agent 역할 병행`으로 쓴다.
+- Public wording: 공식 직함 나열보다 `Backend Engineer · Tech Lead·PO 역할 병행`으로 쓴다. AI agent 역할은 직함처럼 나열하지 않고 성과 서술(일하는 방식·bullet)로 표현한다 (2026-07-16 persona review 반영 — "AI agent 역할"이 오독을 유발).
 - Guardrail: 기획 전담자와 경영진이 별도로 존재하므로 `제품 기획 주도`를 사용하지 않는다.
 
 ## Public Disclosure
