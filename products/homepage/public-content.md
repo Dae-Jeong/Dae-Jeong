@@ -2,9 +2,9 @@
 type: product-content
 title: Homepage Public Content
 description: Homepage hero, bio, and section-level public-safe canonical copy.
-timestamp: 2026-07-11
+timestamp: 2026-07-16
 tags: [homepage, public, branding]
-claim_ids: [thready.backend-rebuild, thready.generation-quality-system, centurion.bay-async-backend, centurion.say-realtime-ai, be-template.backend-standard, be-template.agent-context, mediness.product-operations, mediness.daily-briefing]
+claim_ids: [thready.backend-rebuild, thready.generation-quality-system, thready.production-operation-quality, centurion.bay-async-backend, centurion.say-realtime-ai, be-template.backend-standard, be-template.agent-context, mediness.product-operations, mediness.daily-briefing]
 ---
 
 # Homepage Public Content
@@ -20,12 +20,15 @@ FastAPI/NestJS 기반 product backend, AI generation quality, async/realtime pro
 
 ## Navigation Order
 
-1. Home: category와 대표 ownership
-2. Cases: 문제·접근·구현·운영 깊이
-3. Agent Workflow: execution differentiator
-4. Resume: A4 master
+site IA([2026-07-15 설계](../../docs/superpowers/specs/2026-07-15-personal-site-architecture-design.md)) 기준.
 
-Writing은 실제 공개 글이 생기기 전까지 draft 상태로 유지하며 primary navigation에서 제외한다.
+1. Home(`/`): category와 대표 ownership
+2. Resume(`/resume`): A4 master + PDF
+3. Portfolio(`/portfolio`): 문제·접근·구현·운영 깊이
+4. Blog(`/blog`): 판단 과정·운영 경험 — 글 0으로 시작 가능, evidence·public-safety gate 통과한 글만 게시
+5. Labs(`/labs`): 기능·서비스 관문
+
+Agent Workflow는 별도 nav가 아니라 Home/case 서술의 differentiator로 녹인다.
 
 ## Proof Order
 
@@ -36,7 +39,7 @@ Writing은 실제 공개 글이 생기기 전까지 draft 상태로 유지하며
 
 ## Selected Proof
 
-- Thready: backend 전면 재구축·운영 전담과 생성 품질 시스템
+- Thready: backend 전면 재구축·운영 전담과 생성 품질 시스템 — 월 수만 건 규모 요청을 HTTP 5xx 1% 미만으로 운영
 - Centurion: 주문·재고 async backend 구축 주도와 realtime AI backend 공동 주 기여
 - BE Template: 조직 표준 FastAPI template 설계·구축 전담과 agent context system
 - Agent Workflow: 제품 운영 pipeline·release gate와 daily briefing agent

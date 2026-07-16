@@ -2,7 +2,7 @@
 type: profile
 title: Writing
 description: Canonical public writing themes and article backlog.
-timestamp: 2026-07-11
+timestamp: 2026-07-16
 tags: [writing, articles, backlog]
 ---
 
@@ -27,5 +27,6 @@ Writing은 resume claim을 반복하는 홍보 문구가 아니라 판단 과정
 3. Source-of-truth 없이 chat memory만 믿을 때 agent가 실패하는 방식
 4. Backend template에 agent context를 내장한 이유
 5. 이력서 bullet을 evidence claim으로 관리하는 방법
+6. SNS 콘텐츠 운영의 숨은 인지 노동을 agent harness로 흡수하기 — ⚠️ 회사 제품(Thready)의 미공개 방향 전환에 기반한 설계 사고이므로, 공개 시 회사 확인 후 제품명 포함 또는 제품명 없이 일반화 중 택일
 
 Public article은 관련 evidence와 public-safety gate를 먼저 통과한다.
