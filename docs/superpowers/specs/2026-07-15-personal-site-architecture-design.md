@@ -15,6 +15,7 @@ tags: [site, homepage, resume, portfolio, blog, architecture]
 - 2026-07-15 2차 개정: 서비스 프레임워크 확정 — services registry + service contract, `{svc}.marinkim.xyz` 평면 subdomain, 서비스당 repo + platform repo 배치.
 - 2026-07-15 3차 개정: `/labs` 디렉토리 신설 — hub를 `/blog`(글)와 `/labs`(기능·서비스 관문)로 분리, 서비스 상세는 `/labs/{svc}`.
 - 2026-07-17 4차 개정: 내장/외부 경계 확정 — **site 내장 = core 페이지 + visitor chat + jarvis** (Vercel serverless로 감당), **labs 서비스 = 전부 외부 repo + subdomain** (site는 registry 라우팅만). k8s는 외부 labs 서비스 전용.
+- 2026-07-17 5차 개정: 이 repo를 **프로젝트 repo**로 확장 — harness + `site/`(Next 한방: FE+serverless BE) + `infra/`(도메인·Vercel 구성, k8s 착수 시 클러스터·외부 서비스 manifest까지). **별도 platform repo 결정을 대체** — 외부 labs 서비스는 코드만 각자 repo, manifest는 `infra/`가 소유 (GitOps config-repo 패턴).
 - [Visitor Profile Chat 설계 (2026-07-04)](2026-07-04-visitor-profile-chat-homepage-prototype-design.md)의 스택 결정을 승계하고, repo 배치·정보 구조·확장 계약을 확정한다.
 
 ## Decisions
@@ -29,7 +30,7 @@ tags: [site, homepage, resume, portfolio, blog, architecture]
 | Supabase는 기능 데이터 층만 (Phase 2 도입) | chat 기록·방문 로그 등 기능 데이터의 공용 Postgres/auth/storage. profile 콘텐츠는 git 파생 정적을 유지한다 — 이중 소스 금지. |
 | 서비스 프레임워크 = registry + contract | 미래 서비스를 모르는 채로 확장 비용을 고정한다. 기계(공용 SDK·템플릿)가 아니라 규약이 프레임워크다. |
 | subdomain은 `{svc}.marinkim.xyz` 평면 | wildcard `*.marinkim.xyz` → k8s ingress, apex/www → Vercel. DNS record 하나로 서비스 추가가 끝난다. |
-| 서비스당 repo 하나 + 얇은 platform repo | 서비스 코드는 각자 repo(스택 자유), k8s 클러스터 구성·manifest는 platform repo(착수 시 생성). Dae-Jeong repo는 harness + site + registry만 소유한다. |
+| 서비스당 repo 하나 + `infra/`가 manifest 소유 (5차 개정) | 서비스 코드는 각자 repo(스택 자유), k8s 클러스터 구성·manifest는 이 repo `infra/`가 소유 (기존 별도 platform repo 결정 대체). Dae-Jeong repo = harness + `site/` + `infra/` + registry의 프로젝트 repo. |
 | 정보 구조: `/`, `/resume`, `/portfolio`, `/blog`, `/labs` | 이력서·포트폴리오·블로그·labs 4용도. 랜딩은 마케팅 페이지가 아니라 프로필 요약 + 진입. |
 | `/blog`는 글, `/labs`는 기능·서비스 관문 | labs 묶음을 subdomain이 아니라 core 페이지로 표현한다. 서비스는 root-path subdomain을 유지해 서비스별 설정 비용 0을 지키고, `/labs`가 카드·상세 페이지로 routing한다. (3차 개정 — 기존 "글+기능 통합 hub" 결정을 대체) |
 | 사이트는 knowledge harness의 consumer | 이력서·포폴 콘텐츠는 파생 전용이며 사이트에서 직접 수정하지 않는다. blog만 사이트 네이티브. |

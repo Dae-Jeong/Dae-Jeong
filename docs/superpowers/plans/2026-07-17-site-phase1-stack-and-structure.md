@@ -61,7 +61,20 @@ site/
 | index.html (완결형 v2) | 컴포넌트 소스 풀 (부분 재사용) |
 | chat-page-prototype.html | Phase 2 `app/chat/page.tsx` |
 
+## Repo 구성 (2026-07-17, spec 5차 개정)
+
+```text
+Dae-Jeong/  ← knowledge harness + 프로젝트 repo
+├── profile/ evidence/ products/ backlog/ rules/ …   # harness (기존)
+├── site/    # FE + serverless BE 한방 (Next 앱) — Phase 1 생성
+└── infra/   # 프로젝트 인프라 — 착수 시 생성
+    ├── Phase 1: 도메인·DNS·Vercel 구성 (필요 시 Terraform)
+    └── k8s 착수 시: 클러스터·ingress·외부 labs 서비스 manifest (GitOps config-repo)
+```
+
 ## 원칙
 
 - 미정 결정(blog 베이스·k8s 위치·LLM)은 전부 격리돼 있어 Phase 1 착수를 막지 않는다.
 - site는 `site/` 밖 repo 경로를 직접 읽지 않는다 — 유입은 export 스크립트 하나 (spec 안전 경계).
+- infra는 배포 구성만 다룬다 — evidence/profile 등 harness 내부에 접근하지 않는다.
+- 폴더는 미리 만들지 않는다 — `site/`는 Phase 1 착수 시, `infra/`는 첫 인프라 실체가 생길 때.
