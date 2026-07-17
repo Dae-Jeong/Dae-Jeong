@@ -14,5 +14,5 @@ __pycache__/
 
 # Raw JD corpus is refreshed locally; derived reports are committed.
 docs/resume/jd-corpus/
-products/jd/corpus/
-products/resume/tailored/
+wiki/products/jd/corpus/
+wiki/products/resume/tailored/
