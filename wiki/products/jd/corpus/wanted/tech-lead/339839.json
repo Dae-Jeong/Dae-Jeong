@@ -1,0 +1,26 @@
+{
+ "platform": "wanted",
+ "role_category": "tech-lead",
+ "query": "Tech Lead",
+ "id": 339839,
+ "url": "https://www.wanted.co.kr/wd/339839",
+ "company": "레브잇",
+ "industry": "IT, 컨텐츠",
+ "title": "Commerce Tech Lead",
+ "annual_from": 10,
+ "annual_to": 19,
+ "skill_tags": [
+  "MongoDB",
+  "Redis",
+  "Node.js",
+  "AWS",
+  "Nginx",
+  "React.js",
+  "React Native"
+ ],
+ "requirements": "• 커머스를 중심으로 플랫폼/앱테크 관련 도메인 경험이 필요합니다.\n• 만 10년 이상의 백엔드 개발 경력에 준하는 역량을 보유하신 분이 필요합니다.\n• 프로그래밍 언어(Kotlin/Java 또는 Typescript), 프레임워크(Spring Boot 또는 Node.js) 활용 능력 및 소프트웨어 개발 역량이 있으신 분이 필요합니다.\n• 비즈니스 요건을 빠르게 이해하고 능숙하게 데이터 모델과 API를 디자인할 수 있는 분이 필요합니다.\n• 빠르게 개발하고 배포하는 조직에서 주도적으로 일해 보신 분이 필요합니다.\n• 고가용성의 확장 가능한 시스템을 설계하고 운영해본 경험이 있는 분이 필요합니다.",
+ "preferred": "• 업무 비효율을 줄이고 자동화와 최적화로 팀의 생산성을 높일 수 있는 분을 선호합니다.\n• AI 개발 툴 활용능력이 높은 분을 선호합니다.\n\n[기술 스택]\n• 프로그래밍 언어: Kotlin/Java, Typescript\n• 프레임워크: Spring Boot, Node.js, Express.js, Nest.js\n• 데이터베이스: PostgreSQL, MySQL, MongoDB, Redis\n• 클라우드 서비스: AWS (EC2, S3, Lambda, Route 53, CloudFront 등)\n• 컨테이너 오케스트레이션: Kubernetes, Docker\n• CI/CD: GitHub Actions, Argo CD\n• 버전 관리: Git\n• 모니터링 및 로깅: Datadog, Sentry\n• 협업 도구 : Slack, Notion, Jira / Confluence\n• AI 개발 툴 : Claude Code, Cursor, Gemini, ChatGPT 등",
+ "main_tasks": "• 올웨이즈 Commerce 서비스의 BE, FE, Infra에 대한 설계, 개발, 테스트 및 운영을 담당합니다.\n• 서비스 아키텍처 설계부터 출시까지 전 과정에 참여합니다.\n• 올웨이즈 Commerce 서비스의 목표를 달성하기 위한 엔지니어링 과제를 OKR 기반으로 설정하고 구성원들과 함께 성장하며 달성합니다.\n• 함께 목표를 달성하고 성장할 수 있도록 구성원을 독려합니다.",
+ "intro": "레브잇은 'Vision ​aligned ​Problem ​Solver'들이 모여, ​구매 결정에 있어서 발생하는 ​모든 ​소비자들의 불편함을 ​해결하여 주는 플랫폼, ​‘올웨이즈’ 를 ​만들어 ​나아가고 있습니다.  \n\n[Vision ​aligned ​Problem ​Solver]\n레브잇이 찾는 사람은 ​단순히 ​뛰어난 개인이 아니라, ​레브잇의 ​비전과 ​방향성에 깊이 공감하고 ​이를 함께 ​실현하기 ​위해 몰입할 ​수 있는 ​인재입니다.\n• 고객의 ​실질적인 문제를 해결하는 ​것이 가장 ​중요하다고 믿는 분\n• 가설에 머무르지 않고, 실질적 임팩트로 이어지는 도전과 실행을 주도해본 분\n• 변화와 불확실성 속에서도 흔들림 없이 방향성을 유지하며, 겸손하게 피드백을 수용해 성장하는 분\n• 단기 성과에 급급하지 않고, 조직과 함께 큰 그림을 그리고 긴 호흡으로 문제 해결에 몰입할 수 있는 분\n\n[합류하게 될 팀] \n• Commerce Tech Lead는 올웨이즈 서비스의 커머스 프로덕트 조직에 소속되어 다양한 구성원들과 함께 제품을 개발하고, 해당 스쿼드 구성원들의 높은 개발 생산성과 개발문화를 함께 만들어 갑니다.\n• 레브잇의 모든 구성원은 누군가에게 업무를 지시하는 것이 아니라, 본인 영역의 직무전문성을 발휘하고 동료들과 협업하여 비즈니스 목표달성에 기여하고 있습니다.",
+ "collected_at": "2026-07-05T05:55:51.583588+00:00"
+}

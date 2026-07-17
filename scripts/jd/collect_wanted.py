@@ -13,7 +13,7 @@ from pathlib import Path
 
 BASE = "https://www.wanted.co.kr/api/v4"
 HEADERS = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)"}
-CORPUS = Path(__file__).resolve().parents[2] / "products" / "jd" / "corpus" / "wanted"
+CORPUS = Path(__file__).resolve().parents[2] / "wiki" / "products" / "jd" / "corpus" / "wanted"
 
 # 직군 정의는 products/jd/README.md를 따른다.
 # 원티드 검색은 다단어 한글 쿼리에서 0건을 반환하므로 단일 키워드 또는 tag 검색(tag:<id>)을 쓴다.

@@ -1,0 +1,18 @@
+{
+ "platform": "wanted",
+ "role_category": "ai-backend-llm",
+ "query": "LLM",
+ "id": 368265,
+ "url": "https://www.wanted.co.kr/wd/368265",
+ "company": "비에이블컴퍼니",
+ "industry": "IT, 컨텐츠",
+ "title": "AI Engineer / LLM·RAG Agent Lead",
+ "annual_from": 3,
+ "annual_to": 5,
+ "skill_tags": [],
+ "requirements": "• AI, ML, LLM, 데이터, 백엔드 개발 관련 실무 경력 3년 이상\n• Python 기반 개발 경험\n• LLM, RAG, AI Agent, NLP, 추천 시스템, 검색 시스템 중 하나 이상의 실무 경험\n• FastAPI, Flask, Django 등 API 서버 개발 경험\n• PostgreSQL, MySQL, MongoDB 등 데이터베이스 활용 경험\n• Docker 기반 개발 및 배포 경험\n• 비즈니스 요구사항을 기술 구조로 정리하고 구현할 수 있는 분\n• 초기 스타트업 환경에서 빠르게 문제를 정의하고 실행할 수 있는 분",
+ "preferred": "• LangChain, LangGraph, LlamaIndex 등 LLM Agent 프레임워크 사용 경험\n• Vector DB, Embedding, Reranker 기반 검색/RAG 서비스 개발 경험\n• pgvector, Qdrant, Chroma, Pinecone, Milvus 등 사용 경험\n• Tool Calling, Function Calling, Workflow Automation 구현 경험\n• LLM Evaluation, RAGAS, LangSmith, Langfuse, LLM-as-a-Judge 등 평가 체계 구축 경험\n• 추천 시스템 또는 개인화 매칭 로직 개발 경험\n• 데이터 크롤링, 데이터 파이프라인, 메타데이터 스키마 설계 경험\n• AWS, GCP, Docker, CI/CD 환경 운영 경험\n• 콘텐츠, 미디어, 엔터테인먼트, 글로벌 플랫폼 비즈니스에 대한 관심\n• 개발 리딩, Technical PM, 팀장 또는 파트장 경험",
+ "main_tasks": "• 콘텐츠 IP의 메타데이터 자동 추출 및 구조화\n• 작품 기획서, 시놉시스, 대본, 영상 정보를 기반으로 핵심 태그, 장르, 소재, 캐릭터, 타깃 정보 분석\n• LLM 기반 콘텐츠 분석 및 평가 로직 고도화\n• 글로벌 플랫폼별 선호 장르, 소재, 국가, 회차 구조, 타깃 데이터를 기반으로 매칭 로직 설계\n• 콘텐츠 공급자와 플랫폼 수요자를 연결하는 추천 시스템 구축\n• 검색 필터, 자연어 검색, 유사 콘텐츠 검색, 벡터 검색 고도화\n• 내부 운영 자동화를 위한 AI Agent 개발\n• 콘텐츠 등록, 검토, 제안, 매칭, 리포트 업무 자동화\n• RAG 기반 검색, 추천, 질의응답 기능 구현\n• Tool Calling, Workflow Automation 기반 업무 자동화 기능 개발\n• 글로벌 숏폼 플랫폼의 공개 데이터 및 파트너 데이터를 활용한 트렌드 분석 구조 설계\n• 작품 메타데이터 스키마 설계\n• AI 추천 및 예측 모델 학습을 위한 데이터 기반 구축\n• LLM 품질 평가 및 Agent 성능 개선 체계 설계\n• 백엔드, 프론트엔드 개발자와 개발 일정 및 우선순위 조율\n• 비즈니스팀의 요구사항을 기술 스펙으로 구조화\n• AI 기능의 MVP 범위 정의 및 실행 관리\n• 개발팀과 비즈니스팀 사이의 기술 커뮤니케이션",
+ "intro": "비에이블컴퍼니는 글로벌 숏폼드라마와 숏애니메이션 IP를 제작사와 플랫폼에 연결하는 B2B 플랫폼 ShortFlow를 운영하고 있습니다. ShortFlow는 콘텐츠 IP 등록, 메타데이터 분석, 플랫폼 매칭, 제안, 계약, 정산까지 이어지는 글로벌 콘텐츠 IP 유통 인프라를 지향합니다. 우리는 단순한 콘텐츠 유통사가 아니라, 글로벌 숏폼 콘텐츠 IP가 더 빠르고 정확하게 거래될 수 있는 AI 기반 운영 시스템을 만들고 있습니다. 현재 ShortFlow는 글로벌 플랫폼 및 제작사 온보딩을 확대하고 있으며, 앞으로 AI를 통해 콘텐츠 분석, 검색, 추천, 매칭, 업무 자동화를 고도화하려고 합니다.\n\n1. 글로벌 숏폼 콘텐츠 IP 유통 인프라 구축\n2. AI 기반 운영 시스템 개발\n3. 콘텐츠 분석 및 매칭 자동화\n\nAI Engineer / AI Agent Lead 포지션은 ShortFlow의 AI Core를 함께 설계하고 구현하는 핵심 역할입니다. 콘텐츠 메타데이터를 구조화하고, 플랫폼별 선호 데이터를 분석하며, 콘텐츠와 플랫폼을 연결하는 추천, 검색, 매칭 로직을 만들고, 내부 운영을 자동화하는 AI Agent를 구축합니다. 초기에는 AI Engineer로 합류하되, 역량과 성과에 따라 AI Lead, 개발 리드, Technical PM 역할로 확장될 수 있습니다. 이 포지션에 관심이 있으신 분들의 많은 지원 바랍니다.",
+ "collected_at": "2026-07-05T05:55:51.583588+00:00"
+}

@@ -1,0 +1,22 @@
+{
+ "platform": "wanted",
+ "role_category": "ai-backend-llm",
+ "query": "LLM",
+ "id": 366915,
+ "url": "https://www.wanted.co.kr/wd/366915",
+ "company": "케이존",
+ "industry": "IT, 컨텐츠",
+ "title": "AI Application Engineer (LLM)",
+ "annual_from": 3,
+ "annual_to": 7,
+ "skill_tags": [
+  "React",
+  "TypeScript",
+  "Next.js"
+ ],
+ "requirements": "1. 이론적 깊이\nㆍ비즈니스 문제가 주어졌을 때, 이를 해결할 수 있는 AI/LLM 기법의 후보를 제시하고,\n   파이프라인 구성 방식과 각 선택의 장단점·트레이드오프를 설명할 수 있는 분\nㆍRAG, embedding, vector search 등 LLM application의 원리와 한계를 이해하고,\n   프레임워크 없이도 필요한 기능을 가볍게 구현할 수 있는 분\nㆍTransformer architecture뿐 아니라 Machine Learning 전반에 대한 깊이 있는 이론적 이해를 갖춘 분\n\n2. Production Craft & Cross-functional\nㆍ비결정적인 LLM 기능을 실제 서비스에서 견고하게 운영하기 위한 신뢰성 엔지니어링 감각을 갖춘 분\nㆍFE, BE, Designer, PO와 각 직군의 언어로 소통하며 스펙 정의부터 구현, 출시, 개선까지\n   빠르게 반복해본 경험이 있는 분\nㆍ동료의 피드백을 방어적으로 받아들이기보다, 더 나은 제품을 만들기 위한 재료로 활용할 수 있는 분\nㆍ하나의 기능을 끝까지 책임지고 완성도를 높여본 경험이 있는 분\n\n3. Engineering\nㆍ프로덕션 환경의 API 서버 개발 경험이 있는 분\nㆍAI model의 출력을 평가하고, 품질을 정량적으로 개선해본 경험이 있는 분\nㆍ외부 API 연동, 데이터 파이프라인 구축, 정제되지 않은 실데이터를 다뤄본 경험이 있는 분\nㆍTypeScript, Python, C# 중 하나 이상의 언어로 제품 개발이 가능한 분\n   (주 언어는 TypeScript이나, TS-native 스타일에만 한정하지 않습니다.)\n\n4. Culture\nㆍ유저와 비즈니스 임팩트를 가장 중요한 판단 기준으로 보는 분\nㆍ기술적으로 완벽한 답보다, 실제 고객 문제를 해결하고 시장에서 작동하는 결과를 중요하게 생각하는 분\nㆍAI 기술을 사용할 때도 원리와 트레이드오프를 이해하고, 왜 이 방법을 쓰는지 설명할 수 있는 분\nㆍ무겁고 복잡한 프레임워크에 의존하기보다, 필요한 동작 원리를 이해하고 제품에 맞는 구조를 가볍게 만들 수 있는 분\nㆍAI를 적극적으로 활용해 개발하며, 단순한 코딩 속도보다 전체 아키텍처를 설계하고\n   낯선 코드와 문제를 빠르게 이해하는 분\nㆍ완벽한 설계만 기다리기보다 빠르게 만들고, 검증하고, 피드백을 받아 개선하는 방식을 선호하는 분\nㆍ자율성과 책임감을 가지고, 실패하더라도 다시 시도해 끝까지 결과를 만들어내는 분\nㆍ개인의 성과뿐 아니라 팀 전체의 속도와 완성도를 함께 높이는 데 관심이 있는 분",
+ "preferred": "ㆍ실제 유저 트래픽이 있는 AI 서비스를 출시하거나 운영해본 경험\nㆍAdvanced RAG, hybrid search, re-ranking, semantic chunking 등 검색 정확도와 응답 지연을 최적화해본 경험\nㆍ가벼운 fine-tuning 또는 embedding 활용 경험\nㆍAWS 등 cloud infrastructure 및 CI/CD에 대한 이해\nㆍCRM, B2B SaaS, marketplace, logistics 도메인 경험\nㆍ글로벌 제품 또는 비즈니스 영어 환경에서의 업무 경험",
+ "main_tasks": "ㆍ정의된 AI/LLM 기반 기능의 파이프라인을 설계, 구현, 배포합니다.\nㆍRAG, 임베딩, 벡터 검색, LLM orchestration 등 AI 기능을 제품 요구사항에 맞게 설계합니다.\nㆍLLM 기능의 품질과 신뢰성을 높이기 위해 evaluation, guardrail, 예외 처리 구조를 만듭니다.\nㆍAI 기능에 필요한 외부 API, 내부 데이터, 실거래 데이터를 연동하고 파이프라인을 구축합니다.\nㆍ비결정적인 LLM 응답을 실제 AaaS 환경에서 안정적으로 운영할 수 있도록 개선합니다.\nㆍPO, Designer, FE/BE Engineer와 긴밀히 협업하며 스펙 정의부터 출시, 개선까지 빠르게 반복합니다.\nㆍ기능을 만든 뒤 끝내지 않고, 실제 사용성과 비즈니스 임팩트를 함께 확인하며 개선합니다.",
+ "intro": "케이존은 전 세계 리테일 시장에서 발생하는 반품·악성재고를\n다시 필요한 시장과 바이어에게 연결하는 글로벌 B2B 역물류 거래 플랫폼을 만들고 있습니다.\n\n역물류 시장은 규모가 크지만, 거래 방식은 여전히 느리고 복잡합니다.\n재고 정보는 엑셀과 메신저에 흩어져 있고, 적합한 바이어를 찾고 조건을 조율하는 과정은\n사람의 경험과 반복적인 커뮤니케이션에 의존하고 있습니다.\n\n케이존은 이 문제를 미국 현장에서 직접 풀어왔습니다.\n실제 재고를 매입하고, 글로벌 바이어와 거래하며, 현장에서 쌓은 실행 경험을 바탕으로\n안정적인 매출 성장과 누적 약 100억 원의 투자 유치를 이뤄냈습니다.\n\n이제 우리는 그 과정에서 축적한 재고, 가격, 바이어, 협상, 물류 데이터를 AI 제품으로 전환하고 있습니다,\nDeallo.ai는 글로벌 역물류 도매업자를 위한 AI 기반 CRM·세일즈 에이전트 플랫폼으로,\n흩어진 거래 데이터를 구조화하고 바이어별 선호와 협상 맥락을 기억하며,\nMatching·Pricing·Negotiation·Logistics까지 이어지는 Agentic Workflow를 구현하고자 합니다.",
+ "collected_at": "2026-07-05T05:55:51.583588+00:00"
+}

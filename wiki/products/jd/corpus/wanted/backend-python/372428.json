@@ -1,0 +1,23 @@
+{
+ "platform": "wanted",
+ "role_category": "backend-python",
+ "query": "tag:899",
+ "id": 372428,
+ "url": "https://www.wanted.co.kr/wd/372428",
+ "company": "씨메스로보틱스",
+ "industry": "제조",
+ "title": "Senior Software Architect",
+ "annual_from": 7,
+ "annual_to": 15,
+ "skill_tags": [
+  "DirectX",
+  "OpenGL",
+  "Python",
+  "C++"
+ ],
+ "requirements": "• 학력: 학사 이상\n• 경력: SW 개발 경력 7년 이상\n• 복잡한 시스템의 SW 아키텍처 설계 경험이 있는 분\n• 멀티프로세스·멀티스레드 환경 개발 경험이 있는 분\n• PC(공유메모리, 메시지 큐, 소켓, 파이프 등) 구현 경험이 있는 분\n• 통신 프로토콜(TCP/IP, UDP 등) 설계·구현 경험이 있는 분\n• C++, Python 개발 경험이 있는 분",
+ "preferred": "• 산업용 비전·로봇·자동화 시스템 SW 개발 경험이 있으신 분\n• 실시간(Real-time) 시스템 개발 경험이 있으신 분\n• PLC 연동 경험이 있으신 분\n• 분산 시스템 및 메시지 브로커(MQTT, Kafka, Redis 등) 경험이 있으신 분\n• TPM으로 프로젝트 리딩 경험이 있으신 분",
+ "main_tasks": "• 비전·로봇 설비 제어 Application SW 아키텍처 설계 및 개발\n• 멀티프로세스 기반 시스템 구조 설계 및 프로세스 간 통신(IPC) 구현\n• 카메라·센서·로봇·PLC 등 장비 연동을 위한 통신 프로토콜 설계·구현\n• 공통 프레임워크 구축 및 SW 모듈 표준화\n• 시스템 성능 최적화, 안정성 개선, 장애 분석 및 대응\n• 코드 리뷰 및 팀 내 기술 리딩 (주니어 멘토링 포함)",
+ "intro": "AI와 ​로봇, ​자동화 ​설비, 웹 ​기반 플랫폼을 기반으로 물류/제조 ​AI ​로봇 자동화 ​Application 개발을 위한 ​비전·로봇 설비 ​제어 ​SW의 아키텍처를 ​설계하고, ​멀티프로세스·IPC·통신 ​구조를 주도할 Senior ​Software ​Architect를 찾습니다.",
+ "collected_at": "2026-07-05T05:55:51.583588+00:00"
+}

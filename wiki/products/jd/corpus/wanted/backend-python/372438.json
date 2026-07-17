@@ -1,0 +1,23 @@
+{
+ "platform": "wanted",
+ "role_category": "backend-python",
+ "query": "tag:899",
+ "id": 372438,
+ "url": "https://www.wanted.co.kr/wd/372438",
+ "company": "대동애그테크",
+ "industry": "IT, 컨텐츠",
+ "title": "[대동에이아이랩] Vision AI 기술개발 (스마트파밍)",
+ "annual_from": 4,
+ "annual_to": 10,
+ "skill_tags": [
+  "Oracle",
+  "Spark",
+  "Tensorflow",
+  "AWS"
+ ],
+ "requirements": "• (필수 사항) 경력 기술서, 포트폴리오 (GitHub, 블로그 링크 등)\n\n• 컴퓨터 공학, 인공지능, 영상 처리, 시계열 분석 등 관련 분야 4년 이상 실무 경험\n• PyTorch, TensorFlow, OpenCV 등 딥러닝 프레임워크 활용 능숙\n• Computer Vision, 기계 학습, 딥러닝, 강화학습 관련 탄탄한 이론적 지식 보유\n• 영상 데이터 (RGB, LiDAR 등) 기반 분석 및 AI모델 개발 경험 (Segmentation, Object Detection, Classification 등",
+ "preferred": "• AI, CV 등 유관 분야 석사 이상 학위 소지자\n• 4년 이상 Vision AI 모델 개발 및 실 서비스 배포 경험\n• Kaggle, 데이콘 등 데이터 분석 경진대회 참여/입상 경험\n• 최신 기술 및 논문 트래킹 역량\n• 적극적이고 능동적인 자세와 뛰어난 커뮤니케이션 능력",
+ "main_tasks": "[스마트파밍 AI]\n• RGB-D 카메라 활용 과채류 생육계측 모델 개발 (생장점 계측, 과실 counting 등)\n• RGB-D 카메라 활용 농작업 수행 유무 판단 모델 개발 (적엽, 적화/적과 수행 유무 등)\n• 자율주행 로봇 연계 이동형 생육예찰(생육계측 + 농작업 수행 판단) 모델 성능 고도화",
+ "intro": "\"단순히 ​기계를 ​만드는 것을 ​넘어, 농민의 삶을 ​더 가치 ​있게.\"\n\n\n\n대동애그테크는 ​70여 년간 ​대한민국 ​농업을 ​이끌어온 '대동'의 핵심 ​계열사예요.\n\n농업에 ​AI·빅데이터·자율주행 등 최첨단 ​기술을 ​결합하여 ​스마트 파이낸셜·스마트 파밍·스마트 ​모빌리티 서비스를 ​혁신해 ​나가고 있습니다.\n\n\n\n정체된 ​산업에 IT ​기술이라는 ​새 숨을 불어넣어,\n\n지속 ​가능한 농업 ​생태계를 구축하고 미래 농업의 표준을 함께 만들어갈 동료를 찾습니다.",
+ "collected_at": "2026-07-05T05:55:51.583588+00:00"
+}

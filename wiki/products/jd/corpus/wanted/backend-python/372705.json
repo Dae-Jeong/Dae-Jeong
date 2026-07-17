@@ -1,0 +1,18 @@
+{
+ "platform": "wanted",
+ "role_category": "backend-python",
+ "query": "tag:899",
+ "id": 372705,
+ "url": "https://www.wanted.co.kr/wd/372705",
+ "company": "에이아이리더",
+ "industry": "IT, 컨텐츠",
+ "title": "인공지능 모델 개발자",
+ "annual_from": 1,
+ "annual_to": 3,
+ "skill_tags": [],
+ "requirements": "• 경력 (연수 무관)\n• 대학교졸업(4년)이상\n• 경력 : 경력(연수무관)\n• Python 가능자\n• OpenCV 활용 경험 보유\n• Deep Learning 혹은 Object Detection 관련 개발 경험 보유\n• Linux계열 OS에서 개발 가능자",
+ "preferred": "• 공개된 인공지능 모델을 활용한 프로그램 개발 경험이 있으신 분\n• 컴퓨터공학 및 소프트웨어 관련학과 4년제 대졸 이상\n• 인공지능/빅데이터 관련 프로젝트 경험이 1년 이상이신 분",
+ "main_tasks": "• 주요업무\n(업무내용)\n• 데이터 수집, 정제, 가공, 인공지능 학습, 평가\n• 영상 인식 모델 벤치마크\n• 인공지능 모델 설계\n• 인공지능 모델 코딩\n• 응용 SW 서비스 개발\n• (연구분야)\n• 다중 시점 상황인지, 다중 영상 동일 객체 식별\n• 객체 정보 공유(Hand-over) 및 재식별(Re-Identification)\n• 상황인지(Scene&Action&Event Detecting, Recognition)\n• 특정 객체 이동 반경 및 행동 분석을 활용한 맞춤형 서비스 개발\n• 음성인식 대화모델 개발\n• 복합재난 위험 예측 및 대응 sLMM 모델 개발",
+ "intro": "• 에아아이리더는 CCTV 영상 정보를 분석하는 인공지능 SW 개발 업체로 관련 분야의 인공지능(AI) 원천기술을 기반으로 아래와 같이 다양한 서비스를 개발/제공하고 있습니다.\n• 방범 CCTV의 차량번호인식 엔진 및 수배차량 추적시스템\n• CCTV 기반 주차 모니터링 시스템 \n• 사회적 약자 사고 방지 시스템(객체인식, 트래킹, 속성검색, 경로추적)\n인공지능 기술을 통해 사람이 안전하고 편안한 사회를 함께 만들어 나갈 개발자를 채용하고자 하오니 많은 지원바랍니다.",
+ "collected_at": "2026-07-05T05:55:51.583588+00:00"
+}

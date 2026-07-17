@@ -11,7 +11,10 @@ from typing import Any
 import yaml
 
 
-CONCEPT_DIRS = ("context", "profile", "evidence", "products", "rules", "backlog")
+WIKI = "wiki"
+CONCEPT_DIRS = tuple(
+    f"{WIKI}/{name}" for name in ("context", "profile", "evidence", "products", "rules", "backlog")
+)
 SCAN_DIRS = CONCEPT_DIRS + ("skills", "scripts")
 TEXT_SUFFIXES = {".md", ".yaml", ".yml", ".json", ".py", ".html"}
 FORBIDDEN_PATH_PATTERNS = (
@@ -116,7 +119,7 @@ def _anchor_exists(path: Path, anchor: str) -> bool:
 def _load_claims(root: Path) -> tuple[list[dict[str, Any]], list[str]]:
     claims: list[dict[str, Any]] = []
     errors: list[str] = []
-    base = root / "evidence" / "claims"
+    base = root / WIKI / "evidence" / "claims"
     if not base.exists():
         return claims, errors
     for path in sorted(base.glob("*.yaml")):
@@ -164,8 +167,9 @@ def _validate_claims(root: Path) -> list[str]:
         if not isinstance(claim.get("public"), bool):
             errors.append(f"claim public: {claim_id} must be boolean")
         for ref in claim.get("evidence", []):
+            # Claim evidence paths are wiki-relative (e.g. evidence/projects/x.md).
             target, _, anchor = str(ref).partition("#")
-            target_path = root / target
+            target_path = root / WIKI / target
             if not target_path.exists():
                 errors.append(f"claim evidence: {claim_id} -> {ref} does not exist")
             elif anchor and not _anchor_exists(target_path, anchor):
@@ -174,7 +178,7 @@ def _validate_claims(root: Path) -> list[str]:
 
 
 def _validate_claim_map(root: Path) -> list[str]:
-    path = root / "products" / "resume" / "claim-map.yaml"
+    path = root / WIKI / "products" / "resume" / "claim-map.yaml"
     if not path.exists():
         return []
     data = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
@@ -195,7 +199,7 @@ def _validate_product_claim_refs(root: Path) -> list[str]:
     claims, _ = _load_claims(root)
     known = {claim.get("id") for claim in claims}
     errors: list[str] = []
-    base = root / "products"
+    base = root / WIKI / "products"
     if not base.exists():
         return errors
     for path in sorted(base.rglob("*.md")):
@@ -213,8 +217,8 @@ def _validate_product_claim_refs(root: Path) -> list[str]:
 
 
 def _validate_resume_artifact_claims(root: Path) -> list[str]:
-    artifact = root / "products" / "resume" / "master" / "v1" / "resume.html"
-    claim_map = root / "products" / "resume" / "claim-map.yaml"
+    artifact = root / WIKI / "products" / "resume" / "master" / "v1" / "resume.html"
+    claim_map = root / WIKI / "products" / "resume" / "claim-map.yaml"
     if not artifact.exists() or not claim_map.exists():
         return []
 

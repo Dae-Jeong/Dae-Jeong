@@ -1,0 +1,24 @@
+{
+ "platform": "wanted",
+ "role_category": "ai-agent-ax",
+ "query": "AI Agent",
+ "id": 368660,
+ "url": "https://www.wanted.co.kr/wd/368660",
+ "company": "심플랫폼",
+ "industry": "기타 서비스업",
+ "title": "[병역특례]AI Agent & LLM Engineer",
+ "annual_from": 0,
+ "annual_to": 5,
+ "skill_tags": [
+  "React",
+  "VueJS",
+  "HTML",
+  "JavaScript",
+  "Next.js"
+ ],
+ "requirements": "• 병역 특례 (전문연구요원) 신규 편입 및 전직 희망자만 지원 가능합니다.\n• 컴퓨터공학, 데이터과학 관련 학과 석·박사 과정(6개월 이내 졸업 예정자 포함) 또는 학위 소지하신 분.\n• 최신 AI Agent 및 LLM 기술 발전 트렌드에 민감하고, 빠르게 습득하고 적응할 수 있는 분.\n• Claude Code, Codex 등 코딩 에이전트(Coding Agent) 사용에 능숙하신 분.\n• LLM(GPT, Claude, 오픈소스 LLM 등) API나 프레임워크를 다뤄 본 분.\n• 원활한 의사소통을 위해 업무 수행이 가능한 수준의 한국어 능력.\n• 논리적으로 문제를 해결하고 원활한 커뮤니케이션이 가능한 분.",
+ "preferred": "• Claude Agent SDK, OpenAI Agents SDK 사용 경험이 있으면 좋아요.\n• LLM을 파인튜닝한 경험이 있으면 좋아요.\n• LLMOps 도구(Langfuse, LangSmith, Dify, Flowise 등) 활용 경험이 있으면 좋아요.\n• MLOps 도구(MLflow, DVC, Kubeflow 등) 및 Kubernetes 기반 서비스 경험이 있으면 좋아요.\n• 영어 회화가 가능하면 좋아요.",
+ "main_tasks": "• 제조, 반도체, 로봇 등 다양한 산업 도메인의 AI Agent 서비스를 함께 개발하고 운영을 지원합니다.\n• AI Agent Orchestration 플랫폼을 구현합니다.\n• 오픈소스 LLM(Llama, Gemma, GPT-OSS 등)의 파인튜닝 및 도메인 특화 모델 개발에 참여합니다.\n• RAG, MCP, A2A 등 LLM 응용 기술을 실제 서비스에 적용합니다.\n• AI Agent를 개발하며 마주하는 다양한 실전적 문제를 연구하고 해결합니다.\n• 소프트웨어 개발 생산성 향상을 위한 Coding AI Agent 적용 방안을 만듭니다.\n• 각 팀과 협업하여 AI Agent가 산업용 AIoT 서비스에 실질적으로 적용될 수 있도록 협업합니다.",
+ "intro": "심플랫폼은 IoT 플랫폼, Industrial AI 개발 & 서비스 전문 회사입니다.\n\n우리는 장비와 시설물의 센서 및 영상 데이터를 수집하고 분석하여, 산업 현장과 공공 시설이 더욱 효율적이고 안전하게 운영될 수 있도록 지원합니다. 2018년과 2019년에 걸쳐 A, B 시리즈 투자를 받아 IoT 클라우드 서비스와 AI 기반 실시간 데이터 분석 서비스 Nubison을 개발해왔고, 2025년 3월 코스닥에 상장했습니다.\n\n이제 우리는 LLM과 AI Agent 기술을 산업 도메인에 결합하여, 제조·반도체·로봇 현장의 의사결정과 업무를 자동화하는 Industrial AI Agent를 만들고 있습니다. AI Agent 기술에 깊이 몰입하고 빠르게 성장하고 싶은 분을 모십니다.",
+ "collected_at": "2026-07-05T05:54:05.919722+00:00"
+}

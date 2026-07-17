@@ -16,8 +16,8 @@ LOCAL_ONLY_PREFIXES = (
     ".playwright-mcp/",
     ".tmp/",
     ".venv/",
-    "products/jd/corpus/",
-    "products/resume/tailored/",
+    "wiki/products/jd/corpus/",
+    "wiki/products/resume/tailored/",
     "tmp/",
 )
 LOCAL_ONLY_PATHS = {"skills-lock.json"}
@@ -95,7 +95,7 @@ def main() -> int:
             "run",
             "python",
             "skills/tailor-resume/scripts/html_to_pdf.py",
-            "products/resume/master/v1/resume.html",
+            "wiki/products/resume/master/v1/resume.html",
             str(output),
         )
         verify_pdf(output)

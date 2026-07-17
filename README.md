@@ -14,35 +14,42 @@ tags: [profile, evidence, resume, portfolio, knowledge-harness]
 
 | 작업 의도 | 먼저 읽기 |
 | --- | --- |
-| 현재 상태와 다음 작업 | [context/current-state.md](context/current-state.md) |
-| 개인 원장 | [profile/README.md](profile/README.md) |
-| claim과 검증 근거 | [evidence/README.md](evidence/README.md) |
-| 이력서 | [products/resume/README.md](products/resume/README.md) |
-| 포트폴리오 | [products/portfolio/README.md](products/portfolio/README.md) |
-| 홈페이지 | [products/homepage/README.md](products/homepage/README.md) |
-| JD 분석 | [products/jd/README.md](products/jd/README.md) |
+| 현재 상태와 다음 작업 | [wiki/context/current-state.md](wiki/context/current-state.md) |
+| 개인 원장 | [wiki/profile/README.md](wiki/profile/README.md) |
+| claim과 검증 근거 | [wiki/evidence/README.md](wiki/evidence/README.md) |
+| 이력서 | [wiki/products/resume/README.md](wiki/products/resume/README.md) |
+| 포트폴리오 | [wiki/products/portfolio/README.md](wiki/products/portfolio/README.md) |
+| 홈페이지 | [wiki/products/homepage/README.md](wiki/products/homepage/README.md) |
+| JD 분석 | [wiki/products/jd/README.md](wiki/products/jd/README.md) |
 | agent 작업 규칙 | [AGENTS.md](AGENTS.md) |
-| 문서 위치 결정 | [rules/document-routing.md](rules/document-routing.md) |
+| 문서 위치 결정 | [wiki/rules/document-routing.md](wiki/rules/document-routing.md) |
 
 ## 지식 흐름
 
 ```text
 external sources / Git / user confirmation
                     ↓
-                evidence/
+             wiki/evidence/
                     ↓
-                 profile/
+              wiki/profile/
                     ↓
-                products/
+             wiki/products/  ──export──▶  app/fe (site)
 ```
 
-- `context/`: 최소 라우팅과 휘발성 current-state
-- `profile/`: 안정적인 개인 원장
-- `evidence/`: 검증 사실, claim strength, public disclosure
-- `products/`: resume, portfolio, homepage, JD 계약과 산출물
-- `rules/`: evidence, public safety, 문서 위치 정책
-- `skills/`: canonical 지식을 소비하는 실행 adapter
-- `archive/`: 기본 read flow에서 제외된 과거 기록
+지식 층 (`wiki/`):
+
+- `wiki/context/`: 최소 라우팅과 휘발성 current-state
+- `wiki/profile/`: 안정적인 개인 원장
+- `wiki/evidence/`: 검증 사실, claim strength, public disclosure
+- `wiki/products/`: resume, portfolio, homepage, JD 계약과 산출물
+- `wiki/backlog/`: 아이디어 보드 · `wiki/rules/`: 교차 정책 · `wiki/docs/`: 설계 이력 · `wiki/archive/`: 과거 기록
+
+앱 층 (프로젝트 monorepo — 착수 시 생성):
+
+- `app/fe` → Vercel (marinkim.xyz) · `app/be` → Render (jarvis backend)
+- `labs/{svc}` → k8s (실험 서비스) · `infra/` → 배포 관제
+
+도구: `skills/` (실행 adapter) · `scripts/` (validator·export·JD 도구)
 
 ## Portable 사용
 

@@ -4,31 +4,34 @@
 
 ## 시작할 때 읽는 문서
 
-1. [context/manifest.yaml](context/manifest.yaml) - layer ownership과 작업별 read/write flow
-2. [context/index.md](context/index.md) - 최소 context router
-3. [context/current-state.md](context/current-state.md) - 현재 진행 상태
+1. [wiki/context/manifest.yaml](wiki/context/manifest.yaml) - layer ownership과 작업별 read/write flow
+2. [wiki/context/index.md](wiki/context/index.md) - 최소 context router
+3. [wiki/context/current-state.md](wiki/context/current-state.md) - 현재 진행 상태
 4. 작업 대상 hub의 `README.md`
 
-이력서 작업은 [products/resume/README.md](products/resume/README.md), claim 검증은 [evidence/README.md](evidence/README.md)를 추가로 읽는다.
+이력서 작업은 [wiki/products/resume/README.md](wiki/products/resume/README.md), claim 검증은 [wiki/evidence/README.md](wiki/evidence/README.md)를 추가로 읽는다.
 
-새 문서를 만들거나 역할을 바꾸기 전에는 [rules/document-routing.md](rules/document-routing.md)를 읽는다.
+새 문서를 만들거나 역할을 바꾸기 전에는 [wiki/rules/document-routing.md](wiki/rules/document-routing.md)를 읽는다.
 
 ## Layer Ownership
 
 | Layer | Owns | Does not own |
 | --- | --- | --- |
-| `context/` | routing, current snapshot | canonical profile facts |
-| `profile/` | stable personal source of truth | raw Git evidence, output layout |
-| `evidence/` | verified facts, claim strength, public scope | resume prose hierarchy |
-| `products/` | output contracts and artifacts | raw evidence |
-| `rules/` | cross-product policy | task-specific progress |
+| `wiki/context/` | routing, current snapshot | canonical profile facts |
+| `wiki/profile/` | stable personal source of truth | raw Git evidence, output layout |
+| `wiki/evidence/` | verified facts, claim strength, public scope | resume prose hierarchy |
+| `wiki/products/` | output contracts and artifacts | raw evidence |
+| `wiki/rules/` | cross-product policy | task-specific progress |
+| `app/` (fe→Vercel, be→Render) | marinkim.xyz 제품 코드 | wiki 내부 직접 읽기 (export 경유만) |
+| `labs/{svc}/` → k8s | 실험 서비스 (자립 폴더) | 서비스 간 import |
+| `infra/` | 배포 구성·manifest | 애플리케이션 코드, wiki 접근 |
 | `skills/` | executable workflows and adapters | duplicated canonical policy |
 | `archive/` | superseded history | active dependencies |
 
 ## 작성 원칙
 
 - 한 사실에는 한 canonical owner만 둔다.
-- 대화에서 새 기획·아이디어가 나오면 [backlog/](backlog/README.md)에 아이디어당 폴더로 등록한다 ([_template.md](backlog/_template.md) 준수). 착수 확정 시 spec/task로 승격한다.
+- 대화에서 새 기획·아이디어가 나오면 [wiki/backlog/](wiki/backlog/README.md)에 아이디어당 폴더로 등록한다 ([_template.md](wiki/backlog/_template.md) 준수). 착수 확정 시 spec/task로 승격한다.
 - public claim은 evidence record와 stable claim ID를 먼저 만든다.
 - `profile/`은 짧고 안정적으로 유지하고 긴 근거는 `evidence/`에 둔다.
 - resume, portfolio, homepage는 서로를 source로 사용하지 않고 `profile/`과 `evidence/`를 소비한다.

@@ -1,0 +1,18 @@
+{
+ "platform": "wanted",
+ "role_category": "ai-agent-ax",
+ "query": "AI Agent",
+ "id": 365634,
+ "url": "https://www.wanted.co.kr/wd/365634",
+ "company": "에스아이에이",
+ "industry": "IT, 컨텐츠",
+ "title": "AI Agents Platform Engineer (2년 이상)",
+ "annual_from": 2,
+ "annual_to": 15,
+ "skill_tags": [],
+ "requirements": "• 학사 이상, 경력 2년 이상이신 분\n• Python 기반 Backend, Data Engineering 또는 Platform Engineering 을 경험하신 분\n• API, 데이터 파이프라인, 사내 업무 도구 중 하나 이상을 직접 설계/개발해 보거나 데이터베이스, API, 검색 시스템 등 외부 데이터 소스를 서비스와 연결 경험이 있으신 분\n• 테스트 코드 작성 또는 로그 기반 문제 분석을 경험하신 분\n• LLM API, Agent, tool calling, RAG 중 하나 이상에 대한 기본 이해를 가지신 분 \n• 보안, 접근 제어, 감사 가능성, 운영 안정성의 중요성을 이해하고 계신 분\n• 새로운 개발 도구와 AI Coding Assistant 활용에 열려 있으신 분",
+ "preferred": "• LLM API, Agent Framework, RAG, LLMOps 관련 실무 경험을 보유하신 분\n• FastAPI, Pydantic, pytest 기반 Python 서비스 개발 경험을 보유하신 분\n• LlamaIndex, LangGraph, LangChain, Semantic Kernel 등 Agent Framework 사용 경험을 보유하신 분\n• MCP(Model Context Protocol) 기반 tool/server integration에 관심 또는 경험을 보유하신 분\n• OpenTelemetry, OpenInference, Phoenix, LangSmith 등 Observability 도구 경험을 보유하신 분\n• PostgreSQL, Elasticsearch, Qdrant 등 데이터 저장소 및 검색 backend 경험을 보유하신 분\n• Docker, sandboxed execution, remote worker 등 실행 환경 구성 경험을 보유하신 분\n• AI Coding Assistant를 활용해 개발 생산성 또는 검증 과정을 개선해 본 경험을 보유하신 분\n• 보안 요구사항이 높은 환경에서의 개발 경험을 보유하신 분\n• 국가연구개발과제 수행 경험이 있으신 분",
+ "main_tasks": "1. AI Agent Platform 및 LLMOps 기반 개발\n• LLM 기반 Agent가 도구 호출, 데이터 조회, 코드 실행, 검증, 재시도를 수행할 수 있는 Runtime 구조 개발\n• OpenAI-compatible API, tool calling, streaming response 등 Agent 서비스 인터페이스 개발\n• Agent 실행 상태, 작업 이력, 산출물, trace를 관리할 수 있는 운영 구조 개발\n\n2. 보안·정책 기반 Agent Control Plane 개발\n• Agent의 데이터 접근, tool 사용, 실행 범위, 응답 형식에 대한 정책 및 가드레일 구현\n• 보안·감사 요구사항이 있는 환경에서 Agent 실행 흐름을 추적 가능한 구조로 개선\n• retry, repair, fallback, human-in-the-loop 등 운영형 Agent 기능 개발\n\n3. Agent용 데이터 연결 및 품질 관리\n• 내부/외부 데이터 소스, API, 검색 시스템, 데이터베이스를 Agent가 활용할 수 있도록 연결\n• Retrieval, metadata context, request context 등 Agent 실행에 필요한 데이터 컨텍스트 구성\n• 데이터 품질, 최신성, 권한, 출처를 고려한 Agent용 데이터 공급 체계 개선\n\n4. Agent 품질 검증 및 개발 자동화\n• LLM/Agent 실행 trace, tool call log, evaluation result 기반 품질 분석\n• benchmark, regression test, smoke test 등 Agent 품질 검증 체계 개선\n• AI Coding Assistant를 활용한 개발·검증 워크플로우 실험 및 개선",
+ "intro": "• (주)에스아이에이는 지구 관측을 통해 현명한 결정을 하기 위한 가치를 제공하는 인공지능 기반 위성, 항공 영상 분석 전문기업입니다.\n• 제품개발실 소속 DataOps팀은 국방·안보·우주 분야 AI 서비스가 필요한 데이터를 안정적으로 활용하고, 운영 환경에서 지속적으로 개선될 수 있도록 데이터 파이프라인과 AI 운영 인프라를 개발합니다. \n• 본 포지션은 LLM 및 AI Agent 기반 서비스를 위한 Agent Platform과 LLMOps 기반을 함께 만들어가는 역할입니다. \n구체적으로는 Agent가 사용할 데이터를 안전하게 준비·연결하고, 도구 호출, 실행 이력, 품질 평가, 운영 정책이 통제 가능한 구조로 동작하도록 만드는 역할입니다. \n• 모든 영역의 경험을 이미 갖추고 있기보다, Backend/DataOps/Platform Engineering 기반 위에서 새로운 Agentic Workflow를 빠르게 이해하고 함께 설계해 나갈 수 있는 분을 기대합니다.",
+ "collected_at": "2026-07-05T05:54:05.919722+00:00"
+}

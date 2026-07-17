@@ -24,12 +24,12 @@ description: Use when a user asks to create or adapt a resume for a specific com
 
 ### 2. Decide the Hook
 
-회사가 가장 원하는 조건 2~3개를 판정한다. 이것이 요약과 capability 순서의 기준이다. 시장 참고가 필요하면 `products/jd/reports/`를 읽되 특정 JD 원문을 우선한다.
+회사가 가장 원하는 조건 2~3개를 판정한다. 이것이 요약과 capability 순서의 기준이다. 시장 참고가 필요하면 `wiki/products/jd/reports/`를 읽되 특정 JD 원문을 우선한다.
 
 ### 3. Match Claims
 
-- JD 요구마다 `evidence/claims/*.yaml`의 stable claim ID를 연결한다.
-- `products/jd/profile-skills.json`의 `none`은 gap으로 기록한다.
+- JD 요구마다 `wiki/evidence/claims/*.yaml`의 stable claim ID를 연결한다.
+- `wiki/products/jd/profile-skills.json`의 `none`은 gap으로 기록한다.
 - `partial`은 evidence가 허용하는 범위로만 쓴다.
 - 대응 claim이 없으면 내용을 만들지 않고 gap으로 남긴다.
 
@@ -46,7 +46,7 @@ description: Use when a user asks to create or adapt a resume for a specific com
 local-only output:
 
 ```text
-products/resume/tailored/{application-id}/
+wiki/products/resume/tailored/{application-id}/
   resume.html
   resume.pdf
   portfolio.html
@@ -60,13 +60,13 @@ PDF 변환:
 
 ```bash
 uv run python skills/tailor-resume/scripts/html_to_pdf.py \
-  products/resume/tailored/{application-id}/resume.html
+  wiki/products/resume/tailored/{application-id}/resume.html
 ```
 
 ### 6. Assemble the Portfolio
 
 - `assets/portfolio-template.html`을 사용한다.
-- 이력서 대표 프로젝트와 동일한 case를 같은 순서로 `products/portfolio/cases/`에서 로드한다.
+- 이력서 대표 프로젝트와 동일한 case를 같은 순서로 `wiki/products/portfolio/cases/`에서 로드한다.
 - case가 없으면 지원 폴더에서 새로 쓰지 않는다. evidence와 claim을 등록한 뒤 canonical library에 추가한다.
 - case의 `diagram:`은 `->` node와 `[soft]` node convention으로 변환한다.
 - portfolio intro는 resume 요약과 논지를 공유하되 새로운 claim을 추가하지 않는다.

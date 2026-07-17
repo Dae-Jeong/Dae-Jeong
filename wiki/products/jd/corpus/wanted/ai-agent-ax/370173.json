@@ -1,0 +1,18 @@
+{
+ "platform": "wanted",
+ "role_category": "ai-agent-ax",
+ "query": "AI Agent",
+ "id": 370173,
+ "url": "https://www.wanted.co.kr/wd/370173",
+ "company": "아르고스아이덴티티코리아",
+ "industry": "IT, 컨텐츠",
+ "title": "Backend Engineer (AI Agent Platform) — Omni",
+ "annual_from": 3,
+ "annual_to": 5,
+ "skill_tags": [],
+ "requirements": "• TypeScript/Node.js 기반 백엔드 개발 경력 3년 이상\n• NestJS 또는 동급 프레임워크(Express, Fastify 등) 실무 경험\n• RDBMS 설계 및 ORM(Prisma, TypeORM 등) 사용 경험\n• RESTful API 설계 및 비동기 처리(큐, 워커) 경험\n• AWS 주요 서비스(EC2, RDS, S3 등) 활용 경험\n• Git 기반 협업 및 CI/CD 워크플로우 이해",
+ "preferred": "• LLM 애플리케이션 개발 경험 (LangChain, Bedrock, OpenAI 등)\n• RAG / 벡터 검색 / 임베딩 파이프라인 구축 경험\n• AI 에이전트(Tool Calling, MCP, Function Calling) 설계 경험\n• 멀티테넌트 SaaS 아키텍처 경험\n• Docker/Kubernetes 기반 컨테이너 운영 경험\n• BullMQ 등 작업 큐, Redis 운영 경험\n• eKYC/KYB, 핀테크, 컴플라이언스 도메인 이해\n• Python(FastAPI) 보조 개발 가능\n\n[이런 분과 함께하고 싶어요]\n• 빠르게 변하는 AI 생태계를 따라가며 새 기술을 실무에 적용하는 데 거리낌이 없는 분\n• 모호한 요구사항을 구조화된 설계로 풀어내는 분\n• 프로덕션 안정성과 개발 속도 사이의 트레이드오프를 스스로 판단할 수 있는 •분",
+ "main_tasks": "• NestJS/TypeScript 기반 백엔드 서비스 설계 및 개발\n• AI 에이전트 시스템 개발 (AWS Bedrock Claude 연동, Tool/Skill 기반 워크플로우)\n• RAG 파이프라인 및 Knowledge Graph 기반 검색 시스템 구축·고도화\n• 멀티테넌트 데이터 모델링 및 API 설계 (Prisma/PostgreSQL)\n• 에이전트 메모리 아키텍처(Working/Episodic/Semantic) 구현 및 운영\n• AWS 인프라 위에서의 서비스 배포·모니터링·성능 최적화",
+ "intro": "ARGOS는 AI 기반 글로벌 신원 확인 플랫폼을 운영하며, 기업 고객에게 One-Stop eKYC·KYB·AML 서비스를 제공합니다. “모든 디지털 거래가 신뢰로 연결되는 세상”을 만들기 위해 속도와 안정성을 모두 만족시키는 클라우드 SaaS를 개발·운영하고 있습니다. \n\n아르고스 아이덴티티는 회사인가요?\n• 매년 2배이상 성장을 하고 있는 스타트업으로 글로벌 IT 서비스를 지향합니다.\n• 글로벌 Digital ID 및 비대면 신원인증 분야에서 최고의 소프트웨어 제품을 제공합니다.\n• 세계적 트랜드에 민감하며, 미래 지향적인 태도로 새로운 것에 적극적입니다.\n• 구성원 모두가 최대한의 권한과 책임을 가지는 조직이 되도록 노력합니다.\n• 미국으로 본사를 플립한 기업으로 글로벌 무대에서 본인의 역량을 펼치고 싶으신분을 환영합니다.\n\n[담당 업무 (What you’ll do)]\n-About Omni\nOmni는 AI 에이전트 기반의 B2B 엔터프라이즈 실사(Due Diligence) 자동화 플랫폼입니다. eKYC/KYB 도메인의 복잡한 검증 워크플로우를 LLM 에이전트, RAG, Knowledge Graph로 자동화합니다. 멀티테넌트 SaaS 아키텍처 위에서 실제 고객사의 컴플라이언스·금융·법률 실사를 처리하는 AX 프로덕션 시스템을 함께 만들어갈 분을 찾습니다.",
+ "collected_at": "2026-07-05T05:54:05.919722+00:00"
+}
