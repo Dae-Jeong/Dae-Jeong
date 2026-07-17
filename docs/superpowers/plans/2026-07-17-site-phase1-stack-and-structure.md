@@ -64,13 +64,16 @@ site/
 ## Repo 구성 (2026-07-17, spec 5차 개정)
 
 ```text
-Dae-Jeong/  ← knowledge harness + 프로젝트 repo
+Dae-Jeong/  ← knowledge harness + 완전한 프로젝트 monorepo (7차 개정)
 ├── profile/ evidence/ products/ backlog/ rules/ …   # harness (기존)
 ├── site/    # FE + 가벼운 serverless (Next 앱, visitor chat 프록시 포함) — Phase 1 생성, Vercel 배포
 ├── be/      # jarvis backend (FastAPI — RAG·wiki 인덱싱·대화 메모리) — jarvis 착수 시 생성, Render 배포
+├── labs/    # labs 서비스 앱들 — labs/{svc}/ 자립 폴더 (스택 자유·각자 Dockerfile) — 첫 서비스 착수 시 생성, k8s 배포
 └── infra/   # 프로젝트 인프라 — 착수 시 생성
     ├── Phase 1: 도메인·DNS·Vercel 구성 (필요 시 Terraform)
-    └── k8s 착수 시: 클러스터·ingress·외부 labs 서비스 manifest (GitOps config-repo)
+    └── k8s 착수 시: 클러스터·ingress·labs 서비스 manifest (단일 관제)
+
+배포 경계 = CI 경로 필터: Vercel은 site/ 변경 시, Render는 be/, k8s 이미지 빌드는 labs/{svc}/ 변경 시.
 ```
 
 ## 원칙

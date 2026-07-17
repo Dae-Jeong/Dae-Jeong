@@ -17,6 +17,7 @@ tags: [site, homepage, resume, portfolio, blog, architecture]
 - 2026-07-17 4차 개정: 내장/외부 경계 확정 — **site 내장 = core 페이지 + visitor chat + jarvis** (Vercel serverless로 감당), **labs 서비스 = 전부 외부 repo + subdomain** (site는 registry 라우팅만). k8s는 외부 labs 서비스 전용.
 - 2026-07-17 5차 개정: 이 repo를 **프로젝트 repo**로 확장 — harness + `site/`(Next 한방: FE+serverless BE) + `infra/`(도메인·Vercel 구성, k8s 착수 시 클러스터·외부 서비스 manifest까지). **별도 platform repo 결정을 대체** — 외부 labs 서비스는 코드만 각자 repo, manifest는 `infra/`가 소유 (GitOps config-repo 패턴).
 - 2026-07-17 6차 개정: **jarvis backend 분리** — jarvis는 UI(site 내장)와 전용 backend(`be/`, FastAPI)로 구성하고 backend는 **Render free tier로 배포** (wiki 인덱싱·RAG·대화 메모리 등 serverless 부적합 워크로드). visitor chat은 site serverless 유지. 제약 반영: Render cold start 30~60초(웜업 UX 필요), 상태는 전부 Supabase pgvector(Render Postgres 사용 금지, `wiki:pricing/render`).
+- 2026-07-17 7차 개정: **완전한 monorepo** — labs 서비스도 이 repo `labs/{svc}/` 자립 폴더로 통합 (4차 개정의 "외부 repo" 결정 대체). 독립 생명주기는 폴더 자립성(각자 Dockerfile·스택 자유)으로 달성. service contract의 "repo 하나" → "`labs/{svc}/` 폴더 하나". 배포 경계는 CI 경로 필터 (Vercel=site/, Render=be/, k8s=labs/*). 자랑거리가 된 서비스의 public repo 추출 옵션 유지.
 - [Visitor Profile Chat 설계 (2026-07-04)](2026-07-04-visitor-profile-chat-homepage-prototype-design.md)의 스택 결정을 승계하고, repo 배치·정보 구조·확장 계약을 확정한다.
 
 ## Decisions
@@ -31,7 +32,7 @@ tags: [site, homepage, resume, portfolio, blog, architecture]
 | Supabase는 기능 데이터 층만 (Phase 2 도입) | chat 기록·방문 로그 등 기능 데이터의 공용 Postgres/auth/storage. profile 콘텐츠는 git 파생 정적을 유지한다 — 이중 소스 금지. |
 | 서비스 프레임워크 = registry + contract | 미래 서비스를 모르는 채로 확장 비용을 고정한다. 기계(공용 SDK·템플릿)가 아니라 규약이 프레임워크다. |
 | subdomain은 `{svc}.marinkim.xyz` 평면 | wildcard `*.marinkim.xyz` → k8s ingress, apex/www → Vercel. DNS record 하나로 서비스 추가가 끝난다. |
-| 서비스당 repo 하나 + `infra/`가 manifest 소유 (5차 개정) | 서비스 코드는 각자 repo(스택 자유), k8s 클러스터 구성·manifest는 이 repo `infra/`가 소유 (기존 별도 platform repo 결정 대체). Dae-Jeong repo = harness + `site/` + `infra/` + registry의 프로젝트 repo. |
+| 완전한 monorepo (7차 개정) | 서비스 코드는 `labs/{svc}/` 자립 폴더(스택 자유·각자 Dockerfile), k8s 구성·manifest는 `infra/` 소유. Dae-Jeong repo = harness + `site/` + `be/` + `labs/` + `infra/`. 배포 경계는 CI 경로 필터. |
 | 정보 구조: `/`, `/resume`, `/portfolio`, `/blog`, `/labs` | 이력서·포트폴리오·블로그·labs 4용도. 랜딩은 마케팅 페이지가 아니라 프로필 요약 + 진입. |
 | `/blog`는 글, `/labs`는 기능·서비스 관문 | labs 묶음을 subdomain이 아니라 core 페이지로 표현한다. 서비스는 root-path subdomain을 유지해 서비스별 설정 비용 0을 지키고, `/labs`가 카드·상세 페이지로 routing한다. (3차 개정 — 기존 "글+기능 통합 hub" 결정을 대체) |
 | 사이트는 knowledge harness의 consumer | 이력서·포폴 콘텐츠는 파생 전용이며 사이트에서 직접 수정하지 않는다. blog만 사이트 네이티브. |
@@ -132,7 +133,7 @@ site/
 
 ### Service Contract
 
-1. 서비스 하나 = 이름 하나 = `{svc}.marinkim.xyz` = repo 하나 = k8s namespace 하나 = Supabase schema 하나.
+1. 서비스 하나 = 이름 하나 = `{svc}.marinkim.xyz` = `labs/{svc}/` 폴더 하나 (자립: 각자 Dockerfile·스택 자유) = k8s namespace 하나 = Supabase schema 하나. (7차 개정 — 기존 "repo 하나"를 대체)
 2. `site/content/services/{svc}.md` 하나 등록하면 사이트 노출 끝 — `/labs` 카드와 `/labs/{svc}` 상세 페이지가 frontmatter·본문에서 생성된다.
 3. 서비스 간 직접 호출 금지. 필요가 생기면 그때 계약을 추가한다.
 4. `status: live | wip | paused`는 registry에서 수동 관리부터. health check 자동화는 발생 시.
@@ -153,8 +154,8 @@ summary: 한 줄 소개
 
 ### 서비스 추가 절차 (접점 3개 고정)
 
-1. 서비스 repo 생성·개발 (스택 자유)
-2. platform repo에 k8s manifest 추가 — ingress·TLS는 wildcard로 자동
+1. `labs/{svc}/` 폴더 생성·개발 (스택 자유, 자체 Dockerfile)
+2. `infra/`에 k8s manifest 추가 — ingress·TLS는 wildcard로 자동
 3. registry 파일 추가 — `/labs` 카드·상세 페이지 노출
 
 core 사이트 코드는 건드리지 않는다. 서비스 상세 페이지와 운영 기록은 evidence로 축적되어 claim 승격 경로(k8s 등 gap 해소)에 연결된다.
@@ -167,11 +168,11 @@ flowchart LR
         SITE["site/<br/>Next.js core"]
     end
 
-    subgraph SVCREPO["서비스 repo × N (스택 자유)"]
-        SR["stock-radar, ..."]
+    subgraph SVCREPO["labs/ — 서비스 자립 폴더 × N (스택 자유)"]
+        SR["labs/stock-radar, ..."]
     end
 
-    PLAT["platform repo<br/>k8s 구성·manifest<br/>(k8s 착수 시 생성)"]
+    PLAT["infra/<br/>k8s 구성·manifest<br/>(k8s 착수 시 생성)"]
 
     VERC["Vercel"]
     K8SC["k8s cluster"]
