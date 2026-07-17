@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>김대정 — Backend Engineer · AI Product Systems (root prototype)</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<style>
+/* ── Mono design system tokens (shared contract with index.html) ── */
+:root {
+  --bg: #ffffff;
+  --surface: #f7f7f7;
+  --fg: #111111;
+  --fg-2: #3a3a3a;
+  --muted: #707070;
+  --border: #d9d9d9;
+  --border-soft: #eeeeee;
+  --accent: #111111;
+  --accent-on: #ffffff;
+  --success: #168a46;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --font-ko: "Pretendard Variable", Pretendard, "IBM Plex Mono", ui-monospace, sans-serif;
+  --text-xs: 11px; --text-sm: 12px; --text-base: 14px; --text-lg: 16px;
+  --text-xl: 20px; --text-2xl: 28px; --text-4xl: 56px;
+  --ease: cubic-bezier(0.2, 0, 0, 1);
+  --container-max: 1280px;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--fg);
+  font-family: var(--font-ko); font-size: var(--text-base); line-height: 1.5;
+  word-break: keep-all;
+}
+.mono { font-family: var(--font-mono); }
+.container { max-width: var(--container-max); margin: 0 auto; padding: 0 36px; }
+a { color: inherit; text-decoration: none; }
+
+/* reveal */
+@keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+.rise { animation: rise 560ms var(--ease) both; }
+.d1 { animation-delay: 60ms; } .d2 { animation-delay: 140ms; } .d3 { animation-delay: 220ms; } .d4 { animation-delay: 300ms; }
+
+/* ── Nav ── */
+.nav { border-bottom: 1px solid var(--border-soft); }
+.nav__in { display: flex; align-items: center; gap: 24px; height: 56px; }
+.brand { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: var(--text-sm); font-weight: 600; }
+.brand::before { content: ""; width: 9px; height: 9px; background: var(--fg); }
+.nav__links { margin-left: auto; display: flex; gap: 20px; font-family: var(--font-mono); font-size: var(--text-sm); color: var(--fg-2); }
+.nav__links a:hover { color: var(--fg); }
+.nav .pdf { margin-left: 8px; background: var(--accent); color: var(--accent-on); font-family: var(--font-mono); font-size: var(--text-sm); padding: 9px 14px; }
+
+/* ── Hero ── */
+.hero { padding: 64px 0 56px; }
+.hero__grid { display: grid; grid-template-columns: minmax(0, 1fr) 440px; gap: 48px; align-items: start; }
+.status { display: inline-block; font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.06em; color: var(--fg-2); border: 1px solid var(--border); padding: 4px 10px; margin-bottom: 22px; }
+.hero h1 { margin: 0; font-family: var(--font-mono); font-size: var(--text-4xl); line-height: 1.06; letter-spacing: -0.025em; font-weight: 600; }
+.role { margin: 14px 0 0; font-family: var(--font-mono); font-size: var(--text-base); letter-spacing: 0.06em; text-transform: uppercase; color: var(--fg-2); }
+.role b { color: var(--fg); font-weight: 600; }
+.oneline { margin: 22px 0 0; font-size: var(--text-xl); font-weight: 500; max-width: 22em; }
+.links { display: flex; gap: 10px; margin-top: 28px; flex-wrap: wrap; }
+.chip { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: var(--text-sm); border: 1px solid var(--border); padding: 10px 14px; }
+.chip--fill { background: var(--accent); color: var(--accent-on); border-color: var(--accent); }
+.chip[aria-disabled="true"] { opacity: 0.65; cursor: default; }
+
+/* ── Hero meta card ── */
+.hero__card { border: 1px solid var(--border); padding: 20px 22px; }
+.hero__card dl { margin: 0; display: grid; grid-template-columns: auto 1fr; row-gap: 10px; column-gap: 16px; }
+.hero__card dt { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.hero__card dd { margin: 0; font-size: var(--text-sm); text-align: right; }
+.hero__card .rule { grid-column: 1 / -1; border-top: 1px solid var(--border-soft); }
+
+/* ── Floating Ask launcher (채널톡 패턴, 전 페이지 공통) ── */
+.ask-launcher { position: fixed; right: 24px; bottom: 24px; z-index: 50; display: grid; justify-items: end; gap: 10px; }
+.ask-launcher input[type="checkbox"] { display: none; }
+.ask-launcher .btn {
+  display: inline-flex; align-items: center; gap: 8px; cursor: pointer;
+  background: var(--accent); color: var(--accent-on);
+  font-family: var(--font-mono); font-size: var(--text-sm); letter-spacing: 0.08em;
+  padding: 14px 18px; box-shadow: 0 16px 40px rgba(0,0,0,0.18);
+}
+.ask-panel {
+  display: none; width: min(340px, calc(100vw - 32px));
+  border: 1px solid var(--border); background: var(--bg);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.14);
+}
+.ask-launcher input:checked ~ .ask-panel { display: block; animation: rise 220ms var(--ease) both; }
+.ask-launcher .btn .when-open { display: none; }
+.ask-launcher input:checked ~ .btn .when-closed { display: none; }
+.ask-launcher input:checked ~ .btn .when-open { display: inline; }
+@media (max-width: 480px) {
+  .ask-launcher { right: 16px; bottom: 16px; }
+}
+.ask-panel__head { display: flex; align-items: center; gap: 10px; padding: 11px 14px; background: var(--accent); color: var(--accent-on); font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.08em; text-transform: uppercase; }
+.ask-panel__head .tag { margin-left: auto; border: 1px solid rgba(255,255,255,0.4); padding: 2px 7px; font-size: 10px; }
+.ask-panel__body { padding: 14px; display: grid; gap: 10px; }
+.ask-panel__hello { font-size: var(--text-sm); color: var(--fg-2); }
+.ask-panel__body .q { font-family: var(--font-ko); font-size: var(--text-xs); color: var(--fg-2); text-align: left; background: var(--bg); border: 1px solid var(--border); padding: 8px 10px; cursor: default; }
+.ask-panel__foot { display: flex; gap: 8px; border-top: 1px solid var(--border-soft); padding: 12px 14px; align-items: center; }
+.ask-panel__foot input { flex: 1; border: 1px solid var(--border); background: var(--surface); font-family: var(--font-ko); font-size: var(--text-sm); padding: 9px 11px; color: var(--muted); }
+.ask-panel__foot .full { font-family: var(--font-mono); font-size: 10px; color: var(--muted); white-space: nowrap; }
+
+/* ── Sections ── */
+section.block { border-top: 1px solid var(--border-soft); padding: 56px 0; }
+.sec-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 28px; }
+.sec-head .no { font-family: var(--font-mono); font-size: var(--text-sm); color: var(--muted); }
+.sec-head h2 { margin: 0; font-family: var(--font-mono); font-size: var(--text-xl); font-weight: 600; }
+.sec-head .meta { margin-left: auto; font-family: var(--font-mono); font-size: var(--text-xs); color: var(--muted); letter-spacing: 0.04em; text-transform: uppercase; }
+
+/* summary */
+.sum { display: grid; gap: 0; }
+.sum__row { display: grid; grid-template-columns: 56px 1fr; align-items: baseline; padding: 14px 0; border-top: 1px solid var(--border-soft); }
+.sum__row:first-child { border-top: none; }
+.sum__no { font-family: var(--font-mono); font-size: var(--text-sm); color: var(--muted); letter-spacing: 0.06em; }
+.sum__no--accent { color: var(--success); font-weight: 700; }
+.sum__text { font-size: var(--text-lg); font-weight: 450; }
+.sum__text strong { font-weight: 600; }
+
+/* proof cards */
+.proof { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border-soft); border: 1px solid var(--border-soft); }
+.proof a { background: var(--bg); padding: 22px; display: grid; gap: 8px; transition: background 160ms var(--ease); }
+.proof a:hover { background: var(--surface); }
+.proof h3 { margin: 0; font-family: var(--font-mono); font-size: var(--text-base); font-weight: 600; }
+.proof p { margin: 0; font-size: var(--text-sm); color: var(--fg-2); }
+.proof .go { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--muted); }
+
+/* route gateway */
+.routes { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border-soft); border: 1px solid var(--border-soft); }
+.routes a { background: var(--bg); padding: 20px; display: grid; gap: 6px; transition: background 160ms var(--ease); }
+.routes a:hover { background: var(--surface); }
+.routes .r-name { font-family: var(--font-mono); font-size: var(--text-sm); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+.routes .r-desc { font-size: var(--text-xs); color: var(--muted); }
+
+/* footer */
+.foot { border-top: 1px solid var(--border-soft); padding: 20px 0 40px; display: flex; gap: 16px; font-family: var(--font-mono); font-size: var(--text-xs); color: var(--muted); }
+.foot .right { margin-left: auto; }
+
+@media (max-width: 900px) {
+  .container { padding: 0 18px; }
+  .hero__grid { grid-template-columns: 1fr; gap: 32px; }
+  .proof { grid-template-columns: 1fr; }
+  .routes { grid-template-columns: repeat(2, 1fr); }
+  .hero h1 { font-size: 40px; }
+  .nav__links { display: none; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav"><div class="container nav__in">
+  <span class="brand">marinkim.xyz</span>
+  <div class="nav__links"><a href="#">Portfolio</a><a href="#">Blog</a><a href="#">Labs</a></div>
+  <a class="pdf" href="#" aria-disabled="true">↓ Resume PDF</a>
+</div></nav>
+
+<header class="hero"><div class="container hero__grid">
+  <div class="rise">
+    <span class="status">MediSolve AI · Backend Engineer · 재직 중</span>
+    <h1>김대정</h1>
+    <p class="role"><b>Backend Engineer</b> · AI Product Systems</p>
+    <p class="oneline">AI 제품을 운영 가능한 시스템으로 만드는 백엔드 엔지니어</p>
+    <div class="links">
+      <a class="chip chip--fill" href="#" aria-disabled="true">↓ Resume PDF 다운로드</a>
+      <a class="chip" href="https://github.com/Dae-Jeong" target="_blank" rel="noopener">github.com/Dae-Jeong</a>
+    </div>
+  </div>
+
+  <aside class="hero__card rise d2" aria-label="요약 정보">
+    <dl>
+      <dt>Role</dt><dd>Backend</dd>
+      <dt>Domain</dt><dd>AI Product</dd>
+      <div class="rule" aria-hidden="true"></div>
+      <dt>Now</dt><dd>MediSolve AI</dd>
+      <dt>Since</dt><dd class="mono">2025.04</dd>
+      <dt>Focus</dt><dd>Prod. Backend</dd>
+      <div class="rule" aria-hidden="true"></div>
+      <dt>Site</dt><dd class="mono">marinkim.xyz</dd>
+      <dt>GitHub</dt><dd class="mono">Dae-Jeong</dd>
+    </dl>
+  </aside>
+</div></header>
+
+<section class="block rise d3"><div class="container">
+  <div class="sec-head"><span class="no">00</span><h2>Summary</h2><span class="meta">요약 · 4</span></div>
+  <div class="sum">
+    <div class="sum__row"><span class="sum__no mono">01</span><span class="sum__text">AI 콘텐츠 생성 <strong>backend 전면 재구축</strong>과 이후 개발·운영 전담</span></div>
+    <div class="sum__row"><span class="sum__no mono sum__no--accent">02</span><span class="sum__text">월 수만 건 규모 요청을 처리하는 production backend를 <strong>HTTP 5xx 0.3% 수준</strong>으로 운영</span></div>
+    <div class="sum__row"><span class="sum__no mono">03</span><span class="sum__text">Backend Engineer 합류 후 <strong>Tech Lead·PO 역할 병행</strong></span></div>
+    <div class="sum__row"><span class="sum__no mono">04</span><span class="sum__text">제품 일정·이슈·릴리스 운영을 <strong>agent-readable workflow</strong>로 구조화·리드</span></div>
+  </div>
+</div></section>
+
+<section class="block rise d4"><div class="container">
+  <div class="sec-head"><span class="no">01</span><h2>Selected Proof</h2><span class="meta">Cases · 4 — 상세는 Portfolio</span></div>
+  <div class="proof">
+    <a href="#"><h3>Thready</h3><p>AI 콘텐츠 생성 backend 전면 재구축·운영 전담, 생성 품질 시스템 구축</p><span class="go">→ CASE</span></a>
+    <a href="#"><h3>Centurion</h3><p>주문·재고 async backend 구축 주도, realtime AI backend 공동 주 기여</p><span class="go">→ CASE</span></a>
+    <a href="#"><h3>BE Template</h3><p>조직 표준 FastAPI template 설계·구축 전담, agent context system 내장</p><span class="go">→ CASE</span></a>
+    <a href="#"><h3>Agent Workflow</h3><p>제품 운영 pipeline·release gate 운영, daily briefing agent 구축</p><span class="go">→ CASE</span></a>
+  </div>
+</div></section>
+
+<section class="block"><div class="container">
+  <div class="sec-head"><span class="no">02</span><h2>Explore</h2><span class="meta">Routes · 4</span></div>
+  <div class="routes">
+    <a href="#"><span class="r-name">Resume</span><span class="r-desc">A4 마스터 이력서 · PDF</span></a>
+    <a href="#"><span class="r-name">Portfolio</span><span class="r-desc">case 5건 — 문제·결정·시스템·운영 근거</span></a>
+    <a href="#"><span class="r-name">Blog</span><span class="r-desc">판단 과정과 운영 경험 기록</span></a>
+    <a href="#"><span class="r-name">Labs</span><span class="r-desc">만든 것들 — 기능·서비스 관문</span></a>
+  </div>
+</div></section>
+
+<footer><div class="container foot">
+  <span>© 김대정 · Backend Engineer</span>
+  <span class="right">ROOT PROTOTYPE · PHASE 2 PREVIEW</span>
+</div></footer>
+
+<!-- 전 페이지 공통 Ask 런처 (채널톡 패턴) -->
+<div class="ask-launcher">
+  <input type="checkbox" id="askToggle">
+  <div class="ask-panel" role="dialog" aria-label="Ask 미니 패널">
+    <div class="ask-panel__head">Ask · 프로필과 대화<span class="tag">PHASE 2 PREVIEW</span></div>
+    <div class="ask-panel__body">
+      <p class="ask-panel__hello">안녕하세요 — 김대정의 프로필 agent입니다. 무엇이 궁금하세요?</p>
+      <button class="q" type="button">김대정은 어떤 엔지니어인가요?</button>
+      <button class="q" type="button">Thready에서 어떤 기여를 했나요?</button>
+      <button class="q" type="button">AI agent를 실무에 어떻게 쓰나요?</button>
+    </div>
+    <div class="ask-panel__foot">
+      <input type="text" disabled placeholder="질문 입력 — Phase 2에서 열립니다">
+      <span class="full">전체 대화 → /chat</span>
+    </div>
+  </div>
+  <label class="btn" for="askToggle"><span class="when-closed">ASK</span><span class="when-open">× CLOSE</span></label>
+</div>
+
+</body>
+</html>

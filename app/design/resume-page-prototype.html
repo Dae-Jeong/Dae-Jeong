@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Resume — 김대정 · Backend Engineer (prototype)</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<style>
+:root {
+  --bg: #ffffff; --surface: #f7f7f7; --fg: #111111; --fg-2: #3a3a3a; --muted: #707070;
+  --border: #d9d9d9; --border-soft: #eeeeee; --accent: #111111; --accent-on: #ffffff;
+  --success: #168a46;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --font-ko: "Pretendard Variable", Pretendard, "IBM Plex Mono", ui-monospace, sans-serif;
+  --text-xs: 11px; --text-sm: 12px; --text-base: 14px; --text-lg: 16px; --text-xl: 20px; --text-3xl: 40px;
+  --ease: cubic-bezier(0.2, 0, 0, 1);
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--font-ko); font-size: var(--text-base); line-height: 1.55; word-break: keep-all; }
+.mono { font-family: var(--font-mono); }
+a { color: inherit; text-decoration: none; }
+
+.nav { border-bottom: 1px solid var(--border-soft); }
+.nav__in { max-width: 1180px; margin: 0 auto; padding: 0 28px; display: flex; align-items: center; gap: 20px; height: 56px; }
+.brand { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: var(--text-sm); font-weight: 600; }
+.brand::before { content: ""; width: 9px; height: 9px; background: var(--fg); }
+.crumb { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.nav__links { margin-left: auto; display: flex; gap: 18px; font-family: var(--font-mono); font-size: var(--text-sm); color: var(--fg-2); }
+
+.wrap { max-width: 1180px; margin: 0 auto; padding: 0 28px; display: grid; grid-template-columns: minmax(0, 1fr) 240px; gap: 48px; }
+
+/* document column */
+.doc { padding: 48px 0 100px; max-width: 800px; }
+.doc__head { padding-bottom: 28px; border-bottom: 2px solid var(--fg); }
+.doc__head h1 { margin: 0; font-family: var(--font-mono); font-size: var(--text-3xl); font-weight: 600; letter-spacing: -0.02em; }
+.role { margin: 10px 0 0; font-family: var(--font-mono); font-size: var(--text-sm); letter-spacing: 0.06em; text-transform: uppercase; color: var(--fg-2); }
+.positioning { margin: 16px 0 0; font-size: var(--text-lg); font-weight: 500; }
+.contact { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+.contact span, .contact a { font-family: var(--font-mono); font-size: var(--text-xs); border: 1px solid var(--border); padding: 5px 9px; color: var(--fg-2); }
+.contact a:hover { border-color: var(--fg); color: var(--fg); }
+
+section { padding: 34px 0 6px; }
+.sec-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 18px; }
+.sec-head .no { font-family: var(--font-mono); font-size: var(--text-sm); color: var(--muted); }
+.sec-head h2 { margin: 0; font-family: var(--font-mono); font-size: var(--text-lg); font-weight: 600; }
+.sec-head .en { margin-left: auto; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+
+ul.plain { list-style: none; margin: 0; padding: 0; display: grid; gap: 9px; }
+ul.plain li { padding-left: 16px; position: relative; color: var(--fg-2); }
+ul.plain li::before { content: "—"; position: absolute; left: 0; color: var(--muted); font-family: var(--font-mono); }
+ul.plain strong { color: var(--fg); font-weight: 600; }
+.metric { color: var(--success); font-weight: 600; }
+
+.capgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border-soft); border: 1px solid var(--border-soft); }
+.cap { background: var(--bg); padding: 16px 18px; }
+.cap h3 { margin: 0 0 6px; font-family: var(--font-mono); font-size: var(--text-sm); font-weight: 600; }
+.cap p { margin: 0; font-size: var(--text-sm); color: var(--fg-2); }
+
+.skills { display: grid; gap: 0; border-top: 1px solid var(--border-soft); }
+.skills .row { display: grid; grid-template-columns: 180px 1fr; gap: 16px; padding: 11px 0; border-bottom: 1px solid var(--border-soft); }
+.skills .k { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.skills .v { font-size: var(--text-sm); color: var(--fg-2); }
+
+.proj { display: grid; gap: 22px; }
+.proj article h3 { margin: 0 0 8px; font-family: var(--font-mono); font-size: var(--text-base); font-weight: 600; }
+.proj article h3 span { color: var(--muted); font-weight: 400; font-size: var(--text-sm); }
+
+.career { display: grid; border-top: 1px solid var(--border-soft); }
+.career .row { display: grid; grid-template-columns: 150px 1fr 170px; gap: 14px; padding: 13px 0; border-bottom: 1px solid var(--border-soft); align-items: baseline; }
+.career .org { font-family: var(--font-mono); font-size: var(--text-sm); font-weight: 600; }
+.career .desc { font-size: var(--text-sm); color: var(--fg-2); }
+.career .period { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--muted); text-align: right; }
+.career .now { background: var(--accent); color: var(--accent-on); padding: 1px 6px; margin-left: 6px; font-size: 9px; }
+
+.creds { display: grid; gap: 9px; }
+.creds .row { display: grid; grid-template-columns: 110px 1fr; gap: 14px; align-items: baseline; }
+.creds .y { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--muted); }
+.creds .t { font-size: var(--text-sm); color: var(--fg-2); }
+
+/* rail */
+.rail { padding: 48px 0; position: sticky; top: 0; align-self: start; display: grid; gap: 22px; }
+.rail .pdf { display: block; text-align: center; background: var(--accent); color: var(--accent-on); font-family: var(--font-mono); font-size: var(--text-sm); padding: 13px 0; }
+.lang { display: flex; border: 1px solid var(--border); }
+.lang button { flex: 1; text-align: center; font-family: var(--font-mono); font-size: var(--text-xs); padding: 8px 0; background: var(--bg); border: none; cursor: pointer; color: var(--muted); }
+.lang button.on { background: var(--fg); color: var(--accent-on); }
+body[data-lang="ko"] .doc--en { display: none; }
+body[data-lang="en"] .doc--ko { display: none; }
+body[data-lang="en"] .toc { display: none; }
+.draft-note { margin: 0 0 0; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; color: var(--muted); border: 1px dashed var(--border); padding: 8px 10px; }
+.toc h2 { margin: 0 0 10px; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.toc ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 7px; }
+.toc a { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--fg-2); }
+.toc a:hover { color: var(--fg); }
+.toc .n { color: var(--muted); margin-right: 8px; }
+.rail .note { font-family: var(--font-mono); font-size: 10px; color: var(--muted); line-height: 1.6; border-top: 1px solid var(--border-soft); padding-top: 12px; }
+
+/* ask launcher (전 페이지 공통, 축약) */
+.ask { position: fixed; right: 24px; bottom: 24px; background: var(--accent); color: var(--accent-on); font-family: var(--font-mono); font-size: var(--text-sm); letter-spacing: 0.08em; padding: 14px 18px; box-shadow: 0 16px 40px rgba(0,0,0,0.18); }
+
+@media (max-width: 980px) {
+  .wrap { grid-template-columns: 1fr; gap: 0; }
+  .rail { position: static; padding: 0 0 24px; order: -1; }
+  .rail .note, .toc { display: none; }
+  .rail { grid-template-columns: 1fr auto; display: grid; gap: 10px; align-items: center; padding-top: 20px; }
+  .capgrid { grid-template-columns: 1fr; }
+  .career .row { grid-template-columns: 1fr; gap: 3px; }
+  .career .period { text-align: left; }
+  .ask { right: 16px; bottom: 16px; }
+}
+</style>
+</head>
+<body data-lang="ko">
+
+<nav class="nav"><div class="nav__in">
+  <a class="brand" href="#">marinkim.xyz</a>
+  <span class="crumb">/ Resume</span>
+  <div class="nav__links"><a href="#">Portfolio</a><a href="#">Blog</a><a href="#">Labs</a></div>
+</div></nav>
+
+<div class="wrap">
+<main class="doc doc--ko">
+  <header class="doc__head">
+    <h1>김대정</h1>
+    <p class="role">Backend Engineer · AI Product Systems</p>
+    <p class="positioning">AI 제품을 운영 가능한 시스템으로 만드는 백엔드 엔지니어</p>
+    <div class="contact">
+      <a href="mailto:marin.backend@gmail.com">marin.backend@gmail.com</a>
+      <a href="https://github.com/Dae-Jeong">github.com/Dae-Jeong</a>
+      <span>경기 안양시</span>
+    </div>
+  </header>
+
+  <section id="s1">
+    <div class="sec-head"><span class="no">01</span><h2>요약</h2><span class="en">SUMMARY</span></div>
+    <ul class="plain">
+      <li>AI 콘텐츠 생성 <strong>backend 전면 재구축</strong>과 이후 개발·운영 전담</li>
+      <li>월 수만 건 규모 요청을 처리하는 production backend를 <span class="metric">HTTP 5xx 0.3% 수준</span>으로 운영</li>
+      <li>Backend Engineer 합류 후 <strong>Tech Lead·PO 역할 병행</strong></li>
+      <li>제품 일정·이슈·릴리스 운영을 <strong>agent-readable workflow</strong>로 구조화·리드</li>
+    </ul>
+  </section>
+
+  <section id="s2">
+    <div class="sec-head"><span class="no">02</span><h2>핵심 역량</h2><span class="en">CORE CAPABILITIES</span></div>
+    <div class="capgrid">
+      <div class="cap"><h3>AI Product Systems</h3><p>typed prompt builder, LLM judge, 평가 루프, 관측 로깅 기반 생성 품질 시스템 구축</p></div>
+      <div class="cap"><h3>Product Backend Ownership</h3><p>주문·재고 API와 worker 구축 주도, 병원 product monorepo service boundary·migration 주도</p></div>
+      <div class="cap"><h3>Async &amp; Realtime</h3><p>실패 가능한 작업의 worker 분리와 retry 흐름 구축 주도, realtime session lifecycle 안정화 공동 주 기여</p></div>
+      <div class="cap"><h3>Infra-Aware Delivery</h3><p>회사 Azure/Terraform infra 전반 담당 — 환경별 resource boundary, 배포, runbook / 외부 product IaC 전담</p></div>
+      <div class="cap"><h3>Engineering Standard</h3><p>layered architecture·DI·ADR·convention 기반 조직 표준 FastAPI template 설계·구축 전담</p></div>
+      <div class="cap"><h3>Agent-Readable Operations</h3><p>pipeline registry·release gate 기반 운영 리드, daily briefing agent 구축·운영</p></div>
+    </div>
+  </section>
+
+  <section id="s3">
+    <div class="sec-head"><span class="no">03</span><h2>기술</h2><span class="en">SKILLS</span></div>
+    <div class="skills">
+      <div class="row"><span class="k">Language / FW</span><span class="v">Python, FastAPI, TypeScript, NestJS, Java, Spring Boot</span></div>
+      <div class="row"><span class="k">Data / Messaging</span><span class="v">PostgreSQL, MySQL, Redis, RabbitMQ, TaskIQ</span></div>
+      <div class="row"><span class="k">Infra / Delivery</span><span class="v">Azure, AWS, Terraform, Docker, GitHub Actions</span></div>
+      <div class="row"><span class="k">AI Product</span><span class="v">LLM integration/evaluation, typed prompt, structured output, WebSocket, SSE, STT</span></div>
+    </div>
+  </section>
+
+  <section id="s4">
+    <div class="sec-head"><span class="no">04</span><h2>대표 프로젝트</h2><span class="en">SELECTED PROJECTS</span></div>
+    <div class="proj">
+      <article>
+        <h3>Thready <span>· AI 콘텐츠 생성 제품</span></h3>
+        <ul class="plain">
+          <li>FastAPI 기반 backend 전면 재구축과 cutover 이후 개발·운영 전담</li>
+          <li>typed prompt builder, LLM judge, 평가 루프, 관측 로깅 기반 생성 품질 시스템 구축</li>
+        </ul>
+      </article>
+      <article>
+        <h3>Centurion <span>· 피부과 운영 AI 메디컬 플랫폼 · 제품 시작 시점부터 구축</span></h3>
+        <ul class="plain">
+          <li>주문·재고 API와 RabbitMQ·TaskIQ 비동기 worker, retry, test·CI·onboarding 구축 주도</li>
+          <li>realtime AI 상담 backend의 세션 lifecycle과 provider 경계 안정화 공동 주 기여</li>
+        </ul>
+      </article>
+      <article>
+        <h3>BE Template <span>· Engineering Standard</span></h3>
+        <ul class="plain">
+          <li>layered architecture·DI·ADR·convention·runbook 기반 조직 표준 FastAPI template 설계·구축 전담</li>
+          <li>agent context system과 반복 작업 automation skill 내장</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section id="s5">
+    <div class="sec-head"><span class="no">05</span><h2>경력</h2><span class="en">CAREER</span></div>
+    <div class="career">
+      <div class="row"><span class="org">MediSolve AI<span class="now">NOW</span></span><span class="desc">AI product backend와 제품 운영·engineering standard 담당, Tech Lead·PO 역할 병행</span><span class="period">2025.04 —</span></div>
+      <div class="row"><span class="org">더데이랩스</span><span class="desc">현 MediSolve AI 대표와 프리랜서로 협업 시작 — Centurion 초기 backend 구축과 개발팀 시스템·기준 수립, 창업과 함께 합류</span><span class="period">2025.02 — 2025.04</span></div>
+      <div class="row"><span class="org">Memento AI</span><span class="desc">예약·결제 backend의 선결제와 환불·마일리지·티켓 rollback 안정화 — 회사 폐업으로 재직 종료</span><span class="period">2024.10 — 2025.01</span></div>
+      <div class="row"><span class="org">TellingMe</span><span class="desc">개인 프로젝트 · Spring Boot backend와 AWS 배포·모니터링 리드 (Memento 재직과 병행)</span><span class="period">2024.01 — 2024.12</span></div>
+      <div class="row"><span class="org">STUDIO LAB</span><span class="desc">SellerCanvas(생성형 AI 커머스, CES 2024 최고혁신상)의 PM 메인 역할로 제품 시스템 기획·구축</span><span class="period">2021.12 — 2024.01</span></div>
+      <div class="row"><span class="org">아이즈솔</span><span class="desc">Vision AI에서 시작한 AI product engineering 경력</span><span class="period">2020.08 — 2021.06</span></div>
+    </div>
+  </section>
+
+  <section id="s6">
+    <div class="sec-head"><span class="no">06</span><h2>일하는 방식</h2><span class="en">AGENT WORKFLOW</span></div>
+    <ul class="plain">
+      <li>AI agent를 코드 자동완성보다 <strong>engineering operating layer</strong>로 활용</li>
+      <li>project rules와 source-of-truth routing을 사람과 agent가 함께 읽는 실행 경계로 구성</li>
+      <li>decision·spec·work·release gate로 제품 실행과 릴리스 추적</li>
+      <li>daily briefing agent로 협업 도구 활동 집계와 blocker triage 지원</li>
+    </ul>
+  </section>
+
+  <section id="s7">
+    <div class="sec-head"><span class="no">07</span><h2>학력·교육 / 수상·특허·자격</h2><span class="en">CREDENTIALS</span></div>
+    <div class="creds">
+      <div class="row"><span class="y">2016 — 2021</span><span class="t">우송대학교 게임멀티미디어 전공</span></div>
+      <div class="row"><span class="y">2024.01</span><span class="t">CES 2024 Best of Innovation · AI 부문 대상 제품 참여</span></div>
+      <div class="row"><span class="y">2025.12</span><span class="t">특허 등록 「페이지 출력 방법」 · 등록 10-2898273</span></div>
+      <div class="row"><span class="y">2021.09</span><span class="t">ADsP · 데이터분석 준전문가</span></div>
+    </div>
+  </section>
+</main>
+
+<main class="doc doc--en">
+  <p class="draft-note">DRAFT — English copy pending claim-registry approval (allowed_copy_en)</p>
+  <header class="doc__head" style="padding-top:18px">
+    <h1>Daejeong Kim</h1>
+    <p class="role">Backend Engineer · AI Product Systems</p>
+    <p class="positioning">Backend engineer who turns AI products into reliable production systems.</p>
+    <div class="contact">
+      <a href="mailto:marin.backend@gmail.com">marin.backend@gmail.com</a>
+      <a href="https://github.com/Dae-Jeong">github.com/Dae-Jeong</a>
+      <span>Anyang-si, Gyeonggi-do, KR</span>
+    </div>
+  </header>
+
+  <section>
+    <div class="sec-head"><span class="no">01</span><h2>Summary</h2></div>
+    <ul class="plain">
+      <li>Rebuilt an AI content generation backend <strong>end to end</strong>; own development and operations since cutover</li>
+      <li>Operate a production backend serving tens of thousands of monthly requests with a <span class="metric">~0.3% HTTP 5xx</span> rate</li>
+      <li>Joined as a Backend Engineer, while also serving as <strong>Tech Lead and Product Owner</strong></li>
+      <li>Built and now run a release workflow where <strong>AI agents read specs, track issues, and gate releases</strong></li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="no">02</span><h2>Core Capabilities</h2></div>
+    <div class="capgrid">
+      <div class="cap"><h3>AI Product Systems</h3><p>Built a generation quality system — typed prompt builder, LLM judge, evaluation loop, observability logging</p></div>
+      <div class="cap"><h3>Product Backend Ownership</h3><p>Led order/inventory APIs and async workers; led service boundaries and migrations in a hospital product monorepo</p></div>
+      <div class="cap"><h3>Async &amp; Realtime</h3><p>Designed retry-safe async pipelines that offload failure-prone operations to background workers; co-led realtime session lifecycle stabilization</p></div>
+      <div class="cap"><h3>Infra-Aware Delivery</h3><p>Own company-wide Azure/Terraform infrastructure — per-environment resource boundaries, deployment, runbooks; built external product IaC as the sole engineer</p></div>
+      <div class="cap"><h3>Engineering Standards</h3><p>Designed and built the org-standard FastAPI template as the sole engineer — layered architecture, DI, ADR, conventions</p></div>
+      <div class="cap"><h3>Agent-Readable Operations</h3><p>Run product operations on a pipeline registry and release gates; built and operate a daily briefing agent</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="no">03</span><h2>Skills</h2></div>
+    <div class="skills">
+      <div class="row"><span class="k">Language / FW</span><span class="v">Python, FastAPI, TypeScript, NestJS, Java, Spring Boot</span></div>
+      <div class="row"><span class="k">Data / Messaging</span><span class="v">PostgreSQL, MySQL, Redis, RabbitMQ, TaskIQ</span></div>
+      <div class="row"><span class="k">Infra / Delivery</span><span class="v">Azure, AWS, Terraform, Docker, GitHub Actions</span></div>
+      <div class="row"><span class="k">AI Product</span><span class="v">LLM integration/evaluation, typed prompt, structured output, WebSocket, SSE, STT</span></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="no">04</span><h2>Selected Projects</h2></div>
+    <div class="proj">
+      <article>
+        <h3>Thready <span>· AI content generation product</span></h3>
+        <ul class="plain">
+          <li>Rebuilt the FastAPI backend end to end; owned development and operations after cutover</li>
+          <li>Built the generation quality system — typed prompt builder, LLM judge, evaluation loop, observability logging</li>
+        </ul>
+      </article>
+      <article>
+        <h3>Centurion <span>· AI medical platform for dermatology operations, built from product inception</span></h3>
+        <ul class="plain">
+          <li>Led order/inventory APIs, RabbitMQ/TaskIQ async workers, retry, and test/CI/onboarding setup</li>
+          <li>Co-led session lifecycle and provider-boundary stabilization for a realtime AI consultation backend</li>
+        </ul>
+      </article>
+      <article>
+        <h3>BE Template <span>· Engineering standard</span></h3>
+        <ul class="plain">
+          <li>Solely designed and built the org-standard FastAPI template — layered architecture, DI, ADR, conventions, runbooks</li>
+          <li>Embedded an agent context system and automation skills for repetitive work</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="no">05</span><h2>Career</h2></div>
+    <div class="career">
+      <div class="row"><span class="org">MediSolve AI<span class="now">NOW</span></span><span class="desc">AI product backend, product operations, engineering standards; also serving as Tech Lead and Product Owner</span><span class="period">Apr 2025 —</span></div>
+      <div class="row"><span class="org">TheDayLabs</span><span class="desc">Began working with MediSolve AI's founder as a freelancer — started Centurion's early backend and set up the new dev team's systems and standards</span><span class="period">Feb — Apr 2025</span></div>
+      <div class="row"><span class="org">Memento AI</span><span class="desc">Fixed correctness bugs in prepayment, refund, mileage, and ticket rollback flows; role ended when the company ceased operations</span><span class="period">Oct 2024 — Jan 2025</span></div>
+      <div class="row"><span class="org">TellingMe</span><span class="desc">Side project · Led the Spring Boot backend and AWS deployment/monitoring (concurrent with Memento)</span><span class="period">Jan — Dec 2024</span></div>
+      <div class="row"><span class="org">STUDIO LAB</span><span class="desc">Primary PM for SellerCanvas, a generative-AI commerce product (CES 2024 Best of Innovation); planned and built the systems that kept the product running</span><span class="period">Dec 2021 — Jan 2024</span></div>
+      <div class="row"><span class="org">아이즈솔</span><span class="desc">Started in AI product engineering with Vision AI</span><span class="period">2020.08 — 2021.06</span></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="no">06</span><h2>Agent Workflow</h2></div>
+    <ul class="plain">
+      <li>Uses AI agents as an <strong>engineering operating layer</strong>, not code autocomplete</li>
+      <li>Composes project rules and source-of-truth routing that humans and agents read together</li>
+      <li>Tracks product execution and releases through decision/spec/work/release gates</li>
+      <li>Built a daily briefing agent that aggregates collaboration-tool activity for blocker triage</li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="no">07</span><h2>Education &amp; Credentials</h2></div>
+    <div class="creds">
+      <div class="row"><span class="y">2016 — 2021</span><span class="t">Woosong University, Game Multimedia major</span></div>
+      <div class="row"><span class="y">2024.01</span><span class="t">CES 2024 Best of Innovation — contributed to the awarded AI product</span></div>
+      <div class="row"><span class="y">2025.12</span><span class="t">Patent registered: "Page Output Method" · KR 10-2898273</span></div>
+      <div class="row"><span class="y">2021.09</span><span class="t">ADsP · Advanced Data Analytics Semi-Professional</span></div>
+    </div>
+  </section>
+</main>
+
+<aside class="rail">
+  <a class="pdf" href="#" aria-disabled="true">↓ PDF 다운로드 (A4)</a>
+  <div class="lang" role="group" aria-label="언어">
+    <button id="langKo" class="on" type="button">KO</button><button id="langEn" type="button">EN · DRAFT</button>
+  </div>
+  <nav class="toc" aria-label="목차">
+    <h2>Contents</h2>
+    <ol>
+      <li><a href="#s1"><span class="n">01</span>요약</a></li>
+      <li><a href="#s2"><span class="n">02</span>핵심 역량</a></li>
+      <li><a href="#s3"><span class="n">03</span>기술</a></li>
+      <li><a href="#s4"><span class="n">04</span>대표 프로젝트</a></li>
+      <li><a href="#s5"><span class="n">05</span>경력</a></li>
+      <li><a href="#s6"><span class="n">06</span>일하는 방식</a></li>
+      <li><a href="#s7"><span class="n">07</span>credentials</a></li>
+    </ol>
+  </nav>
+  <p class="note">모든 성과 문장은 검증된 claim registry의 public 표현만 사용합니다. 연락처 중 전화번호는 PDF 배포본에만 포함됩니다.</p>
+</aside>
+</div>
+
+<a class="ask" href="#">ASK</a>
+
+<script>
+const ko = document.getElementById('langKo'), en = document.getElementById('langEn');
+ko.addEventListener('click', () => { document.body.dataset.lang = 'ko'; ko.classList.add('on'); en.classList.remove('on'); });
+en.addEventListener('click', () => { document.body.dataset.lang = 'en'; en.classList.add('on'); ko.classList.remove('on'); });
+</script>
+</body>
+</html>

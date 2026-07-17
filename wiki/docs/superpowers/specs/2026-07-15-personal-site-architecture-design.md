@@ -197,7 +197,7 @@ flowchart LR
 
 ## Design Baseline (2026-07-16)
 
-- 디자인 산출물은 D2 "Profile" 프로젝트가 소유한다 (작업 경계 결정). 기준 파일 3개: `index.html`(완결형 프로필 v2), `root-phase2-prototype.html`(다이어트 root + 전역 Ask 런처), `chat-page-prototype.html`(`/chat` 풀 대화, 근거 rail).
+- 디자인 **작업장은 D2** "Profile" 프로젝트(반복 수정·버전 실험), **확정본은 `app/design/`으로 승격**한다 (2026-07-18 개정 — monorepo self-contained 원칙). 승격된 기준 화면 4장: `index.html`(완결형 v2) · `root-phase2-prototype.html`(다이어트 root + 런처) · `resume-page-prototype.html`(/resume, KO/EN) · `chat-page-prototype.html`(/chat). labs 서비스 디자인은 각자 `labs/{svc}/design/` 소유.
 - root 진화 3단: 사이트 전 = 완결형 한 장 → Phase 1 = 다이어트(hero+meta 표+summary+selected proof+routes) → Phase 2 = 전역 런처 + `/chat` route 활성.
 - visitor chat UX(전역 런처, `/chat`, 답변 3층 구조)의 상세 결정은 [backlog/visitor-chat](../../../backlog/visitor-chat/README.md)이 소유한다.
 - 디자인 토큰 계약: Mono 시스템 (IBM Plex Mono + Pretendard 한글, 모노크롬 + 그린 액센트 1점 `#168a46`, `word-break: keep-all`).

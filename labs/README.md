@@ -1,6 +1,6 @@
 # labs — 실험 서비스
 
-`labs/{svc}/` 폴더 하나 = 서비스 하나 (자립: 자체 Dockerfile·스택 자유·서비스 간 import 금지) → k8s `{svc}.marinkim.xyz` 배포.
+`labs/{svc}/` 폴더 하나 = 서비스 하나 (자립: 자체 Dockerfile·스택 자유·서비스 간 import 금지, 디자인도 자기 `design/`에 소유) → k8s `{svc}.marinkim.xyz` 배포.
 
 서비스 추가 = 접점 3개 (한 커밋):
 
