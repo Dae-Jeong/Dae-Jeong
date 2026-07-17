@@ -2,6 +2,8 @@
 
 이 repo는 김대정의 profile, evidence, resume, portfolio, homepage, agent workflow, writing, JD 분석을 위한 portable source-of-truth workspace다.
 
+이 문서가 agent 규칙의 **단독 소유자**다. 도구별 진입 파일([CLAUDE.md](CLAUDE.md)·[GEMINI.md](GEMINI.md))은 이 문서를 가리키는 포인터일 뿐이며, Codex는 이 파일을 네이티브로 읽는다. 규칙 변경은 여기서만 한다.
+
 ## 시작할 때 읽는 문서
 
 1. [wiki/context/manifest.yaml](wiki/context/manifest.yaml) - layer ownership과 작업별 read/write flow
