@@ -1,0 +1,38 @@
+@import "tailwindcss";
+
+/* Mono 디자인 토큰 계약 — canonical: wiki/docs spec의 Design Baseline */
+:root {
+  --bg: #ffffff;
+  --surface: #f7f7f7;
+  --fg: #111111;
+  --fg-2: #3a3a3a;
+  --muted: #707070;
+  --border: #d9d9d9;
+  --border-soft: #eeeeee;
+  --accent: #111111;
+  --accent-on: #ffffff;
+  --success: #168a46;
+  --font-ko: "Pretendard Variable", Pretendard, sans-serif;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-fg: var(--fg);
+  --color-fg-2: var(--fg-2);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-border-soft: var(--border-soft);
+  --color-accent: var(--accent);
+  --color-accent-on: var(--accent-on);
+  --color-success: var(--success);
+  --font-mono: var(--font-plex-mono);
+  --font-sans: var(--font-ko);
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-ko), var(--font-plex-mono), sans-serif;
+  word-break: keep-all;
+}
