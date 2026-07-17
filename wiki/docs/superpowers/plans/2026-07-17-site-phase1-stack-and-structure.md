@@ -82,3 +82,4 @@ Dae-Jeong/  ← knowledge harness + 완전한 프로젝트 monorepo
 - site는 `app/fe` 밖 repo 경로를 직접 읽지 않는다 (특히 `wiki/` 직접 접근 금지) — 유입은 export 스크립트 하나 (spec 안전 경계).
 - infra는 배포 구성만 다룬다 — wiki 내부에 접근하지 않는다.
 - 폴더는 미리 만들지 않는다 — `app/fe`는 Phase 1 착수 시, `app/be`·`labs/`·`infra/`는 첫 실체가 생길 때.
+- Python env 경계: root `pyproject.toml`/`.venv`는 **repo 도구 환경**(validator·export·JD·PDF)이다. `app/be`와 각 labs 서비스는 자기 manifest·env를 소유하며 서로 독립이다 (uv는 실행 위치에서 가장 가까운 pyproject를 사용).
