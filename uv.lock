@@ -3,7 +3,7 @@ revision = 3
 requires-python = "==3.12.*"
 
 [[package]]
-name = "daejeong-profile-harness"
+name = "daejeong-repo-tools"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
