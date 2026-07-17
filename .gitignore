@@ -1,18 +1,57 @@
-# Local agent/plugin installations
+# ── OS / editor ──────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+.idea/
+*.swp
+
+# ── Local agent/plugin installations ─────────────────────────
 .agents/
 skills-lock.json
 
-# Tool runtime and render scratch
+# ── Tool runtime and render scratch ──────────────────────────
 .playwright-mcp/
 .worktrees/
 .tmp/
 tmp/
 .local/
+
+# ── Python (root tools + app/be + labs 서비스) ────────────────
 .venv/
+venv/
 __pycache__/
 *.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
 
-# Raw JD corpus is refreshed locally; derived reports are committed.
-docs/resume/jd-corpus/
+# ── Node / Next.js (app/fe + labs 서비스) ─────────────────────
+node_modules/
+.next/
+out/
+dist/
+build/
+.turbo/
+*.tsbuildinfo
+.vercel/
+next-env.d.ts
+
+# ── Secrets / env (전 층 공통 — example만 커밋 허용) ──────────
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# ── Infra (infra/ — 상태·자격증명은 로컬/원격 backend로만) ────
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+!*.example.tfvars
+crash.log
+kubeconfig
+*.kubeconfig
+
+# ── Knowledge local-only (raw corpus·지원 산출물은 로컬 갱신) ─
 wiki/products/jd/corpus/
 wiki/products/resume/tailored/
