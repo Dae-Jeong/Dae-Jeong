@@ -17,6 +17,7 @@ marinkim.xyz의 `/blog`를 git 기반 MDX로 세팅하고, AI가 초안을 쓰�
 
 - 범위 확정: `site/` scaffold + `/blog` + `/write-post` skill.
 - 오픈소스 베이스는 사용자 선택 대기 — 후보 비교는 `wiki:nextjs-blog-starters` (2026-07-15 조사, Fumadocs 1순위 추천).
+- 구조 격리 (2026-07-17): 베이스 미정이 구현을 막지 않도록 `site/lib/content.ts` 어댑터 한 곳으로 격리 — 확정 시 어댑터만 교체 ([Phase 1 stack plan](../../docs/superpowers/plans/2026-07-17-site-phase1-stack-and-structure.md)). 스타일링은 Tailwind v4 확정.
 - AI 글쓰기 흐름: 주제 지시 → agent가 초안 MDX 생성(frontmatter + `status: draft`) → public-safety·claim 상한 체크 → git diff 검수 → `status: published` 커밋 = 발행. 업로드 UI 없음.
 
 ## 연결
