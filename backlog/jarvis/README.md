@@ -18,7 +18,7 @@ tags: [backlog, jarvis, labs]
 - Jarvis mode: 아이언맨 방식 wake — 손뼉 두 번(double clap) 감지로 assistant 기상 → STT 음성 대화.
 - clap detection·wake word·STT 오픈소스 조사는 착수 시 (후보군 多).
 - Evidence 연결: realtime STT/LLM 경험(SAY claim)의 개인 단독 production case.
-- 배치 확정 (2026-07-17): **site 내장 기능** — labs 외부 서비스가 아니라 사이트 안에 들어온다. OSS 조사의 브라우저 우선 구성(react-force-graph + AI SDK RAG + Web Speech + kokoro-js, 신규 서버 0개)이 그대로 유효. 서버형 STT/TTS 확장이 필요해지면 그때 별도 검토.
+- 배치 확정 (2026-07-17, 당일 2차 개정): **UI는 site 내장 + 전용 backend는 `be/`(FastAPI, Render free 배포)**. backend 분리 근거 — wiki 인덱싱 파이프라인·RAG·대화 메모리는 serverless 부적합(장시간 작업·60초 타임아웃), FastAPI backend 자체가 주력 스택 공개 증거. 제약: Render cold start 30~60초(warm ping UX), 상태는 전부 Supabase pgvector(Render Postgres 30일 만료 — 사용 금지, `wiki:pricing/render`). 브라우저 측 구성(react-force-graph·Web Speech·kokoro-js)은 OSS 조사 그대로 유효.
 
 ## 연결
 

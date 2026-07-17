@@ -16,6 +16,7 @@ tags: [site, homepage, resume, portfolio, blog, architecture]
 - 2026-07-15 3차 개정: `/labs` 디렉토리 신설 — hub를 `/blog`(글)와 `/labs`(기능·서비스 관문)로 분리, 서비스 상세는 `/labs/{svc}`.
 - 2026-07-17 4차 개정: 내장/외부 경계 확정 — **site 내장 = core 페이지 + visitor chat + jarvis** (Vercel serverless로 감당), **labs 서비스 = 전부 외부 repo + subdomain** (site는 registry 라우팅만). k8s는 외부 labs 서비스 전용.
 - 2026-07-17 5차 개정: 이 repo를 **프로젝트 repo**로 확장 — harness + `site/`(Next 한방: FE+serverless BE) + `infra/`(도메인·Vercel 구성, k8s 착수 시 클러스터·외부 서비스 manifest까지). **별도 platform repo 결정을 대체** — 외부 labs 서비스는 코드만 각자 repo, manifest는 `infra/`가 소유 (GitOps config-repo 패턴).
+- 2026-07-17 6차 개정: **jarvis backend 분리** — jarvis는 UI(site 내장)와 전용 backend(`be/`, FastAPI)로 구성하고 backend는 **Render free tier로 배포** (wiki 인덱싱·RAG·대화 메모리 등 serverless 부적합 워크로드). visitor chat은 site serverless 유지. 제약 반영: Render cold start 30~60초(웜업 UX 필요), 상태는 전부 Supabase pgvector(Render Postgres 사용 금지, `wiki:pricing/render`).
 - [Visitor Profile Chat 설계 (2026-07-04)](2026-07-04-visitor-profile-chat-homepage-prototype-design.md)의 스택 결정을 승계하고, repo 배치·정보 구조·확장 계약을 확정한다.
 
 ## Decisions

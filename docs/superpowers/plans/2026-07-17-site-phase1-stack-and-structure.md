@@ -29,7 +29,7 @@ tags: [site, stack, structure, phase1, plan]
 ## Phase 2 스택 (착수 시 확정)
 
 - Chat (site 내장, serverless): Vercel AI SDK + assistant-ui (spec 확정) · LLM provider/모델은 착수 시 확정 (Claude 우선 검토)
-- Jarvis (site 내장, 2026-07-17 확정): AI SDK RAG 패턴 + pgvector (Supabase `jarvis` schema) · react-force-graph · Web Speech API/kokoro-js (`backlog/jarvis/oss-research.md`) — 신규 서버 0개 구성
+- Jarvis (6차 개정): UI는 site 내장(react-force-graph·Web Speech API/kokoro-js), **backend는 `be/` FastAPI — Render free 배포** (RAG·wiki 인덱싱·대화 메모리). 벡터·상태는 Supabase pgvector `jarvis` schema (Render Postgres 금지). cold start 30~60초 → 페이지 진입 warm ping 설계.
 - 인프라 (외부 labs 서비스 전용): k8s (위치 미정, Oracle free 후보) + ingress·cert-manager, platform repo 생성 — site 내장 기능은 k8s를 쓰지 않는다
 
 ## site/ 프로젝트 구성
@@ -66,7 +66,8 @@ site/
 ```text
 Dae-Jeong/  ← knowledge harness + 프로젝트 repo
 ├── profile/ evidence/ products/ backlog/ rules/ …   # harness (기존)
-├── site/    # FE + serverless BE 한방 (Next 앱) — Phase 1 생성
+├── site/    # FE + 가벼운 serverless (Next 앱, visitor chat 프록시 포함) — Phase 1 생성, Vercel 배포
+├── be/      # jarvis backend (FastAPI — RAG·wiki 인덱싱·대화 메모리) — jarvis 착수 시 생성, Render 배포
 └── infra/   # 프로젝트 인프라 — 착수 시 생성
     ├── Phase 1: 도메인·DNS·Vercel 구성 (필요 시 Terraform)
     └── k8s 착수 시: 클러스터·ingress·외부 labs 서비스 manifest (GitOps config-repo)
