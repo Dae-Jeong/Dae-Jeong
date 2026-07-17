@@ -11,7 +11,7 @@ description: Use when a user asks to create or adapt a resume for a specific com
 
 1. [source contract](references/source-contract.md)를 읽는다.
 2. [content rules adapter](references/content-rules.md)가 가리키는 canonical resume contract를 읽는다.
-3. `uv sync`로 선언된 runtime을 준비한다.
+3. `uv sync --project tools`로 선언된 runtime을 준비한다.
 
 ## Workflow
 
@@ -59,7 +59,7 @@ wiki/products/resume/tailored/{application-id}/
 PDF 변환:
 
 ```bash
-uv run python skills/tailor-resume/scripts/html_to_pdf.py \
+uv run --project tools python skills/tailor-resume/scripts/html_to_pdf.py \
   wiki/products/resume/tailored/{application-id}/resume.html
 ```
 
@@ -74,7 +74,7 @@ uv run python skills/tailor-resume/scripts/html_to_pdf.py \
 
 ### 7. Verify Before Delivery
 
-1. `uv run python scripts/validate_workspace.py`
+1. `uv run --project tools python tools/validate_workspace.py`
 2. JD 요구별 match 또는 gap이 모두 기록됐는지 확인
 3. 모든 bullet이 claim ID와 evidence로 역추적되는지 확인
 4. allowed copy와 public-safety 상한을 넘지 않는지 확인

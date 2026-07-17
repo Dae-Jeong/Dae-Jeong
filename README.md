@@ -49,15 +49,15 @@ external sources / Git / user confirmation
 - `app/fe` → Vercel (marinkim.xyz) · `app/be` → Render (jarvis backend)
 - `labs/{svc}` → k8s (실험 서비스) · `infra/` → 배포 관제
 
-도구: `skills/` (실행 adapter) · `scripts/` (validator·export·JD 도구)
+도구: `skills/` (실행 adapter) · `tools/` (validator·export·JD 도구 — 자체 Python env 소유)
 
 ## Portable 사용
 
 ```bash
-uv sync
-uv run playwright install chromium
-uv run python scripts/validate_workspace.py
-uv run python scripts/verify_portable_clone.py
+uv sync --project tools
+uv run --project tools playwright install chromium
+uv run --project tools python tools/validate_workspace.py
+uv run --project tools python tools/verify_portable_clone.py
 ```
 
-외부 source repo를 다시 검증해야 할 때만 [config/source-roots.example.yaml](config/source-roots.example.yaml)을 `.local/source-roots.yaml`로 복사하고 현재 PC의 경로를 설정한다.
+외부 source repo를 다시 검증해야 할 때만 [tools/config/source-roots.example.yaml](tools/config/source-roots.example.yaml)을 `.local/source-roots.yaml`로 복사하고 현재 PC의 경로를 설정한다.

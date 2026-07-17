@@ -84,15 +84,17 @@ def main() -> int:
     if errors:
         raise SystemExit("\n".join(errors))
 
-    run("uv", "sync", "--locked")
-    run("uv", "run", "python", "scripts/validate_workspace.py")
-    run("uv", "run", "playwright", "install", "chromium")
+    run("uv", "sync", "--locked", "--project", "tools")
+    run("uv", "run", "--project", "tools", "python", "tools/validate_workspace.py")
+    run("uv", "run", "--project", "tools", "playwright", "install", "chromium")
 
     with tempfile.TemporaryDirectory(prefix="daejeong-portable-") as tmp:
         output = Path(tmp) / "resume-v1.pdf"
         run(
             "uv",
             "run",
+            "--project",
+            "tools",
             "python",
             "skills/tailor-resume/scripts/html_to_pdf.py",
             "wiki/products/resume/master/v1/resume.html",

@@ -29,7 +29,7 @@
 | `skills/tailor-resume/assets/resume-template.html` | 이력서 HTML 템플릿 — `[[SLOT:...]]` 채우기, FIXED 영역 유지 |
 | `skills/tailor-resume/assets/portfolio-template.html` | 포트폴리오 HTML 템플릿 — 케이스 조립용 |
 | `wiki/products/resume/master/v0/` | 구조·시각 baseline만. content source로 사용 금지 |
-| `skills/tailor-resume/scripts/html_to_pdf.py` | HTML -> A4 PDF 변환 (`uv run python`) |
+| `skills/tailor-resume/scripts/html_to_pdf.py` | HTML -> A4 PDF 변환 (`uv run --project tools python`) |
 
 ## 소스 갱신 규칙
 

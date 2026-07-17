@@ -53,7 +53,7 @@ tool-agnostic skill의 canonical 위치는 `skills/`다. tool-specific 폴더는
 ## 검증
 
 ```bash
-uv run python scripts/validate_workspace.py
+uv run --project tools python tools/validate_workspace.py
 ```
 
 PDF나 HTML을 변경하면 renderer와 시각 검증까지 수행한다.

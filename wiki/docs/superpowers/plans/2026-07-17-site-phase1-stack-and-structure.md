@@ -71,7 +71,8 @@ Dae-Jeong/  ← knowledge harness + 완전한 프로젝트 monorepo
 │   └── be/  # jarvis backend (FastAPI — RAG·wiki 인덱싱·메모리) — jarvis 착수 시 생성, Render 배포
 ├── labs/    # 실험 서비스 — labs/{svc}/ 자립 폴더 (스택 자유·각자 Dockerfile) — 첫 서비스 착수 시 생성, k8s 배포
 ├── infra/   # 배포 관제 — 착수 시 생성 (도메인·Vercel 구성, k8s 클러스터·manifest)
-└── scripts/ skills/ config/   # root 도구 (validator·export·JD·skill)
+├── tools/   # repo 도구 — 자체 pyproject·.venv 소유 (validator·export·JD·PDF, config 포함)
+└── skills/  # agent skill (tools env를 빌려 실행)
 
 배포 경계 = CI 경로 필터: Vercel은 app/fe 변경 시, Render는 app/be, k8s 이미지 빌드는 labs/{svc}/ 변경 시.
 ```
@@ -82,4 +83,4 @@ Dae-Jeong/  ← knowledge harness + 완전한 프로젝트 monorepo
 - site는 `app/fe` 밖 repo 경로를 직접 읽지 않는다 (특히 `wiki/` 직접 접근 금지) — 유입은 export 스크립트 하나 (spec 안전 경계).
 - infra는 배포 구성만 다룬다 — wiki 내부에 접근하지 않는다.
 - 폴더는 미리 만들지 않는다 — `app/fe`는 Phase 1 착수 시, `app/be`·`labs/`·`infra/`는 첫 실체가 생길 때.
-- Python env 경계: root `pyproject.toml`/`.venv`는 **repo 도구 환경**(validator·export·JD·PDF)이다. `app/be`와 각 labs 서비스는 자기 manifest·env를 소유하며 서로 독립이다 (uv는 실행 위치에서 가장 가까운 pyproject를 사용).
+- Python env 경계: `tools/`가 **repo 도구 환경**(pyproject·uv.lock·.venv — validator·export·JD·PDF)을 소유한다. `app/be`와 각 labs 서비스도 자기 manifest·env를 소유 — "폴더 = 자기 env 소유" 원칙이 도구에도 동일 적용 (root에는 언어 도구 체인을 두지 않는다). 실행은 `uv run --project tools …`.
