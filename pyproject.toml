@@ -1,9 +1,9 @@
-# Repo-root tooling env only (validator, export, JD tools, PDF render).
-# App envs are independent: app/be and labs/{svc} own their manifests.
+# repo root의 도구 환경 전용 (validator·export·JD 도구·PDF 렌더).
+# 앱 env는 독립 — app/be와 labs/{svc}는 각자 manifest·env를 소유한다.
 [project]
 name = "daejeong-repo-tools"
 version = "0.1.0"
-description = "Monorepo root tooling for the Dae-Jeong knowledge harness and site (validator, export, JD, PDF render)"
+description = "Dae-Jeong monorepo의 root 도구 환경 (validator, export, JD, PDF 렌더)"
 requires-python = ">=3.12,<3.13"
 dependencies = [
   "playwright==1.61.0",
