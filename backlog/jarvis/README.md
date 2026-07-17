@@ -17,7 +17,8 @@ tags: [backlog, jarvis, labs]
 
 - Jarvis mode: 아이언맨 방식 wake — 손뼉 두 번(double clap) 감지로 assistant 기상 → STT 음성 대화.
 - clap detection·wake word·STT 오픈소스 조사는 착수 시 (후보군 多).
-- Evidence 연결: realtime STT/LLM 경험(SAY claim)의 개인 단독 production case가 되고, k8s 1호 워크로드 후보.
+- Evidence 연결: realtime STT/LLM 경험(SAY claim)의 개인 단독 production case.
+- 배치 확정 (2026-07-17): **site 내장 기능** — labs 외부 서비스가 아니라 사이트 안에 들어온다. OSS 조사의 브라우저 우선 구성(react-force-graph + AI SDK RAG + Web Speech + kokoro-js, 신규 서버 0개)이 그대로 유효. 서버형 STT/TTS 확장이 필요해지면 그때 별도 검토.
 
 ## 연결
 

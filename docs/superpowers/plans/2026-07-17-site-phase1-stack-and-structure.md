@@ -28,10 +28,9 @@ tags: [site, stack, structure, phase1, plan]
 
 ## Phase 2 스택 (착수 시 확정)
 
-- Chat: Vercel AI SDK + assistant-ui (spec 확정) · LLM provider/모델은 착수 시 확정 (Claude 우선 검토)
-- RAG: AI SDK RAG 패턴 + pgvector (Supabase `jarvis` schema)
-- Graph 뷰: react-force-graph · 음성: Web Speech API → 서버형 whisper 계열 / kokoro-js (`backlog/jarvis/oss-research.md`)
-- 인프라: k8s (위치 미정, Oracle free 후보) + ingress·cert-manager, platform repo 생성
+- Chat (site 내장, serverless): Vercel AI SDK + assistant-ui (spec 확정) · LLM provider/모델은 착수 시 확정 (Claude 우선 검토)
+- Jarvis (site 내장, 2026-07-17 확정): AI SDK RAG 패턴 + pgvector (Supabase `jarvis` schema) · react-force-graph · Web Speech API/kokoro-js (`backlog/jarvis/oss-research.md`) — 신규 서버 0개 구성
+- 인프라 (외부 labs 서비스 전용): k8s (위치 미정, Oracle free 후보) + ingress·cert-manager, platform repo 생성 — site 내장 기능은 k8s를 쓰지 않는다
 
 ## site/ 프로젝트 구성
 

@@ -14,6 +14,7 @@ tags: [site, homepage, resume, portfolio, blog, architecture]
 - 2026-07-15 당일 개정: 도메인 `marinkim.xyz` 확정, 기능 runtime을 k8s로 확장(클러스터 위치 미정), Supabase 역할을 기능 데이터 층으로 한정, 핵심 경로 불변 조건 추가.
 - 2026-07-15 2차 개정: 서비스 프레임워크 확정 — services registry + service contract, `{svc}.marinkim.xyz` 평면 subdomain, 서비스당 repo + platform repo 배치.
 - 2026-07-15 3차 개정: `/labs` 디렉토리 신설 — hub를 `/blog`(글)와 `/labs`(기능·서비스 관문)로 분리, 서비스 상세는 `/labs/{svc}`.
+- 2026-07-17 4차 개정: 내장/외부 경계 확정 — **site 내장 = core 페이지 + visitor chat + jarvis** (Vercel serverless로 감당), **labs 서비스 = 전부 외부 repo + subdomain** (site는 registry 라우팅만). k8s는 외부 labs 서비스 전용.
 - [Visitor Profile Chat 설계 (2026-07-04)](2026-07-04-visitor-profile-chat-homepage-prototype-design.md)의 스택 결정을 승계하고, repo 배치·정보 구조·확장 계약을 확정한다.
 
 ## Decisions
@@ -118,6 +119,7 @@ site/
 
 - `/blog`는 `post`(MDX 글) 목록만 다룬다.
 - `/labs`는 registry 기반 관문이다. entry는 두 종류: `feature`(site 내장 경량 기능), `service`(독립 subdomain 서비스 — 아래 Service Framework를 따름). 상세 페이지는 `/labs/{id}`.
+- 내장/외부 경계 (2026-07-17 확정): **visitor chat과 jarvis는 site 내장**이다 (라우트 상세는 착수 시 확정 — `/chat`, `/jarvis` 또는 labs feature). **`/labs`의 `service`는 전부 외부 repo에서 개발·배포**하며 site는 카드·상세·링크 라우팅만 담당한다.
 - 내장 기능 하나 = `site/app/labs/{feature}/` 자립 폴더. route·UI·server 코드를 동봉하고 다른 기능을 import하지 않는다.
 - 목록은 entry metadata(title, kind, date, status)만 읽는다.
 - 공용화는 두 번째 사용처가 생길 때만 `site/lib/`로 승격한다.
