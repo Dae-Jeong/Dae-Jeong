@@ -82,5 +82,5 @@ Dae-Jeong/  ← knowledge harness + 완전한 프로젝트 monorepo
 - 미정 결정(blog 베이스·k8s 위치·LLM)은 전부 격리돼 있어 Phase 1 착수를 막지 않는다.
 - site는 `app/fe` 밖 repo 경로를 직접 읽지 않는다 (특히 `wiki/` 직접 접근 금지) — 유입은 export 스크립트 하나 (spec 안전 경계).
 - infra는 배포 구성만 다룬다 — wiki 내부에 접근하지 않는다.
-- 폴더는 미리 만들지 않는다 — `app/fe`는 Phase 1 착수 시, `app/be`·`labs/`·`infra/`는 첫 실체가 생길 때.
+- 폴더 골격은 역할·경계를 선언하는 README와 함께 미리 둔다 (2026-07-18 개정 — 구조 가시성 우선). 코드·설정 실체는 착수 시 생성: `app/fe`는 Phase 1, `app/be`·`labs/{svc}`·`infra/` 구성은 각 착수 시점.
 - Python env 경계: `tools/`가 **repo 도구 환경**(pyproject·uv.lock·.venv — validator·export·JD·PDF)을 소유한다. `app/be`와 각 labs 서비스도 자기 manifest·env를 소유 — "폴더 = 자기 env 소유" 원칙이 도구에도 동일 적용 (root에는 언어 도구 체인을 두지 않는다). 실행은 `uv run --project tools …`.
