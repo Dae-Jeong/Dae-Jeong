@@ -16,7 +16,8 @@ tags: [current-state, migration, resume]
 - 기존 A4 이력서 초안은 [v0 baseline](../products/resume/master/v0/README.md)으로 보존하고, [v1](../products/resume/master/v1/README.md)을 active general master로 사용한다.
 - primary brand는 [profile identity](../profile/identity.md)가 소유하며 `Backend Engineer` / `AI Product Systems` / `Agent-readable Engineering Workflow` 순서다.
 - Daejeong Design은 별도 repo에서 도구 개발을 진행하며 이 repo는 profile/evidence/resume content source를 소유한다.
-- 개인 사이트(이력서·포트폴리오·블로그)는 이 repo `site/`에 Next.js 앱으로 둔다 — [2026-07-15 설계 확정](../docs/superpowers/specs/2026-07-15-personal-site-architecture-design.md), 구현 착수는 보류.
+- repo는 완전한 프로젝트 monorepo다 (2026-07-18, spec 8차 개정): `wiki/`(지식) · `app/`(fe→Vercel·be→Render·design 승격 스냅샷) · `labs/`(k8s 서비스) · `infra/` · `tools/`(자체 env) — [설계 spec](../docs/superpowers/specs/2026-07-15-personal-site-architecture-design.md).
+- **Phase 1 착수됨** (2026-07-18): `app/fe` scaffold 완료 — Next 16.2.10 + Tailwind v4 + Mono 토큰 + 폰트, hello world 빌드·렌더 검증 완료. 화면 이식 전 상태.
 
 ## Migration Status
 
@@ -40,6 +41,8 @@ tags: [current-state, migration, resume]
 
 ## Next
 
-1. site Phase 1 착수: scaffold, `/resume`(+PDF)·`/portfolio`·`/blog` hub, Vercel·도메인 연결로 공개 URL 확정
-2. 실제 JD 1건으로 `tailor-resume` 지원 패키지 생성
-3. 공개 URL 확정 후 homepage consumer에 v1 selected proof·resume link·portfolio deep link 반영
+1. Vercel 연결 (admin 계정 작업): repo 연결 → Root Directory `app/fe` → marinkim.xyz 도메인 — hello world 배포로 파이프라인 검증
+2. 화면 이식: `app/design/` 확정 4장 → 컴포넌트 (root → /resume → /portfolio → /labs·/blog)
+3. export 스크립트 (tools): wiki → `app/fe/content` + resume.pdf 파생
+4. 실제 JD 1건으로 `tailor-resume` 지원 패키지 생성
+5. 공개 URL 확정 후 homepage 카피에 resume link·portfolio deep link 반영
