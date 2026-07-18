@@ -200,10 +200,11 @@ flowchart LR
 
 ## Design Baseline (2026-07-16)
 
-- 디자인 **작업장은 D2** "Profile" 프로젝트(반복 수정·버전 실험), **확정본은 `app/design/`으로 승격**한다 (2026-07-18 개정 — monorepo self-contained 원칙). 승격된 기준 화면 4장: `index.html`(완결형 v2) · `root-phase2-prototype.html`(다이어트 root + 런처) · `resume-page-prototype.html`(/resume, KO/EN) · `chat-page-prototype.html`(/chat). labs 서비스 디자인은 각자 `labs/{svc}/design/` 소유.
-- root 진화 3단: 사이트 전 = 완결형 한 장 → Phase 1 = 다이어트(hero+meta 표+summary+selected proof+routes) → Phase 2 = 전역 런처 + `/chat` route 활성.
+- 디자인 **작업장은 D2** "Profile" 프로젝트(반복 수정·버전 실험), **확정본은 `app/design/`으로 승격**한다 (2026-07-18 개정 — monorepo self-contained 원칙). 승격 확정본 목록·구현 매핑은 [app/design/README.md](../../../../app/design/README.md)가 소유한다 (기준 시트 2장 + 화면 9장, 2026-07-18 기준 전 라우트 구현 완료). labs 서비스 디자인은 각자 `labs/{svc}/design/` 소유.
+- root는 다이어트형 관문으로 확정 (v3, 2026-07-18 — hero+메타카드·Summary·Proof 축약·Explore). Phase 2에서 전역 런처·`/chat` 입력이 활성화된다.
 - visitor chat UX(전역 런처, `/chat`, 답변 3층 구조)의 상세 결정은 [backlog/visitor-chat](../../../backlog/visitor-chat/README.md)이 소유한다.
 - 디자인 토큰 계약: Mono 시스템 (IBM Plex Mono + Pretendard 한글, 모노크롬 + 그린 액센트 1점 `#168a46`, `word-break: keep-all`).
+- **Type scale 계약 (2026-07-18, 9차 라운드 개정)**: 본문 base **16px** 앵커 (xs 12 · sm 13 · base 16 · lg 18 · xl 22 · 헤딩 28/40/56 유지 · credentials 전용 14), leading 1.55, **최소 텍스트 12px — font-size 10~11px 금지**. 근거: 40+ 채용 담당자 독자 + 업계 실측(개발자 문서 전원 16, 한국 서비스 16~17, GOV.UK 14 폐기 — 로컬 위키 typography 항목). canonical은 `app/design/component-sheet.html`의 :root, 구현은 `app/fe/app/globals.css` @theme.
 
 ## Feature Backlog
 
