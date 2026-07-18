@@ -19,7 +19,7 @@ tags: [site, homepage, resume, portfolio, blog, architecture]
 - 2026-07-17 6차 개정: **jarvis backend 분리** — jarvis는 UI(site 내장)와 전용 backend(`be/`, FastAPI)로 구성하고 backend는 **Render free tier로 배포** (wiki 인덱싱·RAG·대화 메모리 등 serverless 부적합 워크로드). visitor chat은 site serverless 유지. 제약 반영: Render cold start 30~60초(웜업 UX 필요), 상태는 전부 Supabase pgvector(Render Postgres 사용 금지, `wiki:pricing/render`).
 - 2026-07-17 7차 개정: **완전한 monorepo** — labs 서비스도 이 repo `labs/{svc}/` 자립 폴더로 통합 (4차 개정의 "외부 repo" 결정 대체). 독립 생명주기는 폴더 자립성(각자 Dockerfile·스택 자유)으로 달성. service contract의 "repo 하나" → "`labs/{svc}/` 폴더 하나". 배포 경계는 CI 경로 필터 (Vercel=site/, Render=be/, k8s=labs/*). 자랑거리가 된 서비스의 public repo 추출 옵션 유지.
 - 2026-07-17 8차 개정: **탑레벨 재편** — 지식 층 전체를 `wiki/`로 그룹핑(profile·evidence·products·backlog·rules·docs·context·archive), 프로필 제품을 `app/`으로 그룹핑(`app/fe`=구 site → Vercel, `app/be`=jarvis backend → Render). 탑레벨 = `wiki/`(지식) · `app/`(제품) · `labs/`(실험) · `infra/`(관제) + root 도구(scripts·skills). validator·skill·script 경로 동기화 완료.
-- 2026-07-18 9차 개정: **`/design` 라우트 등재** — 디자인 시스템 living specimen(스토리북 겸, 공개 유지). **visitor chat은 `/chat` 1급 라우트로 확정** (4차 개정의 "라우트 상세 착수 시 확정" 해소 — jarvis 라우트만 착수 시 확정으로 유지).
+- 2026-07-18 9차 개정: **`/design` 라우트 등재** — 디자인 시스템 living specimen(스토리북 겸, 공개 유지). visitor chat·jarvis 라우트는 기존대로 착수 시 확정.
 - [Visitor Profile Chat 설계 (2026-07-04)](2026-07-04-visitor-profile-chat-homepage-prototype-design.md)의 스택 결정을 승계하고, repo 배치·정보 구조·확장 계약을 확정한다.
 
 ## Decisions
@@ -114,7 +114,6 @@ app/fe/
 │   │   ├── page.tsx            # 기능·서비스 관문 (registry 렌더)
 │   │   ├── [svc]/              # 상세 페이지 → {svc}.marinkim.xyz "열기"
 │   │   └── {feature}/          # site 내장 경량 기능의 자립 폴더
-│   ├── chat/                   # Phase 2 — visitor chat 풀 대화 (9차: 1급 라우트 확정)
 │   ├── design/                 # 디자인 시스템 living specimen — 스토리북 겸 · 공개 (9차)
 │   └── api/                    # Phase 2 chat 등 발생 시
 ├── content/                    # resume/portfolio는 파생 전용, blog는 네이티브
@@ -126,7 +125,7 @@ app/fe/
 
 - `/blog`는 `post`(MDX 글) 목록만 다룬다.
 - `/labs`는 registry 기반 관문이다. entry는 두 종류: `feature`(site 내장 경량 기능), `service`(독립 subdomain 서비스 — 아래 Service Framework를 따름). 상세 페이지는 `/labs/{id}`.
-- 내장/외부 경계 (2026-07-17, 7·8차 정합): **visitor chat(serverless)과 jarvis(UI 내장 + `app/be` backend)는 프로필 제품 소속**이다 (visitor chat은 `/chat` 1급 라우트로 확정 — 9차; jarvis 라우트는 착수 시 확정). **`/labs`의 `service`는 `labs/{svc}/` 폴더에서 개발·k8s 배포**하며 site는 카드·상세·링크 라우팅만 담당한다.
+- 내장/외부 경계 (2026-07-17, 7·8차 정합): **visitor chat(serverless)과 jarvis(UI 내장 + `app/be` backend)는 프로필 제품 소속**이다 (라우트 상세는 착수 시 확정 — `/chat`, `/jarvis` 또는 labs feature). **`/labs`의 `service`는 `labs/{svc}/` 폴더에서 개발·k8s 배포**하며 site는 카드·상세·링크 라우팅만 담당한다.
 - 내장 기능 하나 = `app/fe/app/labs/{feature}/` 자립 폴더. route·UI·server 코드를 동봉하고 다른 기능을 import하지 않는다.
 - 목록은 entry metadata(title, kind, date, status)만 읽는다.
 - 공용화는 두 번째 사용처가 생길 때만 `app/fe/lib/`로 승격한다.
