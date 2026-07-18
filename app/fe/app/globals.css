@@ -131,6 +131,20 @@ body {
   transform: none;
 }
 
+/* Toast 자동 소멸 진행 바 — duration 은 ui/toast.tsx AUTO_DISMISS_MS 와 동기 */
+@keyframes toast-bar {
+  from {
+    transform: scaleX(1);
+  }
+  to {
+    transform: scaleX(0);
+  }
+}
+.toast-bar {
+  transform-origin: left;
+  animation: toast-bar 4000ms linear both;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

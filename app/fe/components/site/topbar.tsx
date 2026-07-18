@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Container } from "./container";
+import { MobileNav } from "./mobile-nav";
 import { Wordmark } from "./wordmark";
 
 const NAV: { label: string; href: string; disabled?: boolean }[] = [
@@ -38,7 +39,10 @@ export function TopBar(props: TopBarProps) {
         className="flex h-14 items-center justify-between"
       >
         <Wordmark />
-        <nav aria-label="주요 메뉴" className="hidden items-center gap-6 sm:flex">
+        <nav
+          aria-label="주요 메뉴"
+          className="flex items-center gap-6 max-[720px]:hidden"
+        >
           {NAV.map((l) => (
             <a
               key={l.label}
@@ -50,9 +54,12 @@ export function TopBar(props: TopBarProps) {
             </a>
           ))}
         </nav>
-        <Button href="#" disabled title="Resume PDF (준비 중)">
-          ↓ Resume PDF
-        </Button>
+        <div className="flex items-center gap-3">
+          <Button href="#" disabled title="Resume PDF (준비 중)">
+            ↓ Resume PDF
+          </Button>
+          <MobileNav />
+        </div>
       </Container>
     </header>
   );
