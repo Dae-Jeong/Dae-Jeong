@@ -41,7 +41,7 @@ tags: [current-state, migration, resume]
 
 ## Next
 
-1. 화면 이식: `app/design/` 확정 4장 → 컴포넌트 (root → /resume → /portfolio → /labs·/blog)
+1. 화면 이식: `app/design/` 확정 4장 + `component-sheet.html`(2026-07-18, D2 협업 산출 — 컴포넌트 9종, D1·D3 확정 / D2 상태정의 보류) → 컴포넌트 (root → /resume → /portfolio → /labs·/blog)
 2. export 스크립트 (tools): wiki → `app/fe/content` + resume.pdf 파생
 3. 실제 JD 1건으로 `tailor-resume` 지원 패키지 생성
 4. **인프라 세팅은 맨 마지막** (2026-07-18 결정): Vercel 연결 (repo → Root Directory `app/fe`) + marinkim.xyz 도메인 — 로컬에서 완성 후 한 번에 공개

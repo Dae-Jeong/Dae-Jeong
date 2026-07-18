@@ -1,0 +1,592 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Component Sheet — marinkim.xyz · Mono 디자인 시스템</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<style>
+/* ── Mono design system tokens (verbatim contract — index.html 기준) ── */
+:root {
+  --bg: #ffffff;
+  --surface: #f7f7f7;
+  --surface-warm: #eeeeee;
+  --fg: #111111;
+  --fg-2: #3a3a3a;
+  --muted: #707070;
+  --meta: #111111;
+  --border: #d9d9d9;
+  --border-soft: #eeeeee;
+  --accent: #111111;
+  --accent-on: #ffffff;
+  --accent-hover: color-mix(in oklab, var(--accent), black 8%);
+  --accent-active: color-mix(in oklab, var(--accent), black 14%);
+  --success: #168a46;
+  --warn: #b7791f;
+  --danger: #c53030;
+  --font-display: "IBM Plex Mono", ui-monospace, monospace;
+  --font-body: "IBM Plex Mono", ui-monospace, monospace;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --text-xs: 11px;
+  --text-sm: 12px;
+  --text-base: 14px;
+  --text-lg: 16px;
+  --text-xl: 20px;
+  --text-2xl: 28px;
+  --text-3xl: 40px;
+  --text-4xl: 56px;
+  --leading-body: 1.45;
+  --leading-tight: 1.06;
+  --tracking-display: -0.025em;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --section-y-desktop: 80px;
+  --section-y-tablet: 60px;
+  --section-y-phone: 42px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-pill: 9999px;
+  --elev-flat: none;
+  --elev-ring: 0 0 0 1px var(--border);
+  --elev-raised: 0 16px 40px rgba(0, 0, 0, 0.10);
+  --focus-ring: 0 0 0 3px rgba(17, 17, 17, 0.18);
+  --motion-fast: 100ms;
+  --motion-base: 180ms;
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --container-max: 1280px;
+  --container-gutter-desktop: 36px;
+  --container-gutter-tablet: 24px;
+  --container-gutter-phone: 16px;
+  /* 한글 본문: Pretendard, 라틴/숫자: IBM Plex Mono */
+  --font-ko: "Pretendard Variable", Pretendard, "IBM Plex Mono", ui-monospace, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--surface);
+  color: var(--fg);
+  font-family: var(--font-ko);
+  font-size: var(--text-base);
+  line-height: var(--leading-body);
+  word-break: keep-all;
+  -webkit-font-smoothing: antialiased;
+}
+.mono { font-family: var(--font-mono); font-feature-settings: "tnum" 1; }
+a { color: inherit; text-decoration: none; }
+
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 var(--container-gutter-desktop); }
+
+/* ── Sheet header ─────────────────────────────────────────────────── */
+.sheet-head {
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  padding: var(--space-8) 0 var(--space-6);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+.sheet-head__brand {
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  font-family: var(--font-mono); font-size: var(--text-sm); font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.sheet-head__brand::before { content: ""; width: 9px; height: 9px; background: var(--fg); }
+.sheet-head h1 {
+  margin: var(--space-4) 0 6px;
+  font-family: var(--font-display); font-size: var(--text-2xl);
+  font-weight: 600; letter-spacing: -0.02em;
+}
+.sheet-head__sub { margin: 0; color: var(--fg-2); font-size: var(--text-base); max-width: 60ch; }
+.sheet-head__meta {
+  display: flex; flex-wrap: wrap; gap: var(--space-4); margin-top: var(--space-5);
+  font-family: var(--font-mono); font-size: var(--text-xs); color: var(--muted);
+  letter-spacing: 0.04em;
+}
+.sheet-head__meta b { color: var(--fg); font-weight: 600; }
+
+/* ── Decision panel (디자이너 판단 요청 3건) ──────────────────────── */
+.decisions { background: var(--bg); border: 1px solid var(--fg); margin: var(--space-8) 0; }
+.decisions__head {
+  background: var(--fg); color: var(--accent-on);
+  font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.1em;
+  text-transform: uppercase; padding: 10px var(--space-5);
+  display: flex; align-items: center; gap: var(--space-2);
+}
+.decisions__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border-soft); }
+.decision { background: var(--bg); padding: var(--space-5); display: grid; gap: var(--space-2); align-content: start; }
+.decision__n { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--muted); letter-spacing: 0.06em; }
+.decision h3 { margin: 0; font-family: var(--font-mono); font-size: var(--text-sm); font-weight: 600; }
+.decision p { margin: 0; font-size: var(--text-xs); color: var(--fg-2); line-height: 1.55; }
+.decision .opt { font-family: var(--font-mono); font-size: 10px; color: var(--muted); border-top: 1px solid var(--border-soft); padding-top: 8px; margin-top: 2px; }
+.decision__status {
+  justify-self: start; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.06em;
+  text-transform: uppercase; padding: 2px 8px; margin-bottom: 2px;
+}
+.decision__status--fixed { background: var(--accent); color: var(--accent-on); }
+.decision__status--hold { border: 1px solid var(--warn); color: var(--warn); }
+
+/* ── Component block ──────────────────────────────────────────────── */
+.comp { border-top: 1px solid var(--border); padding: var(--section-y-tablet) 0 var(--space-8); }
+.comp__head { display: flex; align-items: baseline; gap: var(--space-3); margin-bottom: var(--space-6); }
+.comp__no {
+  font-family: var(--font-mono); font-size: var(--text-sm); color: var(--accent-on);
+  background: var(--accent); padding: 2px 8px; letter-spacing: 0.04em;
+}
+.comp__head h2 { margin: 0; font-family: var(--font-display); font-size: var(--text-xl); font-weight: 600; letter-spacing: -0.01em; }
+.comp__usage {
+  margin-left: auto; font-family: var(--font-mono); font-size: var(--text-xs);
+  color: var(--muted); letter-spacing: 0.04em;
+}
+.comp__note { margin: 0 0 var(--space-6); color: var(--fg-2); font-size: var(--text-sm); max-width: 68ch; }
+.comp__note code { font-family: var(--font-mono); font-size: 0.9em; background: var(--surface-warm); padding: 1px 5px; }
+.comp__note--warn {
+  border-left: 2px solid var(--warn); padding: 8px var(--space-4);
+  background: color-mix(in srgb, var(--warn) 7%, var(--bg));
+}
+
+/* specimen row: label · demo */
+.specimen { display: grid; grid-template-columns: 160px 1fr; gap: var(--space-6); align-items: start; padding: var(--space-5) 0; border-top: 1px solid var(--border-soft); }
+.specimen:first-of-type { border-top: none; }
+.specimen__label { display: grid; gap: 4px; align-content: start; }
+.specimen__k { font-family: var(--font-mono); font-size: var(--text-xs); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+.specimen__hint { font-family: var(--font-mono); font-size: 10px; color: var(--muted); line-height: 1.6; }
+.specimen__demo { display: grid; gap: var(--space-4); }
+.demo-surface { background: var(--bg); border: 1px solid var(--border-soft); padding: var(--space-5); position: relative; }
+.demo-surface--pad0 { padding: 0; overflow: hidden; }
+.state-caption { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-bottom: var(--space-3); }
+.state-row { display: flex; flex-wrap: wrap; gap: var(--space-4); align-items: center; }
+.state-cell { display: grid; gap: 8px; justify-items: start; }
+.state-cell .lbl { font-family: var(--font-mono); font-size: 10px; color: var(--muted); }
+
+/* anatomy callout */
+.anatomy { display: grid; gap: 6px; font-family: var(--font-mono); font-size: var(--text-xs); color: var(--fg-2); }
+.anatomy .part { display: grid; grid-template-columns: 18px 1fr; gap: var(--space-3); align-items: baseline; }
+.anatomy .part .i { color: var(--muted); }
+
+/* ══════════════════════════════════════════════════════════════════
+   REAL COMPONENT STYLES — 4장에서 실측한 클래스를 c- 접두로 이식
+   각 컴포넌트의 default/hover/focus-visible/disabled 상태를 강제 노출
+   ══════════════════════════════════════════════════════════════════ */
+
+/* c-topbar */
+.c-topbar { display: flex; align-items: center; justify-content: space-between; height: 56px; padding: 0 var(--space-5); border-bottom: 1px solid var(--border-soft); background: var(--bg); }
+.c-topbar__brand { display: inline-flex; align-items: center; gap: var(--space-2); font-family: var(--font-mono); font-size: var(--text-sm); font-weight: 600; }
+.c-topbar__brand::before { content: ""; width: 9px; height: 9px; background: var(--fg); }
+.c-topbar__crumb { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.c-topbar__nav { display: flex; gap: var(--space-5); font-family: var(--font-mono); font-size: var(--text-sm); color: var(--fg-2); }
+.c-topbar__nav a:hover { color: var(--fg); }
+.c-topbar__tag { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; border: 1px solid var(--border); color: var(--muted); padding: 3px 8px; }
+.c-topbar .spacer { margin-left: auto; }
+
+/* c-sechead (통일안) */
+.c-sechead { display: flex; align-items: baseline; gap: var(--space-3); padding-bottom: var(--space-4); border-bottom: 1px solid var(--border); }
+.c-sechead__no { font-family: var(--font-mono); font-size: var(--text-sm); color: var(--muted); letter-spacing: 0.06em; }
+.c-sechead h3 { margin: 0; font-family: var(--font-display); font-size: var(--text-lg); font-weight: 600; }
+.c-sechead__meta { margin-left: auto; font-family: var(--font-mono); font-size: var(--text-xs); color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
+
+/* c-btn (accent fill) — states */
+.c-btn {
+  font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.04em; font-weight: 500;
+  color: var(--accent-on); background: var(--accent); border: 1px solid var(--accent);
+  padding: 9px 14px; display: inline-flex; align-items: center; gap: var(--space-2);
+  cursor: pointer; transition: background var(--motion-fast) var(--ease-standard);
+}
+.c-btn:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
+.c-btn:active { background: var(--accent-active); }
+.c-btn:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+.c-btn[aria-disabled="true"], .c-btn:disabled { opacity: 0.65; cursor: default; }
+/* forced-state demos */
+.is-hover { background: var(--accent-hover) !important; border-color: var(--accent-hover) !important; }
+.is-focus { box-shadow: var(--focus-ring) !important; }
+
+/* c-chip (bordered mono) — variants + states */
+.c-chip {
+  font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.03em;
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  padding: 9px 13px; border: 1px solid var(--border); color: var(--fg);
+  transition: border-color var(--motion-fast) var(--ease-standard), background var(--motion-fast) var(--ease-standard);
+  cursor: pointer;
+}
+.c-chip:hover { border-color: var(--fg); background: var(--surface); }
+.c-chip:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+.c-chip--status { cursor: default; }
+.c-chip--status .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--success); box-shadow: 0 0 0 3px color-mix(in srgb, var(--success) 20%, transparent); }
+.c-chip--contact { color: var(--fg-2); }
+.c-chip--contact:hover { color: var(--fg); border-color: var(--fg); background: var(--bg); }
+.c-chip-hover { border-color: var(--fg) !important; background: var(--surface) !important; }
+
+/* c-numrow (numbered row) — 3 widths */
+.c-numlist { display: grid; }
+.c-numrow { display: grid; align-items: baseline; padding: 12px 0; border-top: 1px solid var(--border-soft); gap: var(--space-4); }
+.c-numrow:first-child { border-top: none; }
+.c-numrow--sum { grid-template-columns: 56px 1fr; }
+.c-numrow--career { grid-template-columns: 150px 1fr 150px; }
+.c-numrow--creds { grid-template-columns: 110px 1fr; }
+.c-numrow .n { font-family: var(--font-mono); font-size: var(--text-sm); color: var(--muted); letter-spacing: 0.06em; }
+.c-numrow .n--accent { color: var(--success); font-weight: 700; }
+.c-numrow .t { font-size: var(--text-base); color: var(--fg-2); }
+.c-numrow .t strong { color: var(--fg); font-weight: 600; }
+.c-numrow .period { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--muted); text-align: right; }
+
+/* c-cardgrid (1px-border collapse) */
+.c-cardgrid { display: grid; gap: 1px; background: var(--border-soft); border: 1px solid var(--border-soft); }
+.c-cardgrid--2 { grid-template-columns: repeat(2, 1fr); }
+.c-cardgrid--4 { grid-template-columns: repeat(4, 1fr); }
+.c-card { background: var(--bg); padding: 18px; display: grid; gap: 6px; align-content: start; transition: background var(--motion-base) var(--ease-standard); }
+.c-card:hover { background: var(--surface); }
+.c-card h4 { margin: 0; font-family: var(--font-mono); font-size: var(--text-sm); font-weight: 600; }
+.c-card p { margin: 0; font-size: var(--text-xs); color: var(--fg-2); }
+.c-card .go { font-family: var(--font-mono); font-size: 10px; color: var(--muted); }
+.c-card .r-name { font-family: var(--font-mono); font-size: var(--text-sm); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+
+/* c-kvlist (key-value) */
+.c-kv { display: grid; gap: 0; }
+.c-kv .row { display: grid; grid-template-columns: 150px 1fr; gap: var(--space-4); padding: 10px 0; border-top: 1px solid var(--border-soft); }
+.c-kv .row:first-child { border-top: none; }
+.c-kv .k { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.c-kv .v { font-size: var(--text-sm); color: var(--fg-2); }
+/* dl variant (hero card) */
+.c-kv-dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 8px var(--space-4); border: 1px solid var(--border); padding: var(--space-4); }
+.c-kv-dl dt { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.c-kv-dl dd { margin: 0; font-family: var(--font-mono); font-size: var(--text-xs); color: var(--fg); text-align: right; }
+
+/* c-badge (NOW) */
+.c-badge { display: inline-block; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.06em; color: var(--accent-on); background: var(--accent); padding: 1px 6px; vertical-align: 1px; }
+
+/* c-ask (launcher, anatomy only — static open/closed) */
+.c-ask { display: grid; justify-items: end; gap: 10px; }
+.c-ask__btn { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: var(--accent-on); font-family: var(--font-mono); font-size: var(--text-sm); letter-spacing: 0.08em; padding: 14px 18px; box-shadow: var(--elev-raised); }
+.c-ask__panel { width: min(320px, 100%); border: 1px solid var(--border); background: var(--bg); box-shadow: var(--elev-raised); }
+.c-ask__phead { display: flex; align-items: center; gap: 10px; padding: 11px 14px; background: var(--accent); color: var(--accent-on); font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.08em; text-transform: uppercase; }
+.c-ask__phead .tag { margin-left: auto; border: 1px solid rgba(255,255,255,0.4); padding: 2px 7px; font-size: 10px; }
+.c-ask__pbody { padding: 14px; display: grid; gap: 10px; }
+.c-ask__hello { font-size: var(--text-sm); color: var(--fg-2); }
+.c-ask__q { font-family: var(--font-ko); font-size: var(--text-xs); color: var(--fg-2); text-align: left; background: var(--bg); border: 1px solid var(--border); padding: 8px 10px; cursor: default; }
+
+/* footer */
+.sheet-foot { border-top: 1px solid var(--border); padding: var(--space-8) 0 var(--space-12); font-family: var(--font-mono); font-size: var(--text-xs); color: var(--muted); letter-spacing: 0.03em; display: flex; flex-wrap: wrap; gap: var(--space-4); }
+.sheet-foot .right { margin-left: auto; }
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .wrap { padding: 0 var(--container-gutter-tablet); }
+  .decisions__grid { grid-template-columns: 1fr; }
+  .specimen { grid-template-columns: 1fr; gap: var(--space-3); }
+  .c-cardgrid--4 { grid-template-columns: repeat(2, 1fr); }
+  .c-numrow--career { grid-template-columns: 1fr; gap: 3px; }
+  .c-numrow--career .period { text-align: left; }
+}
+@media (max-width: 560px) {
+  .wrap { padding: 0 var(--container-gutter-phone); }
+  .c-cardgrid--2, .c-cardgrid--4 { grid-template-columns: 1fr; }
+  .c-topbar__nav { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── Sheet header ─────────────────────────────────────────────── -->
+<header class="sheet-head" data-od-id="sheet-head">
+  <div class="wrap">
+    <span class="sheet-head__brand">marinkim.xyz</span>
+    <h1>Component Sheet</h1>
+    <p class="sheet-head__sub">확정 프로토타입 4장에서 반복되는 UI 패턴을 재사용 컴포넌트로 정리한 specimen 시트. 새 화면이 아니라 <b>기존 패턴의 anatomy · variants · states 확정본</b>입니다. Next.js 구현의 기준으로 씁니다.</p>
+    <div class="sheet-head__meta">
+      <span>SOURCE <b>index.html · root-phase2 · resume · chat</b></span>
+      <span>TOKENS <b>Mono verbatim contract</b></span>
+      <span>ACCENT <b>#111 ink + #168a46 green ×1</b></span>
+      <span>NEW TOKENS <b>0</b></span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- ── Decision panel ─────────────────────────────────────────── -->
+  <section class="decisions" data-od-id="decisions">
+    <div class="decisions__head">디자이너 판단 요청 · 3건 — 확정 반영됨 (D1·D3 확정 / D2 보류)</div>
+    <div class="decisions__grid">
+      <div class="decision">
+        <span class="decision__status decision__status--fixed">확정</span>
+        <span class="decision__n">D1 · CONTAINER 폭</span>
+        <h3>hub vs doc 폭 차이</h3>
+        <p>허브(index·root) <b>1280 / gutter 36</b>, 문서(resume·chat) <b>1180 / gutter 28</b>을 역할 구분으로 유지 확정. 재고 사유 없음.</p>
+        <span class="opt mono">확정: hub 1280 · doc 1180 (역할 구분 유지)</span>
+      </div>
+      <div class="decision">
+        <span class="decision__status decision__status--hold">보류 — 구현 중 결정</span>
+        <span class="decision__n">D2 · 상태 정의</span>
+        <h3>hover / focus / disabled</h3>
+        <p>hover/focus/disabled의 컴포넌트별 확정은 <b>Next.js 구현 중 발생 시 결정</b>. 아래 컴포넌트의 states 열은 삭제하지 않고 <b>참고 기준(비확정)</b>으로 남겨 둠.</p>
+        <span class="opt mono">states 열 = 참고 기준 · 확정 아님</span>
+      </div>
+      <div class="decision">
+        <span class="decision__status decision__status--fixed">확정</span>
+        <span class="decision__n">D3 · CHIP ↔ BUTTON</span>
+        <h3>fill 경계</h3>
+        <p><b>Button = accent-fill 전용</b>, <b>Chip = bordered 전용</b>으로 분리 확정. 기존 <code>chip--fill</code>은 Button으로 흡수, Chip은 테두리형만 남김.</p>
+        <span class="opt mono">확정: Button=fill · Chip=bordered 분리</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 01 TopBar ──────────────────────────────────────────────── -->
+  <section class="comp" data-od-id="c-topbar">
+    <div class="comp__head"><span class="comp__no mono">01</span><h2>TopBar</h2><span class="comp__usage">4 / 4 · sticky</span></div>
+    <p class="comp__note">모든 페이지 상단. 워드마크(9px 사각 + <code>marinkim.xyz</code>)는 고정, 우측 요소만 변형. home형은 nav + Resume 버튼, subpage형은 crumb + tag.</p>
+
+    <div class="specimen">
+      <div class="specimen__label"><span class="specimen__k">Home 형</span><span class="specimen__hint">index · root-phase2<br>brand + nav + fill btn</span></div>
+      <div class="specimen__demo"><div class="demo-surface demo-surface--pad0">
+        <div class="c-topbar">
+          <span class="c-topbar__brand">marinkim.xyz</span>
+          <nav class="c-topbar__nav spacer"><a href="#">Portfolio</a><a href="#">Blog</a><a href="#">Labs</a></nav>
+          <a class="c-btn" style="margin-left:var(--space-4)" href="#" aria-disabled="true">↓ Resume PDF</a>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="specimen">
+      <div class="specimen__label"><span class="specimen__k">Subpage 형</span><span class="specimen__hint">resume · chat<br>brand + crumb + tag</span></div>
+      <div class="specimen__demo"><div class="demo-surface demo-surface--pad0">
+        <div class="c-topbar">
+          <span class="c-topbar__brand">marinkim.xyz</span>
+          <span class="c-topbar__crumb" style="margin-left:var(--space-4)">/ Resume</span>
+          <span class="c-topbar__tag spacer">PHASE 2 PREVIEW</span>
+        </div>
+      </div></div>
+    </div>
+  </section>
+
+  <!-- ── 02 SectionHead ─────────────────────────────────────────── -->
+  <section class="comp" data-od-id="c-sechead">
+    <div class="comp__head"><span class="comp__no mono">02</span><h2>SectionHead</h2><span class="comp__usage">4 / 4</span></div>
+    <p class="comp__note comp__note--warn">클래스명 불일치: <code>.section-head</code>(index) vs <code>.sec-head</code>(3장). 통일안 → <code>.c-sechead</code> 하나. 구조: <b>번호(mono) + 제목(display) + 우측 meta(mono uppercase)</b>. 번호 톤은 섹션 index(00, 01…), meta는 영문 대문자 라벨 + 개수.</p>
+
+    <div class="specimen">
+      <div class="specimen__label"><span class="specimen__k">통일안</span><span class="specimen__hint">no + h2 + meta<br>meta = EN CAPS · count</span></div>
+      <div class="specimen__demo">
+        <div class="demo-surface">
+          <div class="c-sechead"><span class="c-sechead__no">01</span><h3>핵심 역량</h3><span class="c-sechead__meta">Core Capabilities · 6</span></div>
+        </div>
+        <div class="demo-surface">
+          <div class="c-sechead"><span class="c-sechead__no">05</span><h3>경력</h3><span class="c-sechead__meta">2020 — 현재</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="specimen">
+      <div class="specimen__label"><span class="specimen__k">Anatomy</span><span class="specimen__hint">토큰 매핑</span></div>
+      <div class="specimen__demo"><div class="demo-surface"><div class="anatomy">
+        <div class="part"><span class="i">A</span><span>no — <code>--font-mono</code> · <code>--text-sm</code> · <code>--muted</code> · ls 0.06em</span></div>
+        <div class="part"><span class="i">B</span><span>h2 — <code>--font-display</code> · <code>--text-lg~xl</code> · 600 · ls -0.01em</span></div>
+        <div class="part"><span class="i">C</span><span>meta — <code>--text-xs</code> · <code>--muted</code> · uppercase · ls 0.06em · <code>margin-left:auto</code></span></div>
+        <div class="part"><span class="i">·</span><span>하단 border: <code>1px solid var(--border)</code> (index형) / 없음(3장형) → <b>border 포함으로 통일 권장</b></span></div>
+      </div></div></div>
+    </div>
+  </section>
+
+  <!-- ── 03 Button ──────────────────────────────────────────────── -->
+  <section class="comp" data-od-id="c-button">
+    <div class="comp__head"><span class="comp__no mono">03</span><h2>Button</h2><span class="comp__usage">4 / 4 · accent fill</span></div>
+    <p class="comp__note">단일 accent-fill 버튼(<code>btn-resume · rail .pdf · composer send</code> + 기존 <code>chip--fill</code> 흡수). mono · <code>--accent</code> 배경 · <code>--accent-on</code> 글자. <b>D3 확정 — fill은 Button 전용</b>, Chip은 bordered만 담당.</p>
+
+    <div class="specimen">
+      <div class="specimen__label"><span class="specimen__k">States <span style="color:var(--warn)">·참고</span></span><span class="specimen__hint">D2 보류 — 비확정<br>default / hover / focus / active / disabled</span></div>
+      <div class="specimen__demo"><div class="demo-surface">
+        <div class="state-row">
+          <div class="state-cell"><button class="c-btn" type="button">↓ Resume PDF</button><span class="lbl">default</span></div>
+          <div class="state-cell"><button class="c-btn is-hover" type="button">↓ Resume PDF</button><span class="lbl">hover · accent-hover</span></div>
+          <div class="state-cell"><button class="c-btn is-focus" type="button">↓ Resume PDF</button><span class="lbl">focus-visible · focus-ring</span></div>
+          <div class="state-cell"><button class="c-btn" type="button" aria-disabled="true" style="background:var(--accent-active);border-color:var(--accent-active)">↓ Resume PDF</button><span class="lbl">active · accent-active</span></div>
+          <div class="state-cell"><button class="c-btn" type="button" disabled>SEND</button><span class="lbl">disabled · opacity .65</span></div>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="specimen">
+      <div class="specimen__label"><span class="specimen__k">Live states</span><span class="specimen__hint">직접 hover · Tab focus 확인</span></div>
+      <div class="specimen__demo"><div class="demo-surface">
+        <div class="state-row">
+          <button class="c-btn" type="button">Hover / focus 해보기</button>
+          <button class="c-btn" type="button">↓ PDF 다운로드 (A4)</button>
+        </div>
+      </div></div>
+    </div>
+  </section>
+
+  <!-- ── 04 Chip ────────────────────────────────────────────────── -->
+  <section class="comp" data-od-id="c-chip">
+    <div class="comp__head"><span class="comp__no mono">04</span><h2>Chip</h2><span class="comp__usage">3 / 4 · bordered</span></div>
+    <p class="comp__note">테두리형 mono 라벨 — <b>D3 확정: Chip은 bordered 전용</b>(fill 변형은 Button으로 이동 완료). 변형: <b>link</b>(GitHub 등, hover 시 채워짐) · <b>status</b>(재직 상태 dot) · <b>contact</b>(이메일·지역).</p>
+
+    <div class="specimen">
+      <div class="specimen__label"><span class="specimen__k">Variants</span><span class="specimen__hint">link / status / contact</span></div>
+      <div class="specimen__demo"><div class="demo-surface">
+        <div class="state-row">
+          <div class="state-cell"><a class="c-chip" href="#">github.com/Dae-Jeong</a><span class="lbl">link</span></div>
+          <div class="state-cell"><span class="c-chip c-chip--status"><span class="dot"></span>MediSolve AI · 재직 중</span><span class="lbl">status · green dot</span></div>
+          <div class="state-cell"><a class="c-chip c-chip--contact" href="#">marin.backend@gmail.com</a><span class="lbl">contact</span></div>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="specimen">
+      <div class="specimen__label"><span class="specimen__k">States <span style="color:var(--warn)">·참고</span></span><span class="specimen__hint">D2 보류 — 비확정<br>link 변형 기준</span></div>
+      <div class="specimen__demo"><div class="demo-surface">
+        <div class="state-row">
+          <div class="state-cell"><a class="c-chip" href="#">default</a><span class="lbl">default · border</span></div>
+          <div class="state-cell"><a class="c-chip c-chip-hover" href="#">hover</a><span class="lbl">hover · fg border + surface</span></div>
+          <div class="state-cell"><a class="c-chip is-focus" href="#">focus</a><span class="lbl">focus-visible · focus-ring</span></div>
+        </div>
+      </div></div>
+    </div>
+  </section>
+
+  <!-- ── 05 NumberedRow ─────────────────────────────────────────── -->
+  <section class="comp" data-od-id="c-numrow">
+    <div class="comp__head"><span class="comp__no mono">05</span><h2>NumberedRow</h2><span class="comp__usage">3 / 4</span></div>
+    <p class="comp__note">좌측 mono 인덱스 컬럼 + 텍스트. 컬럼폭이 용도별로 상이 — <b>summary 56px</b>, <b>career 150px + 우측 기간 150px</b>, <b>creds 110px</b>. 그린 액센트 1점은 이 컴포넌트의 <code>.n--accent</code>(5xx 운영 지표 행)에만.</p>
+
+    <div class="specimen">
+      <div class="specimen__label"><span class="specimen__k">Summary · 56px</span><span class="specimen__hint">번호 + 문장<br>02행 green accent</span></div>
+      <div class="specimen__demo"><div class="demo-surface"><div class="c-numlist">
+        <div class="c-numrow c-numrow--sum"><span class="n mono">01</span><span class="t">AI 콘텐츠 생성 <strong>backend 전면 재구축</strong>과 이후 개발·운영 전담</span></div>
+        <div class="c-numrow c-numrow--sum"><span class="n mono n--accent">02</span><span class="t">월 수만 건 규모 요청을 처리하는 production backend를 <strong>HTTP 5xx 0.3% 수준</strong>으로 운영</span></div>
+        <div class="c-numrow c-numrow--sum"><span class="n mono">03</span><span class="t">Backend Engineer 합류 후 <strong>Tech Lead·PO 역할 병행</strong></span></div>
+      </div></div></div>
+    </div>
+
+    <div class="specimen">
+      <div class="specimen__label"><span class="specimen__k">Career · 150px</span><span class="specimen__hint">org + desc + period<br>NOW badge 인라인</span></div>
+      <div class="specimen__demo"><div class="demo-surface"><div class="c-numlist">
+        <div class="c-numrow c-numrow--career"><span class="n mono">MediSolve AI<span class="c-badge">NOW</span></span><span class="t">AI product backend·제품 운영, Tech Lead·PO 병행</span><span class="period">2025.04 —</span></div>
+        <div class="c-numrow c-numrow--career"><span class="n mono">Memento AI</span><span class="t">예약·결제 backend 안정화</span><span class="period">2024.10 — 2025.01</span></div>
+      </div></div></div>
+    </div>
+
+    <div class="specimen">
+      <div class="specimen__label"><span class="specimen__k">Creds · 110px</span><span class="specimen__hint">연도 + 항목</span></div>
+      <div class="specimen__demo"><div class="demo-surface"><div class="c-numlist">
+        <div class="c-numrow c-numrow--creds"><span class="n mono">2025.12</span><span class="t">특허 등록 「페이지 출력 방법」 · 10-2898273</span></div>
+        <div class="c-numrow c-numrow--creds"><span class="n mono">2021.09</span><span class="t">ADsP · 데이터분석 준전문가</span></div>
+      </div></div></div>
+    </div>
+  </section>
+
+  <!-- ── 06 CardGrid ────────────────────────────────────────────── -->
+  <section class="comp" data-od-id="c-cardgrid">
+    <div class="comp__head"><span class="comp__no mono">06</span><h2>CardGrid</h2><span class="comp__usage">3 / 4</span></div>
+    <p class="comp__note">1px 보더 collapse 그리드(<code>gap:1px · background:--border-soft</code>). 셀은 <code>--bg</code>, hover 시 <code>--surface</code>. 변형: caps/proof <b>2열</b>, routes <b>4열</b>. 라운드·좌측보더 액센트 금지 — 하드 그리드가 골격.</p>
+
+    <div class="specimen">
+      <div class="specimen__label"><span class="specimen__k">2열 · caps/proof</span><span class="specimen__hint">역량·근거 카드</span></div>
+      <div class="specimen__demo"><div class="c-cardgrid c-cardgrid--2">
+        <div class="c-card"><h4>AI Product Systems</h4><p>typed prompt builder, LLM judge, 평가 루프, 관측 로깅</p></div>
+        <div class="c-card"><h4>Product Backend Ownership</h4><p>주문·재고 API, service boundary·migration 주도</p></div>
+        <div class="c-card"><h4>Thready</h4><p>AI 콘텐츠 생성 backend 재구축·운영 전담</p><span class="go">→ CASE</span></div>
+        <div class="c-card"><h4>BE Template</h4><p>조직 표준 FastAPI template 전담</p><span class="go">→ CASE</span></div>
+      </div></div>
+    </div>
+
+    <div class="specimen">
+      <div class="specimen__label"><span class="specimen__k">4열 · routes</span><span class="specimen__hint">관문 게이트웨이<br>r-name = mono caps</span></div>
+      <div class="specimen__demo"><div class="c-cardgrid c-cardgrid--4">
+        <div class="c-card"><span class="r-name">Resume</span><p>A4 마스터 이력서 · PDF</p></div>
+        <div class="c-card"><span class="r-name">Portfolio</span><p>case 5건</p></div>
+        <div class="c-card"><span class="r-name">Blog</span><p>판단·운영 기록</p></div>
+        <div class="c-card"><span class="r-name">Labs</span><p>만든 것들 관문</p></div>
+      </div></div>
+    </div>
+  </section>
+
+  <!-- ── 07 KeyValueList ────────────────────────────────────────── -->
+  <section class="comp" data-od-id="c-kvlist">
+    <div class="comp__head"><span class="comp__no mono">07</span><h2>KeyValueList</h2><span class="comp__usage">3 / 4</span></div>
+    <p class="comp__note">mono 대문자 key + 값. 변형: <b>hero card</b>(bordered <code>dl</code>, 값 우측정렬) · <b>skills row</b>(150px key + 값) · <b>pf meta</b>(동일 패턴). key는 항상 <code>--muted</code> uppercase.</p>
+
+    <div class="specimen">
+      <div class="specimen__label"><span class="specimen__k">Hero card · dl</span><span class="specimen__hint">bordered · 값 우측정렬</span></div>
+      <div class="specimen__demo"><div class="demo-surface">
+        <dl class="c-kv-dl" style="max-width:280px">
+          <dt>Role</dt><dd>Backend</dd>
+          <dt>Domain</dt><dd>AI Product</dd>
+          <dt>Now</dt><dd>MediSolve AI</dd>
+          <dt>Since</dt><dd>2025.04</dd>
+          <dt>GitHub</dt><dd>Dae-Jeong</dd>
+        </dl>
+      </div></div>
+    </div>
+
+    <div class="specimen">
+      <div class="specimen__label"><span class="specimen__k">Skills row</span><span class="specimen__hint">150px key + 값</span></div>
+      <div class="specimen__demo"><div class="demo-surface"><div class="c-kv">
+        <div class="row"><span class="k">Language / FW</span><span class="v">Python, FastAPI, TypeScript, NestJS, Java, Spring Boot</span></div>
+        <div class="row"><span class="k">Data / Messaging</span><span class="v">PostgreSQL, MySQL, Redis, RabbitMQ, TaskIQ</span></div>
+        <div class="row"><span class="k">Infra / Delivery</span><span class="v">Azure, AWS, Terraform, Docker, GitHub Actions</span></div>
+      </div></div></div>
+    </div>
+  </section>
+
+  <!-- ── 08 Badge ───────────────────────────────────────────────── -->
+  <section class="comp" data-od-id="c-badge">
+    <div class="comp__head"><span class="comp__no mono">08</span><h2>Badge</h2><span class="comp__usage">2 / 4 · inline</span></div>
+    <p class="comp__note">현재/강조 상태를 표시하는 인라인 반전 칩. career 행의 회사명 뒤 <code>NOW</code>. accent 반전(<code>--accent</code> 배경) — 유일한 상태 색이 아니라 잉크 반전으로 처리.</p>
+
+    <div class="specimen">
+      <div class="specimen__label"><span class="specimen__k">NOW</span><span class="specimen__hint">회사명 인라인</span></div>
+      <div class="specimen__demo"><div class="demo-surface">
+        <span class="mono" style="font-size:var(--text-sm);font-weight:600">MediSolve AI<span class="c-badge">NOW</span></span>
+      </div></div>
+    </div>
+  </section>
+
+  <!-- ── 09 AskLauncher ─────────────────────────────────────────── -->
+  <section class="comp" data-od-id="c-ask">
+    <div class="comp__head"><span class="comp__no mono">09</span><h2>AskLauncher</h2><span class="comp__usage">spec · 전 페이지</span></div>
+    <p class="comp__note">우하단 fixed 채널톡 패턴. 닫힘(버튼만) / 열림(미니 패널) 2상태. Phase 2에서 입력 활성 — 현재는 <code>disabled</code>. anatomy만 정리(내부 Q 버튼·composer는 chat 컴포넌트로 Phase 2 보류).</p>
+
+    <div class="specimen">
+      <div class="specimen__label"><span class="specimen__k">닫힘</span><span class="specimen__hint">fixed 우하단 버튼</span></div>
+      <div class="specimen__demo"><div class="demo-surface"><div class="c-ask">
+        <span class="c-ask__btn">ASK</span>
+      </div></div></div>
+    </div>
+
+    <div class="specimen">
+      <div class="specimen__label"><span class="specimen__k">열림</span><span class="specimen__hint">panel + head + body<br>+ × CLOSE</span></div>
+      <div class="specimen__demo"><div class="demo-surface"><div class="c-ask">
+        <div class="c-ask__panel">
+          <div class="c-ask__phead">Ask · 프로필과 대화<span class="tag">PHASE 2 PREVIEW</span></div>
+          <div class="c-ask__pbody">
+            <p class="c-ask__hello">안녕하세요 — 김대정의 프로필 agent입니다.</p>
+            <button class="c-ask__q" type="button">김대정은 어떤 엔지니어인가요?</button>
+            <button class="c-ask__q" type="button">Thready에서 어떤 기여를 했나요?</button>
+          </div>
+        </div>
+        <span class="c-ask__btn">× CLOSE</span>
+      </div></div></div>
+    </div>
+  </section>
+
+  <footer class="sheet-foot" data-od-id="sheet-foot">
+    <span>marinkim.xyz · Component Sheet</span>
+    <span>9 components · chat 전용 4종 Phase 2 보류</span>
+    <span class="right">Mono · new tokens 0</span>
+  </footer>
+
+</div>
+</body>
+</html>

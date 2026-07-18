@@ -8,6 +8,7 @@
 | `root-phase2-prototype.html` | 다이어트 root + 전역 Ask 런처 — Phase 1~2 root 기준 | 2026-07-16 |
 | `resume-page-prototype.html` | `/resume` 문서형 + rail (KO/EN 토글) | 2026-07-17 |
 | `chat-page-prototype.html` | `/chat` 풀 대화 — 근거 rail + 3층 답변 | 2026-07-16 |
+| `component-sheet.html` | 컴포넌트 9종 specimen — anatomy·variants·states, `app/fe` 컴포넌트 구현 기준. D1(hub 1280·doc 1180)·D3(Button=fill·Chip=bordered) 확정, D2(상태 정의) 보류 | 2026-07-18 |
 
 - 토큰 계약(Mono 시스템)의 canonical: [architecture spec — Design Baseline](../../wiki/docs/superpowers/specs/2026-07-15-personal-site-architecture-design.md)
 - 구현 매핑: [Phase 1 stack plan](../../wiki/docs/superpowers/plans/2026-07-17-site-phase1-stack-and-structure.md)
