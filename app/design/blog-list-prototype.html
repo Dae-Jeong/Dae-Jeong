@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Blog — 김대정 · 판단 과정과 운영 경험 기록 (prototype)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<style>
+/* ── Mono design system tokens (verbatim contract — index.html 기준) ── */
+:root {
+  --bg: #ffffff;
+  --surface: #f7f7f7;
+  --surface-warm: #eeeeee;
+  --fg: #111111;
+  --fg-2: #3a3a3a;
+  --muted: #707070;
+  --meta: #111111;
+  --border: #d9d9d9;
+  --border-soft: #eeeeee;
+  --accent: #111111;
+  --accent-on: #ffffff;
+  --accent-hover: color-mix(in oklab, var(--accent), black 8%);
+  --accent-active: color-mix(in oklab, var(--accent), black 14%);
+  --success: #168a46;
+  --warn: #b7791f;
+  --danger: #c53030;
+  --font-display: "IBM Plex Mono", ui-monospace, monospace;
+  --font-body: "IBM Plex Mono", ui-monospace, monospace;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --text-xs: 11px;
+  --text-sm: 12px;
+  --text-base: 14px;
+  --text-lg: 16px;
+  --text-xl: 20px;
+  --text-2xl: 28px;
+  --text-3xl: 40px;
+  --text-4xl: 56px;
+  --leading-body: 1.45;
+  --leading-tight: 1.06;
+  --tracking-display: -0.025em;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --section-y-desktop: 80px;
+  --section-y-tablet: 60px;
+  --section-y-phone: 42px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-pill: 9999px;
+  --elev-flat: none;
+  --elev-ring: 0 0 0 1px var(--border);
+  --elev-raised: 0 16px 40px rgba(0, 0, 0, 0.10);
+  --focus-ring: 0 0 0 3px rgba(17, 17, 17, 0.18);
+  --motion-fast: 100ms;
+  --motion-base: 180ms;
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --container-max: 1280px;
+  --container-gutter-desktop: 36px;
+  --container-gutter-tablet: 24px;
+  --container-gutter-phone: 16px;
+  /* 한글 본문: Pretendard, 라틴/숫자: IBM Plex Mono */
+  --font-ko: "Pretendard Variable", Pretendard, "IBM Plex Mono", ui-monospace, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-ko);
+  font-size: var(--text-base);
+  line-height: var(--leading-body);
+  word-break: keep-all;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+.mono { font-family: var(--font-mono); font-feature-settings: "tnum" 1; }
+a { color: inherit; text-decoration: none; }
+code { font-family: var(--font-mono); font-size: 0.9em; background: var(--surface-warm); padding: 1px 5px; }
+
+/* doc형 컨테이너 — D1 확정: 1180 / gutter 28 */
+.doc-wrap { max-width: 1180px; margin: 0 auto; padding: 0 28px; }
+
+/* ── TopBar · subpage 형 (c-topbar) ─────────────────────────────── */
+.c-topbar { display: flex; align-items: center; gap: var(--space-4); height: 56px; border-bottom: 1px solid var(--border-soft); background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: saturate(180%) blur(8px); position: sticky; top: 0; z-index: 50; }
+.c-topbar__brand { display: inline-flex; align-items: center; gap: var(--space-2); font-family: var(--font-mono); font-size: var(--text-sm); font-weight: 600; letter-spacing: 0.02em; }
+.c-topbar__brand::before { content: ""; width: 9px; height: 9px; background: var(--fg); }
+.c-topbar__crumb { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.c-topbar__nav { margin-left: auto; display: flex; gap: 18px; font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.04em; color: var(--muted); }
+.c-topbar__nav a { position: relative; padding: 4px 0; transition: color var(--motion-fast) var(--ease-standard); }
+.c-topbar__nav a[aria-current="page"] { color: var(--fg); }
+.c-topbar__nav a:hover { color: var(--fg); }
+.c-topbar__nav a[aria-disabled="true"] { opacity: 0.5; pointer-events: none; }
+.c-topbar__nav a:focus-visible { outline: none; box-shadow: var(--focus-ring); border-radius: var(--radius-sm); color: var(--fg); }
+
+/* ── Page head ──────────────────────────────────────────────────── */
+.pf-head { padding: 56px 0 var(--space-8); border-bottom: 2px solid var(--fg); }
+.pf-head .eyebrow { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.pf-head h1 { margin: var(--space-3) 0 0; font-family: var(--font-display); font-size: var(--text-3xl); font-weight: 600; letter-spacing: var(--tracking-display); line-height: var(--leading-tight); }
+.pf-head__line { margin: var(--space-4) 0 0; font-size: var(--text-lg); font-weight: 500; max-width: 56ch; }
+.pf-head__meta { display: flex; flex-wrap: wrap; gap: var(--space-4); margin-top: var(--space-6); font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.04em; color: var(--muted); }
+.pf-head__meta b { color: var(--fg); font-weight: 600; }
+
+/* ── Decision panel (디자이너 결정 — 목록 형태) ─────────────────── */
+.decisions { background: var(--bg); border: 1px solid var(--fg); margin: var(--space-8) 0 0; }
+.decisions__head { background: var(--fg); color: var(--accent-on); font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.1em; text-transform: uppercase; padding: 10px var(--space-5); }
+.decision { padding: var(--space-5); display: grid; gap: var(--space-2); border-top: 1px solid var(--border-soft); }
+.decision:first-of-type { border-top: none; }
+.decision__status { justify-self: start; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; padding: 2px 8px; margin-bottom: 2px; background: var(--accent); color: var(--accent-on); }
+.decision__n { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--muted); letter-spacing: 0.06em; }
+.decision h2 { margin: 0; font-family: var(--font-mono); font-size: var(--text-sm); font-weight: 600; }
+.decision p { margin: 0; font-size: var(--text-sm); color: var(--fg-2); line-height: 1.6; max-width: 88ch; }
+.decision .why { border-top: 1px solid var(--border-soft); padding-top: 10px; margin-top: 4px; }
+.decision .why b { color: var(--fg); font-weight: 600; }
+.decision .opt { font-family: var(--font-mono); font-size: 10px; color: var(--muted); border-top: 1px solid var(--border-soft); padding-top: 8px; margin-top: 2px; line-height: 1.5; }
+
+/* ── SectionHead (c-sechead 통일안) ─────────────────────────────── */
+.c-sechead { display: flex; align-items: baseline; gap: var(--space-3); padding-bottom: var(--space-4); border-bottom: 1px solid var(--border); margin: 0 0 var(--space-2); }
+.c-sechead__no { font-family: var(--font-mono); font-size: var(--text-sm); color: var(--muted); letter-spacing: 0.06em; }
+.c-sechead h2 { margin: 0; font-family: var(--font-display); font-size: var(--text-xl); font-weight: 600; letter-spacing: -0.01em; }
+.c-sechead__meta { margin-left: auto; font-family: var(--font-mono); font-size: var(--text-xs); color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
+
+.posts-section { padding: var(--section-y-tablet) 0 var(--section-y-desktop); }
+
+/* ── Post list (Decision 2 결정: blog는 행형 — 날짜·제목 1차원 시계열) ── */
+/* portfolio numbered list와 좌측 mono 인덱스·1px 하드보더 규율 공유, 열 구성만 date-first */
+.post-list { border-top: 1px solid var(--border); }
+.post-row {
+  display: grid;
+  grid-template-columns: 116px minmax(0, 1fr) 220px;
+  gap: var(--space-5);
+  align-items: baseline;
+  padding: var(--space-5) var(--space-1);
+  border-bottom: 1px solid var(--border);
+  color: inherit;
+}
+.post-row__date { font-family: var(--font-mono); font-size: var(--text-sm); color: var(--muted); letter-spacing: 0.04em; }
+.post-row__main { display: grid; gap: 6px; }
+.post-row__title { font-family: var(--font-display); font-size: var(--text-lg); font-weight: 600; letter-spacing: -0.01em; }
+.post-row__sum { font-size: var(--text-sm); color: var(--fg-2); line-height: 1.55; max-width: 60ch; }
+.post-row__tags { display: flex; flex-wrap: wrap; gap: var(--space-2); justify-content: flex-end; align-content: baseline; }
+.post-row__tag { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; border: 1px solid var(--border); color: var(--muted); padding: 2px 7px; }
+
+/* placeholder 행 — 준비 중임을 명시(가짜 글 금지). date 자리 [준비 중], 제목은 구조 라벨 */
+.post-row--stub { color: var(--muted); }
+.post-row--stub .post-row__date { color: var(--warn); }
+.post-row--stub .post-row__title { color: var(--muted); font-weight: 500; }
+.post-row--stub .post-row__badge { display: inline-block; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; border: 1px solid var(--warn); color: var(--warn); padding: 2px 7px; margin-left: var(--space-2); vertical-align: 2px; }
+.post-row--stub .post-row__tag { border-style: dashed; }
+
+/* ── Empty-state (Decision 1 결정: 데모 행 + notice 배너 공통 문법) ── */
+.empty-note { margin-top: var(--space-6); }
+.c-banner { display: flex; align-items: center; gap: var(--space-3); padding: 10px var(--space-4); border: 1px solid var(--warn); font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.03em; color: var(--warn); background: color-mix(in srgb, var(--warn) 7%, var(--bg)); }
+.c-banner__tag { font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; border: 1px solid currentColor; padding: 2px 7px; flex: none; }
+.c-banner__msg { color: var(--fg-2); }
+.c-banner__msg b { color: var(--fg); font-weight: 600; }
+
+/* ── Footer ─────────────────────────────────────────────────────── */
+.site-foot { border-top: 1px solid var(--border); padding-block: var(--space-8); }
+.site-foot__inner { display: flex; flex-wrap: wrap; gap: var(--space-4); align-items: center; justify-content: space-between; }
+.site-foot .brand { display: inline-flex; align-items: center; gap: var(--space-2); font-family: var(--font-mono); font-size: var(--text-sm); font-weight: 600; }
+.site-foot .brand::before { content: ""; width: 9px; height: 9px; background: var(--fg); }
+.site-foot__links { display: flex; gap: var(--space-5); flex-wrap: wrap; }
+.site-foot a { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.03em; color: var(--muted); transition: color var(--motion-fast) var(--ease-standard); }
+.site-foot a:hover { color: var(--fg); }
+.site-foot__note { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--muted); letter-spacing: 0.02em; }
+
+/* ── Responsive ─────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .doc-wrap { padding: 0 var(--container-gutter-tablet); }
+  .post-row { grid-template-columns: 96px minmax(0,1fr); grid-template-areas: "date main" "date tags"; gap: var(--space-3) var(--space-4); }
+  .post-row__date { grid-area: date; }
+  .post-row__main { grid-area: main; }
+  .post-row__tags { grid-area: tags; justify-content: flex-start; margin-top: var(--space-2); }
+}
+@media (max-width: 560px) {
+  .doc-wrap { padding: 0 var(--container-gutter-phone); }
+  .c-topbar__nav { display: none; }
+  .pf-head h1 { font-size: var(--text-2xl); }
+  .post-row { grid-template-columns: 1fr; grid-template-areas: "date" "main" "tags"; gap: var(--space-2); }
+}
+</style>
+</head>
+<body>
+
+<!-- ── TopBar · subpage 형 ─────────────────────────────────────── -->
+<header class="c-topbar" data-od-id="topbar">
+  <div class="doc-wrap" style="display:flex;align-items:center;gap:var(--space-4);width:100%">
+    <a class="c-topbar__brand" href="index.html">marinkim.xyz</a>
+    <span class="c-topbar__crumb">/ Blog</span>
+    <nav class="c-topbar__nav" aria-label="주요 메뉴">
+      <a href="index.html">Home</a>
+      <a href="portfolio-list-prototype.html">Portfolio</a>
+      <a href="blog-list-prototype.html" aria-current="page">Blog</a>
+      <a href="labs-list-prototype.html">Labs</a>
+    </nav>
+  </div>
+</header>
+
+<main class="doc-wrap">
+
+  <!-- ── Page head — 관문 설명 ────────────────────────────────────── -->
+  <section class="pf-head" data-od-id="pf-head">
+    <span class="eyebrow">Blog · 글 목록</span>
+    <h1>Blog</h1>
+    <p class="pf-head__line">판단 과정과 운영 경험 기록. 무엇을 왜 그렇게 정했고, 이후 운영에서 무엇을 겪었는지를 글 단위로 남깁니다.</p>
+    <div class="pf-head__meta">
+      <span>POSTS <b>0 published</b></span>
+      <span>FORMAT <b>MDX</b></span>
+      <span>ROW <b>날짜 · 제목 · 태그 · 요약</b></span>
+    </div>
+  </section>
+
+  <!-- ── Decision panel — 디자이너 결정 2건 ───────────────────────── -->
+  <section class="decisions" data-od-id="decision-list">
+    <div class="decisions__head">디자이너 결정 · 2건 — 결정 + 이유 명시</div>
+
+    <div class="decision" data-od-id="decision-empty">
+      <span class="decision__status">결정 · 데모 행 + notice</span>
+      <span class="decision__n">DECISION 1 · 빈 상태의 표현</span>
+      <h2>coming-soon 데모 vs 안내 배너 vs 완전 빈 화면 + 한 줄</h2>
+      <p>두 페이지 공통 문법으로 <b>“정직한 데모 1건 + 하단 notice 배너”</b>를 결정. blog는 <b>날짜 자리에 <code>[준비 중]</code>, 제목 자리에 구조 라벨</b>을 둔 <b>placeholder 행</b> 하나로 “행이 어떤 모양이 되는지”만 보여주고, 그 아래 배너로 “현재 0건”을 못박습니다.</p>
+      <p class="why"><b>가짜 글 제목을 쓰지 않은 이유:</b> 실존하는 척하는 제목은 정직성을 깹니다. 그래서 데모 행은 <b>제목 대신 “글 행 구조(제목 · 날짜 · 태그 · 한 줄 요약)”라는 라벨</b>과 <code>[준비 중]</code> 배지를 달아, 형태만 전하고 내용은 비웠습니다.</p>
+      <p class="why"><b>labs와 같은 결정을 공유하는 이유:</b> 두 페이지 모두 콘텐츠 0건 관문이라 빈 상태 문법이 어긋나면 사이트가 산만해집니다. “데모 1 + 배너”를 공통 규칙으로 두면, labs 카드든 blog 행이든 <b>같은 방식으로 미완을 고지</b>합니다.</p>
+      <span class="opt mono">택: 데모 행 + notice 배너(공통) / 반: 배너 단독 · 완전 빈 화면</span>
+    </div>
+
+    <div class="decision" data-od-id="decision-grammar">
+      <span class="decision__status">결정 · blog 행형</span>
+      <span class="decision__n">DECISION 2 · 목록 문법의 통일</span>
+      <h2>portfolio 넘버드 리스트에 맞출지 vs labs·blog 각자 자연형으로 갈지</h2>
+      <p><b>상위 문법은 공유하되, 목록 형태는 페이지 성격에 맞게 분리</b>로 결정. blog는 <b>행형</b>, labs는 <b>카드형</b>, portfolio는 <b>넘버드 리스트</b> — 셋 다 <b>좌측 mono 컬럼 · 1px 하드보더 · 배지 규율</b>이라는 공통 골격을 공유해 “같은 문서 계열”로 읽힙니다.</p>
+      <p class="why"><b>blog를 행형으로 둔 이유:</b> 글 목록의 1차 축은 <b>시간(날짜)</b>입니다. 날짜를 좌측 고정 컬럼으로 세운 행형은 <b>최신순 시계열 스캔</b>에 가장 적은 구조이고, 제목·태그·요약이 한 줄 흐름에 자연히 붙습니다. portfolio의 순번(01–05)은 시간축이 아니라 큐레이션 순서라 blog엔 맞지 않습니다.</p>
+      <p class="why"><b>labs 카드형과 다른 이유:</b> labs는 kind×status 2차원 메타라 카드가 맞지만, blog 항목은 <b>날짜→제목의 1차원</b>이라 카드로 감싸면 오히려 밀도가 떨어지고 시계열이 흐려집니다. 각 페이지가 답할 질문(“언제 쓴 글인가” vs “어떤 종류인가”)이 형태를 갈랐습니다.</p>
+      <span class="opt mono">택: blog=행형(date-first 시계열) / 반: 넘버드 리스트 강제 통일 · 카드형</span>
+    </div>
+  </section>
+
+  <!-- ── Post list — 행형 (placeholder 1행) ───────────────────────── -->
+  <section class="posts-section" data-od-id="posts">
+    <div class="c-sechead">
+      <span class="c-sechead__no">01</span>
+      <h2>Posts</h2>
+      <span class="c-sechead__meta">published · 0 (구조 데모)</span>
+    </div>
+
+    <div class="post-list">
+
+      <!-- placeholder 행: 가짜 글 금지. 제목 자리에 구조 라벨, 날짜 자리에 [준비 중] -->
+      <div class="post-row post-row--stub" data-od-id="post-stub">
+        <span class="post-row__date">[준비 중]</span>
+        <span class="post-row__main">
+          <span class="post-row__title">글 행 구조 — 제목 · 날짜 · 태그 · 한 줄 요약<span class="post-row__badge">Placeholder</span></span>
+          <span class="post-row__sum">발행 글이 등록되면 이 행에 제목, 좌측에 날짜, 우측에 태그, 아래 한 줄 요약이 채워집니다. 지금은 형태만 보여주는 자리입니다.</span>
+        </span>
+        <span class="post-row__tags">
+          <span class="post-row__tag">tag</span>
+          <span class="post-row__tag">tag</span>
+        </span>
+      </div>
+
+    </div>
+
+    <!-- Empty-state 배너 (Decision 1 공통 문법) -->
+    <div class="empty-note" data-od-id="empty-note">
+      <div class="c-banner">
+        <span class="c-banner__tag">Coming soon</span>
+        <span class="c-banner__msg">발행된 글은 <b>현재 0건</b>입니다. 위 행은 <b>글 행의 구조를 보여주는 placeholder</b>이며, 실제 글 제목이 아닙니다.</span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ── Footer ─────────────────────────────────────────────────────── -->
+<footer class="site-foot" data-od-id="footer">
+  <div class="doc-wrap site-foot__inner">
+    <span class="brand">김대정 <span class="mono" style="color:var(--muted);font-weight:400">/ Blog</span></span>
+    <nav class="site-foot__links" aria-label="외부 링크">
+      <a href="index.html">Home ↗</a>
+      <a href="portfolio-list-prototype.html">Portfolio</a>
+      <a href="labs-list-prototype.html">Labs</a>
+      <a href="https://github.com/Dae-Jeong" target="_blank" rel="noopener">GitHub ↗</a>
+    </nav>
+    <span class="site-foot__note mono">marinkim.xyz · 2025</span>
+  </div>
+</footer>
+
+</body>
+</html>

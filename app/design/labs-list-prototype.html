@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Labs — 김대정 · 기능·서비스 관문 (prototype)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<style>
+/* ── Mono design system tokens (verbatim contract — index.html 기준) ── */
+:root {
+  --bg: #ffffff;
+  --surface: #f7f7f7;
+  --surface-warm: #eeeeee;
+  --fg: #111111;
+  --fg-2: #3a3a3a;
+  --muted: #707070;
+  --meta: #111111;
+  --border: #d9d9d9;
+  --border-soft: #eeeeee;
+  --accent: #111111;
+  --accent-on: #ffffff;
+  --accent-hover: color-mix(in oklab, var(--accent), black 8%);
+  --accent-active: color-mix(in oklab, var(--accent), black 14%);
+  --success: #168a46;
+  --warn: #b7791f;
+  --danger: #c53030;
+  --font-display: "IBM Plex Mono", ui-monospace, monospace;
+  --font-body: "IBM Plex Mono", ui-monospace, monospace;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --text-xs: 11px;
+  --text-sm: 12px;
+  --text-base: 14px;
+  --text-lg: 16px;
+  --text-xl: 20px;
+  --text-2xl: 28px;
+  --text-3xl: 40px;
+  --text-4xl: 56px;
+  --leading-body: 1.45;
+  --leading-tight: 1.06;
+  --tracking-display: -0.025em;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --section-y-desktop: 80px;
+  --section-y-tablet: 60px;
+  --section-y-phone: 42px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-pill: 9999px;
+  --elev-flat: none;
+  --elev-ring: 0 0 0 1px var(--border);
+  --elev-raised: 0 16px 40px rgba(0, 0, 0, 0.10);
+  --focus-ring: 0 0 0 3px rgba(17, 17, 17, 0.18);
+  --motion-fast: 100ms;
+  --motion-base: 180ms;
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --container-max: 1280px;
+  --container-gutter-desktop: 36px;
+  --container-gutter-tablet: 24px;
+  --container-gutter-phone: 16px;
+  /* 한글 본문: Pretendard, 라틴/숫자: IBM Plex Mono */
+  --font-ko: "Pretendard Variable", Pretendard, "IBM Plex Mono", ui-monospace, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-ko);
+  font-size: var(--text-base);
+  line-height: var(--leading-body);
+  word-break: keep-all;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+.mono { font-family: var(--font-mono); font-feature-settings: "tnum" 1; }
+a { color: inherit; text-decoration: none; }
+code { font-family: var(--font-mono); font-size: 0.9em; background: var(--surface-warm); padding: 1px 5px; }
+
+/* doc형 컨테이너 — D1 확정: 1180 / gutter 28 */
+.doc-wrap { max-width: 1180px; margin: 0 auto; padding: 0 28px; }
+
+/* ── TopBar · subpage 형 (c-topbar) ─────────────────────────────── */
+.c-topbar { display: flex; align-items: center; gap: var(--space-4); height: 56px; border-bottom: 1px solid var(--border-soft); background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: saturate(180%) blur(8px); position: sticky; top: 0; z-index: 50; }
+.c-topbar__brand { display: inline-flex; align-items: center; gap: var(--space-2); font-family: var(--font-mono); font-size: var(--text-sm); font-weight: 600; letter-spacing: 0.02em; }
+.c-topbar__brand::before { content: ""; width: 9px; height: 9px; background: var(--fg); }
+.c-topbar__crumb { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.c-topbar__nav { margin-left: auto; display: flex; gap: 18px; font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.04em; color: var(--muted); }
+.c-topbar__nav a { position: relative; padding: 4px 0; transition: color var(--motion-fast) var(--ease-standard); }
+.c-topbar__nav a[aria-current="page"] { color: var(--fg); }
+.c-topbar__nav a:hover { color: var(--fg); }
+.c-topbar__nav a[aria-disabled="true"] { opacity: 0.5; pointer-events: none; }
+.c-topbar__nav a:focus-visible { outline: none; box-shadow: var(--focus-ring); border-radius: var(--radius-sm); color: var(--fg); }
+
+/* ── Page head ──────────────────────────────────────────────────── */
+.pf-head { padding: 56px 0 var(--space-8); border-bottom: 2px solid var(--fg); }
+.pf-head .eyebrow { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.pf-head h1 { margin: var(--space-3) 0 0; font-family: var(--font-display); font-size: var(--text-3xl); font-weight: 600; letter-spacing: var(--tracking-display); line-height: var(--leading-tight); }
+.pf-head__line { margin: var(--space-4) 0 0; font-size: var(--text-lg); font-weight: 500; max-width: 56ch; }
+.pf-head__meta { display: flex; flex-wrap: wrap; gap: var(--space-4); margin-top: var(--space-6); font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.04em; color: var(--muted); }
+.pf-head__meta b { color: var(--fg); font-weight: 600; }
+
+/* ── Decision panel (디자이너 결정 — 목록 형태) ─────────────────── */
+.decisions { background: var(--bg); border: 1px solid var(--fg); margin: var(--space-8) 0 0; }
+.decisions__head { background: var(--fg); color: var(--accent-on); font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.1em; text-transform: uppercase; padding: 10px var(--space-5); }
+.decision { padding: var(--space-5); display: grid; gap: var(--space-2); border-top: 1px solid var(--border-soft); }
+.decision:first-of-type { border-top: none; }
+.decision__status { justify-self: start; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; padding: 2px 8px; margin-bottom: 2px; background: var(--accent); color: var(--accent-on); }
+.decision__n { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--muted); letter-spacing: 0.06em; }
+.decision h2 { margin: 0; font-family: var(--font-mono); font-size: var(--text-sm); font-weight: 600; }
+.decision p { margin: 0; font-size: var(--text-sm); color: var(--fg-2); line-height: 1.6; max-width: 88ch; }
+.decision .why { border-top: 1px solid var(--border-soft); padding-top: 10px; margin-top: 4px; }
+.decision .why b { color: var(--fg); font-weight: 600; }
+.decision .opt { font-family: var(--font-mono); font-size: 10px; color: var(--muted); border-top: 1px solid var(--border-soft); padding-top: 8px; margin-top: 2px; line-height: 1.5; }
+
+/* ── SectionHead (c-sechead 통일안) ─────────────────────────────── */
+.c-sechead { display: flex; align-items: baseline; gap: var(--space-3); padding-bottom: var(--space-4); border-bottom: 1px solid var(--border); margin: 0 0 var(--space-6); }
+.c-sechead__no { font-family: var(--font-mono); font-size: var(--text-sm); color: var(--muted); letter-spacing: 0.06em; }
+.c-sechead h2 { margin: 0; font-family: var(--font-display); font-size: var(--text-xl); font-weight: 600; letter-spacing: -0.01em; }
+.c-sechead__meta { margin-left: auto; font-family: var(--font-mono); font-size: var(--text-xs); color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
+
+.labs-section { padding: var(--section-y-tablet) 0 var(--section-y-desktop); }
+
+/* ── Entry card grid (Decision 2 결정: labs는 카드형 — kind·status 2차원 메타) ── */
+/* c-cardgrid 계열 확장: 1px-border collapse, 좌측 mono 인덱스 규율 공유 */
+.entry-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border-soft); border: 1px solid var(--border-soft); }
+.entry-card {
+  position: relative;
+  background: var(--bg);
+  padding: var(--space-6);
+  display: grid;
+  gap: var(--space-4);
+  align-content: start;
+  min-height: 210px;
+  transition: background var(--motion-base) var(--ease-standard);
+}
+.entry-card__top { display: flex; align-items: center; gap: var(--space-3); }
+.entry-card__no { font-family: var(--font-mono); font-size: var(--text-sm); color: var(--muted); letter-spacing: 0.06em; }
+/* kind 배지 — feature / service 구분 (border, no fill) */
+.entry-card__kind { margin-left: auto; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; border: 1px solid var(--border); color: var(--muted); padding: 2px 7px; }
+/* status 배지 — 정직한 상태 (BUILDING 등, warn 테두리) */
+.entry-card__status { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; padding: 2px 7px; border: 1px solid currentColor; }
+.entry-card__status--building { color: var(--warn); }
+.entry-card__status--planned { color: var(--muted); }
+.entry-card__body { display: grid; gap: var(--space-2); }
+.entry-card__name { font-family: var(--font-display); font-size: var(--text-xl); font-weight: 600; letter-spacing: -0.01em; }
+.entry-card__desc { font-size: var(--text-sm); color: var(--fg-2); line-height: 1.55; }
+.entry-card__foot { margin-top: auto; display: flex; align-items: center; gap: var(--space-3); font-family: var(--font-mono); font-size: var(--text-xs); color: var(--muted); letter-spacing: 0.04em; }
+.entry-card__foot .dest { color: var(--fg-2); }
+/* 데모 카드는 눌리지 않음(가짜 완성품 금지) — 진입 자리에 상태 라벨 */
+.entry-card__cta { margin-left: auto; font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.04em; color: var(--muted); border: 1px solid var(--border); padding: 4px 10px; }
+.entry-card[data-live="true"] { cursor: pointer; }
+.entry-card[data-live="true"]:hover { background: var(--surface); }
+.entry-card[data-live="true"]:hover .entry-card__cta { border-color: var(--fg); color: var(--fg); }
+
+/* 빈 슬롯(2번째 칸) — placeholder임을 명시하는 골격 */
+.entry-card--stub { background: var(--surface); display: grid; place-items: center; text-align: center; gap: var(--space-2); }
+.entry-card--stub .k { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.entry-card--stub .t { font-size: var(--text-sm); color: var(--muted); max-width: 32ch; }
+
+/* ── Empty-state (Decision 1 결정: 데모 카드 + notice 배너 공통 문법) ── */
+.empty-note { margin-top: var(--space-6); }
+.c-banner { display: flex; align-items: center; gap: var(--space-3); padding: 10px var(--space-4); border: 1px solid var(--warn); font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.03em; color: var(--warn); background: color-mix(in srgb, var(--warn) 7%, var(--bg)); }
+.c-banner__tag { font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; border: 1px solid currentColor; padding: 2px 7px; flex: none; }
+.c-banner__msg { color: var(--fg-2); }
+.c-banner__msg b { color: var(--fg); font-weight: 600; }
+
+/* ── Contract note (계약 설명 — feature/service 관문 문법) ─────── */
+.contract { margin-top: var(--space-8); border: 1px solid var(--border); }
+.contract__head { background: var(--surface); border-bottom: 1px solid var(--border); font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px var(--space-5); }
+.contract__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border-soft); }
+.contract__cell { background: var(--bg); padding: var(--space-5); display: grid; gap: 6px; align-content: start; }
+.contract__k { display: flex; align-items: center; gap: var(--space-2); }
+.contract__k b { font-family: var(--font-mono); font-size: var(--text-sm); font-weight: 600; letter-spacing: 0.04em; }
+.contract__k .kind-badge { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; border: 1px solid var(--border); color: var(--muted); padding: 1px 6px; }
+.contract__cell p { margin: 0; font-size: var(--text-sm); color: var(--fg-2); line-height: 1.55; }
+
+/* ── Footer ─────────────────────────────────────────────────────── */
+.site-foot { border-top: 1px solid var(--border); padding-block: var(--space-8); }
+.site-foot__inner { display: flex; flex-wrap: wrap; gap: var(--space-4); align-items: center; justify-content: space-between; }
+.site-foot .brand { display: inline-flex; align-items: center; gap: var(--space-2); font-family: var(--font-mono); font-size: var(--text-sm); font-weight: 600; }
+.site-foot .brand::before { content: ""; width: 9px; height: 9px; background: var(--fg); }
+.site-foot__links { display: flex; gap: var(--space-5); flex-wrap: wrap; }
+.site-foot a { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.03em; color: var(--muted); transition: color var(--motion-fast) var(--ease-standard); }
+.site-foot a:hover { color: var(--fg); }
+.site-foot__note { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--muted); letter-spacing: 0.02em; }
+
+/* ── Responsive ─────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .doc-wrap { padding: 0 var(--container-gutter-tablet); }
+}
+@media (max-width: 640px) {
+  .doc-wrap { padding: 0 var(--container-gutter-phone); }
+  .c-topbar__nav { display: none; }
+  .pf-head h1 { font-size: var(--text-2xl); }
+  .entry-grid { grid-template-columns: 1fr; }
+  .contract__grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── TopBar · subpage 형 ─────────────────────────────────────── -->
+<header class="c-topbar" data-od-id="topbar">
+  <div class="doc-wrap" style="display:flex;align-items:center;gap:var(--space-4);width:100%">
+    <a class="c-topbar__brand" href="index.html">marinkim.xyz</a>
+    <span class="c-topbar__crumb">/ Labs</span>
+    <nav class="c-topbar__nav" aria-label="주요 메뉴">
+      <a href="index.html">Home</a>
+      <a href="portfolio-list-prototype.html">Portfolio</a>
+      <a href="blog-list-prototype.html">Blog</a>
+      <a href="labs-list-prototype.html" aria-current="page">Labs</a>
+    </nav>
+  </div>
+</header>
+
+<main class="doc-wrap">
+
+  <!-- ── Page head — 관문 설명 ────────────────────────────────────── -->
+  <section class="pf-head" data-od-id="pf-head">
+    <span class="eyebrow">Labs · 기능·서비스 관문</span>
+    <h1>Labs</h1>
+    <p class="pf-head__line">사이트에 내장한 경량 기능과 독립적으로 돌아가는 서비스를 모아 두는 곳. 등록된 entry의 metadata만 읽어 목록으로 세웁니다.</p>
+    <div class="pf-head__meta">
+      <span>ENTRIES <b>0 registered</b></span>
+      <span>KINDS <b>feature · service</b></span>
+      <span>STATE <b>준비 중</b></span>
+    </div>
+  </section>
+
+  <!-- ── Decision panel — 디자이너 결정 2건 ───────────────────────── -->
+  <section class="decisions" data-od-id="decision-list">
+    <div class="decisions__head">디자이너 결정 · 2건 — 결정 + 이유 명시</div>
+
+    <div class="decision" data-od-id="decision-empty">
+      <span class="decision__status">결정 · 데모 카드 + notice</span>
+      <span class="decision__n">DECISION 1 · 빈 상태의 표현</span>
+      <h2>coming-soon 데모 카드 vs 안내 배너 vs 완전 빈 화면 + 한 줄</h2>
+      <p>두 페이지 공통 문법으로 <b>“정직한 데모 1건 + 하단 notice 배너”</b>를 결정. 목록 영역엔 실제 계획에 있는 소재(labs=<code>jarvis</code>, blog=구조 예시 행) 하나를 <b>status 배지(BUILDING/준비 중)를 단 채</b> 보여 “이런 모양이 된다”를 전하고, 그 아래 배너로 “현재 0건”을 못박습니다.</p>
+      <p class="why"><b>완전 빈 화면 + 한 줄을 택하지 않은 이유:</b> labs·blog는 둘 다 <b>관문(설명이 먼저 오는 페이지)</b>이라 화면이 비면 “아직 아무 계획도 없다”처럼 읽혀 관문의 존재 이유가 약해집니다. 반대로 데모를 <b>가짜 완성품</b>으로 두면 정직성이 깨지므로, 배지+배너로 미완임을 이중 고지해 균형을 잡았습니다.</p>
+      <p class="why"><b>배너만 두지 않은 이유:</b> 배너 한 줄은 “무엇이 준비 중인지”의 형태를 못 보여줍니다. 데모 카드가 카드 레이아웃·메타 구조를 미리 확정해 두면, 실제 entry가 등록될 때 목록이 곧바로 채워집니다.</p>
+      <span class="opt mono">택: 데모 카드 + notice 배너(공통) / 반: 배너 단독 · 완전 빈 화면</span>
+    </div>
+
+    <div class="decision" data-od-id="decision-grammar">
+      <span class="decision__status">결정 · labs 카드형</span>
+      <span class="decision__n">DECISION 2 · 목록 문법의 통일</span>
+      <h2>portfolio 넘버드 리스트에 맞출지 vs labs·blog 각자 자연형으로 갈지</h2>
+      <p><b>상위 문법은 공유하되, 목록 형태는 페이지 성격에 맞게 분리</b>로 결정. labs는 <b>카드형</b>, blog는 <b>행형</b>, portfolio는 <b>넘버드 리스트</b> — 셋 다 <b>좌측 mono 인덱스 · 1px 하드보더 · status 배지</b>라는 공통 규율을 공유해 “같은 문서 계열”로 읽힙니다.</p>
+      <p class="why"><b>labs를 카드형으로 둔 이유:</b> labs entry는 <b>kind(feature/service) × status</b>라는 <b>2차원 메타</b>가 핵심입니다. 카드는 이 두 축을 상단(kind·status 배지)과 하단(진입 목적지)으로 나눠 담기 좋습니다. 이를 한 줄짜리 넘버드 리스트에 욱여넣으면 배지가 이름과 충돌해 답답해집니다.</p>
+      <p class="why"><b>portfolio에 강제로 맞추지 않은 이유:</b> portfolio 리스트는 <b>순번=읽는 순서</b>인 세로 스캔이 일이지만, labs는 순번보다 <b>종류(내장 기능인가, 독립 서비스인가)</b>가 먼저 궁금합니다. 형태를 억지로 통일하면 각 페이지가 답해야 할 질문이 흐려집니다.</p>
+      <span class="opt mono">택: labs=카드형(kind·status 2축) / 반: 넘버드 리스트 강제 통일</span>
+    </div>
+  </section>
+
+  <!-- ── Entry list — 카드형 (데모 1 + 빈 슬롯) ───────────────────── -->
+  <section class="labs-section" data-od-id="entries">
+    <div class="c-sechead">
+      <span class="c-sechead__no">01</span>
+      <h2>Entries</h2>
+      <span class="c-sechead__meta">registered · 0 (데모 표시)</span>
+    </div>
+
+    <div class="entry-grid">
+
+      <!-- 데모 카드: 실제 계획에 있는 jarvis 1건. status 배지로 정직하게. 눌리지 않음. -->
+      <article class="entry-card" data-live="false" data-od-id="entry-jarvis">
+        <div class="entry-card__top">
+          <span class="entry-card__no mono">01</span>
+          <span class="entry-card__kind">Feature + Backend</span>
+          <span class="entry-card__status entry-card__status--building">Building</span>
+        </div>
+        <div class="entry-card__body">
+          <span class="entry-card__name">jarvis</span>
+          <span class="entry-card__desc">개인 비서 — 사이트에 UI를 내장하고 전용 backend로 동작시킬 예정. 등록되면 <code>/labs/jarvis</code> 상세로 진입합니다.</span>
+        </div>
+        <div class="entry-card__foot">
+          <span class="dest">→ /labs/jarvis</span>
+          <span class="entry-card__cta">준비 중</span>
+        </div>
+      </article>
+
+      <!-- 빈 슬롯: placeholder임을 명시 -->
+      <article class="entry-card entry-card--stub" data-od-id="entry-stub">
+        <span class="k">Slot · empty</span>
+        <span class="t">앞으로 만드는 기능·서비스가 등록형으로 이 자리에 채워집니다.</span>
+      </article>
+
+    </div>
+
+    <!-- Empty-state 배너 (Decision 1 공통 문법) -->
+    <div class="empty-note" data-od-id="empty-note">
+      <div class="c-banner">
+        <span class="c-banner__tag">Coming soon</span>
+        <span class="c-banner__msg">등록된 entry는 <b>현재 0건</b>입니다. 위 <b>jarvis</b>는 목록이 어떤 모양이 될지 보여주는 <b>데모(BUILDING)</b>이며, 실제 진입은 아직 열리지 않습니다.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Contract note — feature/service 관문 계약 설명 ───────────── -->
+  <section data-od-id="contract-note" style="padding-bottom:var(--section-y-desktop)">
+    <div class="c-sechead">
+      <span class="c-sechead__no">02</span>
+      <h2>Entry 두 종류</h2>
+      <span class="c-sechead__meta">확정 spec</span>
+    </div>
+    <div class="contract">
+      <div class="contract__head">목록은 entry metadata(title · kind · date · status)만 읽습니다</div>
+      <div class="contract__grid">
+        <div class="contract__cell">
+          <div class="contract__k"><b>feature</b><span class="kind-badge">site 내장</span></div>
+          <p>사이트 안에서 도는 경량 기능. 카드에서 <code>/labs/{id}</code> 상세로 진입합니다.</p>
+        </div>
+        <div class="contract__cell">
+          <div class="contract__k"><b>service</b><span class="kind-badge">subdomain</span></div>
+          <p>독립적으로 돌아가는 서비스. 카드에서 <code>{svc}.marinkim.xyz</code>를 새 탭으로 “열기”합니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ── Footer ─────────────────────────────────────────────────────── -->
+<footer class="site-foot" data-od-id="footer">
+  <div class="doc-wrap site-foot__inner">
+    <span class="brand">김대정 <span class="mono" style="color:var(--muted);font-weight:400">/ Labs</span></span>
+    <nav class="site-foot__links" aria-label="외부 링크">
+      <a href="index.html">Home ↗</a>
+      <a href="portfolio-list-prototype.html">Portfolio</a>
+      <a href="blog-list-prototype.html">Blog</a>
+      <a href="https://github.com/Dae-Jeong" target="_blank" rel="noopener">GitHub ↗</a>
+    </nav>
+    <span class="site-foot__note mono">marinkim.xyz · 2025</span>
+  </div>
+</footer>
+
+</body>
+</html>

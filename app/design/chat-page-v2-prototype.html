@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chat v2 — 김대정 프로필과 대화 (prototype)</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<style>
+:root {
+  --bg: #ffffff; --surface: #f7f7f7; --surface-warm: #eeeeee; --fg: #111111; --fg-2: #3a3a3a; --muted: #707070;
+  --border: #d9d9d9; --border-soft: #eeeeee; --accent: #111111; --accent-on: #ffffff;
+  --success: #168a46; --warn: #b7791f;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --font-ko: "Pretendard Variable", Pretendard, "IBM Plex Mono", ui-monospace, sans-serif;
+  --text-xs: 11px; --text-sm: 12px; --text-base: 14px; --text-lg: 16px; --text-xl: 20px;
+  --space-2: 8px; --space-3: 12px; --space-4: 16px; --space-5: 20px; --space-6: 24px; --space-8: 32px;
+  --ease: cubic-bezier(0.2, 0, 0, 1);
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--font-ko); font-size: var(--text-base); line-height: 1.55; word-break: keep-all; display: flex; flex-direction: column; min-height: 100vh; }
+.mono { font-family: var(--font-mono); }
+a { color: inherit; text-decoration: none; }
+code { font-family: var(--font-mono); font-size: 0.9em; background: var(--surface-warm); padding: 1px 5px; }
+
+/* ── nav ─────────────────────────────────────────────────────────── */
+.nav { border-bottom: 1px solid var(--border-soft); position: sticky; top: 0; background: var(--bg); z-index: 5; }
+.nav__in { max-width: 1180px; margin: 0 auto; padding: 0 28px; display: flex; align-items: center; gap: 20px; height: 56px; }
+.brand { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: var(--text-sm); font-weight: 600; }
+.brand::before { content: ""; width: 9px; height: 9px; background: var(--fg); }
+.crumb { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.tag { margin-left: auto; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; border: 1px solid var(--border); color: var(--muted); padding: 3px 8px; }
+
+/* ── state header (문서형 상태 라벨) ─────────────────────────────── */
+.state-head { max-width: 1180px; width: 100%; margin: 0 auto; padding: 0 28px; }
+.state-head__in { border-top: 1px solid var(--fg); padding-top: 14px; margin-top: 44px; display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+.state-head:first-of-type .state-head__in { margin-top: 32px; }
+.state-head__no { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.1em; color: var(--fg); }
+.state-head h1 { margin: 0; font-family: var(--font-mono); font-size: var(--text-lg); font-weight: 600; letter-spacing: -0.01em; }
+.state-head__note { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-left: auto; }
+
+/* ── shared conversation column ──────────────────────────────────── */
+.wrap { max-width: 1180px; width: 100%; margin: 0 auto; padding: 0 28px; display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 40px; }
+
+/* ── STATE 1 — 빈 대화 (상단 좌측 정렬 문서형) ──────────────────── */
+.empty { padding: 30px 0 48px; max-width: 62ch; }
+.empty__eyebrow { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+.empty h2 { margin: 0 0 12px; font-size: 26px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.28; }
+.empty p { margin: 0; color: var(--fg-2); font-size: var(--text-base); max-width: 56ch; }
+.empty__sugg-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin: 28px 0 12px; }
+.suggest-list { display: grid; gap: 0; border-top: 1px solid var(--border-soft); }
+.suggest-list button { text-align: left; font-family: var(--font-ko); font-size: var(--text-base); color: var(--fg); background: var(--bg); border: none; border-bottom: 1px solid var(--border-soft); padding: 13px 4px 13px 0; cursor: default; display: flex; align-items: center; gap: 12px; transition: color 140ms var(--ease); }
+.suggest-list button::before { content: attr(data-idx); font-family: var(--font-mono); font-size: 10px; color: var(--muted); letter-spacing: 0.06em; }
+.suggest-list button .arrow { margin-left: auto; font-family: var(--font-mono); color: var(--muted); }
+
+/* ── STATE 2 — 진행 대화 (기존 확정 문법 유지) ─────────────────── */
+.thread { padding: 24px 0 40px; display: grid; gap: 26px; align-content: start; }
+.msg { display: grid; gap: 7px; }
+.msg__who { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.msg--v .msg__who { text-align: right; }
+.msg--v .msg__bubble { justify-self: end; background: var(--surface); padding: 12px 15px; max-width: 72%; font-size: var(--text-base); }
+.msg--a .msg__bubble { border-left: 2px solid var(--fg); padding: 4px 0 4px 16px; color: var(--fg-2); max-width: 62ch; }
+.msg--a .msg__bubble p { margin: 0 0 10px; }
+.msg--a .msg__bubble p:last-of-type { margin-bottom: 0; }
+.evidence { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+.evidence span { font-family: var(--font-mono); font-size: 10px; color: var(--muted); border: 1px solid var(--border-soft); padding: 2px 6px; }
+.related { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.related a { font-family: var(--font-mono); font-size: 11px; color: var(--fg); border: 1px solid var(--fg); padding: 6px 10px; transition: all 140ms var(--ease); }
+.related a:hover { background: var(--fg); color: var(--accent-on); }
+.msg--a .inline { color: var(--fg); text-decoration: underline; text-underline-offset: 3px; }
+.followup { display: flex; flex-wrap: wrap; gap: 8px; }
+.followup button { font-family: var(--font-ko); font-size: var(--text-xs); color: var(--fg-2); background: var(--bg); border: 1px solid var(--border); padding: 8px 11px; cursor: default; }
+
+/* ── citation rail (기존 확정 문법 유지) ────────────────────────── */
+.rail { padding: 24px 0; border-left: 1px solid var(--border-soft); padding-left: 28px; align-self: start; }
+.rail h3 { margin: 0 0 14px; font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.rail ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.rail li { display: grid; gap: 3px; border-top: 1px solid var(--border-soft); padding-top: 10px; }
+.rail .cid { font-family: var(--font-mono); font-size: 10px; color: var(--fg); }
+.rail .cdesc { font-size: var(--text-xs); color: var(--muted); }
+.rail .note { margin-top: 18px; font-size: 10px; font-family: var(--font-mono); color: var(--muted); line-height: 1.6; }
+.rail--empty .cdesc { color: var(--muted); }
+
+/* ── composer (기존 확정: 하단 고정 fade · 비활성) ──────────────── */
+/* v2에서는 두 상태를 세로로 쌓아 함께 검토하므로 composer를 각 상태 하단에
+   인라인으로 배치해 max-width 정렬만 재현한다. 실제 화면에서는 하단 고정. */
+.composer { border-top: 1px solid var(--border-soft); background: linear-gradient(transparent, var(--bg) 40%); }
+.composer__in { max-width: 820px; margin: 0 auto; padding: 18px 28px 4px; display: flex; gap: 8px; }
+.composer input { flex: 1; border: 1px solid var(--border); background: var(--surface); font-family: var(--font-ko); font-size: var(--text-base); padding: 14px 16px; color: var(--muted); }
+.composer .send { font-family: var(--font-mono); font-size: var(--text-sm); background: var(--accent); color: var(--accent-on); border: none; padding: 0 20px; opacity: 0.65; }
+.composer__hint { max-width: 820px; margin: 0 auto; padding: 6px 28px 0; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.04em; color: var(--muted); }
+
+/* ── Decision panel (portfolio-list 결정형 문법 재사용) ─────────── */
+.decisions { max-width: 1180px; width: 100%; margin: 52px auto 0; padding: 0 28px; }
+.decisions__frame { background: var(--bg); border: 1px solid var(--fg); }
+.decisions__head { background: var(--fg); color: var(--accent-on); font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.1em; text-transform: uppercase; padding: 10px var(--space-5); }
+.decision { padding: var(--space-5); display: grid; gap: var(--space-2); }
+.decision + .decision { border-top: 1px solid var(--border-soft); }
+.decision__status { justify-self: start; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; padding: 2px 8px; margin-bottom: 2px; background: var(--accent); color: var(--accent-on); }
+.decision__n { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--muted); letter-spacing: 0.06em; }
+.decision h2 { margin: 0; font-family: var(--font-mono); font-size: var(--text-sm); font-weight: 600; }
+.decision p { margin: 0; font-size: var(--text-sm); color: var(--fg-2); line-height: 1.6; max-width: 92ch; }
+.decision .why { border-top: 1px solid var(--border-soft); padding-top: 10px; margin-top: 4px; }
+.decision .why b { color: var(--fg); font-weight: 600; }
+.decision .opt { font-family: var(--font-mono); font-size: 10px; color: var(--muted); border-top: 1px solid var(--border-soft); padding-top: 8px; margin-top: 2px; line-height: 1.5; }
+
+/* ── Phase 2 specimen (component-sheet specimen 문법 재사용) ─────── */
+.phase2 { max-width: 1180px; width: 100%; margin: 44px auto 120px; padding: 0 28px; }
+.phase2__frame { border: 1px dashed var(--border); background: var(--surface); }
+.phase2__head { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); padding: 12px var(--space-5); border-bottom: 1px dashed var(--border); display: flex; align-items: center; gap: 10px; }
+.phase2__head .tag { margin-left: auto; }
+.specimen { display: grid; grid-template-columns: 180px 1fr; gap: var(--space-6); align-items: start; padding: var(--space-5); border-top: 1px dashed var(--border); }
+.specimen:first-of-type { border-top: none; }
+.specimen__label { display: grid; gap: 4px; align-content: start; }
+.specimen__k { font-family: var(--font-mono); font-size: var(--text-xs); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+.specimen__hint { font-family: var(--font-mono); font-size: 10px; color: var(--muted); line-height: 1.6; }
+.specimen__demo { display: grid; gap: var(--space-3); }
+/* 타이핑 인디케이터 — Phase 2 미리보기(정적) */
+.typing { display: inline-flex; align-items: center; gap: 6px; border-left: 2px solid var(--fg); padding: 6px 0 6px 16px; }
+.typing__dots { display: inline-flex; gap: 4px; }
+.typing__dots i { width: 5px; height: 5px; background: var(--muted); display: inline-block; }
+.typing__label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.06em; color: var(--muted); }
+/* 정지 버튼 — Phase 2 미리보기(정적) */
+.stopbtn { justify-self: start; display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: var(--text-sm); color: var(--fg); background: var(--bg); border: 1px solid var(--fg); padding: 8px 14px; }
+.stopbtn .sq { width: 9px; height: 9px; background: var(--fg); }
+
+@media (max-width: 980px) {
+  .wrap { grid-template-columns: 1fr; }
+  .rail { display: none; }
+  .crumb { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 40vw; }
+  .tag { white-space: nowrap; font-size: 9px; }
+  .specimen { grid-template-columns: 1fr; gap: var(--space-3); }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav"><div class="nav__in">
+  <a class="brand" href="#">marinkim.xyz</a>
+  <span class="crumb">/ Chat v2 · 프로필과 대화</span>
+  <span class="tag">PHASE 2 PREVIEW</span>
+</div></nav>
+
+<!-- ══ STATE 1 — 빈 대화 (첫 진입) ══════════════════════════════════ -->
+<div class="state-head" data-od-id="state1-head"><div class="state-head__in">
+  <span class="state-head__no">STATE 01</span>
+  <h1>빈 대화 — 첫 진입</h1>
+  <span class="state-head__note">Empty state · 첫 방문자가 보는 화면</span>
+</div></div>
+
+<div class="wrap" data-od-id="state1">
+  <main class="empty" aria-label="첫 진입 안내">
+    <div class="empty__eyebrow">Profile Agent</div>
+    <h2>김대정의 이력·포트폴리오를 근거와 함께 답하는 프로필 에이전트입니다.</h2>
+    <p>검증된 claim registry의 public 표현만 사용해 답합니다. 아래 질문으로 시작하거나, 직접 물어보세요.</p>
+
+    <div class="empty__sugg-label">이런 걸 물어볼 수 있어요</div>
+    <div class="suggest-list">
+      <button type="button" data-idx="01">김대정은 어떤 엔지니어인가요?<span class="arrow">→</span></button>
+      <button type="button" data-idx="02">Thready에서 어떤 기여를 했는지 자세히 알려주세요.<span class="arrow">→</span></button>
+      <button type="button" data-idx="03">인프라 운영 범위는 어디까지인가요?<span class="arrow">→</span></button>
+    </div>
+  </main>
+
+  <aside class="rail rail--empty" aria-label="이 대화의 근거">
+    <h3>이 대화의 근거</h3>
+    <ul>
+      <li><span class="cdesc">질문을 시작하면 답변에 사용된 claim이 여기에 순서대로 쌓입니다.</span></li>
+    </ul>
+    <p class="note">답변은 검증된 claim registry의 public 표현만 사용합니다. 근거 없는 질문에는 curated Q&amp;A로 대체하거나 모른다고 답합니다.</p>
+  </aside>
+</div>
+
+<div class="composer" data-od-id="state1-composer"><div class="composer__in">
+  <input type="text" disabled placeholder="질문 입력 — Phase 2에서 열립니다">
+  <button class="send" disabled>SEND</button>
+</div>
+<p class="composer__hint">PHASE 2 PREVIEW · 입력은 아직 열리지 않았습니다</p>
+</div>
+
+<!-- ══ STATE 2 — 진행 대화 (기존 확정 문답 그대로) ══════════════════ -->
+<div class="state-head" data-od-id="state2-head"><div class="state-head__in">
+  <span class="state-head__no">STATE 02</span>
+  <h1>진행 대화 — 답변이 쌓인 상태</h1>
+  <span class="state-head__note">Active thread · 기존 확정 문답 재사용</span>
+</div></div>
+
+<div class="wrap" data-od-id="state2">
+  <main class="thread" aria-label="대화">
+    <div class="msg msg--v">
+      <span class="msg__who">Visitor</span>
+      <div class="msg__bubble">김대정은 어떤 엔지니어인가요?</div>
+    </div>
+    <div class="msg msg--a">
+      <span class="msg__who">Profile Agent</span>
+      <div class="msg__bubble">
+        <p>AI 제품을 운영 가능한 시스템으로 만드는 백엔드 엔지니어입니다. FastAPI/NestJS 기반 product backend, AI generation quality, async/realtime processing, Azure/Terraform deployment를 다뤄왔고, 제품 운영과 engineering standard를 agent-readable workflow로 구조화합니다.</p>
+        <p>MediSolve AI에 Backend Engineer로 합류한 뒤 Tech Lead·PO 역할을 병행하고 있습니다.</p>
+        <div class="evidence"><span>profile.identity</span><span>career.medisolve-role-evolution</span></div>
+        <div class="related"><a href="#">→ Resume 전체 보기</a><a href="#">→ Portfolio · case 5건</a></div>
+      </div>
+    </div>
+
+    <div class="msg msg--v">
+      <span class="msg__who">Visitor</span>
+      <div class="msg__bubble">Thready에서 어떤 기여를 했는지 자세히 알려주세요.</div>
+    </div>
+    <div class="msg msg--a">
+      <span class="msg__who">Profile Agent</span>
+      <div class="msg__bubble">
+        <p>AI 콘텐츠 생성 backend를 전면 재구축하고, cutover 이후 개발·운영을 전담했습니다. release·QA·task 구조 기반으로 backend를 운영합니다.</p>
+        <p>생성 품질은 감이 아니라 시스템으로 다룹니다 — typed prompt builder, LLM judge, 평가 루프, 관측 로깅으로 품질 시스템을 구축했습니다. 현재 월 수만 건 규모 요청을 HTTP 5xx 0.3% 수준으로 운영하고 있습니다.</p>
+        <p>더 깊은 배경과 트레이드오프는 <a class="inline" href="#">Portfolio의 Thready case</a>에 정리돼 있습니다.</p>
+        <div class="evidence"><span>thready.backend-rebuild</span><span>thready.generation-quality-system</span><span>thready.release-operation</span><span>thready.production-operation-quality</span></div>
+        <div class="related"><a href="#">→ Thready Rebuild · CASE</a></div>
+      </div>
+    </div>
+
+    <div class="followup">
+      <button type="button">인프라 운영 범위는 어디까지인가요?</button>
+      <button type="button">AI agent를 실무에 어떻게 쓰나요?</button>
+      <button type="button">realtime 경험을 알려주세요</button>
+    </div>
+  </main>
+
+  <aside class="rail" aria-label="이 대화의 근거">
+    <h3>이 대화의 근거</h3>
+    <ul>
+      <li><span class="cid">career.medisolve-role-evolution</span><span class="cdesc">Backend Engineer 합류 후 Tech Lead·PO 역할 병행</span></li>
+      <li><span class="cid">thready.backend-rebuild</span><span class="cdesc">backend 전면 재구축과 이후 개발·운영 전담</span></li>
+      <li><span class="cid">thready.generation-quality-system</span><span class="cdesc">typed prompt builder·LLM judge 기반 생성 품질 시스템</span></li>
+      <li><span class="cid">thready.production-operation-quality</span><span class="cdesc">월 수만 건 규모 요청, HTTP 5xx 0.3% 수준 운영</span></li>
+    </ul>
+    <p class="note">답변은 검증된 claim registry의 public 표현만 사용합니다. 근거 없는 질문에는 curated Q&amp;A로 대체하거나 모른다고 답합니다.</p>
+  </aside>
+</div>
+
+<div class="composer" data-od-id="state2-composer"><div class="composer__in">
+  <input type="text" disabled placeholder="질문 입력 — Phase 2에서 열립니다">
+  <button class="send" disabled>SEND</button>
+</div>
+<p class="composer__hint">PHASE 2 PREVIEW · 입력은 아직 열리지 않았습니다</p>
+</div>
+
+<!-- ══ Decision panel — 디자이너 결정 2건 (결정 + 이유) ═════════════ -->
+<section class="decisions" data-od-id="decisions">
+  <div class="decisions__frame">
+    <div class="decisions__head">디자이너 결정 · 2건 — 결정 + 이유 명시</div>
+
+    <div class="decision">
+      <span class="decision__status">결정 · 문서형 빈 상태</span>
+      <span class="decision__n">D1 · 빈 상태의 구성</span>
+      <h2>중앙 정렬 인사+suggestion(GPT식) vs 상단 좌측 정렬 문서형</h2>
+      <p>빈 대화 화면은 <b>상단 좌측 정렬 문서형</b>으로 결정. GPT/Claude처럼 화면 중앙에 큰 인사말을 띄우지 않고, nav 바로 아래에서 좌측 정렬로 정체성 한 줄 + 짧은 규칙 설명 + suggestion을 <b>세로 넘버드 리스트</b>(01–03)로 쌓는다. suggestion은 기존 확정 질문 3개를 그대로 재사용.</p>
+      <p class="why"><b>중앙 정렬을 택하지 않은 이유:</b> GPT의 중앙 정렬 인사말은 <b>“무엇이든 물어보세요”</b>라는 열린 범용 어시스턴트 약속을 시각적으로 암시한다. 이 사이트의 에이전트는 반대로 <b>검증된 claim registry의 public 표현만</b> 답하는 좁고 정직한 도구다. 화면 한가운데의 커다란 환영 인사는 이 제품이 실제로 할 수 있는 것보다 더 많은 걸 약속하는 것처럼 읽혀 정체성과 충돌한다.</p>
+      <p class="why"><b>문서형이 이 사이트에 맞는 이유:</b> mono 시스템은 좌측 인덱스·하드 그리드·doc형 컨테이너가 규율이다(root·portfolio·resume 프로토타입 모두 상단 좌측 정렬). 빈 상태만 중앙 정렬로 바꾸면 사이트 안에서 이 화면 하나가 이질적으로 뜬다. 넘버드 suggestion 리스트는 순번(01–03)이 곧 읽는 순서가 되어 mono 문법과 정합하고, GPT의 “빈 상태는 시작점을 제시한다”는 핵심 목적도 그대로 달성한다.</p>
+      <span class="opt mono">택: 상단 좌측 정렬 문서형 / 반: 중앙 정렬 인사+suggestion 카드(GPT식)</span>
+    </div>
+
+    <div class="decision">
+      <span class="decision__status">결정 · 우측 bubble 유지</span>
+      <span class="decision__n">D2 · 사용자 메시지 표현</span>
+      <h2>우측 bubble(기존) 유지 vs 플랫 행으로 통일</h2>
+      <p>사용자(Visitor) 메시지는 <b>우측 정렬 bubble</b>을 유지하고, assistant(Profile Agent)는 기존대로 좌측 보더 플랫 본문으로 둔다. GPT/Claude의 “assistant는 플랫” 규칙은 이미 따르고 있으므로, 바꾸는 건 사용자 메시지를 플랫으로 통일하느냐뿐 — 통일하지 않기로 결정.</p>
+      <p class="why"><b>플랫 통일을 택하지 않은 이유:</b> assistant 답변은 본문 여러 문단 + evidence chip + related link로 <b>정보 밀도가 높다</b>. 사용자 질문까지 같은 좌측 플랫 행으로 통일하면 “누가 물었고 누가 답했는지”의 경계가 흐려져, 한 화면에 문답이 여러 번 쌓일수록 스캔이 어려워진다. 우측 bubble은 화자 전환을 <b>레이아웃만으로</b> 즉시 구분해 주는 가장 값싼 신호다.</p>
+      <p class="why"><b>mono 규율과 충돌하지 않는 이유:</b> bubble은 <code>--surface</code> 배경 + radius 0 사각형으로, GPT식 둥근 말풍선이 아니다. 색·라운드를 쓰지 않고 <b>정렬(우측)과 배경 톤</b>만으로 구분하므로 mono의 하드 그리드 문법 안에 그대로 들어온다. 근거 rail이 assistant 답변에 붙는 구조라, 사용자 발화를 시각적으로 가볍게(짧은 우측 블록) 두는 편이 밀도 대비가 살아 오히려 읽기 리듬이 좋아진다.</p>
+      <span class="opt mono">택: 우측 bubble 유지 / 반: 사용자·assistant 모두 플랫 행 통일</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══ Phase 2 specimen — 화면에 넣지 않고 명세만 (streaming/정지) ══ -->
+<section class="phase2" data-od-id="phase2-specimen">
+  <div class="phase2__frame">
+    <div class="phase2__head">Phase 2에서 추가될 상태 — 현재 화면에는 넣지 않음<span class="tag">SPEC ONLY</span></div>
+
+    <div class="specimen">
+      <div class="specimen__label">
+        <span class="specimen__k">Streaming</span>
+        <span class="specimen__hint">답변 생성 중 표시. assistant 응답이 도착하기 전 자리를 잡아 준다. Phase 2 입력 개방 시 추가.</span>
+      </div>
+      <div class="specimen__demo">
+        <div class="typing" aria-hidden="true">
+          <span class="typing__dots"><i></i><i></i><i></i></span>
+          <span class="typing__label">Profile Agent · 근거 확인 중</span>
+        </div>
+        <span class="specimen__hint">문법 기준: assistant 답변과 같은 좌측 2px 보더 라인 위에 정적 인디케이터. 실제 구현에서 3점 점멸(150–250ms).</span>
+      </div>
+    </div>
+
+    <div class="specimen">
+      <div class="specimen__label">
+        <span class="specimen__k">Stop</span>
+        <span class="specimen__hint">생성 중 사용자가 응답을 멈추는 정지 버튼. streaming 상태에서만 노출. Phase 2 입력 개방 시 추가.</span>
+      </div>
+      <div class="specimen__demo">
+        <button class="stopbtn" type="button" disabled><span class="sq" aria-hidden="true"></span>정지</button>
+        <span class="specimen__hint">문법 기준: bordered mono 버튼(accent-fill 아님) + 사각 stop 글리프. radius 0 유지.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
