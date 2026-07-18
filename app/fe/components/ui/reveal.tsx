@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { cn } from "@/lib/cn";
 
 /* reveal-on-scroll — IntersectionObserver + prefers-reduced-motion 대응.
    스타일은 globals.css 의 .reveal / .stagger 가 소유한다 */
@@ -46,7 +47,7 @@ export function Reveal({
   }, [stagger]);
 
   return (
-    <div ref={ref} className={`${stagger ? "stagger" : "reveal"} ${className}`}>
+    <div ref={ref} className={cn(stagger ? "stagger" : "reveal", className)}>
       {children}
     </div>
   );

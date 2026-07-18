@@ -1,4 +1,5 @@
 import { Fragment } from "react";
+import { cn } from "@/lib/cn";
 
 type KV = { k: string; v: React.ReactNode };
 
@@ -11,7 +12,7 @@ export function KeyValueCard({
   className?: string;
 }) {
   return (
-    <div className={`border border-border p-5 ${className}`}>
+    <div className={cn("border border-border p-5", className)}>
       <dl className="m-0 grid grid-cols-[auto_1fr] gap-x-4 gap-y-1.5">
         {groups.map((group, gi) => (
           <Fragment key={gi}>
@@ -45,7 +46,7 @@ export function KeyValueRows({
   className?: string;
 }) {
   return (
-    <div className={`grid border-t border-border-soft ${className}`}>
+    <div className={cn("grid border-t border-border-soft", className)}>
       {items.map(({ k, v }) => (
         <div
           key={k}

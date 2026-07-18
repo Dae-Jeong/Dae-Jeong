@@ -1,3 +1,5 @@
+import { cn } from "@/lib/cn";
+
 /* 좌측 mono 라벨 컬럼 + 텍스트 행 — summary 56px / creds 110px / career 150px */
 const COLS = {
   sm: "grid-cols-[40px_1fr] sm:grid-cols-[56px_1fr]",
@@ -15,7 +17,7 @@ export function NumberedList({
   className?: string;
   children: React.ReactNode;
 }) {
-  return <ol className={`m-0 grid list-none p-0 ${className}`}>{children}</ol>;
+  return <ol className={cn("m-0 grid list-none p-0", className)}>{children}</ol>;
 }
 
 export function NumberedRow({
@@ -31,7 +33,7 @@ export function NumberedRow({
   labelWidth?: "sm" | "md" | "lg";
   /** 그린 액센트 1점 — 핵심 지표 행에만 쓴다 */
   accent?: boolean;
-  /** 지정 시 기본 톤(text-muted)을 깔지 않는다 — 색·굵기를 호출부가 소유 */
+  /** cn 병합 — 기본 톤(text-muted)과 충돌하는 utility 는 호출부가 이긴다 */
   labelClassName?: string;
   trailing?: React.ReactNode;
   className?: string;
@@ -43,14 +45,18 @@ export function NumberedRow({
   const cols = COLS[key];
   return (
     <li
-      className={`grid items-baseline gap-4 border-t border-border py-5 first:border-t-0 max-sm:gap-2 ${cols} ${className}`}
+      className={cn(
+        "grid items-baseline gap-4 border-t border-border py-5 first:border-t-0 max-sm:gap-2",
+        cols,
+        className,
+      )}
     >
       <span
-        className={`font-mono text-sm tracking-[0.06em] ${
-          accent
-            ? "font-bold text-success"
-            : labelClassName || "text-muted"
-        }`}
+        className={cn(
+          "font-mono text-sm tracking-[0.06em]",
+          accent ? "font-bold text-success" : "text-muted",
+          labelClassName,
+        )}
       >
         {label}
       </span>

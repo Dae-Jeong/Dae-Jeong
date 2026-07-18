@@ -1,3 +1,5 @@
+import { cn } from "@/lib/cn";
+
 /* D3 확정 (2026-07-18): Chip 은 bordered 전용 — fill 이 필요하면 Button 을 쓴다 */
 type ChipProps = {
   variant?: "link" | "status" | "contact";
@@ -20,9 +22,11 @@ export function Chip({
   className = "",
   children,
 }: ChipProps) {
-  const cls =
-    `focus-ring inline-flex items-center border border-border font-mono text-xs ` +
-    `transition-colors duration-100 ${VARIANT[variant]} ${className}`;
+  const cls = cn(
+    "focus-ring inline-flex items-center border border-border font-mono text-xs transition-colors duration-100",
+    VARIANT[variant],
+    className,
+  );
   const content = (
     <>
       {variant === "status" && (

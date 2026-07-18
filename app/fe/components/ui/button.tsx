@@ -1,3 +1,5 @@
+import { cn } from "@/lib/cn";
+
 /* D3 확정 (2026-07-18): accent-fill 은 전부 Button — Chip 은 bordered 전용 */
 type ButtonProps = {
   href?: string;
@@ -22,7 +24,7 @@ export function Button({
   className = "",
   children,
 }: ButtonProps) {
-  const cls = `${BASE} ${className}`;
+  const cls = cn(BASE, className);
   if (href !== undefined) {
     return (
       <a
