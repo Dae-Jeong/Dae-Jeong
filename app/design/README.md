@@ -10,6 +10,8 @@
 | `chat-page-prototype.html` | `/chat` 풀 대화 — 근거 rail + 3층 답변 | 2026-07-16 |
 | `component-sheet.html` | 컴포넌트 9종 specimen — anatomy·variants·states, `app/fe` 컴포넌트 구현 기준. D1(hub 1280·doc 1180)·D3(Button=fill·Chip=bordered) 확정, D2(상태 정의) 보류 | 2026-07-18 |
 | `overlay-sheet.html` | 오버레이·피드백 5종 specimen — Modal·Popover·Banner·Toast·MobileNav, 실제 용례 접지. 디자이너 결정: Toast 상단 중앙 · Modal backdrop 단색 반투명 · MobileNav 풀스크린 (업계 패턴 교차 검증됨) | 2026-07-18 |
+| `portfolio-list-prototype.html` | `/portfolio` 목록 — 넘버드 리스트 5건 + Role·Scope 메타 (디자이너 결정: root 아코디언 미재사용 — 독립 목록은 세로 스캔+바로 진입) | 2026-07-18 |
+| `portfolio-case-prototype.html` | `/portfolio/{case}` 상세 (Thready 데모) — 문제·결정·시스템·운영근거 4단 + resume식 sticky rail(목차 scroll-spy·케이스 이동) + evidence chip→Popover, 미확정 수치 [TBD] | 2026-07-18 |
 
 - 토큰 계약(Mono 시스템)의 canonical: [architecture spec — Design Baseline](../../wiki/docs/superpowers/specs/2026-07-15-personal-site-architecture-design.md)
 - 구현 매핑: [Phase 1 stack plan](../../wiki/docs/superpowers/plans/2026-07-17-site-phase1-stack-and-structure.md)

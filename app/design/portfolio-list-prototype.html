@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portfolio — 김대정 · Selected Cases (prototype)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<style>
+/* ── Mono design system tokens (verbatim contract — index.html 기준) ── */
+:root {
+  --bg: #ffffff;
+  --surface: #f7f7f7;
+  --surface-warm: #eeeeee;
+  --fg: #111111;
+  --fg-2: #3a3a3a;
+  --muted: #707070;
+  --meta: #111111;
+  --border: #d9d9d9;
+  --border-soft: #eeeeee;
+  --accent: #111111;
+  --accent-on: #ffffff;
+  --accent-hover: color-mix(in oklab, var(--accent), black 8%);
+  --accent-active: color-mix(in oklab, var(--accent), black 14%);
+  --success: #168a46;
+  --warn: #b7791f;
+  --danger: #c53030;
+  --font-display: "IBM Plex Mono", ui-monospace, monospace;
+  --font-body: "IBM Plex Mono", ui-monospace, monospace;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --text-xs: 11px;
+  --text-sm: 12px;
+  --text-base: 14px;
+  --text-lg: 16px;
+  --text-xl: 20px;
+  --text-2xl: 28px;
+  --text-3xl: 40px;
+  --text-4xl: 56px;
+  --leading-body: 1.45;
+  --leading-tight: 1.06;
+  --tracking-display: -0.025em;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --section-y-desktop: 80px;
+  --section-y-tablet: 60px;
+  --section-y-phone: 42px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-pill: 9999px;
+  --elev-flat: none;
+  --elev-ring: 0 0 0 1px var(--border);
+  --elev-raised: 0 16px 40px rgba(0, 0, 0, 0.10);
+  --focus-ring: 0 0 0 3px rgba(17, 17, 17, 0.18);
+  --motion-fast: 100ms;
+  --motion-base: 180ms;
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --container-max: 1280px;
+  --container-gutter-desktop: 36px;
+  --container-gutter-tablet: 24px;
+  --container-gutter-phone: 16px;
+  /* 한글 본문: Pretendard, 라틴/숫자: IBM Plex Mono */
+  --font-ko: "Pretendard Variable", Pretendard, "IBM Plex Mono", ui-monospace, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-ko);
+  font-size: var(--text-base);
+  line-height: var(--leading-body);
+  word-break: keep-all;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+.mono { font-family: var(--font-mono); font-feature-settings: "tnum" 1; }
+a { color: inherit; text-decoration: none; }
+
+/* doc형 컨테이너 — D1 확정: 1180 / gutter 28 */
+.doc-wrap { max-width: 1180px; margin: 0 auto; padding: 0 28px; }
+
+/* ── TopBar · subpage 형 (c-topbar) ─────────────────────────────── */
+.c-topbar { display: flex; align-items: center; gap: var(--space-4); height: 56px; border-bottom: 1px solid var(--border-soft); background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: saturate(180%) blur(8px); position: sticky; top: 0; z-index: 50; }
+.c-topbar__brand { display: inline-flex; align-items: center; gap: var(--space-2); font-family: var(--font-mono); font-size: var(--text-sm); font-weight: 600; letter-spacing: 0.02em; }
+.c-topbar__brand::before { content: ""; width: 9px; height: 9px; background: var(--fg); }
+.c-topbar__crumb { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.c-topbar__nav { margin-left: auto; display: flex; gap: 18px; font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.04em; color: var(--muted); }
+.c-topbar__nav a { position: relative; padding: 4px 0; transition: color var(--motion-fast) var(--ease-standard); }
+.c-topbar__nav a[aria-current="page"] { color: var(--fg); }
+.c-topbar__nav a:hover { color: var(--fg); }
+.c-topbar__nav a:focus-visible { outline: none; box-shadow: var(--focus-ring); border-radius: var(--radius-sm); color: var(--fg); }
+
+/* ── Page head ──────────────────────────────────────────────────── */
+.pf-head { padding: 56px 0 var(--space-8); border-bottom: 2px solid var(--fg); }
+.pf-head .eyebrow { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.pf-head h1 { margin: var(--space-3) 0 0; font-family: var(--font-display); font-size: var(--text-3xl); font-weight: 600; letter-spacing: var(--tracking-display); line-height: var(--leading-tight); }
+.pf-head__line { margin: var(--space-4) 0 0; font-size: var(--text-lg); font-weight: 500; max-width: 52ch; }
+.pf-head__meta { display: flex; flex-wrap: wrap; gap: var(--space-4); margin-top: var(--space-6); font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.04em; color: var(--muted); }
+.pf-head__meta b { color: var(--fg); font-weight: 600; }
+
+/* ── Decision panel (디자이너 결정 — 목록 형태) ─────────────────── */
+.decisions { background: var(--bg); border: 1px solid var(--fg); margin: var(--space-8) 0 0; }
+.decisions__head { background: var(--fg); color: var(--accent-on); font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.1em; text-transform: uppercase; padding: 10px var(--space-5); }
+.decision { padding: var(--space-5); display: grid; gap: var(--space-2); }
+.decision__status { justify-self: start; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; padding: 2px 8px; margin-bottom: 2px; background: var(--accent); color: var(--accent-on); }
+.decision__n { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--muted); letter-spacing: 0.06em; }
+.decision h2 { margin: 0; font-family: var(--font-mono); font-size: var(--text-sm); font-weight: 600; }
+.decision p { margin: 0; font-size: var(--text-sm); color: var(--fg-2); line-height: 1.6; max-width: 88ch; }
+.decision .why { border-top: 1px solid var(--border-soft); padding-top: 10px; margin-top: 4px; }
+.decision .why b { color: var(--fg); font-weight: 600; }
+.decision .opt { font-family: var(--font-mono); font-size: 10px; color: var(--muted); border-top: 1px solid var(--border-soft); padding-top: 8px; margin-top: 2px; line-height: 1.5; }
+
+/* ── SectionHead (c-sechead 통일안) ─────────────────────────────── */
+.c-sechead { display: flex; align-items: baseline; gap: var(--space-3); padding-bottom: var(--space-4); border-bottom: 1px solid var(--border); margin: 0 0 var(--space-2); }
+.c-sechead__no { font-family: var(--font-mono); font-size: var(--text-sm); color: var(--muted); letter-spacing: 0.06em; }
+.c-sechead h2 { margin: 0; font-family: var(--font-display); font-size: var(--text-xl); font-weight: 600; letter-spacing: -0.01em; }
+.c-sechead__meta { margin-left: auto; font-family: var(--font-mono); font-size: var(--text-xs); color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
+
+.cases-section { padding: var(--section-y-tablet) 0 var(--section-y-desktop); }
+
+/* ── Numbered case list (c-numrow 계열 확장) ────────────────────── */
+/* Decision 1 결정 형태: 넘버드 리스트. 행 전체가 상세로 가는 링크. */
+.case-list { border-top: 1px solid var(--border); }
+.case-row {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr) 260px auto;
+  gap: var(--space-5);
+  align-items: center;
+  padding: var(--space-6) var(--space-1);
+  border-bottom: 1px solid var(--border);
+  color: inherit;
+  transition: padding-left var(--motion-base) var(--ease-standard), background var(--motion-base) var(--ease-standard);
+}
+.case-row:hover { background: var(--surface); padding-left: var(--space-4); }
+.case-row:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+.case-row__no { font-family: var(--font-mono); font-size: var(--text-lg); color: var(--muted); letter-spacing: 0.06em; align-self: start; padding-top: 2px; }
+.case-row__main { display: grid; gap: 6px; }
+.case-row__name { font-family: var(--font-display); font-size: var(--text-xl); font-weight: 600; letter-spacing: -0.01em; }
+.case-row__tag { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); }
+.case-row__blurb { font-size: var(--text-sm); color: var(--fg-2); line-height: 1.55; max-width: 54ch; margin-top: 2px; }
+
+/* pf meta 재사용 (index pf__meta) — Role · Scope */
+.case-row__meta { display: grid; gap: var(--space-3); align-content: center; }
+.case-row__meta-row { display: grid; gap: 2px; }
+.case-row__meta-k { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.case-row__meta-v { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--fg); }
+
+.case-row__go { width: 40px; height: 40px; border: 1px solid var(--border); display: grid; place-items: center; flex-shrink: 0; justify-self: end; transition: background var(--motion-fast) var(--ease-standard), border-color var(--motion-fast) var(--ease-standard), color var(--motion-fast) var(--ease-standard); }
+.case-row:hover .case-row__go { background: var(--accent); border-color: var(--accent); color: var(--accent-on); }
+.case-row__go svg { width: 16px; height: 16px; }
+
+/* Banner (overlay-sheet c-banner — warn/notice, dismiss 없음) */
+.c-banner { display: flex; align-items: center; gap: var(--space-3); padding: 10px var(--space-4); border: 1px solid var(--warn); font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.03em; color: var(--warn); background: color-mix(in srgb, var(--warn) 7%, var(--bg)); margin: var(--space-8) 0 0; }
+.c-banner__tag { font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; border: 1px solid currentColor; padding: 2px 7px; flex: none; }
+.c-banner__msg { color: var(--fg-2); }
+.c-banner__msg b { color: var(--fg); font-weight: 600; }
+
+/* ── Footer ─────────────────────────────────────────────────────── */
+.site-foot { border-top: 1px solid var(--border); padding-block: var(--space-8); }
+.site-foot__inner { display: flex; flex-wrap: wrap; gap: var(--space-4); align-items: center; justify-content: space-between; }
+.site-foot .brand { display: inline-flex; align-items: center; gap: var(--space-2); font-family: var(--font-mono); font-size: var(--text-sm); font-weight: 600; }
+.site-foot .brand::before { content: ""; width: 9px; height: 9px; background: var(--fg); }
+.site-foot__links { display: flex; gap: var(--space-5); flex-wrap: wrap; }
+.site-foot a { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.03em; color: var(--muted); transition: color var(--motion-fast) var(--ease-standard); }
+.site-foot a:hover { color: var(--fg); }
+.site-foot__note { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--muted); letter-spacing: 0.02em; }
+
+/* ── Responsive ─────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .doc-wrap { padding: 0 var(--container-gutter-tablet); }
+  .case-row { grid-template-columns: 48px minmax(0,1fr) auto; grid-template-areas: "no main go" "no meta go"; gap: var(--space-3) var(--space-4); align-items: start; }
+  .case-row__no { grid-area: no; }
+  .case-row__main { grid-area: main; }
+  .case-row__meta { grid-area: meta; grid-auto-flow: column; gap: var(--space-6); justify-content: start; margin-top: var(--space-2); }
+  .case-row__go { grid-area: go; align-self: center; }
+}
+@media (max-width: 560px) {
+  .doc-wrap { padding: 0 var(--container-gutter-phone); }
+  .c-topbar__nav { display: none; }
+  .pf-head h1 { font-size: var(--text-2xl); }
+  .case-row { grid-template-columns: 40px 1fr; grid-template-areas: "no main" ". meta" ". go"; }
+  .case-row__go { justify-self: start; }
+  .case-row__meta { grid-auto-flow: row; gap: var(--space-3); }
+}
+</style>
+</head>
+<body>
+
+<!-- ── TopBar · subpage 형 ─────────────────────────────────────── -->
+<header class="c-topbar" data-od-id="topbar">
+  <div class="doc-wrap" style="display:flex;align-items:center;gap:var(--space-4);width:100%">
+    <a class="c-topbar__brand" href="index.html">marinkim.xyz</a>
+    <span class="c-topbar__crumb">/ Portfolio</span>
+    <nav class="c-topbar__nav" aria-label="주요 메뉴">
+      <a href="index.html">Home</a>
+      <a href="portfolio-list-prototype.html" aria-current="page">Portfolio</a>
+      <a href="#" aria-disabled="true">Blog</a>
+      <a href="#" aria-disabled="true">Labs</a>
+    </nav>
+  </div>
+</header>
+
+<main class="doc-wrap">
+
+  <!-- ── Page head ───────────────────────────────────────────────── -->
+  <section class="pf-head" data-od-id="pf-head">
+    <span class="eyebrow">Selected Cases · 5</span>
+    <h1>Portfolio</h1>
+    <p class="pf-head__line">문제 · 결정 · 시스템 · 운영 근거를 케이스 단위로 검증하는 곳. 이력서가 요약이라면, 여기는 깊이를 확인하는 페이지입니다.</p>
+    <div class="pf-head__meta">
+      <span>ROLE <b>Backend Engineer</b></span>
+      <span>DOMAIN <b>AI Product Systems</b></span>
+      <span>CASES <b>5</b></span>
+    </div>
+  </section>
+
+  <!-- ── Decision panel — 디자이너 결정 (목록 형태) ───────────────── -->
+  <section class="decisions" data-od-id="decision-list">
+    <div class="decisions__head">디자이너 결정 · 목록 형태 — 결정 + 이유 명시</div>
+    <div class="decision">
+      <span class="decision__status">결정 · 넘버드 리스트</span>
+      <span class="decision__n">DECISION · 목록의 형태</span>
+      <h2>root 아코디언 재사용 vs 카드 그리드 vs 넘버드 리스트</h2>
+      <p>독립 <code style="font-family:var(--font-mono);font-size:0.9em;background:var(--surface-warm);padding:1px 5px">/portfolio</code> 목록 페이지는 <b>넘버드 리스트</b>로 결정. 좌측 mono 인덱스 + 케이스명·태그·한 줄 blurb + Role·Scope 메타 + 진입 화살표를 한 행에 담고, 행 전체가 상세로 가는 링크입니다.</p>
+      <p class="why"><b>root 아코디언과 달라야 하는 이유:</b> root의 pf 아코디언은 <b>같은 페이지 안에서 인라인으로 요약을 펼치는</b> 게 목적입니다(홈에서 이탈 없이 미리보기). 그 패턴을 독립 목록 페이지에 그대로 쓰면 “펼침 → 요약 → 다시 상세 링크”라는 <b>이중 내비게이션</b>이 생겨, 이번 라운드에서 새로 만드는 상세 페이지의 존재 이유가 흐려집니다. 목록 페이지의 일은 5건을 <b>한눈에 세로로 스캔</b>하고 원하는 케이스로 <b>바로 진입</b>하는 것 — 넘버드 리스트가 이 두 동작에 가장 적은 구조입니다.</p>
+      <p class="why"><b>카드 그리드를 택하지 않은 이유:</b> 카드 2×3 그리드는 시선을 좌↔우로 흩고, 5건(홀수)이라 마지막 칸이 비어 리듬이 깨집니다. 세로 리스트는 순번(01–05)이 곧 읽는 순서가 되어 mono의 하드 그리드·좌측 인덱스 규율과도 정합합니다.</p>
+      <span class="opt mono">택: 넘버드 리스트 / 반: root 아코디언 재사용 · 카드 그리드</span>
+    </div>
+  </section>
+
+  <!-- ── Case list — 넘버드 리스트 5건 ───────────────────────────── -->
+  <section class="cases-section" data-od-id="cases">
+    <div class="c-sechead">
+      <span class="c-sechead__no">02</span>
+      <h2>Cases</h2>
+      <span class="c-sechead__meta">클릭해 상세로 · 5</span>
+    </div>
+
+    <div class="case-list">
+
+      <a class="case-row" href="portfolio-case-prototype.html" data-od-id="case-thready">
+        <span class="case-row__no mono">01</span>
+        <span class="case-row__main">
+          <span class="case-row__name">Thready Rebuild</span>
+          <span class="case-row__tag">AI Content Generation · Backend</span>
+          <span class="case-row__blurb">AI 콘텐츠 생성 backend를 전면 재구축하고 이후 개발·운영을 전담. typed prompt builder와 LLM judge 기반 평가 루프, 관측 로깅으로 생성 품질을 시스템화했다.</span>
+        </span>
+        <span class="case-row__meta">
+          <span class="case-row__meta-row"><span class="case-row__meta-k">Role</span><span class="case-row__meta-v">Rebuild · Ownership</span></span>
+          <span class="case-row__meta-row"><span class="case-row__meta-k">Scope</span><span class="case-row__meta-v">Generation Quality</span></span>
+        </span>
+        <span class="case-row__go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+
+      <a class="case-row" href="#" aria-disabled="true" data-od-id="case-bay">
+        <span class="case-row__no mono">02</span>
+        <span class="case-row__main">
+          <span class="case-row__name">BAY Async</span>
+          <span class="case-row__tag">Order · Inventory · Worker</span>
+          <span class="case-row__blurb">주문·재고 API와 RabbitMQ·TaskIQ 비동기 worker를 설계하고, retry·test·CI 구축을 주도. 실패 가능한 작업을 worker로 분리해 처리 경계를 명확히 했다.</span>
+        </span>
+        <span class="case-row__meta">
+          <span class="case-row__meta-row"><span class="case-row__meta-k">Role</span><span class="case-row__meta-v">Lead</span></span>
+          <span class="case-row__meta-row"><span class="case-row__meta-k">Scope</span><span class="case-row__meta-v">Async · CI</span></span>
+        </span>
+        <span class="case-row__go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+
+      <a class="case-row" href="#" aria-disabled="true" data-od-id="case-say">
+        <span class="case-row__no mono">03</span>
+        <span class="case-row__main">
+          <span class="case-row__name">SAY Realtime</span>
+          <span class="case-row__tag">Realtime AI · Session</span>
+          <span class="case-row__blurb">realtime AI 상담 backend의 세션 lifecycle과 provider 경계 안정화에 공동 주 기여. realtime session의 시작·유지·종료 흐름을 다뤘다.</span>
+        </span>
+        <span class="case-row__meta">
+          <span class="case-row__meta-row"><span class="case-row__meta-k">Role</span><span class="case-row__meta-v">Co-Lead Contrib.</span></span>
+          <span class="case-row__meta-row"><span class="case-row__meta-k">Scope</span><span class="case-row__meta-v">Session Lifecycle</span></span>
+        </span>
+        <span class="case-row__go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+
+      <a class="case-row" href="#" aria-disabled="true" data-od-id="case-template">
+        <span class="case-row__no mono">04</span>
+        <span class="case-row__main">
+          <span class="case-row__name">BE Template</span>
+          <span class="case-row__tag">FastAPI · Agent Context</span>
+          <span class="case-row__blurb">조직 표준 FastAPI template과 agent context system을 설계·구축 전담. layered architecture·DI·ADR·convention을 표준으로 정립했다.</span>
+        </span>
+        <span class="case-row__meta">
+          <span class="case-row__meta-row"><span class="case-row__meta-k">Role</span><span class="case-row__meta-v">Owner</span></span>
+          <span class="case-row__meta-row"><span class="case-row__meta-k">Scope</span><span class="case-row__meta-v">Org Standard</span></span>
+        </span>
+        <span class="case-row__go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+
+      <a class="case-row" href="#" aria-disabled="true" data-od-id="case-ops">
+        <span class="case-row__no mono">05</span>
+        <span class="case-row__main">
+          <span class="case-row__name">Mediness Ops</span>
+          <span class="case-row__tag">Decision · Spec · Release Gate</span>
+          <span class="case-row__blurb">decision·spec·work·release gate로 이어지는 제품 운영 구조를 구조화·리드. 일정·이슈·릴리스 운영을 agent-readable workflow로 정리했다.</span>
+        </span>
+        <span class="case-row__meta">
+          <span class="case-row__meta-row"><span class="case-row__meta-k">Role</span><span class="case-row__meta-v">Lead</span></span>
+          <span class="case-row__meta-row"><span class="case-row__meta-k">Scope</span><span class="case-row__meta-v">Product Ops</span></span>
+        </span>
+        <span class="case-row__go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+
+    </div>
+
+    <!-- Banner · notice (창작 금지 고지) -->
+    <div class="c-banner" data-od-id="notice">
+      <span class="c-banner__tag">Notice</span>
+      <span class="c-banner__msg">현재 상세가 열리는 케이스는 <b>Thready 1건</b>(데모)입니다. 나머지 4건은 상세 준비 중.</span>
+    </div>
+  </section>
+
+</main>
+
+<!-- ── Footer ─────────────────────────────────────────────────────── -->
+<footer class="site-foot" data-od-id="footer">
+  <div class="doc-wrap site-foot__inner">
+    <span class="brand">김대정 <span class="mono" style="color:var(--muted);font-weight:400">/ Portfolio</span></span>
+    <nav class="site-foot__links" aria-label="외부 링크">
+      <a href="index.html">Home ↗</a>
+      <a href="resume-page-prototype.html">Resume</a>
+      <a href="https://github.com/Dae-Jeong" target="_blank" rel="noopener">GitHub ↗</a>
+    </nav>
+    <span class="site-foot__note mono">marinkim.xyz · 2025</span>
+  </div>
+</footer>
+
+</body>
+</html>

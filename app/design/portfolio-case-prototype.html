@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thready Rebuild — Case · 김대정 (prototype)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<style>
+/* ── Mono design system tokens (verbatim contract — index.html 기준) ── */
+:root {
+  --bg: #ffffff;
+  --surface: #f7f7f7;
+  --surface-warm: #eeeeee;
+  --fg: #111111;
+  --fg-2: #3a3a3a;
+  --muted: #707070;
+  --meta: #111111;
+  --border: #d9d9d9;
+  --border-soft: #eeeeee;
+  --accent: #111111;
+  --accent-on: #ffffff;
+  --accent-hover: color-mix(in oklab, var(--accent), black 8%);
+  --accent-active: color-mix(in oklab, var(--accent), black 14%);
+  --success: #168a46;
+  --warn: #b7791f;
+  --danger: #c53030;
+  --font-display: "IBM Plex Mono", ui-monospace, monospace;
+  --font-body: "IBM Plex Mono", ui-monospace, monospace;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --text-xs: 11px;
+  --text-sm: 12px;
+  --text-base: 14px;
+  --text-lg: 16px;
+  --text-xl: 20px;
+  --text-2xl: 28px;
+  --text-3xl: 40px;
+  --text-4xl: 56px;
+  --leading-body: 1.45;
+  --leading-tight: 1.06;
+  --tracking-display: -0.025em;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --section-y-desktop: 80px;
+  --section-y-tablet: 60px;
+  --section-y-phone: 42px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-pill: 9999px;
+  --elev-flat: none;
+  --elev-ring: 0 0 0 1px var(--border);
+  --elev-raised: 0 16px 40px rgba(0, 0, 0, 0.10);
+  --focus-ring: 0 0 0 3px rgba(17, 17, 17, 0.18);
+  --motion-fast: 100ms;
+  --motion-base: 180ms;
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --container-max: 1280px;
+  --container-gutter-desktop: 36px;
+  --container-gutter-tablet: 24px;
+  --container-gutter-phone: 16px;
+  /* 한글 본문: Pretendard, 라틴/숫자: IBM Plex Mono */
+  --font-ko: "Pretendard Variable", Pretendard, "IBM Plex Mono", ui-monospace, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-ko);
+  font-size: var(--text-base);
+  line-height: var(--leading-body);
+  word-break: keep-all;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+.mono { font-family: var(--font-mono); font-feature-settings: "tnum" 1; }
+a { color: inherit; text-decoration: none; }
+
+/* ── TopBar · subpage 형 (c-topbar) ─────────────────────────────── */
+.c-topbar { border-bottom: 1px solid var(--border-soft); background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: saturate(180%) blur(8px); position: sticky; top: 0; z-index: 50; }
+.c-topbar__in { max-width: 1180px; margin: 0 auto; padding: 0 28px; display: flex; align-items: center; gap: var(--space-4); height: 56px; }
+.c-topbar__brand { display: inline-flex; align-items: center; gap: var(--space-2); font-family: var(--font-mono); font-size: var(--text-sm); font-weight: 600; letter-spacing: 0.02em; }
+.c-topbar__brand::before { content: ""; width: 9px; height: 9px; background: var(--fg); }
+.c-topbar__crumb { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.c-topbar__crumb a { color: var(--muted); }
+.c-topbar__crumb a:hover { color: var(--fg); }
+.c-topbar__nav { margin-left: auto; display: flex; gap: 18px; font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.04em; color: var(--muted); }
+.c-topbar__nav a[aria-current="page"], .c-topbar__nav a:hover { color: var(--fg); }
+.c-topbar__nav a:focus-visible { outline: none; box-shadow: var(--focus-ring); border-radius: var(--radius-sm); color: var(--fg); }
+
+/* ── doc 2-col layout (resume-page 패턴 재사용) ─────────────────── */
+.wrap { max-width: 1180px; margin: 0 auto; padding: 0 28px; display: grid; grid-template-columns: minmax(0, 1fr) 240px; gap: 48px; align-items: start; }
+
+/* document column */
+.doc { padding: 48px 0 100px; max-width: 760px; }
+
+/* case head */
+.doc__head { padding-bottom: 28px; border-bottom: 2px solid var(--fg); }
+.doc__head .eyebrow { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.doc__head h1 { margin: var(--space-3) 0 0; font-family: var(--font-display); font-size: var(--text-3xl); font-weight: 600; letter-spacing: var(--tracking-display); line-height: var(--leading-tight); }
+.doc__head .positioning { margin: var(--space-4) 0 0; font-size: var(--text-lg); font-weight: 500; max-width: 46ch; }
+/* head meta (KeyValueList — hero card dl 변형 재사용) */
+.c-kv-dl { margin: var(--space-6) 0 0; display: grid; grid-template-columns: auto 1fr; gap: 8px var(--space-5); border: 1px solid var(--border); padding: var(--space-4) var(--space-5); max-width: 420px; }
+.c-kv-dl dt { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.c-kv-dl dd { margin: 0; font-family: var(--font-mono); font-size: var(--text-xs); color: var(--fg); text-align: right; }
+
+/* ── Decision panel (디자이너 결정 — 상세 rail) ─────────────────── */
+.decisions { background: var(--bg); border: 1px solid var(--fg); margin: var(--space-8) 0 0; }
+.decisions__head { background: var(--fg); color: var(--accent-on); font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.1em; text-transform: uppercase; padding: 10px var(--space-5); }
+.decision { padding: var(--space-5); display: grid; gap: var(--space-2); }
+.decision__status { justify-self: start; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; padding: 2px 8px; margin-bottom: 2px; background: var(--accent); color: var(--accent-on); }
+.decision__n { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--muted); letter-spacing: 0.06em; }
+.decision h2 { margin: 0; font-family: var(--font-mono); font-size: var(--text-sm); font-weight: 600; }
+.decision p { margin: 0; font-size: var(--text-sm); color: var(--fg-2); line-height: 1.6; }
+.decision code { font-family: var(--font-mono); font-size: 0.9em; background: var(--surface-warm); padding: 1px 5px; }
+.decision .why { border-top: 1px solid var(--border-soft); padding-top: 10px; margin-top: 4px; }
+.decision .why b { color: var(--fg); font-weight: 600; }
+.decision .opt { font-family: var(--font-mono); font-size: 10px; color: var(--muted); border-top: 1px solid var(--border-soft); padding-top: 8px; margin-top: 2px; line-height: 1.5; }
+
+/* case body sections — 문제 → 결정 → 시스템 → 운영근거 */
+.case-sec { padding: 40px 0 6px; scroll-margin-top: 72px; }
+.c-sechead { display: flex; align-items: baseline; gap: var(--space-3); padding-bottom: var(--space-4); border-bottom: 1px solid var(--border); margin-bottom: var(--space-5); }
+.c-sechead__no { font-family: var(--font-mono); font-size: var(--text-sm); color: var(--muted); letter-spacing: 0.06em; }
+.c-sechead h2 { margin: 0; font-family: var(--font-display); font-size: var(--text-lg); font-weight: 600; letter-spacing: -0.01em; }
+.c-sechead__meta { margin-left: auto; font-family: var(--font-mono); font-size: var(--text-xs); color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
+
+.case-sec p.body { margin: 0 0 var(--space-4); color: var(--fg-2); font-size: var(--text-base); line-height: 1.7; max-width: 64ch; }
+.case-sec p.body strong { color: var(--fg); font-weight: 600; }
+.tbd { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.04em; color: var(--muted); border: 1px dashed var(--border); padding: 2px 7px; }
+
+/* 결정 단락 — NumberedRow(creds 110px 변형) 재사용해 결정 근거 나열 */
+.c-numlist { display: grid; margin-top: var(--space-2); }
+.c-numrow { display: grid; grid-template-columns: 132px 1fr; align-items: baseline; padding: 12px 0; border-top: 1px solid var(--border-soft); gap: var(--space-4); }
+.c-numrow:first-child { border-top: none; }
+.c-numrow .k { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); }
+.c-numrow .t { font-size: var(--text-sm); color: var(--fg-2); line-height: 1.6; }
+.c-numrow .t strong { color: var(--fg); font-weight: 600; }
+
+/* 시스템 단락 — CardGrid 2열 재사용 */
+.c-cardgrid { display: grid; gap: 1px; background: var(--border-soft); border: 1px solid var(--border-soft); margin-top: var(--space-2); }
+.c-cardgrid--2 { grid-template-columns: repeat(2, 1fr); }
+.c-card { background: var(--bg); padding: 18px; display: grid; gap: 6px; align-content: start; transition: background var(--motion-base) var(--ease-standard); }
+.c-card:hover { background: var(--surface); }
+.c-card h4 { margin: 0; font-family: var(--font-mono); font-size: var(--text-sm); font-weight: 600; }
+.c-card p { margin: 0; font-size: var(--text-xs); color: var(--fg-2); line-height: 1.6; }
+
+/* ── 운영 근거 — Popover (overlay-sheet c-popover + c-pop-chip) ── */
+/* evidence chip 클릭 → claim 요약 카드. 정적 데모: 1개 열림 상태. */
+.evidence { margin-top: var(--space-4); display: grid; gap: var(--space-4); }
+.c-pop-anchor { display: inline-grid; gap: 10px; justify-items: start; position: relative; }
+.c-pop-chip { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.03em; border: 1px solid var(--fg); padding: 6px 11px; display: inline-flex; align-items: center; gap: 6px; cursor: pointer; background: var(--bg); color: var(--fg); }
+.c-pop-chip .idx { color: var(--muted); }
+.c-pop-chip[aria-expanded="true"] { background: var(--fg); color: var(--accent-on); }
+.c-pop-chip[aria-expanded="true"] .idx { color: rgba(255,255,255,0.6); }
+.c-pop-chip:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+.c-popover { width: min(320px, 100%); background: var(--bg); border: 1px solid var(--fg); box-shadow: var(--elev-raised); position: relative; }
+.c-popover[hidden] { display: none; }
+.c-popover::before { content: ""; position: absolute; top: -6px; left: 22px; width: 10px; height: 10px; background: var(--bg); border-left: 1px solid var(--fg); border-top: 1px solid var(--fg); transform: rotate(45deg); }
+.c-popover__head { display: flex; align-items: center; gap: var(--space-2); padding: 9px 13px; border-bottom: 1px solid var(--border); font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.c-popover__x { margin-left: auto; cursor: pointer; color: var(--muted); border: none; background: none; font-family: var(--font-mono); font-size: var(--text-sm); padding: 0; }
+.c-popover__x:hover { color: var(--fg); }
+.c-popover__body { padding: 12px 13px; display: grid; gap: 8px; }
+.c-popover__body .claim { font-size: var(--text-sm); color: var(--fg); font-weight: 500; line-height: 1.55; }
+.c-popover__body .src { font-family: var(--font-mono); font-size: 10px; color: var(--muted); letter-spacing: 0.03em; }
+.c-popover__link { font-family: var(--font-mono); font-size: var(--text-xs); border-top: 1px solid var(--border-soft); padding: 9px 13px 12px; color: var(--fg); display: block; }
+.c-popover__link:hover { text-decoration: underline; text-underline-offset: 3px; }
+.evidence__hint { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.06em; color: var(--muted); }
+
+/* ── 이전/다음 케이스 내비 (하단) ───────────────────────────────── */
+.case-nav { margin-top: var(--space-12); border-top: 1px solid var(--border); display: grid; grid-template-columns: 1fr 1fr; }
+.case-nav a, .case-nav span.disabled { padding: var(--space-6) var(--space-1); display: grid; gap: 4px; transition: background var(--motion-base) var(--ease-standard); }
+.case-nav a:hover { background: var(--surface); }
+.case-nav a:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+.case-nav .dir { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.case-nav .name { font-family: var(--font-display); font-size: var(--text-base); font-weight: 600; }
+.case-nav .next { text-align: right; border-left: 1px solid var(--border); padding-left: var(--space-5); }
+.case-nav span.disabled { color: var(--muted); }
+.case-nav span.disabled .name { color: var(--muted); font-weight: 500; }
+
+/* ── Rail (resume-page rail 패턴 재사용 — Decision 2 결정) ──────── */
+.rail { padding: 48px 0; position: sticky; top: 56px; align-self: start; display: grid; gap: 22px; }
+.rail .to-list { display: block; text-align: center; background: var(--accent); color: var(--accent-on); font-family: var(--font-mono); font-size: var(--text-sm); letter-spacing: 0.04em; padding: 12px 0; transition: background var(--motion-fast) var(--ease-standard); }
+.rail .to-list:hover { background: var(--accent-hover); }
+.rail .to-list:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+.toc h2 { margin: 0 0 10px; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.toc ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 7px; }
+.toc a { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--fg-2); display: flex; gap: 8px; padding: 2px 0; }
+.toc a:hover, .toc a.is-active { color: var(--fg); }
+.toc a.is-active .n { color: var(--fg); }
+.toc .n { color: var(--muted); }
+/* 케이스 이동 (rail 내 다른 케이스) */
+.rail__cases { border-top: 1px solid var(--border-soft); padding-top: 14px; }
+.rail__cases h2 { margin: 0 0 10px; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.rail__cases ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.rail__cases a, .rail__cases span.cur { font-family: var(--font-mono); font-size: var(--text-xs); display: flex; gap: 8px; color: var(--muted); }
+.rail__cases a:hover { color: var(--fg); }
+.rail__cases span.cur { color: var(--fg); }
+.rail__cases span.cur .n { color: var(--fg); }
+.rail__cases .n { color: var(--muted); }
+.rail .note { font-family: var(--font-mono); font-size: 10px; color: var(--muted); line-height: 1.6; border-top: 1px solid var(--border-soft); padding-top: 12px; }
+
+/* ── Responsive ─────────────────────────────────────────────────── */
+@media (max-width: 980px) {
+  .wrap { grid-template-columns: 1fr; gap: 0; }
+  .rail { position: static; padding: 20px 0 0; order: -1; display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: center; }
+  .rail .toc, .rail .rail__cases, .rail .note { display: none; }
+  .doc { padding-top: 32px; }
+}
+@media (max-width: 720px) {
+  .c-topbar__in, .wrap { padding-inline: var(--container-gutter-tablet); }
+  .c-topbar__nav { display: none; }
+  .doc__head h1 { font-size: var(--text-2xl); }
+  .c-cardgrid--2 { grid-template-columns: 1fr; }
+  .c-numrow { grid-template-columns: 1fr; gap: 3px; }
+  .case-nav { grid-template-columns: 1fr; }
+  .case-nav .next { text-align: left; border-left: none; border-top: 1px solid var(--border); padding-left: var(--space-1); }
+}
+@media (max-width: 480px) {
+  .c-topbar__in, .wrap { padding-inline: var(--container-gutter-phone); }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition-duration: 0.01ms !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── TopBar · subpage 형 ─────────────────────────────────────── -->
+<header class="c-topbar" data-od-id="topbar">
+  <div class="c-topbar__in">
+    <a class="c-topbar__brand" href="index.html">marinkim.xyz</a>
+    <span class="c-topbar__crumb"><a href="portfolio-list-prototype.html">Portfolio</a> / Thready</span>
+    <nav class="c-topbar__nav" aria-label="주요 메뉴">
+      <a href="index.html">Home</a>
+      <a href="portfolio-list-prototype.html" aria-current="page">Portfolio</a>
+      <a href="#" aria-disabled="true">Blog</a>
+      <a href="#" aria-disabled="true">Labs</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- ── Document column ────────────────────────────────────────── -->
+  <main class="doc" data-od-id="case-doc">
+
+    <header class="doc__head" data-od-id="case-head">
+      <span class="eyebrow">Case 01 / 05 · AI Content Generation</span>
+      <h1>Thready Rebuild</h1>
+      <p class="positioning">AI 콘텐츠 생성 backend를 전면 재구축하고, cutover 이후 개발·운영을 전담한 케이스.</p>
+      <dl class="c-kv-dl">
+        <dt>Role</dt><dd>Rebuild · Ownership</dd>
+        <dt>Scope</dt><dd>Generation Quality</dd>
+        <dt>Stack</dt><dd>FastAPI · LLM</dd>
+        <dt>Status</dt><dd>운영 중</dd>
+      </dl>
+    </header>
+
+    <!-- ── Decision panel — 디자이너 결정 (상세 rail) ────────────── -->
+    <section class="decisions" data-od-id="decision-rail">
+      <div class="decisions__head">디자이너 결정 · 상세의 rail — 결정 + 이유 명시</div>
+      <div class="decision">
+        <span class="decision__status">결정 · Sticky rail</span>
+        <span class="decision__n">DECISION · 상세의 rail</span>
+        <h2>resume식 sticky rail(목차 + 케이스 이동) vs 본문 단독 + 하단 내비만</h2>
+        <p>상세 페이지는 <b>우측 sticky rail</b>로 결정. rail에는 <code>목록으로</code> 버튼 · 이 케이스의 목차(문제·결정·시스템·운영근거) · 다른 케이스로 이동 리스트를 담고, 스크롤 위치에 따라 목차 활성 항목을 갱신합니다. 하단 이전/다음 내비는 rail과 <b>중복이 아니라 역할이 다릅니다</b> — 하단은 순차 이동, rail은 임의 점프.</p>
+        <p class="why"><b>본문 단독 + 하단 내비만으로 하지 않은 이유:</b> 상세는 <code>문제 → 결정 → 시스템 → 운영근거</code> 4단으로 세로가 길어, 본문만 두면 독자가 <b>지금 어느 단락인지</b>와 <b>얼마나 남았는지</b>를 잃습니다. 특히 면접관이 “결정”이나 “운영 근거”만 바로 확인하려 할 때, 하단까지 스크롤해야 다른 케이스로 넘어가는 구조는 왕복 비용이 큽니다.</p>
+        <p class="why"><b>resume 패턴을 재사용하는 이유:</b> resume-page가 이미 우측 rail(PDF·언어·목차)을 doc형 레이아웃의 확정 패턴으로 씁니다. 같은 doc 폭(1180/28)·같은 sticky rail을 상세에도 쓰면 <b>문서 계열 페이지의 일관성</b>이 유지되고, 새 레이아웃 문법을 만들지 않습니다.</p>
+        <span class="opt mono">택: sticky rail(목차+케이스 이동) / 반: 본문 단독 + 하단 내비만</span>
+      </div>
+    </section>
+
+    <!-- ── 1. 문제 ─────────────────────────────────────────────── -->
+    <section class="case-sec" id="problem" data-od-id="sec-problem">
+      <div class="c-sechead"><span class="c-sechead__no">01</span><h2>문제</h2><span class="c-sechead__meta">Problem</span></div>
+      <p class="body">AI 콘텐츠 생성 제품 Thready의 backend를 인계받았을 때, 생성 품질이 프롬프트·모델 호출에 흩어져 있어 <strong>무엇이 좋은 출력인지 판정하고 회귀를 잡을 기준</strong>이 없었다. 프롬프트는 문자열로 조립되어 타입 안전성과 재사용이 약했고, 실패·품질 저하를 관측할 로깅 축도 부족했다.</p>
+      <p class="body">그래서 부분 수정이 아니라 <strong>backend 전면 재구축</strong>과 cutover를 선택하고, 이후 개발·운영을 전담하기로 했다.</p>
+    </section>
+
+    <!-- ── 2. 결정 (NumberedRow 재사용) ────────────────────────── -->
+    <section class="case-sec" id="decision" data-od-id="sec-decision">
+      <div class="c-sechead"><span class="c-sechead__no">02</span><h2>결정</h2><span class="c-sechead__meta">Decision</span></div>
+      <p class="body">품질을 “감”이 아니라 <strong>시스템</strong>으로 다루기 위해 세 가지를 결정했다.</p>
+      <div class="c-numlist">
+        <div class="c-numrow"><span class="k mono">Typed Prompt</span><span class="t">프롬프트를 문자열이 아닌 <strong>typed prompt builder</strong>로 구성 — 입력 계약을 타입으로 고정하고 재사용 가능하게 만든다.</span></div>
+        <div class="c-numrow"><span class="k mono">Judge Loop</span><span class="t"><strong>LLM judge 기반 평가 루프</strong>를 도입 — 출력 품질을 판정 가능한 축으로 만들어 회귀를 감지한다.</span></div>
+        <div class="c-numrow"><span class="k mono">Observability</span><span class="t"><strong>관측 로깅</strong>을 표준으로 심어 — 생성 흐름과 실패를 사후에 추적할 수 있게 한다.</span></div>
+      </div>
+    </section>
+
+    <!-- ── 3. 시스템 (CardGrid 재사용) ─────────────────────────── -->
+    <section class="case-sec" id="system" data-od-id="sec-system">
+      <div class="c-sechead"><span class="c-sechead__no">03</span><h2>시스템</h2><span class="c-sechead__meta">System</span></div>
+      <p class="body">결정을 실제 backend 구조로 옮긴 결과, 생성 품질이 <strong>재구축된 FastAPI backend 위의 시스템</strong>으로 자리 잡았다.</p>
+      <div class="c-cardgrid c-cardgrid--2">
+        <div class="c-card"><h4>Typed Prompt Builder</h4><p>프롬프트 조립을 타입으로 계약화 — 입력 누락·형 오류를 호출 전에 차단하고 재사용을 표준화.</p></div>
+        <div class="c-card"><h4>LLM Judge · 평가 루프</h4><p>생성 출력을 judge로 채점하는 루프 — 품질을 판정 가능한 값으로 만들어 회귀 감지에 사용.</p></div>
+        <div class="c-card"><h4>관측 로깅</h4><p>생성 흐름·실패 지점을 로깅 — 운영 중 문제를 사후 추적하고 원인을 좁힘.</p></div>
+        <div class="c-card"><h4>Rebuild + Cutover</h4><p>부분 패치가 아닌 전면 재구축 후 cutover — 이후 개발·운영을 전담하는 단일 오너십.</p></div>
+      </div>
+    </section>
+
+    <!-- ── 4. 운영 근거 (Popover evidence) ─────────────────────── -->
+    <section class="case-sec" id="ops" data-od-id="sec-ops">
+      <div class="c-sechead"><span class="c-sechead__no">04</span><h2>운영 근거</h2><span class="c-sechead__meta">Operating Evidence</span></div>
+      <p class="body">재구축 이후 이 backend는 <strong>월 수만 건 규모의 요청</strong>을 처리하는 production으로 운영되고 있다. 아래 근거 chip을 눌러 claim 요약을 확인할 수 있다.</p>
+
+      <div class="evidence">
+        <span class="evidence__hint">근거 chip 클릭 → claim 요약 (정적 프로토타입: 1개 열림 데모)</span>
+
+        <!-- Popover 1 · 열림 상태 데모 (실측 수치: HTTP 5xx 0.3%) -->
+        <div class="c-pop-anchor" data-od-id="evidence-5xx">
+          <button class="c-pop-chip" type="button" aria-expanded="true" aria-controls="pop-1">
+            <span class="idx mono">근거 1</span> HTTP 5xx 0.3% 수준 운영
+          </button>
+          <div class="c-popover" id="pop-1" role="dialog" aria-label="Claim 요약">
+            <div class="c-popover__head">Claim 요약<button class="c-popover__x mono" type="button" aria-label="닫기">×</button></div>
+            <div class="c-popover__body">
+              <span class="claim">월 수만 건 규모 요청을 처리하는 production backend를 HTTP 5xx 0.3% 수준으로 운영</span>
+              <span class="src mono">SOURCE · Thready 운영 지표 · 운영 시점 기준</span>
+            </div>
+            <a class="c-popover__link" href="#ops">→ 이 케이스 운영 근거로 이동</a>
+          </div>
+        </div>
+
+        <!-- Popover 2 · 닫힘 상태 (수치 미확정 → [TBD]) -->
+        <div class="c-pop-anchor" data-od-id="evidence-scale">
+          <button class="c-pop-chip" type="button" aria-expanded="false" aria-controls="pop-2">
+            <span class="idx mono">근거 2</span> 월 수만 건 규모 요청 처리
+          </button>
+          <div class="c-popover" id="pop-2" role="dialog" aria-label="Claim 요약" hidden>
+            <div class="c-popover__head">Claim 요약<button class="c-popover__x mono" type="button" aria-label="닫기">×</button></div>
+            <div class="c-popover__body">
+              <span class="claim">production backend가 월 수만 건 규모의 생성 요청을 처리 — 구체 처리량 수치는 <span class="tbd">TBD</span></span>
+              <span class="src mono">SOURCE · 운영 지표 (수치 확정 전)</span>
+            </div>
+            <a class="c-popover__link" href="#ops">→ 이 케이스 운영 근거로 이동</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 이전 / 다음 케이스 내비 ─────────────────────────────── -->
+    <nav class="case-nav" data-od-id="case-nav" aria-label="케이스 이동">
+      <span class="disabled">
+        <span class="dir">← 이전</span>
+        <span class="name">— 첫 케이스</span>
+      </span>
+      <a class="next" href="#" aria-disabled="true" title="상세 준비 중">
+        <span class="dir">다음 →</span>
+        <span class="name">BAY Async</span>
+      </a>
+    </nav>
+
+  </main>
+
+  <!-- ── Rail (Decision 2 결정 형태) ─────────────────────────────── -->
+  <aside class="rail" data-od-id="rail" aria-label="케이스 내비게이션">
+    <a class="to-list" href="portfolio-list-prototype.html">← 목록으로</a>
+
+    <nav class="toc" aria-label="목차">
+      <h2>이 케이스</h2>
+      <ol>
+        <li><a href="#problem" class="is-active"><span class="n">01</span>문제</a></li>
+        <li><a href="#decision"><span class="n">02</span>결정</a></li>
+        <li><a href="#system"><span class="n">03</span>시스템</a></li>
+        <li><a href="#ops"><span class="n">04</span>운영 근거</a></li>
+      </ol>
+    </nav>
+
+    <nav class="rail__cases" aria-label="다른 케이스">
+      <h2>케이스 이동</h2>
+      <ol>
+        <li><span class="cur"><span class="n mono">01</span>Thready Rebuild</span></li>
+        <li><a href="#" aria-disabled="true"><span class="n mono">02</span>BAY Async</a></li>
+        <li><a href="#" aria-disabled="true"><span class="n mono">03</span>SAY Realtime</a></li>
+        <li><a href="#" aria-disabled="true"><span class="n mono">04</span>BE Template</a></li>
+        <li><a href="#" aria-disabled="true"><span class="n mono">05</span>Mediness Ops</a></li>
+      </ol>
+    </nav>
+
+    <p class="note">모든 성과 문장은 검증된 표현만 사용합니다. 수치는 운영 시점 기준이며 미확정 값은 TBD로 표기합니다.</p>
+  </aside>
+
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  /* Popover — evidence chip 토글 (열림 1개 유지, ESC·바깥 클릭·× 닫힘) */
+  var anchors = Array.prototype.slice.call(document.querySelectorAll(".c-pop-anchor"));
+  function closeAll(except) {
+    anchors.forEach(function (a) {
+      var chip = a.querySelector(".c-pop-chip");
+      var pop = a.querySelector(".c-popover");
+      if (chip === except) return;
+      chip.setAttribute("aria-expanded", "false");
+      pop.hidden = true;
+    });
+  }
+  anchors.forEach(function (a) {
+    var chip = a.querySelector(".c-pop-chip");
+    var pop = a.querySelector(".c-popover");
+    var x = pop.querySelector(".c-popover__x");
+    chip.addEventListener("click", function () {
+      var open = chip.getAttribute("aria-expanded") === "true";
+      closeAll(open ? null : chip);
+      chip.setAttribute("aria-expanded", String(!open));
+      pop.hidden = open;
+    });
+    x.addEventListener("click", function () {
+      chip.setAttribute("aria-expanded", "false");
+      pop.hidden = true;
+      chip.focus();
+    });
+  });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeAll(null); });
+  document.addEventListener("click", function (e) { if (!e.target.closest(".c-pop-anchor")) closeAll(null); });
+
+  /* TOC scroll-spy — 현재 단락 목차 활성화 */
+  var links = Array.prototype.slice.call(document.querySelectorAll(".toc a"));
+  var byId = {};
+  links.forEach(function (l) { byId[l.getAttribute("href").slice(1)] = l; });
+  var secs = Array.prototype.slice.call(document.querySelectorAll(".case-sec"));
+  if ("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        links.forEach(function (l) { l.classList.remove("is-active"); });
+        var link = byId[entry.target.id];
+        if (link) link.classList.add("is-active");
+      });
+    }, { rootMargin: "-20% 0px -70% 0px", threshold: 0 });
+    secs.forEach(function (s) { io.observe(s); });
+  }
+})();
+</script>
+</body>
+</html>
