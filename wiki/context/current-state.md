@@ -43,7 +43,7 @@ tags: [current-state, migration, resume]
 
 ## Next
 
-1. 화면 이식 진척 (2026-07-18): **/resume 완료** (KO 마스터 + EN 초안 + rail) · **/portfolio 목록·상세(thready) 완료** (D2 3차 라운드 산출 기반 — 넘버드 리스트·4단 구조·sticky rail·EvidencePopover). 남은 것: **root**(사용자 결정 — 나중에 디자인) · **/blog·/labs** · 케이스 상세 4건(bay-async·say-realtime·be-template·mediness-ops)
+1. 화면 이식 (2026-07-18): **전 라우트 완료** — /resume · /portfolio(목록+thready 상세) · /blog(행형+placeholder) · /labs(카드형+jarvis 데모) · /chat(빈 상태↔데모 전환, Phase 2 프리뷰) · /design. 전역 nav(TopBar·MobileNav·Footer) 실링크 활성화. 남은 것: **root 재디자인**(사용자 결정 — 나중에) · 케이스 상세 4건 콘텐츠(bay-async·say-realtime·be-template·mediness-ops) · blog MDX 파이프라인(발생 시)
 2. export 스크립트 (tools): wiki → `app/fe/content` + resume.pdf 파생
 3. 실제 JD 1건으로 `tailor-resume` 지원 패키지 생성
 4. **인프라 세팅은 맨 마지막** (2026-07-18 결정): Vercel 연결 (repo → Root Directory `app/fe`) + marinkim.xyz 도메인 — 로컬에서 완성 후 한 번에 공개

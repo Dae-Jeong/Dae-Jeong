@@ -5,8 +5,8 @@ import { Wordmark } from "./wordmark";
 
 const NAV: { label: string; href: string; disabled?: boolean }[] = [
   { label: "Portfolio", href: "/portfolio" },
-  { label: "Blog", href: "#", disabled: true },
-  { label: "Labs", href: "#", disabled: true },
+  { label: "Blog", href: "/blog" },
+  { label: "Labs", href: "/labs" },
 ];
 
 type TopBarProps =

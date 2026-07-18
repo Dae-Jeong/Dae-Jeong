@@ -5,8 +5,8 @@ import { cn } from "@/lib/cn";
 
 const ROUTES: { no: string; label: string; href: string }[] = [
   { no: "01", label: "Portfolio", href: "/portfolio" },
-  { no: "02", label: "Blog", href: "#" },
-  { no: "03", label: "Labs", href: "#" },
+  { no: "02", label: "Blog", href: "/blog" },
+  { no: "03", label: "Labs", href: "/labs" },
   { no: "04", label: "Resume", href: "/resume" },
 ];
 

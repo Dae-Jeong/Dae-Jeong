@@ -1,10 +1,11 @@
 import { Container } from "./container";
 
-const LINKS: { label: string; href: string; disabled?: boolean }[] = [
-  { label: "GitHub ↗", href: "https://github.com/Dae-Jeong" },
-  { label: "Resume PDF", href: "#", disabled: true },
-  { label: "Blog", href: "#", disabled: true },
-  { label: "Labs", href: "#", disabled: true },
+const LINKS: { label: string; href: string; disabled?: boolean; external?: boolean }[] = [
+  { label: "GitHub ↗", href: "https://github.com/Dae-Jeong", external: true },
+  { label: "Resume", href: "/resume" },
+  { label: "Portfolio", href: "/portfolio" },
+  { label: "Blog", href: "/blog" },
+  { label: "Labs", href: "/labs" },
 ];
 
 export function SiteFooter() {
@@ -25,9 +26,7 @@ export function SiteFooter() {
               key={l.label}
               href={l.href}
               aria-disabled={l.disabled}
-              {...(l.disabled
-                ? {}
-                : { target: "_blank", rel: "noopener" })}
+              {...(l.external ? { target: "_blank", rel: "noopener" } : {})}
               className="focus-ring font-mono text-xs tracking-[0.03em] text-muted transition-colors duration-100 hover:text-fg"
             >
               {l.label}
