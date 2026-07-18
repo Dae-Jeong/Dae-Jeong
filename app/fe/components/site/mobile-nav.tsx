@@ -4,10 +4,10 @@ import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/cn";
 
 const ROUTES: { no: string; label: string; href: string }[] = [
-  { no: "01", label: "Portfolio", href: "#portfolio" },
+  { no: "01", label: "Portfolio", href: "/portfolio" },
   { no: "02", label: "Blog", href: "#" },
   { no: "03", label: "Labs", href: "#" },
-  { no: "04", label: "Resume", href: "#" },
+  { no: "04", label: "Resume", href: "/resume" },
 ];
 
 /* 시각부 — specimen 정적 렌더에서 재사용. 크기·배치는 wrapper 가 소유한다 */

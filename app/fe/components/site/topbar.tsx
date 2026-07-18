@@ -4,14 +4,14 @@ import { MobileNav } from "./mobile-nav";
 import { Wordmark } from "./wordmark";
 
 const NAV: { label: string; href: string; disabled?: boolean }[] = [
-  { label: "Portfolio", href: "#portfolio" },
+  { label: "Portfolio", href: "/portfolio" },
   { label: "Blog", href: "#", disabled: true },
   { label: "Labs", href: "#", disabled: true },
 ];
 
 type TopBarProps =
   | { variant?: "home" }
-  | { variant: "subpage"; crumb: string; tag?: string };
+  | { variant: "subpage"; crumb: React.ReactNode; tag?: string };
 
 export function TopBar(props: TopBarProps) {
   if (props.variant === "subpage") {
