@@ -18,7 +18,8 @@ tags: [current-state, migration, resume]
 - Daejeong Design은 별도 repo에서 도구 개발을 진행하며 이 repo는 profile/evidence/resume content source를 소유한다.
 - repo는 완전한 프로젝트 monorepo다 (2026-07-18, spec 8차 개정): `wiki/`(지식) · `app/`(fe→Vercel·be→Render·design 승격 스냅샷) · `labs/`(k8s 서비스) · `infra/` · `tools/`(자체 env) — [설계 spec](../docs/superpowers/specs/2026-07-15-personal-site-architecture-design.md).
 - **Phase 1 착수됨** (2026-07-18): `app/fe` scaffold 완료 — Next 16.2.10 + Tailwind v4 + Mono 토큰 + 폰트, hello world 빌드·렌더 검증 완료.
-- **디자인 시스템 구현됨** (2026-07-18): 토큰 계약 전체를 `globals.css` @theme으로 이식(type scale 11~56px 포함), `components/site·ui` 11개 컴포넌트, `/design` living specimen 라우트 — 빌드·렌더·computed style 검증 완료. Storybook 패키지는 도입하지 않음(라우트가 겸함).
+- **디자인 시스템 구현됨** (2026-07-18): 토큰 계약 전체를 `globals.css` @theme으로 이식(type scale 11~56px 포함), `components/site·ui` 11개 컴포넌트 + `cn()` 병합 계약(tailwind-merge), `/design` living specimen 라우트 — 빌드·렌더·computed style 검증 완료. Storybook 패키지는 도입하지 않음(라우트가 겸함 — 업계 레퍼런스 조사로 검증, `~/Desktop/Wiki/design-systems/`).
+- **오버레이 시트 확정** (2026-07-18): D2 협업 2차 — Modal·Popover·Banner·Toast·MobileNav 5종, 디자이너 결정 3건(Toast 상단 중앙 · backdrop 단색 반투명 · MobileNav 풀스크린)이 Carbon·Primer·GOV.UK 패턴과 교차 일치. 구현 진행 중 (task #9~#11: 구현 → /design 00 Tokens·오버레이 섹션 → 시각 회귀 스크립트).
 
 ## Migration Status
 

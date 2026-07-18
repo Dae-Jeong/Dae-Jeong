@@ -1,0 +1,544 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Overlay Sheet — marinkim.xyz · Mono 디자인 시스템</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<style>
+/* ── Mono design system tokens (verbatim contract — index.html 기준) ── */
+:root {
+  --bg: #ffffff;
+  --surface: #f7f7f7;
+  --surface-warm: #eeeeee;
+  --fg: #111111;
+  --fg-2: #3a3a3a;
+  --muted: #707070;
+  --meta: #111111;
+  --border: #d9d9d9;
+  --border-soft: #eeeeee;
+  --accent: #111111;
+  --accent-on: #ffffff;
+  --accent-hover: color-mix(in oklab, var(--accent), black 8%);
+  --accent-active: color-mix(in oklab, var(--accent), black 14%);
+  --success: #168a46;
+  --warn: #b7791f;
+  --danger: #c53030;
+  --font-display: "IBM Plex Mono", ui-monospace, monospace;
+  --font-body: "IBM Plex Mono", ui-monospace, monospace;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --text-xs: 11px;
+  --text-sm: 12px;
+  --text-base: 14px;
+  --text-lg: 16px;
+  --text-xl: 20px;
+  --text-2xl: 28px;
+  --text-3xl: 40px;
+  --text-4xl: 56px;
+  --leading-body: 1.45;
+  --leading-tight: 1.06;
+  --tracking-display: -0.025em;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --section-y-desktop: 80px;
+  --section-y-tablet: 60px;
+  --section-y-phone: 42px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-pill: 9999px;
+  --elev-flat: none;
+  --elev-ring: 0 0 0 1px var(--border);
+  --elev-raised: 0 16px 40px rgba(0, 0, 0, 0.10);
+  --focus-ring: 0 0 0 3px rgba(17, 17, 17, 0.18);
+  --motion-fast: 100ms;
+  --motion-base: 180ms;
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --container-max: 1280px;
+  --container-gutter-desktop: 36px;
+  --container-gutter-tablet: 24px;
+  --container-gutter-phone: 16px;
+  /* 한글 본문: Pretendard, 라틴/숫자: IBM Plex Mono */
+  --font-ko: "Pretendard Variable", Pretendard, "IBM Plex Mono", ui-monospace, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--surface);
+  color: var(--fg);
+  font-family: var(--font-ko);
+  font-size: var(--text-base);
+  line-height: var(--leading-body);
+  word-break: keep-all;
+  -webkit-font-smoothing: antialiased;
+}
+.mono { font-family: var(--font-mono); font-feature-settings: "tnum" 1; }
+a { color: inherit; text-decoration: none; }
+
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 var(--container-gutter-desktop); }
+
+/* ── Sheet header ─────────────────────────────────────────────────── */
+.sheet-head {
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  padding: var(--space-8) 0 var(--space-6);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+.sheet-head__brand {
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  font-family: var(--font-mono); font-size: var(--text-sm); font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.sheet-head__brand::before { content: ""; width: 9px; height: 9px; background: var(--fg); }
+.sheet-head h1 {
+  margin: var(--space-4) 0 6px;
+  font-family: var(--font-display); font-size: var(--text-2xl);
+  font-weight: 600; letter-spacing: -0.02em;
+}
+.sheet-head__sub { margin: 0; color: var(--fg-2); font-size: var(--text-base); max-width: 62ch; }
+.sheet-head__meta {
+  display: flex; flex-wrap: wrap; gap: var(--space-4); margin-top: var(--space-5);
+  font-family: var(--font-mono); font-size: var(--text-xs); color: var(--muted);
+  letter-spacing: 0.04em;
+}
+.sheet-head__meta b { color: var(--fg); font-weight: 600; }
+
+/* ── Decision panel (디자이너 판단 요청 3건) ──────────────────────── */
+.decisions { background: var(--bg); border: 1px solid var(--fg); margin: var(--space-8) 0; }
+.decisions__head {
+  background: var(--fg); color: var(--accent-on);
+  font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.1em;
+  text-transform: uppercase; padding: 10px var(--space-5);
+  display: flex; align-items: center; gap: var(--space-2);
+}
+.decisions__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border-soft); }
+.decision { background: var(--bg); padding: var(--space-5); display: grid; gap: var(--space-2); align-content: start; }
+.decision__n { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--muted); letter-spacing: 0.06em; }
+.decision h3 { margin: 0; font-family: var(--font-mono); font-size: var(--text-sm); font-weight: 600; }
+.decision p { margin: 0; font-size: var(--text-xs); color: var(--fg-2); line-height: 1.55; }
+.decision .why { font-size: var(--text-xs); color: var(--fg-2); line-height: 1.55; border-top: 1px solid var(--border-soft); padding-top: 8px; margin-top: 2px; }
+.decision .why b { color: var(--fg); font-weight: 600; }
+.decision .opt { font-family: var(--font-mono); font-size: 10px; color: var(--muted); border-top: 1px solid var(--border-soft); padding-top: 8px; margin-top: 2px; line-height: 1.5; }
+.decision__status {
+  justify-self: start; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.06em;
+  text-transform: uppercase; padding: 2px 8px; margin-bottom: 2px;
+  background: var(--accent); color: var(--accent-on);
+}
+
+/* ── Component block ──────────────────────────────────────────────── */
+.comp { border-top: 1px solid var(--border); padding: var(--section-y-tablet) 0 var(--space-8); }
+.comp__head { display: flex; align-items: baseline; gap: var(--space-3); margin-bottom: var(--space-6); }
+.comp__no {
+  font-family: var(--font-mono); font-size: var(--text-sm); color: var(--accent-on);
+  background: var(--accent); padding: 2px 8px; letter-spacing: 0.04em;
+}
+.comp__head h2 { margin: 0; font-family: var(--font-display); font-size: var(--text-xl); font-weight: 600; letter-spacing: -0.01em; }
+.comp__usage {
+  margin-left: auto; font-family: var(--font-mono); font-size: var(--text-xs);
+  color: var(--muted); letter-spacing: 0.04em;
+}
+.comp__note { margin: 0 0 var(--space-6); color: var(--fg-2); font-size: var(--text-sm); max-width: 72ch; }
+.comp__note code { font-family: var(--font-mono); font-size: 0.9em; background: var(--surface-warm); padding: 1px 5px; }
+.comp__note--warn {
+  border-left: 2px solid var(--warn); padding: 8px var(--space-4);
+  background: color-mix(in srgb, var(--warn) 7%, var(--bg));
+}
+
+/* specimen row: label · demo */
+.specimen { display: grid; grid-template-columns: 160px 1fr; gap: var(--space-6); align-items: start; padding: var(--space-5) 0; border-top: 1px solid var(--border-soft); }
+.specimen:first-of-type { border-top: none; }
+.specimen__label { display: grid; gap: 4px; align-content: start; }
+.specimen__k { font-family: var(--font-mono); font-size: var(--text-xs); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+.specimen__hint { font-family: var(--font-mono); font-size: 10px; color: var(--muted); line-height: 1.6; }
+.specimen__demo { display: grid; gap: var(--space-4); }
+.demo-surface { background: var(--bg); border: 1px solid var(--border-soft); padding: var(--space-5); position: relative; }
+.demo-surface--pad0 { padding: 0; overflow: hidden; }
+.demo-surface--stage { min-height: 260px; background: var(--surface); }
+.state-caption { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-bottom: var(--space-3); }
+.state-row { display: flex; flex-wrap: wrap; gap: var(--space-4); align-items: flex-start; }
+.state-cell { display: grid; gap: 8px; justify-items: start; }
+.state-cell .lbl { font-family: var(--font-mono); font-size: 10px; color: var(--muted); }
+
+/* anatomy callout */
+.anatomy { display: grid; gap: 6px; font-family: var(--font-mono); font-size: var(--text-xs); color: var(--fg-2); }
+.anatomy .part { display: grid; grid-template-columns: 18px 1fr; gap: var(--space-3); align-items: baseline; }
+.anatomy .part .i { color: var(--muted); }
+
+/* ══════════════════════════════════════════════════════════════════
+   OVERLAY COMPONENT STYLES — 사이트 실용례에 접지한 오버레이 패밀리
+   ══════════════════════════════════════════════════════════════════ */
+
+/* c-modal — 데모 stage 안에서만 absolute 스코프 */
+.c-modal-stage { position: relative; }
+.c-modal__backdrop {
+  position: absolute; inset: 0;
+  background: rgba(17, 17, 17, 0.55);   /* D2 확정: 단색 반투명 (--fg 기반) */
+  display: grid; place-items: center; padding: var(--space-5);
+}
+.c-modal {
+  width: min(440px, 100%); background: var(--bg); border: 1px solid var(--fg);
+  box-shadow: var(--elev-raised);
+}
+.c-modal__head {
+  display: flex; align-items: center; gap: var(--space-3);
+  padding: 12px var(--space-5); border-bottom: 1px solid var(--border);
+  font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.08em; text-transform: uppercase;
+}
+.c-modal__close {
+  margin-left: auto; font-family: var(--font-mono); font-size: var(--text-sm);
+  color: var(--muted); border: 1px solid var(--border); padding: 2px 8px; cursor: pointer; background: var(--bg);
+}
+.c-modal__close:hover { color: var(--fg); border-color: var(--fg); }
+.c-modal__body { padding: var(--space-5); display: grid; gap: var(--space-3); }
+.c-modal__media { aspect-ratio: 16 / 9; background: var(--surface-warm); display: grid; place-items: center; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; color: var(--muted); }
+.c-modal__body p { margin: 0; font-size: var(--text-sm); color: var(--fg-2); }
+.c-modal__foot { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.06em; color: var(--muted); border-top: 1px solid var(--border-soft); padding-top: 10px; }
+
+/* c-popover — anchor 기준 카드 (evidence chip → claim 요약) */
+.c-pop-anchor { display: inline-grid; gap: 10px; justify-items: start; position: relative; }
+.c-pop-chip {
+  font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.03em;
+  border: 1px solid var(--fg); padding: 6px 11px; display: inline-flex; align-items: center; gap: 6px; cursor: pointer;
+}
+.c-pop-chip .idx { color: var(--muted); }
+.c-popover {
+  width: min(300px, 100%); background: var(--bg); border: 1px solid var(--fg);
+  box-shadow: var(--elev-raised); position: relative;
+}
+.c-popover::before {
+  content: ""; position: absolute; top: -6px; left: 22px; width: 10px; height: 10px;
+  background: var(--bg); border-left: 1px solid var(--fg); border-top: 1px solid var(--fg);
+  transform: rotate(45deg);
+}
+.c-popover__head { display: flex; align-items: center; gap: var(--space-2); padding: 9px 13px; border-bottom: 1px solid var(--border); font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.c-popover__x { margin-left: auto; cursor: pointer; color: var(--muted); }
+.c-popover__x:hover { color: var(--fg); }
+.c-popover__body { padding: 12px 13px; display: grid; gap: 8px; }
+.c-popover__body .claim { font-size: var(--text-sm); color: var(--fg); font-weight: 500; }
+.c-popover__body .src { font-family: var(--font-mono); font-size: 10px; color: var(--muted); letter-spacing: 0.03em; }
+.c-popover__link { font-family: var(--font-mono); font-size: var(--text-xs); border-top: 1px solid var(--border-soft); padding-top: 9px; color: var(--fg); }
+.c-popover__link:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+/* c-banner — 페이지 상단 고지 (dismiss variant) */
+.c-banner {
+  display: flex; align-items: center; gap: var(--space-3);
+  padding: 10px var(--space-4); border: 1px solid var(--border);
+  font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.03em; color: var(--fg-2);
+  background: var(--surface);
+}
+.c-banner__tag { font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; border: 1px solid currentColor; padding: 2px 7px; flex: none; }
+.c-banner__msg { color: var(--fg-2); }
+.c-banner__msg b { color: var(--fg); font-weight: 600; }
+.c-banner__x { margin-left: auto; flex: none; cursor: pointer; color: var(--muted); border: 1px solid var(--border); padding: 1px 7px; background: transparent; font-family: var(--font-mono); }
+.c-banner__x:hover { color: var(--fg); border-color: var(--fg); }
+.c-banner--warn { border-color: var(--warn); color: var(--warn); background: color-mix(in srgb, var(--warn) 7%, var(--bg)); }
+.c-banner--warn .c-banner__msg { color: var(--fg-2); }
+
+/* c-toast — 상단 중앙 스택 (D1 확정) */
+.c-toast {
+  display: inline-flex; align-items: center; gap: var(--space-3);
+  background: var(--fg); color: var(--accent-on);
+  font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.03em;
+  padding: 10px var(--space-4); box-shadow: var(--elev-raised); max-width: 360px;
+}
+.c-toast__dot { width: 7px; height: 7px; flex: none; border-radius: 50%; background: var(--accent-on); }
+.c-toast--success .c-toast__dot { background: var(--success); box-shadow: 0 0 0 3px color-mix(in srgb, var(--success) 30%, transparent); }
+.c-toast--danger { background: var(--danger); }
+.c-toast--danger .c-toast__dot { background: var(--accent-on); }
+.c-toast__msg { flex: 1; }
+.c-toast__x { flex: none; cursor: pointer; opacity: 0.7; font-family: var(--font-mono); }
+.c-toast__x:hover { opacity: 1; }
+.c-toast__bar { position: absolute; left: 0; bottom: 0; height: 2px; width: 100%; background: rgba(255,255,255,0.35); }
+.c-toast { position: relative; overflow: hidden; }
+/* 상단 중앙 배치 데모 */
+.c-toast-stage { position: relative; min-height: 180px; }
+.c-toast-slot { position: absolute; top: 14px; left: 50%; transform: translateX(-50%); display: grid; gap: 8px; justify-items: center; z-index: 3; }
+.c-toast-topbar { display: flex; align-items: center; height: 44px; padding: 0 14px; border-bottom: 1px solid var(--border-soft); background: var(--bg); font-family: var(--font-mono); font-size: var(--text-xs); color: var(--muted); }
+.c-toast-ask { position: absolute; right: 14px; bottom: 14px; background: var(--accent); color: var(--accent-on); font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; padding: 10px 13px; z-index: 2; }
+
+/* c-mobilenav — 풀스크린 오버레이 (D3 확정) */
+.c-mnav-frame { width: 320px; border: 1px solid var(--border); background: var(--bg); overflow: hidden; margin-inline: auto; }
+.c-mnav-bar { display: flex; align-items: center; height: 48px; padding: 0 14px; border-bottom: 1px solid var(--border-soft); }
+.c-mnav-bar .brand { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: var(--text-xs); font-weight: 600; }
+.c-mnav-bar .brand::before { content: ""; width: 8px; height: 8px; background: var(--fg); }
+.c-mnav-bar .toggle { margin-left: auto; font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.08em; border: 1px solid var(--border); padding: 4px 9px; cursor: pointer; background: var(--bg); }
+.c-mnav-stub { padding: 18px 14px; display: grid; gap: 8px; }
+.c-mnav-stub .ln { height: 9px; background: var(--surface-warm); }
+.c-mnav-stub .ln:nth-child(2) { width: 70%; }
+.c-mnav-stub .ln:nth-child(3) { width: 45%; }
+/* open overlay */
+.c-mnav-open { width: 320px; height: 420px; background: var(--fg); color: var(--accent-on); margin-inline: auto; display: grid; grid-template-rows: 48px 1fr auto; }
+.c-mnav-open__bar { display: flex; align-items: center; height: 48px; padding: 0 14px; border-bottom: 1px solid rgba(255,255,255,0.16); }
+.c-mnav-open__bar .brand { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: var(--text-xs); font-weight: 600; color: var(--accent-on); }
+.c-mnav-open__bar .brand::before { content: ""; width: 8px; height: 8px; background: var(--accent-on); }
+.c-mnav-open__bar .close { margin-left: auto; font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.08em; border: 1px solid rgba(255,255,255,0.4); padding: 4px 9px; cursor: pointer; background: transparent; color: var(--accent-on); }
+.c-mnav-open__list { align-self: start; padding: var(--space-6) 14px; display: grid; }
+.c-mnav-open__list a { display: flex; align-items: baseline; gap: 12px; padding: 14px 0; border-top: 1px solid rgba(255,255,255,0.14); font-family: var(--font-display); font-size: var(--text-xl); color: var(--accent-on); }
+.c-mnav-open__list a:first-child { border-top: none; }
+.c-mnav-open__list a .no { font-family: var(--font-mono); font-size: var(--text-xs); color: rgba(255,255,255,0.5); }
+.c-mnav-open__foot { padding: 14px; border-top: 1px solid rgba(255,255,255,0.16); font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.06em; color: rgba(255,255,255,0.6); }
+
+/* footer */
+.sheet-foot { border-top: 1px solid var(--border); padding: var(--space-8) 0 var(--space-12); font-family: var(--font-mono); font-size: var(--text-xs); color: var(--muted); letter-spacing: 0.03em; display: flex; flex-wrap: wrap; gap: var(--space-4); }
+.sheet-foot .right { margin-left: auto; }
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .wrap { padding: 0 var(--container-gutter-tablet); }
+  .decisions__grid { grid-template-columns: 1fr; }
+  .specimen { grid-template-columns: 1fr; gap: var(--space-3); }
+}
+@media (max-width: 560px) {
+  .wrap { padding: 0 var(--container-gutter-phone); }
+  .c-mnav-frame, .c-mnav-open { width: 100%; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── Sheet header ─────────────────────────────────────────────── -->
+<header class="sheet-head" data-od-id="sheet-head">
+  <div class="wrap">
+    <span class="sheet-head__brand">marinkim.xyz</span>
+    <h1>Overlay Sheet</h1>
+    <p class="sheet-head__sub">component-sheet.html(확정)에 이은 <b>오버레이·피드백 컴포넌트 패밀리</b> specimen. 각 컴포넌트는 사이트의 실제 용례에 접지되어 있고, 용례 없는 종류(confirm 등)는 제외했습니다. 아래 Decision 3건은 디자이너 결정 + 이유를 명시합니다.</p>
+    <div class="sheet-head__meta">
+      <span>SOURCE <b>index · root-phase2 · resume · chat</b></span>
+      <span>TOKENS <b>Mono verbatim contract</b></span>
+      <span>ACCENT <b>#111 ink 반전 · green ×1 (Toast success)</b></span>
+      <span>NEW TOKENS <b>0</b></span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- ── Decision panel — 디자이너 결정 3건 ─────────────────────── -->
+  <section class="decisions" data-od-id="decisions">
+    <div class="decisions__head">디자이너 결정 · 3건 — 결정 + 이유 명시</div>
+    <div class="decisions__grid">
+      <div class="decision">
+        <span class="decision__status">결정 · 상단 중앙</span>
+        <span class="decision__n">D1 · TOAST 위치</span>
+        <h3>우하단 점유 회피</h3>
+        <p>AskLauncher가 <code style="font-size:10px">right:24 · bottom:24</code>를 이미 점유(root-phase2·resume 실측). Toast는 <b>상단 중앙</b>에 topbar 바로 아래로 스택.</p>
+        <span class="why"><b>이유:</b> 좌하단은 모바일에서 AskLauncher(16px)와 시각 충돌, AskLauncher 위 스택은 채널 UI를 밀어 올려 두 채널이 겹침. 상단 중앙은 sticky topbar 아래 빈 축이라 어떤 fixed 요소와도 안 겹치고, mono의 중앙 정렬·하드 그리드 규율과 정합.</span>
+        <span class="opt mono">택: 상단 중앙 / 반: 좌하단·AskLauncher 위</span>
+      </div>
+      <div class="decision">
+        <span class="decision__status">결정 · 단색 반투명</span>
+        <span class="decision__n">D2 · MODAL BACKDROP</span>
+        <h3>dim 처리</h3>
+        <p>모노크롬 dim은 <b><code style="font-size:10px">rgba(17,17,17,.55)</code> 단색 반투명</b>. topbar의 <code style="font-size:10px">blur(8px)</code>와는 역할을 분리.</p>
+        <span class="why"><b>이유:</b> topbar blur는 스크롤 콘텐츠를 <b>비추는</b> 유리(sticky nav) 용도지만, Modal backdrop은 배경을 <b>가리는</b> 게 목적. blur를 쓰면 잉크 모노크롬의 검정↔흰 대비가 흐려져 초점이 약해짐. <code style="font-size:10px">--fg</code>(#111) 기반 단색이 radius-0 하드 시스템과 더 정합.</span>
+        <span class="opt mono">택: 단색 반투명 / 반: blur</span>
+      </div>
+      <div class="decision">
+        <span class="decision__status">결정 · 풀스크린</span>
+        <span class="decision__n">D3 · MOBILENAV 패턴</span>
+        <h3>720px 이하 구멍</h3>
+        <p>topnav가 <code style="font-size:10px">display:none</code>되는 실제 구멍(index 실측). 라우트 4~5개 → <b>풀스크린 오버레이</b>(검정 반전).</p>
+        <span class="why"><b>이유:</b> drawer는 부분 화면이라 4~5개 라우트에 과하고 여백만 낭비. 인라인 확장은 sticky topbar의 blur 유리와 z-레이어가 충돌. 풀스크린 오버레이가 최소 구조이면서 mono의 잉크 반전(검정 배경·흰 글자) 규율을 그대로 재사용.</span>
+        <span class="opt mono">택: 풀스크린 / 반: drawer·인라인 확장</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 01 Modal ───────────────────────────────────────────────── -->
+  <section class="comp" data-od-id="c-modal">
+    <div class="comp__head"><span class="comp__no mono">01</span><h2>Modal</h2><span class="comp__usage">포트폴리오 · Phase 2</span></div>
+    <p class="comp__note">용례: <b>(a)</b> 포트폴리오 케이스의 미디어/상세 확대 <b>(b)</b> Phase 2 chat evidence 상세. 닫기: <code>× CLOSE</code> 버튼 · <code>ESC</code> · backdrop 클릭. <b>D2 결정:</b> backdrop은 <code>rgba(17,17,17,.55)</code> 단색 반투명(blur 미사용).</p>
+
+    <div class="specimen">
+      <div class="specimen__label"><span class="specimen__k">열림 · 케이스 확대</span><span class="specimen__hint">head + media + body<br>backdrop 단색 dim</span></div>
+      <div class="specimen__demo"><div class="demo-surface demo-surface--pad0 demo-surface--stage c-modal-stage">
+        <div class="c-modal__backdrop">
+          <div class="c-modal">
+            <div class="c-modal__head">Thready · 케이스 상세<button class="c-modal__close" type="button">×</button></div>
+            <div class="c-modal__body">
+              <div class="c-modal__media">MEDIA 16:9</div>
+              <p>AI 콘텐츠 생성 backend 전면 재구축. service boundary 재설계와 migration을 주도하고 이후 운영을 전담했습니다.</p>
+              <span class="c-modal__foot">ESC · backdrop 클릭 · × 로 닫힘</span>
+            </div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="specimen">
+      <div class="specimen__label"><span class="specimen__k">Anatomy</span><span class="specimen__hint">토큰 매핑</span></div>
+      <div class="specimen__demo"><div class="demo-surface"><div class="anatomy">
+        <div class="part"><span class="i">A</span><span>backdrop — <code>rgba(17,17,17,.55)</code> · <b>D2 단색</b> · <code>place-items:center</code></span></div>
+        <div class="part"><span class="i">B</span><span>dialog — <code>--bg</code> · <code>1px solid var(--fg)</code> · <code>--elev-raised</code> · radius 0</span></div>
+        <div class="part"><span class="i">C</span><span>head — <code>--font-mono</code> uppercase · ls 0.08em · <code>--border</code> 하단선</span></div>
+        <div class="part"><span class="i">D</span><span>close — 우상단 <code>margin-left:auto</code> · hover 시 <code>--fg</code> 테두리</span></div>
+      </div></div></div>
+    </div>
+  </section>
+
+  <!-- ── 02 Popover ─────────────────────────────────────────────── -->
+  <section class="comp" data-od-id="c-popover">
+    <div class="comp__head"><span class="comp__no mono">02</span><h2>Popover</h2><span class="comp__usage">chat · evidence</span></div>
+    <p class="comp__note">용례: chat 3층 답변(텍스트 + evidence chip + related link)에서 <b>evidence chip 클릭 시 claim 요약 카드</b>를 anchor 기준으로 표시. 닫기: <code>×</code> · 바깥 클릭. 화살표는 anchor를 가리키는 <code>--fg</code> 테두리 삼각.</p>
+
+    <div class="specimen">
+      <div class="specimen__label"><span class="specimen__k">Anchor + 열림</span><span class="specimen__hint">chip → claim 요약<br>src + related link</span></div>
+      <div class="specimen__demo"><div class="demo-surface"><div class="c-pop-anchor">
+        <span class="c-pop-chip"><span class="idx mono">근거 2</span> HTTP 5xx 0.3%</span>
+        <div class="c-popover">
+          <div class="c-popover__head">Claim 요약<span class="c-popover__x mono">×</span></div>
+          <div class="c-popover__body">
+            <span class="claim">월 수만 건 규모 요청을 5xx 0.3% 수준으로 운영</span>
+            <span class="src mono">SOURCE · Thready 운영 지표</span>
+          </div>
+          <a class="c-popover__link" href="#">→ 케이스 상세로 이동</a>
+        </div>
+      </div></div></div>
+    </div>
+
+    <div class="specimen">
+      <div class="specimen__label"><span class="specimen__k">Anatomy</span><span class="specimen__hint">토큰 매핑</span></div>
+      <div class="specimen__demo"><div class="demo-surface"><div class="anatomy">
+        <div class="part"><span class="i">A</span><span>anchor chip — <code>1px solid var(--fg)</code> · <code>근거 n</code> 인덱스 <code>--muted</code></span></div>
+        <div class="part"><span class="i">B</span><span>card — <code>--bg</code> · <code>1px solid var(--fg)</code> · <code>--elev-raised</code> · ::before 삼각</span></div>
+        <div class="part"><span class="i">C</span><span>claim — <code>--text-sm</code> · <code>--fg</code> 500 / src — mono 10px <code>--muted</code></span></div>
+        <div class="part"><span class="i">D</span><span>related link — <code>--border-soft</code> 상단선 · hover 밑줄</span></div>
+      </div></div></div>
+    </div>
+  </section>
+
+  <!-- ── 03 Banner ──────────────────────────────────────────────── -->
+  <section class="comp" data-od-id="c-banner">
+    <div class="comp__head"><span class="comp__no mono">03</span><h2>Banner</h2><span class="comp__usage">페이지 상단 고지</span></div>
+    <p class="comp__note">페이지 상단 고지 라인. 용례: <b>(a)</b> EN resume DRAFT 고지 <b>(b)</b> PHASE 2 PREVIEW <b>(c)</b> warn 급 고지. 기본형은 <code>×</code>로 dismiss 가능, warn형은 dismiss 없음(사용자가 넘겨선 안 되는 고지).</p>
+
+    <div class="specimen">
+      <div class="specimen__label"><span class="specimen__k">기본 · dismiss O</span><span class="specimen__hint">(a) DRAFT / (b) PREVIEW<br>tag + msg + ×</span></div>
+      <div class="specimen__demo">
+        <div class="demo-surface">
+          <div class="c-banner">
+            <span class="c-banner__tag">DRAFT</span>
+            <span class="c-banner__msg">이 영문 이력서는 <b>초안</b>입니다 — 한글 마스터 기준으로 검수 중.</span>
+            <button class="c-banner__x mono" type="button">×</button>
+          </div>
+        </div>
+        <div class="demo-surface">
+          <div class="c-banner">
+            <span class="c-banner__tag">PHASE 2 PREVIEW</span>
+            <span class="c-banner__msg">chat·evidence 기능은 <b>미리보기</b>입니다. 입력은 아직 비활성.</span>
+            <button class="c-banner__x mono" type="button">×</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="specimen">
+      <div class="specimen__label"><span class="specimen__k">Warn · dismiss X</span><span class="specimen__hint">(c) 경고급<br>--warn 테두리</span></div>
+      <div class="specimen__demo"><div class="demo-surface">
+        <div class="c-banner c-banner--warn">
+          <span class="c-banner__tag">NOTICE</span>
+          <span class="c-banner__msg">일부 지표는 <b>운영 시점 기준</b>이며 실시간 값이 아닙니다.</span>
+        </div>
+      </div></div>
+    </div>
+  </section>
+
+  <!-- ── 04 Toast ───────────────────────────────────────────────── -->
+  <section class="comp" data-od-id="c-toast">
+    <div class="comp__head"><span class="comp__no mono">04</span><h2>Toast</h2><span class="comp__usage">상단 중앙 · 자동 소멸</span></div>
+    <p class="comp__note">일시 피드백. 용례: <b>(a)</b> 이메일 복사 완료 — success <b>(b)</b> Phase 2 chat 오류 — danger. 자동 소멸(진행 바) + 수동 <code>×</code>. <b>D1 결정:</b> AskLauncher(우하단) 회피 위해 <b>상단 중앙</b> 스택.</p>
+    <p class="comp__note comp__note--warn"><b>그린 1점 원칙 충돌 검토:</b> success에 <code>--success</code> 그린을 <b>dot에만</b> 사용. 사이트의 그린 1점(NumberedRow <code>.n--accent</code>)은 콘텐츠 축, Toast는 일시 피드백 축이라 화면에 동시 상주하지 않음 → 원칙과 <b>비충돌</b>. danger는 <code>--danger</code> 배경 반전으로 오류 강도를 명시.</p>
+
+    <div class="specimen">
+      <div class="specimen__label"><span class="specimen__k">상단 중앙 배치</span><span class="specimen__hint">topbar 아래 · AskLauncher 회피<br>success 스택</span></div>
+      <div class="specimen__demo"><div class="demo-surface demo-surface--pad0 demo-surface--stage c-toast-stage">
+        <div class="c-toast-topbar">marinkim.xyz &nbsp;·&nbsp; RESUME</div>
+        <div class="c-toast-slot">
+          <div class="c-toast c-toast--success">
+            <span class="c-toast__dot"></span>
+            <span class="c-toast__msg">이메일이 복사되었습니다 — marin.backend@gmail.com</span>
+            <span class="c-toast__x mono">×</span>
+            <span class="c-toast__bar"></span>
+          </div>
+        </div>
+        <span class="c-toast-ask">ASK</span>
+      </div></div>
+    </div>
+
+    <div class="specimen">
+      <div class="specimen__label"><span class="specimen__k">Variants</span><span class="specimen__hint">success / danger</span></div>
+      <div class="specimen__demo"><div class="demo-surface">
+        <div class="state-row">
+          <div class="state-cell">
+            <div class="c-toast c-toast--success"><span class="c-toast__dot"></span><span class="c-toast__msg">이메일이 복사되었습니다</span><span class="c-toast__x mono">×</span><span class="c-toast__bar"></span></div>
+            <span class="lbl">success · green dot ×1</span>
+          </div>
+          <div class="state-cell">
+            <div class="c-toast c-toast--danger"><span class="c-toast__dot"></span><span class="c-toast__msg">응답을 불러오지 못했습니다 — 다시 시도</span><span class="c-toast__x mono">×</span><span class="c-toast__bar"></span></div>
+            <span class="lbl">danger · --danger 배경 반전</span>
+          </div>
+        </div>
+      </div></div>
+    </div>
+  </section>
+
+  <!-- ── 05 MobileNav ───────────────────────────────────────────── -->
+  <section class="comp" data-od-id="c-mobilenav">
+    <div class="comp__head"><span class="comp__no mono">05</span><h2>MobileNav</h2><span class="comp__usage">≤720px · 실제 구멍</span></div>
+    <p class="comp__note comp__note--warn"><b>현재 실제 구멍:</b> 720px 이하에서 <code>.topnav { display:none }</code>(index 실측)으로 nav가 사라지고 대체재가 없음. TopBar(home형)의 모바일 대응. <b>D3 결정:</b> 라우트 4~5개 → <b>풀스크린 오버레이</b>(잉크 반전 검정 배경).</p>
+
+    <div class="specimen">
+      <div class="specimen__label"><span class="specimen__k">닫힘 · MENU 토글</span><span class="specimen__hint">TopBar에 MENU 노출<br>≤720px</span></div>
+      <div class="specimen__demo"><div class="demo-surface demo-surface--stage" style="display:grid;place-items:center">
+        <div class="c-mnav-frame">
+          <div class="c-mnav-bar">
+            <span class="brand">marinkim.xyz</span>
+            <button class="toggle" type="button">MENU</button>
+          </div>
+          <div class="c-mnav-stub"><span class="ln"></span><span class="ln"></span><span class="ln"></span></div>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="specimen">
+      <div class="specimen__label"><span class="specimen__k">열림 · 풀스크린</span><span class="specimen__hint">검정 반전<br>번호 + 라우트 4</span></div>
+      <div class="specimen__demo"><div class="demo-surface demo-surface--stage" style="display:grid;place-items:center;min-height:460px">
+        <div class="c-mnav-open">
+          <div class="c-mnav-open__bar">
+            <span class="brand">marinkim.xyz</span>
+            <button class="close" type="button">CLOSE</button>
+          </div>
+          <nav class="c-mnav-open__list">
+            <a href="#"><span class="no mono">01</span>Portfolio</a>
+            <a href="#"><span class="no mono">02</span>Blog</a>
+            <a href="#"><span class="no mono">03</span>Labs</a>
+            <a href="#"><span class="no mono">04</span>Resume</a>
+          </nav>
+          <div class="c-mnav-open__foot">ESC · CLOSE 로 닫힘 · 라우트 4</div>
+        </div>
+      </div></div>
+    </div>
+  </section>
+
+  <footer class="sheet-foot" data-od-id="sheet-foot">
+    <span>marinkim.xyz · Overlay Sheet</span>
+    <span>5 overlays · Decision 3건 결정+이유 명시</span>
+    <span class="right">Mono · new tokens 0</span>
+  </footer>
+
+</div>
+</body>
+</html>
