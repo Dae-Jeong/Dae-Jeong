@@ -54,7 +54,7 @@ export function ColorTokens() {
             style={{ background: `var(--${n})` }}
           />
           <span className="font-mono text-xs">--{n}</span>
-          <span className="font-mono text-[10px] text-muted">
+          <span className="font-mono text-xs text-muted">
             {values?.[n] || "…"}
           </span>
         </div>
@@ -72,7 +72,7 @@ export function TypeTokens() {
           key={token}
           className="grid grid-cols-[110px_1fr_auto] items-baseline gap-4 border-b border-border-soft py-3 max-sm:grid-cols-[90px_1fr_auto]"
         >
-          <span className="font-mono text-[10px] text-muted">{token}</span>
+          <span className="font-mono text-xs text-muted">{token}</span>
           <span
             ref={(el) => {
               if (el && !sizes[token]) {
@@ -84,7 +84,7 @@ export function TypeTokens() {
           >
             김대정 Backend 0123
           </span>
-          <span className="font-mono text-[10px] text-muted">
+          <span className="font-mono text-xs text-muted">
             {sizes[token] || "…"}
           </span>
         </div>

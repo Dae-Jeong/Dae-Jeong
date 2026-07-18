@@ -25,10 +25,10 @@ function EntryCard({ entry, index }: { entry: LabEntry; index: number }) {
         <span className="bg-accent px-2 py-0.5 font-mono text-sm tracking-[0.04em] text-accent-on">
           {String(index + 1).padStart(2, "0")}
         </span>
-        <span className="ml-auto border border-border px-[7px] py-0.5 font-mono text-[10px] uppercase tracking-[0.08em] text-muted">
+        <span className="ml-auto border border-border px-[7px] py-0.5 font-mono text-xs uppercase tracking-[0.08em] text-muted">
           {KIND_LABEL[entry.kind]}
         </span>
-        <span className="border border-current px-[7px] py-0.5 font-mono text-[10px] uppercase tracking-[0.08em] text-warn">
+        <span className="border border-current px-[7px] py-0.5 font-mono text-xs uppercase tracking-[0.08em] text-warn">
           {entry.status === "building" ? "Building" : "Live"}
         </span>
       </div>
@@ -90,7 +90,7 @@ export default function LabsPage() {
               <EntryCard key={e.id} entry={e} index={i} />
             ))}
             <article className="grid min-h-[210px] place-items-center gap-2 bg-surface p-6 text-center">
-              <span className="font-mono text-[10px] uppercase tracking-[0.08em] text-muted">
+              <span className="font-mono text-xs uppercase tracking-[0.08em] text-muted">
                 Slot · empty
               </span>
               <span className="max-w-[32ch] text-sm text-muted">
@@ -130,7 +130,7 @@ export default function LabsPage() {
                 <div key={c.k} className="grid content-start gap-2 bg-bg p-5">
                   <div className="flex items-center gap-2">
                     <b className="font-mono text-sm font-semibold">{c.k}</b>
-                    <span className="border border-border px-1.5 py-px font-mono text-[10px] uppercase tracking-[0.08em] text-muted">
+                    <span className="border border-border px-1.5 py-px font-mono text-xs uppercase tracking-[0.08em] text-muted">
                       {c.badge}
                     </span>
                   </div>

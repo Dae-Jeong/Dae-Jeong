@@ -45,7 +45,7 @@ function Specimen({
           {label}
         </span>
         {hint && (
-          <span className="font-mono text-[10px] tracking-[0.04em] text-muted">
+          <span className="font-mono text-xs tracking-[0.04em] text-muted">
             {hint}
           </span>
         )}
@@ -329,14 +329,14 @@ export default function DesignPage() {
             <div className="relative min-h-[300px] overflow-hidden bg-surface">
               <div className="absolute inset-0 grid place-items-center bg-[rgba(17,17,17,0.55)] p-5">
                 <ModalPanel title="Thready · 케이스 상세">
-                  <div className="grid aspect-video place-items-center bg-surface-warm font-mono text-[10px] tracking-[0.08em] text-muted">
+                  <div className="grid aspect-video place-items-center bg-surface-warm font-mono text-xs tracking-[0.08em] text-muted">
                     MEDIA 16:9
                   </div>
                   <p className="m-0 text-sm text-fg-2">
                     AI 콘텐츠 생성 backend 전면 재구축. service boundary
                     재설계와 migration을 주도하고 이후 운영을 전담했습니다.
                   </p>
-                  <span className="border-t border-border-soft pt-2.5 font-mono text-[10px] tracking-[0.06em] text-muted">
+                  <span className="border-t border-border-soft pt-2.5 font-mono text-xs tracking-[0.06em] text-muted">
                     ESC · backdrop 클릭 · × 로 닫힘
                   </span>
                 </ModalPanel>

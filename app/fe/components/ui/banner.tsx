@@ -29,7 +29,7 @@ export function Banner({
         className,
       )}
     >
-      <span className="flex-none border border-current px-[7px] py-0.5 text-[10px] uppercase tracking-[0.08em]">
+      <span className="flex-none border border-current px-[7px] py-0.5 text-xs uppercase tracking-[0.08em]">
         {tag}
       </span>
       <span className="text-fg-2">{children}</span>

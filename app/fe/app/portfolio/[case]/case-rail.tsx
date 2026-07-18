@@ -55,7 +55,7 @@ export function CaseRail({
       </Button>
 
       <nav aria-label="목차">
-        <h2 className="m-0 mb-2.5 font-mono text-[10px] uppercase tracking-[0.1em] text-muted">
+        <h2 className="m-0 mb-2.5 font-mono text-xs uppercase tracking-[0.1em] text-muted">
           이 케이스
         </h2>
         <ol className="m-0 grid list-none gap-[7px] p-0">
@@ -77,7 +77,7 @@ export function CaseRail({
       </nav>
 
       <nav aria-label="다른 케이스" className="border-t border-border-soft pt-4">
-        <h2 className="m-0 mb-2.5 font-mono text-[10px] uppercase tracking-[0.1em] text-muted">
+        <h2 className="m-0 mb-2.5 font-mono text-xs uppercase tracking-[0.1em] text-muted">
           케이스 이동
         </h2>
         <ol className="m-0 grid list-none gap-[7px] p-0">
@@ -118,7 +118,7 @@ export function CaseRail({
         </ol>
       </nav>
 
-      <p className="m-0 border-t border-border-soft pt-3 font-mono text-[10px] leading-relaxed text-muted">
+      <p className="m-0 border-t border-border-soft pt-3 font-mono text-xs leading-relaxed text-muted">
         모든 성과 문장은 검증된 표현만 사용합니다. 수치는 운영 시점 기준이며 미확정
         값은 TBD로 표기합니다.
       </p>

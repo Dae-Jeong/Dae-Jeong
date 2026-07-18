@@ -59,7 +59,7 @@ export function MobileNavPanel({
           </a>
         ))}
       </nav>
-      <div className="border-t border-white/15 p-4 font-mono text-[10px] tracking-[0.06em] text-white/60">
+      <div className="border-t border-white/15 p-4 font-mono text-xs tracking-[0.06em] text-white/60">
         ESC · CLOSE 로 닫힘
       </div>
     </div>

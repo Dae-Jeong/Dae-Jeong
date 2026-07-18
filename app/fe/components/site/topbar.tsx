@@ -23,7 +23,7 @@ export function TopBar(props: TopBarProps) {
             / {props.crumb}
           </span>
           {props.tag && (
-            <span className="ml-auto whitespace-nowrap border border-border px-2 py-[3px] font-mono text-[10px] tracking-[0.08em] text-muted">
+            <span className="ml-auto whitespace-nowrap border border-border px-2 py-[3px] font-mono text-xs tracking-[0.08em] text-muted">
               {props.tag}
             </span>
           )}

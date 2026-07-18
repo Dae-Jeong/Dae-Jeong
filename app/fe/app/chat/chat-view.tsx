@@ -35,7 +35,7 @@ function Evidence({ ids }: { ids: string[] }) {
       {ids.map((id) => (
         <span
           key={id}
-          className="border border-border-soft px-1.5 py-0.5 font-mono text-[10px] text-muted"
+          className="border border-border-soft px-1.5 py-0.5 font-mono text-xs text-muted"
         >
           {id}
         </span>
@@ -63,7 +63,7 @@ function Related({ items }: { items: { label: string; href: string }[] }) {
 function VisitorMsg({ children }: { children: React.ReactNode }) {
   return (
     <div className="grid gap-1.5">
-      <span className="text-right font-mono text-[10px] uppercase tracking-[0.1em] text-muted">
+      <span className="text-right font-mono text-xs uppercase tracking-[0.1em] text-muted">
         Visitor
       </span>
       <div className="max-w-[72%] justify-self-end bg-surface px-4 py-3 text-base">
@@ -76,7 +76,7 @@ function VisitorMsg({ children }: { children: React.ReactNode }) {
 function AgentMsg({ children }: { children: React.ReactNode }) {
   return (
     <div className="grid gap-1.5">
-      <span className="font-mono text-[10px] uppercase tracking-[0.1em] text-muted">
+      <span className="font-mono text-xs uppercase tracking-[0.1em] text-muted">
         Profile Agent
       </span>
       <div className="max-w-[62ch] border-l-2 border-fg py-1 pl-4 text-fg-2 [&_p]:m-0 [&_p]:mb-2.5 [&_p:last-of-type]:mb-0">
@@ -106,7 +106,7 @@ export function ChatView() {
               시작하거나, 직접 물어보세요.
             </p>
 
-            <div className="mt-8 font-mono text-[10px] uppercase tracking-[0.1em] text-muted">
+            <div className="mt-8 font-mono text-xs uppercase tracking-[0.1em] text-muted">
               이런 걸 물어볼 수 있어요
             </div>
             <div className="mt-2 grid max-w-[520px]">
@@ -130,7 +130,7 @@ export function ChatView() {
                 </button>
               ))}
             </div>
-            <p className="mt-4 font-mono text-[10px] text-muted">
+            <p className="mt-4 font-mono text-xs text-muted">
               suggestion 클릭 시 데모 대화가 표시됩니다 — 실제 응답은 Phase 2에서.
             </p>
           </main>
@@ -216,13 +216,13 @@ export function ChatView() {
             <ul className="m-0 grid list-none gap-3 p-0">
               {RAIL_CLAIMS.map((c) => (
                 <li key={c.id} className="grid gap-0.5 border-t border-border-soft pt-2.5">
-                  <span className="font-mono text-[10px] text-fg">{c.id}</span>
+                  <span className="font-mono text-xs text-fg">{c.id}</span>
                   <span className="text-xs text-muted">{c.desc}</span>
                 </li>
               ))}
             </ul>
           )}
-          <p className="m-0 mt-4 font-mono text-[10px] leading-relaxed text-muted">
+          <p className="m-0 mt-4 font-mono text-xs leading-relaxed text-muted">
             답변은 검증된 claim registry의 public 표현만 사용합니다. 근거 없는
             질문에는 curated Q&amp;A로 대체하거나 모른다고 답합니다.
           </p>
@@ -245,7 +245,7 @@ export function ChatView() {
             SEND
           </button>
         </div>
-        <p className="mx-auto mt-1.5 max-w-[820px] px-4 font-mono text-[10px] tracking-[0.06em] text-muted md:px-7">
+        <p className="mx-auto mt-1.5 max-w-[820px] px-4 font-mono text-xs tracking-[0.06em] text-muted md:px-7">
           PHASE 2 PREVIEW · 입력은 아직 열리지 않았습니다
         </p>
       </div>

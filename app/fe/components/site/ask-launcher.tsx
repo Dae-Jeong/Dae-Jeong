@@ -19,7 +19,7 @@ export function AskPanel() {
     >
       <div className="flex items-center gap-2.5 bg-accent px-3.5 py-[11px] font-mono text-xs uppercase tracking-[0.08em] text-accent-on">
         Ask · 프로필과 대화
-        <span className="ml-auto border border-white/40 px-[7px] py-0.5 text-[10px] normal-case">
+        <span className="ml-auto border border-white/40 px-[7px] py-0.5 text-xs normal-case">
           PHASE 2 PREVIEW
         </span>
       </div>
@@ -46,7 +46,7 @@ export function AskPanel() {
         />
         <Link
           href="/chat"
-          className="focus-ring whitespace-nowrap font-mono text-[10px] text-muted"
+          className="focus-ring whitespace-nowrap font-mono text-xs text-muted"
         >
           전체 대화 → /chat
         </Link>

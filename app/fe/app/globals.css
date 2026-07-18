@@ -18,7 +18,7 @@
   --warn: #b7791f;
   --danger: #c53030;
   --font-ko: "Pretendard Variable", Pretendard, sans-serif;
-  --leading-body: 1.45;
+  --leading-body: 1.55; /* 9차 개정: 1.45→1.55 — 한국 서비스 실측 1.6대, base 16 정합 */
   --leading-tight: 1.06;
   --tracking-display: -0.025em;
   --section-y-desktop: 80px;
@@ -50,17 +50,19 @@
   --font-sans: var(--font-ko);
 }
 
-/* 계약의 type scale — Tailwind 기본 스케일을 계약값으로 대체 */
+/* 계약의 type scale — Tailwind 기본 스케일을 계약값으로 대체.
+   9차 개정 (base 16 앵커): 업계 실측(개발자 문서 전원 16, 한국 16~17, GOV.UK 14 폐기) 근거.
+   하한 12px — font-size 10~11px 금지 (8차 확정, 8개 시스템 실측 일치) */
 @theme {
-  --text-xs: 11px;
+  --text-xs: 12px;
   --text-xs--line-height: 1.45;
-  --text-sm: 12px;
+  --text-sm: 13px;
   --text-sm--line-height: 1.45;
-  --text-base: 14px;
-  --text-base--line-height: 1.45;
-  --text-lg: 16px;
-  --text-lg--line-height: 1.5;
-  --text-xl: 20px;
+  --text-base: 16px;
+  --text-base--line-height: 1.55;
+  --text-lg: 18px;
+  --text-lg--line-height: 1.55;
+  --text-xl: 22px;
   --text-xl--line-height: 1.4;
   --text-2xl: 28px;
   --text-2xl--line-height: 1.2;
@@ -68,6 +70,8 @@
   --text-3xl--line-height: 1.1;
   --text-4xl: 56px;
   --text-4xl--line-height: 1.06;
+  --text-cred: 14px; /* credentials 전용 (hero 카드 Award·Patent 값) — 라벨(xs)에서 분리 */
+  --text-cred--line-height: 1.4;
   --ease-standard: cubic-bezier(0.2, 0, 0, 1);
 }
 

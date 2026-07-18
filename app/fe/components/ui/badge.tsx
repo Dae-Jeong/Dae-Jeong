@@ -11,7 +11,7 @@ export function Badge({
   return (
     <span
       className={cn(
-        "ml-2 inline-block bg-accent px-1.5 py-px align-[1px] font-mono text-[10px] tracking-[0.06em] text-accent-on",
+        "ml-2 inline-block bg-accent px-1.5 py-px align-[1px] font-mono text-xs tracking-[0.06em] text-accent-on",
         className,
       )}
     >

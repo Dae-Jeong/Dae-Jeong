@@ -151,7 +151,7 @@ export default async function CasePage({
               ].map(({ dir, c }) => {
                 const body = (
                   <>
-                    <span className="font-mono text-[10px] uppercase tracking-[0.08em] text-muted">
+                    <span className="font-mono text-xs uppercase tracking-[0.08em] text-muted">
                       {dir}
                     </span>
                     <span className="font-mono text-sm font-semibold">

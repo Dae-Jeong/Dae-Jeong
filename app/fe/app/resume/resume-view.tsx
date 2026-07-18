@@ -465,7 +465,7 @@ export function ResumeView() {
         </div>
         {lang === "ko" && (
           <nav aria-label="목차" className="max-lg:hidden">
-            <h2 className="m-0 mb-2.5 font-mono text-[10px] uppercase tracking-[0.1em] text-muted">
+            <h2 className="m-0 mb-2.5 font-mono text-xs uppercase tracking-[0.1em] text-muted">
               Contents
             </h2>
             <ol className="m-0 grid list-none gap-[7px] p-0">
@@ -480,7 +480,7 @@ export function ResumeView() {
             </ol>
           </nav>
         )}
-        <p className="m-0 border-t border-border-soft pt-3 font-mono text-[10px] leading-relaxed text-muted max-lg:hidden">
+        <p className="m-0 border-t border-border-soft pt-3 font-mono text-xs leading-relaxed text-muted max-lg:hidden">
           모든 성과 문장은 검증된 claim registry의 public 표현만 사용합니다. 연락처 중
           전화번호는 PDF 배포본에만 포함됩니다.
         </p>

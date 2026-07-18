@@ -29,7 +29,7 @@ export function PopoverCard({
         aria-hidden
         className="absolute -top-[6px] left-[22px] size-[10px] rotate-45 border-l border-t border-fg bg-bg"
       />
-      <div className="flex items-center gap-2 border-b border-border px-[13px] py-[9px] font-mono text-[10px] uppercase tracking-[0.08em] text-muted">
+      <div className="flex items-center gap-2 border-b border-border px-[13px] py-[9px] font-mono text-xs uppercase tracking-[0.08em] text-muted">
         Claim 요약
         <button
           type="button"
@@ -42,7 +42,7 @@ export function PopoverCard({
       </div>
       <div className="grid gap-2 px-[13px] py-3">
         <span className="text-sm font-medium text-fg">{claim}</span>
-        <span className="font-mono text-[10px] tracking-[0.03em] text-muted">
+        <span className="font-mono text-xs tracking-[0.03em] text-muted">
           SOURCE · {source}
         </span>
       </div>

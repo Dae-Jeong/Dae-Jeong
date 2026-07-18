@@ -17,7 +17,7 @@ const ROW =
 
 function Tag({ children }: { children: React.ReactNode }) {
   return (
-    <span className="border border-border px-[7px] py-0.5 font-mono text-[10px] uppercase tracking-[0.06em] text-muted">
+    <span className="border border-border px-[7px] py-0.5 font-mono text-xs uppercase tracking-[0.06em] text-muted">
       {children}
     </span>
   );
@@ -68,7 +68,7 @@ export default function BlogPage() {
                 <span className="grid gap-1.5">
                   <span className="font-mono text-lg font-semibold tracking-[-0.01em]">
                     글 행 구조 — 제목 · 날짜 · 태그 · 한 줄 요약
-                    <span className="ml-2 inline-block border border-warn px-[7px] py-0.5 align-[2px] font-mono text-[10px] uppercase tracking-[0.08em] text-warn">
+                    <span className="ml-2 inline-block border border-warn px-[7px] py-0.5 align-[2px] font-mono text-xs uppercase tracking-[0.08em] text-warn">
                       Placeholder
                     </span>
                   </span>
