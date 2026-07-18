@@ -6,6 +6,7 @@ type ButtonProps = {
   external?: boolean;
   disabled?: boolean;
   title?: string;
+  onClick?: () => void;
   className?: string;
   children: React.ReactNode;
 };
@@ -21,6 +22,7 @@ export function Button({
   external,
   disabled,
   title,
+  onClick,
   className = "",
   children,
 }: ButtonProps) {
@@ -39,7 +41,13 @@ export function Button({
     );
   }
   return (
-    <button type="button" title={title} disabled={disabled} className={cls}>
+    <button
+      type="button"
+      title={title}
+      disabled={disabled}
+      onClick={onClick}
+      className={cls}
+    >
       {children}
     </button>
   );

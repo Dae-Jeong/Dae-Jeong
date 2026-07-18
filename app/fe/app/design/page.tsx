@@ -1,19 +1,26 @@
 import type { Metadata } from "next";
 import { AskLauncher, AskPanel } from "@/components/site/ask-launcher";
 import { Container } from "@/components/site/container";
+import { MobileNavPanel } from "@/components/site/mobile-nav";
 import { SiteFooter } from "@/components/site/site-footer";
 import { TopBar } from "@/components/site/topbar";
 import { Badge } from "@/components/ui/badge";
+import { Banner } from "@/components/ui/banner";
 import { Button } from "@/components/ui/button";
 import { Card, CardGrid } from "@/components/ui/card-grid";
 import { Chip } from "@/components/ui/chip";
+import { EvidencePopover, PopoverCard } from "@/components/ui/evidence-popover";
 import {
   KeyValueCard,
   KeyValueRows,
 } from "@/components/ui/key-value-list";
+import { ModalPanel } from "@/components/ui/modal";
 import { NumberedList, NumberedRow } from "@/components/ui/numbered-row";
 import { Reveal } from "@/components/ui/reveal";
 import { SectionHead } from "@/components/ui/section-head";
+import { Toast } from "@/components/ui/toast";
+import { ModalDemo, ToastDemo } from "./overlay-demos";
+import { ColorTokens, TypeTokens } from "./token-grid";
 
 export const metadata: Metadata = {
   title: "Design System — marinkim.xyz",
@@ -69,8 +76,19 @@ export default function DesignPage() {
           </p>
         </Container>
 
-        {/* 01 TopBar */}
+        {/* 00 Tokens — foundations, 값은 렌더 시점 실값 */}
         <Container variant="doc" className="pt-16">
+          <SectionHead no="00" title="Tokens" meta="@theme · runtime 실값" />
+          <Specimen label="Color" hint="semantic 13 — 값은 getComputedStyle 실값">
+            <ColorTokens />
+          </Specimen>
+          <Specimen label="Type Scale" hint="text-xs ~ text-4xl · verbatim contract px">
+            <TypeTokens />
+          </Specimen>
+        </Container>
+
+        {/* 01 TopBar */}
+        <Container variant="doc" className="pt-8">
           <SectionHead no="01" title="TopBar" meta="home / subpage" />
           <Specimen label="Home 형" hint="sticky + blur · brand + nav + fill btn">
             <div className="overflow-hidden">
@@ -301,6 +319,112 @@ export default function DesignPage() {
             <div className="flex justify-end">
               <AskPanel />
             </div>
+          </Specimen>
+        </Container>
+
+        {/* 10 Modal */}
+        <Container variant="doc" className="pt-8">
+          <SectionHead no="10" title="Modal" meta="포트폴리오 케이스 · D2 backdrop 단색" />
+          <Specimen label="열림 · 정적" hint="backdrop rgba(17,17,17,.55) · blur 미사용">
+            <div className="relative min-h-[300px] overflow-hidden bg-surface">
+              <div className="absolute inset-0 grid place-items-center bg-[rgba(17,17,17,0.55)] p-5">
+                <ModalPanel title="Thready · 케이스 상세">
+                  <div className="grid aspect-video place-items-center bg-surface-warm font-mono text-[10px] tracking-[0.08em] text-muted">
+                    MEDIA 16:9
+                  </div>
+                  <p className="m-0 text-sm text-fg-2">
+                    AI 콘텐츠 생성 backend 전면 재구축. service boundary
+                    재설계와 migration을 주도하고 이후 운영을 전담했습니다.
+                  </p>
+                  <span className="border-t border-border-soft pt-2.5 font-mono text-[10px] tracking-[0.06em] text-muted">
+                    ESC · backdrop 클릭 · × 로 닫힘
+                  </span>
+                </ModalPanel>
+              </div>
+            </div>
+          </Specimen>
+          <Specimen label="라이브" hint="focus trap · ESC · close 시 트리거 복귀">
+            <ModalDemo />
+          </Specimen>
+        </Container>
+
+        {/* 11 EvidencePopover */}
+        <Container variant="doc" className="pt-8">
+          <SectionHead no="11" title="EvidencePopover" meta="chat 3층 답변 · claim 요약" />
+          <Specimen label="라이브" hint="클릭 토글 · 바깥 클릭 / ESC 닫기">
+            <div className="min-h-[240px]">
+              <EvidencePopover
+                index="근거 2"
+                label="HTTP 5xx 0.3%"
+                claim="월 수만 건 규모 요청을 5xx 0.3% 수준으로 운영"
+                source="Thready 운영 지표"
+                href="#"
+              />
+            </div>
+          </Specimen>
+          <Specimen label="정적 · 카드" hint="claim + src + related link · 삼각 화살표">
+            <PopoverCard
+              claim="월 수만 건 규모 요청을 5xx 0.3% 수준으로 운영"
+              source="Thready 운영 지표"
+              href="#"
+            />
+          </Specimen>
+        </Container>
+
+        {/* 12 Banner */}
+        <Container variant="doc" className="pt-8">
+          <SectionHead no="12" title="Banner" meta="페이지 상단 고지" />
+          <Specimen label="dismiss O" hint="DRAFT / PHASE 2 PREVIEW — × 로 닫힘">
+            <div className="grid gap-3">
+              <Banner tag="DRAFT">
+                이 영문 이력서는 <b>초안</b>입니다 — 한글 마스터 기준으로 검수
+                중.
+              </Banner>
+              <Banner tag="PHASE 2 PREVIEW">
+                chat·evidence 기능은 <b>미리보기</b>입니다. 입력은 아직 비활성.
+              </Banner>
+            </div>
+          </Specimen>
+          <Specimen label="warn · dismiss X" hint="--warn · 사용자가 넘겨선 안 되는 고지">
+            <Banner tag="NOTICE" variant="warn">
+              일부 지표는 <b>운영 시점 기준</b>이며 실시간 값이 아닙니다.
+            </Banner>
+          </Specimen>
+        </Container>
+
+        {/* 13 Toast */}
+        <Container variant="doc" className="pt-8">
+          <SectionHead no="13" title="Toast" meta="상단 중앙 · D1 · 자동 소멸 4s" />
+          <Specimen label="Variants · 정적" hint="success green dot ×1 / danger 배경 반전">
+            <div className="flex flex-wrap items-start gap-4">
+              <Toast message="이메일이 복사되었습니다" />
+              <Toast
+                message="응답을 불러오지 못했습니다 — 다시 시도"
+                variant="danger"
+              />
+            </div>
+          </Specimen>
+          <Specimen label="라이브" hint="상단 중앙 스택 · AskLauncher(우하단) 회피">
+            <ToastDemo />
+          </Specimen>
+        </Container>
+
+        {/* 14 MobileNav */}
+        <Container variant="doc" className="pt-8">
+          <SectionHead no="14" title="MobileNav" meta="≤720px · D3 풀스크린" />
+          <Specimen label="열림 · 정적 축소" hint="잉크 반전 · 번호 라우트 4">
+            <div className="mx-auto w-[320px] max-w-full">
+              <MobileNavPanel className="h-[420px]" />
+            </div>
+          </Specimen>
+          <Specimen
+            label="라이브"
+            hint="뷰포트 ≤720px 에서 위 TopBar(home형)에 MENU 토글 노출 — ESC · CLOSE · 트리거 복귀"
+          >
+            <p className="m-0 text-sm text-fg-2">
+              브라우저 폭을 720px 이하로 줄이면 01 TopBar(home형) 데모에서
+              MENU 토글이 라이브로 동작합니다.
+            </p>
           </Specimen>
         </Container>
 
