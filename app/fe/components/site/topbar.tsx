@@ -55,9 +55,8 @@ export function TopBar(props: TopBarProps) {
           ))}
         </nav>
         <div className="flex items-center gap-3">
-          <Button href="#" disabled title="Resume PDF (준비 중)">
-            ↓ Resume PDF
-          </Button>
+          {/* Resume PDF 준비 시 다운로드 버튼 복귀 (7차: 죽은 primary CTA 제거) */}
+          <Button href="/resume">이력서 보기</Button>
           <MobileNav />
         </div>
       </Container>

@@ -6,9 +6,12 @@ type KV = { k: string; v: React.ReactNode };
 /* hero card 변형 — bordered dl, 값 우측 정렬. groups 사이에 rule 이 들어간다 */
 export function KeyValueCard({
   groups,
+  valueClassName = "",
   className = "",
 }: {
   groups: KV[][];
+  /** cn 병합 — dd 기본(text-xs)과 충돌 시 이 값이 이긴다 (예: hero 카드는 text-cred) */
+  valueClassName?: string;
   className?: string;
 }) {
   return (
@@ -27,7 +30,14 @@ export function KeyValueCard({
                 <dt className="font-mono text-xs uppercase tracking-[0.06em] text-muted">
                   {k}
                 </dt>
-                <dd className="m-0 text-right font-mono text-xs">{v}</dd>
+                <dd
+                  className={cn(
+                    "m-0 text-right font-mono text-xs",
+                    valueClassName,
+                  )}
+                >
+                  {v}
+                </dd>
               </Fragment>
             ))}
           </Fragment>

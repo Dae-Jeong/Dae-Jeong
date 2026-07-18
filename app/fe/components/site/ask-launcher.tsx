@@ -27,14 +27,15 @@ export function AskPanel() {
         <p className="text-sm text-fg-2">
           안녕하세요 — 김대정의 프로필 agent입니다. 무엇이 궁금하세요?
         </p>
+        {/* 질문 클릭 → /chat 직행 (죽은 버튼 금지 — 페르소나 검토 반영) */}
         {SUGGESTED.map((q) => (
-          <button
+          <Link
             key={q}
-            type="button"
-            className="cursor-default border border-border bg-bg px-2.5 py-2 text-left text-xs text-fg-2"
+            href="/chat"
+            className="focus-ring border border-border bg-bg px-2.5 py-2 text-left text-xs text-fg-2 transition-colors duration-100 hover:border-fg hover:text-fg"
           >
             {q}
-          </button>
+          </Link>
         ))}
       </div>
       <div className="flex items-center gap-2 border-t border-border-soft px-3.5 py-3">

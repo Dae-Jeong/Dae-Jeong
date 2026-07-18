@@ -1,0 +1,872 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>김대정 — Backend Engineer · AI Product Systems (root v3)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<style>
+/* ── Mono design system tokens (verbatim contract — index.html 기준) ── */
+:root {
+  --bg: #ffffff;
+  --surface: #f7f7f7;
+  --surface-warm: #eeeeee;
+  --fg: #111111;
+  --fg-2: #3a3a3a;
+  --muted: #707070;
+  --meta: #111111;
+  --border: #d9d9d9;
+  --border-soft: #eeeeee;
+  --accent: #111111;
+  --accent-on: #ffffff;
+  --accent-hover: color-mix(in oklab, var(--accent), black 8%);
+  --accent-active: color-mix(in oklab, var(--accent), black 14%);
+  --success: #168a46;
+  --warn: #b7791f;
+  --danger: #c53030;
+  --font-display: "IBM Plex Mono", ui-monospace, monospace;
+  --font-body: "IBM Plex Mono", ui-monospace, monospace;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  /* ── TYPE SCALE — 9차 재조정 (base 16 앵커 · 리서치 회신) ──
+     현행 14 → 16: GitHub·Stripe·Vercel·MDN 전원 16, 토스 17·카카오 16 실측 지지값.
+     본문 계열(xs·sm·base·lg·xl)을 16에 연동. 하한 12px·10px 금지(8차 확정) 유지.
+     헤딩(2xl/3xl/4xl)은 유지 — 이미 충분히 큰 영역, 상향 시 hero 넘침만 커짐. */
+  --text-xs: 12px;
+  --text-sm: 13px;
+  --text-base: 16px;
+  --text-lg: 18px;
+  --text-xl: 22px;
+  --text-2xl: 28px;
+  --text-3xl: 40px;
+  --text-4xl: 56px;
+  --text-cred: 14px;      /* 8차 신설 · 9차 16 앵커 연동 — hero 카드 credentials(dd) 전용, 장식 라벨(dt)에서 분리 */
+  --leading-body: 1.55;   /* 9차: 1.45→1.55. 한국 서비스 실측 1.6대(토스·네이버), 16 base 정합 */
+  --leading-tight: 1.06;
+  --tracking-display: -0.025em;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --section-y-desktop: 80px;
+  --section-y-tablet: 60px;
+  --section-y-phone: 42px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-pill: 9999px;
+  --elev-flat: none;
+  --elev-ring: 0 0 0 1px var(--border);
+  --elev-raised: 0 16px 40px rgba(0, 0, 0, 0.10);
+  --focus-ring: 0 0 0 3px rgba(17, 17, 17, 0.18);
+  --motion-fast: 100ms;
+  --motion-base: 180ms;
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --container-max: 1280px;
+  --container-gutter-desktop: 36px;
+  --container-gutter-tablet: 24px;
+  --container-gutter-phone: 16px;
+  /* 한글 본문: Pretendard, 라틴/숫자: IBM Plex Mono */
+  --font-ko: "Pretendard Variable", Pretendard, "IBM Plex Mono", ui-monospace, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-ko);
+  font-size: var(--text-base);
+  line-height: var(--leading-body);
+  letter-spacing: 0;
+  word-break: keep-all;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+.mono { font-family: var(--font-mono); font-feature-settings: "tnum" 1; }
+a { color: inherit; text-decoration: none; }
+code { font-family: var(--font-mono); font-size: 0.9em; background: var(--surface-warm); padding: 1px 5px; }
+
+/* hub 컨테이너 — D1 확정: 1280 / gutter 36 (subpage doc-wrap 1180/28과 구분) */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-gutter-desktop);
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+/* ── Top bar · home형 (index.html sticky+blur 문법) ───────────────── */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: saturate(180%) blur(8px);
+  border-bottom: 1px solid var(--border-soft);
+}
+.topbar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 56px;
+}
+.wordmark {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+.wordmark::before {
+  content: "";
+  width: 9px; height: 9px;
+  background: var(--fg);
+}
+.topnav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+}
+.topnav a {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  padding: var(--space-2) 0;
+  position: relative;
+  transition: color var(--motion-fast) var(--ease-standard);
+}
+.topnav a::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: 2px;
+  width: 0; height: 1px;
+  background: var(--fg);
+  transition: width var(--motion-base) var(--ease-standard);
+}
+.topnav a:hover { color: var(--fg); }
+.topnav a:hover::after { width: 100%; }
+.topnav a:focus-visible { outline: none; box-shadow: var(--focus-ring); border-radius: var(--radius-sm); color: var(--fg); }
+
+.btn-resume {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  font-weight: 500;
+  color: var(--accent-on);
+  background: var(--accent);
+  padding: 8px 14px;
+  border: 1px solid var(--accent);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  transition: background var(--motion-fast) var(--ease-standard);
+  white-space: nowrap;
+}
+.btn-resume:hover { background: var(--accent-hover); }
+.btn-resume:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+.btn-resume svg { width: 13px; height: 13px; }
+
+/* ── Section scaffold (index.html) ───────────────────────────────── */
+section { padding-block: var(--section-y-desktop); }
+.section-head {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-4);
+  margin-bottom: var(--space-8);
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--border);
+}
+.section-head__no {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--muted);
+  letter-spacing: 0.08em;
+}
+.section-head h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.section-head__meta {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* ── Hero (index.html 확정 문법) ─────────────────────────────────── */
+.hero { padding-top: 72px; padding-bottom: 64px; }
+.hero__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: var(--space-12);
+  align-items: end;
+}
+.hero__status {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.06em;
+  color: var(--fg-2);
+  border: 1px solid var(--border);
+  padding: 4px 10px;
+  margin-bottom: var(--space-6);
+}
+.hero h1 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--text-4xl);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-display);
+  font-weight: 600;
+}
+.hero__role {
+  margin-top: var(--space-4);
+  font-family: var(--font-mono);
+  font-size: var(--text-base);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--fg-2);
+}
+.hero__role b { font-weight: 600; color: var(--fg); }
+.hero__line {
+  margin-top: var(--space-6);
+  font-size: var(--text-xl);
+  line-height: 1.4;
+  max-width: 22ch;
+  font-weight: 500;
+}
+.hero__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-8);
+}
+.chip-link {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.03em;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 9px 13px;
+  border: 1px solid var(--border);
+  color: var(--fg);
+  transition: border-color var(--motion-fast) var(--ease-standard), background var(--motion-fast) var(--ease-standard);
+}
+.chip-link:hover { border-color: var(--fg); background: var(--surface); }
+.chip-link:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+.chip-link svg { width: 14px; height: 14px; }
+.chip-link--fill { background: var(--accent); color: var(--accent-on); border-color: var(--accent); }
+.chip-link--fill:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
+.chip-link[aria-disabled="true"] { opacity: 0.65; cursor: default; }
+.chip-link[aria-disabled="true"]:hover { border-color: var(--border); background: var(--accent); }
+
+/* Hero side identity card (index.html) */
+.hero__card {
+  border: 1px solid var(--border);
+  padding: var(--space-5);
+  display: grid;
+  gap: 2px;
+  align-self: end;
+}
+.hero__card dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 6px var(--space-4); }
+.hero__card dt {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+.hero__card dd {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: var(--text-cred);   /* 9차: credentials 값 승격 — Award·Patent·Career를 라벨(dt, xs)에서 분리 */
+  color: var(--fg);
+  text-align: right;
+}
+.hero__card .rule { grid-column: 1 / -1; height: 1px; background: var(--border-soft); margin: 6px 0; }
+
+/* ── Summary (index.html) ────────────────────────────────────────── */
+.summary { background: var(--surface); border-block: 1px solid var(--border-soft); }
+.summary__list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
+.summary__item {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: var(--space-4);
+  align-items: baseline;
+  padding-block: var(--space-5);
+  border-top: 1px solid var(--border);
+}
+.summary__item:first-child { border-top: none; }
+.summary__no {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--muted);
+  letter-spacing: 0.06em;
+}
+.summary__no--accent { color: var(--success); font-weight: 700; }
+.summary__text { font-size: var(--text-lg); line-height: 1.5; font-weight: 450; }
+.summary__text strong { font-weight: 600; }
+
+/* ── Decision panel (portfolio/blog/labs 확정 문법) ──────────────── */
+.decisions { background: var(--bg); border: 1px solid var(--fg); }
+.decisions__head { background: var(--fg); color: var(--accent-on); font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.1em; text-transform: uppercase; padding: 10px var(--space-5); }
+.decision { padding: var(--space-5); display: grid; gap: var(--space-2); border-top: 1px solid var(--border-soft); }
+.decision:first-of-type { border-top: none; }
+.decision__status { justify-self: start; font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 9px; margin-bottom: 2px; background: var(--accent); color: var(--accent-on); }
+.decision__n { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--muted); letter-spacing: 0.06em; }
+.decision h2 { margin: 0; font-family: var(--font-mono); font-size: var(--text-sm); font-weight: 600; }
+.decision p { margin: 0; font-size: var(--text-sm); color: var(--fg-2); line-height: 1.6; max-width: 88ch; }
+.decision .why { border-top: 1px solid var(--border-soft); padding-top: 10px; margin-top: 4px; }
+.decision .why b { color: var(--fg); font-weight: 600; }
+.decision .opt { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--muted); border-top: 1px solid var(--border-soft); padding-top: 8px; margin-top: 2px; line-height: 1.5; }
+
+/* ── Selected Proof · 넘버드 리스트 (portfolio case-row 재사용, 관문형 축약) ── */
+.proof-list { border-top: 1px solid var(--border); }
+.proof-row {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr) 220px auto;
+  gap: var(--space-5);
+  align-items: center;
+  padding: var(--space-5) var(--space-1);
+  border-bottom: 1px solid var(--border);
+  color: inherit;
+  transition: padding-left var(--motion-base) var(--ease-standard), background var(--motion-base) var(--ease-standard);
+}
+a.proof-row:hover { background: var(--surface); padding-left: var(--space-4); }
+.proof-row:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+.proof-row__no { font-family: var(--font-mono); font-size: var(--text-lg); color: var(--muted); letter-spacing: 0.06em; }
+.proof-row__main { display: grid; gap: 5px; }
+.proof-row__name { font-family: var(--font-display); font-size: var(--text-xl); font-weight: 600; letter-spacing: -0.01em; }
+.proof-row__tag { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); }
+.proof-row__meta { display: grid; gap: var(--space-3); align-content: center; }
+.proof-row__meta-row { display: grid; gap: 2px; }
+.proof-row__meta-k { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.proof-row__meta-v { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--fg); }
+/* 진입: Thready만 실 → 화살표, 나머지는 /portfolio 위임 → dest 라벨 */
+.proof-row__go { width: 40px; height: 40px; border: 1px solid var(--border); display: grid; place-items: center; flex-shrink: 0; justify-self: end; transition: background var(--motion-fast) var(--ease-standard), border-color var(--motion-fast) var(--ease-standard), color var(--motion-fast) var(--ease-standard); }
+a.proof-row:hover .proof-row__go { background: var(--accent); border-color: var(--accent); color: var(--accent-on); }
+.proof-row__go svg { width: 16px; height: 16px; }
+.proof-row__dest { justify-self: end; font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.04em; color: var(--muted); border: 1px solid var(--border); padding: 6px 11px; white-space: nowrap; }
+.proof-row--wait { color: var(--muted); }
+.proof-row--wait .proof-row__name { color: var(--fg-2); font-weight: 600; }
+
+/* Proof caption · 상태 고지 muted 1줄 (7차: warn 배너 대체 — dest 라벨이 상태 전달) */
+.proof-caption { margin: var(--space-5) 0 0; font-size: var(--text-xs); letter-spacing: 0.03em; color: var(--muted); }
+.proof-caption a { color: var(--fg-2); border-bottom: 1px solid var(--border); transition: color var(--motion-fast) var(--ease-standard), border-color var(--motion-fast) var(--ease-standard); }
+.proof-caption a:hover { color: var(--fg); border-color: var(--fg); }
+.proof-caption a:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+
+/* ── Explore · route gateway (root-phase2 routes 4열 확장 + 상태 배지) ── */
+.routes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border-soft); border: 1px solid var(--border-soft); }
+.route {
+  background: var(--bg);
+  padding: var(--space-5);
+  display: grid;
+  gap: var(--space-3);
+  align-content: start;
+  min-height: 148px;
+  color: inherit;
+  transition: background var(--motion-base) var(--ease-standard);
+}
+a.route:hover { background: var(--surface); }
+a.route:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+.route__top { display: flex; align-items: center; gap: var(--space-2); }
+.route__name { font-family: var(--font-mono); font-size: var(--text-sm); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+/* 상태 배지는 중립 — 그린 액센트 1점 규율은 summary 02행 전용. 상태는 텍스트로 구분 */
+.route__badge { margin-left: auto; font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.08em; text-transform: uppercase; border: 1px solid var(--border); color: var(--muted); padding: 2px 7px; }
+.route__badge--live { color: var(--fg-2); border-color: var(--fg-2); }
+.route__badge--soon { color: var(--warn); }
+.route__desc { font-size: var(--text-xs); color: var(--muted); line-height: 1.5; }
+.route__desc b { color: var(--fg-2); font-weight: 600; }
+.route__foot { margin-top: auto; display: flex; align-items: center; gap: var(--space-2); font-family: var(--font-mono); font-size: var(--text-xs); color: var(--fg-2); letter-spacing: 0.04em; }
+a.route:hover .route__foot { color: var(--fg); }
+.route__foot svg { width: 13px; height: 13px; transition: transform var(--motion-base) var(--ease-standard); }
+a.route:hover .route__foot svg { transform: translateX(3px); }
+
+/* ── Floating Ask launcher (root-phase2 채널톡 패턴, 전 페이지 공통) ── */
+.ask-launcher { position: fixed; right: 24px; bottom: 24px; z-index: 60; display: grid; justify-items: end; gap: 10px; }
+.ask-launcher input[type="checkbox"] { display: none; }
+.ask-launcher .btn {
+  display: inline-flex; align-items: center; gap: 8px; cursor: pointer;
+  background: var(--accent); color: var(--accent-on);
+  font-family: var(--font-mono); font-size: var(--text-sm); letter-spacing: 0.08em;
+  padding: 14px 18px; box-shadow: var(--elev-raised);
+}
+.ask-launcher .btn:focus-visible { outline: none; box-shadow: var(--focus-ring), var(--elev-raised); }
+.ask-panel {
+  display: none; width: min(340px, calc(100vw - 32px));
+  border: 1px solid var(--border); background: var(--bg);
+  box-shadow: var(--elev-raised);
+}
+.ask-launcher input:checked ~ .ask-panel { display: block; animation: rise 220ms var(--ease-standard) both; }
+@keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+.ask-launcher .btn .when-open { display: none; }
+.ask-launcher input:checked ~ .btn .when-closed { display: none; }
+.ask-launcher input:checked ~ .btn .when-open { display: inline; }
+@media (max-width: 480px) { .ask-launcher { right: 16px; bottom: 16px; } }
+.ask-panel__head { display: flex; align-items: center; gap: 10px; padding: 11px 14px; background: var(--accent); color: var(--accent-on); font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.08em; text-transform: uppercase; }
+.ask-panel__head .tag { margin-left: auto; border: 1px solid rgba(255,255,255,0.4); padding: 2px 7px; font-size: var(--text-xs); }
+.ask-panel__body { padding: 14px; display: grid; gap: 10px; }
+.ask-panel__hello { font-size: var(--text-sm); color: var(--fg-2); }
+.ask-panel__body .q { font-family: var(--font-ko); font-size: var(--text-xs); color: var(--fg-2); text-align: left; background: var(--bg); border: 1px solid var(--border); padding: 8px 10px; cursor: default; }
+.ask-panel__foot { display: flex; gap: 8px; border-top: 1px solid var(--border-soft); padding: 12px 14px; align-items: center; }
+.ask-panel__foot input { flex: 1; border: 1px solid var(--border); background: var(--surface); font-family: var(--font-ko); font-size: var(--text-sm); padding: 9px 11px; color: var(--muted); min-width: 0; }
+.ask-panel__foot .full { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--muted); white-space: nowrap; }
+
+/* ── Footer (index.html site-foot) ───────────────────────────────── */
+.site-foot { border-top: 1px solid var(--border); padding-block: var(--space-8); }
+.site-foot__inner { display: flex; flex-wrap: wrap; gap: var(--space-4); align-items: center; justify-content: space-between; }
+.site-foot__links { display: flex; gap: var(--space-5); flex-wrap: wrap; }
+.site-foot a { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.03em; color: var(--muted); transition: color var(--motion-fast) var(--ease-standard); }
+.site-foot a:hover { color: var(--fg); }
+.site-foot a:focus-visible { outline: none; box-shadow: var(--focus-ring); border-radius: var(--radius-sm); color: var(--fg); }
+.site-foot__note { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--muted); letter-spacing: 0.02em; }
+
+/* ── Reveal-on-scroll (index.html — transform/opacity only) ───────── */
+.reveal { opacity: 0; transform: translateY(14px); transition: opacity 460ms var(--ease-standard), transform 460ms var(--ease-standard); }
+.reveal.is-in { opacity: 1; transform: none; }
+.stagger > * { opacity: 0; transform: translateY(12px); transition: opacity 420ms var(--ease-standard), transform 420ms var(--ease-standard); }
+.stagger.is-in > * { opacity: 1; transform: none; }
+
+/* Hero block reveal — the one decisive flourish (index.html) */
+@keyframes heroWipe { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+.hero h1 { animation: heroWipe 720ms var(--ease-standard) both; }
+.hero__role { animation: heroWipe 720ms var(--ease-standard) 120ms both; }
+
+/* ── Responsive ──────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .container { padding-inline: var(--container-gutter-tablet); }
+  section { padding-block: var(--section-y-tablet); }
+  .hero__grid { grid-template-columns: 1fr; gap: var(--space-8); }
+  .hero__card { max-width: 340px; }
+  .hero h1 { font-size: var(--text-3xl); }
+  /* 7차: 3카드 관문 — 태블릿에서 2열은 빈 칸이 생겨 3열 유지 (좁아지면 720 이하에서 1열) */
+  .routes { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 720px) {
+  .routes { grid-template-columns: 1fr; }
+}
+@media (max-width: 720px) {
+  .container { padding-inline: var(--container-gutter-phone); }
+  section { padding-block: var(--section-y-phone); }
+  .topnav { display: none; }
+  .hero { padding-top: 44px; }
+  .hero h1 { font-size: 34px; }
+  .hero__line { font-size: var(--text-lg); max-width: none; }
+  .summary__item { grid-template-columns: 40px 1fr; }
+  .summary__text { font-size: var(--text-base); }
+  .section-head { flex-wrap: wrap; }
+  .section-head__meta { margin-left: 0; flex-basis: 100%; }
+  .proof-row {
+    grid-template-columns: 40px minmax(0,1fr) auto;
+    grid-template-areas: "no main go" "no meta go";
+    gap: var(--space-3) var(--space-4);
+    align-items: start;
+  }
+  .proof-row__no { grid-area: no; }
+  .proof-row__main { grid-area: main; }
+  .proof-row__meta { grid-area: meta; grid-auto-flow: column; gap: var(--space-6); justify-content: start; margin-top: var(--space-2); }
+  .proof-row__go, .proof-row__dest { grid-area: go; align-self: center; }
+}
+@media (max-width: 480px) {
+  .routes { grid-template-columns: 1fr; }
+  .proof-row { grid-template-columns: 34px 1fr; grid-template-areas: "no main" ". meta" ". go"; }
+  .proof-row__go, .proof-row__dest { justify-self: start; }
+}
+@media (max-width: 380px) {
+  .hero h1 { font-size: 29px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  .reveal, .stagger > * { opacity: 1; transform: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── Top bar · home형 (sticky+blur) ──────────────────────────── -->
+<header class="topbar" data-od-id="topbar">
+  <div class="container topbar__inner">
+    <a class="wordmark" href="#top" aria-label="marinkim.xyz 홈">marinkim.xyz</a>
+    <nav class="topnav" aria-label="주요 메뉴">
+      <a href="resume-page-prototype.html">Resume</a>
+      <a href="portfolio-list-prototype.html">Portfolio</a>
+      <a href="blog-list-prototype.html">Blog</a>
+      <a href="labs-list-prototype.html">Labs</a>
+    </nav>
+    <!-- Resume PDF가 준비되면 이 자리에 fill 다운로드 버튼 복귀 (7차: 죽은 primary CTA 제거) -->
+    <a class="btn-resume" href="resume-page-prototype.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8M8 17h5"/></svg>
+      이력서 보기
+    </a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ── Hero (index.html 확정 문법) ─────────────────────────────── -->
+  <section class="hero" data-od-id="hero">
+    <div class="container hero__grid">
+      <div>
+        <span class="hero__status">MediSolve AI · Backend Engineer · 재직 중</span>
+        <h1>김대정</h1>
+        <p class="hero__role"><b>Backend Engineer</b> <span class="mono">·</span> AI Product Systems</p>
+        <p class="hero__line">AI 제품을 운영 가능한 시스템으로 만드는 백엔드 엔지니어</p>
+        <div class="hero__links">
+          <!-- 7차: 비활성 Resume PDF chip 제거 → 이력서 보기를 fill primary로 승격. PDF 준비 시 다운로드 chip 복귀 -->
+          <a class="chip-link chip-link--fill" href="resume-page-prototype.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8M8 17h5"/></svg>
+            이력서 보기
+          </a>
+          <a class="chip-link" href="https://github.com/Dae-Jeong" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.3 9.3 0 0 1 2.5-.34c.85 0 1.71.12 2.5.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.93-2.34 4.79-4.57 5.05.36.32.68.94.68 1.9 0 1.37-.01 2.48-.01 2.82 0 .27.18.6.69.49A10.02 10.02 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
+            github.com/Dae-Jeong
+          </a>
+        </div>
+      </div>
+
+      <aside class="hero__card" aria-label="요약 정보">
+        <dl>
+          <dt>Role</dt><dd>Backend</dd>
+          <dt>Domain</dt><dd>AI Product</dd>
+          <dt>Career</dt><dd class="mono">2020 —</dd>
+          <div class="rule" aria-hidden="true"></div>
+          <dt>Now</dt><dd>MediSolve AI</dd>
+          <dt>Since</dt><dd class="mono">2025.04</dd>
+          <dt>Stack</dt><dd class="mono">Python · FastAPI<br>TypeScript · Azure<br>Terraform</dd>
+          <div class="rule" aria-hidden="true"></div>
+          <dt>Award</dt><dd class="mono">CES 2024<br>Best of Innovation</dd>
+          <dt>Patent</dt><dd class="mono">등록 1건</dd>
+          <div class="rule" aria-hidden="true"></div>
+          <dt>Site</dt><dd class="mono">marinkim.xyz</dd>
+          <dt>GitHub</dt><dd class="mono">Dae-Jeong</dd>
+        </dl>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ── Summary 4행 (확정 표현 verbatim · 02행 그린 1점) ────────── -->
+  <section class="summary" data-od-id="summary">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="section-head__no mono">00</span>
+        <h2>Summary</h2>
+        <span class="section-head__meta">요약 · 4</span>
+      </div>
+      <ol class="summary__list stagger">
+        <li class="summary__item">
+          <span class="summary__no mono">01</span>
+          <span class="summary__text"><strong>AI 콘텐츠 생성 backend 전면 재구축</strong>과 이후 개발·운영 전담</span>
+        </li>
+        <li class="summary__item">
+          <span class="summary__no mono summary__no--accent">02</span>
+          <span class="summary__text">월 수만 건 규모 요청을 처리하는 production backend를 <strong>HTTP 5xx 0.3% 수준</strong>으로 운영</span>
+        </li>
+        <li class="summary__item">
+          <span class="summary__no mono">03</span>
+          <span class="summary__text">Backend Engineer 합류 후 <strong>Tech Lead·PO 역할 병행</strong></span>
+        </li>
+        <li class="summary__item">
+          <span class="summary__no mono">04</span>
+          <span class="summary__text">스펙·이슈·릴리스 게이트를 <strong>agent가 읽고 실행하는 workflow를 설계·리드</strong> — 이 사이트도 같은 방식으로 만들었다</span>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ── Decision panel — 디자이너 결정 3건 ──────────────────────── -->
+  <section data-od-id="decision-list">
+    <div class="container">
+      <div class="decisions">
+        <div class="decisions__head">디자이너 결정 · 5건 — 결정 + 이유 명시 (9차 재조정 · type scale base 16 반영)</div>
+
+        <!-- Decision 1 · 분량 -->
+        <div class="decision" data-od-id="decision-scope">
+          <span class="decision__status">결정 · 다이어트형</span>
+          <span class="decision__n">DECISION 1 · root의 분량</span>
+          <h2>완결형(역량 6그리드·경력까지 root 포함) vs 다이어트형(hero+summary+proof+explore)</h2>
+          <p><b>다이어트형</b>으로 결정. root는 <code>hero · summary 4행 · Selected Proof · Explore</code>까지만 담고, 역량 6그리드와 career 타임라인은 담지 않습니다.</p>
+          <p class="why"><b>하위 페이지가 실재하는 지금 다이어트가 맞는 이유:</b> /resume·/portfolio·/blog·/labs·/chat이 전부 구현된 이상, root가 역량·경력을 다시 나열하면 <b>같은 내용을 두 곳에서 유지</b>해야 합니다. 이제 root의 일은 “보여주기”가 아니라 <b>15초 검증 + 1클릭 진입</b> — 리크루터가 hero+summary만 보고 Resume 또는 라우트로 즉시 떠나는 관문입니다. 완결형 v2(index.html)는 라우트가 없던 시점의 산출이라 root가 모든 걸 안아야 했지만, 그 전제가 사라졌습니다.</p>
+          <p class="why"><b>완결형을 폐기가 아니라 위임으로 본 이유:</b> 역량 6그리드는 /resume·/portfolio 상세가, career는 /resume가 이미 더 깊게 담습니다. root에서 빼는 건 정보를 버리는 게 아니라 <b>담당 페이지로 되돌리는</b> 것입니다.</p>
+          <span class="opt mono">택: 다이어트형(hero+summary+proof+explore) / 반: 완결형(역량 6·career root 포함)</span>
+        </div>
+
+        <!-- Decision 2 · Selected Proof 형태 -->
+        <div class="decision" data-od-id="decision-proof">
+          <span class="decision__status">결정 · 넘버드 리스트(관문형)</span>
+          <span class="decision__n">DECISION 2 · Selected Proof의 형태</span>
+          <h2>기존 2×2 카드 vs portfolio 목록의 넘버드 문법 재사용</h2>
+          <p><b>portfolio 넘버드 리스트를 재사용</b>하되, 관문용으로 축약한 형태로 결정. 좌측 mono 순번(01–05) + 케이스명·태그 + Role·Scope 메타 + 진입 자리를 한 행에 담고, blurb는 생략합니다.</p>
+          <p class="why"><b>목록 문법 결정과 정합해야 하는 이유:</b> 이번 라운드에서 목록 문법은 <b>labs=카드 · blog=행 · portfolio=넘버드</b>로 갈렸습니다. Selected Proof가 가리키는 목적지는 <b>/portfolio</b>이므로, root의 proof도 <b>/portfolio와 같은 넘버드 문법</b>이어야 “root에서 본 Thready 01”이 “목록에서 본 Thready 01”과 그대로 이어집니다. 2×2 카드는 5건(홀수)이라 마지막 칸이 비고, 시선을 좌↔우로 흩어 순번=순서 규율이 깨집니다.</p>
+          <p class="why"><b>목록 원본을 그대로 옮기지 않고 축약한 이유:</b> /portfolio 목록 행은 blurb 3줄까지 담아 “스캔 후 진입”이 일이지만, root proof는 <b>“이 사람이 무엇을 했나”를 15초에 훑는</b> 게 일입니다. 그래서 이름·태그·Role·Scope까지만 남기고 설명은 목록·상세로 위임 — 같은 문법의 <b>관문 버전</b>입니다.</p>
+          <span class="opt mono">택: portfolio 넘버드 리스트 재사용(축약) / 반: 2×2 카드 · index 아코디언 재사용</span>
+        </div>
+
+        <!-- Decision 3 · Explore에 /chat·/design 포함 여부 -->
+        <div class="decision" data-od-id="decision-explore">
+          <span class="decision__status">결정 · chat 포함 · design 제외</span>
+          <span class="decision__n">DECISION 3 · Explore 라우트 구성</span>
+          <h2>Explore에 /chat·/design을 포함할지 — chat은 Ask 런처와 중복인가, design은 관문 가치가 있나</h2>
+          <p><b>/chat은 포함, /design은 제외</b>로 결정. Explore는 <code>Resume · Portfolio · Blog · Labs · Chat</code> 5개 관문으로 세우고, /design(living specimen)은 넣지 않습니다.</p>
+          <p class="why"><b>chat이 Ask 런처와 중복이 아닌 이유:</b> 우하단 Ask 런처는 <b>어느 페이지에서든 이탈 없이 2~3개 질문을 미리 던지는 mini 프리뷰</b>입니다. /chat은 그 <b>full 페이지</b> — 근거 rail·suggested·진행 스레드가 있는 본 대화입니다(chat-v2 확정). 런처 자체가 “전체 대화 → /chat”으로 안내하므로, 둘은 겹치는 게 아니라 <b>mini→full 관계</b>입니다. 관문에 /chat을 세워 “대화로 검증하고 싶은 사람”에게 정식 입구를 주는 게 맞습니다.</p>
+          <p class="why"><b>design을 관문에서 뺀 이유:</b> /design(component-sheet·overlay-sheet의 living specimen)은 <b>이 사이트를 만든 규율을 스스로 증명하는 내부 문서</b>입니다. 리크루터·깊이 검증자·대화 선호자 어느 방문 목적에도 1차 경로가 아니고, 관문에 세우면 “제품”과 “제작 도구”가 같은 층에 섞입니다. footer 링크로 두어 <b>찾는 사람만</b> 닿게 하는 편이 정직하고 덜 산만합니다.</p>
+          <span class="opt mono">택: Explore = Resume·Portfolio·Blog·Labs·Chat (design 제외) / 반: chat 제외(런처와 중복) · design 포함</span>
+        </div>
+
+        <!-- Decision 4 · 7차 개정 — PR 축 -->
+        <div class="decision" data-od-id="decision-pr-pass">
+          <span class="decision__status">7차 개정 · PR 연료로 재조준</span>
+          <span class="decision__n">DECISION 4 · 무엇을 왜 바꿨나 (채용 페르소나 실측 반영)</span>
+          <h2>뼈대는 유지 · 첫 화면이 태우는 연료를 “미완성 고지”에서 “PR 신호”로 교체</h2>
+          <p>v3 구조·결정 3건은 그대로 두고, 시니어 리크루터·스타트업 CTO 2인의 실측 평가(판정 “보류·약한 콜”)가 수렴한 한 지적 — <b>PR 연료를 안 태우고 미완성 고지를 6회 태운다</b> — 만 정조준해 <b>같은 파일을 직접 개정</b>했습니다.</p>
+          <p class="why"><b>넣은 것 (제3자 검증·연차·차별점):</b> hero 카드에 <b>Career 2020 —</b>(1년차 오독 차단)·<b>CES 2024 Best of Innovation</b>·<b>Patent 등록 1건</b>을 첫 뷰포트 안에 올리고, 중복이던 Focus 행을 <b>Stack(Python·FastAPI·TypeScript·Azure·Terraform)</b>으로 교체했습니다. Summary 04는 “agent가 읽고 실행하는 workflow를 설계·리드 — <b>이 사이트도 같은 방식으로 만들었다</b>”로 조립해, 다른 후보가 흉내 못 내는 문장을 세웠습니다. 모두 이력서 master의 확정 표현 범위 안 — <b>창작 수치·문장 0</b>.</p>
+          <p class="why"><b>뺀 것 (미완성 신호 6회 → 최대 2회):</b> 첫 화면에서 죽어 있던 <b>Resume PDF primary CTA를 제거</b>하고 “이력서 보기”를 fill로 승격(PDF 준비 시 복귀 주석), Explore를 <b>5→3(Resume·Portfolio·Chat)</b>으로 줄여 <b>0·SOON 배지 2개를 치웠으며</b>(Blog·Labs는 topbar·footer가 담당), Proof 하단 <b>warn 배너를 muted 캡션 1줄로</b> 낮췄습니다. 남긴 정직 고지는 Chat PREVIEW 1회 — 실제로 열리는 기능이라 적정합니다.</p>
+          <p class="why"><b>정직 규율은 유지한 이유:</b> 판정이 “보류”였던 건 과장 때문이 아니라 <b>신호 배분</b> 때문입니다. 그래서 고지를 없앤 게 아니라 <b>중복·과잉을 덜어 신호 대 잡음비를 높인 것</b> — 사이트의 1목적(김대정 PR)에 맞춰 “이 사람을 만나고 싶게 만드는가”로 매 수정을 평가했습니다.</p>
+          <span class="opt mono">근거: 채용 페르소나 2인 실측 · 제약: 확정본 범위 내 재배치 · 새 토큰 0 · 그린 1점(Summary 02) 유지</span>
+        </div>
+
+        <!-- Decision 5 · 9차 재조정 — Type Scale base 16 -->
+        <div class="decision" data-od-id="decision-type-scale-16">
+          <span class="decision__status">9차 재조정 · type scale base 16</span>
+          <span class="decision__n">DECISION 5 · 본문 앵커를 14에서 16으로 (15 경유 폐기)</span>
+          <h2>type scale를 base 16 앵커로 재조정 — 이 root-v3가 새 계약의 첫 적용본</h2>
+          <p><b>base 16 앵커로 재조정</b>. 본문 계열을 <code>xs 11→12 · sm 12→13 · base 14→16 · lg 16→18 · xl 20→22</code>로 연동하고, hero 카드 credentials를 <code>--text-cred: 14px</code>로 분리, <code>--leading-body 1.45→1.55</code>. 10px 하드코딩 5곳(status·opt·badge·ask tag·full)은 12px 하한으로 흡수. 색·간격·컴포넌트 문법은 불변입니다.</p>
+          <p class="why"><b>8차 15를 폐기하고 16으로 간 이유 (리서치 회신):</b> 8차에서 본문을 14→15로 올렸으나, 업계 실측 리서치(2026-07-18, 서비스 computed style 직접 측정 + 디자인 시스템 8곳 공식 문서)가 <b>15는 8개 시스템 어느 body 토큰에도 없는 경계값</b>임을 확인했습니다. 개발자 문서(GitHub·Stripe·Vercel·Next.js·MDN)는 <b>전원 16</b>, 한국 서비스는 토스 17·네이버 17·카카오 16으로 <b>한글 체감 보정 때문에 오히려 +1px</b>. 14를 본문으로 쓰는 서비스는 표본 내 0곳이었습니다.</p>
+          <p class="why"><b>우리가 읽기 계열인 이유:</b> 제품 UI 계열은 body 14(Carbon productive·Atlassian·Primer·MD3)지만, <b>읽기 계열은 16+</b>(Carbon expressive 16·Apple HIG 17·토스 TDS 17·GOV.UK 19 — 14를 접근성 사유로 폐기). 이 사이트는 <b>이력서·케이스·글 = 읽기 중심</b> + <b>40+ 채용 담당자</b> 독자 → 읽기 계열 기준(16)이 맞습니다. line-height도 한국 서비스 실측 1.6대(토스 1.6·네이버 1.56)에 맞춰 1.55로 올려 16 base와 정합시켰습니다.</p>
+          <p class="why"><b>헤딩(2xl/3xl/4xl)을 유지한 이유:</b> 본문 계열과 달리 디스플레이는 이미 충분히 큰 영역이라 하한 문제가 없고, 상향 시 hero h1(56px) 폭 넘침·리듬 손실만 커져 근거가 없습니다. 8차 확정(하한 12px·10px 전면 금지)도 리서치가 정확히 지지(Carbon·Atlassian·Primer 동일)해 그대로 유지합니다.</p>
+          <span class="opt mono">택: base 16 앵커(실측 지지값) · 헤딩 유지 · 하한 12 유지 / 반: base 15 유지(8차 — 경계값) · 전역 균일 상향(mono 밀도 손실)</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Selected Proof — 넘버드 리스트(관문형) ──────────────────── -->
+  <section data-od-id="proof">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="section-head__no mono">01</span>
+        <h2>Selected Proof</h2>
+        <span class="section-head__meta">Cases · 5 — 상세는 Portfolio</span>
+      </div>
+
+      <div class="proof-list stagger">
+
+        <!-- 01 Thready — 유일한 실링크(상세 활성) -->
+        <a class="proof-row" href="portfolio-case-prototype.html" data-od-id="proof-thready">
+          <span class="proof-row__no mono">01</span>
+          <span class="proof-row__main">
+            <span class="proof-row__name">Thready Rebuild</span>
+            <span class="proof-row__tag">AI Content Generation · Backend</span>
+          </span>
+          <span class="proof-row__meta">
+            <span class="proof-row__meta-row"><span class="proof-row__meta-k">Role</span><span class="proof-row__meta-v">Rebuild · Ownership</span></span>
+            <span class="proof-row__meta-row"><span class="proof-row__meta-k">Scope</span><span class="proof-row__meta-v">Generation Quality</span></span>
+          </span>
+          <span class="proof-row__go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+
+        <!-- 02–05 — 상세 준비 중. root에서 개별 링크를 만들지 않고 /portfolio 목록으로 위임 -->
+        <div class="proof-row proof-row--wait" data-od-id="proof-bay">
+          <span class="proof-row__no mono">02</span>
+          <span class="proof-row__main">
+            <span class="proof-row__name">BAY Async</span>
+            <span class="proof-row__tag">Order · Inventory · Worker</span>
+          </span>
+          <span class="proof-row__meta">
+            <span class="proof-row__meta-row"><span class="proof-row__meta-k">Role</span><span class="proof-row__meta-v">Lead</span></span>
+            <span class="proof-row__meta-row"><span class="proof-row__meta-k">Scope</span><span class="proof-row__meta-v">Async · CI</span></span>
+          </span>
+          <a class="proof-row__dest" href="portfolio-list-prototype.html">→ /portfolio</a>
+        </div>
+
+        <div class="proof-row proof-row--wait" data-od-id="proof-say">
+          <span class="proof-row__no mono">03</span>
+          <span class="proof-row__main">
+            <span class="proof-row__name">SAY Realtime</span>
+            <span class="proof-row__tag">Realtime AI · Session</span>
+          </span>
+          <span class="proof-row__meta">
+            <span class="proof-row__meta-row"><span class="proof-row__meta-k">Role</span><span class="proof-row__meta-v">Co-Lead Contrib.</span></span>
+            <span class="proof-row__meta-row"><span class="proof-row__meta-k">Scope</span><span class="proof-row__meta-v">Session Lifecycle</span></span>
+          </span>
+          <a class="proof-row__dest" href="portfolio-list-prototype.html">→ /portfolio</a>
+        </div>
+
+        <div class="proof-row proof-row--wait" data-od-id="proof-template">
+          <span class="proof-row__no mono">04</span>
+          <span class="proof-row__main">
+            <span class="proof-row__name">BE Template</span>
+            <span class="proof-row__tag">FastAPI · Agent Context</span>
+          </span>
+          <span class="proof-row__meta">
+            <span class="proof-row__meta-row"><span class="proof-row__meta-k">Role</span><span class="proof-row__meta-v">Owner</span></span>
+            <span class="proof-row__meta-row"><span class="proof-row__meta-k">Scope</span><span class="proof-row__meta-v">Org Standard</span></span>
+          </span>
+          <a class="proof-row__dest" href="portfolio-list-prototype.html">→ /portfolio</a>
+        </div>
+
+        <div class="proof-row proof-row--wait" data-od-id="proof-ops">
+          <span class="proof-row__no mono">05</span>
+          <span class="proof-row__main">
+            <span class="proof-row__name">Mediness Ops</span>
+            <span class="proof-row__tag">Decision · Spec · Release Gate</span>
+          </span>
+          <span class="proof-row__meta">
+            <span class="proof-row__meta-row"><span class="proof-row__meta-k">Role</span><span class="proof-row__meta-v">Lead</span></span>
+            <span class="proof-row__meta-row"><span class="proof-row__meta-k">Scope</span><span class="proof-row__meta-v">Product Ops</span></span>
+          </span>
+          <a class="proof-row__dest" href="portfolio-list-prototype.html">→ /portfolio</a>
+        </div>
+
+      </div>
+
+      <!-- 7차: warn 배너 제거 → 각 행 → /portfolio dest 라벨이 상태를 전달. muted 캡션 1줄로 축약 -->
+      <p class="proof-caption mono" data-od-id="proof-notice">상세 활성 Thready 1건 · 나머지는 <a href="portfolio-list-prototype.html">/portfolio 목록</a>에서.</p>
+    </div>
+  </section>
+
+  <!-- ── Explore — route gateway (Resume·Portfolio·Blog·Labs·Chat) ── -->
+  <section data-od-id="explore">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="section-head__no mono">02</span>
+        <h2>Explore</h2>
+        <span class="section-head__meta">Routes · 3</span>
+      </div>
+
+      <div class="routes stagger">
+
+        <a class="route" href="resume-page-prototype.html" data-od-id="route-resume">
+          <span class="route__top">
+            <span class="route__name">Resume</span>
+            <span class="route__badge route__badge--live">Live</span>
+          </span>
+          <span class="route__desc">A4 마스터 이력서 — 요약·역량·경력 전체를 한 페이지에.</span>
+          <span class="route__foot">/resume <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+
+        <a class="route" href="portfolio-list-prototype.html" data-od-id="route-portfolio">
+          <span class="route__top">
+            <span class="route__name">Portfolio</span>
+            <span class="route__badge route__badge--live">Live</span>
+          </span>
+          <span class="route__desc">case 5건 — 문제·결정·시스템·운영 근거. 현재 Thready 상세 활성.</span>
+          <span class="route__foot">/portfolio <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+
+        <!-- 7차: Blog·Labs 카드 제거 (5→3). 진입은 topbar nav·footer가 담당 — 첫 화면에 0·SOON 배지 2개를 세우지 않음 -->
+        <a class="route" href="chat-page-v2-prototype.html" data-od-id="route-chat">
+          <span class="route__top">
+            <span class="route__name">Chat</span>
+            <span class="route__badge route__badge--soon">preview</span>
+          </span>
+          <span class="route__desc">프로필 agent와의 전체 대화 — <b>검증된 claim registry의 근거로만 답합니다.</b> 근거 rail 포함, 우하단 Ask 런처의 full 페이지.</span>
+          <span class="route__foot">/chat <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ── Footer (site-foot — design은 여기 링크로만) ─────────────── -->
+<footer class="site-foot" data-od-id="footer">
+  <div class="container site-foot__inner">
+    <span class="wordmark">김대정 <span class="mono" style="color:var(--muted);font-weight:400;">/ Backend Engineer</span></span>
+    <nav class="site-foot__links" aria-label="외부 링크">
+      <a href="portfolio-list-prototype.html">Portfolio</a>
+      <a href="blog-list-prototype.html">Blog</a>
+      <a href="labs-list-prototype.html">Labs</a>
+      <a href="chat-page-v2-prototype.html">Chat</a>
+      <a href="component-sheet.html">Design</a>
+      <a href="https://github.com/Dae-Jeong" target="_blank" rel="noopener">GitHub ↗</a>
+    </nav>
+    <span class="site-foot__note mono">marinkim.xyz · 2025</span>
+  </div>
+</footer>
+
+<!-- ── 전 페이지 공통 Ask 런처 (채널톡 패턴, mini → /chat full) ── -->
+<div class="ask-launcher" data-od-id="ask-launcher">
+  <input type="checkbox" id="askToggle">
+  <div class="ask-panel" role="dialog" aria-label="Ask 미니 패널">
+    <div class="ask-panel__head">Ask · 프로필과 대화<span class="tag">PHASE 2 PREVIEW</span></div>
+    <div class="ask-panel__body">
+      <p class="ask-panel__hello">안녕하세요 — 김대정의 프로필 agent입니다. 무엇이 궁금하세요?</p>
+      <button class="q" type="button">김대정은 어떤 엔지니어인가요?</button>
+      <button class="q" type="button">Thready에서 어떤 기여를 했나요?</button>
+      <button class="q" type="button">인프라 운영 범위는 어디까지인가요?</button>
+    </div>
+    <div class="ask-panel__foot">
+      <input type="text" disabled placeholder="질문 입력 — Phase 2에서 열립니다">
+      <a class="full" href="chat-page-v2-prototype.html">전체 대화 → /chat</a>
+    </div>
+  </div>
+  <label class="btn" for="askToggle" tabindex="0" role="button" aria-label="Ask 패널 열기/닫기"><span class="when-closed">ASK</span><span class="when-open">× CLOSE</span></label>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  /* Ask 런처 — label for 토글이 기본. 키보드 접근을 위해 Enter/Space도 처리 */
+  var lbl = document.querySelector(".ask-launcher .btn");
+  var chk = document.getElementById("askToggle");
+  if (lbl && chk) {
+    lbl.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); chk.checked = !chk.checked; }
+    });
+  }
+
+  /* Reveal on scroll — transform/opacity only, respects reduced-motion (index.html) */
+  var prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var targets = document.querySelectorAll(".reveal, .stagger");
+  if (prefersReduced || !("IntersectionObserver" in window)) {
+    targets.forEach(function (t) { t.classList.add("is-in"); });
+  } else {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        var el = entry.target;
+        if (el.classList.contains("stagger")) {
+          Array.prototype.forEach.call(el.children, function (child, i) {
+            child.style.transitionDelay = Math.min(i * 55, 330) + "ms";
+          });
+        }
+        el.classList.add("is-in");
+        io.unobserve(el);
+      });
+    }, { rootMargin: "0px 0px -8% 0px", threshold: 0.12 });
+    targets.forEach(function (t) { io.observe(t); });
+  }
+})();
+</script>
+</body>
+</html>

@@ -10,7 +10,7 @@ import { EvidencePopover } from "@/components/ui/evidence-popover";
 import { KeyValueCard } from "@/components/ui/key-value-list";
 import { NumberedList, NumberedRow } from "@/components/ui/numbered-row";
 import { SectionHead } from "@/components/ui/section-head";
-import { CASES } from "../cases";
+import { CASES } from "@/lib/cases";
 import { DETAILS } from "./case-details";
 import { CaseRail } from "./case-rail";
 

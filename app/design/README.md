@@ -13,8 +13,9 @@
 
 | 파일 | 역할 | 확정일 | 구현 |
 | --- | --- | --- | --- |
-| `index.html` | 완결형 프로필 v2 — root 기준 | 2026-07-16 | ⏳ root **재디자인 예정** (현재 hello world) |
-| `root-phase2-prototype.html` | 다이어트 root + 전역 Ask 런처 | 2026-07-16 | ⏳ 〃 |
+| `index.html` | 완결형 프로필 v2 — `root-v3`로 대체됨 (이력 보존용) | 2026-07-16 | — |
+| `root-phase2-prototype.html` | 다이어트 root — `root-v3`로 대체됨 (이력 보존용) | 2026-07-16 | — |
+| `root-v3-prototype.html` | **root 확정본** — 다이어트형 관문 (hero+메타카드·Summary 4행·Proof 넘버드 축약·Explore 3카드). 6~9차 라운드: PR 축 반영(페르소나 2인 "통과·콜" 검증 — Career 2020·CES Best of Innovation·특허 첫 뷰포트, 미완성 신호 6→2, "이 사이트도 같은 방식으로 만들었다" 훅), type scale base 16 첫 적용본 | 2026-07-18 | ✅ `/` |
 | `resume-page-prototype.html` | `/resume` 문서형 + rail (KO/EN 토글) | 2026-07-17 | ✅ `/resume` |
 | `portfolio-list-prototype.html` | `/portfolio` 목록 — 넘버드 리스트 5건 + Role·Scope 메타 (결정: root 아코디언 미재사용) | 2026-07-18 | ✅ `/portfolio` |
 | `portfolio-case-prototype.html` | `/portfolio/{case}` 상세 — 문제·결정·시스템·운영근거 4단 + sticky rail(scroll-spy) + evidence Popover, [TBD] 정책 | 2026-07-18 | ✅ `/portfolio/thready` |

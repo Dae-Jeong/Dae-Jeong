@@ -7,7 +7,7 @@ import { TopBar } from "@/components/site/topbar";
 import { Banner } from "@/components/ui/banner";
 import { SectionHead } from "@/components/ui/section-head";
 import { cn } from "@/lib/cn";
-import { CASES, type CaseMeta } from "./cases";
+import { CASES, type CaseMeta } from "@/lib/cases";
 
 export const metadata: Metadata = {
   title: "Portfolio — 김대정 · Backend Engineer",

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { cn } from "@/lib/cn";
 import { Button } from "@/components/ui/button";
-import type { CaseMeta } from "../cases";
+import type { CaseMeta } from "@/lib/cases";
 
 const TOC = [
   { id: "problem", no: "01", label: "문제" },
