@@ -20,6 +20,7 @@ tags: [site, homepage, resume, portfolio, blog, architecture]
 - 2026-07-17 7차 개정: **완전한 monorepo** — labs 서비스도 이 repo `labs/{svc}/` 자립 폴더로 통합 (4차 개정의 "외부 repo" 결정 대체). 독립 생명주기는 폴더 자립성(각자 Dockerfile·스택 자유)으로 달성. service contract의 "repo 하나" → "`labs/{svc}/` 폴더 하나". 배포 경계는 CI 경로 필터 (Vercel=site/, Render=be/, k8s=labs/*). 자랑거리가 된 서비스의 public repo 추출 옵션 유지.
 - 2026-07-17 8차 개정: **탑레벨 재편** — 지식 층 전체를 `wiki/`로 그룹핑(profile·evidence·products·backlog·rules·docs·context·archive), 프로필 제품을 `app/`으로 그룹핑(`app/fe`=구 site → Vercel, `app/be`=jarvis backend → Render). 탑레벨 = `wiki/`(지식) · `app/`(제품) · `labs/`(실험) · `infra/`(관제) + root 도구(scripts·skills). validator·skill·script 경로 동기화 완료.
 - 2026-07-18 9차 개정: **`/design` 라우트 등재** — 디자인 시스템 living specimen(스토리북 겸, 공개 유지). visitor chat·jarvis 라우트는 기존대로 착수 시 확정.
+- 2026-07-18 10차 개정: **PR 평가 축 명문화** — 사이트의 1목적은 김대정 PR. 모든 화면은 "이 사람을 만나고 싶게 만드는가"로 평가한다. 정직 규율(준비 중 고지)은 유지하되 첫인상 화면에서 미완성 신호 반복을 금지한다(고지는 최소 횟수·비중심 배치). 제3자 검증 자산(수상·특허)과 연차 신호는 첫 뷰포트에 배치한다.
 - [Visitor Profile Chat 설계 (2026-07-04)](2026-07-04-visitor-profile-chat-homepage-prototype-design.md)의 스택 결정을 승계하고, repo 배치·정보 구조·확장 계약을 확정한다.
 
 ## Decisions
