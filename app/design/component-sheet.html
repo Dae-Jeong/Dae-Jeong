@@ -30,15 +30,20 @@
   --font-display: "IBM Plex Mono", ui-monospace, monospace;
   --font-body: "IBM Plex Mono", ui-monospace, monospace;
   --font-mono: "IBM Plex Mono", ui-monospace, monospace;
-  --text-xs: 11px;
-  --text-sm: 12px;
-  --text-base: 14px;
-  --text-lg: 16px;
-  --text-xl: 20px;
+  /* ── TYPE SCALE — 9차 재조정 (base 16 앵커 · 리서치 회신) ──
+     현행 14 → 16: GitHub·Stripe·Vercel·MDN 전원 16, 토스 17·카카오 16 실측 지지값.
+     본문 계열(xs·sm·base·lg·xl)을 16에 연동. 하한 12px·10px 금지(8차 확정) 유지.
+     헤딩(2xl/3xl/4xl)은 유지 — 이미 충분히 큰 영역, 상향 시 hero 넘침만 커짐. */
+  --text-xs: 12px;
+  --text-sm: 13px;
+  --text-base: 16px;
+  --text-lg: 18px;
+  --text-xl: 22px;
   --text-2xl: 28px;
   --text-3xl: 40px;
   --text-4xl: 56px;
-  --leading-body: 1.45;
+  --text-cred: 14px;      /* 8차 신설 · 9차 16 앵커 연동 — hero 카드 credentials(dd) 전용, 장식 라벨(dt)에서 분리 */
+  --leading-body: 1.55;   /* 9차: 1.45→1.55. 한국 서비스 실측 1.6대(토스·네이버), 16 base 정합 */
   --leading-tight: 1.06;
   --tracking-display: -0.025em;
   --space-1: 4px;
@@ -129,9 +134,9 @@ a { color: inherit; text-decoration: none; }
 .decision__n { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--muted); letter-spacing: 0.06em; }
 .decision h3 { margin: 0; font-family: var(--font-mono); font-size: var(--text-sm); font-weight: 600; }
 .decision p { margin: 0; font-size: var(--text-xs); color: var(--fg-2); line-height: 1.55; }
-.decision .opt { font-family: var(--font-mono); font-size: 10px; color: var(--muted); border-top: 1px solid var(--border-soft); padding-top: 8px; margin-top: 2px; }
+.decision .opt { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--muted); border-top: 1px solid var(--border-soft); padding-top: 8px; margin-top: 2px; }
 .decision__status {
-  justify-self: start; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.06em;
+  justify-self: start; font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.06em;
   text-transform: uppercase; padding: 2px 8px; margin-bottom: 2px;
 }
 .decision__status--fixed { background: var(--accent); color: var(--accent-on); }
@@ -161,14 +166,14 @@ a { color: inherit; text-decoration: none; }
 .specimen:first-of-type { border-top: none; }
 .specimen__label { display: grid; gap: 4px; align-content: start; }
 .specimen__k { font-family: var(--font-mono); font-size: var(--text-xs); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
-.specimen__hint { font-family: var(--font-mono); font-size: 10px; color: var(--muted); line-height: 1.6; }
+.specimen__hint { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--muted); line-height: 1.6; }
 .specimen__demo { display: grid; gap: var(--space-4); }
 .demo-surface { background: var(--bg); border: 1px solid var(--border-soft); padding: var(--space-5); position: relative; }
 .demo-surface--pad0 { padding: 0; overflow: hidden; }
-.state-caption { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-bottom: var(--space-3); }
+.state-caption { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-bottom: var(--space-3); }
 .state-row { display: flex; flex-wrap: wrap; gap: var(--space-4); align-items: center; }
 .state-cell { display: grid; gap: 8px; justify-items: start; }
-.state-cell .lbl { font-family: var(--font-mono); font-size: 10px; color: var(--muted); }
+.state-cell .lbl { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--muted); }
 
 /* anatomy callout */
 .anatomy { display: grid; gap: 6px; font-family: var(--font-mono); font-size: var(--text-xs); color: var(--fg-2); }
@@ -187,7 +192,7 @@ a { color: inherit; text-decoration: none; }
 .c-topbar__crumb { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
 .c-topbar__nav { display: flex; gap: var(--space-5); font-family: var(--font-mono); font-size: var(--text-sm); color: var(--fg-2); }
 .c-topbar__nav a:hover { color: var(--fg); }
-.c-topbar__tag { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; border: 1px solid var(--border); color: var(--muted); padding: 3px 8px; }
+.c-topbar__tag { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.08em; border: 1px solid var(--border); color: var(--muted); padding: 3px 8px; }
 .c-topbar .spacer { margin-left: auto; }
 
 /* c-sechead (통일안) */
@@ -248,7 +253,7 @@ a { color: inherit; text-decoration: none; }
 .c-card:hover { background: var(--surface); }
 .c-card h4 { margin: 0; font-family: var(--font-mono); font-size: var(--text-sm); font-weight: 600; }
 .c-card p { margin: 0; font-size: var(--text-xs); color: var(--fg-2); }
-.c-card .go { font-family: var(--font-mono); font-size: 10px; color: var(--muted); }
+.c-card .go { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--muted); }
 .c-card .r-name { font-family: var(--font-mono); font-size: var(--text-sm); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
 
 /* c-kvlist (key-value) */
@@ -263,14 +268,14 @@ a { color: inherit; text-decoration: none; }
 .c-kv-dl dd { margin: 0; font-family: var(--font-mono); font-size: var(--text-xs); color: var(--fg); text-align: right; }
 
 /* c-badge (NOW) */
-.c-badge { display: inline-block; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.06em; color: var(--accent-on); background: var(--accent); padding: 1px 6px; vertical-align: 1px; }
+.c-badge { display: inline-block; font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.06em; color: var(--accent-on); background: var(--accent); padding: 1px 6px; vertical-align: 1px; }
 
 /* c-ask (launcher, anatomy only — static open/closed) */
 .c-ask { display: grid; justify-items: end; gap: 10px; }
 .c-ask__btn { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: var(--accent-on); font-family: var(--font-mono); font-size: var(--text-sm); letter-spacing: 0.08em; padding: 14px 18px; box-shadow: var(--elev-raised); }
 .c-ask__panel { width: min(320px, 100%); border: 1px solid var(--border); background: var(--bg); box-shadow: var(--elev-raised); }
 .c-ask__phead { display: flex; align-items: center; gap: 10px; padding: 11px 14px; background: var(--accent); color: var(--accent-on); font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.08em; text-transform: uppercase; }
-.c-ask__phead .tag { margin-left: auto; border: 1px solid rgba(255,255,255,0.4); padding: 2px 7px; font-size: 10px; }
+.c-ask__phead .tag { margin-left: auto; border: 1px solid rgba(255,255,255,0.4); padding: 2px 7px; font-size: var(--text-xs); }
 .c-ask__pbody { padding: 14px; display: grid; gap: 10px; }
 .c-ask__hello { font-size: var(--text-sm); color: var(--fg-2); }
 .c-ask__q { font-family: var(--font-ko); font-size: var(--text-xs); color: var(--fg-2); text-align: left; background: var(--bg); border: 1px solid var(--border); padding: 8px 10px; cursor: default; }
@@ -307,7 +312,8 @@ a { color: inherit; text-decoration: none; }
       <span>SOURCE <b>index.html · root-phase2 · resume · chat</b></span>
       <span>TOKENS <b>Mono verbatim contract</b></span>
       <span>ACCENT <b>#111 ink + #168a46 green ×1</b></span>
-      <span>NEW TOKENS <b>0</b></span>
+      <span>TYPE SCALE <b>9차 개정(base 16) 반영</b></span>
+      <span>NEW TOKENS <b>0 (계약 동기화만)</b></span>
     </div>
   </div>
 </header>
@@ -316,7 +322,7 @@ a { color: inherit; text-decoration: none; }
 
   <!-- ── Decision panel ─────────────────────────────────────────── -->
   <section class="decisions" data-od-id="decisions">
-    <div class="decisions__head">디자이너 판단 요청 · 3건 — 확정 반영됨 (D1·D3 확정 / D2 보류)</div>
+    <div class="decisions__head">디자이너 판단 요청 · 4건 — 확정 반영됨 (D1·D3 확정 / D2 보류 / D4 9차 type scale 반영)</div>
     <div class="decisions__grid">
       <div class="decision">
         <span class="decision__status decision__status--fixed">확정</span>
@@ -338,6 +344,13 @@ a { color: inherit; text-decoration: none; }
         <h3>fill 경계</h3>
         <p><b>Button = accent-fill 전용</b>, <b>Chip = bordered 전용</b>으로 분리 확정. 기존 <code>chip--fill</code>은 Button으로 흡수, Chip은 테두리형만 남김.</p>
         <span class="opt mono">확정: Button=fill · Chip=bordered 분리</span>
+      </div>
+      <div class="decision">
+        <span class="decision__status decision__status--fixed">확정 · 9차 반영</span>
+        <span class="decision__n">D4 · TYPE SCALE base 16</span>
+        <h3>본문 앵커 14→16</h3>
+        <p>9차 확정 계약(root-v3 기준)으로 <code>:root</code> 동기화. 본문 계열 <code>base 14→16 · sm 12→13 · lg 16→18 · xl 20→22</code>, <code>xs 11→12</code>, <code>--leading-body 1.45→1.55</code>. 하드코딩 10px 라벨 9곳을 <code>--text-xs</code>(12px 하한)로 흡수. 색·간격·컴포넌트 문법·데모 문구 불변.</p>
+        <span class="opt mono">근거: 9차 D5(업계 실측 · 개발자 문서 전원 16) · 새 토큰 0</span>
       </div>
     </div>
   </section>

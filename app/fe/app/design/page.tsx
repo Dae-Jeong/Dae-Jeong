@@ -50,7 +50,9 @@ function Specimen({
           </span>
         )}
       </div>
-      <div className="border border-border-soft p-6 max-sm:p-4">{children}</div>
+      <div className="min-w-0 overflow-x-auto border border-border-soft p-6 max-sm:p-4">
+        {children}
+      </div>
     </div>
   );
 }

@@ -19,11 +19,11 @@ export function TopBar(props: TopBarProps) {
       <header className="border-b border-border-soft">
         <Container variant="doc" className="flex h-14 items-center gap-5">
           <Wordmark />
-          <span className="font-mono text-xs uppercase tracking-[0.08em] text-muted">
+          <span className="min-w-0 flex-1 truncate font-mono text-xs uppercase tracking-[0.08em] text-muted">
             / {props.crumb}
           </span>
           {props.tag && (
-            <span className="ml-auto whitespace-nowrap border border-border px-2 py-[3px] font-mono text-xs tracking-[0.08em] text-muted">
+            <span className="whitespace-nowrap border border-border px-2 py-[3px] font-mono text-xs tracking-[0.08em] text-muted">
               {props.tag}
             </span>
           )}
