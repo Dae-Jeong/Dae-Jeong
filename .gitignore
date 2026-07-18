@@ -14,6 +14,7 @@ skills-lock.json
 .tmp/
 tmp/
 .local/
+tools/.visual-baseline/
 
 # ── Python (root tools + app/be + labs 서비스) ────────────────
 .venv/
