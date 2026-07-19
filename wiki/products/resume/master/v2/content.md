@@ -22,7 +22,7 @@ v1 대비 변경 원칙: ① 결과·전후 변화 선행(XYZ-lite) ② 기술 �
 ## Summary (v2 — 향로 패턴: 연차·축 → 수치 → 제3자 검증 → 리드 → 차별점)
 
 - Vision AI로 시작해 **6년째 AI 제품을 만들어온** 백엔드 엔지니어 — AI 엔지니어·PM을 거쳐, 제품을 끝까지 책임지는 층으로 백엔드를 선택 (`career.ai-pm-backend-continuity`)
-- AI 도구로 빠르게 구축된 생성 backend를 **전면 재구축해 QA 재발(reopen) 이슈를 대폭 줄이고**, 월 수만 건 규모 요청을 **HTTP 5xx 0.3% 수준**으로 운영 (`thready.rebuild-decision-execution`, `thready.qa-reopen-reduction`, `thready.production-operation-quality`)
+- AI 도구로 빠르게 구축된 생성 backend를 **전면 재구축해 QA 버그 재발률을 37%에서 11%로** 낮추고, 월 수만 건 규모 요청을 **HTTP 5xx 0.3% 수준**으로 운영 (`thready.rebuild-decision-execution`, `thready.qa-reopen-reduction`, `thready.production-operation-quality`)
 - **CES 2024 Best of Innovation 수상 제품**(SellerCanvas)의 PM 메인 역할 · **특허 등록 1건** (`career.sellercanvas-product-system`, `credentials.ces-2024`, `credentials.page-output-patent`)
 - Backend Engineer 합류 후 **Tech Lead·PO 역할 병행** (`career.medisolve-role-evolution`)
 - 스펙·이슈·릴리스 게이트를 **agent가 읽고 실행하는 workflow**를 설계·리드 (`mediness.product-operations`)
@@ -70,7 +70,8 @@ v1 대비 변경 원칙: ① 결과·전후 변화 선행(XYZ-lite) ② 기술 �
 
 ### Thready · AI 콘텐츠 생성 제품
 
-- AI 도구로 빠르게 구축돼 **재발 이슈 통제가 어려웠던** 생성 backend를 인계받아, 서비스가 작은 시점에 **전면 재구축을 결정·설득** — 하네스를 먼저 세팅하고 AI와 협업해 파악부터 재구축까지 **총 36시간(작업 시간 기준)에 완수**, 이후 **QA reopen(재발) 전환율 대폭 감소** (`thready.rebuild-decision-execution`, `thready.qa-reopen-reduction`)
+- AI 도구로 빠르게 구축돼 **재발 이슈 통제가 어려웠던** 생성 backend를 인계받아, 서비스가 작은 시점에 **전면 재구축을 결정·설득** — 하네스를 먼저 세팅하고 AI와 협업해 파악부터 재구축까지 **총 36시간(작업 시간 기준)에 완수** (`thready.rebuild-decision-execution`)
+- cutover 이후 **QA 버그 재발률(해결 대비 reopen) 37% → 11%**, 재발 발생 일평균 약 94% 감소 — 잔여 이슈도 원인 영역이 파악된 상태로 관리 (`thready.qa-reopen-reduction`)
 - AI 모듈 확장을 근거로 **FastAPI 분리 도입**(FE는 Next.js 유지), cutover 이후 개발·운영 전담 — 월 수만 건 규모 요청을 **HTTP 5xx 0.3% 수준**으로 운영 (`thready.backend-rebuild`, `thready.production-operation-quality`)
 - "좋은 글"의 **기준 자체가 없던 상태**에서 LLM judge를 기준을 발견하는 판단 데이터 축적 장치로 설계 — typed prompt builder·평가 루프·관측 로깅으로 생성 품질을 시스템화 (`thready.generation-quality-system`)
 
@@ -110,6 +111,6 @@ v1 대비 변경 원칙: ① 결과·전후 변화 선행(XYZ-lite) ② 기술 �
 
 ## Open Items (확정 전)
 
-1. ⚠️ QA reopen **95% 수치** — 티켓 시스템 전후 집계 1회 후 해금 (현재는 "대폭 감소" 밴딩)
+1. ~~QA reopen 수치~~ — **해금 완료** (2026-07-19 Jira 실측: 재발률 37%→11%, 일평균 -94.1%)
 2. ⚠️ BE Template **"실질 2명 · 제품 12개"** — 제품 수 공개 여부 사용자 결정 대기
 3. Summary 5행 — A4 2장 조판 계약 내 수용 여부는 조판 단계에서 검증

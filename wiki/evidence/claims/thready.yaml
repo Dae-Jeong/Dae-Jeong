@@ -64,15 +64,18 @@ claims:
       - 전임 작업 폄하 표현
     verified_at: 2026-07-19
   - id: thready.qa-reopen-reduction
-    statement: backend 이관 이후 QA 티켓 reopen(재발) 전환율 대폭 감소, 잔여 케이스도 원인 영역 파악 상태로 관리
+    statement: backend cutover 이후 QA 버그 재발률(해결 대비 reopen)이 37%에서 11%로 하락, 재발 발생 일평균 약 94% 감소 (Jira 236건 실측)
     strength: owned
-    confidence: medium
+    confidence: high
     public: true
     evidence: [evidence/projects/thready.md#qa-reopen-signal]
     allowed_copy:
+      - QA 버그 재발률(해결 대비 reopen)을 37%에서 11%로 낮춤
+      - 재발(reopen) 발생 일평균 약 94% 감소
       - QA 티켓 reopen(재발) 전환율 대폭 감소
       - 잔여 이슈도 원인 영역이 파악된 상태로 관리
     forbidden_copy:
-      - 95% 수치 (티켓 집계 검증 전)
+      - 95% 이상 감소 (실측 94.1% 초과 표현)
       - 재발 완전 제거
+      - backend 단독 효과로 단정 (BE/FE 분리 불가)
     verified_at: 2026-07-19
