@@ -30,6 +30,7 @@ DAY, BAY, RAY, SAY는 별도 제품이 아니라 Centurion CRM & ERP 제품을 �
 ## BAY Async Backend
 
 - Code-backed: order, product, inventory API와 TaskIQ/RabbitMQ worker, inventory retry, API test infrastructure, Docker CI, onboarding documents가 확인됐다.
+- User-confirmed (2026-07-19 인터뷰): worker 분리는 실패를 겪은 뒤의 사후 대응이 아니라 **제품 시작 시점부터의 예방 설계** — 실패 가능한 작업(주문·결제)을 처음부터 API 경계 밖 worker로 분리했다. 배경: Memento에서 결제 실패 실사례(롤백·환불 순서·티켓 정합성)를 직접 수습한 경험의 전이 ([previous-career](previous-career.md#memento-payment)).
 - Contribution boundary: 해당 backend 영역의 구축·설계 주도. Centurion 전체 backend ownership은 아니다.
 - Unverified: 기존 이력서의 `Celery -> TaskIQ migration` 서사는 Git history 추가 검증 전 사용하지 않는다.
 

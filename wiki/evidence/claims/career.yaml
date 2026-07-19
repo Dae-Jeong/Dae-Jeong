@@ -40,17 +40,19 @@ claims:
       - 특허와 SellerCanvas의 연결 (확정 전)
     verified_at: 2026-07-17
   - id: career.memento-payment
-    statement: 예약·결제 backend의 선결제, 환불·마일리지·티켓 rollback correctness 개선
+    statement: 예약·결제 backend의 Stripe 선결제 도입과 환불·마일리지·티켓 rollback 안정화
     strength: contributed
     confidence: high
     public: true
     evidence: [evidence/projects/previous-career.md#memento-payment]
     allowed_copy:
+      - 예약·결제 backend의 Stripe 선결제 도입과 환불·마일리지·티켓 rollback 안정화
       - 예약·결제 backend의 선결제와 환불·마일리지·티켓 rollback 안정화
       - 재직 종료 사유는 회사 폐업
     forbidden_copy:
       - 결제 장애 완전 해결
-    verified_at: 2026-07-16
+      - 결제 시스템 전체 ownership
+    verified_at: 2026-07-19
   - id: career.thedaylabs-freelance
     statement: 현 MediSolve AI 대표의 더데이랩스에서 프리랜서로 Centurion 초기 backend 구축과 개발팀 시스템·backend 기준 수립을 시작해 창업과 함께 합류 (2025.02-2025.04)
     strength: led

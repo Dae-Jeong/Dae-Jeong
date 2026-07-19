@@ -22,6 +22,12 @@ Source locator: `workspace:MEDISOLVEAI-BE-TEMPLATE`
 - Code-backed: 계층형 agent context, Hub-and-Spoke document routing, domain/setup automation skills가 template에 포함됐다.
 - Public-safe summary: backend standard에 agent context system과 반복 작업 automation skill 내장.
 
+## Team Leverage Context
+
+- User-confirmed (2026-07-19 인터뷰): 조직 맥락 — 엔지니어 8명(BE 3·FE 5)이 제품 12개를 담당했고, BE 1명이 외부 프로젝트 차출로 **실질 BE 2명이 12개 제품을 관리**. 통일된 패턴·구성이 생존 조건이었다.
+- User-confirmed (2026-07-19): 효과 3종 — ① 어떤 프로젝트든 제품 정책만 파악하면 대응 가능(컨텍스트 전환 비용 최소화) ② logging·모니터링 등 횡단 관심사를 전 제품에 일괄 반영 ③ 온보딩·FE 엔지니어도 패턴·규약·하네스 아래에서 BE 로직 구현 가능(고민 시간 감소).
+- ⚠️ 공개 여부 확인 필요: 제품 수(12개)·인원 수치는 mediness 가드레일("internal product count 비공개")과 충돌 — 사용자 결정 대기. 확정 전 공개 표현은 "소수 백엔드 인원이 다수 제품을 담당하는 체제"까지.
+
 ## Public Disclosure
 
 - architecture pattern, ADR, runbook, agent context 구조는 일반화해 공개 가능하다.

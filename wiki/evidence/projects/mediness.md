@@ -18,6 +18,7 @@ Source locator: `agentspace:mediness`
 - Tool-backed: 일정, blocker, release 상태를 반복적으로 갱신한 운영 기록이 확인됐다.
 - Contribution boundary: 제품팀 일정·이슈·릴리스 운영 리드와 기획 결정 참여. 제품 기획 전담은 아니다.
 - Contribution boundary: 전사 문서 pipeline 규칙 정의는 다른 저자가 주도했고, 김대정은 제품 단위 SPEC·Work Package·Decision·release gate 적용·운영을 리드했다 (git 저자 기록 확인, 2026-07-14).
+- User-confirmed (2026-07-19 인터뷰): release gate의 실효과 — 매 릴리스 버전의 릴리스 노트 작성을 자동화해 버전 관리를 용이하게 함. 표현 가드레일: "gate가 사고를 막았다"류 과장 금지 — 실효과(릴리스 노트 자동화·버전 관리·추적)대로만 서술.
 
 ## Daily Briefing
 

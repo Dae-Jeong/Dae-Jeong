@@ -50,3 +50,29 @@ claims:
     forbidden_copy:
       - 무중단 운영 보장
     verified_at: 2026-07-05
+  - id: thready.rebuild-decision-execution
+    statement: 서비스 초기 시점 판단으로 전면 재구축을 결정·설득하고, 하네스 세팅 후 AI 협업으로 파악·기능 정의·재구축을 총 36시간(작업 시간)에 완수
+    strength: owned
+    confidence: high
+    public: true
+    evidence: [evidence/projects/thready.md#rebuild-context-and-decision]
+    allowed_copy:
+      - 서비스가 작은 시점에 전면 재구축을 결정하고 반대를 설득 — 하네스를 먼저 세팅하고 AI와 협업해 파악부터 재구축까지 총 36시간(작업 시간 기준)에 완수
+      - AI 모듈 확장을 근거로 FastAPI 분리 도입, FE는 Next.js 유지
+    forbidden_copy:
+      - 36시간 만에 서비스 전체 완성 (달력 기간 오독 표현)
+      - 전임 작업 폄하 표현
+    verified_at: 2026-07-19
+  - id: thready.qa-reopen-reduction
+    statement: backend 이관 이후 QA 티켓 reopen(재발) 전환율 대폭 감소, 잔여 케이스도 원인 영역 파악 상태로 관리
+    strength: owned
+    confidence: medium
+    public: true
+    evidence: [evidence/projects/thready.md#qa-reopen-signal]
+    allowed_copy:
+      - QA 티켓 reopen(재발) 전환율 대폭 감소
+      - 잔여 이슈도 원인 영역이 파악된 상태로 관리
+    forbidden_copy:
+      - 95% 수치 (티켓 집계 검증 전)
+      - 재발 완전 제거
+    verified_at: 2026-07-19

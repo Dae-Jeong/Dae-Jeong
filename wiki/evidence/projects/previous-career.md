@@ -13,6 +13,7 @@ tags: [career, credentials, tellingme, evidence]
 
 - User-confirmed/source-backed timeline: Vision AI Engineer -> PM -> Backend Engineer.
 - Public narrative: AI와 PM 경험은 우회 경력이 아니라 AI product를 product/system 관점으로 보는 배경이다.
+- User-confirmed (2026-07-19 인터뷰): 궤적을 관통하는 축은 **"제품을 만드는 것"** — 역할이 바뀐 게 아니라 제품을 만들기 위한 위치가 이동했다. AI 엔지니어(만드는 기술) → 제품에 뒷받침 영역이 많음을 깨닫고 기획·UX 설계(PM) → 제품을 A to Z로 만들기 위해 백엔드 선택. 백엔드 선택 근거: **당시에도 FE는 AI가 대체할 것으로 판단, 보안·안정성처럼 사람이 끝까지 책임질 층을 택했다** — 이 판단이 현재 적중. PM 이해도는 Thready 재구축 파악·기능 정의 속도의 실증된 무기 (thready.md#rebuild-context-and-decision).
 - Guardrail: 이전 역할을 현재 primary category보다 앞세우지 않는다.
 
 ## Studio Lab And SellerCanvas
@@ -28,9 +29,11 @@ tags: [career, credentials, tellingme, evidence]
 
 ## Memento Payment
 
-- Code-backed: Stripe/prepayment, refund, mileage, ticket rollback, payment-history correctness 관련 backend 변경이 확인됐다.
-- Contribution boundary: 예약·결제 backend 안정화 기여. 회사 결제 시스템 전체 ownership은 아니다.
+- Code-backed (2026-07-19 실측): `workspace:feynman_api` — marin@mement.ai 명의(김대정·MementoAI-Daejeong) 28커밋, 2024-11-13~2025-01-07. 결제·환불·롤백·마일리지·티켓·Stripe 관련 13건이 claim 문장과 문자 그대로 일치: "선결제 예약 실패 시, 롤백 로직 추가"(#1375), "환불 처리 논리 순서 변경"(#1355), "환불 시, 티켓 제거 시점 변경"(#1335), "전액 마일리지 구매 시, 마일리지 환불 안되는 이슈 해결"(#1358).
+- Code-backed (2026-07-19): **"[FQA-524,538] feat: stripe 도입 및 선결제 로직 추가"(#1269)** — 안정화만이 아니라 Stripe 선결제 도입 자체를 수행. claim을 "도입+안정화"로 상향.
+- Contribution boundary: 예약·결제 backend의 선결제 도입·안정화 기여. 회사 결제 시스템 전체 ownership은 아니다.
 - User-confirmed (2026-07-16): 재직 종료 사유는 회사 폐업 — 이력서에 사유 표기 가능.
+- User-confirmed (2026-07-19): **학습 전이** — Memento에서 결제 실패의 실사례(롤백·환불 순서·티켓 정합성)를 직접 수습한 경험이, Centurion에서 실패 가능한 작업(주문·결제)을 처음부터 worker로 분리하는 예방 설계 판단의 배경이 됐다.
 
 ## TellingMe
 
