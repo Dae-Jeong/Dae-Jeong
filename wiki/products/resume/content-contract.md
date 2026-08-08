@@ -53,6 +53,7 @@ Canonical positioning은 [profile/identity.md](../../profile/identity.md)를 따
 ## Selection Contract
 
 - JD 맞춤은 섹션을 재설계하는 작업이 아니라 claim 선택과 순서 조정이다.
+- 시기별 서술 분량은 [recency weighting](../../rules/recency-weighting.md)을 따른다 — 현재 소속이 경력 서술의 절반 이상, 초기 경력은 궤적을 잇는 최소 문장만.
 - 선택한 모든 public claim은 [claim-map.yaml](claim-map.yaml)에 기록한다.
 - public-safe claim만 사용하고 [public safety](../../rules/public-safety.md)를 적용한다.
 - 더 자세히 설명하고 싶은 문장이 생기면 이력서가 아니라 연결된 portfolio case를 보강한다.

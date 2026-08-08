@@ -1,0 +1,56 @@
+schema_version: 1
+project: muse-admin
+claims:
+  - id: muse-admin.backend-ownership
+    statement: 통합 관리 시스템 backend를 Multi-Module Clean Architecture 4계층으로 단독 설계·구축 (30개 도메인, 진행 중)
+    strength: owned
+    confidence: medium
+    public: true
+    evidence: [evidence/projects/muse-admin.md#architecture]
+    allowed_copy:
+      - 통합 관리 시스템 backend를 Clean Architecture 4계층으로 단독 설계·구축
+      - Homepage/Admin 독립 모듈을 리버스 프록시로 단일 엔드포인트 제공
+      - Generic Repository와 Closure Table 패턴으로 공통 CRUD·계층 구조 표준화
+      - Multi-tenancy와 Soft Delete 자동 필터링으로 데이터 격리
+    forbidden_copy:
+      - 고객사 실명 (clients.md 마스킹 코드만 사용)
+      - 제품 전체 구축 (backend 범위다)
+      - 완료형 표현 (2026-08 기준 진행 중)
+      - 지점 수·계약 규모
+    verified_at: null
+    note: >-
+      Self-reported (플랫폼 프로필 기재) 기반이라 confidence medium.
+      repo 대조로 도메인 수·구조를 확인하면 high로 상향한다.
+  - id: muse-admin.pool-stabilization
+    statement: 커넥션 풀 타임아웃 원인 분석과 세션 생명주기·미들웨어 실행 순서 개선으로 5xx 해소
+    strength: owned
+    confidence: medium
+    public: true
+    evidence: [evidence/projects/muse-admin.md#connection-pool-stabilization]
+    allowed_copy:
+      - 커넥션 풀 타임아웃의 원인을 분석해 pool 설정과 세션 생명주기를 재조정
+      - 미들웨어 실행 순서 개선으로 5xx 해소
+      - 커넥션 유효성 자동 점검을 적용해 응답 시간 안정화
+    forbidden_copy:
+      - 500 에러 완전 해결 (모니터링 대조 전이므로 단정 금지)
+      - 응답 시간 개선 수치 (측정값 없음)
+    verified_at: null
+    note: >-
+      Self-reported 기반. 모니터링 지표 대조 시 "완전 해결" 표현과 confidence high 사용 가능.
+  - id: muse-admin.quality-automation
+    statement: 코드 컨벤션 정립 후 전체 리팩토링과 Ruff·Pyright·pre-commit 기반 품질 자동 검증 체계 구축
+    strength: owned
+    confidence: medium
+    public: true
+    evidence: [evidence/projects/muse-admin.md#ci-cd-and-code-quality]
+    allowed_copy:
+      - 코드 컨벤션을 정립하고 전체 코드베이스를 리팩토링
+      - 정적 분석과 타입 체크를 pre-commit 단계에서 자동 검증하도록 구성
+      - Swagger·API·데이터베이스 설계 가이드 문서화
+      - Managed Identity 인증과 무중단 롤링 배포 파이프라인 구성
+    forbidden_copy:
+      - 품질 지표 개선 수치 (측정값 없음)
+      - 조직 표준으로 확산 (be-template과 구분할 것)
+    verified_at: null
+    note: >-
+      be-template(조직 표준)과 범위가 다르다. 이 claim은 단일 제품 내 품질 체계다.

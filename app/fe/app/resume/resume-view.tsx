@@ -235,7 +235,7 @@ function DocKo() {
           <CareerRow org="TellingMe" period="2024.01 — 2024.12">
             개인 프로젝트 · Spring Boot backend와 AWS 배포·모니터링 리드 (Memento 재직과 병행)
           </CareerRow>
-          <CareerRow org="STUDIO LAB" period="2021.12 — 2024.01">
+          <CareerRow org="STUDIO LAB" period="2021.12 — 2023.12">
             SellerCanvas(생성형 AI 커머스 콘텐츠, CES 2024 최고혁신상 제품)의 PM 메인 역할로 제품 시스템 기획·구축
           </CareerRow>
           <CareerRow org="아이즈솔" period="2020.08 — 2021.06">
@@ -399,7 +399,7 @@ function DocEn() {
           <CareerRow org="TellingMe" period="Jan — Dec 2024">
             Side project · Led the Spring Boot backend and AWS deployment/monitoring (concurrent with Memento)
           </CareerRow>
-          <CareerRow org="STUDIO LAB" period="Dec 2021 — Jan 2024">
+          <CareerRow org="STUDIO LAB" period="Dec 2021 — Dec 2023">
             Primary PM for SellerCanvas (generative-AI commerce content, CES 2024 Best of Innovation); planned and built the systems that kept the product running
           </CareerRow>
           <CareerRow org="아이즈솔" period="2020.08 — 2021.06">
