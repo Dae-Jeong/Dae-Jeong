@@ -1,5 +1,5 @@
 version: 2
-last_updated: 2026-07-11
+last_updated: 2026-08-09
 
 summary: >
   Portable source-of-truth manifest for Kim Daejeong's profile, evidence,
@@ -10,17 +10,25 @@ layers:
     owns: [routing, current_snapshot]
     canonical: false
   profile:
-    owns: [identity, career, capabilities, credentials, contribution, agent_workflow, writing]
+    owns: [identity, career, tenure, capabilities, credentials, contribution, agent_workflow, writing]
     canonical: true
   evidence:
-    owns: [verified_facts, claims, confidence, public_scope, audits]
+    owns: [verified_facts, claims, confidence, public_scope, audits, client_masking]
     canonical: true
   products:
     owns: [resume, portfolio, homepage, jd_analysis]
     canonical: true
   rules:
-    owns: [document_routing, evidence_policy, public_safety]
+    owns: [document_routing, evidence_policy, public_safety, recency_weighting]
     canonical: true
+  backlog:
+    owns: [idea_registry, spec_promotion]
+    canonical: true
+    note: 아이디어당 폴더 + _template.md 기반 README. 착수 확정 시 spec/task로 승격.
+  docs:
+    owns: [design_specs, plans]
+    canonical: true
+    note: superpowers spec·plan 문서. 설계 결정의 시점 기록.
   skills:
     owns: [executable_adapters]
     canonical: false
