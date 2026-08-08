@@ -69,11 +69,11 @@ tags: [career, credentials, tellingme, evidence]
 | 상세페이지 제작 시간 단축 | 약 95% 이상 (2~3시간 → 최대 1분, 완성본 1장 기준) | 리멤버 |
 | 입력 이미지 상한 개선 | 최대 15장 → 무제한 (안정성 위해 40장 제한) | 리멤버·그룹바이·oopy |
 | Yolo v8 의류 이미지 분석 정확도 | 평균 99% 이상 | 그룹바이·oopy |
-| **한국건설환경시험연구원 AI 정확도 부문 인증 통과** | 평균 99% 이상 | 그룹바이·oopy |
+| **한국건설생활환경시험연구원(KCL) AI 정확도 부문 인증 통과** | 평균 99% 이상 | 그룹바이·oopy |
 | VGG Network 분류 정확도 (프로토타입 시기) | 평균 85%+ (종류 5종 90%+, 세부 특징 80%+) | 리멤버 |
 | FastAPI 도입으로 개발 기간 단축 | 30% 이상 (12일 → 7일) | 리멤버 |
 
-- **한국건설환경시험연구원 인증만 예외 후보다.** 정확도 수치(99%)는 쓰지 않되, **"외부 기관 AI 정확도 인증 통과"라는 사실 자체**는 제3자 검증이라 시점 무관 자산에 해당한다 ([recency weighting](../../rules/recency-weighting.md) 예외 1). 인증서 실물 확인 시 `credentials.yaml` 승격을 검토한다. → **사용자 확인 대기**
+- **한국건설생활환경시험연구원(KCL) 인증만 예외 후보다.** 정확도 수치(99%)는 쓰지 않되, **"외부 기관 AI 정확도 인증 통과"라는 사실 자체**는 제3자 검증이라 시점 무관 자산에 해당한다 ([recency weighting](../../rules/recency-weighting.md) 예외 1). 인증서 실물 확인 시 `credentials.yaml` 승격을 검토한다. → **사용자 확인 대기**
 - VGG(프로토타입, 85%+)와 Yolo v8(99%+)은 시기가 다른 별개 모델로 보인다. 어차피 수치를 공개하지 않으므로 산출물에서는 구분이 불필요하나, 면접 답변 시 혼용하지 않는다.
 
 ### 그 밖 (Self-reported)
@@ -156,7 +156,7 @@ tags: [career, credentials, tellingme, evidence]
 
 - Source-backed: SellerCanvas가 CES 2024 Best of Innovation AI 부문에 공식 등재됐다.
 - Source-backed: `페이지 출력 방법`, 출원 10-2022-0130234, 등록 10-2898273가 확인됐다.
-- Self-reported (그룹바이·oopy 기재): SellerCanvas 의류 이미지 분석 모델이 **한국건설환경시험연구원 AI 정확도 부문 인증**을 통과했다.
+- Self-reported (그룹바이·oopy 기재): SellerCanvas 의류 이미지 분석 모델이 **한국건설생활환경시험연구원(KCL) AI 정확도 부문 인증**을 통과했다.
   - User-confirmed (2026-08-08) 표기 방침: **"인증 통과" 사실만 쓰고 정확도 수치와 사용 모델(Yolo 등)은 쓰지 않는다.** 과거 정량 미사용 원칙([recency weighting](../../rules/recency-weighting.md))의 예외로, 제3자 검증이라는 성격 때문에 사실만 남긴다.
   - ⚠️ confidence medium — 인증서 실물 대조 전이다. 확인 시 `credentials.ai-accuracy-certification`의 confidence를 high로 올리고 `verified_at`을 기입한다.
 - Contribution boundary: 회사/팀 수상이며 개인 단독 수상으로 쓰지 않는다. 특허 발명자 범위는 별도 확인 없이 단독 표현을 쓰지 않는다. 인증도 제품 단위 인증이며 개인 단독으로 표현하지 않는다.

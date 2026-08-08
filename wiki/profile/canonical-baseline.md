@@ -64,7 +64,7 @@ AI Engineer 2021.12~2022.09 → PM 2022.10~2023.09 → Backend Engineer 2023.10~
 | --- | --- | --- |
 | 특허 | 「페이지 출력 방법」 **등록 10-2898273** | `credentials.page-output-patent` |
 | 수상 | CES 2024 Best of Innovation · AI 부문 (2023.12) | `credentials.ces-2024` |
-| 인증 | 한국건설환경시험연구원 · AI 정확도 부문 인증 통과 | `credentials.ai-accuracy-certification` |
+| 인증 | 한국건설생활환경시험연구원(KCL) · AI 정확도 부문 인증 통과 | `credentials.ai-accuracy-certification` |
 | 학력 | 우송대학교 게임멀티미디어 전공 2016.03–2021.08 **졸업** | `credentials.education` |
 | 자격 | ADsP (2021.09) | `credentials.adsp` |
 

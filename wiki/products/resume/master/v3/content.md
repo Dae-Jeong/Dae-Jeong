@@ -120,7 +120,7 @@ v2 3건 유지 + 1건 교체 검토.
 - **CES 2024 Best of Innovation · AI 부문** — 수상 제품 참여 (`credentials.ces-2024`)
 - **특허 등록 「페이지 출력 방법」 · 등록 10-2898273** (`credentials.page-output-patent`)
 - ADsP 데이터분석 준전문가 · 2021.09 (`credentials.adsp`)
-- **한국건설환경시험연구원 · AI 정확도 부문 인증 통과** (`credentials.ai-accuracy-certification`) — 정확도 수치와 사용 모델은 쓰지 않는다
+- **한국건설생활환경시험연구원(KCL) · AI 정확도 부문 인증 통과** (`credentials.ai-accuracy-certification`) — 정확도 수치와 사용 모델은 쓰지 않는다
 
 ## Open Items (확정 전)
 
@@ -129,7 +129,7 @@ v2 3건 유지 + 1건 교체 검토.
    - 아이즈솔 Yolo v5 99.8%·초당 30장 → 미사용. "안면 인식 기반 자동 출결 시스템 개발"까지
    - SellerCanvas Yolo v8 99%·VGG 85%·제작시간 95% 단축·이미지 15장→무제한 → 미사용. **"Vision AI 기반 의류 이미지 분석 모델 개발"** 수준 서술만
    - TellingMe 38/42/22/89 → 미사용. 규모는 **"10명 팀의 백엔드 2명 중 주도"**로 대체
-   - **예외 확정 (2026-08-08)**: 한국건설환경시험연구원 AI 정확도 인증은 Credentials에 넣는다. **"인증 통과" 사실만** — 정확도 수치와 사용 모델(Yolo 등)은 쓰지 않는다. `credentials.ai-accuracy-certification` 신설 (confidence medium, 인증서 실물 확인 시 high)
+   - **예외 확정 (2026-08-08)**: 한국건설생활환경시험연구원(KCL) AI 정확도 인증은 Credentials에 넣는다. **"인증 통과" 사실만** — 정확도 수치와 사용 모델(Yolo 등)은 쓰지 않는다. `credentials.ai-accuracy-certification` 신설 (confidence medium, 인증서 실물 확인 시 high)
 3. ~~신규 claim 승격~~ → **완료 (2026-08-08)**: thready 4건 + medisolve-admin 3건 + credentials 1건 승격. registry 24 → 31건
    - ⚠️ **medisolve-admin 3건은 2026-08-09 강등** — `strength: contributed` · `confidence: low` · `public: false`. self-reported 근거뿐이라 evidence-policy상 public output에 쓸 수 없다. Git history·배포 설정 대조 후 복원
    - ⚠️ **어드민 시스템 대상 고객사 미확정** — 산출물에서 고객사를 언급하지 않고 "통합 관리 시스템"으로만 서술한다
