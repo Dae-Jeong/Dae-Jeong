@@ -126,7 +126,7 @@ export default function PortfolioPage() {
           </div>
 
           <Banner tag="NOTICE" variant="warn" className="mt-8">
-            현재 상세가 열리는 케이스는 <b>Thready 1건</b>입니다. 나머지 4건은 상세 준비 중.
+            <b>5건의 케이스 상세</b>가 모두 열려 있습니다. 각 페이지에서 문제·결정·시스템·운영 근거를 확인할 수 있습니다.
           </Banner>
         </section>
       </Container>

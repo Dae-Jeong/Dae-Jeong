@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { IBM_Plex_Mono } from "next/font/google";
+import { SITE_URL } from "@/lib/site";
 import "./globals.css";
 
 const plexMono = IBM_Plex_Mono({
@@ -9,6 +10,7 @@ const plexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: "김대정 — Backend Engineer · AI Product Systems",
   description: "AI 제품을 운영 가능한 시스템으로 만드는 백엔드 엔지니어",
 };

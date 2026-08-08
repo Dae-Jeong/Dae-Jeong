@@ -11,7 +11,7 @@ import { KeyValueRows } from "@/components/ui/key-value-list";
 import { NumberedList, NumberedRow } from "@/components/ui/numbered-row";
 import { SectionHead } from "@/components/ui/section-head";
 
-/* ⚠️ 콘텐츠 임시 수동 사본 — canonical 은 wiki/products/resume/master/v1/content.md.
+/* ⚠️ 콘텐츠 임시 수동 사본 — canonical 은 wiki/products/resume/master/v2/content.md.
    export 스크립트 도입 시 파생 콘텐츠 소비로 교체한다. 전화번호는 웹에 넣지 않는다(정책). */
 
 /* — 로컬 프리미티브 (두 번째 사용처가 생기면 ui/ 로 승격) — */
@@ -141,10 +141,11 @@ function DocKo() {
       <Sec id="s1" no="01" title="요약" meta="Summary">
         <PlainList
           items={[
-            <>AI 콘텐츠 생성 <strong>backend 전면 재구축</strong>과 이후 개발·운영 전담</>,
-            <>월 수만 건 규모 요청을 처리하는 production backend를 <Metric>HTTP 5xx 0.3% 수준</Metric>으로 운영</>,
+            <>Vision AI로 시작해 <Metric>6년째 AI 제품</Metric>을 만들어온 백엔드 엔지니어 — AI 엔지니어·PM을 거쳐 제품을 끝까지 책임지는 층으로 백엔드를 선택</>,
+            <>AI 도구로 빠르게 구축된 생성 backend를 <strong>전면 재구축</strong>해 QA 버그 재발률을 <Metric>37%에서 11%로</Metric> 낮추고, 월 수만 건 규모 요청을 <Metric>HTTP 5xx 0.3% 수준</Metric>으로 운영</>,
+            <>CES 2024 Best of Innovation <strong>수상 제품의 PM 메인 역할</strong>과 특허 등록 1건</>,
             <>Backend Engineer 합류 후 <strong>Tech Lead·PO 역할 병행</strong></>,
-            <>제품 일정·이슈·릴리스 운영을 <strong>agent-readable workflow</strong>로 구조화·리드</>,
+            <>스펙·이슈·릴리스 게이트를 agent가 읽고 실행하는 <strong>agent-readable workflow</strong>를 설계·리드</>,
           ]}
         />
       </Sec>
@@ -155,19 +156,19 @@ function DocKo() {
             typed prompt builder, LLM judge, 평가 루프, 관측 로깅 기반 생성 품질 시스템 구축
           </CapCard>
           <CapCard title="Product Backend Ownership">
-            주문·재고 API와 worker 구축 주도, 병원 product monorepo service boundary·migration 주도
+            주문·재고 API와 RabbitMQ·TaskIQ worker, retry·test·CI·onboarding 구축 주도, 병원 product monorepo service boundary·migration·domain audit 주도
           </CapCard>
           <CapCard title="Async & Realtime">
-            실패 가능한 작업의 worker 분리와 retry 흐름 구축 주도, realtime session lifecycle 안정화 공동 주 기여
+            실패 가능한 작업을 API 경계 밖 worker로 분리하고 retry 가능한 비동기 흐름 구축 주도, realtime session lifecycle과 provider 경계 안정화 공동 주 기여
           </CapCard>
           <CapCard title="Infra-Aware Delivery">
             회사 Azure/Terraform infra 전반 담당 — 환경별 resource boundary, 배포, runbook / 외부 product IaC 전담
           </CapCard>
           <CapCard title="Engineering Standard">
-            layered architecture·DI·ADR·convention 기반 조직 표준 FastAPI template 설계·구축 전담
+            layered architecture·DI·ADR·convention·runbook 기반 조직 표준 FastAPI template 설계·구축 전담
           </CapCard>
           <CapCard title="Agent-Readable Operations">
-            pipeline registry·release gate 기반 운영 리드, daily briefing agent 구축·운영
+            pipeline registry·release gate 기반 제품팀 운영과 릴리스 노트 자동화 리드, daily briefing agent 구축·운영
           </CapCard>
         </CardGrid>
       </Sec>
@@ -184,7 +185,9 @@ function DocKo() {
             </h3>
             <PlainList
               items={[
-                <>FastAPI 기반 backend 전면 재구축과 cutover 이후 개발·운영 전담</>,
+                <>AI 도구로 빠르게 구축돼 재발 이슈 통제가 어려웠던 생성 backend를 인계받아, 서비스가 작은 시점에 <strong>전면 재구축을 결정·설득</strong> — 하네스를 먼저 세팅하고 AI와 협업해 파악부터 재구축까지 <Metric>총 36시간(작업 시간 기준)</Metric>에 완수</>,
+                <>cutover 이후 <strong>QA 버그 재발률(해결 대비 reopen) 37% → 11%</strong>, 재발 발생 일평균 <Metric>약 94% 감소</Metric> — 잔여 이슈도 원인 영역이 파악된 상태로 관리</>,
+                <>AI 모듈 확장을 근거로 <strong>FastAPI 분리 도입</strong>(FE는 Next.js 유지), cutover 이후 개발·운영 전담 — 월 수만 건 규모 요청을 <Metric>HTTP 5xx 0.3% 수준</Metric>으로 운영</>,
                 <>typed prompt builder, LLM judge, 평가 루프, 관측 로깅 기반 생성 품질 시스템 구축</>,
               ]}
             />
@@ -209,8 +212,9 @@ function DocKo() {
             </h3>
             <PlainList
               items={[
-                <>layered architecture·DI·ADR·convention·runbook 기반 조직 표준 FastAPI template 설계·구축 전담</>,
+                <><strong>소수 백엔드 인원이 다수 제품을 담당하는 체제</strong>에서 조직 표준 FastAPI template 설계·구축 전담 — 어떤 프로젝트든 정책 파악만으로 대응 가능하게 하고 logging·모니터링 등 횡단 관심사를 전 제품에 일괄 반영</>,
                 <>agent context system과 반복 작업 automation skill 내장</>,
+                <>FE 엔지니어도 패턴·규약·하네스 아래에서 BE 로직을 구현할 수 있도록 지원</>,
               ]}
             />
           </article>
@@ -226,13 +230,13 @@ function DocKo() {
             현 MediSolve AI 대표와 프리랜서로 협업 시작 — Centurion 초기 backend 구축과 개발팀 시스템·기준 수립, 창업과 함께 합류
           </CareerRow>
           <CareerRow org="Memento AI" period="2024.10 — 2025.01">
-            예약·결제 backend의 선결제와 환불·마일리지·티켓 rollback 안정화 — 회사 폐업으로 재직 종료
+            예약·결제 backend의 Stripe 선결제 도입과 환불·마일리지·티켓 rollback 안정화 — 회사 폐업으로 재직 종료
           </CareerRow>
           <CareerRow org="TellingMe" period="2024.01 — 2024.12">
             개인 프로젝트 · Spring Boot backend와 AWS 배포·모니터링 리드 (Memento 재직과 병행)
           </CareerRow>
           <CareerRow org="STUDIO LAB" period="2021.12 — 2024.01">
-            SellerCanvas(생성형 AI 커머스, CES 2024 최고혁신상)의 PM 메인 역할로 제품 시스템 기획·구축
+            SellerCanvas(생성형 AI 커머스 콘텐츠, CES 2024 최고혁신상 제품)의 PM 메인 역할로 제품 시스템 기획·구축
           </CareerRow>
           <CareerRow org="아이즈솔" period="2020.08 — 2021.06">
             Vision AI에서 시작한 AI product engineering 경력
@@ -245,7 +249,7 @@ function DocKo() {
           items={[
             <>AI agent를 코드 자동완성보다 <strong>engineering operating layer</strong>로 활용</>,
             <>project rules와 source-of-truth routing을 사람과 agent가 함께 읽는 실행 경계로 구성</>,
-            <>decision·spec·work·release gate로 제품 실행과 릴리스 추적</>,
+            <>스펙·이슈·릴리스 게이트를 agent가 읽고 실행하고, 릴리스 노트 자동화로 버전 관리</>,
             <>daily briefing agent로 협업 도구 활동 집계와 blocker triage 지원</>,
           ]}
         />
@@ -301,10 +305,11 @@ function DocEn() {
       <Sec no="01" title="Summary">
         <PlainList
           items={[
-            <>Rebuilt an AI content generation backend <strong>end to end</strong>; own development and operations since cutover</>,
-            <>Operate a production backend serving tens of thousands of monthly requests with a <Metric>~0.3% HTTP 5xx</Metric> rate</>,
+            <>Started in Vision AI and have spent <Metric>six years building AI products</Metric>, moving through AI engineering and PM before choosing backend as the layer that owns products end to end</>,
+            <>Rebuilt an AI content generation backend <strong>end to end</strong>, lowering QA reopen rate from <Metric>37% to 11%</Metric>; own development and operations since cutover while serving tens of thousands of monthly requests at <Metric>~0.3% HTTP 5xx</Metric></>,
+            <>Served as the <strong>primary PM</strong> for a CES 2024 Best of Innovation-winning product; hold one registered patent</>,
             <>Joined as a Backend Engineer, while also serving as <strong>Tech Lead and Product Owner</strong></>,
-            <>Built and now run a release workflow where <strong>AI agents read specs, track issues, and gate releases</strong></>,
+            <>Designed and lead an <strong>agent-readable workflow</strong> where AI agents read specs, execute issues, and gate releases</>,
           ]}
         />
       </Sec>
@@ -315,10 +320,10 @@ function DocEn() {
             Built a generation quality system — typed prompt builder, LLM judge, evaluation loop, observability logging
           </CapCard>
           <CapCard title="Product Backend Ownership">
-            Led order/inventory APIs and async workers; led service boundaries and migrations in a hospital product monorepo
+            Led order/inventory APIs, RabbitMQ/TaskIQ workers, retry, test/CI/onboarding; led service boundaries, migrations, and domain audits in a hospital product monorepo
           </CapCard>
           <CapCard title="Async & Realtime">
-            Designed retry-safe async pipelines that offload failure-prone operations to background workers; co-led realtime session lifecycle stabilization
+            Separated failure-prone operations from the API boundary into retryable background workers; co-led realtime session lifecycle and provider-boundary stabilization
           </CapCard>
           <CapCard title="Infra-Aware Delivery">
             Own company-wide Azure/Terraform infrastructure — per-environment resource boundaries, deployment, runbooks; built external product IaC as the sole engineer
@@ -327,7 +332,7 @@ function DocEn() {
             Designed and built the org-standard FastAPI template as the sole engineer — layered architecture, DI, ADR, conventions
           </CapCard>
           <CapCard title="Agent-Readable Operations">
-            Run product operations on a pipeline registry and release gates; built and operate a daily briefing agent
+            Lead product operations on a pipeline registry and release gates, including automated release notes; built and operate a daily briefing agent
           </CapCard>
         </CardGrid>
       </Sec>
@@ -344,7 +349,9 @@ function DocEn() {
             </h3>
             <PlainList
               items={[
-                <>Rebuilt the FastAPI backend end to end; owned development and operations after cutover</>,
+                <>Inherited a generation backend built quickly with AI tools and difficult-to-control recurring issues; made and defended the decision to rebuild it while the service was still small, then completed discovery through rebuild in <Metric>36 work hours</Metric> with an AI collaboration harness</>,
+                <>Reduced the QA reopen rate (resolved-to-reopened) from <strong>37% to 11%</strong>; daily reopen incidence fell by <Metric>~94%</Metric></>,
+                <>Introduced FastAPI as a separate backend based on planned AI-module expansion (keeping Next.js on the frontend); owned development and operations after cutover, serving tens of thousands of monthly requests at <Metric>~0.3% HTTP 5xx</Metric></>,
                 <>Built the generation quality system — typed prompt builder, LLM judge, evaluation loop, observability logging</>,
               ]}
             />
@@ -369,8 +376,9 @@ function DocEn() {
             </h3>
             <PlainList
               items={[
-                <>Solely designed and built the org-standard FastAPI template — layered architecture, DI, ADR, conventions, runbooks</>,
+                <>In an environment where a <strong>small backend team supports many products</strong>, solely designed and built the org-standard FastAPI template — layered architecture, DI, ADR, conventions, runbooks; made project onboarding policy-driven and applied cross-cutting logging and monitoring consistently</>,
                 <>Embedded an agent context system and automation skills for repetitive work</>,
+                <>Enabled frontend engineers to implement backend logic within shared patterns, conventions, and harnesses</>,
               ]}
             />
           </article>
@@ -386,13 +394,13 @@ function DocEn() {
             Began working with MediSolve AI&apos;s founder as a freelancer — started Centurion&apos;s early backend and set up the new dev team&apos;s systems and standards
           </CareerRow>
           <CareerRow org="Memento AI" period="Oct 2024 — Jan 2025">
-            Fixed correctness bugs in prepayment, refund, mileage, and ticket rollback flows; role ended when the company ceased operations
+            Introduced Stripe prepayment and stabilized refund, mileage, and ticket rollback flows; role ended when the company ceased operations
           </CareerRow>
           <CareerRow org="TellingMe" period="Jan — Dec 2024">
             Side project · Led the Spring Boot backend and AWS deployment/monitoring (concurrent with Memento)
           </CareerRow>
           <CareerRow org="STUDIO LAB" period="Dec 2021 — Jan 2024">
-            Primary PM for SellerCanvas, a generative-AI commerce product (CES 2024 Best of Innovation); planned and built the systems that kept the product running
+            Primary PM for SellerCanvas (generative-AI commerce content, CES 2024 Best of Innovation); planned and built the systems that kept the product running
           </CareerRow>
           <CareerRow org="아이즈솔" period="2020.08 — 2021.06">
             Started in AI product engineering with Vision AI
@@ -405,7 +413,7 @@ function DocEn() {
           items={[
             <>Uses AI agents as an <strong>engineering operating layer</strong>, not code autocomplete</>,
             <>Composes project rules and source-of-truth routing that humans and agents read together</>,
-            <>Tracks product execution and releases through decision/spec/work/release gates</>,
+            <>Agents read and execute specs, issues, and release gates; automated release notes support version management</>,
             <>Built a daily briefing agent that aggregates collaboration-tool activity for blocker triage</>,
           ]}
         />

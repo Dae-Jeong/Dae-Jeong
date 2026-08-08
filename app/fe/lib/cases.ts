@@ -34,7 +34,7 @@ export const CASES: CaseMeta[] = [
       "주문·재고 API와 RabbitMQ·TaskIQ 비동기 worker를 설계하고, retry·test·CI 구축을 주도. 실패 가능한 작업을 worker로 분리해 처리 경계를 명확히 했다.",
     role: "Lead",
     scope: "Async · CI",
-    available: false,
+    available: true,
   },
   {
     slug: "say-realtime",
@@ -45,7 +45,7 @@ export const CASES: CaseMeta[] = [
       "realtime AI 상담 backend의 세션 lifecycle과 provider 경계 안정화에 공동 주 기여. realtime session의 시작·유지·종료 흐름을 다뤘다.",
     role: "Co-Lead Contrib.",
     scope: "Session Lifecycle",
-    available: false,
+    available: true,
   },
   {
     slug: "be-template",
@@ -56,7 +56,7 @@ export const CASES: CaseMeta[] = [
       "조직 표준 FastAPI template과 agent context system을 설계·구축 전담. layered architecture·DI·ADR·convention을 표준으로 정립했다.",
     role: "Owner",
     scope: "Org Standard",
-    available: false,
+    available: true,
   },
   {
     slug: "mediness-ops",
@@ -67,6 +67,6 @@ export const CASES: CaseMeta[] = [
       "decision·spec·work·release gate로 이어지는 제품 운영 구조를 구조화·리드. 일정·이슈·릴리스 운영을 agent-readable workflow로 정리했다.",
     role: "Lead",
     scope: "Product Ops",
-    available: false,
+    available: true,
   },
 ];
