@@ -19,6 +19,26 @@ tags: [career, timeline, role]
 | 2021.12-2023.12 | STUDIO LAB | AI Engineer -> PM -> Backend Engineer | SellerCanvas |
 | 2020.08-2021.06 | 아이즈솔 | Vision AI Engineer | Kidsly |
 
+## Tenure
+
+**연차 산정 기준 (2026-08-09 user-confirmed): 인턴 기간을 제외한 실무 경력.** 직군(AI Engineer·PM·Backend)은 합산한다 — 궤적 전체가 제품을 만든 경력이기 때문이다.
+
+| 구간 | 형태 | 개월 | 산입 |
+| --- | --- | --- | --- |
+| 아이즈솔 2020.08–2021.06 | 인턴 | 11 | 제외 |
+| STUDIO LAB 2021.12–2023.12 | 정규직 | 25 | 산입 |
+| Memento 2024.10–2024.11 | 인턴 | 2 | 제외 |
+| Memento 2024.11–2025.01 | 정규직 | 2 | 산입 |
+| 더데이랩스 2025.02–2025.04 | 프리랜서 | 3 | 산입 |
+| MediSolve AI 2025.04– | 정규직 | 17 | 산입 |
+
+**합계 47개월 = 만 3년 11개월 → 공개 표기 `4년차`** (2026-08 기준).
+
+- 참고: 인턴 포함 시 60개월(5년). **인턴 포함 수치는 쓰지 않는다.**
+- 참고: Backend Engineer 직무 구간만 합산하면 27개월(2년 3개월)이다. **"Backend 기준 N년차"로 표기하지 않는다** — 직군 합산 기준임을 흐리면 부풀리기로 읽힌다.
+- 시간이 지나면 값이 변한다. **분기마다 재산정**하고 이 표를 갱신한다.
+- claim: `career.tenure`
+
 ## Role Evolution
 
 Vision AI에서 시작해 PM을 거쳐 Backend Engineer로 확장했다. 현재 primary category는 Backend Engineer이며, 이전 AI/PM 경험은 AI product를 runtime과 product operation 관점에서 다루는 배경이다.

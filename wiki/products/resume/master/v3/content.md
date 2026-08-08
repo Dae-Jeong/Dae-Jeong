@@ -1,7 +1,7 @@
 ---
 type: resume-content
 title: Resume Master v3 Content (DRAFT)
-description: recency weighting 적용 — 현재 소속 비중 확대, 초기 경력 압축, 검증 자산 분리. 연차 기준을 BE 5년차로 통일.
+description: recency weighting 적용 — 현재 소속 비중 확대, 초기 경력 압축, 검증 자산 분리. 연차 기준을 인턴 제외 실무 4년차로 확정.
 timestamp: 2026-08-08
 tags: [resume, v3, content, korean, draft]
 ---
@@ -11,9 +11,9 @@ tags: [resume, v3, content, korean, draft]
 v2 대비 변경 축 4개:
 
 1. **recency weighting 적용** ([rules/recency-weighting.md](../../../../rules/recency-weighting.md)) — MediSolve를 1 bullet → 4 bullet, 아이즈솔은 궤적 문장만
-2. **연차 기준 통일** — "6년째 AI 제품"(혼용) → **BE 5년차**. 궤적은 연차가 아니라 서술로
+2. **연차 기준 확정** — "6년째 AI 제품"(혼용) → **4년차**(인턴 제외 실무 47개월). 궤적은 연차가 아니라 서술로
 3. **검증 자산 분리** — CES·특허를 경력 본문에서 Credentials로 승격, 경력 본문은 축약
-4. **최신 실적 반영** — 어드민 시스템 단독 구축, quality lab 체계 (registry 공백이던 영역)
+4. **최신 실적 반영** — quality lab 3층 체계 (registry 공백이던 영역). 어드민 시스템은 claim 강등으로 보류
 
 ⚠️ 표기는 확정 전. `[미검증]` 표기는 근거 확보 전까지 사용 금지 항목이다.
 
@@ -26,9 +26,9 @@ v2 대비 변경 축 4개:
 
 ## Summary
 
-연차 표기를 5년차로 바꾸되, 궤적은 "Vision AI로 시작"이라는 서술로 유지한다.
+연차 표기를 4년차로 바꾸되, 궤적은 "Vision AI로 시작"이라는 서술로 유지한다.
 
-- Vision AI에서 시작해 AI 엔지니어·PM을 거쳐 **제품을 끝까지 책임지는 층으로 백엔드를 선택한 5년차 백엔드 엔지니어** (`career.ai-pm-backend-continuity`)
+- Vision AI에서 시작해 AI 엔지니어·PM을 거쳐 **제품을 끝까지 책임지는 층으로 백엔드를 선택한 4년차 백엔드 엔지니어** (`career.ai-pm-backend-continuity`, `career.tenure`)
 - AI 도구로 빠르게 구축된 생성 backend를 **전면 재구축해 QA 버그 재발률을 37%에서 11%로** 낮추고, 월 수만 건 규모 요청을 **HTTP 5xx 0.3% 수준**으로 운영 (`thready.rebuild-decision-execution`, `thready.qa-reopen-reduction`, `thready.production-operation-quality`)
 - **CES 2024 Best of Innovation 수상 제품**의 PM 메인 역할 · **특허 등록 1건** (`career.sellercanvas-product-system`, `credentials.ces-2024`, `credentials.page-output-patent`)
 - Backend Engineer 합류 후 **기업부설연구소장·Tech Lead·PO 역할 병행** (`career.medisolve-role-evolution`)
@@ -47,7 +47,7 @@ v2에서 한 항목만 교체한다 — AI Product Systems의 첫 bullet.
 ### Product Backend Ownership
 
 - 주문·재고 API와 RabbitMQ·TaskIQ worker, retry, test·CI·onboarding 구축 주도 (`centurion.bay-async-backend`)
-- **통합 관리 시스템 backend를 Clean Architecture 4계층으로 단독 설계·구축** (`medisolve-admin.backend-ownership`)
+- ⚠️ ~~통합 관리 시스템 backend 단독 설계·구축~~ — `medisolve-admin.*` 3건이 `public: false`로 강등돼 **현재 사용 불가**. Git history 대조 후 복원
 - 병원 product backend monorepo의 service boundary와 migration·domain audit 주도 (`nexus.backend-architecture`)
 
 ### Async And Realtime / Infra-Aware Delivery / Engineering Standard / Agent-Readable Operations
@@ -68,7 +68,7 @@ v2 유지. 단 Engineering Standard에 계보 한 줄 추가:
 
 - AI 콘텐츠 생성 backend **전면 재구축**과 cutover 이후 개발·운영 전담 — QA 버그 재발률 **37% → 11%**, 월 수만 건 규모를 **HTTP 5xx 0.3% 수준**으로 운영 (`thready.backend-rebuild`, `thready.qa-reopen-reduction`, `thready.production-operation-quality`)
 - 피부과 운영 플랫폼의 **주문·재고 backend와 비동기 worker 흐름** 구축 주도, 실패 가능한 작업을 API 경계 밖으로 분리 (`centurion.bay-async-backend`)
-- **통합 관리 시스템 backend 단독 구축** — Clean Architecture 4계층, Generic Repository, 커넥션 풀 원인 분석으로 5xx 해소 (`medisolve-admin.backend-ownership`, `medisolve-admin.pool-stabilization`)
+- ⚠️ ~~통합 관리 시스템 backend 단독 구축~~ — `medisolve-admin.*` 강등으로 **사용 보류**. 근거 확보 시 MediSolve bullet에 복원 (그때까지 이 자리는 3 bullet)
 - **조직 표준 FastAPI template 설계·구축**과 agent context 내장, 릴리스 게이트 기반 제품 운영 리드 (`be-template.backend-standard`, `mediness.product-operations`)
 
 ### 더데이랩스 · Backend Engineer (프리랜서) · 2025.02 — 2025.04
@@ -110,7 +110,7 @@ v2 3건 유지 + 1건 교체 검토.
 - **Thready · AI 콘텐츠 생성 제품** — v2 유지. 단 「품질을 판정 가능한 대상으로」 축을 portfolio case에 추가 (`thready.quality-criteria-system`)
 - **Centurion · 피부과 운영 AI 메디컬 플랫폼** — v2 유지
 - **BE Template · Engineering Standard** — v2 유지
-- *(신규 후보)* **통합 관리 시스템 어드민** — 백엔드 단독 구축, 30개 도메인. 진행 중이므로 진행형 표기
+- ⚠️ ~~*(신규 후보)* 통합 관리 시스템 어드민~~ — `medisolve-admin.*` 강등으로 **보류**. 근거 확보 후 재검토
 
 ## Education And Credentials
 
@@ -124,14 +124,14 @@ v2 3건 유지 + 1건 교체 검토.
 
 ## Open Items (확정 전)
 
-1. **연차 표기 최종 확인** — "5년차"로 통일했다. BE 기준 산정(2020.08 아이즈솔 인턴 포함 여부)에 따라 4~5년차로 갈릴 수 있다
+1. ~~연차 표기 최종 확인~~ → **확정 (2026-08-09)**: 인턴 제외 실무 47개월 = 만 3년 11개월 → **4년차**. `career.tenure` 신설, 산정 표는 [career.md#tenure](../../../../profile/career.md#tenure) 소유. **"BE 기준 N년차"는 쓰지 않는다** — BE 구간만은 27개월이라 부풀리기로 읽힌다
 2. ~~[미검증] 항목 처리~~ → **해소 (2026-08-08): 과거 정량은 검증 여부와 무관하게 쓰지 않는다.**
    - 아이즈솔 Yolo v5 99.8%·초당 30장 → 미사용. "안면 인식 기반 자동 출결 시스템 개발"까지
    - SellerCanvas Yolo v8 99%·VGG 85%·제작시간 95% 단축·이미지 15장→무제한 → 미사용. **"Vision AI 기반 의류 이미지 분석 모델 개발"** 수준 서술만
    - TellingMe 38/42/22/89 → 미사용. 규모는 **"10명 팀의 백엔드 2명 중 주도"**로 대체
    - **예외 확정 (2026-08-08)**: 한국건설환경시험연구원 AI 정확도 인증은 Credentials에 넣는다. **"인증 통과" 사실만** — 정확도 수치와 사용 모델(Yolo 등)은 쓰지 않는다. `credentials.ai-accuracy-certification` 신설 (confidence medium, 인증서 실물 확인 시 high)
 3. ~~신규 claim 승격~~ → **완료 (2026-08-08)**: thready 4건 + medisolve-admin 3건 + credentials 1건 승격. registry 24 → 31건
-   - ⚠️ medisolve-admin 3건은 `confidence: medium` (self-reported 기반). repo·모니터링 대조 시 상향
+   - ⚠️ **medisolve-admin 3건은 2026-08-09 강등** — `strength: contributed` · `confidence: low` · `public: false`. self-reported 근거뿐이라 evidence-policy상 public output에 쓸 수 없다. Git history·배포 설정 대조 후 복원
    - ⚠️ **어드민 시스템 대상 고객사 미확정** — 산출물에서 고객사를 언급하지 않고 "통합 관리 시스템"으로만 서술한다
 4. **A4 2장 검증** — MediSolve 4 bullet 확대분을 아이즈솔 축소·TellingMe 분리·STUDIO LAB 축약으로 상쇄했다. 실제 렌더 후 재확인 필요
 5. **기업부설연구소장 표기 위치** — Summary와 Career 양쪽에 넣을지, Career에만 둘지
@@ -144,6 +144,6 @@ v2 3건 유지 + 1건 교체 검토.
 | 아이즈솔 서술 | 1 bullet (동일 비중) | 궤적 문장만, 성과 없음 |
 | TellingMe | 경력란 내 개인 프로젝트 | **별도 섹션 분리** |
 | STUDIO LAB | CES·특허 포함 1 bullet | 본문 축약 + **검증 자산 Credentials 승격** |
-| 연차 | "6년째 AI 제품" | **BE 5년차** |
+| 연차 | "6년째 AI 제품" | **4년차** (인턴 제외 실무 47개월) |
 | 직급 | Tech Lead·PO | **기업부설연구소장** 추가 |
-| 신규 실적 | 없음 | 어드민 시스템 단독 구축, quality lab 3층 체계 |
+| 신규 실적 | 없음 | quality lab 3층 체계 (어드민 시스템은 근거 확보 후 보류) |
