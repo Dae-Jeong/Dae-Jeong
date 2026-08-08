@@ -78,7 +78,7 @@ tags: [career, credentials, tellingme, evidence]
 
 ### 그 밖 (Self-reported)
 
-- **패션 대기업 2개 브랜드 POC 담당** — 기획·일정 관리·기술 검증, 비즈니스 요구사항을 기술 스펙으로 변환. 하나는 이랜드(user-confirmed 2026-08-08), 다른 하나는 미확정. 공개 시 [clients.md](../clients.md) 마스킹 코드(`E 브랜드`·`M 브랜드`) 사용.
+- **패션 대기업 브랜드 POC 담당** — 기획·일정 관리·기술 검증, 비즈니스 요구사항을 기술 스펙으로 변환. 확정 대상은 **이랜드 SPAO** (user-confirmed 2026-08-09). 플랫폼 기재는 "2개 브랜드"이나 두 번째는 기억이 불확실해 확정하지 않는다 — **산출물에서는 개수를 못박지 않고 SPAO 건만 근거로 쓴다** ([clients.md](../clients.md)). 공개 시 마스킹 코드 사용.
 - **Node.js 레거시 → NestJS 마이그레이션** — PM 경험으로 레거시 문제점 파악 및 개선 방향 설계, NestMiddleware·ExceptionFilter 기반 예외 처리 구축.
 - **Nest.js 도입 개발 템플릿 제작 (2023.08~12)** — JWT 인증/인가, ExceptionFilter 기반 ExceptionHandler, NestMiddleware Logger, MVC 기반 Controller→Service→DAO 흐름. **현재 [be-template](be-template.md) 작업의 원류로 보인다** — 조직 표준 템플릿 설계라는 같은 패턴의 첫 사례다.
 - SellerCanvas는 **현재 Gency로 리브랜딩**됐다 (oopy·그룹바이 기재).
@@ -93,7 +93,7 @@ tags: [career, credentials, tellingme, evidence]
 
 ### 세부 (Self-reported — 플랫폼 기재)
 
-- **Feynman** (2024.11.21~2025.01.10, 정규직) — 피부과 통합 관리 시스템. Python 3.10, FastAPI, SQLAlchemy, MySQL, AWS. 외부 연동 Stripe·Notifly.
+- **Feynman** (2024.11.21~2025.01.10, 정규직) — 피부과 통합 관리 시스템. 대상 고객사는 **뮤즈클리닉**(강남) — 공개 산출물에서는 `M 피부과` 마스킹 코드를 쓰거나 고객사를 생략한다 ([clients.md](../clients.md)). oopy·그룹바이의 "강남 피부과 운영" 표현이 이것이다. Python 3.10, FastAPI, SQLAlchemy, MySQL, AWS. 외부 연동 Stripe·Notifly.
   - Stripe **Hongkong API** 연동으로 다국가 결제 처리, 구독·환불 통합 및 트랜잭션 상태 관리
   - **Notifly 알림톡 자동화** — 결제 완료·예약 확인 등 트리거 기반 발송, **발송 실패 시 3회 자동 재시도** 구현
 - **Check** (2024.10.20~2024.11.20, 인턴) — 병원 내부 직원 일정 관리 어드민. Python 3.11, FastAPI, SQLAlchemy, MySQL, AWS.

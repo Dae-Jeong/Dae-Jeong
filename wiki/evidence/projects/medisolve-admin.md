@@ -1,17 +1,19 @@
 ---
 type: project-evidence
-title: M 피부과 어드민 Evidence
+title: MediSolve 어드민 시스템 Evidence
 description: 2025.10~ 진행 중인 통합 관리 시스템 백엔드 단독 구축 — registry에 없던 최신 실적.
 timestamp: 2026-08-08
 source_roots: [workspace]
 tags: [medisolve, admin, backend, evidence]
 ---
 
-# M 피부과 어드민 Evidence
+# MediSolve 어드민 시스템 Evidence
 
 Source locator: `workspace` (MediSolve AI 제품)
 
-고객사 표기는 [clients.md](../clients.md) 마스킹 코드를 따른다 — 공개 산출물에서는 **`M 피부과`**, 내부 실명은 clients.md가 소유한다.
+대상 고객사는 **데이뷰 + 세라미크** (user-confirmed 2026-08-08). 공개 산출물에서는 **`D·C 피부과`** 마스킹 코드를 쓰거나 고객사를 생략하고 "통합 관리 시스템"으로만 서술한다 — [clients.md](../clients.md).
+
+⚠️ 플랫폼 프로필(그룹바이·oopy)에 `A 피부과`로 기재돼 있으나 **A로 시작하는 고객사는 존재하지 않는다.** 마스킹 시 임의로 붙은 글자이며 교체 대상이다.
 
 **registry 공백이었다.** 2025.10부터 진행 중인 현재 실적인데 claim도 evidence 문서도 없었다. 플랫폼 프로필(그룹바이·oopy)에만 상세가 남아 있어 2026-08-08 수집으로 확보했다.
 
@@ -64,9 +66,9 @@ Source locator: `workspace` (MediSolve AI 제품)
 
 | 후보 ID | statement 초안 | strength |
 | --- | --- | --- |
-| `muse-admin.backend-ownership` | 통합 관리 시스템 백엔드를 Multi-Module Clean Architecture 4계층으로 단독 설계·구축 (30개 도메인) | owned |
-| `muse-admin.pool-stabilization` | 커넥션 풀 타임아웃 원인 분석과 세션 생명주기·미들웨어 순서 개선으로 500 에러 해소 | owned |
-| `muse-admin.quality-automation` | Ruff·Pyright·pre-commit 기반 품질 자동 검증과 컨벤션 정립 후 전체 리팩토링 | owned |
+| `medisolve-admin.backend-ownership` | 통합 관리 시스템 백엔드를 Multi-Module Clean Architecture 4계층으로 단독 설계·구축 (30개 도메인) | owned |
+| `medisolve-admin.pool-stabilization` | 커넥션 풀 타임아웃 원인 분석과 세션 생명주기·미들웨어 순서 개선으로 500 에러 해소 | owned |
+| `medisolve-admin.quality-automation` | Ruff·Pyright·pre-commit 기반 품질 자동 검증과 컨벤션 정립 후 전체 리팩토링 | owned |
 
 ## 관련
 
