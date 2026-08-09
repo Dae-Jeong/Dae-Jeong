@@ -11,7 +11,7 @@ import { KeyValueRows } from "@/components/ui/key-value-list";
 import { NumberedList, NumberedRow } from "@/components/ui/numbered-row";
 import { SectionHead } from "@/components/ui/section-head";
 
-/* ⚠️ 콘텐츠 임시 수동 사본 — canonical 은 wiki/products/resume/master/v2/content.md.
+/* ⚠️ 콘텐츠 임시 수동 사본 — canonical 은 wiki/profile/canonical-baseline.md + wiki/products/resume/master/v3/content.md.
    export 스크립트 도입 시 파생 콘텐츠 소비로 교체한다. 전화번호는 웹에 넣지 않는다(정책). */
 
 /* — 로컬 프리미티브 (두 번째 사용처가 생기면 ui/ 로 승격) — */
@@ -141,10 +141,10 @@ function DocKo() {
       <Sec id="s1" no="01" title="요약" meta="Summary">
         <PlainList
           items={[
-            <>Vision AI로 시작해 <Metric>6년째 AI 제품</Metric>을 만들어온 백엔드 엔지니어 — AI 엔지니어·PM을 거쳐 제품을 끝까지 책임지는 층으로 백엔드를 선택</>,
+            <>Vision AI에서 시작해 AI 엔지니어·PM을 거쳐 제품을 끝까지 책임지는 층으로 백엔드를 선택한 <Metric>4년차</Metric> 백엔드 엔지니어</>,
             <>AI 도구로 빠르게 구축된 생성 backend를 <strong>전면 재구축</strong>해 QA 버그 재발률을 <Metric>37%에서 11%로</Metric> 낮추고, 월 수만 건 규모 요청을 <Metric>HTTP 5xx 0.3% 수준</Metric>으로 운영</>,
             <>CES 2024 Best of Innovation <strong>수상 제품의 PM 메인 역할</strong>과 특허 등록 1건</>,
-            <>Backend Engineer 합류 후 <strong>Tech Lead·PO 역할 병행</strong></>,
+            <>Backend Engineer 합류 후 <strong>기업부설연구소장·Tech Lead·PO 역할 병행</strong></>,
             <>스펙·이슈·릴리스 게이트를 agent가 읽고 실행하는 <strong>agent-readable workflow</strong>를 설계·리드</>,
           ]}
         />
@@ -153,7 +153,7 @@ function DocKo() {
       <Sec id="s2" no="02" title="핵심 역량" meta="Core Capabilities">
         <CardGrid cols={2}>
           <CapCard title="AI Product Systems">
-            typed prompt builder, LLM judge, 평가 루프, 관측 로깅 기반 생성 품질 시스템 구축
+            생성 품질을 자동 게이트·실측 분포·사람 판정 3층으로 나눠 계량하고 자동화 경계를 갈라 설계, typed prompt builder·LLM judge·평가 루프·관측 로깅 기반 품질 시스템 구축
           </CapCard>
           <CapCard title="Product Backend Ownership">
             주문·재고 API와 RabbitMQ·TaskIQ worker, retry·test·CI·onboarding 구축 주도, 병원 product monorepo service boundary·migration·domain audit 주도
@@ -224,22 +224,34 @@ function DocKo() {
       <Sec id="s5" no="05" title="경력" meta="Career">
         <NumberedList className="border-t border-border-soft">
           <CareerRow org="MediSolve AI" now period="2025.04 —">
-            AI product backend와 제품 운영·engineering standard 담당, Tech Lead·PO 역할 병행
+            <span className="mb-1 block text-fg-2">Backend Engineer · 기업부설연구소장 · Tech Lead·PO 역할 병행</span>
+            <PlainList
+              items={[
+                <>AI 콘텐츠 생성 backend 전면 재구축과 cutover 이후 개발·운영 전담 — QA 버그 재발률 <strong>37% → 11%</strong>, 월 수만 건 규모를 <strong>HTTP 5xx 0.3% 수준</strong>으로 운영</>,
+                <>피부과 운영 플랫폼의 주문·재고 backend와 비동기 worker 흐름 구축 주도 — 실패 가능한 작업을 API 경계 밖으로 분리</>,
+                <>조직 표준 FastAPI template 설계·구축과 agent context 내장, 릴리스 게이트 기반 제품 운영 리드</>,
+              ]}
+            />
           </CareerRow>
           <CareerRow org="더데이랩스" period="2025.02 — 2025.04">
             현 MediSolve AI 대표와 프리랜서로 협업 시작 — Centurion 초기 backend 구축과 개발팀 시스템·기준 수립, 창업과 함께 합류
           </CareerRow>
           <CareerRow org="Memento AI" period="2024.10 — 2025.01">
-            예약·결제 backend의 Stripe 선결제 도입과 환불·마일리지·티켓 rollback 안정화 — 회사 폐업으로 재직 종료
-          </CareerRow>
-          <CareerRow org="TellingMe" period="2024.01 — 2024.12">
-            개인 프로젝트 · Spring Boot backend와 AWS 배포·모니터링 리드 (Memento 재직과 병행)
+            예약·결제 backend의 Stripe 선결제 도입과 환불·마일리지·티켓 rollback 안정화 (인턴 1개월 → 정규직) — 회사 폐업으로 재직 종료
           </CareerRow>
           <CareerRow org="STUDIO LAB" period="2021.12 — 2023.12">
-            SellerCanvas(생성형 AI 커머스 콘텐츠, CES 2024 최고혁신상 제품)의 PM 메인 역할로 제품 시스템 기획·구축
+            SellerCanvas(생성형 AI 커머스 콘텐츠)의 PM 메인 역할로 제품 시스템 기획·구축 — AI Engineer → PM → Backend Engineer
           </CareerRow>
           <CareerRow org="아이즈솔" period="2020.08 — 2021.06">
-            Vision AI에서 시작한 AI product engineering 경력
+            Vision AI에서 시작한 AI product engineering 경력 (인턴)
+          </CareerRow>
+        </NumberedList>
+        <p className="mb-2 mt-6 font-mono text-xs uppercase tracking-[0.06em] text-muted">
+          개인 프로젝트
+        </p>
+        <NumberedList className="border-t border-border-soft">
+          <CareerRow org="TellingMe" period="2024.01 — 2024.12">
+            Spring Boot backend와 AWS 배포·모니터링 리드 — 10명 팀의 백엔드 2명 중 주도, iOS 정식 출시
           </CareerRow>
         </NumberedList>
       </Sec>
@@ -268,6 +280,9 @@ function DocKo() {
           </NumberedRow>
           <NumberedRow label="2021.09" labelWidth="md" labelClassName="text-xs" className="border-t-0 py-1">
             <span className="text-sm text-fg-2">ADsP · 데이터분석 준전문가</span>
+          </NumberedRow>
+          <NumberedRow label="인증" labelWidth="md" labelClassName="text-xs" className="border-t-0 py-1">
+            <span className="text-sm text-fg-2">한국건설생활환경시험연구원(KCL) · AI 정확도 부문 인증 통과</span>
           </NumberedRow>
         </NumberedList>
       </Sec>
@@ -305,10 +320,10 @@ function DocEn() {
       <Sec no="01" title="Summary">
         <PlainList
           items={[
-            <>Started in Vision AI and have spent <Metric>six years building AI products</Metric>, moving through AI engineering and PM before choosing backend as the layer that owns products end to end</>,
+            <>A <Metric>4th-year</Metric> backend engineer who started in Vision AI and moved through AI engineering and PM before choosing backend as the layer that owns products end to end</>,
             <>Rebuilt an AI content generation backend <strong>end to end</strong>, lowering QA reopen rate from <Metric>37% to 11%</Metric>; own development and operations since cutover while serving tens of thousands of monthly requests at <Metric>~0.3% HTTP 5xx</Metric></>,
             <>Served as the <strong>primary PM</strong> for a CES 2024 Best of Innovation-winning product; hold one registered patent</>,
-            <>Joined as a Backend Engineer, while also serving as <strong>Tech Lead and Product Owner</strong></>,
+            <>Joined as a Backend Engineer, while also serving as <strong>Head of the corporate R&amp;D center, Tech Lead, and Product Owner</strong></>,
             <>Designed and lead an <strong>agent-readable workflow</strong> where AI agents read specs, execute issues, and gate releases</>,
           ]}
         />
@@ -317,7 +332,7 @@ function DocEn() {
       <Sec no="02" title="Core Capabilities">
         <CardGrid cols={2}>
           <CapCard title="AI Product Systems">
-            Built a generation quality system — typed prompt builder, LLM judge, evaluation loop, observability logging
+            Split generation-quality judgement into three layers — automated gates, measured-distribution checks, human review — and built the quality system on a typed prompt builder, LLM judge, evaluation loops, and observability logging
           </CapCard>
           <CapCard title="Product Backend Ownership">
             Led order/inventory APIs, RabbitMQ/TaskIQ workers, retry, test/CI/onboarding; led service boundaries, migrations, and domain audits in a hospital product monorepo
@@ -388,7 +403,14 @@ function DocEn() {
       <Sec no="05" title="Career">
         <NumberedList className="border-t border-border-soft">
           <CareerRow org="MediSolve AI" now period="Apr 2025 —">
-            AI product backend, product operations, engineering standards; also serving as Tech Lead and Product Owner
+            <span className="mb-1 block text-fg-2">Backend Engineer · Head of corporate R&amp;D center · Tech Lead / Product Owner</span>
+            <PlainList
+              items={[
+                <>Rebuilt the AI content generation backend end to end and have owned development and operations since cutover — QA reopen rate <strong>37% to 11%</strong>, tens of thousands of monthly requests at <strong>~0.3% HTTP 5xx</strong></>,
+                <>Led the order/inventory backend and asynchronous worker flows for a clinic operations platform, moving failure-prone work outside the API boundary</>,
+                <>Designed and built the organization-wide FastAPI template with embedded agent context, and led product operations on release gates</>,
+              ]}
+            />
           </CareerRow>
           <CareerRow org="TheDayLabs" period="Feb — Apr 2025">
             Began working with MediSolve AI&apos;s founder as a freelancer — started Centurion&apos;s early backend and set up the new dev team&apos;s systems and standards
@@ -396,14 +418,19 @@ function DocEn() {
           <CareerRow org="Memento AI" period="Oct 2024 — Jan 2025">
             Introduced Stripe prepayment and stabilized refund, mileage, and ticket rollback flows; role ended when the company ceased operations
           </CareerRow>
-          <CareerRow org="TellingMe" period="Jan — Dec 2024">
-            Side project · Led the Spring Boot backend and AWS deployment/monitoring (concurrent with Memento)
-          </CareerRow>
           <CareerRow org="STUDIO LAB" period="Dec 2021 — Dec 2023">
-            Primary PM for SellerCanvas (generative-AI commerce content, CES 2024 Best of Innovation); planned and built the systems that kept the product running
+            Primary PM for SellerCanvas (generative-AI commerce content); planned and built the systems that kept the product running — AI Engineer to PM to Backend Engineer
           </CareerRow>
           <CareerRow org="아이즈솔" period="2020.08 — 2021.06">
-            Started in AI product engineering with Vision AI
+            Started in AI product engineering with Vision AI (internship)
+          </CareerRow>
+        </NumberedList>
+        <p className="mb-2 mt-6 font-mono text-xs uppercase tracking-[0.06em] text-muted">
+          Personal Project
+        </p>
+        <NumberedList className="border-t border-border-soft">
+          <CareerRow org="TellingMe" period="Jan — Dec 2024">
+            Led the Spring Boot backend and AWS deployment/monitoring — primary of two backend engineers on a 10-person team; shipped on the App Store
           </CareerRow>
         </NumberedList>
       </Sec>
@@ -432,6 +459,9 @@ function DocEn() {
           </NumberedRow>
           <NumberedRow label="2021.09" labelWidth="md" labelClassName="text-xs" className="border-t-0 py-1">
             <span className="text-sm text-fg-2">ADsP · Advanced Data Analytics Semi-Professional</span>
+          </NumberedRow>
+          <NumberedRow label="Cert." labelWidth="md" labelClassName="text-xs" className="border-t-0 py-1">
+            <span className="text-sm text-fg-2">Korea Conformity Laboratories (KCL) — AI accuracy certification</span>
           </NumberedRow>
         </NumberedList>
       </Sec>

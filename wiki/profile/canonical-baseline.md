@@ -144,6 +144,7 @@ owner: [public-safety.md](../rules/public-safety.md) · [evidence-policy.md](../
 | 산출물 | 상태 |
 | --- | --- |
 | [resume v3](../products/resume/master/v3/content.md) | DRAFT — 이 문서 기준 반영됨 |
-| [resume v2](../products/resume/master/v2/content.md) | 이전 버전 (연차·STUDIO LAB 날짜만 정정됨) |
-| marinkim.xyz `/resume` | v2 기반 + STUDIO LAB 날짜 정정. **v3 미반영** |
+| [resume v2](../products/resume/master/v2/content.md) | 이전 버전. v3 로 대체됐다 |
+| `resume-view.tsx` (로컬) | **v3 반영 완료** (2026-08-09) — 연차 4년차 · MediSolve 3 bullet · 개인 프로젝트 분리 · CES 를 Credentials 로 · KCL 인증 추가. 규칙 위반 0건 검증 |
+| marinkim.xyz `/resume` | **배포 대기** — push 시 반영된다 |
 | 채용 플랫폼 7곳 | [sync-spec](../backlog/platform-profile-consolidation/sync-spec.md) 기준 미적용 |
