@@ -102,15 +102,25 @@ AI 엔지니어·PM 경험은 **배경**으로 서술하되 현재 직무로 내
 
 ### 2.2 리멤버 — 우선순위 2 (노출 최다, 내용 최악)
 
-- [ ] **소개글 전면 교체** — "백엔드 개발자가 되고싶은…" 전문 삭제. §1.6 기반 재작성
-  - 제거 필수: "되고싶은" / "현재 진행하고 있는 Seller Canvas" / "단점: 하나의 역할만으로 수행한 경험이 없습니다" / "Seller Canvas가 마무리되면"
-- [ ] 경력 연차 → **`4년차`**
-- [ ] MediSolve 직무를 `Tech Lead` → `Backend Engineer (Tech Lead 병행)`
-- [ ] **더데이랩스 경력 추가** (현재 없음)
-- [ ] 스킬을 백엔드 중심으로 교체 — 현재 Python·딥러닝·SQL·머신러닝·PM·기획·데이터분석·영상처리·UX·C#
-  - 목표: Python, FastAPI, Java, Spring Boot, TypeScript, NestJS, MySQL, PostgreSQL, Docker, AWS, Azure
-- [ ] **웹사이트·블로그에 marinkim.xyz 등록** (현재 비어 있음)
-- [ ] STUDIO LAB 상세의 정량 성과는 유지 (자산이다)
+**2026-08-10 실행 완료.** 아래 전 항목 반영·검증됨 (금지 문구 전수 스캔 0건).
+
+- [x] **소개글 전면 교체** — 1,279자 3축 문안. **커넥트용·채용 서비스용 두 탭 모두** 적용
+  - 제거 완료: "되고싶은" / "현재 진행하고 있는 Seller Canvas" / "단점: 하나의 역할만으로 수행한 경험이 없습니다" / "Seller Canvas가 마무리되면"
+- [x] 경력 연차 → **`4년차`**
+- [x] MediSolve 직무를 `Tech Lead` → `Backend Engineer (Tech Lead 병행)`
+- [x] **더데이랩스 경력 추가** — 2025.02~2025.04 · `Backend Engineer (프리랜서)`
+- [x] 스킬 교체 — Python, FastAPI, Java, Spring Boot, TypeScript, NestJS, MySQL, PostgreSQL, Docker, AWS, Azure
+  - FastAPI·Spring Boot·TypeScript·NestJS는 리멤버 사전에 없어 **직접 등록**으로 추가
+- [x] **웹사이트·블로그에 marinkim.xyz 등록**
+- [x] STUDIO LAB 종료일 `2024.01` → **`2023.12`**
+- [x] **메디솔브 경력 중복 2건 → 1건** — 직책 없는 쪽 삭제 (실행 중 발견)
+- [x] 특허를 수상·기타이력에 별도 항목으로 추가 — `[특허] 페이지 출력 방법 - 등록 10-2898273`
+
+⚠️ **~~STUDIO LAB 상세의 정량 성과는 유지 (자산이다)~~ — 폐기된 지시다.**
+[platform-copy 공통 금지](platform-copy.md)가 과거 정량(99.8%·이미지 15장→무제한·95% 단축 등)을 전 플랫폼에서 막는다.
+user-confirmed(2026-08-09) "아이즈솔·텔링미 수치는 큰 의미가 없다"가 이 항목을 덮었으므로, 아이즈솔·STUDIO LAB 상세에서 **정량을 걷어내고 "무엇을 했는가"까지만** 남겼다.
+
+⚠️ 특허를 STUDIO LAB 상세 안에 넣지 않은 이유: `career.yaml`의 forbidden_copy가 **"특허와 SellerCanvas의 연결 (확정 전)"**을 금지한다. 수상·기타이력에 독립 항목으로 둔다.
 
 ### 2.3 그룹바이 — 우선순위 3 (내용은 최상, 표기만 정정)
 
