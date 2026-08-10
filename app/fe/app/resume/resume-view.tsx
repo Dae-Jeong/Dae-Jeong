@@ -82,13 +82,109 @@ const SECTIONS = [
   { id: "s6", ko: "credentials" },
 ];
 
+/* 스킬은 나열이 아니라 근거와 함께 둔다 — 각 항목이 어디서 쓰였는지까지 적는다 */
+function Skill({ stack, via }: { stack: string; via: string }) {
+  return (
+    <>
+      {stack}
+      <span className="mt-0.5 block font-mono text-xs text-muted">{via}</span>
+    </>
+  );
+}
+
 const SKILLS = [
-  { k: "Language / FW", v: "Python, FastAPI, TypeScript, NestJS, Java, Spring Boot" },
-  { k: "Data / Messaging", v: "PostgreSQL, MySQL, Redis, RabbitMQ, TaskIQ" },
-  { k: "Infra / Delivery", v: "Azure, AWS, Terraform, Docker, GitHub Actions" },
+  {
+    k: "Language / FW",
+    v: (
+      <Skill
+        stack="Python, FastAPI, TypeScript, NestJS"
+        via="Thready · Centurion · 고객사 product backend"
+      />
+    ),
+  },
+  {
+    k: "Data / Messaging",
+    v: (
+      <Skill
+        stack="PostgreSQL, MySQL, Redis, RabbitMQ, TaskIQ"
+        via="Centurion 주문·재고 비동기 worker · Thready"
+      />
+    ),
+  },
+  {
+    k: "Infra / Delivery",
+    v: (
+      <Skill
+        stack="Azure, AWS, Terraform, Docker, GitHub Actions"
+        via="사내 infra repository 소유 · TellingMe 배포·모니터링"
+      />
+    ),
+  },
   {
     k: "AI Product",
-    v: "LLM integration/evaluation, typed prompt, structured output, WebSocket, SSE, STT",
+    v: (
+      <Skill
+        stack="LLM integration/evaluation, typed prompt, structured output, WebSocket, SSE, STT"
+        via="Thready 생성 품질 판정 · Centurion realtime 상담 세션"
+      />
+    ),
+  },
+  {
+    k: "개인 프로젝트",
+    v: (
+      <Skill
+        stack="Java, Spring Boot"
+        via="TellingMe — 10명 팀의 백엔드 2명 중 주도, iOS 정식 출시 (2024.01 — 2024.12)"
+      />
+    ),
+  },
+];
+
+const SKILLS_EN = [
+  {
+    k: "Language / FW",
+    v: (
+      <Skill
+        stack="Python, FastAPI, TypeScript, NestJS"
+        via="Thready · Centurion · client product backend"
+      />
+    ),
+  },
+  {
+    k: "Data / Messaging",
+    v: (
+      <Skill
+        stack="PostgreSQL, MySQL, Redis, RabbitMQ, TaskIQ"
+        via="Centurion order/inventory async workers · Thready"
+      />
+    ),
+  },
+  {
+    k: "Infra / Delivery",
+    v: (
+      <Skill
+        stack="Azure, AWS, Terraform, Docker, GitHub Actions"
+        via="Owned the company infra repository · TellingMe deployment/monitoring"
+      />
+    ),
+  },
+  {
+    k: "AI Product",
+    v: (
+      <Skill
+        stack="LLM integration/evaluation, typed prompt, structured output, WebSocket, SSE, STT"
+        via="Thready generation-quality judgement · Centurion realtime consultation sessions"
+      />
+    ),
+  },
+  {
+    k: "Personal project",
+    v: (
+      <Skill
+        stack="Java, Spring Boot"
+        via="TellingMe — primary of two backend engineers on a 10-person team; shipped on the App Store (Jan — Dec 2024)"
+      />
+    ),
   },
 ];
 
@@ -240,14 +336,6 @@ function DocKo() {
             Vision AI에서 시작한 AI product engineering 경력 (인턴)
           </CareerRow>
         </NumberedList>
-        <p className="mb-2 mt-6 font-mono text-xs uppercase tracking-[0.06em] text-muted">
-          개인 프로젝트
-        </p>
-        <NumberedList className="border-t border-border-soft">
-          <CareerRow org="TellingMe" period="2024.01 — 2024.12">
-            Spring Boot backend와 AWS 배포·모니터링 리드 — 10명 팀의 백엔드 2명 중 주도, iOS 정식 출시
-          </CareerRow>
-        </NumberedList>
       </Sec>
 
       <Sec id="s6" no="06" title="학력·교육 / 수상·특허·자격" meta="Credentials">
@@ -342,7 +430,7 @@ function DocEn() {
       </Sec>
 
       <Sec no="03" title="Skills">
-        <KeyValueRows items={SKILLS} />
+        <KeyValueRows items={SKILLS_EN} />
       </Sec>
 
       <Sec no="04" title="Selected Projects">
@@ -401,14 +489,6 @@ function DocEn() {
           </CareerRow>
           <CareerRow org="Eyesol" period="Aug 2020 — Jun 2021">
             Started in AI product engineering with Vision AI (internship)
-          </CareerRow>
-        </NumberedList>
-        <p className="mb-2 mt-6 font-mono text-xs uppercase tracking-[0.06em] text-muted">
-          Personal Project
-        </p>
-        <NumberedList className="border-t border-border-soft">
-          <CareerRow org="TellingMe" period="Jan — Dec 2024">
-            Led the Spring Boot backend and AWS deployment/monitoring — primary of two backend engineers on a 10-person team; shipped on the App Store
           </CareerRow>
         </NumberedList>
       </Sec>

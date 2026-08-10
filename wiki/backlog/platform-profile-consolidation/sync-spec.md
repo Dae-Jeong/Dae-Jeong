@@ -109,8 +109,20 @@ AI 엔지니어·PM 경험은 **배경**으로 서술하되 현재 직무로 내
 - [x] 경력 연차 → **`4년차`**
 - [x] MediSolve 직무를 `Tech Lead` → `Backend Engineer (Tech Lead 병행)`
 - [x] **더데이랩스 경력 추가** — 2025.02~2025.04 · `Backend Engineer (프리랜서)`
-- [x] 스킬 교체 — Python, FastAPI, Java, Spring Boot, TypeScript, NestJS, MySQL, PostgreSQL, Docker, AWS, Azure
-  - FastAPI·Spring Boot·TypeScript·NestJS는 리멤버 사전에 없어 **직접 등록**으로 추가
+- [x] 스킬 정리 — **리멤버는 15개 제한**. 최종: Python, FastAPI, TypeScript, NestJS, MySQL, PostgreSQL, Docker, AWS, Azure, **Terraform**, PM, 기획, 데이터분석, 머신러닝, UX
+  - FastAPI·TypeScript·NestJS·Terraform은 리멤버 사전에 없어 **직접 등록**으로 추가
+
+⚠️ **최초 교체안(`Python, FastAPI, Java, Spring Boot, TypeScript, NestJS, MySQL, PostgreSQL, Docker, AWS, Azure`)은 두 가지가 틀렸다.**
+
+1. **PM·기획·데이터분석·UX를 제거한 것** — 스킬 태그를 포지셔닝 수단으로 오해했다.
+   포지셔닝은 직무란·소개글·헤드라인이 한다. 스킬은 리멤버가 명시적으로 안내하듯 **검색 키워드**이고 배타적이지 않다.
+   실제로 한 일을 뺄 이유가 없다 (user-confirmed 2026-08-10).
+2. **Java·Spring Boot를 넣고 Terraform을 뺀 것** — 우선순위 역전이다.
+   [capabilities.md](../../profile/capabilities.md) L22는 Java/Spring Boot를 **`in personal project`**로 한정하는데,
+   [contribution.md](../../profile/contribution.md) L20의 Terraform은 **infra repository 전체 소유**다.
+   플랫폼 태그는 맥락을 붙일 수 없어 개인 프로젝트 스택이 실무로 읽힌다. 실무 소유 영역을 우선한다.
+
+**전 플랫폼 적용 기준**: 스킬 태그는 실제로 한 것을 넓게 넣되, 칸이 제한되면 **실무 소유 > 개인 프로젝트**, 그리고 **다른 태그가 이미 커버하는 것**(SQL ← MySQL·PostgreSQL, 딥러닝 ← 머신러닝)부터 뺀다.
 - [x] **웹사이트·블로그에 marinkim.xyz 등록**
 - [x] STUDIO LAB 종료일 `2024.01` → **`2023.12`**
 - [x] **메디솔브 경력 중복 2건 → 1건** — 직책 없는 쪽 삭제 (실행 중 발견)
