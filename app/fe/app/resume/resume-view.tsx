@@ -236,10 +236,10 @@ function DocKo() {
       <Sec id="s1" no="01" title="요약" meta="Summary">
         <PlainList
           items={[
-            <>Vision AI에서 시작해 AI 엔지니어·PM을 거쳐 제품을 끝까지 책임지는 층으로 백엔드를 선택한 <Metric>4년차</Metric> 백엔드 엔지니어</>,
-            <>AI 도구로 빠르게 구축된 생성 backend를 <strong>전면 재구축</strong>해 QA 버그 재발률을 <Metric>37%에서 11%로</Metric> 낮추고, 월 수만 건 규모 요청을 <Metric>HTTP 5xx 0.3% 수준</Metric>으로 운영</>,
+            <><strong>AI 제품을 만들고, 무엇을 왜 만들지도 정하는</strong> <Metric>4년차</Metric> 백엔드 엔지니어 — Vision AI에서 시작해 AI 엔지니어·PM을 거쳐 제품을 끝까지 책임지는 층으로 백엔드를 선택</>,
+            <>AI 도구로 빠르게 구축된 생성 backend를 <strong>전면 재구축</strong>하고, cutover 이후 개발·운영을 전담</>,
             <>CES 2024 Best of Innovation <strong>수상 제품의 PM 메인 역할</strong>과 특허 등록 1건</>,
-            <>Backend Engineer 합류 후 <strong>기업부설연구소장·Tech Lead·PO 역할 병행</strong></>,
+            <>Backend Engineer로 합류해 <strong>기업부설연구소장·Tech Lead·PO 역할 병행</strong> — 무엇을 만들지 정하는 자리와 만드는 자리를 동시에 맡고 있다</>,
             <><strong>문제의 경계를 다시 잡고</strong>, <strong>측정과 게이트로 판정 가능하게 만들고</strong>, <strong>그 해결을 표준으로 확장하는 것</strong>이 일하는 방식</>,
           ]}
         />
@@ -290,6 +290,7 @@ function DocKo() {
                 <>cutover 이후 <strong>QA 버그 재발률(해결 대비 reopen) 37% → 11%</strong>, 재발 발생 일평균 <Metric>약 94% 감소</Metric> — 잔여 이슈도 원인 영역이 파악된 상태로 관리</>,
                 <>AI 모듈 확장을 근거로 <strong>FastAPI 분리 도입</strong>(FE는 Next.js 유지), cutover 이후 개발·운영 전담 — 월 수만 건 규모 요청을 <Metric>HTTP 5xx 0.3% 수준</Metric>으로 운영</>,
                 <>생성 품질 판정을 <strong>자동 게이트·실측 분포·사람 판정 3층</strong>으로 나누고, 프롬프트 규칙의 근거를 직접 수집한 실측 데이터로 검증 — 반증된 접근은 기록으로 남겨 재시도를 막음</>,
+                <>품질 기준값을 실측으로 믿고 쓰던 중 재측정에서 <strong>자사 출력을 되먹이고 있었음</strong>을 확인 — 순환을 끊고 기준을 다시 세우는 과정에서 문제 정의 자체의 오류도 함께 드러남</>,
               ]}
             />
           </article>
@@ -391,10 +392,10 @@ function DocEn() {
       <Sec no="01" title="Summary">
         <PlainList
           items={[
-            <>A <Metric>4th-year</Metric> backend engineer who started in Vision AI and moved through AI engineering and PM before choosing backend as the layer that owns products end to end</>,
-            <>Rebuilt an AI content generation backend <strong>end to end</strong>, lowering QA reopen rate from <Metric>37% to 11%</Metric>; own development and operations since cutover while serving tens of thousands of monthly requests at <Metric>~0.3% HTTP 5xx</Metric></>,
+            <>A <Metric>4th-year</Metric> backend engineer <strong>who builds AI products and decides what to build</strong> — started in Vision AI, moved through AI engineering and PM, then chose backend as the layer that owns products end to end</>,
+            <>Rebuilt an AI content generation backend <strong>end to end</strong> and has owned its development and operations since cutover</>,
             <>Served as the <strong>primary PM</strong> for a CES 2024 Best of Innovation-winning product; hold one registered patent</>,
-            <>Joined as a Backend Engineer, while also serving as <strong>Head of the corporate R&amp;D center, Tech Lead, and Product Owner</strong></>,
+            <>Joined as a Backend Engineer, while also serving as <strong>Head of the corporate R&amp;D center, Tech Lead, and Product Owner</strong> — holding both the decision seat and the building seat</>,
             <>My way of working: <strong>redraw the problem boundary</strong>, <strong>make judgement measurable and gated</strong>, then <strong>scale the fix into standards</strong></>,
           ]}
         />
@@ -445,6 +446,7 @@ function DocEn() {
                 <>Reduced the QA reopen rate (resolved-to-reopened) from <strong>37% to 11%</strong>; daily reopen incidence fell by <Metric>~94%</Metric></>,
                 <>Introduced FastAPI as a separate backend based on planned AI-module expansion (keeping Next.js on the frontend); owned development and operations after cutover, serving tens of thousands of monthly requests at <Metric>~0.3% HTTP 5xx</Metric></>,
                 <>Split generation-quality judgement into <strong>three layers</strong> — automated gates, measured-distribution checks, human review — and validated prompt rules against a corpus I collected myself; refuted approaches are kept on record to prevent retries</>,
+                <>Found that a quality baseline we had trusted as measured was actually <strong>feeding on our own output</strong> — breaking the loop and rebuilding the baseline also surfaced an error in the problem definition itself</>,
               ]}
             />
           </article>
