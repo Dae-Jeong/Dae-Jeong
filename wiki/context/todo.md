@@ -128,6 +128,16 @@ owner: [v4 content](../products/resume/master/v4/content.md) 「남은 것」
 - [ ] **원티드** — 문안 확정, 반영만 남음 (자동화 불가 → 붙여넣기)
 - [ ] **사람인** — 로그인 후 착수. 처음부터 dual track으로
 
+### E-0. 문안 구조 감사 → 수정 순서 (2026-08-10 심야 신설)
+
+owner: [copy-structure-audit](../evidence/audits/2026-08-10-copy-structure-audit.md) — 계층 모델(L0~L3)과 자산 9종 판정
+
+- [ ] **1. canonical 확정** — dual-track-copy-draft에 로켓펀치 v5+ 경력 설명 역흡수, platform-copy(v3) 이중 소유 해소
+- [ ] **2. 웹 이력서** — Summary 재작성(L1 기준), Career에 측정 정의 보강, EN 동기화
+- [ ] **3. 리멤버·그룹바이·링크드인 재전파** (v2 → v5+)
+- [ ] **4. 원티드 붙여넣기 패키지 · 사람인** (로그인 대기)
+- [ ] **결정 대기**: 소개 첫 문장 A(현행)/B(판단 서사 선행)/C(결합) — audit §5
+
 ### E-1. 문안 v5 전파 (2026-08-10 야간 신설)
 
 **Codex 교차 리뷰 반영 (2026-08-10).** 지적 12건 중 반영한 것:
