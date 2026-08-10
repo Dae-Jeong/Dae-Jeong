@@ -136,7 +136,7 @@ owner: [public-safety.md](../rules/public-safety.md) · [evidence-policy.md](../
 | --- | --- |
 | SellerCanvas POC 두 번째 브랜드 | 실명 불확실 — 산출물에서 개수를 못박지 않고 SPAO 건만 사용 |
 | 채용 플랫폼 상세 주소 노출 범위 | 사람인에 동·호수까지 기재됨. 시 단위 축소 여부 미정 |
-| medisolve-admin claim 3건 | **`confidence: low` · `public: false`** — self-reported 근거뿐이라 2026-08-09 강등. Git history·배포 설정 대조 시 상향하며, 그전까지 **공개 산출물에 쓰지 않는다** |
+| ~~medisolve-admin claim 3건~~ | **2026-08-10 해소** — Git 대조로 NEXUS와 동일 저장소임이 확인돼 `nexus.admin-backend-ownership`·`nexus.pool-stabilization`·`nexus.quality-automation`으로 흡수했다. KimMarin 734/881 커밋(83%)으로 강등 사유가 소멸해 `public: true`로 복원. 단 강도는 `owned`가 아니라 **`led`**(17%가 타인)이고, "500 에러 완전 해결"은 지표가 없어 여전히 금지다 |
 | 인증서 실물 | 미확인 — `credentials.ai-accuracy-certification` confidence medium 유지 |
 
 ## 9. 파생 산출물

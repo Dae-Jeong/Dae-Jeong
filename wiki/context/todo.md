@@ -45,9 +45,10 @@ owner: [quality-lab-copy-draft](../backlog/platform-profile-consolidation/qualit
 
 owner: [claim-expansion-draft](../products/resume/master/v4/claim-expansion-draft.md) §C
 
-- [ ] `medisolve-admin.*` 3건 — Git history·배포 설정 대조 → `public: true` 복원 시 v4 축 2에 배치
+- [x] ~~`medisolve-admin.*` 3건 — Git history 대조~~ → **2026-08-10 완료.** NEXUS와 동일 저장소로 확인돼 `nexus.*`로 흡수, `public: true` 복원 (KimMarin 734/881 커밋). 강도는 `led`, "500 에러 해결"은 지표 없어 계속 금지
+- [x] ~~`nexus.domain-audit-governance` Git 주도권 확인~~ → `docs/audit` 단독 작성이나 **1커밋이라 근거 불충분**. `contributed` 유지 (2026-08-10)
 - [ ] KCL 인증서 실물 확인 → `credentials.ai-accuracy-certification` confidence `medium` → `high`
-- [ ] `nexus.domain-audit-governance` Git 주도권 확인 → `contributed` → `led`
+- [ ] `nexus.pool-stabilization` 모니터링 지표 확보 → `medium` → `high` + 결과 표현 해금 (현재 "500 에러 해결" 금지)
 
 ---
 
@@ -70,7 +71,7 @@ owner: [claim-expansion-draft](../products/resume/master/v4/claim-expansion-draf
 owner: [v4 content](../products/resume/master/v4/content.md) 「남은 것」
 
 - [ ] Career bullet의 3축 정렬 여부 판단 — **무리하게 맞추면 또 억지 배치가 된다.** 현행 유지가 기본값
-- [ ] 축 2에 `medisolve-admin.pool-stabilization` 추가 (A3 완료 시)
+- [ ] 축 2에 `nexus.pool-stabilization` 추가 검토 — public은 회복됐으나 **결과 표현이 여전히 금지**라 "원인을 짚었다"까지만 쓸 수 있다. 축 2 서사에 충분한지 판단 필요
 
 ---
 

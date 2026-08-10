@@ -46,3 +46,70 @@ claims:
     forbidden_copy:
       - 고객 resource 상세
     verified_at: 2026-07-04
+  - id: nexus.admin-backend-ownership
+    statement: admin/homepage API를 독립 모듈로 둔 backend monorepo를 Clean Architecture 계층 구조로 설계·구축 주도 (진행 중)
+    strength: led
+    confidence: high
+    public: true
+    evidence: [evidence/projects/nexus.md#admin-backend]
+    allowed_copy:
+      - 통합 관리 시스템 backend를 Clean Architecture 계층 구조로 설계·구축 주도
+      - Homepage/Admin API를 독립 모듈로 두고 gateway로 단일 엔드포인트 제공
+      - Generic Repository로 공통 CRUD를 표준화
+      - Multi-tenancy와 Soft Delete 자동 필터링으로 데이터 격리
+    forbidden_copy:
+      - 고객사 실명 (D·C 피부과 마스킹 코드만)
+      - 제품 전체 구축 (backend 범위다)
+      - 단독 구축 (Git 기준 저장소 커밋의 83%이며 100%가 아니다)
+      - 도메인 개수 단정 (서비스 파일 수는 도메인 수와 다르다)
+      - Closure Table 패턴 (repo에 존재하지 않는다 — 자기보고 오류)
+      - 완료형 표현 (2026-08 기준 진행 중)
+      - 지점 수·계약 규모
+    verified_at: 2026-08-10
+    note: >-
+      medisolve-admin.backend-ownership 을 흡수(2026-08-10). 별도 프로젝트로 등록돼 있었으나
+      Git 대조 결과 NEXUS 와 동일 저장소다 — packages/admin-api, packages/homepage-api,
+      api-gateway 구조가 evidence 서술과 일치하고 migration-daybeau 산출물이 함께 있다.
+
+      강등 해소 근거: `workspace:NEXUS` 881 커밋 중 KimMarin 734 건(83%), 2025-11-28~2026-07-20.
+      self-reported 뿐이라 low/public:false 로 내렸던 사유가 소멸했다.
+
+      strength 는 owned 가 아니라 led 다 — 자기 기재는 "단독 구축"이었으나 커밋의 17%가 타인이다.
+      "30개 도메인"도 statement 에서 뺐다. 실측 서비스 파일은 admin-api 44 + homepage-api 9 로
+      자기보고보다 많지만, 파일 수를 도메인 수로 단정할 근거가 없다.
+      Closure Table 은 repo 전수 검색에서 발견되지 않아 allowed_copy 에서 제거했다.
+  - id: nexus.pool-stabilization
+    statement: 커넥션 풀 타임아웃 원인 분석과 풀 설정·세션 생명주기 재조정
+    strength: led
+    confidence: medium
+    public: true
+    evidence: [evidence/projects/nexus.md#connection-pool]
+    allowed_copy:
+      - 커넥션 풀 타임아웃의 원인을 분석해 pool 설정과 세션 생명주기를 재조정
+    forbidden_copy:
+      - 500 에러 완전 해결 (모니터링 지표 대조 전이므로 단정 금지)
+      - 응답 시간 개선 수치 (측정값 없음)
+    verified_at: 2026-08-10
+    note: >-
+      medisolve-admin.pool-stabilization 을 흡수(2026-08-10).
+      `feat(P2-11): Connection Pool 설정 환경변수화` 커밋으로 **작업 사실**은 확인됐다.
+      다만 결과(5xx 해소·응답 시간 안정화)는 전후 모니터링 지표가 없어 여전히 금지다.
+      그래서 confidence 는 high 가 아니라 medium 이다 — 작업은 확인, 효과는 미확인.
+  - id: nexus.quality-automation
+    statement: 코드 컨벤션 정립과 Ruff·Pyright·pre-commit 기반 품질 자동 검증 체계 구축
+    strength: led
+    confidence: high
+    public: true
+    evidence: [evidence/projects/nexus.md#code-quality]
+    allowed_copy:
+      - 코드 컨벤션을 정립하고 전체 코드베이스를 리팩토링
+      - 정적 분석과 타입 체크를 pre-commit 단계에서 자동 검증하도록 구성
+      - Swagger·API·데이터베이스 설계 가이드 문서화
+      - Managed Identity 인증과 롤링 배포 파이프라인 구성
+    forbidden_copy:
+      - 품질 지표 개선 수치 (측정값 없음)
+      - 조직 표준으로 확산 (be-template과 구분할 것 — 이 claim은 단일 제품 내 품질 체계다)
+    verified_at: 2026-08-10
+    note: >-
+      medisolve-admin.quality-automation 을 흡수(2026-08-10).
+      `.pre-commit-config.yaml` 과 pyproject.toml 의 ruff·pyright 의존성으로 확인됐다.
