@@ -134,7 +134,11 @@ owner: [copy-structure-audit](../evidence/audits/2026-08-10-copy-structure-audit
 
 - [ ] **1. canonical 확정** — dual-track-copy-draft에 로켓펀치 v5+ 경력 설명 역흡수, platform-copy(v3) 이중 소유 해소
 - [ ] **2. 웹 이력서** — Summary 재작성(L1 기준), Career에 측정 정의 보강, EN 동기화
-- [ ] **3. 리멤버·그룹바이·링크드인 재전파** (v2 → v5+)
+- [~] **3. 리멤버·그룹바이·링크드인 재전파** (v2 → v5.1)
+  - [x] 리멤버 소개 2탭 — **Luna agent 파일럿 성공** (2026-08-11, reload 검증 + 부모 교차 검증)
+  - [~] 리멤버 경력 설명 5건 + 그룹바이 정찰 — Luna agent 수행 중
+  - [ ] 그룹바이 교체 (정찰 결과로 패키지 4 작성)
+  - [ ] 링크드인 (CSP 제약 — Luna 위임 범위 별도 판단)
 - [ ] **4. 원티드 붙여넣기 패키지 · 사람인** (로그인 대기)
 - [ ] **결정 대기**: 소개 첫 문장 A(현행)/B(판단 서사 선행)/C(결합) — audit §5
 
