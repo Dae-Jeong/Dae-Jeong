@@ -215,17 +215,31 @@ user-confirmed(2026-08-09) "아이즈솔·텔링미 수치는 큰 의미가 없�
 
   **전 플랫폼 적용 원칙**: 소개·자기소개 필드는 "왜 이 사람인가"를 말하는 자리다. 성과 수치는 경력 상세가 소유한다. 리멤버·그룹바이 소개도 같은 기준으로 재검토 대상이다.
 - [x] ~~Azure 제거 여부~~ → **유지 확정**. AWS·Azure를 회사별로 각각 사용한 사실이 드러나야 한다 (§4). NestJS도 유지
-- [ ] MediSolve 직무 `Tech lead` → `Backend Engineer (Tech Lead 병행)`
-- [ ] 회사명 `데이뷰네트웍스` → **`더데이랩스`**
-- [ ] STUDIO LAB 직무 `Product Manager` → `AI Engineer → PM → Backend Engineer`
-- [ ] 아이즈솔 종료 `2021.08` → **`2021.06`**
-- [ ] 경력별 설명 추가 (현재 전무)
+- [x] **MediSolve 경력 설명 추가** — 6개 항목 (2026-08-10). textarea라 자동화 성공
+- [ ] ⚠️ **직접 수정 필요 (typeahead 자동화 불가)**
+  - MediSolve 직함 `Tech lead` → **`Backend Engineer (Tech Lead·PO 병행)`**
+  - 회사명 `데이뷰네트웍스` → **`더데이랩스`**
+  - STUDIO LAB 직함 `Product Manager` → **`AI Engineer → PM → Backend Engineer`**
+- [ ] 아이즈솔 종료 `2021.08` → **`2021.06`** (combobox라 자동화 가능)
+- [ ] 나머지 경력 설명 추가 (더데이랩스·Memento·STUDIO LAB·아이즈솔)
 - [ ] CES·특허 등록
 - [ ] 공개 URL 커스터마이즈 — 한글 기본값 → `/in/marinkim` 류
 - [ ] 외부 링크를 marinkim.xyz로
 - [ ] **영어 프로필 신설** — 아래 참조
 
 #### 링크드인 자동화 제약 (2026-08-10 실측)
+
+0. ⚠️ **typeahead 필드(직함·회사명)는 자동화로 수정할 수 없다.** 아래를 모두 시도해 전부 실패했다:
+
+   | 시도 | 결과 |
+   | --- | --- |
+   | `fill(값)` | DOM은 바뀌나 저장 시 원래 값으로 복원 |
+   | `fill('')` 후 `type` | React가 즉시 복원해 **기존 값 뒤에 덧붙음** |
+   | `Meta+a` → `type` | 선택이 풀려 덧붙음 |
+   | `Meta+a` → `Backspace` | 한 글자만 지워짐 |
+   | `End` → `Shift+Home` → `Backspace` | 선택 안 됨, 값이 더 깨짐 |
+
+   → **직함·회사명은 사용자가 직접 수정해야 한다.** 설명(textarea)·날짜(combobox)는 자동화 가능하다.
 
 1. **CSP가 `browser_evaluate`를 차단한다.** 리멤버·그룹바이에서 쓴 native setter 방식을 못 쓴다. 스냅샷+클릭만 가능하고, 스냅샷 1회가 12,000자를 넘어 **작업당 컨텍스트 비용이 다른 플랫폼의 수 배**다.
 2. **소개 필드에 문단 구분이 들어가지 않는다.** 문단마다 별도 textbox인 contenteditable 구조라 입력 시 개행이 공백으로 바뀐다. `Meta+a` 전체 선택도 듣지 않는다.
