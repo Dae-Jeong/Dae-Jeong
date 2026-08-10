@@ -279,3 +279,22 @@ MediSolve `돌아가는 기능을 왜 다시 만드나` / 더데이랩스 `코�
 - 항목별: 성공/실패/건너뜀 · 검증
 - 이상 징후:
 ```
+
+---
+
+## 패키지 5 결과 + 세션 마감 (2026-08-11)
+
+✅ **패키지 5 완료** — 링크드인 경력 설명 6건 전부 교체·검증 (MediSolve·더데이랩스(구 데이뷰네트웍스 항목)·Memento 정규직·Memento 인턴·STUDIO LAB·아이즈솔). Luna가 CSP 제약 하에서 snapshot+fill로 수행.
+
+⚠️ **남은 이상 1건**: 아이즈솔 기간이 링크드인에서 `2020.08–2021.08 (1년 1개월)`로 표시됨.
+canonical은 `2020.08–2021.06 (11개월)`. Luna는 기간 필드를 건드리지 않았으므로 기존 값이다.
+**수동 확인·수정 필요** (경력 편집 → 종료일 2021년 6월).
+
+❌ **링크드인 영어 프로필 신설 — 자동화 불가 판정**. 외국어 프로필 생성 폼에서:
+- `browser_fill`: DOM에는 들어가나 폼 상태에 등록되지 않음
+- `browser_type`: 커서 위치에 삽입돼 fill 잔여물과 섞임
+- `Meta+a` 전체 선택: 이 폼에서 동작하지 않음
+3회 초과 실패로 중단 규칙에 따라 **저장 없이 폐기**했다 (프로필 무변경 확인).
+→ 수동 생성 필요. 준비된 값: 이름 `Daejeong` / 성 `Kim` / 헤드라인
+`Backend Engineer · PO | Building AI products — and deciding what to build and why | Head of Corporate R&D Center | PM of a CES 2024 Best of Innovation product`
+/ About은 resume-view.tsx EN Summary 참조.
