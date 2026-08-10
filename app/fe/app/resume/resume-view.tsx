@@ -75,12 +75,11 @@ function Metric({ children }: { children: React.ReactNode }) {
 
 const SECTIONS = [
   { id: "s1", ko: "요약" },
-  { id: "s2", ko: "핵심 역량" },
+  { id: "s2", ko: "일하는 방식" },
   { id: "s3", ko: "기술" },
   { id: "s4", ko: "대표 프로젝트" },
   { id: "s5", ko: "경력" },
-  { id: "s6", ko: "일하는 방식" },
-  { id: "s7", ko: "credentials" },
+  { id: "s6", ko: "credentials" },
 ];
 
 const SKILLS = [
@@ -145,32 +144,38 @@ function DocKo() {
             <>AI 도구로 빠르게 구축된 생성 backend를 <strong>전면 재구축</strong>해 QA 버그 재발률을 <Metric>37%에서 11%로</Metric> 낮추고, 월 수만 건 규모 요청을 <Metric>HTTP 5xx 0.3% 수준</Metric>으로 운영</>,
             <>CES 2024 Best of Innovation <strong>수상 제품의 PM 메인 역할</strong>과 특허 등록 1건</>,
             <>Backend Engineer 합류 후 <strong>기업부설연구소장·Tech Lead·PO 역할 병행</strong></>,
-            <>스펙·이슈·릴리스 게이트를 agent가 읽고 실행하는 <strong>agent-readable workflow</strong>를 설계·리드</>,
+            <><strong>문제의 경계를 다시 잡고</strong>, <strong>측정과 게이트로 판정 가능하게 만들고</strong>, <strong>그 해결을 표준으로 확장하는 것</strong>이 일하는 방식</>,
           ]}
         />
       </Sec>
 
-      <Sec id="s2" no="02" title="핵심 역량" meta="Core Capabilities">
-        <CardGrid cols={2}>
-          <CapCard title="AI Product Systems">
-            생성 품질을 자동 게이트·실측 분포·사람 판정 3층으로 나눠 계량하고 자동화 경계를 갈라 설계, typed prompt builder·LLM judge·평가 루프·관측 로깅 기반 품질 시스템 구축
-          </CapCard>
-          <CapCard title="Product Backend Ownership">
-            주문·재고 API와 RabbitMQ·TaskIQ worker, retry·test·CI·onboarding 구축 주도, 병원 product monorepo service boundary·migration·domain audit 주도
-          </CapCard>
-          <CapCard title="Async & Realtime">
-            실패 가능한 작업을 API 경계 밖 worker로 분리하고 retry 가능한 비동기 흐름 구축 주도, realtime session lifecycle과 provider 경계 안정화 공동 주 기여
-          </CapCard>
-          <CapCard title="Infra-Aware Delivery">
-            회사 Azure/Terraform infra 전반 담당 — 환경별 resource boundary, 배포, runbook / 외부 product IaC 전담
-          </CapCard>
-          <CapCard title="Engineering Standard">
-            layered architecture·DI·ADR·convention·runbook 기반 조직 표준 FastAPI template 설계·구축 전담
-          </CapCard>
-          <CapCard title="Agent-Readable Operations">
-            pipeline registry·release gate 기반 제품팀 운영과 릴리스 노트 자동화 리드, daily briefing agent 구축·운영
-          </CapCard>
-        </CardGrid>
+      <Sec id="s2" no="02" title="일하는 방식" meta="How I Work">
+        <NumberedList>
+          <NumberedRow label="01" labelWidth="sm" labelClassName="font-mono text-xs text-muted" className="border-t-0 py-3">
+            <div>
+              <p className="m-0 mb-1 font-semibold text-fg">문제의 경계를 다시 잡는다</p>
+              <p className="m-0 text-sm text-fg-2">
+                증상을 고치기 전에 문제 정의가 맞는지 본다. 재구축을 결정·설득했고, 품질 기준값이 자사 출력을 되먹이던 순환을 발견해 문제 축 자체를 재정의했다.
+              </p>
+            </div>
+          </NumberedRow>
+          <NumberedRow label="02" labelWidth="sm" labelClassName="font-mono text-xs text-muted" className="py-3">
+            <div>
+              <p className="m-0 mb-1 font-semibold text-fg">측정과 게이트로 판정 가능하게 만든다</p>
+              <p className="m-0 text-sm text-fg-2">
+                &ldquo;좋다/나쁘다&rdquo;로는 무엇을 고칠지 알 수 없다. 생성 품질 판정을 자동 게이트·실측 분포·사람 판정 3층으로 나누고, 릴리스·QA를 게이트 구조로 운영한다.
+              </p>
+            </div>
+          </NumberedRow>
+          <NumberedRow label="03" labelWidth="sm" labelClassName="font-mono text-xs text-muted" className="py-3">
+            <div>
+              <p className="m-0 mb-1 font-semibold text-fg">해결을 표준과 자동화로 확장한다</p>
+              <p className="m-0 text-sm text-fg-2">
+                한 번 푼 문제를 팀이 반복해서 쓸 수 있어야 한다. 조직 표준 template에 agent context를 내장하고, 스펙·이슈·릴리스 게이트를 사람과 agent가 함께 읽는 실행 경계로 구성했다.
+              </p>
+            </div>
+          </NumberedRow>
+        </NumberedList>
       </Sec>
 
       <Sec id="s3" no="03" title="기술" meta="Skills">
@@ -188,7 +193,7 @@ function DocKo() {
                 <>AI 도구로 빠르게 구축돼 재발 이슈 통제가 어려웠던 생성 backend를 인계받아, 서비스가 작은 시점에 <strong>전면 재구축을 결정·설득</strong> — 하네스를 먼저 세팅하고 AI와 협업해 파악부터 재구축까지 <Metric>총 36시간(작업 시간 기준)</Metric>에 완수</>,
                 <>cutover 이후 <strong>QA 버그 재발률(해결 대비 reopen) 37% → 11%</strong>, 재발 발생 일평균 <Metric>약 94% 감소</Metric> — 잔여 이슈도 원인 영역이 파악된 상태로 관리</>,
                 <>AI 모듈 확장을 근거로 <strong>FastAPI 분리 도입</strong>(FE는 Next.js 유지), cutover 이후 개발·운영 전담 — 월 수만 건 규모 요청을 <Metric>HTTP 5xx 0.3% 수준</Metric>으로 운영</>,
-                <>typed prompt builder, LLM judge, 평가 루프, 관측 로깅 기반 생성 품질 시스템 구축</>,
+                <>생성 품질 판정을 <strong>자동 게이트·실측 분포·사람 판정 3층</strong>으로 나누고, 프롬프트 규칙의 근거를 직접 수집한 실측 데이터로 검증 — 반증된 접근은 기록으로 남겨 재시도를 막음</>,
               ]}
             />
           </article>
@@ -201,20 +206,9 @@ function DocKo() {
             </h3>
             <PlainList
               items={[
-                <>주문·재고 API와 RabbitMQ·TaskIQ 비동기 worker, retry, test·CI·onboarding 구축 주도</>,
-                <>realtime AI 상담 backend의 세션 lifecycle과 provider 경계 안정화 공동 주 기여</>,
-              ]}
-            />
-          </article>
-          <article>
-            <h3 className="m-0 mb-2 font-mono text-base font-semibold">
-              BE Template <span className="text-sm font-normal text-muted">· Engineering Standard</span>
-            </h3>
-            <PlainList
-              items={[
-                <><strong>소수 백엔드 인원이 다수 제품을 담당하는 체제</strong>에서 조직 표준 FastAPI template 설계·구축 전담 — 어떤 프로젝트든 정책 파악만으로 대응 가능하게 하고 logging·모니터링 등 횡단 관심사를 전 제품에 일괄 반영</>,
-                <>agent context system과 반복 작업 automation skill 내장</>,
-                <>FE 엔지니어도 패턴·규약·하네스 아래에서 BE 로직을 구현할 수 있도록 지원</>,
+                <>주문·재고 API와 RabbitMQ·TaskIQ 비동기 worker, retry 구축 주도 — 실패 가능한 작업(주문·결제)을 <strong>제품 시작 시점부터</strong> API 경계 밖으로 분리한 예방 설계</>,
+                <>비동기 처리를 <strong>Celery에서 TaskIQ + RabbitMQ로 전환</strong>하고 알림 발송을 독립 도메인으로 분리</>,
+                <>API test infrastructure와 Docker CI 구축, 로컬 실행·온보딩 문서 정비로 재현 가능한 개발 환경 구성</>,
               ]}
             />
           </article>
@@ -229,7 +223,7 @@ function DocKo() {
               items={[
                 <>AI 콘텐츠 생성 backend 전면 재구축과 cutover 이후 개발·운영 전담 — QA 버그 재발률 <strong>37% → 11%</strong>, 월 수만 건 규모를 <strong>HTTP 5xx 0.3% 수준</strong>으로 운영</>,
                 <>피부과 운영 플랫폼의 주문·재고 backend와 비동기 worker 흐름 구축 주도 — 실패 가능한 작업을 API 경계 밖으로 분리</>,
-                <>조직 표준 FastAPI template 설계·구축과 agent context 내장, 릴리스 게이트 기반 제품 운영 리드</>,
+                <>조직 표준 FastAPI template 설계·구축과 agent context 내장 — <strong>소수 백엔드 인원이 다수 제품을 담당하는 체제</strong>에서 컨텍스트 전환 비용을 낮추고 횡단 관심사를 일괄 반영</>,
               ]}
             />
           </CareerRow>
@@ -256,18 +250,7 @@ function DocKo() {
         </NumberedList>
       </Sec>
 
-      <Sec id="s6" no="06" title="일하는 방식" meta="Agent Workflow">
-        <PlainList
-          items={[
-            <>AI agent를 코드 자동완성보다 <strong>engineering operating layer</strong>로 활용</>,
-            <>project rules와 source-of-truth routing을 사람과 agent가 함께 읽는 실행 경계로 구성</>,
-            <>스펙·이슈·릴리스 게이트를 agent가 읽고 실행하고, 릴리스 노트 자동화로 버전 관리</>,
-            <>daily briefing agent로 협업 도구 활동 집계와 blocker triage 지원</>,
-          ]}
-        />
-      </Sec>
-
-      <Sec id="s7" no="07" title="학력·교육 / 수상·특허·자격" meta="Credentials">
+      <Sec id="s6" no="06" title="학력·교육 / 수상·특허·자격" meta="Credentials">
         <NumberedList>
           <NumberedRow label="2016 — 2021" labelWidth="md" labelClassName="text-xs" className="border-t-0 py-1">
             <span className="text-sm text-fg-2">우송대학교 게임멀티미디어 전공</span>
@@ -324,32 +307,38 @@ function DocEn() {
             <>Rebuilt an AI content generation backend <strong>end to end</strong>, lowering QA reopen rate from <Metric>37% to 11%</Metric>; own development and operations since cutover while serving tens of thousands of monthly requests at <Metric>~0.3% HTTP 5xx</Metric></>,
             <>Served as the <strong>primary PM</strong> for a CES 2024 Best of Innovation-winning product; hold one registered patent</>,
             <>Joined as a Backend Engineer, while also serving as <strong>Head of the corporate R&amp;D center, Tech Lead, and Product Owner</strong></>,
-            <>Designed and lead an <strong>agent-readable workflow</strong> where AI agents read specs, execute issues, and gate releases</>,
+            <>My way of working: <strong>redraw the problem boundary</strong>, <strong>make judgement measurable and gated</strong>, then <strong>scale the fix into standards</strong></>,
           ]}
         />
       </Sec>
 
-      <Sec no="02" title="Core Capabilities">
-        <CardGrid cols={2}>
-          <CapCard title="AI Product Systems">
-            Split generation-quality judgement into three layers — automated gates, measured-distribution checks, human review — and built the quality system on a typed prompt builder, LLM judge, evaluation loops, and observability logging
-          </CapCard>
-          <CapCard title="Product Backend Ownership">
-            Led order/inventory APIs, RabbitMQ/TaskIQ workers, retry, test/CI/onboarding; led service boundaries, migrations, and domain audits in a hospital product monorepo
-          </CapCard>
-          <CapCard title="Async & Realtime">
-            Separated failure-prone operations from the API boundary into retryable background workers; co-led realtime session lifecycle and provider-boundary stabilization
-          </CapCard>
-          <CapCard title="Infra-Aware Delivery">
-            Own company-wide Azure/Terraform infrastructure — per-environment resource boundaries, deployment, runbooks; built external product IaC as the sole engineer
-          </CapCard>
-          <CapCard title="Engineering Standards">
-            Designed and built the org-standard FastAPI template as the sole engineer — layered architecture, DI, ADR, conventions
-          </CapCard>
-          <CapCard title="Agent-Readable Operations">
-            Lead product operations on a pipeline registry and release gates, including automated release notes; built and operate a daily briefing agent
-          </CapCard>
-        </CardGrid>
+      <Sec no="02" title="How I Work">
+        <NumberedList>
+          <NumberedRow label="01" labelWidth="sm" labelClassName="font-mono text-xs text-muted" className="border-t-0 py-3">
+            <div>
+              <p className="m-0 mb-1 font-semibold text-fg">Redraw the boundary of the problem</p>
+              <p className="m-0 text-sm text-fg-2">
+                Before fixing symptoms, I check whether the problem is framed correctly. I decided and argued for a full backend rebuild, and found a loop where our quality baseline was feeding on our own output — then redefined the axis itself.
+              </p>
+            </div>
+          </NumberedRow>
+          <NumberedRow label="02" labelWidth="sm" labelClassName="font-mono text-xs text-muted" className="py-3">
+            <div>
+              <p className="m-0 mb-1 font-semibold text-fg">Make judgement measurable and gated</p>
+              <p className="m-0 text-sm text-fg-2">
+                &ldquo;Good or bad&rdquo; tells you nothing about what to fix. I split generation-quality judgement into three layers — automated gates, measured-distribution checks, human review — and run releases and QA as gates.
+              </p>
+            </div>
+          </NumberedRow>
+          <NumberedRow label="03" labelWidth="sm" labelClassName="font-mono text-xs text-muted" className="py-3">
+            <div>
+              <p className="m-0 mb-1 font-semibold text-fg">Scale the fix into standards and automation</p>
+              <p className="m-0 text-sm text-fg-2">
+                A problem solved once should be reusable by the team. I embedded agent context into the organization-wide backend template and turned specs, issues, and release gates into an execution boundary that both people and agents read.
+              </p>
+            </div>
+          </NumberedRow>
+        </NumberedList>
       </Sec>
 
       <Sec no="03" title="Skills">
@@ -367,7 +356,7 @@ function DocEn() {
                 <>Inherited a generation backend built quickly with AI tools and difficult-to-control recurring issues; made and defended the decision to rebuild it while the service was still small, then completed discovery through rebuild in <Metric>36 work hours</Metric> with an AI collaboration harness</>,
                 <>Reduced the QA reopen rate (resolved-to-reopened) from <strong>37% to 11%</strong>; daily reopen incidence fell by <Metric>~94%</Metric></>,
                 <>Introduced FastAPI as a separate backend based on planned AI-module expansion (keeping Next.js on the frontend); owned development and operations after cutover, serving tens of thousands of monthly requests at <Metric>~0.3% HTTP 5xx</Metric></>,
-                <>Built the generation quality system — typed prompt builder, LLM judge, evaluation loop, observability logging</>,
+                <>Split generation-quality judgement into <strong>three layers</strong> — automated gates, measured-distribution checks, human review — and validated prompt rules against a corpus I collected myself; refuted approaches are kept on record to prevent retries</>,
               ]}
             />
           </article>
@@ -380,20 +369,9 @@ function DocEn() {
             </h3>
             <PlainList
               items={[
-                <>Led order/inventory APIs, RabbitMQ/TaskIQ async workers, retry, and test/CI/onboarding setup</>,
-                <>Co-led session lifecycle and provider-boundary stabilization for a realtime AI consultation backend</>,
-              ]}
-            />
-          </article>
-          <article>
-            <h3 className="m-0 mb-2 font-mono text-base font-semibold">
-              BE Template <span className="text-sm font-normal text-muted">· Engineering standard</span>
-            </h3>
-            <PlainList
-              items={[
-                <>In an environment where a <strong>small backend team supports many products</strong>, solely designed and built the org-standard FastAPI template — layered architecture, DI, ADR, conventions, runbooks; made project onboarding policy-driven and applied cross-cutting logging and monitoring consistently</>,
-                <>Embedded an agent context system and automation skills for repetitive work</>,
-                <>Enabled frontend engineers to implement backend logic within shared patterns, conventions, and harnesses</>,
+                <>Led order/inventory APIs, RabbitMQ/TaskIQ async workers and retry — moved failure-prone work (orders, payments) outside the API boundary <strong>from product inception</strong> as preventive design</>,
+                <>Migrated async processing <strong>from Celery to TaskIQ + RabbitMQ</strong> and split notification delivery into its own domain</>,
+                <>Built API test infrastructure and Docker CI, and set up local-run and onboarding docs for a reproducible dev environment</>,
               ]}
             />
           </article>
@@ -408,7 +386,7 @@ function DocEn() {
               items={[
                 <>Rebuilt the AI content generation backend end to end and have owned development and operations since cutover — QA reopen rate <strong>37% to 11%</strong>, tens of thousands of monthly requests at <strong>~0.3% HTTP 5xx</strong></>,
                 <>Led the order/inventory backend and asynchronous worker flows for a clinic operations platform, moving failure-prone work outside the API boundary</>,
-                <>Designed and built the organization-wide FastAPI template with embedded agent context, and led product operations on release gates</>,
+                <>Designed and built the organization-wide FastAPI template with embedded agent context — lowering context-switching cost and applying cross-cutting concerns at once in a setup where <strong>a small backend team covers many products</strong></>,
               ]}
             />
           </CareerRow>
@@ -421,7 +399,7 @@ function DocEn() {
           <CareerRow org="STUDIO LAB" period="Dec 2021 — Dec 2023">
             Primary PM for SellerCanvas (generative-AI commerce content); planned and built the systems that kept the product running — AI Engineer to PM to Backend Engineer
           </CareerRow>
-          <CareerRow org="아이즈솔" period="2020.08 — 2021.06">
+          <CareerRow org="Eyesol" period="Aug 2020 — Jun 2021">
             Started in AI product engineering with Vision AI (internship)
           </CareerRow>
         </NumberedList>
@@ -435,18 +413,7 @@ function DocEn() {
         </NumberedList>
       </Sec>
 
-      <Sec no="06" title="Agent Workflow">
-        <PlainList
-          items={[
-            <>Uses AI agents as an <strong>engineering operating layer</strong>, not code autocomplete</>,
-            <>Composes project rules and source-of-truth routing that humans and agents read together</>,
-            <>Agents read and execute specs, issues, and release gates; automated release notes support version management</>,
-            <>Built a daily briefing agent that aggregates collaboration-tool activity for blocker triage</>,
-          ]}
-        />
-      </Sec>
-
-      <Sec no="07" title="Education & Credentials">
+      <Sec no="06" title="Education & Credentials">
         <NumberedList>
           <NumberedRow label="2016 — 2021" labelWidth="md" labelClassName="text-xs" className="border-t-0 py-1">
             <span className="text-sm text-fg-2">Woosong University, Game Multimedia major</span>
