@@ -20,13 +20,30 @@ v4의 변경은 하나다 — **같은 claim을 인물 서사 축으로 재배�
 
 ## 관통 주제 3축 (evidence 검증됨)
 
-| 축 | claim | 교차 프로젝트 |
+| 축 | 교차 프로젝트 | 상태 |
 | --- | --- | --- |
-| 1. 문제를 다시 정의한다 | 6건 | career · centurion · nexus · thready |
-| 2. 검증 가능한 상태로 만든다 | 8건 | centurion · mediness · thready |
-| 3. 팀이 쓰게 만든다 | 7건 | be-template · career · infra · mediness · nexus |
+| **1. 문제의 경계를 다시 잡는다** | career · centurion · nexus · thready (4개) | ✅ 성립 |
+| **2. 측정과 게이트로 판정 가능하게 만든다** | centurion · mediness · nexus · thready (4개) | ✅ 성립 |
+| **3. 해결을 표준과 자동화로 확장한다** | be-template · career · centurion · mediness (4개) | ✅ 성립 |
 
-**세 축 모두 3개 이상 프로젝트를 교차한다.** 단일 프로젝트 자랑이 아니라 일하는 방식이라는 근거다.
+### 축 2 — 미달에서 성립까지 (2026-08-09)
+
+초안 1차는 축 2가 3개 프로젝트를 교차한다고 적었으나, **억지 배치 2건을 걷어내니 2개로 떨어졌다.**
+
+| 제거한 claim | 이유 |
+| --- | --- |
+| `centurion.say-realtime-ai` | "세션 lifecycle과 provider 경계 안정화 공동 주 기여" — **판정 장치가 아니라 안정화 작업**이다 |
+| `thready.qa-reopen-reduction` | "재발률 37% → 11%" — **판정 장치가 아니라 결과**다. Summary·Career가 이미 소유한다 |
+
+축 3에서도 `infra.company-azure-ownership`·`nexus.terraform-infra`를 뺐다. **IaC 소유 자체는 "팀이 쓰게 만들었다"는 증거가 아니다.** 대신 runbook·문서화가 명시된 `centurion.shared-infra`로 교체했다.
+
+**→ 보강 완료 (2026-08-09).** `centurion.test-ci-foundation`과 `nexus.domain-audit-governance`를 기존 복합 claim에서 분리해 승격했고, 축 2는 **4개 프로젝트**를 교차한다. 억지로 끼워 넣은 게 아니라 **이미 있던 사실을 제자리로 옮긴 것**이다 — 두 claim 모두 Code-backed 근거를 그대로 쓴다.
+
+함께 처리: `centurion.async-migration`(Celery→TaskIQ)을 신설했다. `centurion.bay-async-backend`의 `forbidden_copy`가 이 서술을 금지하고 있었는데, Git history 실측으로 사실이 확인돼 해제하고 별도 claim으로 올렸다.
+
+이 지적은 Codex(gpt-5.6-sol) 교차 리뷰에서 나왔고 evidence 원문 대조로 확인했다.
+
+축별 claim 매핑은 문서 말미 [부록](#부록--축별-claim-매핑)에 둔다. 이력서 본문에는 넣지 않는다 — 산출물이 아니라 **작성자용 추적표**다.
 
 ---
 
@@ -45,7 +62,7 @@ v3 유지 + **마지막 줄에 3축 예고를 넣어** 이후 섹션과 연결�
 - AI 도구로 빠르게 구축된 생성 backend를 **전면 재구축해 QA 버그 재발률을 37%에서 11%로** 낮추고, 월 수만 건 규모 요청을 **HTTP 5xx 0.3% 수준**으로 운영 (`thready.qa-reopen-reduction`, `thready.production-operation-quality`)
 - **CES 2024 Best of Innovation 수상 제품**의 PM 메인 역할 · **특허 등록 1건** (`credentials.ces-2024`, `credentials.page-output-patent`)
 - Backend Engineer 합류 후 **기업부설연구소장·Tech Lead·PO 역할 병행** (`career.medisolve-role-evolution`)
-- **문제를 다시 정의하고, 판단을 검증 가능한 상태로 만들고, 그 결과를 팀이 쓰게 만드는 것**이 일하는 방식이다 ← *3축 예고*
+- **문제의 경계를 다시 잡고, 측정과 게이트로 판정 가능하게 만들고, 그 해결을 표준으로 확장하는 것**이 일하는 방식이다 ← *3축 예고 — 다음 섹션이 이 문장을 받는다*
 
 ## How I Work — 일하는 방식
 
@@ -95,7 +112,7 @@ v3 구조 유지 ([recency weighting](../../../../rules/recency-weighting.md)). 
 
 ### Thready · AI 콘텐츠 생성 제품
 
-**메인 프로젝트.** 3축이 한 프로젝트 안에서 전부 관찰되는 사례다 — 문제를 다시 정의(재구축 결정)하고, 판정 가능하게 만들고(3층 체계·실측), 그 결과를 운영 구조로 남겼다.
+**메인 프로젝트.** 3축이 한 프로젝트 안에서 전부 관찰되는 사례다 — 문제의 경계를 다시 잡고(재구축 결정), 판정 가능하게 만들고(3층 체계·실측), 그 해결을 운영 구조로 남겼다.
 
 - AI 도구로 빠르게 구축돼 재발 이슈 통제가 어려웠던 생성 backend를 인계받아, 서비스가 작은 시점에 **전면 재구축을 결정·설득** — 하네스를 먼저 세팅하고 AI와 협업해 파악부터 재구축까지 **총 36시간(작업 시간 기준)**에 완수
 - cutover 이후 **QA 버그 재발률 37% → 11%**, 재발 일평균 **약 94% 감소**
@@ -134,21 +151,85 @@ v3 유지.
 
 | 항목 | v3 | v4 |
 | --- | --- | --- |
-| 핵심 역량 | `Capabilities` 6개 카드 (프로젝트 1:1) | **`How I Work` 3축** (프로젝트 교차) |
-| 대표 프로젝트 | 3~4건 나열 | **1건 + "왜 남기는가" 명시** |
-| Summary 마지막 줄 | agent workflow 설명 | **3축 예고** — 본문과 연결 |
-| Career bullet | 프로젝트 서술 | 3축 언어로 정렬 |
-| 일하는 방식 섹션 | 별도 존재 | **How I Work에 흡수** (중복 제거) |
+| 핵심 역량 | `Capabilities` 6개 카드 (프로젝트 1:1 대응) | **`How I Work` 3문장 thesis bar** — 근거는 Career·Selected Projects가 소유 |
+| 대표 프로젝트 | 3~4건 나열 | **2건** (Thready·Centurion) + "왜 이 둘인가" 명시 |
+| Summary 마지막 줄 | agent workflow 설명 | **3축 예고** — 다음 섹션이 이 문장을 받는다 |
+| 일하는 방식 섹션 | 별도 존재 | How I Work에 흡수 (중복 제거) |
+| claim 추적 | 섹션별 산재 | **부록에 축별 매핑** (본문에는 넣지 않음) |
 
-## 남은 검토
+### 초안 과정에서 되돌린 것
 
-1. **`일하는 방식(Agent Workflow)` 섹션 처리** — v3까지 별도 섹션이었다. v4의 How I Work 3축과 내용이 겹치므로 흡수하는 것이 맞다. 다만 agent-readable workflow는 포지셔닝 3순위라 완전히 묻히면 안 된다 → **3축 중 "팀이 쓰게 만든다"에 배치**했다.
-2. **A4 2장 검증 (PDF 출력 시)** — [content-contract Acceptance Gate 5](../../content-contract.md) 규정이다. 웹은 스크롤이라 직접 제약이 아니고, **PDF 산출이 필요해질 때** 확인한다. 현재 PDF 파이프라인은 v0·v1 시절 것이라 v4용 재생성이 선행돼야 한다.
-3. **6초/30초 테스트** — 헤더+Summary로 "어떤 엔지니어인가" 답이 나오는지, How I Work까지 읽고 그 답이 선명해지는지.
-4. **`medisolve-admin.*` 복원 시 배치** — 근거 확보되면 축 1(단독 구축·아키텍처 재설계) 또는 축 2(커넥션 풀 원인 분석)에 들어간다.
-5. **2축의 thready 비중** — 8건 중 5건이 thready다. 다만 **Thready 가 메인 프로젝트이므로(user-confirmed 2026-08-09) 이는 편중이 아니라 정상**이다. 메인 프로젝트에 근거가 가장 두껍게 쌓이는 것이 자연스럽고, 오히려 흩어져 있으면 무엇이 주력인지 읽히지 않는다.
+v4 초안 1차의 두 결정을 Codex 교차 리뷰 후 철회했다. **기록으로 남긴다 — 왜 되돌렸는지가 다음 판단의 재료다.**
 
-   보강은 "균형 맞추기"가 아니라 **다른 프로젝트에서도 같은 방식으로 일했다는 증거 확보** 목적으로 한다 — 관통선의 설득력을 높이기 위해서다. 후보:
-   - `centurion.bay-async-backend` 의 test·CI infrastructure 를 별도 claim 으로 분리 (현재 한 claim 에 묶여 있다)
-   - `nexus.backend-architecture` 의 domain audit 을 검증 활동으로 재서술
-   - `medisolve-admin.pool-stabilization` 복원 시 2축 배치 (Git history 대조 필요)
+| 1차 결정 | 철회 이유 |
+| --- | --- |
+| How I Work 16 bullet | 인벤토리를 없앤다면서 같은 claim을 추상 축 아래 **다시 나열**했다. Summary·Career·Selected Projects와 4중 중복 → **3문장으로 축소** |
+| Selected Projects 1건 | 리서치가 비판한 건 "weekend experiments 별도 섹션"이지 섹션 자체가 아니다(상한 5개). 1건이면 **"강한 프로젝트가 하나뿐"**으로 읽힌다 → **2건 복원** |
+
+## 남은 작업
+
+### ✅ 선행 완료 (2026-08-09) — 축 2 성립
+
+| 작업 | 결과 |
+| --- | --- |
+| `centurion.test-ci-foundation` 분리 | 승격 (`led`/`high`) |
+| `nexus.domain-audit-governance` 분리 | 승격 (`contributed`/`high` — boundary 준수) |
+| `centurion.async-migration` 신설 | 승격 — Git 실측으로 Unverified 해제 |
+| 기존 claim statement 축소 | `bay-async-backend`·`backend-architecture` 동시 축소, 중복 없음 |
+
+claim registry **39 → 42건**. 축 2가 2개 → **4개 프로젝트** 교차.
+
+### 🟡 남은 것
+
+1. **화면 반영 후 6초/30초 테스트** — 헤더+Summary로 "어떤 엔지니어인가" 답이 나오는지, How I Work까지 읽고 그 답이 **선명해지는지 흩어지는지**. 리서치가 제시한 실제 판단 시간 기준이다.
+2. **`medisolve-admin.*` 복원 시 배치** — Git history 대조로 `public: true` 회복되면 축 2(커넥션 풀 원인 분석)에 넣는다. 축 2 보강 후보 중 하나다.
+3. **A4 2장 (PDF 출력 시)** — [content-contract Acceptance Gate 5](../../content-contract.md). 웹은 스크롤이라 직접 제약이 아니다. PDF 파이프라인이 v0·v1 시절 것이라 재생성이 선행돼야 한다.
+4. **Career bullet의 3축 정렬 확인** — 변경 요약에서 이 항목을 뺐다. 현재 Career bullet은 프로젝트 서술 그대로이며, 3축 언어로 다시 쓸지는 화면 반영 후 판단한다. **무리하게 맞추면 또 다른 억지 배치가 된다.**
+
+### 판단 기준 — 다음에 같은 실수를 막기 위해
+
+이번 초안에서 두 번 과교정했다. 공통 원인은 **"규칙을 지키려다 사실을 비틀었다"**는 것이다.
+
+- 축에 맞추려고 `say-realtime-ai`(안정화 작업)를 판정 장치로 배치했다
+- 인벤토리를 없애려고 프로젝트를 1건까지 줄였다
+- evidence가 "예방 설계"라고 명시한 것을 "전환"으로 바꿔 썼다
+
+**축은 사실을 설명하는 도구지 사실을 재단하는 틀이 아니다.** 축에 안 맞는 claim은 축에 넣지 않는다 — 부록의 "축에 배치하지 않는 claim" 목록이 그 자리다.
+
+---
+
+## 부록 — 축별 claim 매핑
+
+**이력서 본문에 넣지 않는다.** How I Work를 3문장으로 줄이면서 claim 추적이 끊겼기 때문에, 작성자가 "이 축의 근거가 무엇인가"를 확인할 수 있도록 남긴다.
+
+### 1. 문제의 경계를 다시 잡는다
+
+`thready.rebuild-decision-execution` · `thready.backend-rebuild` · `thready.measurement-correction` · `centurion.bay-async-backend` · `nexus.backend-architecture` · `career.ai-pm-backend-continuity`
+
+*보강 후보*: `centurion.async-migration` (Celery→TaskIQ, 검증 완료)
+
+### 2. 측정과 게이트로 판정 가능하게 만든다
+
+`thready.quality-criteria-system` · `thready.corpus-measurement` · `thready.falsification-log` · `thready.production-operation-quality` · `thready.release-operation` · `mediness.product-operations`
+
+`centurion.test-ci-foundation` · `nexus.domain-audit-governance` ← **2026-08-09 승격**
+
+**4개 프로젝트(centurion · mediness · nexus · thready)** — 성립.
+
+*추가 후보*: `medisolve-admin.pool-stabilization`(Git history 대조로 복원 시)
+
+*제거함(2026-08-09)*: `centurion.say-realtime-ai`(안정화 작업이지 판정 장치가 아님) · `thready.qa-reopen-reduction`(결과이지 장치가 아님 — Summary·Career가 소유)
+
+### 3. 해결을 표준과 자동화로 확장한다
+
+`be-template.backend-standard` · `be-template.team-leverage` · `be-template.agent-context` · `mediness.daily-briefing` · `career.thedaylabs-freelance` · `centurion.shared-infra`
+
+**4개 프로젝트** — 성립.
+
+*제거함(2026-08-09)*: `infra.company-azure-ownership` · `nexus.terraform-infra`. **IaC 소유 자체는 "팀이 쓰게 만들었다"는 증거가 아니다.** runbook·문서화가 statement에 명시된 `centurion.shared-infra`로 교체했다.
+
+### 축에 배치하지 않는 claim
+
+`career.tenure` · `career.medisolve-role-evolution` · `career.sellercanvas-product-system` · `career.memento-payment` · `career.tellingme-backend-infra` · `centurion.day-product-integration` · `centurion.ray-backend` · `centurion.sso-session` · `centurion.say-realtime-ai` · `infra.company-azure-ownership` · `nexus.terraform-infra` · `credentials.*`
+
+→ Summary·Career·Credentials가 소유한다. **모든 claim을 축에 욱여넣지 않는다.**

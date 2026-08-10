@@ -2,17 +2,61 @@ schema_version: 1
 project: centurion
 claims:
   - id: centurion.bay-async-backend
-    statement: BAY 주문·재고 backend와 RabbitMQ·TaskIQ worker flow, retry, test·CI·onboarding 구축 주도
+    statement: BAY 주문·재고 backend와 RabbitMQ·TaskIQ worker flow, retry 구축 주도 — 실패 가능한 작업을 제품 시작 시점부터 API 경계 밖으로 분리한 예방 설계
     strength: led
     confidence: high
     public: true
     evidence: [evidence/projects/centurion.md#bay-async-backend]
     allowed_copy:
-      - 주문·재고 API와 RabbitMQ·TaskIQ 비동기 worker, retry, test·CI·onboarding 구축 주도
+      - 주문·재고 API와 RabbitMQ·TaskIQ 비동기 worker, retry 구축 주도
+      - 실패 가능한 작업을 제품 시작 시점부터 API 경계 밖 worker로 분리
     forbidden_copy:
       - Centurion backend 전체 단독 구축
-      - Celery에서 TaskIQ로 전환
+      - 장애를 겪은 뒤의 사후 대응이라는 서술 (예방 설계다)
     verified_at: 2026-07-04
+    note: >-
+      2026-08-09 분리: test·CI·onboarding 은 centurion.test-ci-foundation 이,
+      Celery -> TaskIQ 전환은 centurion.async-migration 이 소유한다.
+      forbidden_copy 의 "Celery에서 TaskIQ로 전환"은 Git history 검증(BAY-BE-API)으로 해제했다.
+  - id: centurion.test-ci-foundation
+    statement: BAY backend의 API test infrastructure, Docker CI 구축과 onboarding 문서 정비
+    strength: led
+    confidence: high
+    public: true
+    evidence: [evidence/projects/centurion.md#bay-async-backend]
+    allowed_copy:
+      - API test infrastructure와 Docker CI 구축 주도
+      - 로컬 실행·온보딩 문서를 함께 정비해 재현 가능한 개발 환경 구성
+    forbidden_copy:
+      - 테스트 커버리지 수치 (측정값 없음)
+      - CI 도입으로 인한 결함 감소율 (미검증)
+      - 조직 전체 CI 표준 수립 (BAY 범위다)
+      - 검증 기반을 기능보다 먼저 만들었다는 시간 순서·의도 주장 (근거에 없다)
+    verified_at: 2026-08-09
+    note: >-
+      centurion.bay-async-backend 에서 분리(2026-08-09). Code-backed 근거는 동일 anchor 이며
+      Git history 로도 확인된다 — "test: API 테스트 커버리지 대폭 확대"(2026-01-11),
+      "refactor: 테스트 인프라 구축 #315"(2026-01-12),
+      "docs: FE 온보딩 가이드 및 Docker Compose 원클릭 셋업 #321"(2026-03-30).
+  - id: centurion.async-migration
+    statement: BAY backend의 비동기 처리를 Celery에서 TaskIQ + RabbitMQ로 전환하고 알림 발송을 독립 도메인으로 분리
+    strength: led
+    confidence: high
+    public: true
+    evidence: [evidence/projects/centurion.md#bay-async-backend]
+    allowed_copy:
+      - 비동기 작업 시스템을 Celery에서 TaskIQ + RabbitMQ로 전환
+      - 알림 발송을 독립 도메인으로 분리해 결합도 제거
+      - 워커 이미지를 분리해 배포 단위를 나눔
+    forbidden_copy:
+      - 전환으로 인한 성능·지연 개선 수치 (측정값 없음)
+      - 시스템 복잡도 감소 정량 표현 (측정값 없음)
+    verified_at: 2026-08-09
+    note: >-
+      2026-08-09 Git history 실측으로 Unverified 해제. workspace:BAY-BE-API —
+      "feat: 대규모 시스템 리팩토링 - Notification/Celery 제거 및 Alimtalk/TaskIQ 마이그레이션"(2025-09-14),
+      "Remove/notification celery #304"(2025-09-15), TaskIQ 1~3차 구성(2025-09-08~09),
+      "fix: taskIQ 재고 차감 처리 오류 시, retry 로직 추가"(2025-10-01). 전부 KimMarin 명의.
   - id: centurion.say-realtime-ai
     statement: SAY realtime AI 상담 backend의 세션 lifecycle과 STT/LLM provider 경계, translation/audio pipeline 공동 주 기여
     strength: co-led

@@ -32,7 +32,9 @@ DAY, BAY, RAY, SAY는 별도 제품이 아니라 Centurion CRM & ERP 제품을 �
 - Code-backed: order, product, inventory API와 TaskIQ/RabbitMQ worker, inventory retry, API test infrastructure, Docker CI, onboarding documents가 확인됐다.
 - User-confirmed (2026-07-19 인터뷰): worker 분리는 실패를 겪은 뒤의 사후 대응이 아니라 **제품 시작 시점부터의 예방 설계** — 실패 가능한 작업(주문·결제)을 처음부터 API 경계 밖 worker로 분리했다. 배경: Memento에서 결제 실패 실사례(롤백·환불 순서·티켓 정합성)를 직접 수습한 경험의 전이 ([previous-career](previous-career.md#memento-payment)).
 - Contribution boundary: 해당 backend 영역의 구축·설계 주도. Centurion 전체 backend ownership은 아니다.
-- Unverified: 기존 이력서의 `Celery -> TaskIQ migration` 서사는 Git history 추가 검증 전 사용하지 않는다.
+- **Code-backed (2026-08-09 실측, Unverified 해제)**: `Celery -> TaskIQ migration` 이 `workspace:BAY-BE-API` Git history 로 확인됐다 — "feat: 대규모 시스템 리팩토링 - Notification/Celery 제거 및 Alimtalk/TaskIQ 마이그레이션"(2025-09-14), "Remove/notification celery (#304)"(2025-09-15), TaskIQ 1~3차 구성(2025-09-08~09), "fix: taskIQ 재고 차감 처리 오류 시, retry 로직 추가"(2025-10-01). 전부 KimMarin 명의이며 플랫폼 기재 문구와 일치한다. → `centurion.async-migration` 으로 승격.
+- Measurement boundary: 전환 사실은 확인됐으나 **성능·지연 개선이나 "복잡도 감소" 정량은 측정값이 없다.** 전환과 도메인 분리까지만 말한다.
+- 분리 기록 (2026-08-09): 기존 `centurion.bay-async-backend` 한 claim 에 묶여 있던 test·CI·onboarding 을 `centurion.test-ci-foundation` 으로 분리했다. 근거 anchor 는 동일하며, 각 사실을 하나의 claim 만 소유하도록 기존 statement 를 축소했다.
 
 ## SAY Realtime AI
 

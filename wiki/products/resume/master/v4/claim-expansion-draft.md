@@ -13,7 +13,9 @@ tags: [resume, v4, claim, evidence, draft]
 
 보강 목적은 **"다른 프로젝트에서도 같은 방식으로 일했다"는 증거 확보** — 관통선이 한 프로젝트의 특수 사례가 아니라 일하는 방식임을 보이기 위해서다.
 
-현재 2축(검증 가능한 상태로 만든다)은 8건 중 5건이 thready다. 아래 분리로 centurion·nexus 근거가 각 1건씩 늘어난다.
+**축 2(측정과 게이트로 판정 가능하게 만든다)는 현재 2개 프로젝트만 교차한다** — thready·mediness. 관통선 요건(3개 이상)에 미달하므로 이 보강은 **선택이 아니라 v4의 전제 조건**이다.
+
+초안 1차는 3개 교차라고 적었으나, 억지 배치 2건(`centurion.say-realtime-ai` — 안정화 작업, `thready.qa-reopen-reduction` — 결과)을 걷어내면서 2개로 떨어졌다.
 
 ---
 
@@ -194,11 +196,13 @@ wiki 정책은 "사용 금지"인데 플랫폼에는 상세히 적혀 있다.
 
 | 축 | 현재 | 보강 후 |
 | --- | --- | --- |
-| 1. 문제를 다시 정의한다 | 6건 / 4개 프로젝트 | +1 (`centurion.async-migration`) |
-| 2. 검증 가능한 상태로 만든다 | 8건 / 3개 프로젝트 | **+3** (`centurion.test-ci-foundation`, `nexus.domain-audit-governance`, `medisolve-admin.pool-stabilization`) → **5개 프로젝트** |
-| 3. 팀이 쓰게 만든다 | 7건 / 5개 프로젝트 | 유지 |
+| 1. 문제의 경계를 다시 잡는다 | 6건 / **4개 프로젝트** ✅ | +`centurion.async-migration` (검증 완료) |
+| 2. 측정과 게이트로 판정 가능하게 만든다 | 6건 / **2개 프로젝트** ⚠️ | +`centurion.test-ci-foundation` +`nexus.domain-audit-governance` → **4개 프로젝트** ✅ |
+| 3. 해결을 표준과 자동화로 확장한다 | 6건 / **4개 프로젝트** ✅ | 유지 |
 
-2축이 3개 → 5개 프로젝트를 교차하게 된다. **Thready 비중은 그대로 두고 다른 근거만 더한다.**
+**축 2만 미달이고, A·B 승격으로 해소된다.** Thready 비중은 그대로 두고 다른 프로젝트 근거만 더하는 방식이다.
+
+`medisolve-admin.pool-stabilization`은 복원되면 축 2에 추가되나, Git history 대조가 선행돼야 하므로 위 표에서는 제외했다.
 
 ## 실행 순서
 

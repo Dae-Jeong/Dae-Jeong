@@ -2,17 +2,39 @@ schema_version: 1
 project: nexus
 claims:
   - id: nexus.backend-architecture
-    statement: 외부 병원 product backend monorepo의 service boundary, migration·domain audit, docs governance 주도
+    statement: 외부 병원 product backend monorepo의 service boundary와 migration flow 주도
     strength: led
     confidence: high
     public: true
     evidence: [evidence/projects/nexus.md#backend-architecture]
     allowed_copy:
-      - 병원 product backend monorepo의 service boundary와 migration·domain audit 주도
+      - 병원 product backend monorepo의 service boundary와 migration flow 주도
     forbidden_copy:
       - 고객사명
       - 병원 SaaS 전체 단독 구축
     verified_at: 2026-07-04
+    note: >-
+      2026-08-09 분리: domain audit 과 documentation governance 는
+      nexus.domain-audit-governance 가 소유한다.
+  - id: nexus.domain-audit-governance
+    statement: multi-brand backend monorepo의 domain audit과 documentation governance 수행
+    strength: contributed
+    confidence: high
+    public: true
+    evidence: [evidence/projects/nexus.md#backend-architecture]
+    allowed_copy:
+      - domain audit과 문서 governance 수행
+    forbidden_copy:
+      - audit 적발 건수·개선율 (측정값 없음)
+      - 고객 제품 전체 품질 책임 (backend 범위다)
+      - 경계 위반 관리·문서 부채 해소 등 효과 서술 (evidence 범위를 넘는다)
+      - led/owned 강도
+    verified_at: 2026-08-09
+    note: >-
+      nexus.backend-architecture 에서 분리(2026-08-09). strength 는 contributed 다 —
+      nexus.md 의 contribution boundary 가 "backend architecture와 migration flow 주도"만
+      명시하며 domain audit·docs governance 는 그 '주도' 범위에 포함돼 있지 않다.
+      Git history 로 주도권이 확인되면 led 로 올린다.
   - id: nexus.terraform-infra
     statement: NEXUS Terraform IaC 구축 전담
     strength: owned
