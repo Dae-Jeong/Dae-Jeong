@@ -113,8 +113,11 @@ owner: [v4 content](../products/resume/master/v4/content.md) 「남은 것」
 [identity.md](../profile/identity.md#dual-track-근거와-경계)에 **Backend Engineer + PO 병기**를 확정했다 (user-confirmed).
 링크드인만 반영됐고 나머지는 미반영이다.
 
+문안 초안: [dual-track-copy-draft](../backlog/platform-profile-consolidation/dual-track-copy-draft.md) — **검토 대기 3건 포함**
+
 - [x] `identity.md` — Brand Hierarchy에 Dual role 추가, Canonical One-Line 개정, Guardrail 개정
 - [x] 링크드인 헤드라인·소개
+- [x] 전 플랫폼 문안 초안 작성 (2026-08-10)
 - [ ] **웹 이력서** — Summary·Career의 역할 표기, EN 포함
 - [ ] **리멤버** — 소개글이 아직 3축 전문(수치 포함). 정성 서사 + dual track으로 재작성
 - [ ] **그룹바이** — 자기소개가 아직 3축 전문(수치 포함). 동일
