@@ -1,13 +1,15 @@
 ---
-type: draft
-title: Dual Track 전파 문안 초안
-description: Backend Engineer + PO 병기와 "정량은 경력 상세가 소유" 원칙을 전 플랫폼에 적용하는 문안 초안.
+type: spec
+title: Dual Track 전파 문안 (확정)
+description: Backend Engineer + PO 병기와 "정량은 상세가 소유" 원칙의 전 플랫폼 확정 문안.
 timestamp: 2026-08-10
-status: draft
-tags: [platform, copy, identity, dual-track, draft]
+status: confirmed
+tags: [platform, copy, identity, dual-track]
 ---
 
-# Dual Track 전파 문안 초안
+# Dual Track 전파 문안 (확정)
+
+**2026-08-10 확정.** 검토 3건이 모두 답변돼 초안 → 확정본으로 승격했다.
 
 owner 규칙: [identity.md](../../profile/identity.md#dual-track-근거와-경계) · 확정 문안은 [platform-copy](platform-copy.md)로 이관
 
