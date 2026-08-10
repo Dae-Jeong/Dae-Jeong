@@ -26,6 +26,7 @@ tags: [context, routing, progressive-disclosure]
 | JD 분석 | [../products/jd/README.md](../products/jd/README.md) |
 | 문서 위치 판단 | [../rules/document-routing.md](../rules/document-routing.md) |
 | 시기별 서술 비중 | [../rules/recency-weighting.md](../rules/recency-weighting.md) |
+| 문장을 설득력 있게 | [../rules/persuasive-writing.md](../rules/persuasive-writing.md) |
 | 고객사 마스킹 | [../evidence/clients.md](../evidence/clients.md) |
 
 ## Context Budget
