@@ -236,11 +236,11 @@ function DocKo() {
       <Sec id="s1" no="01" title="요약" meta="Summary">
         <PlainList
           items={[
-            <><strong>AI 제품을 만들고, 무엇을 왜 만들지도 정하는</strong> <Metric>4년차</Metric> 백엔드 엔지니어 — Vision AI에서 시작해 AI 엔지니어·PM을 거쳐 제품을 끝까지 책임지는 층으로 백엔드를 선택</>,
+            <><strong>AI 제품을 만들고, 무엇을 왜 만들지도 정하는</strong> <Metric>4년차</Metric> 백엔드 엔지니어 — 기획을 이해하는 개발자라는 점이 인계받은 제품의 문제를 다시 정의하는 속도에서 드러난다</>,
+            <><strong>기업부설연구소장·Tech Lead·PO 역할을 병행</strong>하며 AI 제품 backend를 만들면서 제품팀 운영을 함께 리드</>,
+            <><strong>문제의 경계를 다시 잡고</strong>, <strong>측정과 게이트로 판정 가능하게 만들고</strong>, <strong>그 해결을 표준으로 확장하는 것</strong>이 일하는 방식</>,
             <>AI 도구로 빠르게 구축된 생성 backend를 <strong>전면 재구축</strong>하고, cutover 이후 개발·운영을 전담</>,
             <>CES 2024 Best of Innovation <strong>수상 제품의 PM 메인 역할</strong>과 특허 등록 1건</>,
-            <>Backend Engineer로 합류해 <strong>기업부설연구소장·Tech Lead·PO 역할 병행</strong> — 무엇을 만들지 정하는 자리와 만드는 자리를 동시에 맡고 있다</>,
-            <><strong>문제의 경계를 다시 잡고</strong>, <strong>측정과 게이트로 판정 가능하게 만들고</strong>, <strong>그 해결을 표준으로 확장하는 것</strong>이 일하는 방식</>,
           ]}
         />
       </Sec>
@@ -392,11 +392,11 @@ function DocEn() {
       <Sec no="01" title="Summary">
         <PlainList
           items={[
-            <>A <Metric>4th-year</Metric> backend engineer <strong>who builds AI products and decides what to build</strong> — started in Vision AI, moved through AI engineering and PM, then chose backend as the layer that owns products end to end</>,
+            <>A <Metric>4th-year</Metric> backend engineer <strong>who builds AI products and decides what to build</strong> — reading product intent is what makes redefining an inherited system fast</>,
+            <>Serving as <strong>Head of the corporate R&amp;D center, Tech Lead, and Product Owner</strong> — building AI product backends while leading how the product team operates</>,
+            <>My way of working: <strong>redraw the problem boundary</strong>, <strong>make judgement measurable and gated</strong>, then <strong>scale the fix into standards</strong></>,
             <>Rebuilt an AI content generation backend <strong>end to end</strong> and has owned its development and operations since cutover</>,
             <>Served as the <strong>primary PM</strong> for a CES 2024 Best of Innovation-winning product; hold one registered patent</>,
-            <>Joined as a Backend Engineer, while also serving as <strong>Head of the corporate R&amp;D center, Tech Lead, and Product Owner</strong> — holding both the decision seat and the building seat</>,
-            <>My way of working: <strong>redraw the problem boundary</strong>, <strong>make judgement measurable and gated</strong>, then <strong>scale the fix into standards</strong></>,
           ]}
         />
       </Sec>

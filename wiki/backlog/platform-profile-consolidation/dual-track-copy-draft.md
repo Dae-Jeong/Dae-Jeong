@@ -58,7 +58,7 @@ user-confirmed로 바로잡는다 — **"수치는 굳이 요약쪽에서 할 �
 | --- | --- | --- |
 | **최소** | `Backend Engineer · PO` | 직함 필드, 헤드라인 앞머리 |
 | **한 줄** | `AI 제품을 만들고, 무엇을 왜 만들지도 정하는 백엔드 엔지니어` | 캐노니컬 원라인, 이력서 최상단 |
-| **착지 문장** | `무엇을 왜 만들지 정하는 일과 그것을 직접 만드는 일을 함께 하고 있고, 그 둘이 붙어 있을 때 제품이 가장 빨리 좋아진다고 믿습니다` | 소개 마지막 문장 |
+| **착지 문장** | `지금은 AI 제품 backend를 만들면서 제품팀 운영을 함께 리드하고 있습니다. 결정하는 자리와 만드는 자리가 붙어 있을 때 제품이 가장 빨리 좋아진다고 믿습니다` | 소개 마지막 문단 |
 
 **착지 문장이 핵심이다.** "둘 다 한다"로 끝나면 병기가 초점 분산으로 읽힌다.
 **"둘이 붙어 있어서 빠르다"**로 착지해야 희소성이 된다.
@@ -77,32 +77,41 @@ user-confirmed로 바로잡는다 — **"수치는 굳이 요약쪽에서 할 �
 · 문제의 경계를 다시 잡고, 측정과 게이트로 판정 가능하게 만들고, 그 해결을 표준으로 확장하는 것이 일하는 방식
 ```
 
-### 확정안
+### 확정안 (2026-08-10 재작성 — 순서까지 바꿈)
 
 ```
-· AI 제품을 만들고, 무엇을 왜 만들지도 정하는 4년차 백엔드 엔지니어 — Vision AI에서 시작해 AI 엔지니어·PM을 거쳐 제품을 끝까지 책임지는 층으로 백엔드를 선택
+· AI 제품을 만들고, 무엇을 왜 만들지도 정하는 4년차 백엔드 엔지니어 — 기획을 이해하는 개발자라는 점이 인계받은 제품의 문제를 다시 정의하는 속도에서 드러난다
+· 기업부설연구소장·Tech Lead·PO 역할을 병행하며 AI 제품 backend를 만들면서 제품팀 운영을 함께 리드
+· 문제의 경계를 다시 잡고, 측정과 게이트로 판정 가능하게 만들고, 그 해결을 표준으로 확장하는 것이 일하는 방식
 · AI 도구로 빠르게 구축된 생성 backend를 전면 재구축하고, cutover 이후 개발·운영을 전담
 · CES 2024 Best of Innovation 수상 제품의 PM 메인 역할과 특허 등록 1건
-· Backend Engineer로 합류해 기업부설연구소장·Tech Lead·PO 역할 병행 — 무엇을 만들지 정하는 자리와 만드는 자리를 동시에 맡고 있다
-· 문제의 경계를 다시 잡고, 측정과 게이트로 판정 가능하게 만들고, 그 해결을 표준으로 확장하는 것이 일하는 방식
 ```
 
-**바뀐 것 3가지**
+**순서를 바꿨다.** 종전은 `정체성 → 대표성과 → 자산 → 현재역할 → 일하는 방식`이라
+**현재 역할이 4번째**에 있었다. 6초 스캔에서 "지금 뭐 하는 사람인가"가 늦게 나온다.
 
-- 1번: dual track 한 줄을 앞세우고 **`4년차`를 여기에 붙였다** (user-confirmed)
-- 2번: **`37%→11%`·`HTTP 5xx 0.3%` 제거.** 무엇을 했는지까지만 남겼다. 수치는 Career·Projects가 소유한다
-- 4번: 기존 "역할 병행"이 직함 나열이라 무슨 뜻인지 안 보였다. **왜 그 조합이 의미 있는지**를 붙였다
+새 순서는 **지금 → 방식 → 증거**다.
 
+| # | 답하는 질문 |
+| --- | --- |
+| 1 | 나는 누구이고 왜 강점인가 |
+| 2 | **지금 무엇을 맡고 있나** |
+| 3 | 어떻게 일하나 |
+| 4-5 | 그 증거 (성과·자산) |
+
+1번 뒤의 경로 나열(`Vision AI에서 시작해 ~ 백엔드를 선택`)도 뺐다. Career 섹션이 시간순으로 보여주므로 Summary가 반복할 이유가 없다.
+
+수치(`37%→11%`·`HTTP 5xx 0.3%`)는 제거했고 `4년차`는 1번에 붙였다.
 `특허 등록 1건`·`CES 2024`는 남긴다 — 성과 수치가 아니라 **검증된 사실 항목**이다.
 
 ### EN
 
 ```
-· A 4th-year backend engineer who builds AI products and decides what to build — started in Vision AI, moved through AI engineering and PM, then chose backend as the layer that owns the product end to end
-· Rebuilt an AI-scaffolded generation backend from the ground up and has owned its development and operations since cutover
-· Primary PM for a CES 2024 Best of Innovation award-winning product; one registered patent
-· Joined as a Backend Engineer, while also serving as Head of the corporate R&D center, Tech Lead, and Product Owner — holding both the decision seat and the building seat
-· The way I work: redraw the problem boundary, make quality judgeable through measurement and gates, then scale the fix into standards
+· A 4th-year backend engineer who builds AI products and decides what to build — reading product intent is what makes redefining an inherited system fast
+· Serving as Head of the corporate R&D center, Tech Lead, and Product Owner — building AI product backends while leading how the product team operates
+· My way of working: redraw the problem boundary, make judgement measurable and gated, then scale the fix into standards
+· Rebuilt an AI content generation backend end to end and has owned its development and operations since cutover
+· Served as the primary PM for a CES 2024 Best of Innovation-winning product; hold one registered patent
 ```
 
 ---
@@ -119,27 +128,41 @@ user-confirmed로 바로잡는다 — **"수치는 굳이 요약쪽에서 할 �
 
 ### 확정안 — 전 플랫폼 공통 본문
 
+**2026-08-10 재작성.** user-confirmed:
+> "내가 이거저거 했다가 중요한 건 아니라서 굳이 이거했다 저거했다를 먼저 이야기할 필요는 없을 것 같아.
+> **지금의 내가 어떤 사람인지 명확하게 각인하는 게 필요해.**"
+
 ```
-AI 제품을 만들고, 무엇을 왜 만들지도 정하는 4년차 백엔드 엔지니어입니다.
+AI 제품을 만들고, 무엇을 왜 만들지도 정하는 4년차 백엔드 엔지니어입니다. 기획을 이해하는 개발자라는 점이 인계받은 제품의 문제를 다시 정의하는 속도에서 드러납니다.
 
-Vision AI 엔지니어로 시작해 PM을 거쳐 백엔드로 왔습니다. 돌아온 게 아니라, 제품을 끝까지 책임지는 자리를 고른 쪽에 가깝습니다.
+버그부터 세지 않고 문제 정의가 맞는지부터 봅니다. "좋다/나쁘다"로 말하면 무엇을 고쳐야 할지 알 수 없다고 생각합니다. 판정할 수 있게 만들고, 한 번 푼 문제는 팀이 반복해 쓸 수 있는 형태로 남깁니다.
 
-인계받은 제품을 볼 때 버그부터 세지 않고 문제 정의가 맞는지부터 봅니다. "좋다/나쁘다"로 말하면 무엇을 고쳐야 할지 알 수 없다고 생각합니다. 판정할 수 있게 만들고, 한 번 푼 문제는 팀이 반복해 쓸 수 있는 형태로 남깁니다.
-
-지금은 무엇을 왜 만들지 정하는 일과 그것을 직접 만드는 일을 함께 하고 있습니다. 그 둘이 붙어 있을 때 제품이 가장 빨리 좋아진다고 믿습니다.
+지금은 AI 제품 backend를 만들면서 제품팀 운영을 함께 리드하고 있습니다. 결정하는 자리와 만드는 자리가 붙어 있을 때 제품이 가장 빨리 좋아진다고 믿습니다.
 ```
 
-4문단 · 약 250자. **리멤버·그룹바이·원티드·로켓펀치에 같은 본문을 쓴다.**
+3문단 · 약 220자. **리멤버·그룹바이·원티드·로켓펀치에 같은 본문을 쓴다.**
 
-**초안 1차에서 바뀐 것**
+**직전안(4문단)에서 바뀐 것**
 
-| 항목 | 결정 |
+| 뺀 것 | 이유 |
 | --- | --- |
-| `4년차` | **첫 문장에 넣는다** (user-confirmed). 연차 필드와 중복이지만, 소개만 읽는 사람에게 한 번은 보여야 한다 |
-| 실패담(측정 되먹임) | **뺐다.** user-confirmed "상세쪽에 넣어도 될 것 같은데?" → 웹 이력서 Thready 케이스로 이관 |
-| "수치는 경력 항목에" 유도 문장 | **뺐다.** 수치를 요약에서 전면 제외하기로 해서 유도 자체가 불필요해졌다 |
+| `Vision AI 엔지니어로 시작해 PM을 거쳐 백엔드로 왔습니다` 문단 | **경로 나열이지 "지금의 나"가 아니다.** 커리어 전환 서사는 경력 항목이 시간순으로 보여준다 |
+| `지금은 무엇을 왜 만들지 정하는 일과 그것을 직접 만드는 일을 함께` | 1문단의 dual track 선언과 **같은 말의 반복**이었다 |
 
-실패담이 빠지면서 320자 → 250자로 줄었고, **네 문단이 각각 한 가지만 말한다** — 정체성 / 경로 / 일하는 방식 / 지금.
+**대신 넣은 것**
+
+- 1문단 뒤에 `기획을 이해하는 개발자라는 점이 ~ 속도에서 드러납니다` — 과거 PM 경력을 **이력이 아니라 현재의 능력**으로 진술한다. "PM을 했다"가 아니라 "그래서 지금 이게 빠르다"
+- 3문단을 `AI 제품 backend를 만들면서 제품팀 운영을 함께 리드` — 추상적 dual track 재진술을 **지금 실제로 맡고 있는 것**으로 교체
+
+**3문단 구조**
+
+| 문단 | 답하는 질문 |
+| --- | --- |
+| 1 | 나는 누구이고, 그게 왜 강점인가 |
+| 2 | 그래서 어떻게 일하는가 |
+| 3 | 지금 무엇을 맡고 있는가 |
+
+시간 순서(과거→현재)가 아니라 **정의 → 방식 → 현재**다. 첫 문장부터 "지금의 나"로 시작한다.
 
 ⚠️ 리멤버는 **커넥트용·채용 서비스용 두 탭**이 있고 현재 같은 내용이다. 둘 다 교체한다.
 ⚠️ 리멤버·그룹바이는 일반 textarea라 **문단 구분이 들어간다.** 링크드인만 한 덩어리로 저장된다.
@@ -151,7 +174,7 @@ Vision AI 엔지니어로 시작해 PM을 거쳐 백엔드로 왔습니다. 돌�
 리멤버와 같은 본문을 쓰되, **수상·자격·특허 목록은 유지한다.** 그룹바이 자기소개 필드가 그 역할을 겸하고 있다.
 
 ```
-(위 리멤버 본문 4문단과 동일)
+(위 리멤버 본문 3문단과 동일)
 
 ■ 수상·자격·특허
 
@@ -173,7 +196,7 @@ Vision AI 엔지니어로 시작해 PM을 거쳐 백엔드로 왔습니다. 돌�
 | --- | --- | --- |
 | 원티드 | 자기소개 | 리멤버 본문 그대로. AX 항목은 별도 |
 | 로켓펀치 | 소개 | 같은 본문. 레벨을 `주니어` → 미들/시니어로 함께 정정 |
-| 사람인 | 자기소개서 | 사람인은 **항목별 자기소개서** 양식이라 4문단을 항목에 나눠 배치 |
+| 사람인 | 자기소개서 | 사람인은 **항목별 자기소개서** 양식이라 3문단을 항목에 나눠 배치 |
 
 ---
 
