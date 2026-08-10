@@ -220,7 +220,7 @@ function DocKo() {
           Backend Engineer · AI Product Systems
         </p>
         <p className="mt-4 text-lg font-medium">
-          AI 제품을 만들고, 무엇을 왜 만들지도 정하는 백엔드 엔지니어
+          AI 제품을 만들고, 무엇을 만들지도 함께 정하는 백엔드 엔지니어
         </p>
         <div className="mt-4 flex flex-wrap gap-2">
           <Chip variant="contact" href="mailto:marin.backend@gmail.com">
@@ -236,8 +236,8 @@ function DocKo() {
       <Sec id="s1" no="01" title="요약" meta="Summary">
         <PlainList
           items={[
-            <><strong>AI 제품을 만드는 일만 <Metric>4년째</Metric></strong> — 모델을 만들다 기획으로, 다시 백엔드로 자리를 옮겼고 지금은 만드는 일과 무엇을 왜 만들지 정하는 일을 함께 맡는다</>,
-            <>백엔드를 택한 건 <strong>AI가 구현을 점점 더 많이 맡게 될수록, 보안과 안정성처럼 사람이 끝까지 책임지는 층의 무게가 커진다고 봤기 때문</strong> — AI와 협업해 제품을 만드는 지금, 그 판단은 더 확고해졌다</>,
+            <><strong>AI 제품만 <Metric>4년째</Metric> 만들고 있다</strong> — 모델을 만들다 기획을 거쳐 백엔드로 왔고, 지금은 백엔드를 만들면서 무엇을 만들지 정하는 역할도 같이 맡는다</>,
+            <>백엔드를 택한 데는 이유가 있다 — <strong>AI가 구현을 점점 더 많이 맡을수록, 보안과 안정성처럼 사람이 끝까지 책임져야 하는 층이 더 무거워진다고 봤다</strong>. 매일 AI와 같이 제품을 만드는 지금, 그 판단이 틀리지 않았다고 느낀다</>,
             <><strong>기업부설연구소장·Tech Lead·PO 역할을 병행</strong>하며 AI 제품 backend를 만들면서 제품팀 운영을 함께 리드</>,
             <><strong>문제의 경계를 다시 잡고</strong>, <strong>측정과 게이트로 판정 가능하게 만들고</strong>, <strong>그 해결을 표준으로 확장하는 것</strong>이 일하는 방식 — AI 도구로 빠르게 구축된 생성 backend를 전면 재구축하고 cutover 이후 개발·운영을 전담</>,
             <>CES 2024 Best of Innovation <strong>수상 제품의 PM 메인 역할</strong>과 특허 등록 1건</>,

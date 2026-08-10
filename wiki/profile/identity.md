@@ -15,12 +15,14 @@ tags: [identity, positioning, branding]
 | Primary category | Backend Engineer |
 | **Dual role** | **Product Owner** (2026-08-10 user-confirmed — 병기하되 primary를 대체하지 않는다) |
 | Specialty | AI Product Systems |
-| Differentiator | **만들면서 무엇을 왜 만들지도 정한다** + Agent-readable Engineering Workflow |
+| Differentiator | **만들면서 무엇을 만들지도 함께 정한다** + Agent-readable Engineering Workflow |
 | Supporting narrative | Vision AI -> PM -> Backend -> AI Product/Agent Workflow |
 
 ## Canonical One-Line
 
-> AI 제품을 만들고, 무엇을 왜 만들지도 정하는 백엔드 엔지니어.
+> AI 제품을 만들고, 무엇을 만들지도 함께 정하는 백엔드 엔지니어.
+>
+> *(v5.2, 2026-08-11 — "무엇을 왜"는 의문사 스태킹 번역투라 제거. [persuasive-writing §9](../rules/persuasive-writing.md))*
 
 ## English
 
@@ -41,7 +43,7 @@ user-confirmed(2026-08-10): "백엔드 엔지니어 / PO 혼용해도 좋을 것
 
 **그래서 병기 방식을 고정한다.**
 
-- ✅ **한 문장으로 묶는다** — "만들고, 무엇을 왜 만들지도 정한다". 두 축이 **하나의 희소성**으로 읽혀야 한다
+- ✅ **한 문장으로 묶는다** — "만들고, 무엇을 만들지도 함께 정한다". 두 축이 **하나의 희소성**으로 읽혀야 한다
 - ✅ 검색·직군 매칭이 필요한 필드(플랫폼 직무 태그, 이력서 최상단 카테고리)는 **Backend Engineer 단독**을 유지한다
 - ❌ `Backend Engineer / PO`처럼 **슬래시로 나열하지 않는다** — 두 직군에 걸친 사람으로 읽힌다
 - ❌ PO를 primary로 올리지 않는다 — 4,000 커밋이 설명되지 않는다
