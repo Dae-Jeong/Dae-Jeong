@@ -99,7 +99,63 @@ Julia Evans, *Get your work recognized: write a brag document*:
 
 ---
 
-## 6. 자가 점검 체크리스트
+## 6. 대안을 검토했다는 사실이 결정보다 중요하다 — 국내 기준
+
+**국내 자료가 영어권과 갈리는 지점이 여기다.** 영어권 자료는 *impact*(결과)를 반복해 강조하는데,
+국내 채용 자료는 **대안 검토**를 별도 축으로 세운다.
+
+국내에서 통용되는 **PAAR** 구조:
+
+| | 요소 | 질문 |
+| --- | --- | --- |
+| **P** | Problem | 왜 이 문제가 중요했는가 |
+| **A** | **Analyze** | **어떤 선택지를 검토했고 왜 그것을 골랐는가** |
+| **A** | Action | 실제로 무엇을 실행했는가 |
+| **R** | Result | 결과가 어떻게 달라졌는가 |
+
+> 면접관은 Action보다 **Analyze(대안 검토)**를 중요하게 평가합니다.
+> — [searchright](https://blog.searchright.net/developer-career-description-examples/)
+
+실물 예시가 보여주는 A의 밀도:
+
+> Before — `주문 API 응답 속도 개선을 위한 Redis 캐시 적용, MySQL 쿼리 최적화 및 인덱스 추가`
+>
+> After — P: 피크 타임 주문 요청 증가로 API 응답 지연 발생 /
+> **A: "Memcached 대비 데이터 구조 유연성 고려해 Redis 선택"** /
+> A: 주문 조회 로직 분리, Redis 캐시 적용, 인덱스 재설계 /
+> R: 응답 속도 1.8초 → 420ms, 장애 재발 0건
+
+**우리 구조에 A가 없었다.** `예상한 문제 → 판단 근거 → 결정 → 결과`의 "판단 근거"는
+*왜 이게 문제인가*를 말하지 *왜 다른 선택지가 아닌가*를 말하지 않는다.
+[Codex 교차 리뷰](../context/todo.md)도 같은 것을 지적했다 —
+*"서비스 규모·전환 비용·기존 코드 활용 가능성·점진적 migration 대안이 빠져 있습니다."*
+
+**개정된 서술 구조:**
+
+```
+① 문제      무엇이 문제였고 왜 중요했는가
+② 대안      어떤 선택지가 있었고 왜 그것을 배제했는가   ← 새로 추가
+③ 결정      그래서 무엇을 했는가
+④ 결과      무엇이 달라졌는가 (간접 효과라도)
+```
+
+⚠️ **대안을 지어내지 않는다.** evidence에 실제 검토 기록이 없으면 ②를 비워 둔다.
+없는 대안을 쓰는 건 [evidence-policy](evidence-policy.md) 위반이고, 면접에서 바로 무너진다.
+
+### 국내 자료가 공통으로 꼽는 탈락 패턴
+
+- 기술 스택 나열만 — `Java, Kotlin, Spring Boot, JPA, MySQL, MongoDB, Redis, Kafka…`
+- 수행 업무만 기술 — `관리자 페이지 구축, 결제 모듈 개발`
+- **실제로 쓰지 않은 기술 기재** — 깊이 있게 답할 수 있는 것만 남긴다
+- 프로젝트 나열 과다 — 5년차 이상은 5개 안팎으로 추리고 대신 각각을 깊게
+
+> 첫인상부터 10년은 넘었을 것 같은 옛날 이력서의 모양새, 성의 없어 보이는 경력소개 (…)
+> 내 이력서는 10초도 안 되어 지나가버렸을지도
+> — [우아한형제들 기술블로그](https://techblog.woowahan.com/2531/)
+
+---
+
+## 7. 자가 점검 체크리스트
 
 문안을 쓴 뒤 아래를 통과시킨다.
 
@@ -107,6 +163,8 @@ Julia Evans, *Get your work recognized: write a brag document*:
 - [ ] 클리셰 문장이 있는가 → 그것을 증명하는 사례로 바꿨는가
 - [ ] `~했습니다`로 끝난 문장 뒤에 **그래서 무엇이 달라졌는지**가 있는가
 - [ ] 결정을 서술한 문장에 **무엇을 우려했는지**가 붙어 있는가
+- [ ] **다른 선택지를 왜 배제했는지**가 있는가 — 근거가 있는 경우에 한해
+- [ ] 기재한 기술을 면접에서 깊게 답할 수 있는가
 - [ ] claim 강도와 문장의 강도가 일치하는가 (과장도 축소도 아님)
 - [ ] 검증 가능한 외부 사실을 쓸 수 있는 자리에 자기 서술을 쓰고 있지 않은가
 - [ ] 판단 서술을 **모든 항목에 기계적으로 반복**하고 있지 않은가 — 비자명한 결정에만 쓴다
@@ -116,9 +174,32 @@ Julia Evans, *Get your work recognized: write a brag document*:
 
 ---
 
+## 영어권 vs 국내 — 강조점이 다르다
+
+| | 영어권 자료 | 국내 자료 |
+| --- | --- | --- |
+| 최상위 강조 | **impact / 수치화된 결과** | **대안 검토(Analyze)** |
+| 클리셰 배제 | 동일하게 강조 | 동일하게 강조 |
+| 기술 나열 | 언급 적음 | **탈락 사유 1순위로 명시** |
+| 서술 구조 | 목표 → 한 일 → 효과 | P → **A** → A → R |
+
+**둘 다 만족시켜야 한다.** 국내 채용에 지원하므로 대안 검토를 넣되,
+결과(간접 효과 포함)를 생략하지 않는다.
+
+---
+
 ## Sources
+
+**영어권**
 
 - [The Tech Resume Inside Out — common mistakes](https://thetechresume.com/samples/common-mistakes) (Gergely Orosz)
 - [Get your work recognized: write a brag document](https://jvns.ca/blog/brag-documents/) (Julia Evans)
 - [The Pragmatic Engineer's Resume Template](https://blog.pragmaticengineer.com/the-pragmatic-engineers-resume-template/)
 - LinkedIn `backend engineer` 검색 1페이지 실측 (2026-08-10)
+
+**국내**
+
+- [개발자 경력기술서 예시 — PAAR 구조](https://blog.searchright.net/developer-career-description-examples/) (searchright)
+- [이직초보 어느 개발자의 이력서 만들기](https://techblog.woowahan.com/2531/) (우아한형제들 기술블로그)
+- [채용 담당자를 사로잡는 경력직 이력서 쓰는 법](https://www.wanted.co.kr/events/article_23_01_09) (원티드)
+- [면접관이 꽂히는 경력직 개발자 이력서의 비밀](https://www.jobkorea.co.kr/recruit/careers/articles/developer-resume-guide) (잡코리아)
