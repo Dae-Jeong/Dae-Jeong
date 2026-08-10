@@ -14,6 +14,7 @@ tags: [context, routing, progressive-disclosure]
 | --- | --- |
 | **무엇이 확정 사실인가** | **[../profile/canonical-baseline.md](../profile/canonical-baseline.md)** — 확정값 통합 인덱스. 산출물 작업 전 여기부터 |
 | 현재 진행 상태 | [current-state.md](current-state.md) |
+| **무엇이 남았나** | **[todo.md](todo.md)** — 통합 작업 목록 |
 | 아이디어 등록·상태 | [../backlog/README.md](../backlog/README.md) |
 | 한 줄 소개와 branding | [../profile/identity.md](../profile/identity.md) |
 | 경력 timeline·연차 산정 | [../profile/career.md](../profile/career.md) |
@@ -34,6 +35,6 @@ tags: [context, routing, progressive-disclosure]
 ## Canonical And Derived
 
 - canonical: `profile/`, `evidence/`, `products/*/decisions.md`, `products/*/content-contract.md`, `rules/`
-- derived snapshot: `context/current-state.md`, `context/profile.md`, `profile/canonical-baseline.md`
+- derived snapshot: `context/current-state.md`, `context/todo.md`, `context/profile.md`, `profile/canonical-baseline.md`
   - `canonical-baseline.md`는 여러 레이어의 확정값을 모은 **통합 인덱스**다. 값이 owner 문서와 어긋나면 **owner 쪽이 맞다**.
 - non-canonical history: `archive/`

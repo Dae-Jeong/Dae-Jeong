@@ -1,0 +1,103 @@
+---
+type: index
+title: TODO — 통합 작업 목록
+description: 여러 문서에 흩어진 남은 작업의 단일 진입점. 상세는 각 owner 문서가 소유한다.
+timestamp: 2026-08-09
+canonical: false
+derived_from: [context/current-state.md, backlog/platform-profile-consolidation/sync-spec.md, products/resume/master/v4/content.md, backlog/README.md]
+tags: [context, todo, routing]
+---
+
+# TODO — 통합 작업 목록
+
+작업이 6개 문서에 흩어져 있어 전체가 안 보였다. **이 문서는 진입점이고, 상세와 판단 근거는 각 owner 문서가 소유한다.**
+
+상태 표기: `[ ]` 미착수 · `[~]` 진행 중 · `[x]` 완료
+
+---
+
+## A. 지금 할 것 (효과 대비 비용 순)
+
+### A1. 플랫폼 프로필 sync — **미착수 49건**
+
+owner: [sync-spec](../backlog/platform-profile-consolidation/sync-spec.md) · 문안: [platform-copy](../backlog/platform-profile-consolidation/platform-copy.md)
+
+| 순위 | 플랫폼 | 핵심 작업 | 비용 |
+| --- | --- | --- | --- |
+| 1 | **사람인** | `인증 경력 불러오기` 실행 — 총 경력 "2년 2개월" 정정 | **버튼 하나** |
+| 2 | **리멤버** | 소개글 전면 교체 — "백엔드가 되고싶은" 제거 | 붙여넣기 |
+| 3 | 그룹바이 | 연차 4년차 · 특허 등록번호 · `A 피부과` → `D·C` · 링크 | 표기 정정 |
+| 4 | 원티드 | 중복 경력 2건 삭제 · 학력 오타 · **AX 항목 신설** | 5분 + 붙여넣기 |
+| 5 | 링크드인 | 날짜 2건 · 헤드라인 · About 신설 · 경력 설명 | 붙여넣기 |
+| 6 | 로켓펀치 | 레벨 `주니어` · 학력 `재학` · 소개글 | 표기 정정 |
+| 7 | oopy | **레거시** — 링크만 marinkim.xyz로 교체 + 공개 해제 검토 | 판단 필요 |
+
+⚠️ **선행**: `platform-copy.md`가 v3 기준이다. **v4 3축 서사와 연차 4년차를 반영해 갱신해야 한다.**
+
+### A2. 포트폴리오 케이스 보강
+
+owner: [quality-lab-copy-draft](../backlog/platform-profile-consolidation/quality-lab-copy-draft.md)
+
+- [ ] Thready 케이스에 「품질을 판정 가능한 대상으로」 섹션 추가 (`thready.quality-criteria-system`)
+- [ ] 문안 초안은 이미 작성됨 — v4 3축 반영해 다듬은 뒤 `case-details.tsx`에 반영
+
+### A3. 근거 확보로 claim 상향
+
+owner: [claim-expansion-draft](../products/resume/master/v4/claim-expansion-draft.md) §C
+
+- [ ] `medisolve-admin.*` 3건 — Git history·배포 설정 대조 → `public: true` 복원 시 v4 축 2에 배치
+- [ ] KCL 인증서 실물 확인 → `credentials.ai-accuracy-certification` confidence `medium` → `high`
+- [ ] `nexus.domain-audit-governance` Git 주도권 확인 → `contributed` → `led`
+
+---
+
+## B. 이후
+
+### B1. 산출물 파이프라인
+
+- [ ] **export 스크립트** — wiki → `app/fe/content` 파생. 현재 `resume-view.tsx`가 수동 사본이라 canonical과 어긋날 위험이 상시 존재한다
+- [ ] **PDF 재생성** — 파이프라인이 v0·v1 시절 것이다. A4 2장([Acceptance Gate 5](../products/resume/content-contract.md)) 검증은 그 뒤에
+- [ ] sitemap 갱신 (케이스 추가 반영)
+
+### B2. 콘텐츠
+
+- [ ] `/blog`·`/labs` COMING SOON 해소, blog MDX 파이프라인 ([blog-setup](../backlog/blog-setup/README.md))
+- [ ] 포트폴리오 케이스 4건 상세 (bay-async·say-realtime·be-template·mediness-ops)
+- [ ] 실제 JD 1건으로 `tailor-resume` 지원 패키지 생성
+
+### B3. v4 후속
+
+owner: [v4 content](../products/resume/master/v4/content.md) 「남은 것」
+
+- [ ] Career bullet의 3축 정렬 여부 판단 — **무리하게 맞추면 또 억지 배치가 된다.** 현행 유지가 기본값
+- [ ] 축 2에 `medisolve-admin.pool-stabilization` 추가 (A3 완료 시)
+
+---
+
+## C. 결정 대기 (사용자 판단 필요)
+
+- [ ] **채용 플랫폼 상세 주소** — 사람인에 동·호수까지 기재됨. 시 단위로 줄일지 현행 유지할지 ([sync-spec §6](../backlog/platform-profile-consolidation/sync-spec.md))
+- [ ] **oopy 공개 해제** — 레거시로 두면 고객사 실명("데이뷰 & 세라미크")이 계속 노출된다. Notion 공유 토글로 닫을지
+- [ ] **SellerCanvas POC 두 번째 브랜드** — 실명 불확실. 현재는 SPAO 건만 사용하고 개수를 못박지 않는다
+
+---
+
+## D. 완료 (2026-08-08~09)
+
+- [x] marinkim.xyz 배포 — Vercel + 가비아 DNS + SSL, 자동 배포, repo PRIVATE 전환, 빌드 스킵 최적화
+- [x] 플랫폼 7곳 감사 — 실측 수집, gap 60여 항목 식별
+- [x] 규칙 2건 신설 — [client masking](../rules/public-safety.md) · [recency weighting](../rules/recency-weighting.md)
+- [x] 연차 기준 확정 — 인턴 제외 실무 47개월 = **4년차** (`career.tenure`)
+- [x] 고객사 마스킹 매핑 정정 — 뮤즈 재분류, 임의 코드 2건 폐기
+- [x] claim registry 24 → **42건** — quality lab 4 · medisolve-admin 3 · credentials 1 · tenure 1 · centurion 2 · nexus 1
+- [x] [canonical-baseline](../profile/canonical-baseline.md) 신설 (derived view)
+- [x] 구조 리서치 + [v4](../products/resume/master/v4/content.md) — 프로젝트 인벤토리 → 인물 서사 3축
+- [x] **웹 이력서 v4 배포** — 섹션 7→6개, 6초/30초 테스트 통과, 규칙 위반 0건
+
+---
+
+## 갱신 규칙
+
+- 작업이 끝나면 여기서 `[x]`로 옮기고 **owner 문서에도 반영**한다.
+- 새 작업은 owner 문서에 먼저 적고 여기에 링크만 건다. **이 문서가 상세를 소유하지 않는다.**
+- [current-state.md](current-state.md)는 "지금 어디까지 왔나"를, 이 문서는 "무엇이 남았나"를 담당한다.

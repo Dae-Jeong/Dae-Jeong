@@ -49,10 +49,12 @@ tags: [current-state, migration, resume]
 
 ## Next
 
-1. **웹 이력서 v3 반영** — `resume-view.tsx` 가 아직 v2 기반이라 **"6년째"가 배포 중**이다. `career.tenure` 의 forbidden_copy 와 어긋난 상태이므로 우선순위 1. v3 는 MediSolve 3 bullet(어드민은 claim 강등으로 보류) · TellingMe 별도 섹션 · CES/특허 Credentials 승격 구조다.
-2. **포트폴리오 케이스 보강** — thready 에 「품질을 판정 가능한 대상으로」 축 추가(`thready.quality-criteria-system`). 문안 초안은 [quality-lab-copy-draft](../backlog/platform-profile-consolidation/quality-lab-copy-draft.md).
-3. **플랫폼 7곳 실제 수정** — [sync-spec](../backlog/platform-profile-consolidation/sync-spec.md) §3 실행 순서대로. 1순위는 사람인 `인증 경력 불러오기`(총 경력 2년 2개월 -> 정정), 2순위 oopy 고객사 실명 마스킹(공개 노출 중), 3순위 리멤버 소개글 교체.
-4. **근거 확보로 claim 상향** — medisolve-admin 3건(Git history·배포 설정 대조), KCL 인증서 실물, `career.tenure` 분기 재산정.
-5. export 스크립트 (tools): wiki → `app/fe/content` + resume.pdf 파생
-6. 실제 JD 1건으로 `tailor-resume` 지원 패키지 생성
-7. 남은 콘텐츠: `/blog`·`/labs` COMING SOON, blog MDX 파이프라인, sitemap 갱신
+**작업 목록은 [todo.md](todo.md)가 소유한다.** 6개 문서에 흩어져 있던 것을 통합했다.
+
+현재 우선순위:
+
+1. **플랫폼 프로필 sync** — 미착수 49건. 1순위는 사람인 `인증 경력 불러오기`(버튼 하나로 "2년 2개월" 정정), 2순위 리멤버 소개글 교체
+2. **포트폴리오 Thready 케이스에 품질 판정 축 추가**
+3. **근거 확보로 claim 상향** — medisolve-admin 3건, KCL 인증서
+
+⚠️ 선행: [platform-copy.md](../backlog/platform-profile-consolidation/platform-copy.md)가 v3 기준이라 v4 3축·연차 4년차를 반영해 갱신해야 한다.
