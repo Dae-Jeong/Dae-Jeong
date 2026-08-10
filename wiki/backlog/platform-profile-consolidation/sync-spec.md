@@ -215,16 +215,18 @@ user-confirmed(2026-08-09) "아이즈솔·텔링미 수치는 큰 의미가 없�
 
   **전 플랫폼 적용 원칙**: 소개·자기소개 필드는 "왜 이 사람인가"를 말하는 자리다. 성과 수치는 경력 상세가 소유한다. 리멤버·그룹바이 소개도 같은 기준으로 재검토 대상이다.
 - [x] ~~Azure 제거 여부~~ → **유지 확정**. AWS·Azure를 회사별로 각각 사용한 사실이 드러나야 한다 (§4). NestJS도 유지
-- [x] **MediSolve 경력 설명 추가** — 6개 항목 (2026-08-10). textarea라 자동화 성공
+- [x] **경력 설명 추가** (2026-08-10) — textarea라 자동화 성공
+  - MediSolve 6개 항목 · 더데이랩스 · 아이즈솔
+  - ⬜ 미완: Memento 2건, STUDIO LAB
+- [x] 아이즈솔 종료 `2021.08` → **`2021.06`** (combobox는 `select`로 자동화 가능)
+- [x] **공개 URL 커스터마이즈** — `/in/대정-김-057b2a227` → **`/in/marinkim-dev`**
+  - ⚠️ `marinkim`은 이미 선점돼 있어 `marinkim-dev`로 확정했다
 - [ ] ⚠️ **직접 수정 필요 (typeahead 자동화 불가)**
   - MediSolve 직함 `Tech lead` → **`Backend Engineer (Tech Lead·PO 병행)`**
   - 회사명 `데이뷰네트웍스` → **`더데이랩스`**
   - STUDIO LAB 직함 `Product Manager` → **`AI Engineer → PM → Backend Engineer`**
-- [ ] 아이즈솔 종료 `2021.08` → **`2021.06`** (combobox라 자동화 가능)
-- [ ] 나머지 경력 설명 추가 (더데이랩스·Memento·STUDIO LAB·아이즈솔)
 - [ ] CES·특허 등록
-- [ ] 공개 URL 커스터마이즈 — 한글 기본값 → `/in/marinkim` 류
-- [ ] 외부 링크를 marinkim.xyz로
+- [ ] 외부 링크를 marinkim.xyz로 (현재 "블로그"로 표시)
 - [ ] **영어 프로필 신설** — 아래 참조
 
 #### 링크드인 자동화 제약 (2026-08-10 실측)
