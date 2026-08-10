@@ -220,7 +220,7 @@ function DocKo() {
           Backend Engineer · AI Product Systems
         </p>
         <p className="mt-4 text-lg font-medium">
-          AI 제품을 운영 가능한 시스템으로 만드는 백엔드 엔지니어
+          AI 제품을 만들고, 무엇을 왜 만들지도 정하는 백엔드 엔지니어
         </p>
         <div className="mt-4 flex flex-wrap gap-2">
           <Chip variant="contact" href="mailto:marin.backend@gmail.com">
@@ -236,10 +236,10 @@ function DocKo() {
       <Sec id="s1" no="01" title="요약" meta="Summary">
         <PlainList
           items={[
-            <><strong>AI 제품을 만들고, 무엇을 왜 만들지도 정하는</strong> <Metric>4년차</Metric> 백엔드 엔지니어 — 기획을 이해하는 개발자라는 점이 인계받은 제품의 문제를 다시 정의하는 속도에서 드러난다</>,
+            <><strong>AI 제품을 만드는 일만 <Metric>4년째</Metric></strong> — 모델을 만들다 기획으로, 다시 백엔드로 자리를 옮겼고 지금은 만드는 일과 무엇을 왜 만들지 정하는 일을 함께 맡는다</>,
+            <>백엔드를 택한 건 <strong>AI가 구현을 점점 더 많이 맡게 될수록, 보안과 안정성처럼 사람이 끝까지 책임지는 층의 무게가 커진다고 봤기 때문</strong> — AI와 협업해 제품을 만드는 지금, 그 판단은 더 확고해졌다</>,
             <><strong>기업부설연구소장·Tech Lead·PO 역할을 병행</strong>하며 AI 제품 backend를 만들면서 제품팀 운영을 함께 리드</>,
-            <><strong>문제의 경계를 다시 잡고</strong>, <strong>측정과 게이트로 판정 가능하게 만들고</strong>, <strong>그 해결을 표준으로 확장하는 것</strong>이 일하는 방식</>,
-            <>AI 도구로 빠르게 구축된 생성 backend를 <strong>전면 재구축</strong>하고, cutover 이후 개발·운영을 전담</>,
+            <><strong>문제의 경계를 다시 잡고</strong>, <strong>측정과 게이트로 판정 가능하게 만들고</strong>, <strong>그 해결을 표준으로 확장하는 것</strong>이 일하는 방식 — AI 도구로 빠르게 구축된 생성 backend를 전면 재구축하고 cutover 이후 개발·운영을 전담</>,
             <>CES 2024 Best of Innovation <strong>수상 제품의 PM 메인 역할</strong>과 특허 등록 1건</>,
           ]}
         />
@@ -318,7 +318,7 @@ function DocKo() {
             <span className="mb-1 block text-fg-2">Backend Engineer · 기업부설연구소장 · Tech Lead·PO 역할 병행</span>
             <PlainList
               items={[
-                <>AI 콘텐츠 생성 backend 전면 재구축과 cutover 이후 개발·운영 전담 — QA 버그 재발률 <strong>37% → 11%</strong>, 월 수만 건 규모를 <strong>HTTP 5xx 0.3% 수준</strong>으로 운영</>,
+                <>AI 콘텐츠 생성 backend 전면 재구축과 cutover 이후 개발·운영 전담 — QA 버그 재발률(해결 대비 reopen) <strong>37% → 11%</strong>, 월 수만 건 규모를 30일 기준 <strong>HTTP 5xx 0.3% 수준</strong>으로 운영</>,
                 <>피부과 운영 플랫폼의 주문·재고 backend와 비동기 worker 흐름 구축 주도 — 실패 가능한 작업을 API 경계 밖으로 분리</>,
                 <>조직 표준 FastAPI template 설계·구축과 agent context 내장 — <strong>소수 백엔드 인원이 다수 제품을 담당하는 체제</strong>에서 컨텍스트 전환 비용을 낮추고 횡단 관심사를 일괄 반영</>,
               ]}
@@ -376,7 +376,7 @@ function DocEn() {
           Backend Engineer · AI Product Systems
         </p>
         <p className="mt-4 text-lg font-medium">
-          Backend engineer who turns AI products into reliable production systems.
+          Backend engineer who builds AI products — and helps decide what to build and why.
         </p>
         <div className="mt-4 flex flex-wrap gap-2">
           <Chip variant="contact" href="mailto:marin.backend@gmail.com">
@@ -392,10 +392,10 @@ function DocEn() {
       <Sec no="01" title="Summary">
         <PlainList
           items={[
-            <>A <Metric>4th-year</Metric> backend engineer <strong>who builds AI products and decides what to build</strong> — reading product intent is what makes redefining an inherited system fast</>,
+            <><strong>Four years of building AI products</strong> — moving from model engineering to product planning to backend, now both building the backend and helping decide what to build and why</>,
+            <>Chose backend on a judgement call: <strong>as AI takes on more of the implementation, the layers humans must own to the end — security and stability — only grow heavier</strong>; building products alongside AI today has made that conviction firmer</>,
             <>Serving as <strong>Head of the corporate R&amp;D center, Tech Lead, and Product Owner</strong> — building AI product backends while leading how the product team operates</>,
-            <>My way of working: <strong>redraw the problem boundary</strong>, <strong>make judgement measurable and gated</strong>, then <strong>scale the fix into standards</strong></>,
-            <>Rebuilt an AI content generation backend <strong>end to end</strong> and has owned its development and operations since cutover</>,
+            <>My way of working: <strong>redraw the problem boundary</strong>, <strong>make judgement measurable and gated</strong>, then <strong>scale the fix into standards</strong> — rebuilt an AI content generation backend end to end and has owned it since cutover</>,
             <>Served as the <strong>primary PM</strong> for a CES 2024 Best of Innovation-winning product; hold one registered patent</>,
           ]}
         />
@@ -474,7 +474,7 @@ function DocEn() {
             <span className="mb-1 block text-fg-2">Backend Engineer · Head of corporate R&amp;D center · Tech Lead / Product Owner</span>
             <PlainList
               items={[
-                <>Rebuilt the AI content generation backend end to end and have owned development and operations since cutover — QA reopen rate <strong>37% to 11%</strong>, tens of thousands of monthly requests at <strong>~0.3% HTTP 5xx</strong></>,
+                <>Rebuilt the AI content generation backend end to end and have owned development and operations since cutover — QA reopen rate (resolved-to-reopened) <strong>37% to 11%</strong>, tens of thousands of monthly requests at <strong>~0.3% HTTP 5xx</strong> over a 30-day window</>,
                 <>Led the order/inventory backend and asynchronous worker flows for a clinic operations platform, moving failure-prone work outside the API boundary</>,
                 <>Designed and built the organization-wide FastAPI template with embedded agent context — lowering context-switching cost and applying cross-cutting concerns at once in a setup where <strong>a small backend team covers many products</strong></>,
               ]}
