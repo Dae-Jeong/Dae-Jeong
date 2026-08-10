@@ -13,17 +13,38 @@ tags: [identity, positioning, branding]
 | Level | Canonical value |
 | --- | --- |
 | Primary category | Backend Engineer |
+| **Dual role** | **Product Owner** (2026-08-10 user-confirmed — 병기하되 primary를 대체하지 않는다) |
 | Specialty | AI Product Systems |
-| Differentiator | Agent-readable Engineering Workflow |
+| Differentiator | **만들면서 무엇을 왜 만들지도 정한다** + Agent-readable Engineering Workflow |
 | Supporting narrative | Vision AI -> PM -> Backend -> AI Product/Agent Workflow |
 
 ## Canonical One-Line
 
-> AI 제품을 운영 가능한 시스템으로 만드는 백엔드 엔지니어.
+> AI 제품을 만들고, 무엇을 왜 만들지도 정하는 백엔드 엔지니어.
 
 ## English
 
-> Backend Engineer for AI Product Systems.
+> Backend Engineer who builds AI products and decides what to build.
+
+## Dual Track 근거와 경계
+
+user-confirmed(2026-08-10): "백엔드 엔지니어 / PO 혼용해도 좋을 것 같아".
+
+**왜 병기가 성립하는가** — 두 축 모두 실측 근거가 있다.
+
+| 축 | 실측 근거 |
+| --- | --- |
+| Backend Engineer | thready 1,180 · BAY-BE-API 856 · NEXUS 755 · SAY/PROTON 848 · CENTURION-BE-API 381 커밋 등 **누적 4,000건 이상** ([audit](../evidence/audits/workspace-project-audit.md)) |
+| Product Owner | 기업부설연구소장, 제품팀 운영 리드, 스펙·이슈·릴리스 게이트 설계, 품질 판정 기준 수립 |
+
+**왜 병기가 위험한가** — 채용 시장에서 직함 병기는 초점을 흐린다. "둘 다 합니다"는 "둘 다 어중간합니다"로 읽힐 수 있다.
+
+**그래서 병기 방식을 고정한다.**
+
+- ✅ **한 문장으로 묶는다** — "만들고, 무엇을 왜 만들지도 정한다". 두 축이 **하나의 희소성**으로 읽혀야 한다
+- ✅ 검색·직군 매칭이 필요한 필드(플랫폼 직무 태그, 이력서 최상단 카테고리)는 **Backend Engineer 단독**을 유지한다
+- ❌ `Backend Engineer / PO`처럼 **슬래시로 나열하지 않는다** — 두 직군에 걸친 사람으로 읽힌다
+- ❌ PO를 primary로 올리지 않는다 — 4,000 커밋이 설명되지 않는다
 
 ## Short Bio
 
@@ -40,7 +61,8 @@ FastAPI/NestJS 기반 product backend, AI generation quality, async/realtime pro
 ## Guardrails
 
 - `Backend Architect`, `AX Engineer`, `AI Agent Engineer`를 sole primary category로 사용하지 않는다.
-- Tech Lead, PO, AI agent 관련 역할은 공식 직함처럼 나열하지 않고 병행 역할로 설명한다.
+- ~~Tech Lead, PO, AI agent 관련 역할은 공식 직함처럼 나열하지 않고 병행 역할로 설명한다.~~
+  → **2026-08-10 개정**: **PO는 dual role로 병기한다** (위 Dual Track 참조). 단 병기 방식은 "한 문장으로 묶기"로 고정하며, 슬래시 나열과 primary 승격은 계속 금지한다. Tech Lead·AI agent 역할은 종전대로 병행 역할로만 설명한다.
 - 특정 병원/헬스케어 산업에 identity를 제한하지 않는다.
 - 근거 없는 `단독`, `완전 해결`, 성능 배수, business outcome을 사용하지 않는다.
 

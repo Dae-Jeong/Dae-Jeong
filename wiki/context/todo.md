@@ -105,3 +105,20 @@ owner: [v4 content](../products/resume/master/v4/content.md) 「남은 것」
 - 작업이 끝나면 여기서 `[x]`로 옮기고 **owner 문서에도 반영**한다.
 - 새 작업은 owner 문서에 먼저 적고 여기에 링크만 건다. **이 문서가 상세를 소유하지 않는다.**
 - [current-state.md](current-state.md)는 "지금 어디까지 왔나"를, 이 문서는 "무엇이 남았나"를 담당한다.
+
+---
+
+## E. Dual Track 전파 (2026-08-10 신설)
+
+[identity.md](../profile/identity.md#dual-track-근거와-경계)에 **Backend Engineer + PO 병기**를 확정했다 (user-confirmed).
+링크드인만 반영됐고 나머지는 미반영이다.
+
+- [x] `identity.md` — Brand Hierarchy에 Dual role 추가, Canonical One-Line 개정, Guardrail 개정
+- [x] 링크드인 헤드라인·소개
+- [ ] **웹 이력서** — Summary·Career의 역할 표기, EN 포함
+- [ ] **리멤버** — 소개글이 아직 3축 전문(수치 포함). 정성 서사 + dual track으로 재작성
+- [ ] **그룹바이** — 자기소개가 아직 3축 전문(수치 포함). 동일
+- [ ] 원티드·로켓펀치·사람인 — 착수 시 처음부터 dual track으로
+
+⚠️ **정량은 소개가 아니라 경력 상세가 소유한다** — 이번에 세운 전 플랫폼 원칙이다.
+리멤버·그룹바이 소개에 들어간 `37%→11%`·`HTTP 5xx 0.3%`는 이 원칙 이전에 넣은 것이라 재검토 대상이다.
