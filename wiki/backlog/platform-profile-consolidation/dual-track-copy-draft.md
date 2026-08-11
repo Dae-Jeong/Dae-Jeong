@@ -397,7 +397,7 @@ Found that a quality baseline we had trusted as measured was actually feeding on
 
 [LLM Evaluation] "품질이 나쁘다"는 말로는 재생성 기준을 정할 수 없어, 생성 품질을 판정 가능한 대상으로 만들었습니다. 틀린 출력을 거르는 자동 게이트 12종, 직접 수집한 실측 코퍼스(n=19에서 4,039까지 확대)와의 분포 대조, 자동화가 닿지 않는 층의 사람 판정 — 세 층으로 평가 체계를 나눴습니다. 반증된 프롬프트 규칙은 기록으로 남겨 같은 시도가 반복되지 않게 했습니다.
 
-[Agent Workflow] 생성 파이프라인은 planner와 writer 역할로 분리해 운영합니다. 유형 분기 판정을 writer에 뒀을 때 18건 전부 발동하지 않았는데, writer는 원본이 어떤 유형인지 알 수 없는 자리였기 때문입니다. 판정을 planner로 옮기자 유형별로 정확히 갈렸습니다 — 판단을 어느 역할에 둘 것인가가 agent 설계의 핵심이라는 것을 실측으로 확인했습니다.
+[Agent Workflow] 평가 하네스만 만든 것이 아니라, 하네스로 검증할 agent 구조 자체를 함께 설계·구현했습니다. 생성 파이프라인을 planner와 writer 역할로 나눴고, 대표적으로 writer 영역을 설계하고 구현했습니다. 유형 분기 판정을 writer에 뒀을 때 18건 전부 발동하지 않았는데, writer는 원본이 어떤 유형인지 알 수 없는 자리였기 때문입니다. 판정을 planner로 옮기자 유형별로 정확히 갈렸습니다 — 판단을 어느 역할에 둘 것인가가 agent 설계의 핵심이라는 것을 설계와 실측 양쪽에서 확인했습니다.
 
 [Centurion] 피부과 운영 CRM인 Centurion에서 order·product·inventory API와 비동기 worker 흐름을 구축했습니다. 직전 회사에서 결제 실패의 불일치를 직접 수습한 경험을 바탕으로, 실패 가능한 작업은 제품 시작 시점부터 API 경계 밖 worker로 두고 재고 차감에는 retry를 붙였습니다. 이후 메시지 계층을 Celery에서 TaskIQ로 전환하며 알림 도메인을 정리했고, 상담 현장을 실시간으로 돕는 AI 에이전트(WebSocket 기반 STT·LLM 파이프라인) 구축에는 공동 주 기여로 참여하고 있습니다.
 
