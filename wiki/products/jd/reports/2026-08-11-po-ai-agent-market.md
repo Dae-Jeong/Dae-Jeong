@@ -62,3 +62,56 @@ user-confirmed 목표: **"나는 PO & AI 에이전트 개발자를 하고싶어"
 - [AI Developer Hiring 2026: Skills That Actually Matter](https://www.digitalapplied.com/blog/ai-developer-hiring-skills-that-matter-2026)
 - [15 AI Engineer Skills Every Hire Should Have in 2026](https://www.ayautomate.com/blog/ai-engineer-skills-2026)
 - [LINE AI Service Product Manager](https://careers.linecorp.com/ko/jobs/2596/)
+
+---
+
+## 6. 경쟁 프로필 실물 수집 (2026-08-11, 링크드인 20+명 · 상세 4명)
+
+### 헤드라인 공식 (현직자들이 실제로 쓰는 구조)
+
+```
+[직무] | [핵심 기술 3~4개] | [도메인·신뢰성·제품 맥락]
+```
+
+예: `AI Engineer | RAG Architecture · Agent Systems · LLM Evaluation | Building Safe & Reliable AI for Regulated Industries`
+
+### 키워드 빈도 (수집 표본 기준)
+
+RAG(거의 전원) > AI Agent · LLM > Multi-Agent · Evaluation > MCP · PromptOps · Workflow Automation
+
+### 결정적 발견 — "AI Product Engineer"
+
+수집 표본에서 **4명이 "AI Product Engineer" 계열 직함**을 쓴다
+(`AI Product Engineer`, `AI-native Product Engineer building Multi-Agent Systems`,
+`AI Product Engineer | LLM Systems · Agents · Evaluation | AI Product Builder`, `AI Agent & Product Engineer`).
+**"PO & AI 에이전트 개발자"의 시장 이름이 이것이다** — JD 검색에서는 안 보였지만 사람들이 이미 쓰고 있다.
+
+### 차별화 3축과 우리 위치
+
+현직자들은 ①도메인(의료·금융·법률) ②시스템 계층(학습·추론·관측성) ③제품화·운영 중 하나로 차별화한다.
+**우리는 셋 중 두 개 반을 이미 갖고 있다**:
+- ① 의료 도메인 — AI 메디컬 플랫폼(센츄리온)·피부과 운영. 의료 도메인 차별화를 쓰는 M.L.과 같은 축
+- ③ 제품화·운영 — production 지표 + PO 병행 (표본에서 PO 겸직은 없음 — 희소)
+- ② Evaluation — 3층 판정·n=4,039 (J.J.가 "LLM Evaluation·LLM-as-Judge"로 이미 이 축을 차림 — 선점 경쟁 존재)
+
+### 우리 프로필의 최대 문제 — 검색 가시성 0
+
+현 링크드인 헤드라인: `Backend Engineer · PO | 제품을 만들고, 무엇을 만들지도 함께 정합니다 | CES…`
+**AI·Agent·LLM·Evaluation 키워드가 하나도 없다.** AI Agent 인재 검색에서 이 프로필은 잡히지 않는다.
+내용은 경쟁자급인데 색인이 안 되는 상태.
+
+### 갭 (표본 대비)
+
+- **RAG** — 표본 거의 전원이 보유 표기. 우리는 근거 없음 (만들거나, 다른 축으로 승부)
+- **MCP·오케스트레이션 프레임워크** — 일상 워크플로우로 실사용 중이나 공개 증거 없음 → blog/labs로 전환 가능
+
+### 헤드라인 개정 제안 (사용자 결정 대기)
+
+시장 공식 + 고유 자산(의료·평가·PO)을 결합한 안:
+
+```
+AI Product Engineer · PO | LLM 백엔드 · Agent Workflow · LLM Evaluation | 의료 AI 플랫폼을 만들고, 무엇을 만들지도 함께 정합니다
+```
+
+주의: 직함 표기(`AI Product Engineer`)는 identity.md primary(Backend Engineer)와의 관계 정리 필요 —
+채용 검색 필드 vs 브랜드 정체성의 층 분리로 볼지 사용자 판단.
