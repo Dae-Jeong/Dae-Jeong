@@ -21,6 +21,14 @@ tags: [identity, positioning, branding]
 ## Canonical One-Line
 
 > AI 제품을 만들고, 무엇을 만들지도 함께 정하는 백엔드 엔지니어.
+
+## 관통 질문 (2026-08-11 신설, user-confirmed)
+
+> **"AI가 구현을 점점 더 많이 맡을수록, 사람이 끝까지 책임져야 하는 층을 어떻게 지킬 것인가?"**
+
+소개(L1)의 착지로 쓰는 브랜드 자산. 백엔드 선택 판단(previous-career.md role-continuity,
+user-confirmed)에서 도출한 것으로 차용이 아니다. 문안 canonical은
+[dual-track-copy v6](../backlog/platform-profile-consolidation/dual-track-copy-draft.md)가 소유한다.
 >
 > *(v5.2, 2026-08-11 — "무엇을 왜"는 의문사 스태킹 번역투라 제거. [persuasive-writing §9](../rules/persuasive-writing.md))*
 
