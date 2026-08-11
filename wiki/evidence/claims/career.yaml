@@ -37,8 +37,13 @@ claims:
     forbidden_copy:
       - 제품 전체 단독 기획·총괄
       - 매출·전환율 등 미검증 수치
-      - 특허와 SellerCanvas의 연결 (확정 전)
-    verified_at: 2026-07-17
+      - 특허 단독 발명 표현
+    verified_at: 2026-08-12
+    note: >-
+      2026-08-12 user-confirmed: 특허 「페이지 출력 방법」은 SellerCanvas 상세페이지
+      작업에서 나온 것이 맞다 — "특허와 SellerCanvas의 연결 (확정 전)" 금지를 해제한다.
+      구버전 원티드 이력서의 "[PM] 상세페이지 제작 관련 특허 출원" 자기 기록과 정합.
+      단독 발명 표현 금지는 유지.
   - id: career.memento-payment
     statement: 예약·결제 backend의 Stripe 선결제 도입과 환불·마일리지·티켓 rollback 안정화
     strength: contributed

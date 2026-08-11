@@ -43,7 +43,7 @@ tags: [career, credentials, tellingme, evidence]
   - https://sellercanvas.com/
 - User-confirmed (2026-07-17): 역할 진행은 AI Engineer → PM → Backend이지만 **PM이 메인 롤**이었다. 이 시기의 시스템 구축은 개발 시스템이 아니라 **"제품이 원활하게 돌아가는 시스템"을 기획·구축**하는 일이었다.
 - Narrative: LLM 붐 이전(2021–22)부터 Vision AI 기반 생성 제품의 제품 시스템을 기획·구축했다 — 현재의 제품 운영 시스템(decision·spec·release gate) 리드와 같은 근육의 이전 형태다.
-- ⚠️ Inference: 특허 「페이지 출력 방법」(2022 출원)은 명칭·시기상 SellerCanvas 계열 작업으로 추정 — 확정 전 연결 표현 금지.
+- **User-confirmed (2026-08-12)**: 특허 「페이지 출력 방법」은 SellerCanvas 상세페이지 작업에서 나온 것 — 연결 확정, 표현 해금. Deep Scan은 **둘 다** — AI 엔지니어 시기에 시작된 서비스이고, 2023.05~06(PM 재직 중)에 의류 색상 분류 모델 작업을 추가로 수행했다. PM 재직 중 직접 모델 개발의 실증. 단독 발명 표현 금지는 유지.
 - Contribution boundary: PM 메인 시기를 backend 깊이로 포장하지 않는다. 제품 전체 단독 기획·총괄로 표현하지 않는다.
 
 ### 직무별 기간 (2026-08-08, oopy 포트폴리오 실측)
