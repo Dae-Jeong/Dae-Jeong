@@ -10,6 +10,10 @@ tags: [policy, resume, profile, writing]
 
 **"내가 무엇을 했다"는 누구나 쓴다. 설득은 그 문장이 검증 가능할 때 생긴다.**
 
+**최상위 프레임 (2026-08-12 user-confirmed): 이력서는 "돈 주면 이런 걸 해줄 수 있다"를 파는 문서다.**
+성과는 과거의 증거, **판단 서사는 재현 가능성** — 결과는 전 회사에 두고 오지만 판단력은 이식된다.
+포맷(bullet·문단)은 그걸 10초 안에 스캔되게 하는 포장일 뿐이다. 포장을 위해 판단을 버리지 않는다.
+
 이 문서는 [dual-track-copy](../backlog/platform-profile-consolidation/dual-track-copy-draft.md)의
 서술 구조 규칙을 외부 사례로 검증하고 보완한 결과다.
 
