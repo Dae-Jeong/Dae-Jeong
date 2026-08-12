@@ -10,10 +10,16 @@ claims:
     allowed_copy:
       - Backend Engineer 합류 후 Tech Lead·PO·AI agent 역할 병행
       - Backend Engineer 합류 후 Tech Lead·PO 역할 병행
+      - Backend Engineer 합류 후 기업부설연구소장·Tech Lead·PO 역할 병행
+      - 기업부설연구소장
     forbidden_copy:
       - 공식 직함이 모두 Tech Lead / PO / AI Agent Engineer라고 단정
       - 제품 기획 전담
-    verified_at: 2026-07-04
+    verified_at: 2026-08-12
+    note: >-
+      기업부설연구소장은 등재 직함이다 (2026-08-08 user-confirmed, canonical-baseline.md).
+      Tech Lead·PO는 역할 병행이며 등재 직함이 아니다 — 셋을 나열할 때 모두 공식 직함으로
+      읽히지 않게 "역할 병행"을 함께 쓴다.
   - id: career.ai-pm-backend-continuity
     statement: Vision AI Engineer, PM, Backend Engineer 경험이 AI product system 관점으로 연결됨
     strength: contributed

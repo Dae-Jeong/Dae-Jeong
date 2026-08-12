@@ -79,6 +79,22 @@ claims:
       - 재발 완전 제거
       - backend 단독 효과로 단정 (BE/FE 분리 불가)
     verified_at: 2026-07-19
+  - id: thready.agent-pipeline-design
+    statement: 생성 파이프라인을 planner·writer 역할로 분리 설계·구현하고, 유형 분기 판정을 writer에 뒀을 때 18건 전부 미발동함을 확인해 판정 위치를 planner로 재배치
+    strength: owned
+    confidence: high
+    public: true
+    evidence: [evidence/projects/thready-quality-lab.md#agent-structure-design]
+    allowed_copy:
+      - 생성 파이프라인을 planner·writer 역할로 분리 설계·구현
+      - 유형 분기 판정을 writer에 뒀을 때 18건 전부 미발동, 판정 위치를 planner로 재배치해 해결
+      - 판단을 어느 역할에 둘 것인가가 agent 설계의 핵심임을 실측으로 확인
+      - 평가 하네스와 함께 하네스로 검증할 agent 구조 자체를 설계·구현 (대표 영역 writer)
+    forbidden_copy:
+      - 멀티에이전트 오케스트레이션 프레임워크(LangGraph·CrewAI 등) 사용 경험으로 표현
+      - 전체 agent 파이프라인 단독 설계로 단정 (writer가 대표 영역이다)
+      - 18건을 벤치마크·평가셋 규모로 확대 해석
+    verified_at: 2026-08-12
   - id: thready.quality-criteria-system
     statement: AI 글 생성 품질 판정을 3층(자동 게이트·실측 분포 대조·사람 판정)으로 분리하고 6축으로 계량화, 자동화가 닿는 층과 닿지 않는 층을 갈라 설계
     strength: owned

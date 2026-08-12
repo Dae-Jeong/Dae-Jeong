@@ -32,21 +32,22 @@ function Arrow() {
 const SUMMARY: { no: string; accent?: boolean; text: React.ReactNode }[] = [
   {
     no: "01",
+    accent: true,
     text: (
       <>
-        AI가 만든 결과물의 품질을{" "}
-        <strong>자동 게이트·실측 분포 대조·사람 판정 세 층</strong>으로 나눠 판정
-        가능하게 만듦
+        <strong>AI 콘텐츠 생성 backend 전면 재구축</strong> — cutover 전후 관측에서 QA
+        티켓 reopen 비율 <strong>37% → 11%</strong>, 이후 월 수만 건 규모를 HTTP 5xx
+        0.3% 수준으로 운영
       </>
     ),
   },
   {
     no: "02",
-    accent: true,
     text: (
       <>
-        <strong>AI 콘텐츠 생성 backend 전면 재구축</strong> — QA 티켓 reopen 비율{" "}
-        <strong>37% → 11%</strong>, 이후 월 수만 건 규모를 HTTP 5xx 0.3% 수준으로 운영
+        AI가 만든 결과물의 품질을{" "}
+        <strong>자동 게이트·실측 분포 대조·사람 판정 세 층</strong>으로 나눠 판정
+        가능하게 만듦
       </>
     ),
   },

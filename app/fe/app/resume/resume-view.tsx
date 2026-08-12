@@ -219,6 +219,13 @@ function DocKo() {
         <p className="mt-2.5 font-mono text-sm uppercase tracking-[0.06em] text-fg-2">
           Backend Engineer · AI Product Systems
         </p>
+        <p className="mt-1.5 font-mono text-sm text-fg-2">
+          <b className="font-semibold text-fg">MediSolve AI</b> · Backend Engineer ·
+          기업부설연구소장 <span className="text-muted">(2025.04 — 재직 중)</span>
+          <span className="mx-2 text-muted">/</span>
+          이전 <b className="font-semibold text-fg">STUDIO LAB</b> · PM
+          <span className="text-muted"> (2021.12 — 2023.12)</span>
+        </p>
         <p className="mt-4 text-lg font-medium">
           AI 제품을 만들고, 무엇을 만들지도 함께 정하는 백엔드 엔지니어
         </p>
@@ -236,7 +243,7 @@ function DocKo() {
       <Sec id="s1" no="01" title="요약" meta="Summary">
         <PlainList
           items={[
-            <><strong>AI 제품만 <Metric>4년째</Metric> 만들고 있다</strong> — 모델을 만들다 기획을 거쳐 백엔드로 왔고, 지금은 백엔드를 만들면서 무엇을 만들지 정하는 역할도 같이 맡는다</>,
+            <><strong>AI 제품을 만들어온 <Metric>실무 4년차</Metric></strong> — 모델을 만들다 기획을 거쳐 백엔드로 왔고, 지금은 백엔드를 만들면서 무엇을 만들지 정하는 역할도 같이 맡는다</>,
             <>백엔드를 택한 데는 이유가 있다 — <strong>AI가 구현을 점점 더 많이 맡을수록, 보안과 안정성처럼 사람이 끝까지 책임져야 하는 층이 더 무거워진다고 봤다</strong>. 매일 AI와 같이 제품을 만드는 지금, 그 판단이 틀리지 않았다고 느낀다</>,
             <><strong>기업부설연구소장·Tech Lead·PO 역할을 병행</strong>하며 AI 제품 backend를 만들면서 제품팀 운영을 함께 리드</>,
             <><strong>문제의 경계를 다시 잡고</strong>, <strong>측정과 게이트로 판정 가능하게 만들고</strong>, <strong>그 해결을 표준으로 확장하는 것</strong>이 일하는 방식 — AI 도구로 빠르게 구축된 생성 backend를 전면 재구축하고 cutover 이후 개발·운영을 전담</>,
@@ -287,7 +294,7 @@ function DocKo() {
             <PlainList
               items={[
                 <>AI 도구로 빠르게 구축돼 재발 이슈 통제가 어려웠던 생성 backend를 인계받아, 서비스가 작은 시점에 <strong>전면 재구축을 결정·설득</strong> — 하네스를 먼저 세팅하고 AI와 협업해 파악부터 재구축까지 <Metric>총 36시간(작업 시간 기준)</Metric>에 완수</>,
-                <>cutover 이후 <strong>QA 버그 재발률(해결 대비 reopen) 37% → 11%</strong>, 재발 발생 일평균 <Metric>약 94% 감소</Metric> — 잔여 이슈도 원인 영역이 파악된 상태로 관리</>,
+                <>cutover 전후 관측에서 <strong>QA 버그 재발률(해결 대비 reopen) 37% → 11%</strong>, 재발 발생 일평균 <Metric>약 94% 감소</Metric> — 잔여 이슈도 원인 영역이 파악된 상태로 관리</>,
                 <>AI 모듈 확장을 근거로 <strong>FastAPI 분리 도입</strong>(FE는 Next.js 유지), cutover 이후 개발·운영 전담 — 월 수만 건 규모 요청을 <Metric>HTTP 5xx 0.3% 수준</Metric>으로 운영</>,
                 <>생성 품질 판정을 <strong>자동 게이트·실측 분포·사람 판정 3층</strong>으로 나누고, 프롬프트 규칙의 근거를 직접 수집한 실측 데이터로 검증 — 반증된 접근은 기록으로 남겨 재시도를 막음</>,
                 <>생성 파이프라인을 <strong>planner·writer 역할로 분리 설계·구현</strong> — 유형 분기 판정이 writer에서 전부 미발동하자 판정 위치를 planner로 재배치해 해결, 판단을 어느 역할에 둘 것인가를 실측으로 결정</>,
@@ -319,7 +326,7 @@ function DocKo() {
             <span className="mb-1 block text-fg-2">Backend Engineer · 기업부설연구소장 · Tech Lead·PO 역할 병행</span>
             <PlainList
               items={[
-                <>AI 콘텐츠 생성 backend 전면 재구축과 cutover 이후 개발·운영 전담 — QA 버그 재발률(해결 대비 reopen) <strong>37% → 11%</strong>, 월 수만 건 규모를 30일 기준 <strong>HTTP 5xx 0.3% 수준</strong>으로 운영</>,
+                <>AI 콘텐츠 생성 backend 전면 재구축과 cutover 이후 개발·운영 전담 — cutover 전후 관측에서 QA 버그 재발률(해결 대비 reopen) <strong>37% → 11%</strong>, 월 수만 건 규모를 30일 기준 <strong>HTTP 5xx 0.3% 수준</strong>으로 운영</>,
                 <>피부과 운영 플랫폼의 주문·재고 backend와 비동기 worker 흐름 구축 주도 — 실패 가능한 작업을 API 경계 밖으로 분리</>,
                 <>조직 표준 FastAPI template 설계·구축과 agent context 내장 — <strong>소수 백엔드 인원이 다수 제품을 담당하는 체제</strong>에서 컨텍스트 전환 비용을 낮추고 횡단 관심사를 일괄 반영</>,
               ]}
@@ -375,6 +382,14 @@ function DocEn() {
         <h1 className="m-0 font-mono text-3xl font-semibold tracking-[-0.02em]">Daejeong Kim</h1>
         <p className="mt-2.5 font-mono text-sm uppercase tracking-[0.06em] text-fg-2">
           Backend Engineer · AI Product Systems
+        </p>
+        <p className="mt-1.5 font-mono text-sm text-fg-2">
+          <b className="font-semibold text-fg">MediSolve AI</b> · Backend Engineer ·
+          Head of the R&amp;D Center{" "}
+          <span className="text-muted">(Apr 2025 — present)</span>
+          <span className="mx-2 text-muted">/</span>
+          Previously <b className="font-semibold text-fg">STUDIO LAB</b> · PM
+          <span className="text-muted"> (Dec 2021 — Dec 2023)</span>
         </p>
         <p className="mt-4 text-lg font-medium">
           Backend engineer who builds AI products — and helps decide what to build and why.
@@ -444,7 +459,7 @@ function DocEn() {
             <PlainList
               items={[
                 <>Inherited a generation backend built quickly with AI tools and difficult-to-control recurring issues; made and defended the decision to rebuild it while the service was still small, then completed discovery through rebuild in <Metric>36 work hours</Metric> with an AI collaboration harness</>,
-                <>Reduced the QA reopen rate (resolved-to-reopened) from <strong>37% to 11%</strong>; daily reopen incidence fell by <Metric>~94%</Metric></>,
+                <>QA reopen rate (resolved-to-reopened) went from <strong>37% to 11%</strong> across the cutover, with daily reopen incidence down <Metric>~94%</Metric></>,
                 <>Introduced FastAPI as a separate backend based on planned AI-module expansion (keeping Next.js on the frontend); owned development and operations after cutover, serving tens of thousands of monthly requests at <Metric>~0.3% HTTP 5xx</Metric></>,
                 <>Split generation-quality judgement into <strong>three layers</strong> — automated gates, measured-distribution checks, human review — and validated prompt rules against a corpus I collected myself; refuted approaches are kept on record to prevent retries</>,
                 <>Designed and built the <strong>agent pipeline itself as planner and writer roles</strong> — type-branch judgement placed in the writer never fired across 18 cases, so I moved the judgement to the planner; where a decision lives turned out to be the core of agent design</>,
