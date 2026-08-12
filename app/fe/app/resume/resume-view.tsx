@@ -315,6 +315,17 @@ function DocKo() {
           />
           <Axis
             no="03"
+            title="어드민 시스템 구축·운영"
+            claim="병원이 실제로 쓰는 통합 관리 시스템 backend를 계층 구조로 세우고 있습니다."
+            items={[
+              <>통합 관리 시스템 backend를 <strong>Clean Architecture 계층 구조로 설계·구축 주도</strong> (진행 중)<Src>Centurion</Src></>,
+              <>Homepage/Admin API를 독립 모듈로 두고 gateway로 단일 엔드포인트 제공, Generic Repository로 공통 CRUD 표준화<Src>Centurion</Src></>,
+              <>Multi-tenancy와 Soft Delete 자동 필터링으로 데이터 격리, 병원 product backend monorepo의 service boundary와 migration flow 주도<Src>Centurion</Src></>,
+              <>코드 컨벤션 정립과 Ruff·Pyright·pre-commit 기반 품질 자동 검증 체계 구축<Src>Centurion</Src></>,
+            ]}
+          />
+          <Axis
+            no="04"
             title="Agent 워크플로우 · AX"
             claim="사람과 코딩 에이전트가 같은 규칙 위에서 일하도록 만듭니다."
             items={[
@@ -324,7 +335,17 @@ function DocKo() {
             ]}
           />
           <Axis
-            no="04"
+            no="05"
+            title="인프라 · 플랫폼 운영"
+            claim="제품이 도는 환경을 직접 소유하고 운영합니다."
+            items={[
+              <><strong>회사 Azure/Terraform infra 전반</strong>의 설계·구축·운영 담당<Src>MediSolve AI</Src></>,
+              <>B2B/B2C·제품·환경별 resource boundary와 deploy·runbook 관리<Src>MediSolve AI</Src></>,
+              <>외부 product Terraform IaC 구축 전담, Centurion Azure/Terraform infra 구축·운영과 runbook·문서화 담당<Src>Centurion</Src></>,
+            ]}
+          />
+          <Axis
+            no="06"
             title="제품 운영 · 결정"
             claim="무엇을 만들지 정하고, 만들어진 뒤의 운영 구조까지 설계합니다."
             items={[
@@ -494,6 +515,17 @@ function DocEn() {
           />
           <Axis
             no="03"
+            title="Building and running admin systems"
+            claim="I am building the backend for the integrated management system clinics actually run on."
+            items={[
+              <>Leading the design and build of the integrated management system backend on a <strong>Clean Architecture layering</strong> (in progress)<Src>Centurion</Src></>,
+              <>Kept Homepage and Admin APIs as independent modules behind a single gateway endpoint, and standardised shared CRUD through a generic repository<Src>Centurion</Src></>,
+              <>Isolated data with multi-tenancy and automatic soft-delete filtering; led the service boundary and migration flow of the hospital product backend monorepo<Src>Centurion</Src></>,
+              <>Established code conventions and a Ruff/Pyright/pre-commit quality verification pipeline<Src>Centurion</Src></>,
+            ]}
+          />
+          <Axis
+            no="04"
             title="Agent workflow · AX"
             claim="I make people and coding agents work off the same set of rules."
             items={[
@@ -503,7 +535,17 @@ function DocEn() {
             ]}
           />
           <Axis
-            no="04"
+            no="05"
+            title="Infrastructure · platform operations"
+            claim="I own and operate the environments the products actually run on."
+            items={[
+              <>Own the design, build and operation of the <strong>company-wide Azure/Terraform infrastructure</strong><Src>MediSolve AI</Src></>,
+              <>Manage resource boundaries and deploy/runbook practice across B2B, B2C, product and environment splits<Src>MediSolve AI</Src></>,
+              <>Own the Terraform IaC build for the external product, and run Centurion&rsquo;s Azure/Terraform infrastructure with its runbooks and documentation<Src>Centurion</Src></>,
+            ]}
+          />
+          <Axis
+            no="06"
             title="Product operations · decisions"
             claim="I help decide what to build, and design how it runs once it exists."
             items={[

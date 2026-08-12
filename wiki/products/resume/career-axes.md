@@ -28,13 +28,14 @@ user: "각 회사들별로 이 구조가 좀 변동될 수 있겠지 / 그 관�
 - 제목은 **역량만**. 제품명을 제목에 넣지 않는다 — 읽는 사람은 사내 코드명을 모른다.
 - 코드명 ↔ 제품 성격 매핑은 회사 맨 위 「담당 제품」 한 줄이 담당한다.
 - 태그(`· 코드명`)는 **축이 여러 제품을 걸칠 때 필요한 줄에만**. 단일 제품 축은 생략.
-- 축당 bullet 3~5, 회사당 축 2~5.
+- 축당 bullet 3~5. **회사당 축 3~5, 현재 회사만 최대 6.**
+- 분량이 넘치면 **현재 회사를 자르지 않고 과거 회사를 압축한다.** 목표 비율 = 현재 : 나머지 ≈ 2 : 1.
 
 ## 1. 두 층위 — 전역 축과 회사별 축
 
 | 층위 | 어디에 | 축 |
 | --- | --- | --- |
-| **전역** | 웹 이력서 `할 수 있는 일` 섹션 | ① backend 구축·재구축 ② AI 출력 품질 판정·평가 ③ Agent 워크플로우·AX ④ 제품 운영·결정 |
+| **전역** | 웹 이력서 `할 수 있는 일` 섹션 | ① backend 구축·재구축 ② AI 출력 품질 판정·평가 ③ 어드민 시스템 구축·운영 ④ Agent 워크플로우·AX ⑤ 인프라·플랫폼 운영 ⑥ 제품 운영·결정 |
 | **회사별** | 플랫폼 경력 설명 · 웹 이력서 경력 | 회사마다 다름 (아래) |
 
 전역 축은 **여러 회사를 가로지르는 주장**이다 (예: ①은 메디솔브 + 스튜디오랩 둘 다 걸침).
@@ -57,7 +58,8 @@ user: "각 회사들별로 이 구조가 좀 변동될 수 있겠지 / 그 관�
 | 2 | AI 출력 품질 판정·평가 | Thready | `thready.quality-criteria-system` `thready.corpus-measurement` `thready.measurement-correction` `thready.falsification-log` | owned ×4 | 5 |
 | 3 | 어드민 시스템 구축·운영 | Centurion 통합 관리 시스템 | `nexus.admin-backend-ownership` `nexus.backend-architecture` `nexus.quality-automation` | led ×3 | 5 |
 | 4 | Agent 워크플로우·AX | Thready · 조직 표준 템플릿 | `thready.agent-pipeline-design` `be-template.backend-standard` `be-template.agent-context` `be-template.team-leverage` | owned ×4 | 5 |
-| 5 | 제품 운영·결정 | 제품팀 · Centurion | `career.medisolve-role-evolution` `mediness.product-operations` `centurion.say-realtime-ai` | led / led / **co-led** | 4 |
+| 5 | 인프라·플랫폼 운영 | 회사 Azure · Centurion | `infra.company-azure-ownership` `nexus.terraform-infra` `centurion.shared-infra` | **owned ×3** | 4 |
+| 6 | 제품 운영·결정 | 제품팀 · Centurion | `career.medisolve-role-evolution` `mediness.product-operations` `centurion.say-realtime-ai` | led / led / **co-led** | 4 |
 
 **⚠️ 축 3은 `led`이고 진행 중이다** — "단독 구축"(Git 커밋 83%, 100% 아님)·완료형·도메인 개수 단정·
 Closure Table(repo에 없는 자기보고 오류)·고객사 실명 전부 금지. 고객사는 `D·C 피부과` 마스킹.
@@ -115,15 +117,17 @@ Closure Table(repo에 없는 자기보고 오류)·고객사 실명 전부 금�
 
 `public: true`인데 **경력 설명 어디에도 안 쓰이는 claim**이다. 지면이 허락하면 축을 신설한다.
 
-### 메디솔브 — 「인프라·플랫폼」 축이 통째로 비어 있다
+### ~~메디솔브 — 「인프라·플랫폼」 축이 통째로 비어 있다~~ → **해소 (2026-08-12)**
+
+축 5로 신설했다. `owned` 3건 — 메디솔브에서 가장 강도 높은 축이다. 아래가 그 근거다.
 
 | claim ID | statement | 강도 |
 | --- | --- | --- |
 | `infra.company-azure-ownership` | 회사 Azure infra repository와 운영을 B2B·B2C·NEXUS·제품 환경 전반에서 담당 | **owned** |
 | `nexus.terraform-infra` | NEXUS Terraform IaC 구축 전담 | **owned** |
-| `centurion.shared-infra` | Centurion Azure/Terraform infra 구축·운영과 runbook·문서화 | led |
+| `centurion.shared-infra` | Centurion Azure/Terraform infra 구축·운영과 runbook·문서화 | **owned** |
 
-→ 현재 이 내용은 웹 이력서 **Skills 칸의 부연**으로만 존재한다. 축으로 세울 근거가 충분하다.
+수치(App Service 13대·Terraform 관리 231 resource)는 `forbidden_copy`의 "정확한 resource detail"에 걸린다 — 쓰지 않는다.
 
 ### ~~메디솔브 — NEXUS가 경력 설명에 없다~~ → **해소 (2026-08-12)**
 
@@ -151,16 +155,31 @@ Closure Table(repo에 없는 자기보고 오류)·고객사 실명 전부 금�
 → `day-product-integration`은 **제품 운영·결정 축의 실무 근거**로 쓸 수 있다
 (현재 그 축은 추상적인 게이트 서술뿐이다).
 
+## 3-b. 분량 배분 (2026-08-12 재조정)
+
+메디솔브가 6축이 되면서 전체 분량이 늘었다. **현재 회사를 줄이지 않고 과거를 압축**했다.
+
+| 회사 | 축 | bullet | 조정 |
+| --- | --- | --- | --- |
+| 메디솔브 | 6 | 28 | 어드민·인프라 축 신설로 증가 |
+| 더데이랩스 | 1 | 2 | 4 → 2 (기준 수립 항목 병합) |
+| 메멘토 | 1 | 3 | 2축 5줄 → 1축 3줄 (결제 도메인을 안정화 축에 흡수) |
+| 스튜디오랩 | 3 + 수상 | 6 | 9 → 6 (특허·KCL·CES는 유지, 세부 병합) |
+| 아이즈솔 | 1 | 2 | 4 → 2 |
+
+현재 : 나머지 = 28 : 13 ≈ **2.2 : 1**. 국내 인사담당자 증언상 3장을 넘기면 읽기를 포기하므로
+총량은 늘리지 않고 배분만 바꿨다 ([recency-weighting](../../rules/recency-weighting.md)).
+
 ## 4. JD에 따른 축 재배치
 
 축 순서는 **지원 포지션이 첫 줄에서 무엇을 찾는가**로 정한다. 문장을 바꾸는 게 아니라 순서를 바꾼다.
 
 | JD 유형 | 메디솔브 축 순서 | 비고 |
 | --- | --- | --- |
-| AI Engineer (LLM·Agent) | ② 품질 판정 → ③ Agent → ① 구축 → ④ 운영 | eval 설계가 2026 1순위 스크린 |
-| Backend Engineer | ① 구축 → 인프라(신설) → ③ Agent → ② 품질 | 인프라 축을 살린다 |
-| AI PM / AI PO | ④ 운영·결정 → ② 품질 판정 → ① 구축 | 스튜디오랩 축 1을 함께 올린다 |
-| Platform / DevOps | 인프라(신설) → ① 구축 → ③ Agent | NEXUS Terraform·Azure owned 전면 |
+| AI Engineer (LLM·Agent) | ② 품질 판정 → ④ Agent → ① 구축 → ⑥ 운영 | eval 설계가 2026 1순위 스크린 |
+| Backend Engineer | ① 구축 → ⑤ 인프라 → ③ 어드민 → ④ Agent | 인프라·어드민이 전면 |
+| AI PM / AI PO | ⑥ 운영·결정 → ② 품질 판정 → ① 구축 | 스튜디오랩 축 1을 함께 올린다 |
+| Platform / DevOps | ⑤ 인프라 → ① 구축 → ③ 어드민 | Azure·Terraform owned 3건이 최강 근거 |
 
 ## 5. 변경 이력
 
@@ -171,4 +190,5 @@ Closure Table(repo에 없는 자기보고 오류)·고객사 실명 전부 금�
 | 2026-08-12 | v3 개조식·명사형 종결 확정 (국내 레퍼런스 기반) |
 | 2026-08-12 | v4 소제목을 프로젝트명 → **역량 축**으로 (주객전도 교정) |
 | 2026-08-12 | v4.1 제목에서 제품명 제거, 「담당 제품」 한 줄 도입 |
-| 2026-08-12 | v4.2 NEXUS ≡ Centurion 확인 → 병기 제거, 「어드민 시스템 구축·운영」 축 신설 (메디솔브 5축) |
+| 2026-08-12 | v4.2 NEXUS ≡ Centurion 확인 → 병기 제거, 「어드민 시스템 구축·운영」 축 신설 |
+| 2026-08-12 | v4.3 「인프라·플랫폼 운영」 축 신설(owned ×3), 메디솔브 6축 · 과거 회사 압축으로 총량 유지 |
