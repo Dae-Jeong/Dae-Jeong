@@ -20,9 +20,9 @@ export const CASES: CaseMeta[] = [
     name: "Thready Rebuild",
     tag: "AI Content Generation · Backend",
     blurb:
-      "AI 콘텐츠 생성 backend를 전면 재구축하고 이후 개발·운영을 전담. typed prompt builder와 LLM judge 기반 평가 루프, 관측 로깅으로 생성 품질을 시스템화했다.",
+      "AI 콘텐츠 생성 backend를 전면 재구축하고 이후 개발·운영을 전담. 자동 게이트·실측 분포 대조·사람 판정 3층으로 생성 품질을 판정 가능하게 만들고, 파이프라인을 planner·writer 역할로 분리해 설계·구현했다.",
     role: "Rebuild · Ownership",
-    scope: "Generation Quality",
+    scope: "Quality · Agent",
     available: true,
   },
   {

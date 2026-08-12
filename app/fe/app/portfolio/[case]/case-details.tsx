@@ -32,24 +32,38 @@ export const DETAILS: Record<string, CaseDetail> = {
     ],
     problem: [
       <>
-        AI 콘텐츠 생성 제품 Thready의 backend를 인계받았을 때, 생성 품질이
-        프롬프트·모델 호출에 흩어져 있어{" "}
-        <strong>무엇이 좋은 출력인지 판정하고 회귀를 잡을 기준</strong>이 없었다.
-        프롬프트는 문자열로 조립되어 타입 안전성과 재사용이 약했고, 실패·품질
-        저하를 관측할 로깅 축도 부족했다.
+        AI 콘텐츠 생성 제품 Thready의 backend를 인계받았을 때, 도메인 간 의존성이
+        얽혀 있어 <strong>회원 로직 수정이 AI 생성 중단으로 전파</strong>됐다. QA
+        티켓을 닫아도 같은 영역에서 재발이 반복됐다.
       </>,
       <>
-        그래서 부분 수정이 아니라 <strong>backend 전면 재구축</strong>과 cutover를
-        선택하고, 이후 개발·운영을 전담하기로 했다.
+        생성 품질도 프롬프트·모델 호출에 흩어져 있어{" "}
+        <strong>무엇이 좋은 출력인지 판정하고 회귀를 잡을 기준</strong>이 없었다.
+        &ldquo;품질이 나쁘다&rdquo;는 말로는 무엇을 고쳐야 할지 정할 수 없었다.
+      </>,
+      <>
+        부분 수정으로는 의존성 구조가 그대로 남는다고 봤다.{" "}
+        <strong>서비스가 아직 작을 때 전면 재구축</strong>하는 편이 비용이 낮다고
+        판단하고, &ldquo;돌아가는 기능을 왜 다시 만드나&rdquo;라는 반대를 문제
+        누적·AI 모듈 확장 계획·하네스 기반 이관 속도로 설득했다.
       </>,
     ],
     decisionIntro: (
       <>
-        품질을 &ldquo;감&rdquo;이 아니라 <strong>시스템</strong>으로 다루기 위해 세
-        가지를 결정했다.
+        품질을 &ldquo;감&rdquo;이 아니라 <strong>판정 가능한 대상</strong>으로 만들기
+        위해 네 가지를 결정했다.
       </>
     ),
     decisions: [
+      {
+        k: "Rebuild First",
+        t: (
+          <>
+            디자인 패턴과 인프라 하네스를 <strong>먼저</strong> 세운 뒤 AI 코딩
+            에이전트와 협업 — 파악부터 재구축까지 작업 시간 기준 36시간.
+          </>
+        ),
+      },
       {
         k: "Typed Prompt",
         t: (
@@ -60,20 +74,22 @@ export const DETAILS: Record<string, CaseDetail> = {
         ),
       },
       {
-        k: "Judge Loop",
+        k: "3-Layer Judgement",
         t: (
           <>
-            <strong>LLM judge 기반 평가 루프</strong>를 도입 — 출력 품질을 판정
-            가능한 축으로 만들어 회귀를 감지한다.
+            품질 판정을{" "}
+            <strong>자동 게이트 · 실측 분포 대조 · 사람 판정</strong> 세 층으로 분리
+            — 코드가 거를 수 있는 것부터 걸러내고, 사람은 자동화가 닿지 않는 층만
+            본다.
           </>
         ),
       },
       {
-        k: "Observability",
+        k: "Agent Roles",
         t: (
           <>
-            <strong>관측 로깅</strong>을 표준으로 심어 — 생성 흐름과 실패를 사후에
-            추적할 수 있게 한다.
+            생성 파이프라인을 <strong>planner·writer 역할로 분리</strong> — 어떤
+            판단을 어느 역할에 둘 것인가를 설계의 축으로 삼는다.
           </>
         ),
       },
@@ -90,12 +106,16 @@ export const DETAILS: Record<string, CaseDetail> = {
         desc: "프롬프트 조립을 타입으로 계약화 — 입력 누락·형 오류를 호출 전에 차단하고 재사용을 표준화.",
       },
       {
-        title: "LLM Judge · 평가 루프",
-        desc: "생성 출력을 judge로 채점하는 루프 — 품질을 판정 가능한 값으로 만들어 회귀 감지에 사용.",
+        title: "3층 판정 체계",
+        desc: "자동 게이트 12종으로 틀린 출력을 코드가 먼저 걸러내고, 직접 수집한 실측 코퍼스(n=19→4,039)와의 분포 대조로 '플랫폼다운 글'인지 판정하며, 남는 층만 사람이 본다.",
       },
       {
-        title: "관측 로깅",
-        desc: "생성 흐름·실패 지점을 로깅 — 운영 중 문제를 사후 추적하고 원인을 좁힘.",
+        title: "planner · writer 파이프라인",
+        desc: "유형 분기 판정을 writer에 뒀을 때 18건 전부 미발동 — writer는 원본 유형을 알 수 없는 자리였다. 판정을 planner로 옮겨 해결했다.",
+      },
+      {
+        title: "반증 로그",
+        desc: "반증된 프롬프트 규칙을 기록으로 남겨 같은 시도의 반복을 차단 — 실패도 자산으로 축적한다.",
       },
       {
         title: "Rebuild + Cutover",
@@ -112,17 +132,24 @@ export const DETAILS: Record<string, CaseDetail> = {
     evidence: [
       {
         index: "근거 1",
-        label: "HTTP 5xx 0.3% 수준 운영",
+        label: "QA reopen 37% → 11%",
         claim:
-          "월 수만 건 규모 요청을 처리하는 production backend를 HTTP 5xx 0.3% 수준으로 운영",
-        source: "Thready 운영 지표 · 운영 시점 기준",
+          "재구축 cutover 전후로 QA 티켓 reopen 비율(해결 대비 reopen)이 37%에서 11%로 감소",
+        source: "Jira 집계 · cutover 전후 비교",
       },
       {
         index: "근거 2",
-        label: "월 수만 건 규모 요청 처리",
+        label: "HTTP 5xx 0.3% 수준 운영",
         claim:
-          "production backend가 월 수만 건 규모의 생성 요청을 처리 — 구체 처리량 수치는 [TBD]",
-        source: "운영 지표 (수치 확정 전)",
+          "월 수만 건 규모 요청을 처리하는 production backend를 HTTP 5xx 0.3% 수준으로 운영 (30일 기준)",
+        source: "Thready 운영 지표 · 운영 시점 기준",
+      },
+      {
+        index: "근거 3",
+        label: "품질 기준값의 자기 되먹임 발견",
+        claim:
+          "측정값으로 신뢰하던 품질 기준값이 자사 출력을 되먹이고 있었음을 발견 — 순환을 끊고 기준을 다시 세우는 과정에서 문제 정의 자체의 오류도 드러남",
+        source: "실측 코퍼스 재수집 (n=19 → 4,039)",
       },
     ],
   },

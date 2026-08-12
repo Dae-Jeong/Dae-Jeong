@@ -34,7 +34,9 @@ const SUMMARY: { no: string; accent?: boolean; text: React.ReactNode }[] = [
     no: "01",
     text: (
       <>
-        <strong>AI 콘텐츠 생성 backend 전면 재구축</strong>과 이후 개발·운영 전담
+        AI가 만든 결과물의 품질을{" "}
+        <strong>자동 게이트·실측 분포 대조·사람 판정 세 층</strong>으로 나눠 판정
+        가능하게 만듦
       </>
     ),
   },
@@ -43,8 +45,8 @@ const SUMMARY: { no: string; accent?: boolean; text: React.ReactNode }[] = [
     accent: true,
     text: (
       <>
-        월 수만 건 규모 요청을 처리하는 production backend를{" "}
-        <strong>HTTP 5xx 0.3% 수준</strong>으로 운영
+        <strong>AI 콘텐츠 생성 backend 전면 재구축</strong> — QA 티켓 reopen 비율{" "}
+        <strong>37% → 11%</strong>, 이후 월 수만 건 규모를 HTTP 5xx 0.3% 수준으로 운영
       </>
     ),
   },
@@ -52,7 +54,8 @@ const SUMMARY: { no: string; accent?: boolean; text: React.ReactNode }[] = [
     no: "03",
     text: (
       <>
-        Backend Engineer 합류 후 <strong>Tech Lead·PO 역할 병행</strong>
+        생성 파이프라인을 <strong>planner·writer 역할로 분리 설계·구현</strong> —
+        판단을 어느 역할에 둘 것인가를 실측으로 결정
       </>
     ),
   },
@@ -60,8 +63,9 @@ const SUMMARY: { no: string; accent?: boolean; text: React.ReactNode }[] = [
     no: "04",
     text: (
       <>
-        스펙·이슈·릴리스 게이트를 <strong>agent가 읽고 실행하는 workflow</strong>를
-        설계·리드 — <strong>이 사이트도 같은 방식으로 만들었다</strong>
+        Backend Engineer로 합류해{" "}
+        <strong>기업부설연구소장·Tech Lead·PO 역할 병행</strong> — 스펙·이슈·릴리스
+        게이트를 agent가 읽고 실행하는 workflow로 설계·리드
       </>
     ),
   },
@@ -115,7 +119,7 @@ export default function Home() {
                 Product Systems
               </p>
               <p className="mt-6 max-w-[22ch] text-xl font-medium leading-[1.4] max-md:max-w-none max-md:text-lg">
-                AI 제품을 운영 가능한 시스템으로 만드는 백엔드 엔지니어
+                AI 제품을 만들고, 무엇을 만들지도 함께 정하는 백엔드 엔지니어
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 {/* Resume PDF 준비 시 다운로드 chip 복귀 (7차 결정) */}
@@ -138,7 +142,7 @@ export default function Home() {
               valueClassName="text-cred"
               groups={[
                 [
-                  { k: "Role", v: "Backend" },
+                  { k: "Role", v: "Backend · PO" },
                   { k: "Domain", v: "AI Product" },
                   { k: "Career", v: "2020 —" },
                 ],

@@ -148,14 +148,14 @@ export function ChatView() {
             <VisitorMsg>김대정은 어떤 엔지니어인가요?</VisitorMsg>
             <AgentMsg>
               <p>
-                AI 제품을 운영 가능한 시스템으로 만드는 백엔드 엔지니어입니다.
-                FastAPI/NestJS 기반 product backend, AI generation quality,
-                async/realtime processing, Azure/Terraform deployment를 다뤄왔고, 제품
-                운영과 engineering standard를 agent-readable workflow로 구조화합니다.
+                AI 제품을 만들고, 무엇을 만들지도 함께 정하는 백엔드
+                엔지니어입니다. LLM 기능을 제품에 붙이는 일보다, AI의 출력을 판정하고
+                통제해서 사람이 믿고 쓸 수 있는 제품으로 만드는 일을 다룹니다 — LLM
+                백엔드, Agent Workflow, Evaluation이 중심입니다.
               </p>
               <p>
-                MediSolve AI에 Backend Engineer로 합류한 뒤 Tech Lead·PO 역할을
-                병행하고 있습니다.
+                MediSolve AI에 Backend Engineer로 합류한 뒤 기업부설연구소장·Tech
+                Lead·PO 역할을 병행하고 있습니다.
               </p>
               <Evidence ids={["profile.identity", "career.medisolve-role-evolution"]} />
               <Related
@@ -174,8 +174,11 @@ export function ChatView() {
               </p>
               <p>
                 생성 품질은 감이 아니라 시스템으로 다룹니다 — typed prompt builder,
-                LLM judge, 평가 루프, 관측 로깅으로 품질 시스템을 구축했습니다. 현재
-                월 수만 건 규모 요청을 HTTP 5xx 0.3% 수준으로 운영하고 있습니다.
+                LLM judge, 관측 로깅 위에, 자동 게이트·실측 분포 대조·사람 판정의 세
+                층으로 판정 체계를 세웠습니다. 생성 파이프라인 자체도 planner·writer
+                역할로 분리해 설계·구현했습니다. 재구축 이후 QA 티켓 reopen 비율이
+                37%에서 11%로 내려갔고, 현재 월 수만 건 규모 요청을 HTTP 5xx 0.3%
+                수준으로 운영하고 있습니다.
               </p>
               <p>
                 더 깊은 배경과 트레이드오프는{" "}
