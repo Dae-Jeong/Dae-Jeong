@@ -44,14 +44,23 @@ user: "각 회사들별로 이 구조가 좀 변동될 수 있겠지 / 그 관�
 
 ### 메디솔브에이아이 (2025.04 —, Backend Engineer · 기업부설연구소장)
 
-담당 제품: Thready(AI 콘텐츠 생성) · Centurion(피부과 운영 CRM) · NEXUS(외부 병원 product backend)
+담당 제품: Thready(AI 콘텐츠 생성) · Centurion(AI 메디컬 플랫폼 — 피부과 운영 CRM·통합 관리 시스템)
+
+> ⚠️ **NEXUS는 별도 제품이 아니다** (2026-08-12 user-confirmed: "centurion & nexus 사실 거의 동일하거든").
+> Centurion 제품군의 저장소 라벨이며, `clients.md`도 어드민을 "Centurion 데이뷰 & 세라미크 어드민 시스템"으로
+> 기록한다. 공개 문안에서 Centurion과 나란히 병기하면 담당 제품이 하나 더 있는 것처럼 읽혀 범위가 부풀려진다.
+> `nexus.*` claim namespace는 저장소 추적용으로 유지하되, **표기는 「어드민/통합 관리 시스템」 기능명으로 푼다.**
 
 | # | 축 | 근거 제품 | claim ID | 강도 | bullet |
 | --- | --- | --- | --- | --- | --- |
 | 1 | AI 제품 backend 구축·재구축 | Thready · Centurion | `thready.backend-rebuild` `thready.rebuild-decision-execution` `thready.qa-reopen-reduction` `thready.production-operation-quality` `centurion.bay-async-backend` | owned / owned / owned / owned / led | 5 |
 | 2 | AI 출력 품질 판정·평가 | Thready | `thready.quality-criteria-system` `thready.corpus-measurement` `thready.measurement-correction` `thready.falsification-log` | owned ×4 | 5 |
-| 3 | Agent 워크플로우·AX | Thready · 조직 표준 템플릿 | `thready.agent-pipeline-design` `be-template.backend-standard` `be-template.agent-context` `be-template.team-leverage` | owned ×4 | 5 |
-| 4 | 제품 운영·결정 | 제품팀 · Centurion | `career.medisolve-role-evolution` `mediness.product-operations` `centurion.say-realtime-ai` | led / led / **co-led** | 4 |
+| 3 | 어드민 시스템 구축·운영 | Centurion 통합 관리 시스템 | `nexus.admin-backend-ownership` `nexus.backend-architecture` `nexus.quality-automation` | led ×3 | 5 |
+| 4 | Agent 워크플로우·AX | Thready · 조직 표준 템플릿 | `thready.agent-pipeline-design` `be-template.backend-standard` `be-template.agent-context` `be-template.team-leverage` | owned ×4 | 5 |
+| 5 | 제품 운영·결정 | 제품팀 · Centurion | `career.medisolve-role-evolution` `mediness.product-operations` `centurion.say-realtime-ai` | led / led / **co-led** | 4 |
+
+**⚠️ 축 3은 `led`이고 진행 중이다** — "단독 구축"(Git 커밋 83%, 100% 아님)·완료형·도메인 개수 단정·
+Closure Table(repo에 없는 자기보고 오류)·고객사 실명 전부 금지. 고객사는 `D·C 피부과` 마스킹.
 
 **⚠️ 축 4의 SAY는 co-led다** — "공동 주 기여"를 반드시 유지한다. 강도 상향 금지.
 
@@ -116,7 +125,9 @@ user: "각 회사들별로 이 구조가 좀 변동될 수 있겠지 / 그 관�
 
 → 현재 이 내용은 웹 이력서 **Skills 칸의 부연**으로만 존재한다. 축으로 세울 근거가 충분하다.
 
-### 메디솔브 — NEXUS가 경력 설명에 없다
+### ~~메디솔브 — NEXUS가 경력 설명에 없다~~ → **해소 (2026-08-12)**
+
+「어드민 시스템 구축·운영」 축으로 신설해 반영했다. 아래는 그때 사용한 근거다.
 
 | claim ID | statement | 강도 |
 | --- | --- | --- |
@@ -126,8 +137,9 @@ user: "각 회사들별로 이 구조가 좀 변동될 수 있겠지 / 그 관�
 | `nexus.quality-automation` | 코드 컨벤션 정립과 Ruff·Pyright·pre-commit 기반 품질 자동 검증 체계 구축 | led |
 | `nexus.domain-audit-governance` | multi-brand backend monorepo의 domain audit과 documentation governance | contributed |
 
-→ **가장 큰 누락.** `led` 5건 규모인데 담당 제품 줄에만 이름이 있다.
-`nexus.pool-stabilization`은 장애 원인 분석 서사라 판단 줄 재료로도 강하다.
+잔여: `nexus.pool-stabilization`(커넥션 풀 설정·세션 생명주기 재조정)은 **작업까지만 claim 가능**하다 —
+전후 모니터링 지표가 없어 효과를 쓸 수 없고 `confidence: medium`이다. 지면이 남을 때만 쓴다.
+`nexus.domain-audit-governance`는 `contributed`라 현재 축에서 제외했다.
 고객사 표기는 `D·C 피부과` 마스킹 ([clients.md](../../evidence/clients.md)) — 그룹바이·oopy의 `A 피부과`는 오기.
 
 ### Centurion — 미사용 4건
@@ -159,3 +171,4 @@ user: "각 회사들별로 이 구조가 좀 변동될 수 있겠지 / 그 관�
 | 2026-08-12 | v3 개조식·명사형 종결 확정 (국내 레퍼런스 기반) |
 | 2026-08-12 | v4 소제목을 프로젝트명 → **역량 축**으로 (주객전도 교정) |
 | 2026-08-12 | v4.1 제목에서 제품명 제거, 「담당 제품」 한 줄 도입 |
+| 2026-08-12 | v4.2 NEXUS ≡ Centurion 확인 → 병기 제거, 「어드민 시스템 구축·운영」 축 신설 (메디솔브 5축) |

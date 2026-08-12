@@ -75,6 +75,23 @@ Closure Table은 `grep`이 base64 문자열에 우연 일치했을 뿐 실제 �
 - Managed Identity 인증과 롤링 배포 파이프라인
 - **be-template(조직 표준)과 범위가 다르다** — 이것은 단일 제품 내 품질 체계다
 
+## Relation To Centurion (2026-08-12 user-confirmed)
+
+> user: "centurion & nexus 사실 거의 동일하거든"
+
+**NEXUS는 별도 제품이 아니라 Centurion 제품군의 저장소 라벨이다.**
+`clients.md`도 어드민 시스템을 "**Centurion** 데이뷰 & 세라미크 어드민 시스템"으로 기록한다.
+
+→ **공개 문안에서 NEXUS를 Centurion과 나란히 놓지 않는다.** 저장소 라벨을 제품으로 병기하면
+담당 제품이 하나 더 있는 것처럼 읽혀 범위가 부풀려진다 (claim 강도 부풀리기와 같은 문제).
+
+→ 공개 표기는 **어드민/통합 관리 시스템**이라는 기능 명칭으로 푼다
+(2026-08-12 user 제안: "그런 어드민 시스템 구축 및 운용 이런식으로 풀어도 되지않을까?").
+역량 축 제목에 제품·저장소 코드명을 쓰지 않는 v4.1 규칙과도 정합한다.
+
+→ evidence 문서와 claim namespace(`nexus.*`)는 저장소 단위 추적을 위해 그대로 둔다.
+바뀌는 것은 **공개 문안의 표기**뿐이다.
+
 ## Public Disclosure
 
 - `NEXUS`는 외부 병원 product backend를 가리키는 public label로 사용한다.

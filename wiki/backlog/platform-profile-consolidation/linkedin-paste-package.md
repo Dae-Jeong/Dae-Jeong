@@ -74,7 +74,7 @@ Backend Engineer · PO | AI 제품을 만들고, 무엇을 만들지도 함께 �
 ### 2-1. MediSolve AI
 
 ```
-담당 제품: Thready(AI 콘텐츠 생성) · Centurion(피부과 운영 CRM) · NEXUS(외부 병원 product backend)
+담당 제품: Thready(AI 콘텐츠 생성) · Centurion(AI 메디컬 플랫폼 — 피부과 운영 CRM·통합 관리 시스템)
 
 [AI 제품 backend 구축·재구축]
 - QA 티켓 reopen 비율 37% → 11% 개선 (해결 대비 reopen, cutover 전후 Jira 집계) · Thready
@@ -89,6 +89,13 @@ Backend Engineer · PO | AI 제품을 만들고, 무엇을 만들지도 함께 �
 - 실측 코퍼스 n=19 → 4,039 직접 수집, 분포 대조로 플랫폼 적합성 판정
 - 실측으로 신뢰하던 품질 기준값이 자사 출력을 되먹이고 있음을 확인, 순환 차단 및 기준 재수립
 - 반증된 프롬프트 규칙 기록화로 동일 시도 반복 차단
+
+[어드민 시스템 구축·운영 — 진행 중]
+- 통합 관리 시스템 backend를 Clean Architecture 계층 구조로 설계·구축 주도
+- Homepage/Admin API를 독립 모듈로 두고 gateway로 단일 엔드포인트 제공
+- Generic Repository로 공통 CRUD 표준화, Multi-tenancy와 Soft Delete 자동 필터링으로 데이터 격리
+- 병원 product backend monorepo의 service boundary와 migration flow 주도
+- 코드 컨벤션 정립과 Ruff·Pyright·pre-commit 기반 품질 자동 검증 체계 구축
 
 [Agent 워크플로우·AX]
 - 평가 하네스와 함께 하네스로 검증할 agent 구조 자체를 설계·구현 (대표 영역: writer) · Thready
