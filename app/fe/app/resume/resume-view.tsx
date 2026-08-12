@@ -352,7 +352,8 @@ function DocKo() {
               <>Backend Engineer 합류 후 <strong>기업부설연구소장·Tech Lead·PO 역할 병행</strong> — AI 제품 backend를 만들면서 제품팀 운영을 함께 리드<Src>MediSolve AI</Src></>,
               <>pipeline registry와 release gate 기반으로 제품팀 일정·이슈·릴리스 운영 리드 — 제품 결정을 BE·FE·QA·release gate 실행으로 연결<Src>Mediness Ops</Src></>,
               <>CES 2024 Best of Innovation <strong>수상 제품의 PM 메인 역할</strong> — 상세페이지 제작 Flow 재설계가 특허 「페이지 출력 방법」 출원·등록으로 연결<Src>SellerCanvas</Src></>,
-              <>PM 재직 중에도 의류 색상 분류 모델을 직접 개발해 분석 정확도 보정에 활용<Src>SellerCanvas</Src></>,
+              <><strong>제품이 원활하게 돌아가는 시스템</strong>을 기획·구축 — 개발 시스템이 아니라 제품이 굴러가는 구조를 설계하는 일이었고, 지금의 제품 운영 리드와 같은 근육의 이전 형태<Src>SellerCanvas</Src></>,
+              <><strong>LLM 붐 이전(2021~22)부터</strong> Vision AI 기반 생성 제품의 제품 시스템을 기획·구축, PM 재직 중에도 색상 분류 모델을 직접 개발<Src>SellerCanvas</Src></>,
             ]}
           />
         </NumberedList>
@@ -410,7 +411,7 @@ function DocKo() {
             예약·결제 backend의 Stripe 선결제 도입과 환불·마일리지·티켓 rollback 안정화 (인턴 1개월 → 정규직) — 회사 폐업으로 재직 종료
           </CareerRow>
           <CareerRow org="STUDIO LAB" period="2021.12 — 2023.12">
-            SellerCanvas(생성형 AI 커머스 콘텐츠)의 PM 메인 역할 — 상세페이지 제작 Flow를 재설계해 <strong>특허 「페이지 출력 방법」 출원·등록으로 연결</strong>, PM 중에도 색상 분류 모델을 직접 개발 (AI Engineer → PM → Backend Engineer)
+            SellerCanvas(생성형 AI 커머스 콘텐츠)의 <strong>PM 메인 역할</strong> — 제품이 원활하게 돌아가는 시스템을 기획·구축했고, 상세페이지 제작 Flow 재설계가 <strong>특허 「페이지 출력 방법」 출원·등록으로 연결</strong>. PM 중에도 색상 분류 모델을 직접 개발 (AI Engineer → PM → Backend Engineer)
           </CareerRow>
           <CareerRow org="아이즈솔" period="2020.08 — 2021.06">
             Vision AI에서 시작한 AI product engineering 경력 (인턴)
@@ -552,7 +553,8 @@ function DocEn() {
               <>Joined as a Backend Engineer and now also serve as <strong>head of the R&amp;D center while taking on Tech Lead and PO roles</strong><Src>MediSolve AI</Src></>,
               <>Lead product-team scheduling, issues and releases on a pipeline registry and release gates — connecting product decisions to BE, FE, QA and release execution<Src>Mediness Ops</Src></>,
               <>Served as the <strong>primary PM</strong> for a CES 2024 Best of Innovation-winning product — the detail-page production flow I redesigned led to a registered patent<Src>SellerCanvas</Src></>,
-              <>Built a color-classification model hands-on while serving as PM, and used it to correct analysis accuracy<Src>SellerCanvas</Src></>,
+              <>Planned and built <strong>the systems that kept the product running</strong> — not developer tooling but the operating structure of the product itself, the earlier form of the product operations I lead today<Src>SellerCanvas</Src></>,
+              <>Was planning and building product systems for generative Vision-AI products <strong>before the LLM boom (2021&ndash;22)</strong>, and built a color-classification model hands-on while serving as PM<Src>SellerCanvas</Src></>,
             ]}
           />
         </NumberedList>
@@ -610,7 +612,7 @@ function DocEn() {
             Introduced Stripe prepayment and stabilized refund, mileage, and ticket rollback flows; role ended when the company ceased operations
           </CareerRow>
           <CareerRow org="STUDIO LAB" period="Dec 2021 — Dec 2023">
-            Primary PM for SellerCanvas (generative-AI commerce content) — redesigned the detail-page production flow, which led to a registered patent; also built a color-classification model hands-on while serving as PM (AI Engineer to PM to Backend Engineer)
+            <strong>Primary PM</strong> for SellerCanvas (generative-AI commerce content) — planned and built the systems that kept the product running; the detail-page production flow I redesigned led to a registered patent, and I built a color-classification model hands-on while serving as PM (AI Engineer to PM to Backend Engineer)
           </CareerRow>
           <CareerRow org="Eyesol" period="Aug 2020 — Jun 2021">
             Started in AI product engineering with Vision AI (internship)

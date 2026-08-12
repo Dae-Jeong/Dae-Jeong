@@ -93,10 +93,21 @@ Closure Table(repo에 없는 자기보고 오류)·고객사 실명 전부 금�
 
 | # | 축 | claim ID | 강도 | bullet |
 | --- | --- | --- | --- | --- |
-| 1 | 제품 기획·운영 | `career.sellercanvas-product-system` `credentials.page-output-patent` | led / owned | 4 |
-| 2 | Vision AI 모델 개발 | `career.sellercanvas-product-system` `credentials.ai-accuracy-certification` | contributed / — | 3 |
+| 1 | **제품 시스템 기획·구축 (PM 메인 롤)** | `career.sellercanvas-product-system` `credentials.page-output-patent` | **led** / owned | **6** |
+| 2 | Vision AI 모델 개발 | `career.sellercanvas-product-system` `credentials.ai-accuracy-certification` | contributed / — | 2 |
 | 3 | Backend 표준화 | `career.sellercanvas-product-system` | contributed | 2 |
 | — | 수상 | `credentials.ces-2024` | — | 1줄 |
+
+**축 1은 배분 예외다** (2026-08-12 user-confirmed: "스튜디오랩에서는 PM으로서의 성과가 강해").
+목표 포지션(PO & AI 에이전트)의 "정하는 일" 쪽 최강 근거이자 특허·CES의 출처이므로,
+과거 시기임에도 6줄을 준다. 신규 반영한 미사용 재료 2건:
+- **"제품이 원활하게 돌아가는 시스템을 기획·구축"** — 개발 시스템이 아니라는 구분.
+  현재의 제품 운영(decision·spec·release gate) 리드와 **같은 근육의 이전 형태**라는 연결이 핵심이다
+- **"LLM 붐 이전(2021~22)부터 Vision AI 기반 생성 제품"** — allowed_copy에 있었으나 미사용이던 문장
+- Backend 축에 "PM 경험으로 레거시 문제점 파악·개선 방향 설계"를 복원 (역할 간 연결)
+
+미반영 유지: 정량(제작 시간 95% 단축, 정확도 99% 등)은 self-reported·공개 미사용 확정.
+SPAO는 마스킹 대상이라 "패션 대기업 브랜드"로만 쓴다. 브랜드 개수는 못박지 않는다.
 
 축 2가 **dual track의 원형**이다 — AI 시기 모델 개발과 PM 재직 중 색상 분류 모델이 한 축으로 묶인다
 (2026-08-12 user-confirmed: Deep Scan은 두 시기 모두).
@@ -164,10 +175,10 @@ Closure Table(repo에 없는 자기보고 오류)·고객사 실명 전부 금�
 | 메디솔브 | 6 | 28 | 어드민·인프라 축 신설로 증가 |
 | 더데이랩스 | 1 | 2 | 4 → 2 (기준 수립 항목 병합) |
 | 메멘토 | 1 | 3 | 2축 5줄 → 1축 3줄 (결제 도메인을 안정화 축에 흡수) |
-| 스튜디오랩 | 3 + 수상 | 6 | 9 → 6 (특허·KCL·CES는 유지, 세부 병합) |
+| 스튜디오랩 | 3 + 수상 | **10** | 6 → 10 (PM 축 강화 — 배분 예외) |
 | 아이즈솔 | 1 | 2 | 4 → 2 |
 
-현재 : 나머지 = 28 : 13 ≈ **2.2 : 1**. 국내 인사담당자 증언상 3장을 넘기면 읽기를 포기하므로
+현재 : 나머지 = 28 : 17 ≈ **1.6 : 1**. (PM 축 예외 반영 후) 국내 인사담당자 증언상 3장을 넘기면 읽기를 포기하므로
 총량은 늘리지 않고 배분만 바꿨다 ([recency-weighting](../../rules/recency-weighting.md)).
 
 ## 4. JD에 따른 축 재배치
@@ -192,3 +203,4 @@ Closure Table(repo에 없는 자기보고 오류)·고객사 실명 전부 금�
 | 2026-08-12 | v4.1 제목에서 제품명 제거, 「담당 제품」 한 줄 도입 |
 | 2026-08-12 | v4.2 NEXUS ≡ Centurion 확인 → 병기 제거, 「어드민 시스템 구축·운영」 축 신설 |
 | 2026-08-12 | v4.3 「인프라·플랫폼 운영」 축 신설(owned ×3), 메디솔브 6축 · 과거 회사 압축으로 총량 유지 |
+| 2026-08-12 | v4.4 스튜디오랩 PM 축 강화 (배분 예외 — 목표 포지션 직결 축) |
