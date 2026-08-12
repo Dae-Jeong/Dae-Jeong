@@ -240,7 +240,7 @@ function DocKo() {
             <>백엔드를 택한 데는 이유가 있다 — <strong>AI가 구현을 점점 더 많이 맡을수록, 보안과 안정성처럼 사람이 끝까지 책임져야 하는 층이 더 무거워진다고 봤다</strong>. 매일 AI와 같이 제품을 만드는 지금, 그 판단이 틀리지 않았다고 느낀다</>,
             <><strong>기업부설연구소장·Tech Lead·PO 역할을 병행</strong>하며 AI 제품 backend를 만들면서 제품팀 운영을 함께 리드</>,
             <><strong>문제의 경계를 다시 잡고</strong>, <strong>측정과 게이트로 판정 가능하게 만들고</strong>, <strong>그 해결을 표준으로 확장하는 것</strong>이 일하는 방식 — AI 도구로 빠르게 구축된 생성 backend를 전면 재구축하고 cutover 이후 개발·운영을 전담</>,
-            <>CES 2024 Best of Innovation <strong>수상 제품의 PM 메인 역할</strong>과 특허 등록 1건</>,
+            <>CES 2024 Best of Innovation <strong>수상 제품의 PM 메인 역할</strong> — 상세페이지 제작 방식은 특허 등록으로 이어짐 (10-2898273)</>,
           ]}
         />
       </Sec>
@@ -290,6 +290,7 @@ function DocKo() {
                 <>cutover 이후 <strong>QA 버그 재발률(해결 대비 reopen) 37% → 11%</strong>, 재발 발생 일평균 <Metric>약 94% 감소</Metric> — 잔여 이슈도 원인 영역이 파악된 상태로 관리</>,
                 <>AI 모듈 확장을 근거로 <strong>FastAPI 분리 도입</strong>(FE는 Next.js 유지), cutover 이후 개발·운영 전담 — 월 수만 건 규모 요청을 <Metric>HTTP 5xx 0.3% 수준</Metric>으로 운영</>,
                 <>생성 품질 판정을 <strong>자동 게이트·실측 분포·사람 판정 3층</strong>으로 나누고, 프롬프트 규칙의 근거를 직접 수집한 실측 데이터로 검증 — 반증된 접근은 기록으로 남겨 재시도를 막음</>,
+                <>생성 파이프라인을 <strong>planner·writer 역할로 분리 설계·구현</strong> — 유형 분기 판정이 writer에서 전부 미발동하자 판정 위치를 planner로 재배치해 해결, 판단을 어느 역할에 둘 것인가를 실측으로 결정</>,
                 <>품질 기준값을 실측으로 믿고 쓰던 중 재측정에서 <strong>자사 출력을 되먹이고 있었음</strong>을 확인 — 순환을 끊고 기준을 다시 세우는 과정에서 문제 정의 자체의 오류도 함께 드러남</>,
               ]}
             />
@@ -331,7 +332,7 @@ function DocKo() {
             예약·결제 backend의 Stripe 선결제 도입과 환불·마일리지·티켓 rollback 안정화 (인턴 1개월 → 정규직) — 회사 폐업으로 재직 종료
           </CareerRow>
           <CareerRow org="STUDIO LAB" period="2021.12 — 2023.12">
-            SellerCanvas(생성형 AI 커머스 콘텐츠)의 PM 메인 역할로 제품 시스템 기획·구축 — AI Engineer → PM → Backend Engineer
+            SellerCanvas(생성형 AI 커머스 콘텐츠)의 PM 메인 역할 — 상세페이지 제작 Flow를 재설계해 <strong>특허 「페이지 출력 방법」 출원·등록으로 연결</strong>, PM 중에도 색상 분류 모델을 직접 개발 (AI Engineer → PM → Backend Engineer)
           </CareerRow>
           <CareerRow org="아이즈솔" period="2020.08 — 2021.06">
             Vision AI에서 시작한 AI product engineering 경력 (인턴)
@@ -396,7 +397,7 @@ function DocEn() {
             <>Chose backend on a judgement call: <strong>as AI takes on more of the implementation, the layers humans must own to the end — security and stability — only grow heavier</strong>; building products alongside AI today has made that conviction firmer</>,
             <>Serving as <strong>Head of the corporate R&amp;D center, Tech Lead, and Product Owner</strong> — building AI product backends while leading how the product team operates</>,
             <>My way of working: <strong>redraw the problem boundary</strong>, <strong>make judgement measurable and gated</strong>, then <strong>scale the fix into standards</strong> — rebuilt an AI content generation backend end to end and has owned it since cutover</>,
-            <>Served as the <strong>primary PM</strong> for a CES 2024 Best of Innovation-winning product; hold one registered patent</>,
+            <>Served as the <strong>primary PM</strong> for a CES 2024 Best of Innovation-winning product — the page-generation method led to a registered patent (10-2898273)</>,
           ]}
         />
       </Sec>
@@ -446,6 +447,7 @@ function DocEn() {
                 <>Reduced the QA reopen rate (resolved-to-reopened) from <strong>37% to 11%</strong>; daily reopen incidence fell by <Metric>~94%</Metric></>,
                 <>Introduced FastAPI as a separate backend based on planned AI-module expansion (keeping Next.js on the frontend); owned development and operations after cutover, serving tens of thousands of monthly requests at <Metric>~0.3% HTTP 5xx</Metric></>,
                 <>Split generation-quality judgement into <strong>three layers</strong> — automated gates, measured-distribution checks, human review — and validated prompt rules against a corpus I collected myself; refuted approaches are kept on record to prevent retries</>,
+                <>Designed and built the <strong>agent pipeline itself as planner and writer roles</strong> — type-branch judgement placed in the writer never fired across 18 cases, so I moved the judgement to the planner; where a decision lives turned out to be the core of agent design</>,
                 <>Found that a quality baseline we had trusted as measured was actually <strong>feeding on our own output</strong> — breaking the loop and rebuilding the baseline also surfaced an error in the problem definition itself</>,
               ]}
             />
@@ -487,7 +489,7 @@ function DocEn() {
             Introduced Stripe prepayment and stabilized refund, mileage, and ticket rollback flows; role ended when the company ceased operations
           </CareerRow>
           <CareerRow org="STUDIO LAB" period="Dec 2021 — Dec 2023">
-            Primary PM for SellerCanvas (generative-AI commerce content); planned and built the systems that kept the product running — AI Engineer to PM to Backend Engineer
+            Primary PM for SellerCanvas (generative-AI commerce content) — redesigned the detail-page production flow, which led to a registered patent; also built a color-classification model hands-on while serving as PM (AI Engineer to PM to Backend Engineer)
           </CareerRow>
           <CareerRow org="Eyesol" period="Aug 2020 — Jun 2021">
             Started in AI product engineering with Vision AI (internship)
