@@ -35,9 +35,10 @@ const SUMMARY: { no: string; accent?: boolean; text: React.ReactNode }[] = [
     accent: true,
     text: (
       <>
-        <strong>AI 콘텐츠 생성 backend 전면 재구축</strong> — cutover 전후 관측에서 QA
-        티켓 reopen 비율 <strong>37% → 11%</strong>, 이후 월 수만 건 규모를 HTTP 5xx
-        0.3% 수준으로 운영
+        돌아가는 backend를 다시 세우자고 설득했고,{" "}
+        <strong>재구축 이후 오히려 재발이 줄었다</strong> — QA 티켓 reopen 비율{" "}
+        <strong>37% → 11%</strong> (cutover 전후 관측). 범위는 backend로 한정하고 FE는
+        그대로 뒀다
       </>
     ),
   },
@@ -45,9 +46,9 @@ const SUMMARY: { no: string; accent?: boolean; text: React.ReactNode }[] = [
     no: "02",
     text: (
       <>
-        AI가 만든 결과물의 품질을{" "}
-        <strong>자동 게이트·실측 분포 대조·사람 판정 세 층</strong>으로 나눠 판정
-        가능하게 만듦
+        측정값으로 믿고 쓰던 품질 기준이{" "}
+        <strong>자사 출력을 되먹이고 있었다</strong> — 순환을 끊는 과정에서 문제 정의
+        자체의 오류가 함께 드러났다
       </>
     ),
   },
@@ -55,8 +56,9 @@ const SUMMARY: { no: string; accent?: boolean; text: React.ReactNode }[] = [
     no: "03",
     text: (
       <>
-        생성 파이프라인을 <strong>planner·writer 역할로 분리 설계·구현</strong> —
-        판단을 어느 역할에 둘 것인가를 실측으로 결정
+        유형 분기 판정을 writer에 뒀더니{" "}
+        <strong>18건 전부 발동하지 않았다</strong> — 판단을 어느 역할에 둘 것인가가
+        agent 설계의 핵심이었다
       </>
     ),
   },
@@ -64,9 +66,9 @@ const SUMMARY: { no: string; accent?: boolean; text: React.ReactNode }[] = [
     no: "04",
     text: (
       <>
-        Backend Engineer로 합류해{" "}
-        <strong>기업부설연구소장·Tech Lead·PO 역할 병행</strong> — 스펙·이슈·릴리스
-        게이트를 agent가 읽고 실행하는 workflow로 설계·리드
+        AI 제품 backend를 만들면서{" "}
+        <strong>기업부설연구소장·Tech Lead·PO 역할을 병행</strong> — 만드는 일과 무엇을
+        만들지 정하는 일을 같이 한다
       </>
     ),
   },

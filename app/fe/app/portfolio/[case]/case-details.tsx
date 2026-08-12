@@ -43,9 +43,15 @@ export const DETAILS: Record<string, CaseDetail> = {
       </>,
       <>
         부분 수정으로는 의존성 구조가 그대로 남는다고 봤다.{" "}
-        <strong>서비스가 아직 작을 때 전면 재구축</strong>하는 편이 비용이 낮다고
-        판단하고, &ldquo;돌아가는 기능을 왜 다시 만드나&rdquo;라는 반대를 문제
-        누적·AI 모듈 확장 계획·하네스 기반 이관 속도로 설득했다.
+        <strong>서비스가 아직 작을 때 갚는 편이 비용이 낮다</strong>고 판단하고,
+        &ldquo;돌아가는 기능을 왜 다시 만드나&rdquo;라는 반대를 문제 누적·AI 모듈 확장
+        계획·하네스 기반 이관 속도로 설득했다.
+      </>,
+      <>
+        재구축의 가장 큰 위험은 새 결함이므로, 결정보다 <strong>통제 장치를 먼저</strong>{" "}
+        놓았다 — 범위를 <strong>backend로 한정</strong>(FE는 Next.js 유지)하고, 하네스를
+        세운 뒤에 작업을 시작했다. 위험이 현실화되지 않았는지는 아래 근거 chip의 reopen
+        지표로 확인할 수 있다.
       </>,
     ],
     decisionIntro: (

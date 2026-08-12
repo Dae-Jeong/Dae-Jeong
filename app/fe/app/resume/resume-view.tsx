@@ -294,11 +294,12 @@ function DocKo() {
             first
             no="01"
             title="AI 제품 backend 구축·재구축"
-            claim="돌아가지만 손대기 어려운 backend를 다시 세우고, cutover 이후 운영까지 맡습니다."
+            claim="기술부채를 언제 갚을지 계산하고, 갚는 동안 서비스가 흔들리지 않게 만듭니다."
             items={[
-              <>cutover 전후 관측에서 <strong>QA 버그 재발률(해결 대비 reopen) 37% → 11%</strong>, 재발 발생 일평균 <Metric>약 94% 감소</Metric><Src>Thready</Src></>,
-              <>서비스가 작은 시점에 <strong>전면 재구축을 결정·설득</strong> — 하네스를 먼저 세팅하고 AI와 협업해 파악부터 재구축까지 <Metric>총 36시간(작업 시간 기준)</Metric><Src>Thready</Src></>,
-              <>AI 모듈 확장을 근거로 FastAPI 분리 도입(FE는 Next.js 유지), 월 수만 건 규모 요청을 <Metric>HTTP 5xx 0.3% 수준</Metric>으로 운영<Src>Thready</Src></>,
+              <>재구축의 가장 큰 위험은 새 결함이다 — <strong>cutover 전후 관측에서 QA 버그 재발률(해결 대비 reopen)이 37% → 11%로 감소</strong>, 재발 발생 일평균 <Metric>약 94% 감소</Metric>. 위험이 현실화되지 않았음을 지표로 확인<Src>Thready</Src></>,
+              <>부분 수정으로는 의존성 구조가 남는다고 판단, <strong>서비스가 작은 시점</strong>을 골라 재구축을 결정·설득 — 지금 갚는 비용이 나중보다 싸다는 계산이었다<Src>Thready</Src></>,
+              <>범위를 <strong>backend로 한정</strong>(FE는 Next.js 유지)하고 <strong>하네스를 먼저 세운 뒤</strong> AI와 협업 — 파악부터 재구축까지 <Metric>총 36시간(작업 시간 기준)</Metric>, 이후 개발·운영 전담하며 월 수만 건 요청을 <Metric>HTTP 5xx 0.3% 수준</Metric>으로 운영<Src>Thready</Src></>,
+              <>재구축만 하는 것은 아니다 — 메시지 계층은 <strong>Celery에서 TaskIQ로 점진 전환</strong>, 레거시는 <strong>NestJS로 이관</strong>, monorepo는 <strong>service boundary와 migration flow</strong>로 옮겼다<Src>Centurion · SellerCanvas</Src></>,
               <>주문·재고 API와 RabbitMQ·TaskIQ 비동기 worker·retry 구축 주도 — 실패 가능한 작업을 <strong>제품 시작 시점부터</strong> API 경계 밖으로 분리한 예방 설계<Src>Centurion</Src></>,
             ]}
           />
@@ -495,11 +496,12 @@ function DocEn() {
             first
             no="01"
             title="Building and rebuilding AI product backends"
-            claim="I rebuild backends that run but resist change, and own them through cutover and operations."
+            claim="I work out when technical debt is cheapest to repay, and keep the service steady while repaying it."
             items={[
-              <>Cut the QA reopen rate (resolved-to-reopened) from <strong>37% to 11%</strong> across the cutover, with daily reopen incidence down <Metric>~94%</Metric><Src>Thready</Src></>,
-              <>Decided and defended a full rebuild while the service was still small — set up the harness first, then paired with AI to go from discovery to rebuild in <Metric>36 work hours</Metric><Src>Thready</Src></>,
-              <>Introduced FastAPI as a separate backend on the basis of planned AI-module expansion (keeping Next.js on the frontend); operate tens of thousands of monthly requests at <Metric>~0.3% HTTP 5xx</Metric><Src>Thready</Src></>,
+              <>The main risk in a rebuild is new defects — across the cutover the <strong>QA reopen rate (resolved-to-reopened) went from 37% to 11%</strong>, with daily reopen incidence down <Metric>~94%</Metric>. The risk did not materialise, and the metric shows it<Src>Thready</Src></>,
+              <>Judged that partial fixes would leave the dependency structure intact, so I picked the moment <strong>while the service was still small</strong> and argued for the rebuild — repaying then was cheaper than repaying later<Src>Thready</Src></>,
+              <>Scoped it to the <strong>backend only</strong> (keeping Next.js on the frontend) and <strong>set up the harness first</strong> before pairing with AI — <Metric>36 work hours</Metric> from discovery to rebuild, then owned development and operations at <Metric>~0.3% HTTP 5xx</Metric> across tens of thousands of monthly requests<Src>Thready</Src></>,
+              <>Rebuilding is not the only tool — migrated the messaging layer <strong>incrementally from Celery to TaskIQ</strong>, moved legacy code <strong>onto NestJS</strong>, and reshaped a monorepo through <strong>service boundaries and migration flow</strong><Src>Centurion · SellerCanvas</Src></>,
               <>Led order/inventory APIs, RabbitMQ/TaskIQ async workers and retry — moved failure-prone work outside the API boundary <strong>from product inception</strong> as preventive design<Src>Centurion</Src></>,
             ]}
           />
