@@ -298,15 +298,14 @@ function DocKo() {
       </header>
 
       <Sec id="s1" no="01" title="요약" meta="Summary">
-        <PlainList
-          items={[
-            <><strong>AI 제품을 만들어온 <Metric>실무 4년차</Metric></strong> — 모델을 만들다 기획을 거쳐 백엔드로 왔고, 지금은 백엔드를 만들면서 무엇을 만들지 정하는 역할도 같이 맡는다</>,
-            <>백엔드를 택한 데는 이유가 있다 — <strong>AI가 구현을 점점 더 많이 맡을수록, 보안과 안정성처럼 사람이 끝까지 책임져야 하는 층이 더 무거워진다고 봤다</strong>. 매일 AI와 같이 제품을 만드는 지금, 그 판단이 틀리지 않았다고 느낀다</>,
-            <><strong>기업부설연구소장·Tech Lead·PO 역할을 병행</strong>하며 AI 제품 backend를 만들면서 제품팀 운영을 함께 리드</>,
-            <><strong>문제의 경계를 다시 잡고</strong>, <strong>측정과 게이트로 판정 가능하게 만들고</strong>, <strong>그 해결을 표준으로 확장하는 것</strong>이 일하는 방식 — AI 도구로 빠르게 구축된 생성 backend를 전면 재구축하고 cutover 이후 개발·운영을 전담</>,
-            <>CES 2024 Best of Innovation <strong>수상 제품의 PM 메인 역할</strong> — 상세페이지 제작 방식은 특허 등록으로 이어짐 (10-2898273)</>,
-          ]}
-        />
+        <div className="grid gap-3.5 text-fg-2">
+          <p className="m-0">
+            <strong className="font-semibold text-fg">AI 제품을 만들어온 <Metric>실무 4년차</Metric></strong>. 모델을 만들다 기획을 거쳐 백엔드로 왔고, 지금은 백엔드를 만들면서 무엇을 만들지 정하는 역할도 같이 맡는다.
+          </p>
+          <p className="m-0">
+            백엔드를 택한 데는 이유가 있다. <strong className="font-semibold text-fg">AI가 구현을 점점 더 많이 맡을수록, 보안과 안정성처럼 사람이 끝까지 책임져야 하는 층이 더 무거워진다</strong>고 봤다. 매일 AI와 같이 제품을 만드는 지금, 그 판단이 틀리지 않았다고 느낀다.
+          </p>
+        </div>
       </Sec>
 
       <Sec id="s3" no="03" title="할 수 있는 일" meta="Capabilities">
@@ -526,15 +525,14 @@ function DocEn() {
       </header>
 
       <Sec no="01" title="Summary">
-        <PlainList
-          items={[
-            <><strong>Four years of building AI products</strong> — moving from model engineering to product planning to backend, now both building the backend and helping decide what to build and why</>,
-            <>Chose backend on a judgement call: <strong>as AI takes on more of the implementation, the layers humans must own to the end — security and stability — only grow heavier</strong>; building products alongside AI today has made that conviction firmer</>,
-            <>Serving as <strong>Head of the corporate R&amp;D center, Tech Lead, and Product Owner</strong> — building AI product backends while leading how the product team operates</>,
-            <>My way of working: <strong>redraw the problem boundary</strong>, <strong>make judgement measurable and gated</strong>, then <strong>scale the fix into standards</strong> — rebuilt an AI content generation backend end to end and has owned it since cutover</>,
-            <>Served as the <strong>primary PM</strong> for a CES 2024 Best of Innovation-winning product — the page-generation method led to a registered patent (10-2898273)</>,
-          ]}
-        />
+        <div className="grid gap-3.5 text-fg-2">
+          <p className="m-0">
+            <strong className="font-semibold text-fg">Four years of building AI products</strong>. I moved from model engineering to product planning to backend, and now I both build the backend and help decide what to build and why.
+          </p>
+          <p className="m-0">
+            Choosing backend was a judgement call. <strong className="font-semibold text-fg">As AI takes on more of the implementation, the layers a human has to own to the end — security, stability — only grow heavier.</strong> Building products alongside AI every day has made that conviction firmer.
+          </p>
+        </div>
       </Sec>
 
       <Sec no="03" title="Capabilities">
@@ -768,8 +766,8 @@ export function ResumeView() {
           </nav>
         )}
         <p className="m-0 border-t border-border-soft pt-3 font-mono text-xs leading-relaxed text-muted max-lg:hidden">
-          모든 성과 문장은 검증된 claim registry의 public 표현만 사용합니다. 연락처 중
-          전화번호는 PDF 배포본에만 포함됩니다.
+          성과 문장은 claim registry의 public 표현 범위 안에서 씁니다 — 강도(owned·led·co-led)와
+          금지 표현을 문서로 관리합니다. 연락처 중 전화번호는 PDF 배포본에만 포함됩니다.
         </p>
       </aside>
     </div>

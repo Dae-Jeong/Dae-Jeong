@@ -178,14 +178,22 @@ Codex가 "80%는 상단 1/3이 아니다"라고 지적해 **TheLadders 원 보�
 - [x] claim registry 2건 등록 (`thready.agent-pipeline-design`, 연구소장 allowed_copy)
 - [x] research 문서 §1-b 정정 섹션 + 근거 강등, rules §10 분량 모순 해소
 
-### 남은 과제 (후속)
+### 남은 과제 — 2026-08-13 종결
 
-- [ ] 이력서 Summary를 L1답게 압축 (5줄 → 2~3문단), `일하는 방식` 섹션과의 중복 제거
-- [ ] 섹션 순서 재검토 — 강한 proof(대표 프로젝트)를 `일하는 방식`보다 앞으로
-- [ ] Thready 6줄 → 웹 지면 계약(1~2 bullet/프로젝트)에 맞춰 압축
-- [ ] 아이즈솔 경력 1줄 보강 (contributed, 수치 없이)
-- [ ] EN 정렬 — front-loading·XYZ. `Head ... Tech Lead, Product Owner` 병기가
-      세 직함 모두 공식으로 읽힐 위험 (career.yaml note 준수 필요)
-- [ ] `data-claim` 추적 장치 도입 또는 안내 문구 완화
-- [ ] surface별 계약표 작성 (홈 L1 / 웹 이력서 L1 / 웹 프로젝트 / 플랫폼 소개 / 플랫폼 경력 상세)
-- [ ] `content-contract.md`(Zone B, 프로젝트당 1~2 bullet)와 v3의 충돌 정리
+- [x] 이력서 Summary를 L1답게 압축 — `PlainList` 5줄 → **문단 2단락**.
+      경력·`일하는 방식`·credentials와 중복되던 3줄(직함 병행 / 일하는 방식 요약 / CES·특허)을
+      각 소유 섹션에 맡기고 제거했다
+- [x] 섹션 순서 재검토 — `요약 → 경력 → 할 수 있는 일 → 일하는 방식 → 기술 → credentials`.
+      사실이 먼저, 주장이 뒤 (§14)
+- [x] Thready 6줄 압축 — 「대표 프로젝트」 섹션 자체가 역량 축으로 대체돼 해소
+- [x] 아이즈솔 경력 보강 — 직함 라인 + 담당 범위 2줄 (contributed, 수치 없이)
+- [x] EN `Head ... Tech Lead, PO` 병기 위험 — `Head of the R&D Center` 뒤에
+      **"also serving as Tech Lead and PO"**로 분리해 등재 직함과 역할을 구분 (career.yaml note 준수)
+- [x] `data-claim` 안내 문구 — 자동 검증을 시사하지 않도록
+      "claim registry의 public 표현 **범위 안에서** 씁니다 — 강도와 금지 표현을 문서로 관리합니다"로 교체.
+      추적 장치 자체는 도입하지 않았다(수동 대조 유지)
+- [x] surface별 계약표 — [content-sot.md](../../site/content-sot.md)의 층 분리표가 대체
+- [x] `content-contract.md` 충돌 — 「대표 프로젝트」 섹션이 사라져 Zone B 규정과의 충돌이 소멸
+
+**미결 1건 (D2 12차 대상)**: `/resume` 섹션 제목 `lg(18)` : 본문 `base(16)` = 1.125.
+hub 지면은 10차에서 1.56으로 정리했으나 doc 지면은 범위 밖이었다.
