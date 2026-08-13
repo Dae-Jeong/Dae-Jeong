@@ -87,7 +87,7 @@ Closure Table(repo에 없는 자기보고 오류)·고객사 실명 전부 금�
 
 축 1이 **Centurion 예방 설계의 근거**다 — 두 회사를 잇는 서사이므로 지우지 않는다.
 
-### 스튜디오랩 (2021.12 — 2023.12, AI Engineer → PM → Backend Engineer)
+### 스튜디오랩 (2021.12 — 2024.01, AI Engineer → PM → Backend Engineer)
 
 담당 제품: SellerCanvas(Vision AI 상세페이지 자동 생성) · Deep Scan(의류 분석)
 

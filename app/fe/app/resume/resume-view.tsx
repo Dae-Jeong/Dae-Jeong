@@ -281,7 +281,7 @@ function DocKo() {
           <span className="text-fg-2">기업부설연구소장</span> <span className="text-muted">(2025.04 — 재직 중)</span>
           <span className="mx-2 text-muted">/</span>
           이전 <b className="font-semibold text-fg">STUDIO LAB</b> · PM
-          <span className="text-muted"> (2021.12 — 2023.12)</span>
+          <span className="text-muted"> (2021.12 — 2024.01)</span>
         </p>
         <p className="mt-4 text-lg font-medium">
           AI 제품을 만들고, 무엇을 만들지도 함께 정하는 백엔드 엔지니어
@@ -339,7 +339,7 @@ function DocKo() {
               ]}
             />
           </CareerRow>
-          <CareerRow org="STUDIO LAB" period="2021.12 — 2023.12">
+          <CareerRow org="STUDIO LAB" period="2021.12 — 2024.01">
             <span className="mb-1.5 block font-medium text-fg">Product Manager <span className="font-normal text-fg-2">— AI Engineer → PM(메인 롤) → Backend Engineer</span></span>
             <PlainList
               items={[
@@ -536,7 +536,7 @@ function DocEn() {
           <span className="text-muted">(Apr 2025 — present)</span>
           <span className="mx-2 text-muted">/</span>
           Previously <b className="font-semibold text-fg">STUDIO LAB</b> · PM
-          <span className="text-muted"> (Dec 2021 — Dec 2023)</span>
+          <span className="text-muted"> (Dec 2021 — Jan 2024)</span>
         </p>
         <p className="mt-4 text-lg font-medium">
           Backend engineer who builds AI products — and helps decide what to build and why.
@@ -594,7 +594,7 @@ function DocEn() {
               ]}
             />
           </CareerRow>
-          <CareerRow org="STUDIO LAB" period="Dec 2021 — Dec 2023">
+          <CareerRow org="STUDIO LAB" period="Dec 2021 — Jan 2024">
             <span className="mb-1.5 block font-medium text-fg">Product Manager <span className="font-normal text-fg-2">— AI Engineer, then PM (primary role), then Backend Engineer</span></span>
             <PlainList
               items={[
