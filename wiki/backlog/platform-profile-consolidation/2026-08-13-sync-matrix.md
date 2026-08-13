@@ -88,7 +88,7 @@ URL: **`https://www.linkedin.com/in/marinkim-dev`** (기록의 `대정-김-057b2
 | 리멤버 | `https://profile.rememberapp.co.kr/` | 패키지 7까지 반영 기록 있음, 실측 미완 |
 | 그룹바이 | `https://groupby.kr/scouts/my-profile` | 〃 · `A 피부과` 오기 교체 대상 |
 | 사람인 | `https://www.saramin.co.kr/zf_user/resume/resume-manage` | 로그인 1회 필요 |
-| oopy | `https://daejeongkim.oopy.io/` | 실명 노출 중(세라미크·데이뷰) — 마스킹 대상 |
+| ~~oopy~~ | `https://daejeongkim.oopy.io/` | **대상 제외** (2026-08-13 user 지시). 실명 노출은 인지하되 이번 동기화 범위 밖 |
 
 ## 5. 우선순위 — 사실 오류 → 계약 위반 → 빈 값 → 버전 갱신
 
@@ -97,10 +97,9 @@ URL: **`https://www.linkedin.com/in/marinkim-dev`** (기록의 `대정-김-057b2
 1. **로켓펀치 아이즈솔 `C#` → `Python·FastAPI`** — 사실과 다르다
 2. **링크드인 직함 `Tech lead` → `Backend Engineer`** — 등재 직함이 아니다
 3. **링크드인 아이즈솔 "열정과 책임감을 인정받아"** 제거 — 정성 표현
-4. **그룹바이·oopy `A 피부과` → `D·C 피부과`** — 실체 없는 코드
-5. **oopy 고객사 실명 노출** → 마스킹
-6. **원티드 스킬란 `C#` 제거** — 2026-08-12 user-refuted된 항목이 스킬로 걸려 있다
-7. **원티드·링크드인 직책 `Tech Lead` → 정정** — 두 플랫폼 공통 계약 위반
+4. **그룹바이 `A 피부과` → `D·C 피부과`** — 실체 없는 코드
+5. **원티드 스킬란 `C#` 제거** — 2026-08-12 user-refuted된 항목이 스킬로 걸려 있다
+6. **원티드·링크드인 직책 `Tech Lead` → 정정** — 두 플랫폼 공통 계약 위반
 
 ### P1. 누락
 
