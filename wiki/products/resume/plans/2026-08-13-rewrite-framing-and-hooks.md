@@ -1,7 +1,7 @@
 ---
 type: plan
 title: 재구축 서사의 리스크 재프레이밍 + 홈 후킹 설계
-description: "전면 재구축"이 백엔드 채용자에게 리스크로 읽히는 문제를 해결하고, 홈 첫 화면을 클릭을 유발하는 질문 구조로 재설계한다.
+description: '"전면 재구축"이 백엔드 채용자에게 리스크로 읽히는 문제를 해결하고, 홈 첫 화면을 클릭 유발형 질문 구조로 재설계한다.'
 timestamp: 2026-08-13
 derived_from: [rules/persuasive-writing.md, products/resume/career-axes.md, evidence/claims/thready.yaml]
 tags: [copy, framing, hooks, site, strategy]
