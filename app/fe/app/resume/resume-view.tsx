@@ -11,8 +11,11 @@ import { KeyValueRows } from "@/components/ui/key-value-list";
 import { NumberedList, NumberedRow } from "@/components/ui/numbered-row";
 import { SectionHead } from "@/components/ui/section-head";
 
-/* ⚠️ 콘텐츠 임시 수동 사본 — canonical 은 wiki/profile/canonical-baseline.md + wiki/products/resume/master/v3/content.md.
-   export 스크립트 도입 시 파생 콘텐츠 소비로 교체한다. 전화번호는 웹에 넣지 않는다(정책). */
+/* 콘텐츠 SoT (2026-08-13 user-confirmed: "홈페이지를 SoT로 둔 다음에 플랫폼들에 sync를 맞추자").
+   이 파일과 app/page.tsx 의 문안이 **표현의 기준선**이다 — 플랫폼 프로필은 여기서 파생된다.
+   단 사실·강도는 여전히 wiki/evidence/claims/*.yaml 이 소유한다 (allowed_copy / forbidden_copy).
+   즉 "무엇을 말할 수 있는가"는 claim registry, "어떻게 말하는가"는 이 파일.
+   전화번호는 웹에 넣지 않는다(정책). */
 
 /* — 로컬 프리미티브 (두 번째 사용처가 생기면 ui/ 로 승격) — */
 
