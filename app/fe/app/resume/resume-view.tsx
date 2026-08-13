@@ -308,6 +308,59 @@ function DocKo() {
         </div>
       </Sec>
 
+      <Sec id="s2" no="02" title="경력" meta="Career">
+        <NumberedList className="border-t border-border-soft">
+          <CareerRow org="MediSolve AI" now period="2025.04 —">
+            <span className="mb-1.5 block font-medium text-fg">Backend Engineer · 기업부설연구소장 <span className="font-normal text-fg-2">— Tech Lead·PO 역할 병행</span></span>
+            <PlainList
+              items={[
+                <>의료 AI 플랫폼과 AI 콘텐츠 생성 제품의 <strong>backend 전반을 담당</strong>. 재구축·평가 체계·에이전트 파이프라인·어드민·인프라까지 제품이 도는 데 필요한 층을 맡는다</>,
+                <>기업부설연구소장으로 <strong>연구개발 조직을 대표</strong>하고, Tech Lead로 개발 표준을, PO로 제품 결정과 릴리스 운영을 함께 맡는다</>,
+                <>회사 <strong>Azure·Terraform 인프라 전반</strong>을 소유 — B2B·B2C·제품·환경별 경계와 배포·runbook을 직접 관리한다</>,
+                <>대표 성과: cutover 전후 관측에서 QA 버그 재발률 <strong>37% → 11%</strong>, 월 수만 건 규모를 <strong>HTTP 5xx 0.3% 수준</strong>으로 운영</>,
+              ]}
+            />
+          </CareerRow>
+          <CareerRow org="더데이랩스" period="2025.02 — 2025.04">
+            <span className="mb-1.5 block font-medium text-fg">Backend Engineer <span className="font-normal text-fg-2">— 프리랜서</span></span>
+            <PlainList
+              items={[
+                <>현 MediSolve AI 대표와 협업을 시작해 <strong>제품 backend를 0에서 착수</strong>. 처음 꾸려지는 개발팀이라 코드보다 기준이 먼저 필요하다고 보고 저장소 생성 시점에 구조·규약·문서를 함께 넣었다</>,
+                <>창업 시점에 합류해 같은 제품을 이어 담당</>,
+              ]}
+            />
+          </CareerRow>
+          <CareerRow org="Memento AI" period="2024.10 — 2025.01">
+            <span className="mb-1.5 block font-medium text-fg">Backend Engineer <span className="font-normal text-fg-2">— 인턴 1개월 → 정규직</span></span>
+            <PlainList
+              items={[
+                <>피부과 통합 관리 시스템의 <strong>예약·결제 backend를 담당</strong> — 결제가 중간 단계에서 실패할 때 남는 상태 불일치를 실패 지점마다 정의해 해소</>,
+                <>회사 폐업으로 재직 종료</>,
+              ]}
+            />
+          </CareerRow>
+          <CareerRow org="STUDIO LAB" period="2021.12 — 2023.12">
+            <span className="mb-1.5 block font-medium text-fg">Product Manager <span className="font-normal text-fg-2">— AI Engineer → PM(메인 롤) → Backend Engineer</span></span>
+            <PlainList
+              items={[
+                <>커머스 AI 제품의 <strong>프로토타입 단계부터 v1.0까지 0→1 구간을 PM으로 통과</strong> — 무엇을 만들지 정하는 일부터 제품이 굴러가는 구조를 세우는 일까지 맡았다</>,
+                <>그 과정에서 패션 대기업 브랜드 POC를 진행했고, 상세페이지 제작 Flow 재설계가 <strong>특허 「페이지 출력 방법」 출원·등록으로 이어짐</strong></>,
+                <>PM 재직 중에도 의류 색상 분류 모델을 직접 개발. 제품은 <strong>CES 2024 Best of Innovation</strong> 수상</>,
+              ]}
+            />
+          </CareerRow>
+          <CareerRow org="아이즈솔" period="2020.08 — 2021.06">
+            <span className="mb-1.5 block font-medium text-fg">Vision AI Engineer <span className="font-normal text-fg-2">— 인턴</span></span>
+            <PlainList
+              items={[
+                <>유아 안면 인식 기반 비접촉 출결 시스템에서 인식 모델·데이터 파이프라인·Python 백엔드를 담당</>,
+                <>인턴이었지만 기능 요구사항 정의와 일정·태스크 관리를 함께 맡았다 — 만드는 일과 정하는 일의 병행이 이 시기에 시작됐다</>,
+              ]}
+            />
+          </CareerRow>
+        </NumberedList>
+      </Sec>
+
       <Sec id="s3" no="03" title="할 수 있는 일" meta="Capabilities">
         <NumberedList>
           <Axis
@@ -413,59 +466,6 @@ function DocKo() {
         <KeyValueRows items={SKILLS} />
       </Sec>
 
-      <Sec id="s2" no="02" title="경력" meta="Career">
-        <NumberedList className="border-t border-border-soft">
-          <CareerRow org="MediSolve AI" now period="2025.04 —">
-            <span className="mb-1.5 block font-medium text-fg">Backend Engineer · 기업부설연구소장 <span className="font-normal text-fg-2">— Tech Lead·PO 역할 병행</span></span>
-            <PlainList
-              items={[
-                <>의료 AI 플랫폼과 AI 콘텐츠 생성 제품의 <strong>backend 전반을 담당</strong>. 재구축·평가 체계·에이전트 파이프라인·어드민·인프라까지 제품이 도는 데 필요한 층을 맡는다</>,
-                <>기업부설연구소장으로 <strong>연구개발 조직을 대표</strong>하고, Tech Lead로 개발 표준을, PO로 제품 결정과 릴리스 운영을 함께 맡는다</>,
-                <>회사 <strong>Azure·Terraform 인프라 전반</strong>을 소유 — B2B·B2C·제품·환경별 경계와 배포·runbook을 직접 관리한다</>,
-                <>대표 성과: cutover 전후 관측에서 QA 버그 재발률 <strong>37% → 11%</strong>, 월 수만 건 규모를 <strong>HTTP 5xx 0.3% 수준</strong>으로 운영</>,
-              ]}
-            />
-          </CareerRow>
-          <CareerRow org="더데이랩스" period="2025.02 — 2025.04">
-            <span className="mb-1.5 block font-medium text-fg">Backend Engineer <span className="font-normal text-fg-2">— 프리랜서</span></span>
-            <PlainList
-              items={[
-                <>현 MediSolve AI 대표와 협업을 시작해 <strong>제품 backend를 0에서 착수</strong>. 처음 꾸려지는 개발팀이라 코드보다 기준이 먼저 필요하다고 보고 저장소 생성 시점에 구조·규약·문서를 함께 넣었다</>,
-                <>창업 시점에 합류해 같은 제품을 이어 담당</>,
-              ]}
-            />
-          </CareerRow>
-          <CareerRow org="Memento AI" period="2024.10 — 2025.01">
-            <span className="mb-1.5 block font-medium text-fg">Backend Engineer <span className="font-normal text-fg-2">— 인턴 1개월 → 정규직</span></span>
-            <PlainList
-              items={[
-                <>피부과 통합 관리 시스템의 <strong>예약·결제 backend를 담당</strong> — 결제가 중간 단계에서 실패할 때 남는 상태 불일치를 실패 지점마다 정의해 해소</>,
-                <>회사 폐업으로 재직 종료</>,
-              ]}
-            />
-          </CareerRow>
-          <CareerRow org="STUDIO LAB" period="2021.12 — 2023.12">
-            <span className="mb-1.5 block font-medium text-fg">Product Manager <span className="font-normal text-fg-2">— AI Engineer → PM(메인 롤) → Backend Engineer</span></span>
-            <PlainList
-              items={[
-                <>커머스 AI 제품의 <strong>프로토타입 단계부터 v1.0까지 0→1 구간을 PM으로 통과</strong> — 무엇을 만들지 정하는 일부터 제품이 굴러가는 구조를 세우는 일까지 맡았다</>,
-                <>그 과정에서 패션 대기업 브랜드 POC를 진행했고, 상세페이지 제작 Flow 재설계가 <strong>특허 「페이지 출력 방법」 출원·등록으로 이어짐</strong></>,
-                <>PM 재직 중에도 의류 색상 분류 모델을 직접 개발. 제품은 <strong>CES 2024 Best of Innovation</strong> 수상</>,
-              ]}
-            />
-          </CareerRow>
-          <CareerRow org="아이즈솔" period="2020.08 — 2021.06">
-            <span className="mb-1.5 block font-medium text-fg">Vision AI Engineer <span className="font-normal text-fg-2">— 인턴</span></span>
-            <PlainList
-              items={[
-                <>유아 안면 인식 기반 비접촉 출결 시스템에서 인식 모델·데이터 파이프라인·Python 백엔드를 담당</>,
-                <>인턴이었지만 기능 요구사항 정의와 일정·태스크 관리를 함께 맡았다 — 만드는 일과 정하는 일의 병행이 이 시기에 시작됐다</>,
-              ]}
-            />
-          </CareerRow>
-        </NumberedList>
-      </Sec>
-
       <Sec id="s6" no="06" title="학력·교육 / 수상·특허·자격" meta="Credentials">
         <NumberedList>
           <NumberedRow label="2016 — 2021" labelWidth="md" labelClassName="text-xs" className="border-t-0 py-1">
@@ -533,6 +533,59 @@ function DocEn() {
             Choosing backend was a judgement call. <strong className="font-semibold text-fg">As AI takes on more of the implementation, the layers a human has to own to the end — security, stability — only grow heavier.</strong> Building products alongside AI every day has made that conviction firmer.
           </p>
         </div>
+      </Sec>
+
+      <Sec no="02" title="Career">
+        <NumberedList className="border-t border-border-soft">
+          <CareerRow org="MediSolve AI" now period="Apr 2025 —">
+            <span className="mb-1.5 block font-medium text-fg">Backend Engineer · Head of the R&amp;D Center <span className="font-normal text-fg-2">— also serving as Tech Lead and PO</span></span>
+            <PlainList
+              items={[
+                <>Own the <strong>backend across an AI medical platform and an AI content product</strong> — rebuilds, evaluation systems, agent pipelines, admin and infrastructure: whatever layer the product needs to keep running</>,
+                <>Represent the R&amp;D organisation as its head, set engineering standards as Tech Lead, and carry product decisions and release operations as PO</>,
+                <>Own the <strong>company-wide Azure and Terraform infrastructure</strong> — resource boundaries across B2B, B2C, product and environment splits, plus deploys and runbooks</>,
+                <>Headline result: QA reopen rate <strong>37% to 11%</strong> across the cutover, and tens of thousands of monthly requests at <strong>~0.3% HTTP 5xx</strong></>,
+              ]}
+            />
+          </CareerRow>
+          <CareerRow org="TheDayLabs" period="Feb 2025 — Apr 2025">
+            <span className="mb-1.5 block font-medium text-fg">Backend Engineer <span className="font-normal text-fg-2">— freelance</span></span>
+            <PlainList
+              items={[
+                <>Started the product backend <strong>from zero</strong> with the person who now leads MediSolve AI. For a team being assembled for the first time, conventions mattered before code — so structure, conventions and docs went in with the repository itself</>,
+                <>Joined at incorporation and carried the same product forward</>,
+              ]}
+            />
+          </CareerRow>
+          <CareerRow org="Memento AI" period="Oct 2024 — Jan 2025">
+            <span className="mb-1.5 block font-medium text-fg">Backend Engineer <span className="font-normal text-fg-2">— intern for one month, then full-time</span></span>
+            <PlainList
+              items={[
+                <>Owned the <strong>booking and payment backend</strong> of a clinic management system — defined the state transitions at each failure point where a mid-flow payment failure used to leave records inconsistent</>,
+                <>Employment ended when the company shut down</>,
+              ]}
+            />
+          </CareerRow>
+          <CareerRow org="STUDIO LAB" period="Dec 2021 — Dec 2023">
+            <span className="mb-1.5 block font-medium text-fg">Product Manager <span className="font-normal text-fg-2">— AI Engineer, then PM (primary role), then Backend Engineer</span></span>
+            <PlainList
+              items={[
+                <>Took a commerce AI product <strong>from prototype to v1.0 as its PM</strong> — from deciding what to build to building the structure that kept it running</>,
+                <>Ran a proof of concept with a major fashion brand along the way, and the detail-page production flow I redesigned <strong>led to a registered patent</strong></>,
+                <>Built a color-classification model hands-on while serving as PM. The product won <strong>CES 2024 Best of Innovation</strong></>,
+              ]}
+            />
+          </CareerRow>
+          <CareerRow org="Izsol" period="Aug 2020 — Jun 2021">
+            <span className="mb-1.5 block font-medium text-fg">Vision AI Engineer <span className="font-normal text-fg-2">— intern</span></span>
+            <PlainList
+              items={[
+                <>Built the recognition model, data pipeline and Python backend for a contactless attendance system based on child face recognition</>,
+                <>Though an intern, I also handled requirement definition and schedule management — building and deciding have run together since then</>,
+              ]}
+            />
+          </CareerRow>
+        </NumberedList>
       </Sec>
 
       <Sec no="03" title="Capabilities">
@@ -638,59 +691,6 @@ function DocEn() {
 
       <Sec no="05" title="Skills">
         <KeyValueRows items={SKILLS_EN} />
-      </Sec>
-
-      <Sec no="02" title="Career">
-        <NumberedList className="border-t border-border-soft">
-          <CareerRow org="MediSolve AI" now period="Apr 2025 —">
-            <span className="mb-1.5 block font-medium text-fg">Backend Engineer · Head of the R&amp;D Center <span className="font-normal text-fg-2">— also serving as Tech Lead and PO</span></span>
-            <PlainList
-              items={[
-                <>Own the <strong>backend across an AI medical platform and an AI content product</strong> — rebuilds, evaluation systems, agent pipelines, admin and infrastructure: whatever layer the product needs to keep running</>,
-                <>Represent the R&amp;D organisation as its head, set engineering standards as Tech Lead, and carry product decisions and release operations as PO</>,
-                <>Own the <strong>company-wide Azure and Terraform infrastructure</strong> — resource boundaries across B2B, B2C, product and environment splits, plus deploys and runbooks</>,
-                <>Headline result: QA reopen rate <strong>37% to 11%</strong> across the cutover, and tens of thousands of monthly requests at <strong>~0.3% HTTP 5xx</strong></>,
-              ]}
-            />
-          </CareerRow>
-          <CareerRow org="TheDayLabs" period="Feb 2025 — Apr 2025">
-            <span className="mb-1.5 block font-medium text-fg">Backend Engineer <span className="font-normal text-fg-2">— freelance</span></span>
-            <PlainList
-              items={[
-                <>Started the product backend <strong>from zero</strong> with the person who now leads MediSolve AI. For a team being assembled for the first time, conventions mattered before code — so structure, conventions and docs went in with the repository itself</>,
-                <>Joined at incorporation and carried the same product forward</>,
-              ]}
-            />
-          </CareerRow>
-          <CareerRow org="Memento AI" period="Oct 2024 — Jan 2025">
-            <span className="mb-1.5 block font-medium text-fg">Backend Engineer <span className="font-normal text-fg-2">— intern for one month, then full-time</span></span>
-            <PlainList
-              items={[
-                <>Owned the <strong>booking and payment backend</strong> of a clinic management system — defined the state transitions at each failure point where a mid-flow payment failure used to leave records inconsistent</>,
-                <>Employment ended when the company shut down</>,
-              ]}
-            />
-          </CareerRow>
-          <CareerRow org="STUDIO LAB" period="Dec 2021 — Dec 2023">
-            <span className="mb-1.5 block font-medium text-fg">Product Manager <span className="font-normal text-fg-2">— AI Engineer, then PM (primary role), then Backend Engineer</span></span>
-            <PlainList
-              items={[
-                <>Took a commerce AI product <strong>from prototype to v1.0 as its PM</strong> — from deciding what to build to building the structure that kept it running</>,
-                <>Ran a proof of concept with a major fashion brand along the way, and the detail-page production flow I redesigned <strong>led to a registered patent</strong></>,
-                <>Built a color-classification model hands-on while serving as PM. The product won <strong>CES 2024 Best of Innovation</strong></>,
-              ]}
-            />
-          </CareerRow>
-          <CareerRow org="Izsol" period="Aug 2020 — Jun 2021">
-            <span className="mb-1.5 block font-medium text-fg">Vision AI Engineer <span className="font-normal text-fg-2">— intern</span></span>
-            <PlainList
-              items={[
-                <>Built the recognition model, data pipeline and Python backend for a contactless attendance system based on child face recognition</>,
-                <>Though an intern, I also handled requirement definition and schedule management — building and deciding have run together since then</>,
-              ]}
-            />
-          </CareerRow>
-        </NumberedList>
       </Sec>
 
       <Sec no="06" title="Education & Credentials">
