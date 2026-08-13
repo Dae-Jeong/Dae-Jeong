@@ -6,6 +6,15 @@ export type CaseDetail = {
   positioning: string;
   kv: { k: string; v: string }[];
   problem: React.ReactNode[];
+  /* 검토(Analyze) — 선택 섹션. 근거 없는 케이스는 생략한다 (§6·§7) */
+  review?: {
+    intro?: React.ReactNode;
+    groups: {
+      title: string;
+      options: { name: string; verdict: "기각" | "채택"; reason: React.ReactNode }[];
+      note?: React.ReactNode;
+    }[];
+  };
   decisionIntro: React.ReactNode;
   decisions: { k: string; t: React.ReactNode }[];
   systemIntro: React.ReactNode;
@@ -42,18 +51,44 @@ export const DETAILS: Record<string, CaseDetail> = {
         &ldquo;품질이 나쁘다&rdquo;는 말로는 무엇을 고쳐야 할지 정할 수 없었다.
       </>,
       <>
-        부분 수정으로는 의존성 구조가 그대로 남는다고 봤다.{" "}
-        <strong>서비스가 아직 작을 때 갚는 편이 비용이 낮다</strong>고 판단하고,
-        &ldquo;돌아가는 기능을 왜 다시 만드나&rdquo;라는 반대를 문제 누적·AI 모듈 확장
-        계획·하네스 기반 이관 속도로 설득했다.
-      </>,
-      <>
         재구축의 가장 큰 위험은 새 결함이므로, 결정보다 <strong>통제 장치를 먼저</strong>{" "}
         놓았다 — 범위를 <strong>backend로 한정</strong>(FE는 Next.js 유지)하고, 하네스를
         세운 뒤에 작업을 시작했다. 위험이 현실화되지 않았는지는 아래 근거 chip의 reopen
         지표로 확인할 수 있다.
       </>,
     ],
+    review: {
+      intro: (
+        <>
+          무엇을 고칠지보다 <strong>어디까지 고칠지</strong>를 먼저 정해야 했다. 검토한
+          선택지와 버린 이유다.
+        </>
+      ),
+      groups: [
+        {
+          title: "재구축 범위",
+          options: [
+            { name: "부분 수정", verdict: "기각", reason: <>의존성 구조가 그대로 남는다 — QA 티켓을 닫아도 같은 영역에서 재발하던 패턴이 근거였다</> },
+            { name: "전면 교체 — FE 포함", verdict: "기각", reason: <>blast radius가 필요 이상으로 커진다</> },
+            { name: "backend만 분리 교체", verdict: "채택", reason: <>FE(Next.js)는 유지. AI 모듈 확장이 예정돼 있었고, 서비스가 작은 지금이 가장 싸다고 판단했다</> },
+          ],
+          note: (
+            <>
+              &ldquo;돌아가는 기능을 왜 다시 만드나&rdquo;라는 반대는 문제 누적·AI 모듈
+              확장 계획·하네스 기반 이관 속도로 설득했다.
+            </>
+          ),
+        },
+        {
+          title: "생성 품질을 무엇으로 판정하나",
+          options: [
+            { name: "감으로 판정", verdict: "기각", reason: <>&ldquo;좋은 글&rdquo;의 기준 자체가 없었다 — 성공 사례도 n=1이라 일반화할 수 없었다</> },
+            { name: "LLM judge를 품질 게이트로", verdict: "기각", reason: <>기준이 없는 상태에서 게이트를 세우면 무엇을 막는지 알 수 없다</> },
+            { name: "judge를 기준을 발견하는 장치로", verdict: "채택", reason: <>가설을 정량 판단으로 바꿔 데이터를 쌓고, 기준을 증명해가는 루프로 설계했다</> },
+          ],
+        },
+      ],
+    },
     decisionIntro: (
       <>
         품질을 &ldquo;감&rdquo;이 아니라 <strong>판정 가능한 대상</strong>으로 만들기
@@ -180,14 +215,19 @@ export const DETAILS: Record<string, CaseDetail> = {
         작업을 API 밖으로 분리하는 것만으로는 충분하지 않았다. retry, 회귀 검증,
         worker까지 로컬에서 재현할 수 있는 개발 환경을 함께 만들어야 했다.
       </>,
-      <>
-        <strong>장애를 겪고 대응한 것이 아니라 제품 시작 시점의 예방책이었다.</strong>{" "}
-        직전 회사에서 결제 실패의 불일치 — 선결제 예약 실패 시의 롤백, 환불 처리 순서,
-        환불 시 티켓 제거 시점 — 를 직접 수습한 경험이 있었고, 같은 종류의 실패가
-        주문·재고에서도 생긴다고 봤다. 그래서 <strong>제품이 시작되는 시점부터</strong>{" "}
-        실패 가능한 작업을 API 경계 밖에 두었다.
-      </>,
     ],
+    review: {
+      groups: [
+        {
+          title: "실패 가능한 작업을 어디서 다루나",
+          options: [
+            { name: "API 요청 안에서 처리", verdict: "기각", reason: <>외부 지연과 실패가 사용자 응답의 경계까지 전파된다</> },
+            { name: "장애가 난 뒤에 분리", verdict: "기각", reason: <>직전 회사에서 결제 실패의 불일치 — 롤백·환불 순서·티켓 정합성 — 를 직접 수습했다. 사후 수습이 훨씬 비싸다는 걸 겪었다</> },
+            { name: "제품 시작 시점부터 worker로 분리", verdict: "채택", reason: <>실패 가능한 작업을 처음부터 API 경계 밖에 두고, 재고 차감에는 retry를 붙였다</> },
+          ],
+        },
+      ],
+    },
     decisionIntro: (
       <>
         API의 응답 책임과 외부 작업의 완료 책임을 분리하고, 실패를{" "}
@@ -405,6 +445,18 @@ export const DETAILS: Record<string, CaseDetail> = {
         표준을 만들되 product-specific 선택을 숨기지 않는 경계가 필요했다.
       </>,
     ],
+    review: {
+      groups: [
+        {
+          title: "표준을 어떤 형태로 세우나",
+          options: [
+            { name: "제품마다 각자 구조", verdict: "기각", reason: <>소수 백엔드 인원이 다수 제품을 담당하는 체제에서는 제품 간 이동 비용이 그대로 병목이 된다</> },
+            { name: "문서 가이드만 배포", verdict: "기각", reason: <>규약이 코드에 강제되지 않으면 제품마다 다시 갈라진다</> },
+            { name: "실행 가능한 템플릿 + agent context 내장", verdict: "채택", reason: <>신규 backend가 같은 구조에서 출발하고, 사람과 코딩 에이전트가 같은 규칙 위에서 일한다</> },
+          ],
+        },
+      ],
+    },
     decisionIntro: (
       <>
         모든 차이를 generic framework에 넣는 대신, 반복되는 core는 고정하고 제품별

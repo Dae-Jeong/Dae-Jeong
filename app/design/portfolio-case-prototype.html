@@ -30,15 +30,19 @@
   --font-display: "IBM Plex Mono", ui-monospace, monospace;
   --font-body: "IBM Plex Mono", ui-monospace, monospace;
   --font-mono: "IBM Plex Mono", ui-monospace, monospace;
-  --text-xs: 11px;
-  --text-sm: 12px;
-  --text-base: 14px;
-  --text-lg: 16px;
-  --text-xl: 20px;
+  /* ── TYPE SCALE — 9차(base 16 앵커) + 12차(doc 섹션 제목) 계약 반영 ──
+     이 파일은 8차 이전 스케일(base 14 · xs 11 · sm 12 · lg 16 · xl 20)에 머물러 있었다.
+     12차 지시 6(섹션 제목이 doc 계약 --text-2xl을 따른다)을 적용하려면 토큰을 먼저 올려야 한다.
+     하한 12px · 10px 금지(8차) 유지 · 새 토큰 없음. */
+  --text-xs: 12px;
+  --text-sm: 13px;
+  --text-base: 16px;
+  --text-lg: 18px;
+  --text-xl: 22px;
   --text-2xl: 28px;
   --text-3xl: 40px;
   --text-4xl: 56px;
-  --leading-body: 1.45;
+  --leading-body: 1.55;
   --leading-tight: 1.06;
   --tracking-display: -0.025em;
   --space-1: 4px;
@@ -118,21 +122,24 @@ a { color: inherit; text-decoration: none; }
 /* ── Decision panel (디자이너 결정 — 상세 rail) ─────────────────── */
 .decisions { background: var(--bg); border: 1px solid var(--fg); margin: var(--space-8) 0 0; }
 .decisions__head { background: var(--fg); color: var(--accent-on); font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.1em; text-transform: uppercase; padding: 10px var(--space-5); }
-.decision { padding: var(--space-5); display: grid; gap: var(--space-2); }
-.decision__status { justify-self: start; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; padding: 2px 8px; margin-bottom: 2px; background: var(--accent); color: var(--accent-on); }
+.decision { padding: var(--space-5); display: grid; gap: var(--space-2); border-top: 1px solid var(--border-soft); }
+.decision:first-of-type { border-top: none; }
+.decision__status { justify-self: start; font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.06em; text-transform: uppercase; padding: 2px 8px; margin-bottom: 2px; background: var(--accent); color: var(--accent-on); }
 .decision__n { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--muted); letter-spacing: 0.06em; }
 .decision h2 { margin: 0; font-family: var(--font-mono); font-size: var(--text-sm); font-weight: 600; }
 .decision p { margin: 0; font-size: var(--text-sm); color: var(--fg-2); line-height: 1.6; }
-.decision code { font-family: var(--font-mono); font-size: 0.9em; background: var(--surface-warm); padding: 1px 5px; }
+.decision code { font-family: var(--font-mono); font-size: max(12px, 0.9em); background: var(--surface-warm); padding: 1px 5px; }
 .decision .why { border-top: 1px solid var(--border-soft); padding-top: 10px; margin-top: 4px; }
 .decision .why b { color: var(--fg); font-weight: 600; }
-.decision .opt { font-family: var(--font-mono); font-size: 10px; color: var(--muted); border-top: 1px solid var(--border-soft); padding-top: 8px; margin-top: 2px; line-height: 1.5; }
+.decision .opt { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--muted); border-top: 1px solid var(--border-soft); padding-top: 8px; margin-top: 2px; line-height: 1.5; }
 
-/* case body sections — 문제 → 결정 → 시스템 → 운영근거 */
+/* case body sections — 문제 → 검토 → 결정 → 시스템 → 결과 (12차 5단) */
 .case-sec { padding: 40px 0 6px; scroll-margin-top: 72px; }
 .c-sechead { display: flex; align-items: baseline; gap: var(--space-3); padding-bottom: var(--space-4); border-bottom: 1px solid var(--border); margin-bottom: var(--space-5); }
 .c-sechead__no { font-family: var(--font-mono); font-size: var(--text-sm); color: var(--muted); letter-spacing: 0.06em; }
-.c-sechead h2 { margin: 0; font-family: var(--font-display); font-size: var(--text-lg); font-weight: 600; letter-spacing: -0.01em; }
+/* 12차: doc 섹션 제목을 2xl(28)로 — 「검토」·「결과」가 한글 폴백(Pretendard)일 때도
+   본문 base(16) 대비 1.75로 층이 분리된다. hub의 10차 계약과 동일 규칙 */
+.c-sechead h2 { margin: 0; font-family: var(--font-display); font-size: var(--text-2xl); font-weight: 600; letter-spacing: -0.015em; line-height: 1.25; }
 .c-sechead__meta { margin-left: auto; font-family: var(--font-mono); font-size: var(--text-xs); color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
 
 .case-sec p.body { margin: 0 0 var(--space-4); color: var(--fg-2); font-size: var(--text-base); line-height: 1.7; max-width: 64ch; }
@@ -146,6 +153,41 @@ a { color: inherit; text-decoration: none; }
 .c-numrow .k { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); }
 .c-numrow .t { font-size: var(--text-sm); color: var(--fg-2); line-height: 1.6; }
 .c-numrow .t strong { color: var(--fg); font-weight: 600; }
+
+/* ── 검토 단락 (12차 신설) — 기각한 대안이 보이는 문법 ──────────────
+   면접관이 Action보다 Analyze를 본다는 근거에 따라, 채택안만이 아니라
+   "무엇을 검토했고 왜 버렸는가"를 같은 층위에 나란히 세운다.
+   기각/채택은 색이 아니라 좌측 상태 마커와 제목 굵기로 구분한다
+   (Mono 계약 — 색·간격 문법 불변, 새 토큰 없음). */
+.c-alts { display: grid; margin-top: var(--space-2); border-top: 1px solid var(--border); }
+.c-alt {
+  display: grid; grid-template-columns: 92px minmax(0, 1fr);
+  gap: var(--space-4); padding: var(--space-4) 0;
+  border-bottom: 1px solid var(--border-soft);
+}
+.c-alt:last-child { border-bottom: 1px solid var(--border); }
+.c-alt__state {
+  font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.06em;
+  text-transform: uppercase; align-self: start; padding-top: 2px;
+}
+.c-alt--out .c-alt__state { color: var(--muted); }
+.c-alt--in .c-alt__state { color: var(--fg); font-weight: 600; }
+.c-alt__state::before { content: "—  "; color: var(--border); }
+.c-alt--in .c-alt__state::before { content: "▸  "; color: var(--fg); }
+.c-alt__main { display: grid; gap: 5px; }
+.c-alt__name { font-size: var(--text-base); line-height: 1.45; }
+.c-alt--out .c-alt__name { color: var(--fg-2); }
+.c-alt--in .c-alt__name { color: var(--fg); font-weight: 600; }
+.c-alt__why { font-size: var(--text-sm); color: var(--muted); line-height: 1.6; }
+.c-alt--in .c-alt__why { color: var(--fg-2); }
+.c-alt__why b { color: var(--fg); font-weight: 600; }
+
+/* ── 한계·다음 수 (12차 · 결과 말미 선택 블록) ────────────────────
+   "다시 한다면 뭘 바꿀 건가요?"에 답하는 자리. 없으면 통째로 뺀다. */
+.c-nextstep { margin-top: var(--space-6); border-top: 1px solid var(--border); padding-top: var(--space-4); display: grid; gap: 6px; }
+.c-nextstep__k { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.c-nextstep p { margin: 0; font-size: var(--text-sm); color: var(--fg-2); line-height: 1.7; max-width: 64ch; }
+.c-nextstep p strong { color: var(--fg); font-weight: 600; }
 
 /* 시스템 단락 — CardGrid 2열 재사용 */
 .c-cardgrid { display: grid; gap: 1px; background: var(--border-soft); border: 1px solid var(--border-soft); margin-top: var(--space-2); }
@@ -167,22 +209,22 @@ a { color: inherit; text-decoration: none; }
 .c-popover { width: min(320px, 100%); background: var(--bg); border: 1px solid var(--fg); box-shadow: var(--elev-raised); position: relative; }
 .c-popover[hidden] { display: none; }
 .c-popover::before { content: ""; position: absolute; top: -6px; left: 22px; width: 10px; height: 10px; background: var(--bg); border-left: 1px solid var(--fg); border-top: 1px solid var(--fg); transform: rotate(45deg); }
-.c-popover__head { display: flex; align-items: center; gap: var(--space-2); padding: 9px 13px; border-bottom: 1px solid var(--border); font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.c-popover__head { display: flex; align-items: center; gap: var(--space-2); padding: 9px 13px; border-bottom: 1px solid var(--border); font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
 .c-popover__x { margin-left: auto; cursor: pointer; color: var(--muted); border: none; background: none; font-family: var(--font-mono); font-size: var(--text-sm); padding: 0; }
 .c-popover__x:hover { color: var(--fg); }
 .c-popover__body { padding: 12px 13px; display: grid; gap: 8px; }
 .c-popover__body .claim { font-size: var(--text-sm); color: var(--fg); font-weight: 500; line-height: 1.55; }
-.c-popover__body .src { font-family: var(--font-mono); font-size: 10px; color: var(--muted); letter-spacing: 0.03em; }
+.c-popover__body .src { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--muted); letter-spacing: 0.03em; }
 .c-popover__link { font-family: var(--font-mono); font-size: var(--text-xs); border-top: 1px solid var(--border-soft); padding: 9px 13px 12px; color: var(--fg); display: block; }
 .c-popover__link:hover { text-decoration: underline; text-underline-offset: 3px; }
-.evidence__hint { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.06em; color: var(--muted); }
+.evidence__hint { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.06em; color: var(--muted); }
 
 /* ── 이전/다음 케이스 내비 (하단) ───────────────────────────────── */
 .case-nav { margin-top: var(--space-12); border-top: 1px solid var(--border); display: grid; grid-template-columns: 1fr 1fr; }
 .case-nav a, .case-nav span.disabled { padding: var(--space-6) var(--space-1); display: grid; gap: 4px; transition: background var(--motion-base) var(--ease-standard); }
 .case-nav a:hover { background: var(--surface); }
 .case-nav a:focus-visible { outline: none; box-shadow: var(--focus-ring); }
-.case-nav .dir { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.case-nav .dir { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
 .case-nav .name { font-family: var(--font-display); font-size: var(--text-base); font-weight: 600; }
 .case-nav .next { text-align: right; border-left: 1px solid var(--border); padding-left: var(--space-5); }
 .case-nav span.disabled { color: var(--muted); }
@@ -193,7 +235,7 @@ a { color: inherit; text-decoration: none; }
 .rail .to-list { display: block; text-align: center; background: var(--accent); color: var(--accent-on); font-family: var(--font-mono); font-size: var(--text-sm); letter-spacing: 0.04em; padding: 12px 0; transition: background var(--motion-fast) var(--ease-standard); }
 .rail .to-list:hover { background: var(--accent-hover); }
 .rail .to-list:focus-visible { outline: none; box-shadow: var(--focus-ring); }
-.toc h2 { margin: 0 0 10px; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.toc h2 { margin: 0 0 10px; font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
 .toc ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 7px; }
 .toc a { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--fg-2); display: flex; gap: 8px; padding: 2px 0; }
 .toc a:hover, .toc a.is-active { color: var(--fg); }
@@ -201,14 +243,14 @@ a { color: inherit; text-decoration: none; }
 .toc .n { color: var(--muted); }
 /* 케이스 이동 (rail 내 다른 케이스) */
 .rail__cases { border-top: 1px solid var(--border-soft); padding-top: 14px; }
-.rail__cases h2 { margin: 0 0 10px; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.rail__cases h2 { margin: 0 0 10px; font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
 .rail__cases ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
 .rail__cases a, .rail__cases span.cur { font-family: var(--font-mono); font-size: var(--text-xs); display: flex; gap: 8px; color: var(--muted); }
 .rail__cases a:hover { color: var(--fg); }
 .rail__cases span.cur { color: var(--fg); }
 .rail__cases span.cur .n { color: var(--fg); }
 .rail__cases .n { color: var(--muted); }
-.rail .note { font-family: var(--font-mono); font-size: 10px; color: var(--muted); line-height: 1.6; border-top: 1px solid var(--border-soft); padding-top: 12px; }
+.rail .note { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--muted); line-height: 1.6; border-top: 1px solid var(--border-soft); padding-top: 12px; }
 
 /* ── Responsive ─────────────────────────────────────────────────── */
 @media (max-width: 980px) {
@@ -221,8 +263,13 @@ a { color: inherit; text-decoration: none; }
   .c-topbar__in, .wrap { padding-inline: var(--container-gutter-tablet); }
   .c-topbar__nav { display: none; }
   .doc__head h1 { font-size: var(--text-2xl); }
+  /* 12차: 모바일 섹션 제목은 xl(22) — 본문 base(16) 대비 1.38.
+     hub(root-v3)와 같은 규칙으로, 「검토」·「결과」가 2행으로 깨지지 않는다 */
+  .c-sechead h2 { font-size: var(--text-xl); }
   .c-cardgrid--2 { grid-template-columns: 1fr; }
   .c-numrow { grid-template-columns: 1fr; gap: 3px; }
+  /* 기각/채택 라벨을 값 위로 — 92px 트랙이 좁은 폭에서 본문을 압박하지 않게 */
+  .c-alt { grid-template-columns: 1fr; gap: 6px; }
   .case-nav { grid-template-columns: 1fr; }
   .case-nav .next { text-align: left; border-left: none; border-top: 1px solid var(--border); padding-left: var(--space-1); }
 }
@@ -270,28 +317,100 @@ a { color: inherit; text-decoration: none; }
 
     <!-- ── Decision panel — 디자이너 결정 (상세 rail) ────────────── -->
     <section class="decisions" data-od-id="decision-rail">
-      <div class="decisions__head">디자이너 결정 · 상세의 rail — 결정 + 이유 명시</div>
+      <div class="decisions__head">디자이너 결정 · 4건 — 결정 + 이유 명시 (12차 · 5단 PAAR 개정)</div>
       <div class="decision">
         <span class="decision__status">결정 · Sticky rail</span>
         <span class="decision__n">DECISION · 상세의 rail</span>
         <h2>resume식 sticky rail(목차 + 케이스 이동) vs 본문 단독 + 하단 내비만</h2>
-        <p>상세 페이지는 <b>우측 sticky rail</b>로 결정. rail에는 <code>목록으로</code> 버튼 · 이 케이스의 목차(문제·결정·시스템·운영근거) · 다른 케이스로 이동 리스트를 담고, 스크롤 위치에 따라 목차 활성 항목을 갱신합니다. 하단 이전/다음 내비는 rail과 <b>중복이 아니라 역할이 다릅니다</b> — 하단은 순차 이동, rail은 임의 점프.</p>
-        <p class="why"><b>본문 단독 + 하단 내비만으로 하지 않은 이유:</b> 상세는 <code>문제 → 결정 → 시스템 → 운영근거</code> 4단으로 세로가 길어, 본문만 두면 독자가 <b>지금 어느 단락인지</b>와 <b>얼마나 남았는지</b>를 잃습니다. 특히 면접관이 “결정”이나 “운영 근거”만 바로 확인하려 할 때, 하단까지 스크롤해야 다른 케이스로 넘어가는 구조는 왕복 비용이 큽니다.</p>
+        <p>상세 페이지는 <b>우측 sticky rail</b>로 결정. rail에는 <code>목록으로</code> 버튼 · 이 케이스의 목차(문제·검토·결정·시스템·결과) · 다른 케이스로 이동 리스트를 담고, 스크롤 위치에 따라 목차 활성 항목을 갱신합니다. 하단 이전/다음 내비는 rail과 <b>중복이 아니라 역할이 다릅니다</b> — 하단은 순차 이동, rail은 임의 점프.</p>
+        <p class="why"><b>본문 단독 + 하단 내비만으로 하지 않은 이유:</b> 상세는 <code>문제 → 검토 → 결정 → 시스템 → 결과</code> 5단으로 세로가 길어, 본문만 두면 독자가 <b>지금 어느 단락인지</b>와 <b>얼마나 남았는지</b>를 잃습니다. 특히 면접관이 “검토”나 “결과”만 바로 확인하려 할 때, 하단까지 스크롤해야 다른 케이스로 넘어가는 구조는 왕복 비용이 큽니다.</p>
         <p class="why"><b>resume 패턴을 재사용하는 이유:</b> resume-page가 이미 우측 rail(PDF·언어·목차)을 doc형 레이아웃의 확정 패턴으로 씁니다. 같은 doc 폭(1180/28)·같은 sticky rail을 상세에도 쓰면 <b>문서 계열 페이지의 일관성</b>이 유지되고, 새 레이아웃 문법을 만들지 않습니다.</p>
         <span class="opt mono">택: sticky rail(목차+케이스 이동) / 반: 본문 단독 + 하단 내비만</span>
       </div>
+
+      <!-- 12차 A · 5단 개정 -->
+      <div class="decision" data-od-id="decision-5steps">
+        <span class="decision__status">12차 · 4단 → 5단</span>
+        <span class="decision__n">DECISION · 케이스 서술 구조</span>
+        <h2>「검토」를 신설해 <code>문제 · 검토 · 결정 · 시스템 · 결과</code> 5단으로 — 기각한 대안을 본문에 세운다</h2>
+        <p>기존 <code>문제 · 결정 · 시스템 · 운영 근거</code> 4단에 <b>검토</b>를 추가했습니다. 검토에는 <b>기각 2건 + 채택 1건</b>을 같은 층위에 나란히 놓고, 각각 <b>왜 버렸는지</b>를 한 줄로 답니다.</p>
+        <p class="why"><b>기각안을 굳이 보여주는 이유:</b> 기존 4단은 <code>문제 → 결정</code>이 곧바로 붙어 있어, 결정이 <b>유일한 선택지였던 것처럼</b> 읽혔습니다. 실제로는 부분 수정·전면 교체를 함께 검토하고 버린 판단이 있었는데 그 과정이 지면에 없었습니다. 근거는 양쪽이 같은 것을 요구합니다 — 국내(서치라이트) <b>“면접관은 Action보다 Analyze를 중요하게 봅니다”</b>, 해외 <b>“the messy middle — 검토했다가 기각한 대안”</b>. 즉 읽는 사람이 확인하려는 건 <b>무엇을 했는가</b>보다 <b>왜 그것이어야 했는가</b>입니다.</p>
+        <p class="why"><b>「검토」를 결정 앞에 둔 이유:</b> 시간 순서이자 논증 순서이기 때문입니다. 문제에서 원인이 <b>구조</b>임을 확인하고 → 어디까지 손대야 그 구조가 사라지는지 <b>비교</b>한 뒤 → 결정이 나옵니다. 결정 뒤에 두면 이미 내려진 결론을 사후 정당화하는 것처럼 읽힙니다.</p>
+        <p class="why"><b>기각/채택을 색으로 나누지 않은 이유:</b> Mono 계약은 색·간격 문법을 이번 라운드에서 <b>바꾸지 않는다</b>는 제약이 있고, 기각은 <code>--danger</code>로 칠할 성질도 아닙니다 — 틀린 안이 아니라 <b>이 조건에서 선택하지 않은 안</b>입니다. 그래서 좌측 상태 마커(<code>—</code> / <code>▸</code>)와 제목 굵기·본문 색 단계만으로 구분했습니다.</p>
+        <span class="opt mono">택: 검토를 결정 앞 독립 섹션(기각 2 + 채택 1) / 반: 결정 안에 각주로 편입(Analyze가 다시 묻힘) · 색으로 기각 표시(색 문법 변경)</span>
+      </div>
+
+      <!-- 12차 B · 선택 섹션 -->
+      <div class="decision" data-od-id="decision-optional">
+        <span class="decision__status">12차 · 번호·rail 자동 계산</span>
+        <span class="decision__n">DECISION · 선택 섹션이 빠져도 안 깨지는 구조</span>
+        <h2>섹션 번호와 sticky rail을 하드코딩하지 않고 실제 섹션에서 파생시킨다</h2>
+        <p><b>검토</b>와 <b>한계·다음 수</b>는 근거가 없는 케이스에서 통째로 빠집니다. 그래서 <code>.c-sechead__no</code>를 <b>빈 채로</b> 두고, rail <code>&lt;ol&gt;</code>도 본문 <code>.case-sec</code>에서 생성합니다. 섹션 하나를 지우면 번호와 rail이 <b>자동으로 다시 이어집니다</b>.</p>
+        <p class="why"><b>하드코딩을 금지한 이유:</b> 번호가 마크업에 박혀 있으면 선택 섹션을 뺄 때 <b>세 곳(본문 번호 · rail 번호 · rail 항목)</b>을 동시에 고쳐야 하고, 하나라도 놓치면 <code>01 · 03 · 04</code>처럼 번호가 튀거나 rail에 죽은 링크가 남습니다. 케이스가 5건으로 늘어나면 이 실수는 <b>반드시</b> 납니다 — 구조로 막는 편이 싸습니다.</p>
+        <p class="why"><b>no-JS 폴백을 남긴 이유:</b> rail을 스크립트로 생성하면 JS가 죽었을 때 목차가 <b>빈 칸</b>이 됩니다. 그래서 마크업에 현재 5개 항목을 그대로 적어 두고, 스크립트가 켜지면 즉시 교체합니다 — 최악의 경우에도 목차는 보입니다.</p>
+        <span class="opt mono">택: 번호·rail을 .case-sec에서 파생(+ no-JS 폴백) / 반: 번호 하드코딩(섹션 누락 시 3곳 동시 수정) · rail 전체를 JS 생성(JS 실패 시 빈 목차)</span>
+      </div>
+
+      <!-- 12차 C · 개칭 + 토큰 정렬 -->
+      <div class="decision" data-od-id="decision-result-rename">
+        <span class="decision__status">12차 · 운영 근거 → 결과 · 토큰 동기화</span>
+        <span class="decision__n">DECISION · 마지막 단락의 이름과 이 파일의 스케일</span>
+        <h2>「운영 근거」를 「결과」로 바꾸고, 이 파일의 타입 스케일을 9·12차 계약으로 올린다</h2>
+        <p><b>개칭</b>했습니다. 근거 chip(popover) 문법과 섹션 <code>id="ops"</code>는 <b>유지</b>합니다. 함께: 이 파일도 <code>resume-page</code>처럼 <b>계약에서 이탈</b>해 있어(<code>base 14 · xs 11 · sm 12</code>, <code>10px</code> 하드코딩 6곳) 토큰을 <code>xs 12 · sm 13 · base 16 · lg 18 · xl 22</code>로 올린 뒤 섹션 제목에 <code>--text-2xl</code>을 적용했습니다.</p>
+        <p class="why"><b>「결과」가 더 맞는 이유:</b> PAAR의 R은 <b>Result</b>이고, 이 단락이 답해야 하는 질문은 “근거가 있나”가 아니라 <b>“그래서 어떻게 됐나”</b>입니다. 「운영 근거」는 <b>증빙의 성격</b>을 이름에 박아 두어, 정작 결과가 무엇인지는 독자가 chip을 눌러야 알 수 있었습니다. 이름은 결과로 바꾸고 증빙은 그 안의 chip이 계속 맡습니다.</p>
+        <p class="why"><b>id를 바꾸지 않은 이유:</b> <code>#ops</code>는 popover 내부 링크가 가리키고 있어, 이름과 함께 바꾸면 <b>죽은 링크</b>가 생깁니다. 표시 이름과 앵커 id는 수명이 다르므로 같이 움직일 이유가 없습니다.</p>
+        <p class="why"><b>「한계·다음 수」를 결과 안에 둔 이유:</b> 별도 섹션으로 세우면 rail에 <code>06 한계</code>가 생겨 <b>결과와 대등한 무게</b>를 갖습니다. 이건 결과의 <b>단서</b>이지 독립 단락이 아니므로, 결과 말미에 구분선으로 붙여 “여기까지가 결과, 이건 그 한계”로 읽히게 했습니다.</p>
+        <span class="opt mono">택: 결과로 개칭(id 유지) · 한계는 결과 내부 블록 · 토큰 9·12차 동기화 / 반: 운영 근거 유지(R이 증빙으로 읽힘) · 한계를 6번째 섹션(무게 과대) · 토큰 이탈 방치</span>
+      </div>
     </section>
 
-    <!-- ── 1. 문제 ─────────────────────────────────────────────── -->
+    <!-- ── 문제 ────────────────────────────────────────────────────
+         12차: 섹션 번호는 하드코딩하지 않는다. .c-sechead__no는 빈 채로 두고
+         스크립트가 DOM 순서대로 채운다 — 선택 섹션(검토·한계)이 빠져도 번호가 이어진다. -->
     <section class="case-sec" id="problem" data-od-id="sec-problem">
-      <div class="c-sechead"><span class="c-sechead__no">01</span><h2>문제</h2><span class="c-sechead__meta">Problem</span></div>
+      <div class="c-sechead"><span class="c-sechead__no mono" aria-hidden="true"></span><h2>문제</h2><span class="c-sechead__meta">Problem</span></div>
       <p class="body">AI 콘텐츠 생성 제품 Thready의 backend를 인계받았을 때, 생성 품질이 프롬프트·모델 호출에 흩어져 있어 <strong>무엇이 좋은 출력인지 판정하고 회귀를 잡을 기준</strong>이 없었다. 프롬프트는 문자열로 조립되어 타입 안전성과 재사용이 약했고, 실패·품질 저하를 관측할 로깅 축도 부족했다.</p>
-      <p class="body">그래서 부분 수정이 아니라 <strong>backend 전면 재구축</strong>과 cutover를 선택하고, 이후 개발·운영을 전담하기로 했다.</p>
+      <p class="body">원인이 특정 코드가 아니라 <strong>구조</strong>에 있었으므로, 어디까지 손대야 이 구조가 사라지는지부터 정해야 했다.</p>
     </section>
 
-    <!-- ── 2. 결정 (NumberedRow 재사용) ────────────────────────── -->
+    <!-- ── 검토 (12차 신설 · 선택 섹션) ───────────────────────────
+         이 섹션은 케이스에 따라 통째로 빠진다. 빠져도 번호·rail이 이어지도록
+         번호는 스크립트가 채우고, rail 항목은 실제 섹션에서 생성한다.
+         제거하려면 이 <section> 하나만 지우면 된다 — 다른 곳 수정 불필요. -->
+    <section class="case-sec" id="review" data-od-id="sec-review">
+      <div class="c-sechead"><span class="c-sechead__no mono" aria-hidden="true"></span><h2>검토</h2><span class="c-sechead__meta">Alternatives</span></div>
+      <p class="body">재구축은 되돌리기 어려운 선택이라 <strong>세 가지 경로를 먼저 비교</strong>했다. 판단 기준은 두 가지였다 — 문제의 원인인 <strong>의존성 구조가 실제로 사라지는가</strong>, 그리고 <strong>실패했을 때 영향 범위(blast radius)가 감당 가능한가</strong>.</p>
+
+      <div class="c-alts">
+        <div class="c-alt c-alt--out">
+          <span class="c-alt__state">기각</span>
+          <span class="c-alt__main">
+            <span class="c-alt__name">부분 수정 — 문제 구간만 고쳐 쓴다</span>
+            <span class="c-alt__why">가장 싸 보였지만 <b>의존성 구조가 그대로 남는다</b>. 품질 판정 기준이 없다는 원인은 특정 함수가 아니라 구조에서 나오므로, 고친 자리 옆에서 같은 문제가 다시 자란다.</span>
+          </span>
+        </div>
+
+        <div class="c-alt c-alt--out">
+          <span class="c-alt__state">기각</span>
+          <span class="c-alt__main">
+            <span class="c-alt__name">전면 교체 — FE 포함 제품 전체를 다시 만든다</span>
+            <span class="c-alt__why">구조는 확실히 사라지지만 <b>blast radius가 과대하다</b>. 원인이 backend에 있는데 FE까지 끌어들이면 실패 지점이 늘고, 되돌릴 수 없는 구간이 길어진다.</span>
+          </span>
+        </div>
+
+        <div class="c-alt c-alt--in">
+          <span class="c-alt__state">채택</span>
+          <span class="c-alt__main">
+            <span class="c-alt__name">backend만 분리 교체 — 경계를 긋고 그 안쪽만 재구축</span>
+            <span class="c-alt__why">원인이 있는 범위와 교체 범위를 일치시킨다. 결정적으로 <b>서비스가 작은 지금이 가장 싸다</b> — 트래픽·연동·데이터가 더 늘기 전에 치르는 비용이 나중보다 작다. FE 계약을 유지한 채 cutover하면 되돌릴 지점도 남는다.</span>
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 결정 (NumberedRow 재사용) ───────────────────────────── -->
     <section class="case-sec" id="decision" data-od-id="sec-decision">
-      <div class="c-sechead"><span class="c-sechead__no">02</span><h2>결정</h2><span class="c-sechead__meta">Decision</span></div>
+      <div class="c-sechead"><span class="c-sechead__no mono" aria-hidden="true"></span><h2>결정</h2><span class="c-sechead__meta">Decision</span></div>
       <p class="body">품질을 “감”이 아니라 <strong>시스템</strong>으로 다루기 위해 세 가지를 결정했다.</p>
       <div class="c-numlist">
         <div class="c-numrow"><span class="k mono">Typed Prompt</span><span class="t">프롬프트를 문자열이 아닌 <strong>typed prompt builder</strong>로 구성 — 입력 계약을 타입으로 고정하고 재사용 가능하게 만든다.</span></div>
@@ -300,9 +419,9 @@ a { color: inherit; text-decoration: none; }
       </div>
     </section>
 
-    <!-- ── 3. 시스템 (CardGrid 재사용) ─────────────────────────── -->
+    <!-- ── 시스템 (CardGrid 재사용) ────────────────────────────── -->
     <section class="case-sec" id="system" data-od-id="sec-system">
-      <div class="c-sechead"><span class="c-sechead__no">03</span><h2>시스템</h2><span class="c-sechead__meta">System</span></div>
+      <div class="c-sechead"><span class="c-sechead__no mono" aria-hidden="true"></span><h2>시스템</h2><span class="c-sechead__meta">System</span></div>
       <p class="body">결정을 실제 backend 구조로 옮긴 결과, 생성 품질이 <strong>재구축된 FastAPI backend 위의 시스템</strong>으로 자리 잡았다.</p>
       <div class="c-cardgrid c-cardgrid--2">
         <div class="c-card"><h4>Typed Prompt Builder</h4><p>프롬프트 조립을 타입으로 계약화 — 입력 누락·형 오류를 호출 전에 차단하고 재사용을 표준화.</p></div>
@@ -312,9 +431,11 @@ a { color: inherit; text-decoration: none; }
       </div>
     </section>
 
-    <!-- ── 4. 운영 근거 (Popover evidence) ─────────────────────── -->
+    <!-- ── 결과 (Popover evidence — 근거 chip 문법 유지) ────────────
+         12차: 「운영 근거」→「결과」 개칭. 섹션 id(#ops)는 유지 — 기존 링크·
+         popover 내부 앵커가 이 id를 가리키므로 바꾸면 죽은 링크가 생긴다. -->
     <section class="case-sec" id="ops" data-od-id="sec-ops">
-      <div class="c-sechead"><span class="c-sechead__no">04</span><h2>운영 근거</h2><span class="c-sechead__meta">Operating Evidence</span></div>
+      <div class="c-sechead"><span class="c-sechead__no mono" aria-hidden="true"></span><h2>결과</h2><span class="c-sechead__meta">Result</span></div>
       <p class="body">재구축 이후 이 backend는 <strong>월 수만 건 규모의 요청</strong>을 처리하는 production으로 운영되고 있다. 아래 근거 chip을 눌러 claim 요약을 확인할 수 있다.</p>
 
       <div class="evidence">
@@ -331,7 +452,7 @@ a { color: inherit; text-decoration: none; }
               <span class="claim">월 수만 건 규모 요청을 처리하는 production backend를 HTTP 5xx 0.3% 수준으로 운영</span>
               <span class="src mono">SOURCE · Thready 운영 지표 · 운영 시점 기준</span>
             </div>
-            <a class="c-popover__link" href="#ops">→ 이 케이스 운영 근거로 이동</a>
+            <a class="c-popover__link" href="#ops">→ 이 케이스 결과로 이동</a>
           </div>
         </div>
 
@@ -346,9 +467,16 @@ a { color: inherit; text-decoration: none; }
               <span class="claim">production backend가 월 수만 건 규모의 생성 요청을 처리 — 구체 처리량 수치는 <span class="tbd">TBD</span></span>
               <span class="src mono">SOURCE · 운영 지표 (수치 확정 전)</span>
             </div>
-            <a class="c-popover__link" href="#ops">→ 이 케이스 운영 근거로 이동</a>
+            <a class="c-popover__link" href="#ops">→ 이 케이스 결과로 이동</a>
           </div>
         </div>
+      </div>
+
+      <!-- 한계·다음 수 (선택) — "다시 한다면 뭘 바꿀 건가요?"에 답하는 자리.
+           근거가 없는 케이스에서는 이 블록만 지우면 된다. -->
+      <div class="c-nextstep" data-od-id="next-step">
+        <span class="c-nextstep__k">한계 · 다음 수</span>
+        <p>judge는 회귀를 <strong>감지</strong>하지만 아직 릴리스를 <strong>차단</strong>하지는 않는다 — 판정이 사람의 확인을 거쳐야 하는 단계다. 다시 한다면 평가 루프를 <strong>재구축과 같은 시점에</strong> 세우겠다. 지금은 cutover 이후에 붙였기 때문에, 재구축 전후를 같은 축으로 비교할 기준선이 남지 않았다.</p>
       </div>
     </section>
 
@@ -370,13 +498,18 @@ a { color: inherit; text-decoration: none; }
   <aside class="rail" data-od-id="rail" aria-label="케이스 내비게이션">
     <a class="to-list" href="portfolio-list-prototype.html">← 목록으로</a>
 
+    <!-- 12차: rail 항목을 하드코딩하지 않는다. 아래 <ol>은 본문의 .case-sec에서
+         스크립트가 생성하므로, 선택 섹션(검토)이 빠지면 rail에서도 함께 빠지고
+         번호는 남은 섹션 기준으로 다시 이어진다. JS 없이도 목차가 비지 않도록
+         no-JS 폴백을 넣어 둔다(스크립트가 켜지면 즉시 교체). -->
     <nav class="toc" aria-label="목차">
       <h2>이 케이스</h2>
-      <ol>
+      <ol data-toc>
         <li><a href="#problem" class="is-active"><span class="n">01</span>문제</a></li>
-        <li><a href="#decision"><span class="n">02</span>결정</a></li>
-        <li><a href="#system"><span class="n">03</span>시스템</a></li>
-        <li><a href="#ops"><span class="n">04</span>운영 근거</a></li>
+        <li><a href="#review"><span class="n">02</span>검토</a></li>
+        <li><a href="#decision"><span class="n">03</span>결정</a></li>
+        <li><a href="#system"><span class="n">04</span>시스템</a></li>
+        <li><a href="#ops"><span class="n">05</span>결과</a></li>
       </ol>
     </nav>
 
@@ -430,11 +563,50 @@ a { color: inherit; text-decoration: none; }
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeAll(null); });
   document.addEventListener("click", function (e) { if (!e.target.closest(".c-pop-anchor")) closeAll(null); });
 
+  /* ── 12차: 섹션 번호 · rail 자동 생성 ────────────────────────────
+     선택 섹션(검토, 그리고 케이스에 따라 다른 단락)이 빠져도 번호와 rail이
+     끊기지 않도록, 둘 다 DOM에 실제로 존재하는 .case-sec에서 파생시킨다.
+     섹션을 지우거나 순서를 바꿔도 이 스크립트 외에는 손댈 곳이 없다. */
+  var secs = Array.prototype.slice.call(document.querySelectorAll(".case-sec"));
+
+  function pad(n) { return (n < 10 ? "0" : "") + n; }
+
+  var tocList = document.querySelector("[data-toc]");
+  var tocItems = [];
+
+  secs.forEach(function (sec, i) {
+    var no = pad(i + 1);
+
+    /* 본문 섹션 번호 — 마크업에는 비어 있고 여기서 채운다 */
+    var noEl = sec.querySelector(".c-sechead__no");
+    if (noEl) noEl.textContent = no;
+
+    /* rail 항목 — 섹션 제목을 그대로 가져와 목차를 만든다 */
+    var h2 = sec.querySelector(".c-sechead h2");
+    if (!tocList || !h2 || !sec.id) return;
+    var li = document.createElement("li");
+    var a = document.createElement("a");
+    a.setAttribute("href", "#" + sec.id);
+    var n = document.createElement("span");
+    n.className = "n";
+    n.textContent = no;
+    a.appendChild(n);
+    a.appendChild(document.createTextNode(h2.textContent.trim()));
+    li.appendChild(a);
+    tocItems.push(li);
+  });
+
+  if (tocList && tocItems.length) {
+    tocList.textContent = "";
+    tocItems.forEach(function (li) { tocList.appendChild(li); });
+    var first = tocList.querySelector("a");
+    if (first) first.classList.add("is-active");
+  }
+
   /* TOC scroll-spy — 현재 단락 목차 활성화 */
   var links = Array.prototype.slice.call(document.querySelectorAll(".toc a"));
   var byId = {};
   links.forEach(function (l) { byId[l.getAttribute("href").slice(1)] = l; });
-  var secs = Array.prototype.slice.call(document.querySelectorAll(".case-sec"));
   if ("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {

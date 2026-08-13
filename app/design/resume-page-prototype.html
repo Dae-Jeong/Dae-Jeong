@@ -82,8 +82,11 @@ a { color: inherit; text-decoration: none; }
 section { padding: 34px 0 6px; }
 .sec-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 18px; }
 .sec-head .no { font-family: var(--font-mono); font-size: var(--text-sm); color: var(--muted); }
-.sec-head h2 { margin: 0; font-family: var(--font-mono); font-size: var(--text-lg); font-weight: 600; }
-.sec-head .en { margin-left: auto; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+/* 10차: 섹션 제목을 2xl(28)로 — 「요약」·「대표 프로젝트」가 한글 폴백(Pretendard)일 때도
+   본문 base(16) 대비 1.75로 층이 분리된다. root-v3와 동일 규칙 */
+.sec-head h2 { margin: 0; font-family: var(--font-mono); font-size: var(--text-2xl); font-weight: 600; letter-spacing: -0.015em; line-height: 1.25; }
+/* 8차 하한 계약: 10px → xs(12) */
+.sec-head .en { margin-left: auto; font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
 
 ul.plain { list-style: none; margin: 0; padding: 0; display: grid; gap: 9px; }
 ul.plain li { padding-left: 16px; position: relative; color: var(--fg-2); }
@@ -110,7 +113,8 @@ ul.plain strong { color: var(--fg); font-weight: 600; }
 .career .org { font-family: var(--font-mono); font-size: var(--text-sm); font-weight: 600; }
 .career .desc { font-size: var(--text-sm); color: var(--fg-2); }
 .career .period { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--muted); text-align: right; }
-.career .now { background: var(--accent); color: var(--accent-on); padding: 1px 6px; margin-left: 6px; font-size: 9px; }
+/* 8차 하한 계약: 9px → xs(12). 10px 금지는 9px에도 당연히 적용된다 */
+.career .now { background: var(--accent); color: var(--accent-on); padding: 1px 6px; margin-left: 6px; font-size: var(--text-xs); letter-spacing: 0.06em; }
 
 .creds { display: grid; gap: 9px; }
 .creds .row { display: grid; grid-template-columns: 110px 1fr; gap: 14px; align-items: baseline; }
@@ -126,13 +130,13 @@ ul.plain strong { color: var(--fg); font-weight: 600; }
 body[data-lang="ko"] .doc--en { display: none; }
 body[data-lang="en"] .doc--ko { display: none; }
 body[data-lang="en"] .toc { display: none; }
-.draft-note { margin: 0 0 0; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; color: var(--muted); border: 1px dashed var(--border); padding: 8px 10px; }
-.toc h2 { margin: 0 0 10px; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.draft-note { margin: 0 0 0; font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.08em; color: var(--muted); border: 1px dashed var(--border); padding: 8px 10px; }
+.toc h2 { margin: 0 0 10px; font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
 .toc ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 7px; }
 .toc a { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--fg-2); }
 .toc a:hover { color: var(--fg); }
 .toc .n { color: var(--muted); margin-right: 8px; }
-.rail .note { font-family: var(--font-mono); font-size: 10px; color: var(--muted); line-height: 1.6; border-top: 1px solid var(--border-soft); padding-top: 12px; }
+.rail .note { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--muted); line-height: 1.6; border-top: 1px solid var(--border-soft); padding-top: 12px; }
 
 /* ask launcher (전 페이지 공통, 축약) */
 .ask { position: fixed; right: 24px; bottom: 24px; background: var(--accent); color: var(--accent-on); font-family: var(--font-mono); font-size: var(--text-sm); letter-spacing: 0.08em; padding: 14px 18px; box-shadow: 0 16px 40px rgba(0,0,0,0.18); }
@@ -169,7 +173,7 @@ body[data-lang="en"] .toc { display: none; }
       </div>
       <div class="affil__row affil__row--prev">
         <span class="affil__k">이전</span>
-        <span class="affil__v"><span class="org">STUDIO LAB</span><span class="sep">·</span>Product Manager <span class="period">2021.12 — 2023.12</span></span>
+        <span class="affil__v"><span class="org">STUDIO LAB</span><span class="sep">·</span>Product Manager <span class="period">2021.12 — 2024.01</span></span>
       </div>
     </div>
     <div class="contact">
@@ -323,7 +327,7 @@ body[data-lang="en"] .toc { display: none; }
       </div>
       <div class="affil__row affil__row--prev">
         <span class="affil__k">PREV</span>
-        <span class="affil__v"><span class="org">STUDIO LAB</span><span class="sep">·</span>Product Manager <span class="period">Dec 2021 — Dec 2023</span></span>
+        <span class="affil__v"><span class="org">STUDIO LAB</span><span class="sep">·</span>Product Manager <span class="period">Dec 2021 — Jan 2024</span></span>
       </div>
     </div>
     <div class="contact">

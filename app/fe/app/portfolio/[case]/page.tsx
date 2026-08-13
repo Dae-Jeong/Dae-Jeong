@@ -41,6 +41,10 @@ export default async function CasePage({
   const { case: slug } = await params;
   const meta = CASES.find((c) => c.slug === slug);
   const detail = DETAILS[slug];
+  /* 12차: 검토(선택 섹션) 유무에 따라 섹션 번호를 동적 계산 */
+  const secIds = ["problem", ...(detail.review ? ["review"] : []), "decision", "system", "ops"];
+  const no = (id: string) => String(secIds.indexOf(id) + 1).padStart(2, "0");
+
   if (!meta || !detail) notFound();
 
   const idx = CASES.findIndex((c) => c.slug === slug);
@@ -76,7 +80,7 @@ export default async function CasePage({
             </header>
 
             <section id="problem" className="pt-10">
-              <SectionHead no="01" title="문제" meta="Problem" />
+              <SectionHead no={no("problem")} title="문제" meta="Problem" />
               <div className="grid max-w-[62ch] gap-4 text-base leading-[1.6] text-fg-2 [&_strong]:font-semibold [&_strong]:text-fg">
                 {detail.problem.map((p, i) => (
                   <p key={i} className="m-0">
@@ -86,8 +90,48 @@ export default async function CasePage({
               </div>
             </section>
 
+            {detail.review && (
+              <section id="review" className="pt-10">
+                <SectionHead no={no("review")} title="검토" meta="Alternatives" />
+                {detail.review.intro && (
+                  <p className="m-0 mb-5 max-w-[62ch] text-base text-fg-2 [&_strong]:font-semibold [&_strong]:text-fg">
+                    {detail.review.intro}
+                  </p>
+                )}
+                <div className="grid gap-6">
+                  {detail.review.groups.map((g) => (
+                    <div key={g.title}>
+                      <h3 className="m-0 mb-2.5 font-mono text-sm font-semibold">{g.title}</h3>
+                      <div className="grid max-w-[640px] gap-px border border-border-soft bg-border-soft">
+                        {g.options.map((o) => (
+                          <div key={o.name} className="grid gap-1.5 bg-bg p-4">
+                            <div className="flex items-center gap-2.5">
+                              <span
+                                className={
+                                  o.verdict === "채택"
+                                    ? "border border-accent bg-accent px-[7px] py-0.5 font-mono text-xs tracking-[0.06em] text-accent-on"
+                                    : "border border-border px-[7px] py-0.5 font-mono text-xs tracking-[0.06em] text-muted"
+                                }
+                              >
+                                {o.verdict}
+                              </span>
+                              <span className="font-mono text-sm font-semibold">{o.name}</span>
+                            </div>
+                            <p className="m-0 text-sm leading-[1.6] text-fg-2">{o.reason}</p>
+                          </div>
+                        ))}
+                      </div>
+                      {g.note && (
+                        <p className="m-0 mt-2.5 max-w-[62ch] text-sm text-fg-2">{g.note}</p>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
+
             <section id="decision" className="pt-10">
-              <SectionHead no="02" title="결정" meta="Decision" />
+              <SectionHead no={no("decision")} title="결정" meta="Decision" />
               <p className="m-0 mb-5 max-w-[62ch] text-base text-fg-2 [&_strong]:font-semibold [&_strong]:text-fg">
                 {detail.decisionIntro}
               </p>
@@ -109,7 +153,7 @@ export default async function CasePage({
             </section>
 
             <section id="system" className="pt-10">
-              <SectionHead no="03" title="시스템" meta="System" />
+              <SectionHead no={no("system")} title="시스템" meta="System" />
               <p className="m-0 mb-5 max-w-[62ch] text-base text-fg-2 [&_strong]:font-semibold [&_strong]:text-fg">
                 {detail.systemIntro}
               </p>
@@ -124,7 +168,7 @@ export default async function CasePage({
             </section>
 
             <section id="ops" className="pt-10">
-              <SectionHead no="04" title="운영 근거" meta="Operating Evidence" />
+              <SectionHead no={no("ops")} title="결과" meta="Result" />
               <p className="m-0 mb-5 max-w-[62ch] text-base text-fg-2 [&_strong]:font-semibold [&_strong]:text-fg">
                 {detail.opsIntro}
               </p>
@@ -181,7 +225,7 @@ export default async function CasePage({
             </nav>
           </main>
 
-          <CaseRail cases={CASES} currentSlug={slug} />
+          <CaseRail cases={CASES} currentSlug={slug} hasReview={!!detail.review} />
         </div>
       </Container>
 

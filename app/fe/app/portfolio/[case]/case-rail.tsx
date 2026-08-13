@@ -6,22 +6,30 @@ import { cn } from "@/lib/cn";
 import { Button } from "@/components/ui/button";
 import type { CaseMeta } from "@/lib/cases";
 
-const TOC = [
-  { id: "problem", no: "01", label: "문제" },
-  { id: "decision", no: "02", label: "결정" },
-  { id: "system", no: "03", label: "시스템" },
-  { id: "ops", no: "04", label: "운영 근거" },
-];
+/* 12차: 5단 — 검토는 선택 섹션이라 케이스별로 TOC를 동적 구성한다 */
+function buildToc(hasReview: boolean) {
+  const ids = [
+    { id: "problem", label: "문제" },
+    ...(hasReview ? [{ id: "review", label: "검토" }] : []),
+    { id: "decision", label: "결정" },
+    { id: "system", label: "시스템" },
+    { id: "ops", label: "결과" },
+  ];
+  return ids.map((t, i) => ({ ...t, no: String(i + 1).padStart(2, "0") }));
+}
 
 /* 디자이너 결정: sticky rail — 목차 scroll-spy(임의 점프) + 케이스 이동.
    하단 이전/다음 내비는 순차 이동으로 역할 분리 */
 export function CaseRail({
   cases,
   currentSlug,
+  hasReview = false,
 }: {
   cases: CaseMeta[];
   currentSlug: string;
+  hasReview?: boolean;
 }) {
+  const TOC = buildToc(hasReview);
   const [active, setActive] = useState("problem");
 
   useEffect(() => {
@@ -43,7 +51,8 @@ export function CaseRail({
       if (el) io.observe(el);
     });
     return () => io.disconnect();
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [hasReview]);
 
   return (
     <aside
