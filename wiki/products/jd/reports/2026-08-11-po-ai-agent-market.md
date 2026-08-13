@@ -39,6 +39,10 @@ user-confirmed 목표: **"나는 PO & AI 에이전트 개발자를 하고싶어"
 - ✅ production 운영·비용 감각, async 파이프라인 (TaskIQ·RabbitMQ)
 - ✅ 5년 경력 요구 대비 4년차 — 근접 (원티드랩 JD 기준)
 - ⚠️ **멀티에이전트 오케스트레이션 프레임워크** 명시 근거 (LangGraph·CrewAI, supervisor-worker 패턴)
+- ✅ **실시간·스트리밍 LLM 운영** (2026-08-13 추가) — WebSocket 기반 STT·LLM 파이프라인,
+  provider lifecycle, zombie session·reconnect race 처리. `centurion.say-realtime`(co-led).
+  "lab-only가 아닌 production LLM 운영"의 직접 근거인데 **현재 산출물에서 과소 노출**돼 있다
+  ([case-narratives](../../site/case-narratives.md) 경험 범위형)
 - ⚠️ RAG·vector DB·프롬프트 인젝션 방어·트레이싱 명시 근거
 
 **AI PO 축**:
