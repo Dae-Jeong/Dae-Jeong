@@ -205,6 +205,18 @@ flowchart LR
 - visitor chat UX(전역 런처, `/chat`, 답변 3층 구조)의 상세 결정은 [backlog/visitor-chat](../../../backlog/visitor-chat/README.md)이 소유한다.
 - 디자인 토큰 계약: Mono 시스템 (IBM Plex Mono + Pretendard 한글, 모노크롬 + 그린 액센트 1점 `#168a46`, `word-break: keep-all`).
 - **Type scale 계약 (2026-07-18, 9차 라운드 개정)**: 본문 base **16px** 앵커 (xs 12 · sm 13 · base 16 · lg 18 · xl 22 · 헤딩 28/40/56 유지 · credentials 전용 14), leading 1.55, **최소 텍스트 12px — font-size 10~11px 금지**. 근거: 40+ 채용 담당자 독자 + 업계 실측(개발자 문서 전원 16, 한국 서비스 16~17, GOV.UK 14 폐기 — 로컬 위키 typography 항목). canonical은 `app/design/component-sheet.html`의 :root, 구현은 `app/fe/app/globals.css` @theme.
+- **10·11차 개정 (2026-08-13)**: 토큰 값은 불변, **적용 위치**를 조정했다.
+  ① hub 섹션 제목 `xl(22)` → `2xl(28)` — 본문 `lg(18)` 대비 1.22는 인지 최소치 부근이고,
+  IBM Plex Mono에 한글 글리프가 없어 한글 제목이 Pretendard로 폴백하면 폰트 대비가 사라져
+  크기 차이만 남는다. 1.56으로 층을 분리했다.
+  ② Explore 카드 이름 `sm(13)` → `base(16)` — 이름과 설명이 같은 층이라 카드 내부 위계가 없었다.
+  ③ `/resume` 헤더 재배치 — 이름 `3xl(40)` · 주장 `xl(22)` · 현재 `base(16)` · 이전 `sm(13)`,
+  현직/전직을 `/`로 잇지 않고 라벨-값 2행으로 분리. 근거: TheLadders 원문상 리뷰 시간의 80%가
+  이름·현/전 직함·회사·기간·학력 6개에 쓰인다.
+  ④ `resume-page-prototype.html`이 9차 base-16 개정을 못 받은 상태였음을 확인해 함께 정렬했다.
+  ⑤ **미결**: doc 지면 섹션 제목(`.sec-head h2` = lg 18, 본문 대비 1.125)은 12차 대상.
+  구현은 지면을 분리해 계약을 정확히 따른다 — `SectionHead size="hub" | "doc"`.
+  검토 근거: [type hierarchy review](../../../products/site/2026-08-13-type-hierarchy-review.md)
 
 ## Feature Backlog
 

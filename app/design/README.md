@@ -15,8 +15,8 @@
 | --- | --- | --- | --- |
 | `index.html` | 완결형 프로필 v2 — `root-v3`로 대체됨 (이력 보존용) | 2026-07-16 | — |
 | `root-phase2-prototype.html` | 다이어트 root — `root-v3`로 대체됨 (이력 보존용) | 2026-07-16 | — |
-| `root-v3-prototype.html` | **root 확정본** — 다이어트형 관문 (hero+메타카드·Summary 4행·Proof 넘버드 축약·Explore 3카드). 6~9차 라운드: PR 축 반영(페르소나 2인 "통과·콜" 검증 — Career 2020·CES Best of Innovation·특허 첫 뷰포트, 미완성 신호 6→2, "이 사이트도 같은 방식으로 만들었다" 훅), type scale base 16 첫 적용본 | 2026-07-18 | ✅ `/` |
-| `resume-page-prototype.html` | `/resume` 문서형 + rail (KO/EN 토글) | 2026-07-17 | ✅ `/resume` |
+| `root-v3-prototype.html` | **root 확정본 (10차 재승격 2026-08-13 — 섹션 제목 xl→2xl, Explore 카드 이름 sm→base)** — 다이어트형 관문 (hero+메타카드·Summary 4행·Proof 넘버드 축약·Explore 3카드). 6~9차 라운드: PR 축 반영(페르소나 2인 "통과·콜" 검증 — Career 2020·CES Best of Innovation·특허 첫 뷰포트, 미완성 신호 6→2, "이 사이트도 같은 방식으로 만들었다" 훅), type scale base 16 첫 적용본 | 2026-07-18 | ✅ `/` |
+| `resume-page-prototype.html` | `/resume` 문서형 + rail (KO/EN 토글). **11차 재승격 2026-08-13 — 9차 base-16 정렬(누락분) + 헤더 4줄 재배치(이름40·주장22·현재16·이전13, 라벨-값 2행)** | 2026-08-13 | ✅ `/resume` |
 | `portfolio-list-prototype.html` | `/portfolio` 목록 — 넘버드 리스트 5건 + Role·Scope 메타 (결정: root 아코디언 미재사용) | 2026-07-18 | ✅ `/portfolio` |
 | `portfolio-case-prototype.html` | `/portfolio/{case}` 상세 — 문제·결정·시스템·운영근거 4단 + sticky rail(scroll-spy) + evidence Popover, [TBD] 정책 | 2026-07-18 | ✅ `/portfolio/thready` |
 | `blog-list-prototype.html` | `/blog` 행형 목록(date-first) + 구조 placeholder + COMING SOON (결정: 목록 문법 — 규율 공유·형태 분리: labs=카드·blog=행·portfolio=넘버드) | 2026-07-18 | ✅ `/blog` |
@@ -26,4 +26,8 @@
 
 - 토큰 계약(Mono 시스템)의 canonical: [architecture spec — Design Baseline](../../wiki/docs/superpowers/specs/2026-07-15-personal-site-architecture-design.md)
 - 구현 매핑: [Phase 1 stack plan](../../wiki/docs/superpowers/plans/2026-07-17-site-phase1-stack-and-structure.md)
+- ⚠️ **미결 (2026-08-13)**: `resume-page-prototype.html`의 `.sec-head h2`가 `--text-lg`(18)라
+  본문 base(16) 대비 **1.125**다. 10차에서 hub(root-v3) 섹션 제목을 1.22 → 1.56으로 올린 근거가
+  doc 지면에도 그대로 적용되는데 이번 라운드 범위 밖이었다. **12차 대상.**
+  구현은 계약대로 지면을 분리했다 — `SectionHead size="hub"`(2xl) / `size="doc"`(현행 xl 유지).
 - 규칙: 이 폴더에서 직접 수정하지 않는다 — D2에서 작업하고 확정 시 재승격. labs 서비스 디자인은 각자 `labs/{svc}/design/`이 소유한다.

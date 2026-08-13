@@ -43,6 +43,10 @@
   --text-3xl: 40px;
   --text-4xl: 56px;
   --text-cred: 14px;      /* 8차 신설 · 9차 16 앵커 연동 — hero 카드 credentials(dd) 전용, 장식 라벨(dt)에서 분리 */
+  /* ── 10차 재배치 (토큰값 불변 · 사용처만 이동) ──
+     섹션 제목 .section-head h2 : --text-xl(22) → --text-2xl(28). 비율 22:18=1.22 → 28:18=1.56.
+     한글 폴백(Pretendard) 시 제목·본문이 같은 패밀리가 되어 mono 형태 대비가 사라지므로,
+     크기 차이 하나로 위계를 세워야 한다. 새 토큰 없음 — 비어 있던 2xl(사용 5건)을 채운다. */
   --leading-body: 1.55;   /* 9차: 1.45→1.55. 한국 서비스 실측 1.6대(토스·네이버), 16 base 정합 */
   --leading-tight: 1.06;
   --tracking-display: -0.025em;
@@ -204,9 +208,10 @@ section { padding-block: var(--section-y-desktop); }
 .section-head h2 {
   margin: 0;
   font-family: var(--font-display);
-  font-size: var(--text-xl);
+  font-size: var(--text-2xl);   /* 10차: xl(22) → 2xl(28). 본문 lg(18) 대비 1.56 — 한글 폴백에서도 층이 분리된다 */
   font-weight: 600;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;     /* 28px 진입 — 크래프트 규칙상 헤딩 32px 미만 구간의 음수 트래킹 하한 유지 */
+  line-height: 1.25;
 }
 .section-head__meta {
   margin-left: auto;
@@ -398,12 +403,14 @@ a.proof-row:hover .proof-row__go { background: var(--accent); border-color: var(
 a.route:hover { background: var(--surface); }
 a.route:focus-visible { outline: none; box-shadow: var(--focus-ring); }
 .route__top { display: flex; align-items: center; gap: var(--space-2); }
-.route__name { font-family: var(--font-mono); font-size: var(--text-sm); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+/* 10차: 카드 내부 위계 — 이름 sm(13) → base(16). desc는 xs(12) 유지 → 16:12 = 1.33.
+   이름은 ALL CAPS이므로 트래킹 0.08em 유지(크래프트 규칙 0.06em 하한 충족) */
+.route__name { font-family: var(--font-mono); font-size: var(--text-base); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
 /* 상태 배지는 중립 — 그린 액센트 1점 규율은 summary 02행 전용. 상태는 텍스트로 구분 */
 .route__badge { margin-left: auto; font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.08em; text-transform: uppercase; border: 1px solid var(--border); color: var(--muted); padding: 2px 7px; }
 .route__badge--live { color: var(--fg-2); border-color: var(--fg-2); }
 .route__badge--soon { color: var(--warn); }
-.route__desc { font-size: var(--text-xs); color: var(--muted); line-height: 1.5; }
+.route__desc { font-size: var(--text-xs); color: var(--muted); line-height: 1.5; }  /* 10차: xs(12) 유지 — 이름이 base(16)로 오르며 층 분리 확보 */
 .route__desc b { color: var(--fg-2); font-weight: 600; }
 .route__foot { margin-top: auto; display: flex; align-items: center; gap: var(--space-2); font-family: var(--font-mono); font-size: var(--text-xs); color: var(--fg-2); letter-spacing: 0.04em; }
 a.route:hover .route__foot { color: var(--fg); }
@@ -482,6 +489,9 @@ a.route:hover .route__foot svg { transform: translateX(3px); }
   .hero__line { font-size: var(--text-lg); max-width: none; }
   .summary__item { grid-template-columns: 40px 1fr; }
   .summary__text { font-size: var(--text-base); }
+  /* 10차: 모바일에서 섹션 제목은 xl(22)로 한 단 내린다. 본문이 base(16)로 내려가므로
+     22:16 = 1.38 — 데스크톱 1.56보다 얕지만 인지 임계는 넘고, 「대표 프로젝트」가 2행으로 깨지지 않는다 */
+  .section-head h2 { font-size: var(--text-xl); }
   .section-head { flex-wrap: wrap; }
   .section-head__meta { margin-left: 0; flex-basis: 100%; }
   .proof-row {
@@ -605,7 +615,7 @@ a.route:hover .route__foot svg { transform: translateX(3px); }
   <section data-od-id="decision-list">
     <div class="container">
       <div class="decisions">
-        <div class="decisions__head">디자이너 결정 · 5건 — 결정 + 이유 명시 (9차 재조정 · type scale base 16 반영)</div>
+        <div class="decisions__head">디자이너 결정 · 7건 — 결정 + 이유 명시 (10차 섹션 제목 28 승격 · 11차 헤더 정합 반영)</div>
 
         <!-- Decision 1 · 분량 -->
         <div class="decision" data-od-id="decision-scope">
@@ -662,6 +672,30 @@ a.route:hover .route__foot svg { transform: translateX(3px); }
           <p class="why"><b>우리가 읽기 계열인 이유:</b> 제품 UI 계열은 body 14(Carbon productive·Atlassian·Primer·MD3)지만, <b>읽기 계열은 16+</b>(Carbon expressive 16·Apple HIG 17·토스 TDS 17·GOV.UK 19 — 14를 접근성 사유로 폐기). 이 사이트는 <b>이력서·케이스·글 = 읽기 중심</b> + <b>40+ 채용 담당자</b> 독자 → 읽기 계열 기준(16)이 맞습니다. line-height도 한국 서비스 실측 1.6대(토스 1.6·네이버 1.56)에 맞춰 1.55로 올려 16 base와 정합시켰습니다.</p>
           <p class="why"><b>헤딩(2xl/3xl/4xl)을 유지한 이유:</b> 본문 계열과 달리 디스플레이는 이미 충분히 큰 영역이라 하한 문제가 없고, 상향 시 hero h1(56px) 폭 넘침·리듬 손실만 커져 근거가 없습니다. 8차 확정(하한 12px·10px 전면 금지)도 리서치가 정확히 지지(Carbon·Atlassian·Primer 동일)해 그대로 유지합니다.</p>
           <span class="opt mono">택: base 16 앵커(실측 지지값) · 헤딩 유지 · 하한 12 유지 / 반: base 15 유지(8차 — 경계값) · 전역 균일 상향(mono 밀도 손실)</span>
+        </div>
+
+        <!-- Decision 6 · 10차 재조정 — 헤딩·본문 경계 -->
+        <div class="decision" data-od-id="decision-heading-boundary">
+          <span class="decision__status">10차 재조정 · 섹션 제목 22 → 28</span>
+          <span class="decision__n">DECISION 6 · 헤딩과 본문의 경계 (한글 렌더 기준)</span>
+          <h2>섹션 제목을 본문 계열 최상단(xl 22)에서 헤딩 계열 최하단(2xl 28)으로 승격</h2>
+          <p><b>승격 결정.</b> <code>.section-head h2</code>를 <code>--text-xl</code>(22)에서 <code>--text-2xl</code>(28)로 올립니다. 본문(<code>.summary__text</code> = <code>--text-lg</code> 18)은 <b>그대로</b>입니다. 비율이 <b>1.22 → 1.56</b>이 됩니다. 새 토큰은 만들지 않았습니다 — 이미 계약에 있으나 거의 안 쓰이던 2xl(실사용 5건)을 제 자리에 앉힌 <b>재배치</b>입니다.</p>
+          <p class="why"><b>본문을 줄이지 않고 제목을 올린 이유:</b> 위계는 두 값의 <b>비</b>로 만들어지므로 산술적으로는 본문을 16으로 내려도 22:16 = 1.38이 됩니다. 그러나 9차 리서치(개발자 문서 전원 16 · 토스 17 · 네이버 17 · 40+ 채용 담당자 독자)가 확정한 <b>base 16 앵커는 손대지 않는 값</b>입니다. 대비를 만들려고 읽어야 할 글을 작게 만드는 건 목적과 수단이 뒤집힌 것 — 비어 있던 상단으로 제목을 올리는 쪽이 두 제약을 모두 지킵니다.</p>
+          <p class="why"><b>한글 렌더가 결정적인 이유 (이번 라운드의 핵심):</b> <code>--font-display</code>·<code>--font-mono</code>인 <b>IBM Plex Mono에는 한글 글리프가 없습니다.</b> 섹션 제목이 <code>요약</code>·<code>할 수 있는 일</code>·<code>대표 프로젝트</code>처럼 한글이면 <b>Pretendard로 폴백</b>합니다. 즉 영문 화면에서는 mono 특유의 형태 대비가 위계를 절반쯤 대신 지고 있었지만, <b>실제 한글 화면에서는 제목과 본문이 같은 패밀리가 되어 크기 차이 하나만 남습니다.</b> 그 하나가 1.22였던 것 — 프로토타입이 영문으로 검증돼 이 문제가 재현되지 않았습니다. 28은 폴백 상태에서도 층이 분리되는 값입니다.</p>
+          <p class="why"><b>같은 층에 겹쳐 있던 3건의 처리:</b> ① <b>Selected Proof 케이스명(22)은 유지</b> — 섹션 제목이 28로 떠나면서 22가 비므로, 케이스명을 내리지 않아도 중복이 자동 해소됩니다. 오히려 22는 이제 「섹션 아래 강조」 층으로 명확한 역할을 얻습니다. ② <b>hero 한 줄(22)도 유지</b> — 같은 이유이고, hero h1은 56이라 애초에 섹션 제목과 경쟁하지 않습니다. ③ <b>Explore 카드만 실제로 고쳤습니다</b> — 이름 <code>sm</code>(13) → <code>base</code>(16), 설명은 <code>xs</code>(12) 유지로 카드 내부에 1.33 비를 만들었습니다. 이름이 ALL CAPS이므로 트래킹 0.08em은 그대로 둡니다.</p>
+          <p class="why"><b>모바일에서 한 단 내린 이유:</b> 720px 이하에서는 본문이 base(16)로 내려가고 gutter가 16px로 좁아집니다. 제목 28을 유지하면 <code>대표 프로젝트</code>가 2행으로 깨져 <code>word-break: keep-all</code>과 충돌합니다. 모바일은 <b>22 : 16 = 1.38</b>로 — 데스크톱보다 얕지만 인지 임계는 넘고 줄바꿈이 안 깨지는 지점입니다.</p>
+          <span class="opt mono">택: 섹션 제목 2xl 28 승격(본문 16 불변 · 모바일 22) / 반: 본문을 16으로 축소해 대비 확보(9차 앵커 파기) · 22 유지(한글 폴백에서 위계 소실)</span>
+        </div>
+
+        <!-- Decision 7 · 11차 — hero와 /resume 헤더의 문법 정합 -->
+        <div class="decision" data-od-id="decision-hero-parity">
+          <span class="decision__status">11차 · hero 유지 · /resume만 재설계</span>
+          <span class="decision__n">DECISION 7 · 홈 hero와 /resume 헤더의 문법 정합</span>
+          <h2>/resume 헤더를 재설계하면서 홈 hero도 같이 바꿔야 하는가 — 두 화면의 일이 다르다</h2>
+          <p><b>홈 hero는 그대로 두고 <code>/resume</code> 헤더만 재설계</b>합니다. hero의 <code>MediSolve AI · Backend Engineer · 재직 중</code> 칩은 <b>유지</b>합니다.</p>
+          <p class="why"><b>같은 정보인데 다르게 둔 이유:</b> 홈 hero의 일은 <b>15초 검증 + 1클릭 진입</b>(DECISION 1)이라 현직 한 줄이면 충분하고, 전직·기간은 <code>/resume</code>·<code>/portfolio</code>가 담습니다. 반면 <code>/resume</code>의 일은 <b>이력 문서 그 자체</b>라 아이트래킹 6개 데이터 포인트(이름·현 직함/회사·전 직함/회사·기간·학력)를 상단에 다 세워야 합니다. 담는 정보량이 다르므로 <b>같은 배치를 강요하면 한쪽이 반드시 틀립니다.</b></p>
+          <p class="why"><b>그래도 어긋나지 않는다고 본 근거:</b> 두 화면이 공유해야 하는 건 레이아웃이 아니라 <b>표기 문법</b>입니다 — 회사명을 먼저 쓰고 직함을 뒤에 두는 순서(<code>MediSolve AI · Backend Engineer</code>), <code>재직 중</code>이라는 현직 표현, mono로 기간을 쓰는 규칙이 양쪽에서 동일합니다. hero 칩은 <code>/resume</code> 현직 라인의 <b>축약형</b>이지 다른 문법이 아닙니다.</p>
+          <span class="opt mono">택: hero 칩 유지(축약형) · /resume만 4종 위계 재설계 / 반: hero에도 전직·기간 추가(다이어트형 파기) · /resume를 hero처럼 한 줄로 축약(아이트래킹 근거 상실)</span>
         </div>
       </div>
     </div>

@@ -312,7 +312,7 @@ export default function Home() {
                   className="focus-ring grid min-h-[148px] content-start gap-3 bg-bg p-5 transition-colors duration-[180ms] hover:bg-surface"
                 >
                   <span className="flex items-center gap-2">
-                    <span className="font-mono text-sm font-semibold uppercase tracking-[0.08em]">
+                    <span className="font-mono text-base font-semibold uppercase tracking-[0.08em]">
                       {r.name}
                     </span>
                     <span

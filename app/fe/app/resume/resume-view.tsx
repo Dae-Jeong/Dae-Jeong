@@ -257,7 +257,7 @@ function Sec({
 }) {
   return (
     <section id={id} className="pt-9">
-      <SectionHead no={no} title={title} meta={meta} />
+      <SectionHead no={no} title={title} meta={meta} size="doc" />
       {children}
     </section>
   );
