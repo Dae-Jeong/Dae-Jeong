@@ -459,6 +459,14 @@ function DocKo() {
               </p>
             </div>
           </NumberedRow>
+          <NumberedRow label="04" labelWidth="sm" labelClassName="font-mono text-xs text-muted" className="py-3">
+            <div>
+              <p className="m-0 mb-1 font-semibold text-fg">문제가 티켓이 되기 전에 잡는다</p>
+              <p className="m-0 text-sm text-fg-2">
+                재구축은 요청받은 일이 아니었고 반대가 있었다. 품질 기준값이 자사 출력을 되먹이던 순환은 아무도 문제 제기하지 않은 상태에서 재측정하다 발견했다. 주문·재고 worker 분리는 장애가 나기 전의 예방책이었고, 조직 표준 template은 내 제품이 아니라 팀의 이동 비용을 보고 만들었다.
+              </p>
+            </div>
+          </NumberedRow>
         </NumberedList>
       </Sec>
 
@@ -683,6 +691,14 @@ function DocEn() {
               <p className="m-0 mb-1 font-semibold text-fg">Scale the fix into standards and automation</p>
               <p className="m-0 text-sm text-fg-2">
                 A problem solved once should be reusable by the team. I embedded agent context into the organization-wide backend template and turned specs, issues, and release gates into an execution boundary that both people and agents read.
+              </p>
+            </div>
+          </NumberedRow>
+          <NumberedRow label="04" labelWidth="sm" labelClassName="font-mono text-xs text-muted" className="py-3">
+            <div>
+              <p className="m-0 mb-1 font-semibold text-fg">Catch the problem before it becomes a ticket</p>
+              <p className="m-0 text-sm text-fg-2">
+                The rebuild was not assigned to me, and there was pushback. The loop where our quality baseline fed on our own output surfaced while re-measuring something nobody had flagged. Splitting order and inventory work into workers was preventive, not a response to an incident. And the org-wide template came from watching the team&rsquo;s switching cost, not my own product&rsquo;s.
               </p>
             </div>
           </NumberedRow>
