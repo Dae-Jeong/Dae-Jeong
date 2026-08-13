@@ -278,7 +278,7 @@ function DocKo() {
         </p>
         <p className="mt-1.5 font-mono text-sm text-fg-2">
           <b className="font-semibold text-fg">MediSolve AI</b> · Backend Engineer ·
-          기업부설연구소장 <span className="text-muted">(2025.04 — 재직 중)</span>
+          <span className="text-fg-2">기업부설연구소장</span> <span className="text-muted">(2025.04 — 재직 중)</span>
           <span className="mx-2 text-muted">/</span>
           이전 <b className="font-semibold text-fg">STUDIO LAB</b> · PM
           <span className="text-muted"> (2021.12 — 2023.12)</span>
@@ -315,7 +315,7 @@ function DocKo() {
             <PlainList
               items={[
                 <>의료 AI 플랫폼과 AI 콘텐츠 생성 제품의 <strong>backend 전반을 담당</strong>. 재구축·평가 체계·에이전트 파이프라인·어드민·인프라까지 제품이 도는 데 필요한 층을 맡는다</>,
-                <>기업부설연구소장으로 <strong>연구개발 조직을 대표</strong>하고, Tech Lead로 개발 표준을, PO로 제품 결정과 릴리스 운영을 함께 맡는다</>,
+                <>개발 표준을 세우고 제품 결정과 릴리스 운영을 함께 맡는다 — 만드는 일과 무엇을 만들지 정하는 일이 한 사람에게 붙어 있다</>,
                 <>회사 <strong>Azure·Terraform 인프라 전반</strong>을 소유 — B2B·B2C·제품·환경별 경계와 배포·runbook을 직접 관리한다</>,
                 <>대표 성과: cutover 전후 관측에서 QA 버그 재발률 <strong>37% → 11%</strong>, 월 수만 건 규모를 <strong>HTTP 5xx 0.3% 수준</strong>으로 운영</>,
               ]}
@@ -423,7 +423,7 @@ function DocKo() {
             title="제품 운영 · 결정"
             claim="무엇을 만들지 정하고, 만들어진 뒤의 운영 구조까지 설계합니다."
             items={[
-              <>Backend Engineer 합류 후 <strong>기업부설연구소장·Tech Lead·PO 역할 병행</strong> — AI 제품 backend를 만들면서 제품팀 운영을 함께 리드<Src>MediSolve AI</Src></>,
+              <>AI 제품 backend를 만들면서 <strong>제품팀 운영을 함께 리드</strong> — Backend Engineer로 합류해 기업부설연구소장·Tech Lead·PO를 병행하고 있다<Src>MediSolve AI</Src></>,
               <>pipeline registry와 release gate 기반으로 제품팀 일정·이슈·릴리스 운영 리드 — 제품 결정을 BE·FE·QA·release gate 실행으로 연결<Src>제품팀 운영</Src></>,
               <>CES 2024 Best of Innovation 수상 제품에서 <strong>프로토타입 단계부터 v1.0까지 0→1 구간을 PM으로 통과</strong> — 그 과정에서 패션 대기업 브랜드 POC를 함께 진행했고, 상세페이지 제작 Flow 재설계가 특허 「페이지 출력 방법」 출원·등록으로 이어짐<Src>커머스 AI 제품</Src></>,
               <><strong>제품이 원활하게 돌아가는 시스템</strong>을 기획·구축 — 개발 시스템이 아니라 제품이 굴러가는 구조를 설계하는 일이었고, 지금의 제품 운영 리드와 같은 근육의 이전 형태<Src>커머스 AI 제품</Src></>,
@@ -504,7 +504,7 @@ function DocEn() {
         </p>
         <p className="mt-1.5 font-mono text-sm text-fg-2">
           <b className="font-semibold text-fg">MediSolve AI</b> · Backend Engineer ·
-          Head of the R&amp;D Center{" "}
+          <span className="text-fg-2">Head of the R&amp;D Center</span>{" "}
           <span className="text-muted">(Apr 2025 — present)</span>
           <span className="mx-2 text-muted">/</span>
           Previously <b className="font-semibold text-fg">STUDIO LAB</b> · PM
@@ -542,7 +542,7 @@ function DocEn() {
             <PlainList
               items={[
                 <>Own the <strong>backend across an AI medical platform and an AI content product</strong> — rebuilds, evaluation systems, agent pipelines, admin and infrastructure: whatever layer the product needs to keep running</>,
-                <>Represent the R&amp;D organisation as its head, set engineering standards as Tech Lead, and carry product decisions and release operations as PO</>,
+                <>Set the engineering standards and carry product decisions and release operations — building and deciding what to build sit with the same person</>,
                 <>Own the <strong>company-wide Azure and Terraform infrastructure</strong> — resource boundaries across B2B, B2C, product and environment splits, plus deploys and runbooks</>,
                 <>Headline result: QA reopen rate <strong>37% to 11%</strong> across the cutover, and tens of thousands of monthly requests at <strong>~0.3% HTTP 5xx</strong></>,
               ]}
@@ -650,7 +650,7 @@ function DocEn() {
             title="Product operations · decisions"
             claim="I help decide what to build, and design how it runs once it exists."
             items={[
-              <>Joined as a Backend Engineer and now also serve as <strong>head of the R&amp;D center while taking on Tech Lead and PO roles</strong><Src>MediSolve AI</Src></>,
+              <>Build AI product backends while <strong>helping run the product team</strong> — joined as a Backend Engineer and now also serve as head of the R&amp;D center, Tech Lead and PO<Src>MediSolve AI</Src></>,
               <>Lead product-team scheduling, issues and releases on a pipeline registry and release gates — connecting product decisions to BE, FE, QA and release execution<Src>제품팀 운영</Src></>,
               <>Took a CES 2024 Best of Innovation-winning product <strong>from prototype to v1.0 as its primary PM</strong> — ran a proof of concept with a major fashion brand along the way, and the detail-page production flow I redesigned led to a registered patent<Src>커머스 AI 제품</Src></>,
               <>Planned and built <strong>the systems that kept the product running</strong> — not developer tooling but the operating structure of the product itself, the earlier form of the product operations I lead today<Src>커머스 AI 제품</Src></>,
