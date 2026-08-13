@@ -369,10 +369,11 @@ function DocKo() {
             title="AI 제품 backend 구축·재구축"
             claim="기술부채를 언제 갚을지 계산하고, 갚는 동안 서비스가 흔들리지 않게 만듭니다."
             items={[
-              <>재구축의 가장 큰 위험은 새 결함이다 — <strong>cutover 전후 관측에서 QA 버그 재발률(해결 대비 reopen)이 37% → 11%로 감소</strong>, 재발 발생 일평균 <Metric>약 94% 감소</Metric>. 위험이 현실화되지 않았음을 지표로 확인<Src>AI 콘텐츠 생성 제품</Src></>,
+              <>재구축의 가장 큰 위험은 새 결함인데, <strong>QA 재발률이 37% → 11%로 줄었다</strong> — 위험이 현실화되지 않았음을 지표로 확인 (해결 대비 reopen, cutover 전후 관측)<Src>AI 콘텐츠 생성 제품</Src></>,
               <>부분 수정으로는 의존성 구조가 남는다고 판단, <strong>서비스가 작은 시점</strong>을 골라 재구축을 결정·설득 — 지금 갚는 비용이 나중보다 싸다는 계산이었다<Src>AI 콘텐츠 생성 제품</Src></>,
-              <>범위를 <strong>backend로 한정</strong>(FE는 Next.js 유지)하고 <strong>하네스를 먼저 세운 뒤</strong> AI와 협업 — 파악부터 재구축까지 <Metric>총 36시간(작업 시간 기준)</Metric>, 이후 개발·운영 전담하며 월 수만 건 요청을 <Metric>HTTP 5xx 0.3% 수준</Metric>으로 운영<Src>AI 콘텐츠 생성 제품</Src></>,
-              <>재구축만 하는 것은 아니다 — 메시지 계층은 <strong>Celery에서 TaskIQ로 점진 전환</strong>, 레거시는 <strong>NestJS로 이관</strong>, monorepo는 <strong>service boundary와 migration flow</strong>로 옮겼다<Src>AI 메디컬 플랫폼 · 커머스 AI</Src></>,
+              <>범위를 <strong>backend로 한정</strong>(FE는 Next.js 유지)하고 <strong>하네스를 먼저 세운 뒤</strong> AI와 협업 — 파악부터 재구축까지 <Metric>총 36시간</Metric>(작업 시간 기준)<Src>AI 콘텐츠 생성 제품</Src></>,
+              <>cutover 이후 개발·운영 전담 — 월 수만 건 요청을 <Metric>HTTP 5xx 0.3% 수준</Metric>으로 운영<Src>AI 콘텐츠 생성 제품</Src></>,
+              <>재구축만 하는 것은 아니다 — <strong>Celery→TaskIQ 점진 전환</strong>, 레거시 <strong>NestJS 이관</strong>, monorepo <strong>service boundary 재설계</strong><Src>AI 메디컬 플랫폼 · 커머스 AI</Src></>,
               <>주문·재고 API와 RabbitMQ·TaskIQ 비동기 worker·retry 구축 주도 — 실패 가능한 작업을 <strong>제품 시작 시점부터</strong> API 경계 밖으로 분리한 예방 설계<Src>AI 메디컬 플랫폼</Src></>,
             ]}
           />
@@ -394,7 +395,8 @@ function DocKo() {
             items={[
               <>통합 관리 시스템 backend를 <strong>Clean Architecture 계층 구조로 설계·구축 주도</strong> (진행 중)<Src>AI 메디컬 플랫폼</Src></>,
               <>Homepage/Admin API를 독립 모듈로 두고 gateway로 단일 엔드포인트 제공, Generic Repository로 공통 CRUD 표준화<Src>AI 메디컬 플랫폼</Src></>,
-              <>Multi-tenancy와 Soft Delete 자동 필터링으로 데이터 격리, 병원 product backend monorepo의 service boundary와 migration flow 주도<Src>AI 메디컬 플랫폼</Src></>,
+              <>Multi-tenancy와 Soft Delete 자동 필터링으로 <strong>데이터 격리</strong><Src>AI 메디컬 플랫폼</Src></>,
+              <>backend monorepo의 <strong>service boundary와 migration flow 주도</strong><Src>AI 메디컬 플랫폼</Src></>,
               <>코드 컨벤션 정립과 Ruff·Pyright·pre-commit 기반 품질 자동 검증 체계 구축<Src>AI 메디컬 플랫폼</Src></>,
             ]}
           />
@@ -404,7 +406,8 @@ function DocKo() {
             claim="사람과 코딩 에이전트가 같은 규칙 위에서 일하도록 만듭니다."
             items={[
               <>생성 파이프라인을 <strong>planner·writer 역할로 분리 설계·구현</strong> — 유형 분기 판정이 writer에서 18건 전부 미발동하자 판정 위치를 planner로 재배치해 해결<Src>AI 콘텐츠 생성 제품</Src></>,
-              <>조직 표준 FastAPI template에 layered architecture·의존성 주입·응답 규약·ADR을 담고, <strong>agent context system과 반복 작업 automation skill 내장</strong><Src>조직 표준</Src></>,
+              <>조직 표준 FastAPI template 설계·구축 — layered architecture·의존성 주입·응답 규약·ADR<Src>조직 표준</Src></>,
+              <>여기에 <strong>agent context system과 반복 작업 automation skill을 내장</strong><Src>조직 표준</Src></>,
               <>스펙·이슈·릴리스 게이트를 <strong>사람과 agent가 함께 읽는 실행 경계</strong>로 구성 — 이 사이트도 같은 방식으로 만들었다<Src>제품팀 운영</Src></>,
             ]}
           />
@@ -425,7 +428,8 @@ function DocKo() {
             items={[
               <>AI 제품 backend를 만들면서 <strong>제품팀 운영을 함께 리드</strong> — Backend Engineer로 합류해 기업부설연구소장·Tech Lead·PO를 병행하고 있다<Src>MediSolve AI</Src></>,
               <>pipeline registry와 release gate 기반으로 제품팀 일정·이슈·릴리스 운영 리드 — 제품 결정을 BE·FE·QA·release gate 실행으로 연결<Src>제품팀 운영</Src></>,
-              <>CES 2024 Best of Innovation 수상 제품에서 <strong>프로토타입 단계부터 v1.0까지 0→1 구간을 PM으로 통과</strong> — 그 과정에서 패션 대기업 브랜드 POC를 함께 진행했고, 상세페이지 제작 Flow 재설계가 특허 「페이지 출력 방법」 출원·등록으로 이어짐<Src>커머스 AI 제품</Src></>,
+              <>CES 2024 수상 제품을 <strong>프로토타입에서 v1.0까지 0→1 구간을 PM으로 통과</strong><Src>커머스 AI 제품</Src></>,
+              <>제작 Flow 재설계가 <strong>특허 「페이지 출력 방법」 출원·등록으로 이어짐</strong><Src>커머스 AI 제품</Src></>,
               <><strong>제품이 원활하게 돌아가는 시스템</strong>을 기획·구축 — 개발 시스템이 아니라 제품이 굴러가는 구조를 설계하는 일이었고, 지금의 제품 운영 리드와 같은 근육의 이전 형태<Src>커머스 AI 제품</Src></>,
               <><strong>LLM 붐 이전(2021~22)부터</strong> Vision AI 기반 생성 제품의 제품 시스템을 기획·구축, PM 재직 중에도 색상 분류 모델을 직접 개발<Src>커머스 AI 제품</Src></>,
             ]}
@@ -462,9 +466,25 @@ function DocKo() {
           <NumberedRow label="04" labelWidth="sm" labelClassName="font-mono text-xs text-muted" className="py-3">
             <div>
               <p className="m-0 mb-1 font-semibold text-fg">문제가 티켓이 되기 전에 잡는다</p>
-              <p className="m-0 text-sm text-fg-2">
-                재구축은 요청받은 일이 아니었고 반대가 있었다. 품질 기준값이 자사 출력을 되먹이던 순환은 아무도 문제 제기하지 않은 상태에서 재측정하다 발견했다. 주문·재고 worker 분리는 장애가 나기 전의 예방책이었고, 조직 표준 template은 내 제품이 아니라 팀의 이동 비용을 보고 만들었다.
-              </p>
+              <p className="m-0 mb-2 text-sm text-fg-2">착수 계기가 대체로 이런 모양이다.</p>
+              <ul className="m-0 grid list-none gap-1.5 p-0 text-sm text-fg-2">
+                <li className="grid grid-cols-[132px_minmax(0,1fr)] gap-3 max-sm:grid-cols-1 max-sm:gap-0.5">
+                  <span className="font-mono text-xs text-muted">backend 재구축</span>
+                  <span>요청받은 일이 아니었고 반대가 있었다</span>
+                </li>
+                <li className="grid grid-cols-[132px_minmax(0,1fr)] gap-3 max-sm:grid-cols-1 max-sm:gap-0.5">
+                  <span className="font-mono text-xs text-muted">품질 기준값 오류</span>
+                  <span>아무도 문제 제기하지 않은 상태에서 재측정하다 발견</span>
+                </li>
+                <li className="grid grid-cols-[132px_minmax(0,1fr)] gap-3 max-sm:grid-cols-1 max-sm:gap-0.5">
+                  <span className="font-mono text-xs text-muted">worker 분리</span>
+                  <span>장애가 나기 전의 예방책</span>
+                </li>
+                <li className="grid grid-cols-[132px_minmax(0,1fr)] gap-3 max-sm:grid-cols-1 max-sm:gap-0.5">
+                  <span className="font-mono text-xs text-muted">조직 표준 template</span>
+                  <span>내 제품이 아니라 팀의 이동 비용을 보고</span>
+                </li>
+              </ul>
             </div>
           </NumberedRow>
         </NumberedList>
@@ -697,9 +717,25 @@ function DocEn() {
           <NumberedRow label="04" labelWidth="sm" labelClassName="font-mono text-xs text-muted" className="py-3">
             <div>
               <p className="m-0 mb-1 font-semibold text-fg">Catch the problem before it becomes a ticket</p>
-              <p className="m-0 text-sm text-fg-2">
-                The rebuild was not assigned to me, and there was pushback. The loop where our quality baseline fed on our own output surfaced while re-measuring something nobody had flagged. Splitting order and inventory work into workers was preventive, not a response to an incident. And the org-wide template came from watching the team&rsquo;s switching cost, not my own product&rsquo;s.
-              </p>
+              <p className="m-0 mb-2 text-sm text-fg-2">How these usually started:</p>
+              <ul className="m-0 grid list-none gap-1.5 p-0 text-sm text-fg-2">
+                <li className="grid grid-cols-[148px_minmax(0,1fr)] gap-3 max-sm:grid-cols-1 max-sm:gap-0.5">
+                  <span className="font-mono text-xs text-muted">Backend rebuild</span>
+                  <span>Not assigned to me, and there was pushback</span>
+                </li>
+                <li className="grid grid-cols-[148px_minmax(0,1fr)] gap-3 max-sm:grid-cols-1 max-sm:gap-0.5">
+                  <span className="font-mono text-xs text-muted">Baseline error</span>
+                  <span>Surfaced while re-measuring something nobody had flagged</span>
+                </li>
+                <li className="grid grid-cols-[148px_minmax(0,1fr)] gap-3 max-sm:grid-cols-1 max-sm:gap-0.5">
+                  <span className="font-mono text-xs text-muted">Worker split</span>
+                  <span>Preventive, not a response to an incident</span>
+                </li>
+                <li className="grid grid-cols-[148px_minmax(0,1fr)] gap-3 max-sm:grid-cols-1 max-sm:gap-0.5">
+                  <span className="font-mono text-xs text-muted">Org-wide template</span>
+                  <span>Came from the team&rsquo;s switching cost, not my own product&rsquo;s</span>
+                </li>
+              </ul>
             </div>
           </NumberedRow>
         </NumberedList>
