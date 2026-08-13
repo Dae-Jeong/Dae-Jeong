@@ -70,3 +70,44 @@ export const CASES: CaseMeta[] = [
     available: true,
   },
 ];
+
+/* 성과 축 — 포트폴리오 목록의 조직 단위 (2026-08-13).
+   프로젝트가 아니라 성과가 항목이고, 케이스는 그 근거 예시로 붙는다.
+   한 케이스가 여러 축의 근거가 될 수 있다 — 의도된 것이다. */
+export type Achievement = {
+  no: string;
+  claim: string;
+  proof: string;
+  cases: string[]; // cases.slug
+};
+
+export const ACHIEVEMENTS: Achievement[] = [
+  {
+    no: "01",
+    claim: "AI 출력 품질을 판정 가능한 대상으로 만든다",
+    proof:
+      "자동 게이트 12종 · 직접 수집한 실측 코퍼스 n=19 → 4,039 · 자동화가 닿는 층과 닿지 않는 층을 가른 3층 판정",
+    cases: ["thready"],
+  },
+  {
+    no: "02",
+    claim: "기술부채를 언제 갚을지 계산하고, 갚는 동안 서비스가 흔들리지 않게 한다",
+    proof:
+      "QA 버그 재발률 37% → 11% (cutover 전후 관측) · 파악부터 재구축까지 36시간 · 범위를 backend로 한정하고 하네스를 먼저 세움",
+    cases: ["thready"],
+  },
+  {
+    no: "03",
+    claim: "실패 가능한 작업을 제품 시작 시점부터 경계 밖으로 분리한다",
+    proof:
+      "주문·재고 API와 RabbitMQ·TaskIQ worker·retry · 실시간 세션의 lifecycle과 provider 경계 안정화",
+    cases: ["bay-async", "say-realtime"],
+  },
+  {
+    no: "04",
+    claim: "사람과 코딩 에이전트가 같은 규칙 위에서 일하게 만든다",
+    proof:
+      "agent context를 내장한 조직 표준 템플릿 · 스펙·이슈·릴리스를 사람과 agent가 함께 읽는 게이트로 구성",
+    cases: ["be-template", "mediness-ops"],
+  },
+];
