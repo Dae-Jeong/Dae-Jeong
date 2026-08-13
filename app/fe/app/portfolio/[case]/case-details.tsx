@@ -180,6 +180,13 @@ export const DETAILS: Record<string, CaseDetail> = {
         작업을 API 밖으로 분리하는 것만으로는 충분하지 않았다. retry, 회귀 검증,
         worker까지 로컬에서 재현할 수 있는 개발 환경을 함께 만들어야 했다.
       </>,
+      <>
+        <strong>장애를 겪고 대응한 것이 아니라 제품 시작 시점의 예방책이었다.</strong>{" "}
+        직전 회사에서 결제 실패의 불일치 — 선결제 예약 실패 시의 롤백, 환불 처리 순서,
+        환불 시 티켓 제거 시점 — 를 직접 수습한 경험이 있었고, 같은 종류의 실패가
+        주문·재고에서도 생긴다고 봤다. 그래서 <strong>제품이 시작되는 시점부터</strong>{" "}
+        실패 가능한 작업을 API 경계 밖에 두었다.
+      </>,
     ],
     decisionIntro: (
       <>
@@ -484,7 +491,7 @@ export const DETAILS: Record<string, CaseDetail> = {
   "mediness-ops": {
     eyebrow: "Case 05 / 05 · Product Operations",
     positioning:
-      "제품의 decision·SPEC·Work Package·release gate를 연결하고, daily briefing으로 운영 입력을 모은 케이스.",
+      "제품 결정이 스펙·작업·릴리스로 끊기지 않고 이어지도록 운영 구조를 만들고 리드한 케이스.",
     kv: [
       { k: "Role", v: "Lead" },
       { k: "Scope", v: "Product Operations" },
@@ -514,8 +521,9 @@ export const DETAILS: Record<string, CaseDetail> = {
         k: "One-Way Pipeline",
         t: (
           <>
-            decision → SPEC → Work Package → release evidence가 한 방향으로 연결되도록
-            pipeline registry를 구성한다.
+            제품 결정 → 스펙 → 작업 → 릴리스 근거가 한 방향으로 이어지도록 등록 구조를
+            만든다. 어디서 끊겼는지 되짚을 수 있어야 다음 릴리스에서 같은 자리가 다시
+            막히지 않는다.
           </>
         ),
       },
@@ -523,8 +531,8 @@ export const DETAILS: Record<string, CaseDetail> = {
         k: "Human Boundary",
         t: (
           <>
-            daily briefing agent는 activity와 blocker candidate를 모으고, blocker 해석과
-            product decision은 human owner가 확인한다.
+            브리핑 에이전트는 활동 기록과 <strong>막힌 지점 후보</strong>를 모으는 데까지
+            한다. 정말 막힌 것인지, 무엇을 결정할지는 사람이 판단한다.
           </>
         ),
       },
@@ -532,42 +540,41 @@ export const DETAILS: Record<string, CaseDetail> = {
         k: "Release Gate",
         t: (
           <>
-            SPEC·Work Package coverage와 release evidence를 version snapshot에 연결해
-            완료 시점의 상태를 고정한다.
+            스펙과 작업이 어디까지 덮였는지, 릴리스 근거가 무엇인지를 버전 단위로 묶어
+            <strong>완료 시점의 상태를 고정</strong>한다. 나중에 되짚을 수 있어야 한다.
           </>
         ),
       },
     ],
     systemIntro: (
       <>
-        협업 도구의 활동을 daily briefing으로 모으되, 최종 상태와 결정은 registry·문서·{" "}
-        <strong>release gate</strong>가 확인하는 구조다.
+        활동은 자동으로 모으되, <strong>최종 상태와 결정은 기록·문서·릴리스 게이트가
+        확인</strong>하는 구조다. 자동화가 판단까지 대신하지 않는다.
       </>
     ),
     system: [
       {
-        title: "Decision → SPEC → WP",
-        desc: "결정일·owner를 기록하고 SPEC과 Work Package coverage를 한 방향으로 매핑.",
+        title: "결정 → 스펙 → 작업",
+        desc: "결정한 날과 담당자를 남기고, 그 결정이 어느 스펙·작업으로 이어졌는지 한 방향으로 잇는다.",
       },
       {
-        title: "Daily Briefing",
-        desc: "협업 도구 activity와 blocker candidate를 집계해 triage 입력으로 전달.",
+        title: "일일 브리핑",
+        desc: "협업 도구의 활동과 막힌 지점 후보를 모아 사람이 분류할 입력으로 전달.",
       },
       {
-        title: "Registry Coverage",
-        desc: "PR 변경 이력과 release evidence를 pipeline registry에 연결.",
+        title: "근거 연결",
+        desc: "PR 변경 이력과 릴리스 근거를 운영 기록에 연결해 빠진 구간이 보이게 한다.",
       },
       {
-        title: "Release Gate",
-        desc: "evidence가 있는 완료만 version snapshot과 version cut으로 고정.",
+        title: "릴리스 게이트",
+        desc: "근거가 있는 완료만 버전으로 고정한다 — 근거 없는 \"완료\"는 통과시키지 않는다.",
       },
     ],
     opsIntro: (
       <>
-        decision·SPEC·Work Package pipeline, registry, release gate와 version cut 운영이
-        문서 근거로 확인되고, daily briefing과 blocker triage flow가 도구 근거로 남아
-        있다. status 확인 시간과 adoption의 정량 변화, agent의 자율 의사결정은 주장하지
-        않는다.
+        결정·스펙·작업·릴리스로 이어지는 운영 구조와 게이트·버전 관리가 문서 근거로,
+        일일 브리핑과 분류 흐름이 도구 근거로 남아 있다. 다만 <strong>상태 확인 시간의
+        정량 변화나 에이전트의 자율 의사결정은 주장하지 않는다</strong> — 측정하지 않았다.
       </>
     ),
     evidence: [
