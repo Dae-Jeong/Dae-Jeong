@@ -3,7 +3,8 @@ type: platform-snapshot
 title: 링크드인 프로필 스냅샷
 description: linkedin.com 프로필 원문 수집 — 회사·기간은 비교적 최신이나 서사와 성과가 전무.
 platform: linkedin
-url: https://www.linkedin.com/in/대정-김-057b2a227/
+url: https://www.linkedin.com/in/marinkim-dev
+# 2026-08-13 실측: 기존 `대정-김-057b2a227`에서 커스텀 URL로 변경됨
 collected: 2026-08-08
 tags: [platform, snapshot, linkedin]
 ---
