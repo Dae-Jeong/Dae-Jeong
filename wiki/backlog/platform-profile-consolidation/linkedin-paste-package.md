@@ -46,8 +46,8 @@ AI가 만든 결과물의 품질을 세 층으로 나눠 판정할 수 있게 �
 "AI가 구현을 점점 더 많이 맡을수록,
 사람이 끝까지 책임져야 하는 층을 어떻게 지킬 것인가?"
 
-backend는 Python과 FastAPI로 만들어왔고,
-레거시 이관이 필요할 때는 TypeScript와 NestJS를 씁니다.
+backend는 Python과 FastAPI를 주로 쓰고,
+Centurion과 API Gateway는 TypeScript·NestJS로 다룹니다.
 Java와 Spring Boot는 개인 프로젝트에서 다뤘습니다.
 
 사람들에게 필요한 AI 제품을 4년째 만들어온 엔지니어로서,

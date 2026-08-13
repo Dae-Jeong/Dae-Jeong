@@ -143,7 +143,7 @@ const SKILLS = [
     v: (
       <Skill
         stack="TypeScript, NestJS"
-        via="스튜디오랩 레거시 이관 · 고객사 product backend"
+        via="Centurion · API Gateway (MediSolve) · 스튜디오랩 레거시 이관"
       />
     ),
   },
@@ -200,7 +200,7 @@ const SKILLS_EN = [
     v: (
       <Skill
         stack="TypeScript, NestJS"
-        via="STUDIO LAB legacy migration · client product backend"
+        via="Centurion · API Gateway (MediSolve) · STUDIO LAB legacy migration"
       />
     ),
   },

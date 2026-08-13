@@ -19,6 +19,21 @@ DAY, BAY, RAY, SAY는 별도 제품이 아니라 Centurion CRM & ERP 제품을 �
 - Code-backed: 제품 시작 시점(더데이랩스 프리랜서 기간)부터 backend를 구축했다 — `workspace:BAY-BE-API` 2025-03-18 first initialize와 정합 ([previous-career](previous-career.md#career-gaps-and-freelance)).
 - Public wording: "피부과 CRM으로 시작한 Centurion을 제품 시작 시점부터 구축"까지 허용. ⚠️ "피부과 생태계를 관장하는 시스템" 표현은 보도에서 미확인 — 공개 표기 보류 유지.
 
+## Stack Boundary (2026-08-13 user-confirmed)
+
+> "지금 api gateway랑 centurion은 NestJS였어" / "메디솔브에서도 NestJS는 사용했었어"
+
+**Centurion과 API Gateway는 NestJS다.** 지금까지 산출물이 MediSolve 스택을 Python·FastAPI로만
+표기해 NestJS 사용 사실이 빠져 있었다.
+
+- Code-backed 보강: `workspace:SSO-BE-API`의 `package.json`에서 NestJS·JWT·Prisma·TypeScript 확인
+  ([workspace-project-audit](../audits/workspace-project-audit.md#sso-be-api)).
+- ⚠️ **Centurion은 단일 스택이 아니다** — `BAY-BE-API`의 비동기 worker 계열은 TaskIQ·Celery로
+  Python이 code-backed다. 즉 **NestJS와 Python이 서비스별로 공존**한다.
+  공개 표기 시 "Centurion = NestJS"로 단정하지 말고 **"Centurion·API Gateway에 NestJS"**까지 쓴다.
+- 공개 표현: `NestJS — Centurion · API Gateway (MediSolve)` / `TypeScript·NestJS를 실무에서 사용`
+- 금지: Centurion 전체를 단일 언어·프레임워크로 단정, 서비스별 비중 수치화.
+
 ## Company Public Coverage (2026-07-17 확인)
 
 - Source-backed: 메디솔브에이아이가 2026-03-25 "AI 메디컬 플랫폼 '센츄리온(centurion)' 시리즈" 공식 론칭 행사를 개최했다 — 도메인은 피부과 운영, `say`는 "상담 실장 옆에서 실시간 AI 어드바이스를 제공하는 솔루션", `centurion watch`는 "AI 기반 리뷰 모니터링 솔루션"으로 공개됨. https://www.mdtoday.co.kr/news/view/1065601112133242
