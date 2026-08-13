@@ -15,11 +15,18 @@ claims:
     forbidden_copy:
       - 공식 직함이 모두 Tech Lead / PO / AI Agent Engineer라고 단정
       - 제품 기획 전담
-    verified_at: 2026-08-12
+      - 기업부설연구소장을 권한·지위로 서술 (연구개발 조직 대표·총괄 등)
+      - 기업부설연구소장을 문장의 주어나 강조(굵게)로 앞세우기
+    verified_at: 2026-08-13
     note: >-
       기업부설연구소장은 등재 직함이다 (2026-08-08 user-confirmed, canonical-baseline.md).
       Tech Lead·PO는 역할 병행이며 등재 직함이 아니다 — 셋을 나열할 때 모두 공식 직함으로
       읽히지 않게 "역할 병행"을 함께 쓴다.
+
+      톤 가드 (2026-08-13 user-confirmed): "기업 부설 연구소장이라는 타이틀이 있기는 하지만
+      그냥 하고있었다 정도로만 하고 이걸 막 자랑할 요소로는 안적었으면 좋겠어."
+      직함은 사실로 표기하되 강조하지 않는다. 문장의 주어로 쓰거나 굵게 처리하지 않고,
+      권한·지위 서술을 붙이지 않는다. 주장은 한 일로 하고 직함은 뒤에 덧붙인다.
   - id: career.ai-pm-backend-continuity
     statement: Vision AI Engineer, PM, Backend Engineer 경험이 AI product system 관점으로 연결됨
     strength: contributed
