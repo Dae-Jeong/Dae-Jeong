@@ -252,15 +252,15 @@ export const DETAILS: Record<string, CaseDetail> = {
         index: "근거 1",
         label: "주문·재고 API와 worker flow",
         claim:
-          "BAY 주문·재고 API와 RabbitMQ·TaskIQ 비동기 worker flow 구축을 주도",
-        source: "Centurion BAY 개발 기록",
+          "주문·재고 API와 RabbitMQ·TaskIQ 비동기 worker flow 구축을 주도",
+        source: "Centurion 주문·재고 backend 개발 기록",
       },
       {
         index: "근거 2",
         label: "retry·test·CI·onboarding",
         claim:
           "재고 연동 retry, API test infrastructure, Docker CI, local setup·onboarding 구축을 주도",
-        source: "Centurion BAY 개발 기록",
+        source: "Centurion 주문·재고 backend 개발 기록",
       },
     ],
   },
@@ -359,21 +359,21 @@ export const DETAILS: Record<string, CaseDetail> = {
         label: "session lifecycle·provider 경계",
         claim:
           "realtime AI 상담 backend의 세션 lifecycle과 STT/LLM provider 경계 안정화에 공동 주 기여",
-        source: "Centurion SAY 개발 기록",
+        source: "Centurion 실시간 상담 AI 개발 기록",
       },
       {
         index: "근거 2",
         label: "translation·audio pipeline",
         claim:
           "zombie session cleanup, reconnect race 처리, translation/audio pipeline 변경이 확인됨",
-        source: "Centurion Evidence · SAY Realtime AI",
+        source: "Centurion Evidence · 실시간 상담 AI",
       },
       {
         index: "근거 3",
         label: "structured output·fallback",
         claim:
           "dashboard AI analysis의 structured output·fallback과 boundary test가 확인됨",
-        source: "Centurion Evidence · SAY Realtime AI",
+        source: "Centurion Evidence · 실시간 상담 AI",
       },
     ],
   },

@@ -17,8 +17,8 @@ export const CASES: CaseMeta[] = [
   {
     slug: "thready",
     no: "01",
-    name: "Thready Rebuild",
-    tag: "AI Content Generation · Backend",
+    name: "AI 콘텐츠 생성 backend 재구축",
+    tag: "AI 콘텐츠 생성 제품 · Thready",
     blurb:
       "AI 콘텐츠 생성 backend를 전면 재구축하고 이후 개발·운영을 전담. 자동 게이트·실측 분포 대조·사람 판정 3층으로 생성 품질을 판정 가능하게 만들고, 파이프라인을 planner·writer 역할로 분리해 설계·구현했다.",
     role: "Rebuild · Ownership",
@@ -28,8 +28,8 @@ export const CASES: CaseMeta[] = [
   {
     slug: "bay-async",
     no: "02",
-    name: "BAY Async",
-    tag: "Order · Inventory · Worker",
+    name: "주문·재고 비동기 처리",
+    tag: "AI 메디컬 플랫폼 · Centurion",
     blurb:
       "주문·재고 API와 RabbitMQ·TaskIQ 비동기 worker를 설계하고, retry·test·CI 구축을 주도. 실패 가능한 작업을 worker로 분리해 처리 경계를 명확히 했다.",
     role: "Lead",
@@ -39,8 +39,8 @@ export const CASES: CaseMeta[] = [
   {
     slug: "say-realtime",
     no: "03",
-    name: "SAY Realtime",
-    tag: "Realtime AI · Session",
+    name: "실시간 상담 AI 세션",
+    tag: "AI 메디컬 플랫폼 · Centurion",
     blurb:
       "realtime AI 상담 backend의 세션 lifecycle과 provider 경계 안정화에 공동 주 기여. realtime session의 시작·유지·종료 흐름을 다뤘다.",
     role: "Co-Lead Contrib.",
@@ -50,8 +50,8 @@ export const CASES: CaseMeta[] = [
   {
     slug: "be-template",
     no: "04",
-    name: "BE Template",
-    tag: "FastAPI · Agent Context",
+    name: "조직 표준 백엔드 템플릿",
+    tag: "조직 표준 · MediSolve AI",
     blurb:
       "조직 표준 FastAPI template과 agent context system을 설계·구축 전담. layered architecture·DI·ADR·convention을 표준으로 정립했다.",
     role: "Owner",
@@ -61,8 +61,8 @@ export const CASES: CaseMeta[] = [
   {
     slug: "mediness-ops",
     no: "05",
-    name: "Mediness Ops",
-    tag: "Decision · Spec · Release Gate",
+    name: "제품 운영 게이트",
+    tag: "제품팀 운영 · MediSolve AI",
     blurb:
       "decision·spec·work·release gate로 이어지는 제품 운영 구조를 구조화·리드. 일정·이슈·릴리스 운영을 agent-readable workflow로 정리했다.",
     role: "Lead",
