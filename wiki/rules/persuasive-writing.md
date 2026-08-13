@@ -326,6 +326,9 @@ canonical: [dual-track-copy-draft](../backlog/platform-profile-consolidation/dua
 
 ## 14. 이력서는 프로젝트 소개서가 아니다 (2026-08-13 user-confirmed)
 
+> 지면별 역할의 단독 소유자는 [surface-roles](../products/site/surface-roles.md)다.
+> "이 문장이 이 지면의 역할인가"가 먼저고, 아래 규칙은 그 안에서 어떻게 쓸지를 다룬다.
+
 > "내가 우리 회사 내부 프로젝트 암만 적어봤자 그 사람들이 알아? 그냥 아 이런거 했구나 라도 하면 다행이지"
 > "자꾸 이력서 내용이 프로젝트 소개서가 되는것 같아서"
 
