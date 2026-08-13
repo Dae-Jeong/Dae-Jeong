@@ -130,11 +130,20 @@ function Skill({ stack, via }: { stack: string; via: string }) {
 
 const SKILLS = [
   {
-    k: "Language / FW",
+    k: "주력",
     v: (
       <Skill
-        stack="Python, FastAPI, TypeScript, NestJS"
-        via="Thready · Centurion · 고객사 product backend"
+        stack="Python, FastAPI"
+        via="아이즈솔·메멘토·더데이랩스·메디솔브 — 실무 backend의 주 언어"
+      />
+    ),
+  },
+  {
+    k: "함께 씀",
+    v: (
+      <Skill
+        stack="TypeScript, NestJS"
+        via="스튜디오랩 레거시 이관 · 고객사 product backend"
       />
     ),
   },
@@ -170,7 +179,7 @@ const SKILLS = [
     v: (
       <Skill
         stack="Java, Spring Boot"
-        via="TellingMe — 10명 팀의 백엔드 2명 중 주도, iOS 정식 출시 (2024.01 — 2024.12)"
+        via="TellingMe — 10명 팀의 백엔드 2명 중 주도, iOS 정식 출시 (2024.01 — 2024.12). 실무 경험이 아닌 구간을 구분해 표기한다"
       />
     ),
   },
@@ -178,11 +187,20 @@ const SKILLS = [
 
 const SKILLS_EN = [
   {
-    k: "Language / FW",
+    k: "Primary",
     v: (
       <Skill
-        stack="Python, FastAPI, TypeScript, NestJS"
-        via="Thready · Centurion · client product backend"
+        stack="Python, FastAPI"
+        via="Izsol, Memento, TheDayLabs, MediSolve — the language behind every production backend I have shipped"
+      />
+    ),
+  },
+  {
+    k: "Alongside",
+    v: (
+      <Skill
+        stack="TypeScript, NestJS"
+        via="STUDIO LAB legacy migration · client product backend"
       />
     ),
   },
@@ -218,7 +236,7 @@ const SKILLS_EN = [
     v: (
       <Skill
         stack="Java, Spring Boot"
-        via="TellingMe — primary of two backend engineers on a 10-person team; shipped on the App Store (Jan — Dec 2024)"
+        via="TellingMe — primary of two backend engineers on a 10-person team; shipped on the App Store (Jan — Dec 2024). Listed separately from production experience on purpose"
       />
     ),
   },

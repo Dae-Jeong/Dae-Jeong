@@ -46,6 +46,10 @@ AI가 만든 결과물의 품질을 세 층으로 나눠 판정할 수 있게 �
 "AI가 구현을 점점 더 많이 맡을수록,
 사람이 끝까지 책임져야 하는 층을 어떻게 지킬 것인가?"
 
+backend는 Python과 FastAPI로 만들어왔고,
+레거시 이관이 필요할 때는 TypeScript와 NestJS를 씁니다.
+Java와 Spring Boot는 개인 프로젝트에서 다뤘습니다.
+
 사람들에게 필요한 AI 제품을 4년째 만들어온 엔지니어로서,
 이 질문의 답을 의료 AI 플랫폼에서 제품으로 만들어가고 있습니다.
 
@@ -187,6 +191,19 @@ Python·FastAPI로 교체한다.
 [Vision AI 모델·백엔드 개발]
 - 인식 모델 개발과 학습 데이터 수집·관리, 영상 데이터 전처리 파이프라인 구축, Python·FastAPI 기반 백엔드 개발
 - 인턴 신분으로 기능 요구사항 정의와 일정·태스크 관리 병행 — 만드는 일과 정하는 일의 병행이 이 시기에 시작
+```
+
+## 2.5 대표 보유기술 (2026-08-13 신규)
+
+현재: `파이썬 · 인공지능 · 기획 · 프로젝트 관리 · Microsoft Azure`
+→ LLM·Agent·Evaluation 키워드가 없어 검색에 안 걸린다. 아래로 교체:
+
+```
+Python
+FastAPI
+LLM Evaluation
+Agent Workflow
+Microsoft Azure
 ```
 
 ## 3. 영어 프로필 (같은 김에)
