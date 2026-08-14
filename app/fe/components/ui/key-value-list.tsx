@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import { cn } from "@/lib/cn";
 
-type KV = { k: string; v: React.ReactNode };
+type KV = { k: string; v: React.ReactNode; "data-claim"?: string };
 
 /* hero card 변형 — bordered dl, 값 우측 정렬. groups 사이에 rule 이 들어간다 */
 export function KeyValueCard({
@@ -57,9 +57,10 @@ export function KeyValueRows({
 }) {
   return (
     <div className={cn("grid border-t border-border-soft", className)}>
-      {items.map(({ k, v }) => (
+      {items.map(({ k, v, "data-claim": dataClaim }) => (
         <div
           key={k}
+          data-claim={dataClaim}
           className="grid grid-cols-[150px_1fr] gap-4 border-b border-border-soft py-[11px] max-sm:grid-cols-1 max-sm:gap-1"
         >
           <span className="font-mono text-xs uppercase tracking-[0.06em] text-muted">

@@ -27,6 +27,7 @@ export function NumberedRow({
   labelClassName = "",
   trailing,
   className = "",
+  "data-claim": dataClaim,
   children,
 }: {
   label: React.ReactNode;
@@ -37,6 +38,7 @@ export function NumberedRow({
   labelClassName?: string;
   trailing?: React.ReactNode;
   className?: string;
+  "data-claim"?: string;
   children: React.ReactNode;
 }) {
   const key = (
@@ -45,6 +47,7 @@ export function NumberedRow({
   const cols = COLS[key];
   return (
     <li
+      data-claim={dataClaim}
       className={cn(
         "grid items-baseline gap-4 border-t border-border py-5 first:border-t-0 max-sm:gap-2",
         cols,

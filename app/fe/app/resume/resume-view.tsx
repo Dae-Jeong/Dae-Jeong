@@ -47,11 +47,13 @@ function CareerRow({
   org,
   now,
   period,
+  "data-claim": dataClaim,
   children,
 }: {
   org: string;
   now?: boolean;
   period: string;
+  "data-claim"?: string;
   children: React.ReactNode;
 }) {
   return (
@@ -65,6 +67,7 @@ function CareerRow({
       labelWidth="lg"
       labelClassName="font-semibold text-fg"
       trailing={period}
+      data-claim={dataClaim}
       className="border-border-soft py-3"
     >
       <span className="text-sm text-fg-2">{children}</span>
@@ -85,23 +88,26 @@ function Axis({
   claim,
   items,
   first,
+  "data-claim": dataClaim,
 }: {
   no: string;
   title: string;
   claim: React.ReactNode;
   items: React.ReactNode[];
   first?: boolean;
+  "data-claim"?: string;
 }) {
   return (
     <NumberedRow
       label={no}
       labelWidth="sm"
       labelClassName="font-mono text-xs text-muted"
+      data-claim={dataClaim}
       className={cn("py-4", first && "border-t-0")}
     >
-      <div>
-        <h3 className="m-0 mb-1 font-mono text-base font-semibold">{title}</h3>
-        <p className="m-0 mb-2.5 text-sm text-fg-2">{claim}</p>
+      <div className="text-base font-normal">
+        <h3 className="m-0 mb-1.5 font-mono text-lg font-semibold leading-tight">{title}</h3>
+        <p className="m-0 mb-3 text-base font-medium text-fg">{claim}</p>
         <PlainList items={items} />
       </div>
     </NumberedRow>
@@ -115,7 +121,7 @@ function Metric({ children }: { children: React.ReactNode }) {
 const SECTIONS = [
   { id: "s1", ko: "요약" },
   { id: "s2", ko: "경력" },
-  { id: "s3", ko: "할 수 있는 일" },
+  { id: "s3", ko: "핵심 역량" },
   { id: "s4", ko: "일하는 방식" },
   { id: "s5", ko: "기술" },
   { id: "s6", ko: "credentials" },
@@ -143,6 +149,7 @@ const SKILLS = [
   },
   {
     k: "함께 씀",
+    "data-claim": "be-template.backend-standard centurion.async-migration",
     v: (
       <Skill
         stack="TypeScript, NestJS"
@@ -152,6 +159,7 @@ const SKILLS = [
   },
   {
     k: "Data / Messaging",
+    "data-claim": "centurion.bay-async-backend",
     v: (
       <Skill
         stack="PostgreSQL, MySQL, Redis, RabbitMQ, TaskIQ"
@@ -161,6 +169,7 @@ const SKILLS = [
   },
   {
     k: "Infra / Delivery",
+    "data-claim": "infra.company-azure-ownership career.tellingme-backend-infra",
     v: (
       <Skill
         stack="Azure, AWS, Terraform, Docker, GitHub Actions"
@@ -179,6 +188,7 @@ const SKILLS = [
   },
   {
     k: "개인 프로젝트",
+    "data-claim": "career.tellingme-backend-infra",
     v: (
       <Skill
         stack="Java, Spring Boot"
@@ -200,6 +210,7 @@ const SKILLS_EN = [
   },
   {
     k: "Alongside",
+    "data-claim": "be-template.backend-standard centurion.async-migration",
     v: (
       <Skill
         stack="TypeScript, NestJS"
@@ -209,6 +220,7 @@ const SKILLS_EN = [
   },
   {
     k: "Data / Messaging",
+    "data-claim": "centurion.bay-async-backend",
     v: (
       <Skill
         stack="PostgreSQL, MySQL, Redis, RabbitMQ, TaskIQ"
@@ -218,6 +230,7 @@ const SKILLS_EN = [
   },
   {
     k: "Infra / Delivery",
+    "data-claim": "infra.company-azure-ownership career.tellingme-backend-infra",
     v: (
       <Skill
         stack="Azure, AWS, Terraform, Docker, GitHub Actions"
@@ -236,6 +249,7 @@ const SKILLS_EN = [
   },
   {
     k: "Personal project",
+    "data-claim": "career.tellingme-backend-infra",
     v: (
       <Skill
         stack="Java, Spring Boot"
@@ -250,16 +264,18 @@ function Sec({
   no,
   title,
   meta,
+  "data-claim": dataClaim,
   children,
 }: {
   id?: string;
   no: string;
   title: string;
   meta?: string;
+  "data-claim"?: string;
   children: React.ReactNode;
 }) {
   return (
-    <section id={id} className="pt-9">
+    <section id={id} data-claim={dataClaim} className="pt-9">
       <SectionHead no={no} title={title} meta={meta} size="doc" />
       {children}
     </section>
@@ -299,10 +315,10 @@ function DocKo() {
 
       <Sec id="s1" no="01" title="요약" meta="Summary">
         <div className="grid gap-3.5 text-fg-2">
-          <p className="m-0">
+          <p className="m-0" data-claim="career.tenure career.ai-pm-backend-continuity">
             <strong className="font-semibold text-fg">AI 제품을 만들어온 <Metric>실무 4년차</Metric></strong>. 모델을 만들다 기획을 거쳐 백엔드로 왔고, 지금은 백엔드를 만들면서 무엇을 만들지 정하는 역할도 같이 맡는다.
           </p>
-          <p className="m-0">
+          <p className="m-0" data-claim="career.ai-pm-backend-continuity">
             백엔드를 택한 데는 이유가 있다. <strong className="font-semibold text-fg">AI가 구현을 점점 더 많이 맡을수록, 보안과 안정성처럼 사람이 끝까지 책임져야 하는 층이 더 무거워진다</strong>고 봤다. 매일 AI와 같이 제품을 만드는 지금, 그 판단이 틀리지 않았다고 느낀다.
           </p>
         </div>
@@ -310,7 +326,7 @@ function DocKo() {
 
       <Sec id="s2" no="02" title="경력" meta="Career">
         <NumberedList className="border-t border-border-soft">
-          <CareerRow org="MediSolve AI" now period="2025.04 —">
+          <CareerRow org="MediSolve AI" now period="2025.04 —" data-claim="career.medisolve-role-evolution thready.qa-reopen-reduction thready.production-operation-quality infra.company-azure-ownership mediness.product-operations">
             <span className="mb-1.5 block font-medium text-fg">Backend Engineer · 기업부설연구소장 <span className="font-normal text-fg-2">— Tech Lead·PO 역할 병행</span></span>
             <PlainList
               items={[
@@ -321,7 +337,7 @@ function DocKo() {
               ]}
             />
           </CareerRow>
-          <CareerRow org="더데이랩스" period="2025.02 — 2025.04">
+          <CareerRow org="더데이랩스" period="2025.02 — 2025.04" data-claim="career.thedaylabs-freelance">
             <span className="mb-1.5 block font-medium text-fg">Backend Engineer <span className="font-normal text-fg-2">— 프리랜서</span></span>
             <PlainList
               items={[
@@ -330,16 +346,16 @@ function DocKo() {
               ]}
             />
           </CareerRow>
-          <CareerRow org="Memento AI" period="2024.10 — 2025.01">
+          <CareerRow org="Memento AI" period="2024.10 — 2025.01" data-claim="career.memento-payment">
             <span className="mb-1.5 block font-medium text-fg">Backend Engineer <span className="font-normal text-fg-2">— 인턴 1개월 → 정규직</span></span>
             <PlainList
               items={[
-                <>피부과 통합 관리 시스템의 <strong>예약·결제 backend를 담당</strong> — 결제가 중간 단계에서 실패할 때 남는 상태 불일치를 실패 지점마다 정의해 해소</>,
+                <>예약·결제 backend에서 <strong>Stripe 선결제를 도입</strong>하고, 결제 실패 시 환불·마일리지·티켓에 남는 상태 불일치를 rollback 흐름으로 안정화</>,
                 <>회사 폐업으로 재직 종료</>,
               ]}
             />
           </CareerRow>
-          <CareerRow org="STUDIO LAB" period="2021.12 — 2024.01">
+          <CareerRow org="STUDIO LAB" period="2021.12 — 2024.01" data-claim="career.sellercanvas-product-system credentials.page-output-patent credentials.ces-2024">
             <span className="mb-1.5 block font-medium text-fg">Product Manager <span className="font-normal text-fg-2">— AI Engineer → PM(메인 롤) → Backend Engineer</span></span>
             <PlainList
               items={[
@@ -349,7 +365,7 @@ function DocKo() {
               ]}
             />
           </CareerRow>
-          <CareerRow org="아이즈솔" period="2020.08 — 2021.06">
+          <CareerRow org="아이즈솔" period="2020.08 — 2021.06" data-claim="career.ai-pm-backend-continuity">
             <span className="mb-1.5 block font-medium text-fg">Vision AI Engineer <span className="font-normal text-fg-2">— 인턴</span></span>
             <PlainList
               items={[
@@ -361,12 +377,13 @@ function DocKo() {
         </NumberedList>
       </Sec>
 
-      <Sec id="s3" no="03" title="할 수 있는 일" meta="Capabilities">
+      <Sec id="s3" no="03" title="핵심 역량" meta="Capabilities">
         <NumberedList>
           <Axis
             first
             no="01"
             title="AI 제품 backend 구축·재구축"
+            data-claim="thready.rebuild-decision-execution thready.backend-rebuild thready.qa-reopen-reduction thready.production-operation-quality centurion.async-migration centurion.bay-async-backend career.memento-payment"
             claim="기술부채를 언제 갚을지 계산하고, 갚는 동안 서비스가 흔들리지 않게 만듭니다."
             items={[
               <>재구축의 가장 큰 위험은 새 결함인데, <strong>QA 재발률이 37% → 11%로 줄었다</strong> — 위험이 현실화되지 않았음을 지표로 확인 (해결 대비 reopen, cutover 전후 관측)<Src>AI 콘텐츠 생성 제품</Src></>,
@@ -374,12 +391,13 @@ function DocKo() {
               <>범위를 <strong>backend로 한정</strong>(FE는 Next.js 유지)하고 <strong>하네스를 먼저 세운 뒤</strong> AI와 협업 — 파악부터 재구축까지 <Metric>총 36시간</Metric>(작업 시간 기준)<Src>AI 콘텐츠 생성 제품</Src></>,
               <>cutover 이후 개발·운영 전담 — 월 수만 건 요청을 <Metric>HTTP 5xx 0.3% 수준</Metric>으로 운영<Src>AI 콘텐츠 생성 제품</Src></>,
               <>재구축만 하는 것은 아니다 — <strong>Celery→TaskIQ 점진 전환</strong>, 레거시 <strong>NestJS 이관</strong>, monorepo <strong>service boundary 재설계</strong><Src>AI 메디컬 플랫폼 · 커머스 AI</Src></>,
-              <>주문·재고 API와 RabbitMQ·TaskIQ 비동기 worker·retry 구축 주도 — 실패 가능한 작업을 <strong>제품 시작 시점부터</strong> API 경계 밖으로 분리한 예방 설계<Src>AI 메디컬 플랫폼</Src></>,
+              <>이전 결제 실패의 rollback·정합성 수습 경험을 바탕으로, 주문·재고의 실패 가능한 작업을 <strong>제품 시작 시점부터</strong> RabbitMQ·TaskIQ worker와 retry로 API 경계 밖에 분리<Src>AI 메디컬 플랫폼</Src></>,
             ]}
           />
           <Axis
             no="02"
             title="AI 출력 품질 판정·평가"
+            data-claim="thready.quality-criteria-system thready.measurement-correction thready.falsification-log thready.corpus-measurement"
             claim="&ldquo;품질이 나쁘다&rdquo;를 무엇을 고칠지 정할 수 있는 문제로 바꿉니다."
             items={[
               <>AI 생성 품질을 <strong>자동 게이트·실측 분포·사람 판정 3층</strong>으로 나눠 계량 — 자동화가 닿는 층과 닿지 않는 층을 갈라 설계<Src>AI 콘텐츠 생성 제품</Src></>,
@@ -391,6 +409,7 @@ function DocKo() {
           <Axis
             no="03"
             title="어드민 시스템 구축·운영"
+            data-claim="nexus.backend-architecture nexus.admin-backend-ownership nexus.quality-automation"
             claim="병원이 실제로 쓰는 통합 관리 시스템 backend를 계층 구조로 세우고 있습니다."
             items={[
               <>통합 관리 시스템 backend를 <strong>Clean Architecture 계층 구조로 설계·구축 주도</strong> (진행 중)<Src>AI 메디컬 플랫폼</Src></>,
@@ -403,6 +422,7 @@ function DocKo() {
           <Axis
             no="04"
             title="Agent 워크플로우 · AX"
+            data-claim="thready.agent-pipeline-design be-template.backend-standard be-template.agent-context mediness.product-operations"
             claim="사람과 코딩 에이전트가 같은 규칙 위에서 일하도록 만듭니다."
             items={[
               <>생성 파이프라인을 <strong>planner·writer 역할로 분리 설계·구현</strong> — 유형 분기 판정이 writer에서 18건 전부 미발동하자 판정 위치를 planner로 재배치해 해결<Src>AI 콘텐츠 생성 제품</Src></>,
@@ -414,6 +434,7 @@ function DocKo() {
           <Axis
             no="05"
             title="인프라 · 플랫폼 운영"
+            data-claim="infra.company-azure-ownership nexus.terraform-infra centurion.shared-infra"
             claim="제품이 도는 환경을 직접 소유하고 운영합니다."
             items={[
               <><strong>회사 Azure/Terraform infra 전반</strong>의 설계·구축·운영 담당<Src>MediSolve AI</Src></>,
@@ -424,6 +445,7 @@ function DocKo() {
           <Axis
             no="06"
             title="제품 운영 · 결정"
+            data-claim="mediness.product-operations career.medisolve-role-evolution career.sellercanvas-product-system credentials.page-output-patent credentials.ces-2024"
             claim="무엇을 만들지 정하고, 만들어진 뒤의 운영 구조까지 설계합니다."
             items={[
               <>AI 제품 backend를 만들면서 <strong>제품팀 운영을 함께 리드</strong> — Backend Engineer로 합류해 기업부설연구소장·Tech Lead·PO를 병행하고 있다<Src>MediSolve AI</Src></>,
@@ -439,7 +461,7 @@ function DocKo() {
 
       <Sec id="s4" no="04" title="일하는 방식" meta="How I Work">
         <NumberedList>
-          <NumberedRow label="01" labelWidth="sm" labelClassName="font-mono text-xs text-muted" className="border-t-0 py-3">
+          <NumberedRow label="01" labelWidth="sm" labelClassName="font-mono text-xs text-muted" className="border-t-0 py-3" data-claim="thready.rebuild-decision-execution thready.measurement-correction">
             <div>
               <p className="m-0 mb-1 font-semibold text-fg">문제의 경계를 다시 잡는다</p>
               <p className="m-0 text-sm text-fg-2">
@@ -447,7 +469,7 @@ function DocKo() {
               </p>
             </div>
           </NumberedRow>
-          <NumberedRow label="02" labelWidth="sm" labelClassName="font-mono text-xs text-muted" className="py-3">
+          <NumberedRow label="02" labelWidth="sm" labelClassName="font-mono text-xs text-muted" className="py-3" data-claim="thready.quality-criteria-system mediness.product-operations">
             <div>
               <p className="m-0 mb-1 font-semibold text-fg">측정과 게이트로 판정 가능하게 만든다</p>
               <p className="m-0 text-sm text-fg-2">
@@ -455,7 +477,7 @@ function DocKo() {
               </p>
             </div>
           </NumberedRow>
-          <NumberedRow label="03" labelWidth="sm" labelClassName="font-mono text-xs text-muted" className="py-3">
+          <NumberedRow label="03" labelWidth="sm" labelClassName="font-mono text-xs text-muted" className="py-3" data-claim="be-template.agent-context mediness.product-operations">
             <div>
               <p className="m-0 mb-1 font-semibold text-fg">해결을 표준과 자동화로 확장한다</p>
               <p className="m-0 text-sm text-fg-2">
@@ -463,7 +485,7 @@ function DocKo() {
               </p>
             </div>
           </NumberedRow>
-          <NumberedRow label="04" labelWidth="sm" labelClassName="font-mono text-xs text-muted" className="py-3">
+          <NumberedRow label="04" labelWidth="sm" labelClassName="font-mono text-xs text-muted" className="py-3" data-claim="thready.rebuild-decision-execution thready.measurement-correction centurion.bay-async-backend be-template.agent-context">
             <div>
               <p className="m-0 mb-1 font-semibold text-fg">문제가 티켓이 되기 전에 잡는다</p>
               <p className="m-0 mb-2 text-sm text-fg-2">착수 계기가 대체로 이런 모양이다.</p>
@@ -496,19 +518,19 @@ function DocKo() {
 
       <Sec id="s6" no="06" title="학력·교육 / 수상·특허·자격" meta="Credentials">
         <NumberedList>
-          <NumberedRow label="2016 — 2021" labelWidth="md" labelClassName="text-xs" className="border-t-0 py-1">
+          <NumberedRow label="2016 — 2021" labelWidth="md" labelClassName="text-xs" className="border-t-0 py-1" data-claim="credentials.education">
             <span className="text-sm text-fg-2">우송대학교 게임멀티미디어 전공</span>
           </NumberedRow>
-          <NumberedRow label="2024.01" labelWidth="md" labelClassName="text-xs" className="border-t-0 py-1">
+          <NumberedRow label="2024.01" labelWidth="md" labelClassName="text-xs" className="border-t-0 py-1" data-claim="credentials.ces-2024">
             <span className="text-sm text-fg-2">CES 2024 Best of Innovation · AI 부문 대상 제품 참여</span>
           </NumberedRow>
-          <NumberedRow label="2025.12" labelWidth="md" labelClassName="text-xs" className="border-t-0 py-1">
+          <NumberedRow label="2025.12" labelWidth="md" labelClassName="text-xs" className="border-t-0 py-1" data-claim="credentials.page-output-patent">
             <span className="text-sm text-fg-2">특허 등록 「페이지 출력 방법」 · 등록 10-2898273</span>
           </NumberedRow>
-          <NumberedRow label="2021.09" labelWidth="md" labelClassName="text-xs" className="border-t-0 py-1">
+          <NumberedRow label="2021.09" labelWidth="md" labelClassName="text-xs" className="border-t-0 py-1" data-claim="credentials.adsp">
             <span className="text-sm text-fg-2">ADsP · 데이터분석 준전문가</span>
           </NumberedRow>
-          <NumberedRow label="인증" labelWidth="md" labelClassName="text-xs" className="border-t-0 py-1">
+          <NumberedRow label="인증" labelWidth="md" labelClassName="text-xs" className="border-t-0 py-1" data-claim="credentials.ai-accuracy-certification">
             <span className="text-sm text-fg-2">한국건설생활환경시험연구원(KCL) · AI 정확도 부문 인증 통과</span>
           </NumberedRow>
         </NumberedList>
@@ -554,10 +576,10 @@ function DocEn() {
 
       <Sec no="01" title="Summary">
         <div className="grid gap-3.5 text-fg-2">
-          <p className="m-0">
+          <p className="m-0" data-claim="career.tenure career.ai-pm-backend-continuity">
             <strong className="font-semibold text-fg">Four years of building AI products</strong>. I moved from model engineering to product planning to backend, and now I both build the backend and help decide what to build and why.
           </p>
-          <p className="m-0">
+          <p className="m-0" data-claim="career.ai-pm-backend-continuity">
             Choosing backend was a judgement call. <strong className="font-semibold text-fg">As AI takes on more of the implementation, the layers a human has to own to the end — security, stability — only grow heavier.</strong> Building products alongside AI every day has made that conviction firmer.
           </p>
         </div>
@@ -565,7 +587,7 @@ function DocEn() {
 
       <Sec no="02" title="Career">
         <NumberedList className="border-t border-border-soft">
-          <CareerRow org="MediSolve AI" now period="Apr 2025 —">
+          <CareerRow org="MediSolve AI" now period="Apr 2025 —" data-claim="career.medisolve-role-evolution thready.qa-reopen-reduction thready.production-operation-quality infra.company-azure-ownership mediness.product-operations">
             <span className="mb-1.5 block font-medium text-fg">Backend Engineer · Head of the R&amp;D Center <span className="font-normal text-fg-2">— also serving as Tech Lead and PO</span></span>
             <PlainList
               items={[
@@ -576,7 +598,7 @@ function DocEn() {
               ]}
             />
           </CareerRow>
-          <CareerRow org="TheDayLabs" period="Feb 2025 — Apr 2025">
+          <CareerRow org="TheDayLabs" period="Feb 2025 — Apr 2025" data-claim="career.thedaylabs-freelance">
             <span className="mb-1.5 block font-medium text-fg">Backend Engineer <span className="font-normal text-fg-2">— freelance</span></span>
             <PlainList
               items={[
@@ -585,16 +607,16 @@ function DocEn() {
               ]}
             />
           </CareerRow>
-          <CareerRow org="Memento AI" period="Oct 2024 — Jan 2025">
+          <CareerRow org="Memento AI" period="Oct 2024 — Jan 2025" data-claim="career.memento-payment">
             <span className="mb-1.5 block font-medium text-fg">Backend Engineer <span className="font-normal text-fg-2">— intern for one month, then full-time</span></span>
             <PlainList
               items={[
-                <>Owned the <strong>booking and payment backend</strong> of a clinic management system — defined the state transitions at each failure point where a mid-flow payment failure used to leave records inconsistent</>,
+                <>Contributed to the booking and payment backend by <strong>introducing Stripe prepayment</strong> and stabilizing rollback across refunds, mileage and tickets when a payment failed mid-flow</>,
                 <>Employment ended when the company shut down</>,
               ]}
             />
           </CareerRow>
-          <CareerRow org="STUDIO LAB" period="Dec 2021 — Jan 2024">
+          <CareerRow org="STUDIO LAB" period="Dec 2021 — Jan 2024" data-claim="career.sellercanvas-product-system credentials.page-output-patent credentials.ces-2024">
             <span className="mb-1.5 block font-medium text-fg">Product Manager <span className="font-normal text-fg-2">— AI Engineer, then PM (primary role), then Backend Engineer</span></span>
             <PlainList
               items={[
@@ -604,7 +626,7 @@ function DocEn() {
               ]}
             />
           </CareerRow>
-          <CareerRow org="Izsol" period="Aug 2020 — Jun 2021">
+          <CareerRow org="Izsol" period="Aug 2020 — Jun 2021" data-claim="career.ai-pm-backend-continuity">
             <span className="mb-1.5 block font-medium text-fg">Vision AI Engineer <span className="font-normal text-fg-2">— intern</span></span>
             <PlainList
               items={[
@@ -622,18 +644,20 @@ function DocEn() {
             first
             no="01"
             title="Building and rebuilding AI product backends"
+            data-claim="thready.rebuild-decision-execution thready.backend-rebuild thready.qa-reopen-reduction thready.production-operation-quality centurion.async-migration centurion.bay-async-backend career.memento-payment"
             claim="I work out when technical debt is cheapest to repay, and keep the service steady while repaying it."
             items={[
               <>The main risk in a rebuild is new defects — across the cutover the <strong>QA reopen rate (resolved-to-reopened) went from 37% to 11%</strong>, with daily reopen incidence down <Metric>~94%</Metric>. The risk did not materialise, and the metric shows it<Src>AI 콘텐츠 생성 제품</Src></>,
               <>Judged that partial fixes would leave the dependency structure intact, so I picked the moment <strong>while the service was still small</strong> and argued for the rebuild — repaying then was cheaper than repaying later<Src>AI 콘텐츠 생성 제품</Src></>,
               <>Scoped it to the <strong>backend only</strong> (keeping Next.js on the frontend) and <strong>set up the harness first</strong> before pairing with AI — <Metric>36 work hours</Metric> from discovery to rebuild, then owned development and operations at <Metric>~0.3% HTTP 5xx</Metric> across tens of thousands of monthly requests<Src>AI 콘텐츠 생성 제품</Src></>,
               <>Rebuilding is not the only tool — migrated the messaging layer <strong>incrementally from Celery to TaskIQ</strong>, moved legacy code <strong>onto NestJS</strong>, and reshaped a monorepo through <strong>service boundaries and migration flow</strong><Src>AI 메디컬 플랫폼 · 커머스 AI</Src></>,
-              <>Led order/inventory APIs, RabbitMQ/TaskIQ async workers and retry — moved failure-prone work outside the API boundary <strong>from product inception</strong> as preventive design<Src>AI 메디컬 플랫폼</Src></>,
+              <>Applied lessons from resolving payment rollback and consistency failures to separate failure-prone order and inventory work <strong>outside the API boundary from product inception</strong> with RabbitMQ·TaskIQ workers and retry<Src>AI 메디컬 플랫폼</Src></>,
             ]}
           />
           <Axis
             no="02"
             title="Judging and evaluating AI output quality"
+            data-claim="thready.quality-criteria-system thready.measurement-correction thready.falsification-log thready.corpus-measurement"
             claim="I turn &ldquo;the quality is bad&rdquo; into a problem you can actually act on."
             items={[
               <>Split generation-quality judgement into <strong>three layers</strong> — automated gates, measured-distribution checks, human review — separating what automation reaches from what it does not<Src>AI 콘텐츠 생성 제품</Src></>,
@@ -645,6 +669,7 @@ function DocEn() {
           <Axis
             no="03"
             title="Building and running admin systems"
+            data-claim="nexus.backend-architecture nexus.admin-backend-ownership nexus.quality-automation"
             claim="I am building the backend for the integrated management system clinics actually run on."
             items={[
               <>Leading the design and build of the integrated management system backend on a <strong>Clean Architecture layering</strong> (in progress)<Src>AI 메디컬 플랫폼</Src></>,
@@ -656,6 +681,7 @@ function DocEn() {
           <Axis
             no="04"
             title="Agent workflow · AX"
+            data-claim="thready.agent-pipeline-design be-template.backend-standard be-template.agent-context mediness.product-operations"
             claim="I make people and coding agents work off the same set of rules."
             items={[
               <>Designed and built the <strong>generation pipeline as planner and writer roles</strong> — type-branch judgement placed in the writer never fired across 18 cases, so I moved it to the planner<Src>AI 콘텐츠 생성 제품</Src></>,
@@ -666,6 +692,7 @@ function DocEn() {
           <Axis
             no="05"
             title="Infrastructure · platform operations"
+            data-claim="infra.company-azure-ownership nexus.terraform-infra centurion.shared-infra"
             claim="I own and operate the environments the products actually run on."
             items={[
               <>Own the design, build and operation of the <strong>company-wide Azure/Terraform infrastructure</strong><Src>MediSolve AI</Src></>,
@@ -676,6 +703,7 @@ function DocEn() {
           <Axis
             no="06"
             title="Product operations · decisions"
+            data-claim="mediness.product-operations career.medisolve-role-evolution career.sellercanvas-product-system credentials.page-output-patent credentials.ces-2024"
             claim="I help decide what to build, and design how it runs once it exists."
             items={[
               <>Build AI product backends while <strong>helping run the product team</strong> — joined as a Backend Engineer and now also serve as head of the R&amp;D center, Tech Lead and PO<Src>MediSolve AI</Src></>,
@@ -690,7 +718,7 @@ function DocEn() {
 
       <Sec no="04" title="How I Work">
         <NumberedList>
-          <NumberedRow label="01" labelWidth="sm" labelClassName="font-mono text-xs text-muted" className="border-t-0 py-3">
+          <NumberedRow label="01" labelWidth="sm" labelClassName="font-mono text-xs text-muted" className="border-t-0 py-3" data-claim="thready.rebuild-decision-execution thready.measurement-correction">
             <div>
               <p className="m-0 mb-1 font-semibold text-fg">Redraw the boundary of the problem</p>
               <p className="m-0 text-sm text-fg-2">
@@ -698,7 +726,7 @@ function DocEn() {
               </p>
             </div>
           </NumberedRow>
-          <NumberedRow label="02" labelWidth="sm" labelClassName="font-mono text-xs text-muted" className="py-3">
+          <NumberedRow label="02" labelWidth="sm" labelClassName="font-mono text-xs text-muted" className="py-3" data-claim="thready.quality-criteria-system mediness.product-operations">
             <div>
               <p className="m-0 mb-1 font-semibold text-fg">Make judgement measurable and gated</p>
               <p className="m-0 text-sm text-fg-2">
@@ -706,7 +734,7 @@ function DocEn() {
               </p>
             </div>
           </NumberedRow>
-          <NumberedRow label="03" labelWidth="sm" labelClassName="font-mono text-xs text-muted" className="py-3">
+          <NumberedRow label="03" labelWidth="sm" labelClassName="font-mono text-xs text-muted" className="py-3" data-claim="be-template.agent-context mediness.product-operations">
             <div>
               <p className="m-0 mb-1 font-semibold text-fg">Scale the fix into standards and automation</p>
               <p className="m-0 text-sm text-fg-2">
@@ -714,7 +742,7 @@ function DocEn() {
               </p>
             </div>
           </NumberedRow>
-          <NumberedRow label="04" labelWidth="sm" labelClassName="font-mono text-xs text-muted" className="py-3">
+          <NumberedRow label="04" labelWidth="sm" labelClassName="font-mono text-xs text-muted" className="py-3" data-claim="thready.rebuild-decision-execution thready.measurement-correction centurion.bay-async-backend be-template.agent-context">
             <div>
               <p className="m-0 mb-1 font-semibold text-fg">Catch the problem before it becomes a ticket</p>
               <p className="m-0 mb-2 text-sm text-fg-2">How these usually started:</p>
@@ -747,19 +775,19 @@ function DocEn() {
 
       <Sec no="06" title="Education & Credentials">
         <NumberedList>
-          <NumberedRow label="2016 — 2021" labelWidth="md" labelClassName="text-xs" className="border-t-0 py-1">
+          <NumberedRow label="2016 — 2021" labelWidth="md" labelClassName="text-xs" className="border-t-0 py-1" data-claim="credentials.education">
             <span className="text-sm text-fg-2">Woosong University, Game Multimedia major</span>
           </NumberedRow>
-          <NumberedRow label="2024.01" labelWidth="md" labelClassName="text-xs" className="border-t-0 py-1">
+          <NumberedRow label="2024.01" labelWidth="md" labelClassName="text-xs" className="border-t-0 py-1" data-claim="credentials.ces-2024">
             <span className="text-sm text-fg-2">CES 2024 Best of Innovation — contributed to the awarded AI product</span>
           </NumberedRow>
-          <NumberedRow label="2025.12" labelWidth="md" labelClassName="text-xs" className="border-t-0 py-1">
+          <NumberedRow label="2025.12" labelWidth="md" labelClassName="text-xs" className="border-t-0 py-1" data-claim="credentials.page-output-patent">
             <span className="text-sm text-fg-2">Patent registered: &quot;Page Output Method&quot; · KR 10-2898273</span>
           </NumberedRow>
-          <NumberedRow label="2021.09" labelWidth="md" labelClassName="text-xs" className="border-t-0 py-1">
+          <NumberedRow label="2021.09" labelWidth="md" labelClassName="text-xs" className="border-t-0 py-1" data-claim="credentials.adsp">
             <span className="text-sm text-fg-2">ADsP · Advanced Data Analytics Semi-Professional</span>
           </NumberedRow>
-          <NumberedRow label="Cert." labelWidth="md" labelClassName="text-xs" className="border-t-0 py-1">
+          <NumberedRow label="Cert." labelWidth="md" labelClassName="text-xs" className="border-t-0 py-1" data-claim="credentials.ai-accuracy-certification">
             <span className="text-sm text-fg-2">Korea Conformity Laboratories (KCL) — AI accuracy certification</span>
           </NumberedRow>
         </NumberedList>
