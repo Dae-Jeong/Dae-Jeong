@@ -1,5 +1,5 @@
-/* 케이스 상세 콘텐츠 — canonical 은 app/design/portfolio-case-prototype.html.
-   ⚠️ 창작 수치 금지 — 미확정 값은 [TBD] 유지 (rail note 계약) */
+/* 공개 문장·순서·강조의 표현 SoT. 사실·claim 강도는 evidence registry,
+케이스 계약·범위는 wiki/products/portfolio/cases를 따른다. 창작 수치 금지. */
 
 export type CaseDetail = {
   eyebrow: string;
@@ -25,6 +25,7 @@ export type CaseDetail = {
     label: string;
     claim: string;
     source: string;
+    claimIds: string[];
   }[];
 };
 
@@ -174,23 +175,26 @@ export const DETAILS: Record<string, CaseDetail> = {
       {
         index: "근거 1",
         label: "QA reopen 37% → 11%",
-        claim:
-          "재구축 cutover 전후로 QA 티켓 reopen 비율(해결 대비 reopen)이 37%에서 11%로 감소",
-        source: "Jira 집계 · cutover 전후 비교",
+      claim:
+        "재구축 cutover 전후로 QA 티켓 reopen 비율(해결 대비 reopen)이 37%에서 11%로 감소",
+      source: "Jira 집계 · cutover 전후 비교",
+      claimIds: ["thready.qa-reopen-reduction"],
       },
       {
         index: "근거 2",
         label: "HTTP 5xx 0.3% 수준 운영",
-        claim:
-          "월 수만 건 규모 요청을 처리하는 production backend를 HTTP 5xx 0.3% 수준으로 운영 (30일 기준)",
-        source: "Thready 운영 지표 · 운영 시점 기준",
+      claim:
+        "월 수만 건 규모 요청을 처리하는 production backend를 HTTP 5xx 0.3% 수준으로 운영 (30일 기준)",
+      source: "Thready 운영 지표 · 운영 시점 기준",
+      claimIds: ["thready.production-operation-quality"],
       },
       {
         index: "근거 3",
         label: "품질 기준값의 자기 되먹임 발견",
-        claim:
-          "측정값으로 신뢰하던 품질 기준값이 자사 출력을 되먹이고 있었음을 발견 — 순환을 끊고 기준을 다시 세우는 과정에서 문제 정의 자체의 오류도 드러남",
-        source: "실측 코퍼스 재수집 (n=19 → 4,039)",
+      claim:
+        "측정값으로 신뢰하던 품질 기준값이 자사 출력을 되먹이고 있었음을 발견 — 순환을 끊고 기준을 다시 세우는 과정에서 문제 정의 자체의 오류도 드러남",
+      source: "실측 코퍼스 재수집 (n=19 → 4,039)",
+      claimIds: ["thready.measurement-correction", "thready.corpus-measurement"],
       },
     ],
   },
@@ -297,17 +301,19 @@ export const DETAILS: Record<string, CaseDetail> = {
     evidence: [
       {
         index: "근거 1",
-        label: "주문·재고 API와 worker flow",
-        claim:
-          "주문·재고 API와 RabbitMQ·TaskIQ 비동기 worker flow 구축을 주도",
-        source: "Centurion 주문·재고 backend 개발 기록",
+      label: "주문·재고 API와 worker flow",
+      claim:
+        "주문·재고 API와 RabbitMQ·TaskIQ 비동기 worker flow 구축을 주도",
+      source: "Centurion 주문·재고 backend 개발 기록",
+      claimIds: ["centurion.bay-async-backend", "centurion.async-migration"],
       },
       {
         index: "근거 2",
-        label: "retry·test·CI·onboarding",
-        claim:
-          "재고 연동 retry, API test infrastructure, Docker CI, local setup·onboarding 구축을 주도",
-        source: "Centurion 주문·재고 backend 개발 기록",
+      label: "retry·test·CI·onboarding",
+      claim:
+        "재고 연동 retry, API test infrastructure, Docker CI, local setup·onboarding 구축을 주도",
+      source: "Centurion 주문·재고 backend 개발 기록",
+      claimIds: ["centurion.test-ci-foundation"],
       },
     ],
   },
@@ -403,24 +409,27 @@ export const DETAILS: Record<string, CaseDetail> = {
     evidence: [
       {
         index: "근거 1",
-        label: "session lifecycle·provider 경계",
-        claim:
-          "realtime AI 상담 backend의 세션 lifecycle과 STT/LLM provider 경계 안정화에 공동 주 기여",
-        source: "Centurion 실시간 상담 AI 개발 기록",
+      label: "session lifecycle·provider 경계",
+      claim:
+        "realtime AI 상담 backend의 세션 lifecycle과 STT/LLM provider 경계 안정화에 공동 주 기여",
+      source: "Centurion 실시간 상담 AI 개발 기록",
+      claimIds: ["centurion.say-realtime-ai"],
       },
       {
         index: "근거 2",
-        label: "translation·audio pipeline",
-        claim:
-          "zombie session cleanup, reconnect race 처리, translation/audio pipeline 변경이 확인됨",
-        source: "Centurion Evidence · 실시간 상담 AI",
+      label: "translation·audio pipeline",
+      claim:
+        "zombie session cleanup, reconnect race 처리, translation/audio pipeline 변경이 확인됨",
+      source: "Centurion Evidence · 실시간 상담 AI",
+      claimIds: ["centurion.say-realtime-ai"],
       },
       {
         index: "근거 3",
-        label: "structured output·fallback",
-        claim:
-          "dashboard AI analysis의 structured output·fallback과 boundary test가 확인됨",
-        source: "Centurion Evidence · 실시간 상담 AI",
+      label: "structured output·fallback",
+      claim:
+        "dashboard AI analysis의 structured output·fallback과 boundary test가 확인됨",
+      source: "Centurion Evidence · 실시간 상담 AI",
+      claimIds: ["centurion.say-realtime-ai"],
       },
     ],
   },
@@ -528,15 +537,17 @@ export const DETAILS: Record<string, CaseDetail> = {
       {
         index: "근거 1",
         label: "backend standard",
-        claim:
-          "layered architecture·DI·ADR·convention·runbook 기반 조직 표준 FastAPI template 설계·구축 전담",
-        source: "Backend Template 도입 기록",
+      claim:
+        "layered architecture·DI·ADR·convention·runbook 기반 조직 표준 FastAPI template 설계·구축 전담",
+      source: "Backend Template 도입 기록",
+      claimIds: ["be-template.backend-standard"],
       },
       {
         index: "근거 2",
-        label: "agent context system",
-        claim: "계층적 agent context와 반복 작업 automation skill을 backend template에 내장",
-        source: "Backend Template agent context 기록",
+      label: "agent context system",
+      claim: "계층적 agent context와 반복 작업 automation skill을 backend template에 내장",
+      source: "Backend Template agent context 기록",
+      claimIds: ["be-template.agent-context"],
       },
     ],
   },
@@ -633,16 +644,18 @@ export const DETAILS: Record<string, CaseDetail> = {
       {
         index: "근거 1",
         label: "제품 운영 pipeline",
-        claim:
-          "pipeline registry와 release gate 기반 제품팀 일정·이슈·릴리스 운영을 리드",
-        source: "제품 운영 workflow 기록",
+      claim:
+        "pipeline registry와 release gate 기반 제품팀 일정·이슈·릴리스 운영을 리드",
+      source: "제품 운영 workflow 기록",
+      claimIds: ["mediness.product-operations"],
       },
       {
         index: "근거 2",
         label: "daily briefing agent",
-        claim:
-          "협업 도구 활동 집계와 blocker triage를 지원하는 daily briefing agent 구축·운영",
-        source: "일일 브리핑 운영 기록",
+      claim:
+        "협업 도구 활동 집계와 blocker triage를 지원하는 daily briefing agent 구축·운영",
+      source: "일일 브리핑 운영 기록",
+      claimIds: ["mediness.daily-briefing"],
       },
     ],
   },

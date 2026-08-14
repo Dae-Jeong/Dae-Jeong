@@ -4,7 +4,17 @@ case: thready-rebuild
 title: 운영 중인 AI 콘텐츠 생성 제품의 backend 전면 재구축과 생성 품질의 시스템화
 resume_tag: THREADY
 origin: MediSolve AI · 2025.04 —
-claim_ids: [thready.backend-rebuild, thready.generation-quality-system, thready.release-operation]
+claim_ids:
+  - thready.backend-rebuild
+  - thready.rebuild-decision-execution
+  - thready.generation-quality-system
+  - thready.agent-pipeline-design
+  - thready.quality-criteria-system
+  - thready.measurement-correction
+  - thready.corpus-measurement
+  - thready.qa-reopen-reduction
+  - thready.production-operation-quality
+  - thready.release-operation
 claim_strength: owned
 ---
 
@@ -49,7 +59,8 @@ diagram: typed prompt builder (source_context 계약) -> generation pipeline (cr
 
 - Code/release-backed: 신규 backend cutover 완료와 이후 version cycle 운영이 확인됨
 - Tool/workflow-backed: typed prompt, judge, 평가 sweep, 품질 데이터와 release/QA 운영 구조가 확인됨
-- Limits: public traffic·latency·cost와 생성 품질의 정량적 before/after 근거는 아직 없어, 재구축·운영 범위와 품질 workflow 구축까지만 표현함
+- Metric-backed: cutover 전후 QA reopen 37%→11%, 30일 기준 HTTP 5xx 0.3% 수준 운영, 실측 corpus n=19→4,039가 확인됨
+- Limits: 생성 품질의 개선 배수·비율, latency·cost의 before/after, backend 단독 효과는 claim하지 않음
 
 ## Stack
 

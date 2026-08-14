@@ -39,7 +39,9 @@ ALLOWED_STRENGTHS = {"owned", "led", "co-led", "contributed"}
 ALLOWED_CONFIDENCE = {"high", "medium", "low", "unknown"}
 MARKDOWN_LINK = re.compile(r"\[[^\]]+\]\(([^)]+)\)")
 HEADING = re.compile(r"^#{1,6}\s+(.+?)\s*$", re.MULTILINE)
-DATA_CLAIM = re.compile(r'data-claim="([^"]+)"')
+DATA_CLAIM = re.compile(r'(?:data-claim=|"data-claim":\s*)"([^"]+)"')
+CLAIM_IDS_BLOCK = re.compile(r"claimIds:\s*\[(.*?)\]", re.DOTALL)
+STRING_LITERAL = re.compile(r'"([a-z0-9][a-z0-9.-]+)"')
 
 
 def _frontmatter(text: str) -> dict[str, Any] | None:
@@ -217,15 +219,21 @@ def _validate_product_claim_refs(root: Path) -> list[str]:
 
 
 def _validate_resume_artifact_claims(root: Path) -> list[str]:
-    artifact = root / WIKI / "products" / "resume" / "master" / "v1" / "resume.html"
     claim_map = root / WIKI / "products" / "resume" / "claim-map.yaml"
-    if not artifact.exists() or not claim_map.exists():
+    if not claim_map.exists():
         return []
+
+    mapped_data = yaml.safe_load(claim_map.read_text(encoding="utf-8")) or {}
+    artifact_ref = mapped_data.get("artifact")
+    if not isinstance(artifact_ref, str) or not artifact_ref.strip():
+        return ["resume artifact: claim map has no artifact path"]
+    artifact = root / artifact_ref
+    if not artifact.exists():
+        return [f"resume artifact: {artifact_ref} does not exist"]
 
     claims, _ = _load_claims(root)
     known = {str(claim.get("id")) for claim in claims}
     public = {str(claim.get("id")) for claim in claims if claim.get("public") is True}
-    mapped_data = yaml.safe_load(claim_map.read_text(encoding="utf-8")) or {}
     mapped = {
         str(claim_id)
         for ids in (mapped_data.get("sections") or {}).values()
@@ -250,6 +258,56 @@ def _validate_resume_artifact_claims(root: Path) -> list[str]:
     return errors
 
 
+def _validate_portfolio_artifact_claims(root: Path) -> list[str]:
+    artifacts = (
+        root / "app" / "fe" / "lib" / "cases.ts",
+        root / "app" / "fe" / "app" / "portfolio" / "[case]" / "case-details.tsx",
+    )
+    claims, _ = _load_claims(root)
+    known = {str(claim.get("id")) for claim in claims}
+    public = {str(claim.get("id")) for claim in claims if claim.get("public") is True}
+    errors: list[str] = []
+    case_claims: set[str] = set()
+    case_dir = root / WIKI / "products" / "portfolio" / "cases"
+    for path in sorted(case_dir.glob("*.md")):
+        meta = _frontmatter(path.read_text(encoding="utf-8")) or {}
+        case_claims.update(str(claim_id) for claim_id in meta.get("claim_ids", []))
+
+    for artifact in artifacts:
+        if not artifact.exists():
+            errors.append(f"portfolio artifact: {artifact.relative_to(root)} does not exist")
+            continue
+        text = artifact.read_text(encoding="utf-8")
+        used = {
+            claim_id
+            for block in CLAIM_IDS_BLOCK.findall(text)
+            for claim_id in STRING_LITERAL.findall(block)
+        }
+        if not used:
+            errors.append(f"portfolio artifact: {artifact.relative_to(root)} has no claimIds values")
+        for claim_id in sorted(used - known):
+            errors.append(
+                f"portfolio artifact: {artifact.relative_to(root)} has unknown claimIds value {claim_id}"
+            )
+        for claim_id in sorted(used - public):
+            errors.append(
+                f"portfolio artifact: {artifact.relative_to(root)} claimIds value {claim_id} is not public"
+            )
+
+        if artifact.name == "cases.ts":
+            catalog_text = text.split("export type Achievement", 1)[0]
+            catalog_claims = {
+                claim_id
+                for block in CLAIM_IDS_BLOCK.findall(catalog_text)
+                for claim_id in STRING_LITERAL.findall(block)
+            }
+            for claim_id in sorted(case_claims - catalog_claims):
+                errors.append(f"portfolio artifact: cases.ts is missing case-library claim {claim_id}")
+            for claim_id in sorted(catalog_claims - case_claims):
+                errors.append(f"portfolio artifact: cases.ts has claim absent from case library {claim_id}")
+    return errors
+
+
 def validate(root: Path) -> list[str]:
     """Return stable validation failures; an empty list means pass."""
     root = root.resolve()
@@ -261,6 +319,7 @@ def validate(root: Path) -> list[str]:
         + _validate_claim_map(root)
         + _validate_product_claim_refs(root)
         + _validate_resume_artifact_claims(root)
+        + _validate_portfolio_artifact_claims(root)
     )
 
 

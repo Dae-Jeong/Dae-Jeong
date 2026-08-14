@@ -4,7 +4,7 @@ case: bay-async
 title: 주문·재고 backend의 비동기 아키텍처 — 실패 가능한 작업을 API에서 분리
 resume_tag: BAY
 origin: MediSolve AI · Centurion 재고 관리
-claim_ids: [centurion.bay-async-backend]
+claim_ids: [centurion.bay-async-backend, centurion.async-migration, centurion.test-ci-foundation]
 claim_strength: led
 ---
 

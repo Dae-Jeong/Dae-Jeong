@@ -4,7 +4,7 @@ case: be-template
 title: 조직 표준 backend 템플릿 — 아키텍처 표준과 agent 컨텍스트 시스템을 한 번에
 resume_tag: BE TEMPLATE
 origin: MediSolve AI · 조직 표준
-claim_ids: [be-template.backend-standard, be-template.agent-context]
+claim_ids: [be-template.backend-standard, be-template.team-leverage, be-template.agent-context]
 claim_strength: owned
 ---
 

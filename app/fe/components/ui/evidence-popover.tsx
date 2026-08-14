@@ -66,6 +66,7 @@ export function EvidencePopover({
   claim,
   source,
   href,
+  claimIds,
 }: {
   /** "근거 2" 형태의 인덱스 */
   index: string;
@@ -73,6 +74,7 @@ export function EvidencePopover({
   claim: string;
   source: string;
   href?: string;
+  claimIds?: string[];
 }) {
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
@@ -94,7 +96,11 @@ export function EvidencePopover({
   }, [open]);
 
   return (
-    <div ref={rootRef} className="relative inline-grid justify-items-start">
+    <div
+      ref={rootRef}
+      data-claim={claimIds?.join(" ")}
+      className="relative inline-grid justify-items-start"
+    >
       <button
         type="button"
         aria-expanded={open}

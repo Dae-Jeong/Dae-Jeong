@@ -67,7 +67,7 @@ export default async function CasePage({
 
       <Container variant="doc" className="flex-1">
         <div className="grid grid-cols-[minmax(0,1fr)_240px] gap-12 max-lg:grid-cols-1">
-          <main className="max-w-[800px] pb-24 pt-12">
+          <main data-claim={meta.claimIds.join(" ")} className="max-w-[800px] pb-24 pt-12">
             <header className="border-b-2 border-fg pb-7">
               <span className="font-mono text-xs uppercase tracking-[0.1em] text-muted">
                 {detail.eyebrow}
@@ -180,6 +180,7 @@ export default async function CasePage({
                     label={e.label}
                     claim={e.claim}
                     source={e.source}
+                    claimIds={e.claimIds}
                   />
                 ))}
               </div>

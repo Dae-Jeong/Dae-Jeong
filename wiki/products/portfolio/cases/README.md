@@ -2,7 +2,7 @@
 type: index
 title: Case Library
 description: 포트폴리오 케이스 스터디 마스터 라이브러리 — 회사별 페이지는 여기서 선별·조립만 한다.
-timestamp: 2026-07-06
+timestamp: 2026-08-14
 tags: [portfolio, cases, library]
 ---
 
@@ -24,9 +24,9 @@ tags: [portfolio, cases, library]
 
 | Resume selected proof | Portfolio case | Claim coverage |
 | --- | --- | --- |
-| Thready | [thready-rebuild.md](thready-rebuild.md) | backend rebuild, quality system, release operation |
-| Centurion | [bay-async.md](bay-async.md), [say-realtime.md](say-realtime.md) | async backend, realtime AI |
-| BE Template | [be-template.md](be-template.md) | backend standard, agent context |
+| Thready | [thready-rebuild.md](thready-rebuild.md) | backend rebuild, 3층 품질 판정, 측정 교정, QA·운영 지표, release operation |
+| Centurion | [bay-async.md](bay-async.md), [say-realtime.md](say-realtime.md) | async migration, test·CI, realtime AI |
+| BE Template | [be-template.md](be-template.md) | backend standard, team leverage, agent context |
 
 [mediness-ops.md](mediness-ops.md)는 selected-project claim이 아니라 Agent-Readable Operations differentiator의 기술·운영 근거다.
 

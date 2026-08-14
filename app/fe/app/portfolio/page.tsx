@@ -63,7 +63,7 @@ export default function PortfolioPage() {
           <SectionHead no="01" title="성과" meta="Achievements · 4" />
           <div className="grid gap-px bg-border-soft">
             {ACHIEVEMENTS.map((a) => (
-              <div key={a.no} className="bg-bg py-7">
+              <div key={a.no} data-claim={a.claimIds.join(" ")} className="bg-bg py-7">
                 <div className="grid grid-cols-[64px_minmax(0,1fr)] gap-5 max-md:grid-cols-[48px_minmax(0,1fr)] max-md:gap-4">
                   <span className="font-mono text-lg tracking-[0.06em] text-muted">{a.no}</span>
                   <div className="grid gap-2.5">

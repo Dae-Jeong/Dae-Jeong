@@ -2,7 +2,7 @@
 type: index
 title: Portfolio Product
 description: Resume-selected claims의 문제, 접근, 구현, 운영 깊이를 제공한다.
-timestamp: 2026-07-11
+timestamp: 2026-08-14
 tags: [portfolio, cases, product]
 ---
 
@@ -17,6 +17,7 @@ Portfolio는 resume가 선택한 claim의 깊이를 검증하는 제품이다.
 - Portfolio: 왜 필요했는지, 무엇을 선택했는지, 어떻게 구현·운영했는지 설명
 - Resume claim을 반복하지 않고 `Executive Summary -> My Scope -> Problem And Constraints -> Decision And Alternatives -> System Design And Implementation -> Failure Modes And Operation -> Evidence, Result, And Limits -> Stack`으로 확장한다.
 - Portfolio는 resume보다 자세할 수 있지만 더 강한 ownership을 주장할 수 없다.
+- 현재 공개 문장·순서·강조는 `app/fe/app/portfolio/`와 `app/fe/lib/cases.ts`가 표현 SoT로 소유하고, 이 library는 케이스 범위·claim 연결·표현 상한을 소유한다.
 - Canonical library: [cases/README.md](cases/README.md)
 - Product decisions: [decisions.md](decisions.md)
 - Historical visual baseline: [prototypes/v0.1.0/README.md](prototypes/v0.1.0/README.md)
