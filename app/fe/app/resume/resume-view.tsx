@@ -19,13 +19,22 @@ import { SectionHead } from "@/components/ui/section-head";
 
 /* — 로컬 프리미티브 (두 번째 사용처가 생기면 ui/ 로 승격) — */
 
-function PlainList({ items }: { items: React.ReactNode[] }) {
+function PlainList({
+  items,
+  emphasis = "strong",
+}: {
+  items: React.ReactNode[];
+  emphasis?: "strong" | "quiet";
+}) {
   return (
     <ul className="m-0 grid list-none gap-2 p-0">
       {items.map((item, i) => (
         <li
           key={i}
-          className="relative pl-4 text-fg-2 before:absolute before:left-0 before:font-mono before:text-muted before:content-['—'] [&_strong]:font-semibold [&_strong]:text-fg"
+          className={cn(
+            "relative pl-4 text-fg-2 before:absolute before:left-0 before:font-mono before:text-muted before:content-['—'] [&_strong]:text-fg",
+            emphasis === "quiet" ? "[&_strong]:font-medium" : "[&_strong]:font-semibold",
+          )}
         >
           {item}
         </li>
@@ -105,17 +114,25 @@ function Axis({
       data-claim={dataClaim}
       className={cn("py-4", first && "border-t-0")}
     >
-      <div className="text-base font-normal">
-        <h3 className="m-0 mb-1.5 font-mono text-lg font-semibold leading-tight">{title}</h3>
-        <p className="m-0 mb-3 text-base font-medium text-fg">{claim}</p>
-        <PlainList items={items} />
+      <div className="max-w-[70ch] text-base font-normal [&_[data-metric]]:font-medium">
+        <h3 className="m-0 mb-2 text-balance font-mono text-xl font-semibold leading-snug">
+          {title}
+        </h3>
+        <p className="m-0 mb-3.5 text-pretty text-lg font-medium leading-normal text-fg">
+          {claim}
+        </p>
+        <PlainList items={items} emphasis="quiet" />
       </div>
     </NumberedRow>
   );
 }
 
 function Metric({ children }: { children: React.ReactNode }) {
-  return <span className="font-semibold text-success">{children}</span>;
+  return (
+    <span data-metric className="font-semibold tabular-nums text-success">
+      {children}
+    </span>
+  );
 }
 
 const SECTIONS = [
