@@ -141,7 +141,7 @@ const SECTIONS = [
   { id: "s3", ko: "핵심 역량" },
   { id: "s4", ko: "일하는 방식" },
   { id: "s5", ko: "기술" },
-  { id: "s6", ko: "credentials" },
+  { id: "s6", ko: "학력·수상·자격" },
 ];
 
 /* 스킬은 나열이 아니라 근거와 함께 둔다 — 각 항목이 어디서 쓰였는지까지 적는다 */
@@ -160,7 +160,7 @@ const SKILLS = [
     v: (
       <Skill
         stack="Python, FastAPI"
-        via="아이즈솔·메멘토·더데이랩스·메디솔브 — 실무 backend의 주 언어"
+        via="아이즈솔·메멘토·더데이랩스·메디솔브 — 실무 백엔드 개발의 주 언어"
       />
     ),
   },
@@ -175,31 +175,31 @@ const SKILLS = [
     ),
   },
   {
-    k: "Data / Messaging",
+    k: "데이터 / 메시징",
     "data-claim": "centurion.bay-async-backend",
     v: (
       <Skill
         stack="PostgreSQL, MySQL, Redis, RabbitMQ, TaskIQ"
-        via="Centurion 주문·재고 비동기 worker · Thready"
+        via="Centurion 주문·재고 비동기 워커 · Thready"
       />
     ),
   },
   {
-    k: "Infra / Delivery",
+    k: "인프라 / 배포",
     "data-claim": "infra.company-azure-ownership career.tellingme-backend-infra",
     v: (
       <Skill
         stack="Azure, AWS, Terraform, Docker, GitHub Actions"
-        via="사내 infra repository 소유 · TellingMe 배포·모니터링"
+        via="사내 인프라 저장소 책임 · TellingMe 배포·모니터링"
       />
     ),
   },
   {
-    k: "AI Product",
+    k: "AI 제품",
     v: (
       <Skill
         stack="LLM integration/evaluation, typed prompt, structured output, WebSocket, SSE, STT"
-        via="Thready 생성 품질 판정 · Centurion realtime 상담 세션"
+        via="Thready 생성 품질 판정 · Centurion 실시간 상담 세션"
       />
     ),
   },
@@ -209,7 +209,7 @@ const SKILLS = [
     v: (
       <Skill
         stack="Java, Spring Boot"
-        via="TellingMe — 10명 팀의 백엔드 2명 중 주도, iOS 정식 출시 (2024.01 — 2024.12). 실무 경험이 아닌 구간을 구분해 표기한다"
+        via="TellingMe — 10명 규모 팀에서 백엔드 개발자 2명 중 한 명으로 개발을 주도, iOS 정식 출시 (2024.01 — 2024.12). 실무 경력과 구분해 표기"
       />
     ),
   },
@@ -333,10 +333,10 @@ function DocKo() {
       <Sec id="s1" no="01" title="요약" meta="Summary">
         <div className="grid gap-3.5 text-fg-2">
           <p className="m-0" data-claim="career.tenure career.ai-pm-backend-continuity">
-            <strong className="font-semibold text-fg">AI 제품을 만들어온 <Metric>실무 4년차</Metric></strong>. 모델을 만들다 기획을 거쳐 백엔드로 왔고, 지금은 백엔드를 만들면서 무엇을 만들지 정하는 역할도 같이 맡는다.
+            <strong className="font-semibold text-fg">AI 제품을 만들어온 <Metric>실무 4년차</Metric></strong>. AI 모델 개발과 제품 기획을 거쳐 백엔드로 왔고, 지금은 백엔드를 개발하면서 제품 방향을 정하는 역할도 함께 맡는다.
           </p>
           <p className="m-0" data-claim="career.ai-pm-backend-continuity">
-            백엔드를 택한 데는 이유가 있다. <strong className="font-semibold text-fg">AI가 구현을 점점 더 많이 맡을수록, 보안과 안정성처럼 사람이 끝까지 책임져야 하는 층이 더 무거워진다</strong>고 봤다. 매일 AI와 같이 제품을 만드는 지금, 그 판단이 틀리지 않았다고 느낀다.
+            백엔드를 택한 데는 이유가 있다. <strong className="font-semibold text-fg">AI가 구현을 더 많이 맡을수록, 보안과 안정성처럼 사람이 끝까지 책임져야 할 영역은 더 중요해진다</strong>고 봤다. 지금도 매일 AI와 함께 제품을 만들며 그 판단을 확인하고 있다.
           </p>
         </div>
       </Sec>
@@ -347,10 +347,10 @@ function DocKo() {
             <span className="mb-1.5 block font-medium text-fg">Backend Engineer · 기업부설연구소장 <span className="font-normal text-fg-2">— Tech Lead·PO 역할 병행</span></span>
             <PlainList
               items={[
-                <>의료 AI 플랫폼과 AI 콘텐츠 생성 제품의 <strong>backend 전반을 담당</strong>. 재구축·평가 체계·에이전트 파이프라인·어드민·인프라까지 제품이 도는 데 필요한 층을 맡는다</>,
-                <>개발 표준을 세우고 제품 결정과 릴리스 운영을 함께 맡는다 — 만드는 일과 무엇을 만들지 정하는 일이 한 사람에게 붙어 있다</>,
-                <>회사 <strong>Azure·Terraform 인프라 전반</strong>을 소유 — B2B·B2C·제품·환경별 경계와 배포·runbook을 직접 관리한다</>,
-                <>대표 성과: cutover 전후 관측에서 QA 버그 재발률 <strong>37% → 11%</strong>, 월 수만 건 규모를 <strong>HTTP 5xx 0.3% 수준</strong>으로 운영</>,
+                <>의료 AI 플랫폼과 AI 콘텐츠 생성 제품의 <strong>백엔드 전반을 담당</strong>. 재구축·평가 체계·에이전트 파이프라인·어드민·인프라까지 제품 운영에 필요한 영역을 맡음</>,
+                <>개발 표준 수립과 제품 의사결정·릴리스 운영을 병행 — 직접 만드는 일과 무엇을 만들지 정하는 일을 함께 담당</>,
+                <>회사 <strong>Azure·Terraform 인프라 전반을 담당</strong> — B2B·B2C·제품·환경별 리소스 경계와 배포·운영 절차를 직접 관리</>,
+                <>대표 성과: 전환 전후 QA 버그 재발률 <strong>37% → 11%</strong>, 월 수만 건 규모의 요청을 <strong>HTTP 5xx 0.3% 수준</strong>으로 운영</>,
               ]}
             />
           </CareerRow>
@@ -358,8 +358,8 @@ function DocKo() {
             <span className="mb-1.5 block font-medium text-fg">Backend Engineer <span className="font-normal text-fg-2">— 프리랜서</span></span>
             <PlainList
               items={[
-                <>현 MediSolve AI 대표와 협업을 시작해 <strong>제품 backend를 0에서 착수</strong>. 처음 꾸려지는 개발팀이라 코드보다 기준이 먼저 필요하다고 보고 저장소 생성 시점에 구조·규약·문서를 함께 넣었다</>,
-                <>창업 시점에 합류해 같은 제품을 이어 담당</>,
+                <>현 MediSolve AI 대표와 협업하며 <strong>제품 백엔드를 처음부터 구축</strong>. 새로 꾸려지는 개발팀에는 코드보다 기준이 먼저 필요하다고 판단해 저장소를 만들 때부터 구조·규약·문서를 함께 마련</>,
+                <>이후 창업 시점에 합류해 같은 제품의 백엔드를 계속 담당</>,
               ]}
             />
           </CareerRow>
@@ -367,7 +367,7 @@ function DocKo() {
             <span className="mb-1.5 block font-medium text-fg">Backend Engineer <span className="font-normal text-fg-2">— 인턴 1개월 → 정규직</span></span>
             <PlainList
               items={[
-                <>예약·결제 backend에서 <strong>Stripe 선결제를 도입</strong>하고, 결제 실패 시 환불·마일리지·티켓에 남는 상태 불일치를 rollback 흐름으로 안정화</>,
+                <>예약·결제 백엔드에 <strong>Stripe 선결제를 도입</strong>하고, 결제 실패 시 환불·마일리지·티켓에 남는 상태 불일치를 롤백 흐름으로 해소</>,
                 <>회사 폐업으로 재직 종료</>,
               ]}
             />
@@ -376,9 +376,9 @@ function DocKo() {
             <span className="mb-1.5 block font-medium text-fg">Product Manager <span className="font-normal text-fg-2">— AI Engineer → PM(메인 롤) → Backend Engineer</span></span>
             <PlainList
               items={[
-                <>커머스 AI 제품의 <strong>프로토타입 단계부터 v1.0까지 0→1 구간을 PM으로 통과</strong> — 무엇을 만들지 정하는 일부터 제품이 굴러가는 구조를 세우는 일까지 맡았다</>,
-                <>그 과정에서 패션 대기업 브랜드 POC를 진행했고, 상세페이지 제작 Flow 재설계가 <strong>특허 「페이지 출력 방법」 출원·등록으로 이어짐</strong></>,
-                <>PM 재직 중에도 의류 색상 분류 모델을 직접 개발. 제품은 <strong>CES 2024 Best of Innovation</strong> 수상</>,
+                <>커머스 AI 제품의 <strong>프로토타입부터 v1.0까지 PM을 담당</strong> — 무엇을 만들지 정하는 일부터 제품 운영 구조를 세우는 일까지 수행</>,
+                <>패션 대기업 브랜드 POC를 진행하고 상세페이지 제작 흐름을 재설계 — <strong>특허 「페이지 출력 방법」 출원·등록으로 이어짐</strong></>,
+                <>PM 재직 중에도 의류 색상 분류 모델을 직접 개발했으며, 해당 제품은 <strong>CES 2024 Best of Innovation</strong> 수상</>,
               ]}
             />
           </CareerRow>
@@ -399,16 +399,16 @@ function DocKo() {
           <Axis
             first
             no="01"
-            title="AI 제품 backend 구축·재구축"
+            title="AI 제품 백엔드 구축·재구축"
             data-claim="thready.rebuild-decision-execution thready.backend-rebuild thready.qa-reopen-reduction thready.production-operation-quality centurion.async-migration centurion.bay-async-backend career.memento-payment"
             claim="기술부채를 언제 갚을지 계산하고, 갚는 동안 서비스가 흔들리지 않게 만듭니다."
             items={[
-              <>재구축의 가장 큰 위험은 새 결함인데, <strong>QA 재발률이 37% → 11%로 줄었다</strong> — 위험이 현실화되지 않았음을 지표로 확인 (해결 대비 reopen, cutover 전후 관측)<Src>AI 콘텐츠 생성 제품</Src></>,
-              <>부분 수정으로는 의존성 구조가 남는다고 판단, <strong>서비스가 작은 시점</strong>을 골라 재구축을 결정·설득 — 지금 갚는 비용이 나중보다 싸다는 계산이었다<Src>AI 콘텐츠 생성 제품</Src></>,
-              <>범위를 <strong>backend로 한정</strong>(FE는 Next.js 유지)하고 <strong>하네스를 먼저 세운 뒤</strong> AI와 협업 — 파악부터 재구축까지 <Metric>총 36시간</Metric>(작업 시간 기준)<Src>AI 콘텐츠 생성 제품</Src></>,
-              <>cutover 이후 개발·운영 전담 — 월 수만 건 요청을 <Metric>HTTP 5xx 0.3% 수준</Metric>으로 운영<Src>AI 콘텐츠 생성 제품</Src></>,
-              <>재구축만 하는 것은 아니다 — <strong>Celery→TaskIQ 점진 전환</strong>, 레거시 <strong>NestJS 이관</strong>, monorepo <strong>service boundary 재설계</strong><Src>AI 메디컬 플랫폼 · 커머스 AI</Src></>,
-              <>이전 결제 실패의 rollback·정합성 수습 경험을 바탕으로, 주문·재고의 실패 가능한 작업을 <strong>제품 시작 시점부터</strong> RabbitMQ·TaskIQ worker와 retry로 API 경계 밖에 분리<Src>AI 메디컬 플랫폼</Src></>,
+              <>재구축 후 새 결함이 늘어나는지 QA 재발률로 추적 — <strong>37% → 11%로 감소</strong> (해결된 이슈 중 재발한 비율, 전환 전후 관측)<Src>AI 콘텐츠 생성 제품</Src></>,
+              <>부분 수정으로는 의존성 구조가 남는다고 판단해 <strong>서비스 규모가 작을 때</strong> 재구축을 결정 — 반대가 있는 상황에서도 필요성을 설득했고, 나중보다 지금 부채를 갚는 비용이 더 낮다고 판단<Src>AI 콘텐츠 생성 제품</Src></>,
+              <>범위를 <strong>백엔드로 한정</strong>(프론트엔드는 Next.js 유지)하고 <strong>검증 하네스를 먼저 구축</strong>한 뒤 AI와 협업 — 시스템 파악부터 재구축까지 <Metric>총 36시간</Metric>(작업 시간 기준)<Src>AI 콘텐츠 생성 제품</Src></>,
+              <>전환 이후 개발·운영 전담 — 월 수만 건 요청을 <Metric>HTTP 5xx 0.3% 수준</Metric>으로 운영<Src>AI 콘텐츠 생성 제품</Src></>,
+              <>재구축뿐 아니라 <strong>Celery→TaskIQ 점진 전환</strong>, 레거시 <strong>NestJS 이관</strong>, 모노레포의 <strong>서비스 경계 재설계</strong>도 수행<Src>AI 메디컬 플랫폼 · 커머스 AI</Src></>,
+              <>결제 실패 시 롤백·정합성을 수습한 경험을 바탕으로, 주문·재고 중 실패 시 복구가 필요한 작업을 <strong>제품 시작 시점부터</strong> RabbitMQ·TaskIQ 워커와 재시도로 API 요청 흐름에서 분리<Src>AI 메디컬 플랫폼</Src></>,
             ]}
           />
           <Axis
@@ -417,60 +417,60 @@ function DocKo() {
             data-claim="thready.quality-criteria-system thready.measurement-correction thready.falsification-log thready.corpus-measurement"
             claim="&ldquo;품질이 나쁘다&rdquo;를 무엇을 고칠지 정할 수 있는 문제로 바꿉니다."
             items={[
-              <>AI 생성 품질을 <strong>자동 게이트·실측 분포·사람 판정 3층</strong>으로 나눠 계량 — 자동화가 닿는 층과 닿지 않는 층을 갈라 설계<Src>AI 콘텐츠 생성 제품</Src></>,
-              <>결정적 게이트 12종으로 형식 오류를 자동 차단하고, 품질 판정 기준을 6축으로 계량해 축별 개선 순서를 관리<Src>AI 콘텐츠 생성 제품</Src></>,
-              <>직접 수집한 실측 코퍼스로 프롬프트 규칙의 근거를 검증(<Metric>n=19 → 4,039</Metric>), 반증된 접근은 기록으로 남겨 재시도를 막음<Src>AI 콘텐츠 생성 제품</Src></>,
-              <>실측으로 믿고 쓰던 품질 기준값이 <strong>자사 출력을 되먹이고 있었음</strong>을 확인 — 순환을 끊고 기준을 다시 세우는 과정에서 문제 정의 자체의 오류도 함께 드러남<Src>AI 콘텐츠 생성 제품</Src></>,
+              <>AI 생성물의 품질을 <strong>자동 게이트·실측 분포·사람의 판단이라는 3단계</strong>로 나눠 측정 — 자동화할 영역과 사람이 판단할 영역을 구분해 설계<Src>AI 콘텐츠 생성 제품</Src></>,
+              <>자동 게이트 12종으로 형식 오류를 차단하고, 품질 기준을 6개 축으로 측정해 축별 개선 순서를 관리<Src>AI 콘텐츠 생성 제품</Src></>,
+              <>직접 수집한 실측 데이터로 프롬프트 규칙의 근거를 검증(<Metric>n=19 → 4,039</Metric>), 반증된 접근은 기록으로 남겨 재시도를 방지<Src>AI 콘텐츠 생성 제품</Src></>,
+              <>품질 기준값에 <strong>자사 출력이 다시 섞여 들어가는 순환</strong>을 확인 — 순환을 끊고 기준을 다시 세우며 문제 정의 자체의 오류까지 발견<Src>AI 콘텐츠 생성 제품</Src></>,
             ]}
           />
           <Axis
             no="03"
             title="어드민 시스템 구축·운영"
             data-claim="nexus.backend-architecture nexus.admin-backend-ownership nexus.quality-automation"
-            claim="병원이 실제로 쓰는 통합 관리 시스템 backend를 계층 구조로 세우고 있습니다."
+            claim="병원에서 실제 사용하는 통합 관리 시스템의 백엔드를 계층 구조로 설계하고 있습니다."
             items={[
-              <>통합 관리 시스템 backend를 <strong>Clean Architecture 계층 구조로 설계·구축 주도</strong> (진행 중)<Src>AI 메디컬 플랫폼</Src></>,
-              <>Homepage/Admin API를 독립 모듈로 두고 gateway로 단일 엔드포인트 제공, Generic Repository로 공통 CRUD 표준화<Src>AI 메디컬 플랫폼</Src></>,
-              <>Multi-tenancy와 Soft Delete 자동 필터링으로 <strong>데이터 격리</strong><Src>AI 메디컬 플랫폼</Src></>,
-              <>backend monorepo의 <strong>service boundary와 migration flow 주도</strong><Src>AI 메디컬 플랫폼</Src></>,
+              <>통합 관리 시스템 백엔드를 <strong>Clean Architecture 기반으로 설계하고 구축을 주도</strong> (진행 중)<Src>AI 메디컬 플랫폼</Src></>,
+              <>홈페이지·어드민 API를 독립 모듈로 구성하고 게이트웨이에서 단일 엔드포인트를 제공, Generic Repository로 공통 CRUD 표준화<Src>AI 메디컬 플랫폼</Src></>,
+              <>멀티테넌시와 Soft Delete 자동 필터링으로 <strong>데이터 격리</strong><Src>AI 메디컬 플랫폼</Src></>,
+              <>백엔드 모노레포의 <strong>서비스 경계와 마이그레이션 흐름을 주도</strong><Src>AI 메디컬 플랫폼</Src></>,
               <>코드 컨벤션 정립과 Ruff·Pyright·pre-commit 기반 품질 자동 검증 체계 구축<Src>AI 메디컬 플랫폼</Src></>,
             ]}
           />
           <Axis
             no="04"
-            title="Agent 워크플로우 · AX"
+            title="에이전트 워크플로우 · AX"
             data-claim="thready.agent-pipeline-design be-template.backend-standard be-template.agent-context mediness.product-operations"
             claim="사람과 코딩 에이전트가 같은 규칙 위에서 일하도록 만듭니다."
             items={[
-              <>생성 파이프라인을 <strong>planner·writer 역할로 분리 설계·구현</strong> — 유형 분기 판정이 writer에서 18건 전부 미발동하자 판정 위치를 planner로 재배치해 해결<Src>AI 콘텐츠 생성 제품</Src></>,
-              <>조직 표준 FastAPI template 설계·구축 — layered architecture·의존성 주입·응답 규약·ADR<Src>조직 표준</Src></>,
-              <>여기에 <strong>agent context system과 반복 작업 automation skill을 내장</strong><Src>조직 표준</Src></>,
-              <>스펙·이슈·릴리스 게이트를 <strong>사람과 agent가 함께 읽는 실행 경계</strong>로 구성 — 이 사이트도 같은 방식으로 만들었다<Src>제품팀 운영</Src></>,
+              <>생성 파이프라인을 <strong>planner와 writer 역할로 분리해 설계·구현</strong> — writer에 둔 유형 분기 판정이 18건 모두 작동하지 않아 판정 위치를 planner로 옮겨 해결<Src>AI 콘텐츠 생성 제품</Src></>,
+              <>조직 표준 FastAPI 템플릿 설계·구축 — 계층형 아키텍처·의존성 주입·응답 규약·ADR 포함<Src>조직 표준</Src></>,
+              <>템플릿에 <strong>에이전트용 컨텍스트 체계와 반복 작업 자동화 스킬을 내장</strong><Src>조직 표준</Src></>,
+              <>스펙·이슈·릴리스 게이트를 <strong>사람과 에이전트가 함께 읽는 실행 기준</strong>으로 구성 — 이 사이트도 같은 방식으로 구축<Src>제품팀 운영</Src></>,
             ]}
           />
           <Axis
             no="05"
             title="인프라 · 플랫폼 운영"
             data-claim="infra.company-azure-ownership nexus.terraform-infra centurion.shared-infra"
-            claim="제품이 도는 환경을 직접 소유하고 운영합니다."
+            claim="제품이 운영되는 환경을 직접 책임지고 관리합니다."
             items={[
-              <><strong>회사 Azure/Terraform infra 전반</strong>의 설계·구축·운영 담당<Src>MediSolve AI</Src></>,
-              <>B2B/B2C·제품·환경별 resource boundary와 deploy·runbook 관리<Src>MediSolve AI</Src></>,
-              <>외부 product Terraform IaC 구축 전담, Centurion Azure/Terraform infra 구축·운영과 runbook·문서화 담당<Src>AI 메디컬 플랫폼</Src></>,
+              <><strong>회사 Azure·Terraform 인프라 전반</strong>의 설계·구축·운영 담당<Src>MediSolve AI</Src></>,
+              <>B2B·B2C·제품·환경별 리소스 경계와 배포·운영 절차 관리<Src>MediSolve AI</Src></>,
+              <>외부 제품의 Terraform IaC 구축을 전담하고, Centurion Azure·Terraform 인프라와 운영 절차서·문서화를 담당<Src>AI 메디컬 플랫폼</Src></>,
             ]}
           />
           <Axis
             no="06"
-            title="제품 운영 · 결정"
+            title="제품 운영 · 의사결정"
             data-claim="mediness.product-operations career.medisolve-role-evolution career.sellercanvas-product-system credentials.page-output-patent credentials.ces-2024"
             claim="무엇을 만들지 정하고, 만들어진 뒤의 운영 구조까지 설계합니다."
             items={[
-              <>AI 제품 backend를 만들면서 <strong>제품팀 운영을 함께 리드</strong> — Backend Engineer로 합류해 기업부설연구소장·Tech Lead·PO를 병행하고 있다<Src>MediSolve AI</Src></>,
-              <>pipeline registry와 release gate 기반으로 제품팀 일정·이슈·릴리스 운영 리드 — 제품 결정을 BE·FE·QA·release gate 실행으로 연결<Src>제품팀 운영</Src></>,
-              <>CES 2024 수상 제품을 <strong>프로토타입에서 v1.0까지 0→1 구간을 PM으로 통과</strong><Src>커머스 AI 제품</Src></>,
-              <>제작 Flow 재설계가 <strong>특허 「페이지 출력 방법」 출원·등록으로 이어짐</strong><Src>커머스 AI 제품</Src></>,
-              <><strong>제품이 원활하게 돌아가는 시스템</strong>을 기획·구축 — 개발 시스템이 아니라 제품이 굴러가는 구조를 설계하는 일이었고, 지금의 제품 운영 리드와 같은 근육의 이전 형태<Src>커머스 AI 제품</Src></>,
-              <><strong>LLM 붐 이전(2021~22)부터</strong> Vision AI 기반 생성 제품의 제품 시스템을 기획·구축, PM 재직 중에도 색상 분류 모델을 직접 개발<Src>커머스 AI 제품</Src></>,
+              <>AI 제품 백엔드를 개발하면서 <strong>제품팀 운영도 함께 주도</strong> — Backend Engineer로 합류해 기업부설연구소장·Tech Lead·PO 역할을 병행<Src>MediSolve AI</Src></>,
+              <>파이프라인 레지스트리와 릴리스 게이트를 기반으로 제품팀의 일정·이슈·릴리스를 운영 — 제품 의사결정을 BE·FE·QA의 실행과 릴리스 기준으로 연결<Src>제품팀 운영</Src></>,
+              <>CES 2024 수상 제품의 <strong>프로토타입부터 v1.0까지 PM을 담당</strong><Src>커머스 AI 제품</Src></>,
+              <>상세페이지 제작 흐름 재설계가 <strong>특허 「페이지 출력 방법」 출원·등록으로 이어짐</strong><Src>커머스 AI 제품</Src></>,
+              <><strong>제품이 원활하게 운영되는 구조</strong>를 기획·구축 — 개발 도구가 아니라 제품 자체의 운영 구조를 설계한 경험으로, 현재 제품 운영 역할의 기반이 됨<Src>커머스 AI 제품</Src></>,
+              <><strong>LLM 대중화 이전(2021~22)부터</strong> Vision AI 기반 생성 제품의 운영 체계를 기획·구축하고, PM 재직 중에도 색상 분류 모델을 직접 개발<Src>커머스 AI 제품</Src></>,
             ]}
           />
         </NumberedList>
@@ -482,7 +482,7 @@ function DocKo() {
             <div>
               <p className="m-0 mb-1 font-semibold text-fg">문제의 경계를 다시 잡는다</p>
               <p className="m-0 text-sm text-fg-2">
-                증상을 고치기 전에 문제 정의가 맞는지 본다. 재구축을 결정·설득했고, 품질 기준값이 자사 출력을 되먹이던 순환을 발견해 문제 축 자체를 재정의했다.
+                증상을 고치기 전에 문제 정의부터 점검한다. 반대가 있는 상황에서도 재구축의 필요성을 설득했고, 자사 출력이 품질 기준값에 다시 섞이는 순환을 발견해 문제의 기준 자체를 다시 세웠다.
               </p>
             </div>
           </NumberedRow>
@@ -490,7 +490,7 @@ function DocKo() {
             <div>
               <p className="m-0 mb-1 font-semibold text-fg">측정과 게이트로 판정 가능하게 만든다</p>
               <p className="m-0 text-sm text-fg-2">
-                &ldquo;좋다/나쁘다&rdquo;로는 무엇을 고칠지 알 수 없다. 생성 품질 판정을 자동 게이트·실측 분포·사람 판정 3층으로 나누고, 릴리스·QA를 게이트 구조로 운영한다.
+                &ldquo;좋다/나쁘다&rdquo;만으로는 무엇을 고칠지 알 수 없다. 생성 품질 판정을 자동 게이트·실측 분포·사람의 판단이라는 3단계로 나누고, 릴리스와 QA도 명확한 통과 기준에 따라 운영한다.
               </p>
             </div>
           </NumberedRow>
@@ -498,30 +498,30 @@ function DocKo() {
             <div>
               <p className="m-0 mb-1 font-semibold text-fg">해결을 표준과 자동화로 확장한다</p>
               <p className="m-0 text-sm text-fg-2">
-                한 번 푼 문제를 팀이 반복해서 쓸 수 있어야 한다. 조직 표준 template에 agent context를 내장하고, 스펙·이슈·릴리스 게이트를 사람과 agent가 함께 읽는 실행 경계로 구성했다.
+                한 번 해결한 문제는 팀이 다시 활용할 수 있어야 한다. 조직 표준 템플릿에 에이전트용 컨텍스트를 내장하고, 스펙·이슈·릴리스 게이트를 사람과 에이전트가 함께 읽는 실행 기준으로 구성했다.
               </p>
             </div>
           </NumberedRow>
           <NumberedRow label="04" labelWidth="sm" labelClassName="font-mono text-xs text-muted" className="py-3" data-claim="thready.rebuild-decision-execution thready.measurement-correction centurion.bay-async-backend be-template.agent-context">
             <div>
               <p className="m-0 mb-1 font-semibold text-fg">문제가 티켓이 되기 전에 잡는다</p>
-              <p className="m-0 mb-2 text-sm text-fg-2">착수 계기가 대체로 이런 모양이다.</p>
+              <p className="m-0 mb-2 text-sm text-fg-2">대체로 다음과 같은 계기에서 먼저 움직였다.</p>
               <ul className="m-0 grid list-none gap-1.5 p-0 text-sm text-fg-2">
                 <li className="grid grid-cols-[132px_minmax(0,1fr)] gap-3 max-sm:grid-cols-1 max-sm:gap-0.5">
-                  <span className="font-mono text-xs text-muted">backend 재구축</span>
+                  <span className="font-mono text-xs text-muted">백엔드 재구축</span>
                   <span>요청받은 일이 아니었고 반대가 있었다</span>
                 </li>
                 <li className="grid grid-cols-[132px_minmax(0,1fr)] gap-3 max-sm:grid-cols-1 max-sm:gap-0.5">
                   <span className="font-mono text-xs text-muted">품질 기준값 오류</span>
-                  <span>아무도 문제 제기하지 않은 상태에서 재측정하다 발견</span>
+                  <span>문제가 제기되기 전에 직접 재측정하며 발견</span>
                 </li>
                 <li className="grid grid-cols-[132px_minmax(0,1fr)] gap-3 max-sm:grid-cols-1 max-sm:gap-0.5">
-                  <span className="font-mono text-xs text-muted">worker 분리</span>
+                  <span className="font-mono text-xs text-muted">워커 분리</span>
                   <span>장애가 나기 전의 예방책</span>
                 </li>
                 <li className="grid grid-cols-[132px_minmax(0,1fr)] gap-3 max-sm:grid-cols-1 max-sm:gap-0.5">
-                  <span className="font-mono text-xs text-muted">조직 표준 template</span>
-                  <span>내 제품이 아니라 팀의 이동 비용을 보고</span>
+                  <span className="font-mono text-xs text-muted">조직 표준 템플릿</span>
+                  <span>팀이 새 프로젝트를 시작할 때 드는 비용을 보고 착수</span>
                 </li>
               </ul>
             </div>
