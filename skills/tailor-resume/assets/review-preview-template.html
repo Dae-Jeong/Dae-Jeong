@@ -1,0 +1,631 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>[[PAGE_TITLE]] · 지원 문안 검토</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #ececec;
+      --surface: #f7f7f7;
+      --surface-warm: #eeeeee;
+      --fg: #111111;
+      --fg-2: #3a3a3a;
+      --muted: #707070;
+      --border: #d9d9d9;
+      --border-soft: #eeeeee;
+      --success: #158442;
+      --warn: #8a5c14;
+      --warn-bg: #fff3d8;
+      --focus-ring: 0 0 0 3px rgba(17, 17, 17, 0.18);
+      --font-sans: "Pretendard Variable", Pretendard, "Apple SD Gothic Neo", sans-serif;
+      --font-mono: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.55;
+      word-break: keep-all;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    a { color: inherit; text-underline-offset: 3px; }
+    button { font: inherit; }
+    :focus-visible { outline: 0; box-shadow: var(--focus-ring); }
+
+    /* 검토 기능은 문서 바깥에만 둔다. */
+    .review-bar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(12px);
+    }
+    .review-head,
+    .tabs,
+    .workspace {
+      width: min(1180px, calc(100% - 56px));
+      margin-inline: auto;
+    }
+    .review-head {
+      display: flex;
+      min-height: 62px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .review-identity { min-width: 0; }
+    .review-context {
+      margin: 0 0 2px;
+      color: var(--muted);
+      font-family: var(--font-mono);
+      font-size: 12px;
+    }
+    .review-title {
+      margin: 0;
+      overflow: hidden;
+      font-size: 16px;
+      line-height: 1.35;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .status-group {
+      display: flex;
+      flex: 0 0 auto;
+      align-items: center;
+      gap: 10px;
+    }
+    .status {
+      display: inline-flex;
+      min-height: 28px;
+      align-items: center;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .status.review { background: var(--warn-bg); color: var(--warn); }
+    .status.approved { background: #e7f3eb; color: var(--success); }
+    .updated { color: var(--muted); font-family: var(--font-mono); font-size: 12px; }
+    .tabs-wrap { border-top: 1px solid var(--border-soft); }
+    .tabs { display: flex; overflow-x: auto; scrollbar-width: none; }
+    .tabs::-webkit-scrollbar { display: none; }
+    .tab {
+      position: relative;
+      min-height: 44px;
+      padding: 0 16px;
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .tab::after {
+      position: absolute;
+      right: 16px;
+      bottom: 0;
+      left: 16px;
+      height: 2px;
+      background: transparent;
+      content: "";
+    }
+    .tab:hover,
+    .tab[aria-selected="true"] { color: var(--fg); }
+    .tab[aria-selected="true"]::after { background: var(--fg); }
+
+    /* 공개 /resume와 동일한 800 + 240 문서 구성. */
+    .workspace {
+      display: grid;
+      grid-template-columns: minmax(0, 800px) 240px;
+      gap: 48px;
+      align-items: start;
+    }
+    .document-canvas { min-width: 0; padding: 48px 0 96px; }
+    .panel[hidden] { display: none; }
+    .support-document,
+    .a4-page {
+      width: 210mm;
+      background: #ffffff;
+      padding: 18mm 16mm;
+      box-shadow: 0 2px 8px rgba(17, 17, 17, 0.12);
+    }
+    .support-document { min-height: 297mm; }
+    .a4-page { height: 297mm; }
+    .resume-document {
+      display: grid;
+      gap: 24px;
+      color: var(--fg-2);
+      counter-reset: resume-section;
+    }
+    .a4-page {
+      position: relative;
+      overflow: hidden;
+    }
+    .page-number {
+      position: absolute;
+      right: 16mm;
+      bottom: 7mm;
+      color: var(--muted);
+      font-family: var(--font-mono);
+      font-size: 10px;
+    }
+    .resume-document.paginating {
+      position: absolute;
+      left: -10000px;
+      width: 210mm;
+      visibility: hidden;
+    }
+    .resume-document.paginating .a4-page {
+      width: 210mm !important;
+      height: 297mm !important;
+      padding: 18mm 16mm !important;
+    }
+    .resume-header {
+      border-bottom: 2px solid var(--fg);
+      padding-bottom: 28px;
+    }
+    .resume-header h1 {
+      margin: 0;
+      color: var(--fg);
+      font-family: var(--font-mono);
+      font-size: 30px;
+      font-weight: 600;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+    .resume-header p { margin: 0; }
+    .resume-header h1 + p {
+      margin-top: 10px;
+      color: var(--fg-2);
+      font-family: var(--font-mono);
+      font-size: 14px;
+      line-height: 1.45;
+    }
+    .resume-header h1 + p strong { color: var(--fg); font-weight: 600; }
+    .resume-header p:nth-of-type(2) {
+      margin-top: 16px;
+      color: var(--fg);
+      font-size: 18px;
+      font-weight: 500;
+    }
+    .resume-header p:nth-of-type(n+3) {
+      margin-top: 10px;
+      color: var(--muted);
+      font-family: var(--font-mono);
+      font-size: 12px;
+    }
+    .resume-section { padding-top: 36px; }
+    .resume-section.resume-fragment { padding-top: 14px; }
+    .resume-section > h2 {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 16px;
+      margin: 0 0 32px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 16px;
+      color: var(--fg);
+      font-family: var(--font-mono);
+      font-size: 24px;
+      font-weight: 600;
+      line-height: 1.2;
+      letter-spacing: -0.015em;
+      text-wrap: balance;
+      counter-increment: resume-section;
+    }
+    .resume-section > h2::before {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      content: counter(resume-section, decimal-leading-zero);
+    }
+    .section-meta {
+      margin-left: auto;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .resume-section > p {
+      margin: 0 0 14px;
+      color: var(--fg-2);
+      text-wrap: pretty;
+    }
+    .resume-section > h3 {
+      margin: 0;
+      border-top: 1px solid var(--border-soft);
+      padding: 14px 0 0;
+      color: var(--fg);
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 1.45;
+      text-wrap: balance;
+    }
+    .resume-section > h3:first-of-type { border-top: 0; padding-top: 0; }
+    .resume-section[data-section="핵심 성과"] > h3 {
+      font-family: var(--font-mono);
+      font-size: 22px;
+      line-height: 1.4;
+    }
+    .resume-section > h3 + p {
+      margin: 8px 0 12px;
+      color: var(--fg);
+      font-weight: 500;
+    }
+    .resume-section ul,
+    .resume-section ol {
+      display: grid;
+      gap: 8px;
+      margin: 0 0 16px;
+      padding: 0;
+      color: var(--fg-2);
+      list-style: none;
+    }
+    .resume-section li { position: relative; padding-left: 16px; }
+    .resume-section li::before {
+      position: absolute;
+      left: 0;
+      color: var(--muted);
+      font-family: var(--font-mono);
+      content: "—";
+    }
+    .resume-section strong { color: var(--fg); font-weight: 600; }
+    .resume-section code {
+      border-radius: 3px;
+      background: var(--surface);
+      padding: 1px 4px;
+      color: var(--fg);
+      font-family: var(--font-mono);
+      font-size: 0.86em;
+    }
+    .needs-check {
+      border-radius: 3px;
+      background: var(--warn-bg);
+      padding: 1px 4px;
+      color: var(--warn);
+      font-weight: 700;
+    }
+
+    /* 리서치와 근거 문서는 같은 shell 안의 보조 문서로만 표현한다. */
+    .support-document { max-width: 75ch; color: var(--fg-2); }
+    .support-document > :first-child { margin-top: 0; }
+    .support-document h1,
+    .support-document h2,
+    .support-document h3 { color: var(--fg); text-wrap: balance; }
+    .support-document h1 { margin: 0 0 32px; font-size: 30px; line-height: 1.2; }
+    .support-document h2 {
+      margin: 48px 0 20px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 12px;
+      font-size: 22px;
+    }
+    .support-document h3 { margin: 28px 0 12px; font-size: 18px; }
+    .support-document p { margin: 0 0 14px; text-wrap: pretty; }
+    .support-document ul,
+    .support-document ol { margin: 0 0 18px; padding-left: 1.35em; }
+    .support-document li { margin: 5px 0; }
+    .support-document table {
+      width: 100%;
+      margin: 20px 0 28px;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    .support-document th,
+    .support-document td {
+      border-bottom: 1px solid var(--border);
+      padding: 10px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .review-rail {
+      position: sticky;
+      top: 132px;
+      display: grid;
+      gap: 20px;
+      padding: 48px 0;
+    }
+    .rail-card { border-top: 1px solid var(--border); padding-top: 16px; }
+    .rail-card h2 {
+      margin: 0 0 10px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .toc { display: grid; gap: 7px; margin: 0; padding: 0; list-style: none; }
+    .toc a { color: var(--fg-2); font-family: var(--font-mono); font-size: 12px; text-decoration: none; }
+    .toc a:hover { color: var(--fg); }
+    .toc-index { margin-right: 8px; color: var(--muted); }
+    .source-links { display: grid; gap: 7px; }
+    .source-links a { color: var(--fg-2); font-family: var(--font-mono); font-size: 12px; }
+    .privacy-note { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.55; }
+    .hosted-review .source-card { display: none; }
+
+    @media (max-width: 960px) {
+      .workspace { display: block; }
+      .document-canvas { padding-top: 24px; }
+      .review-rail { display: none; }
+      .support-document,
+      .a4-page {
+        width: 100%;
+        height: auto;
+        min-height: 0;
+        padding: 32px 24px 56px;
+        box-shadow: none;
+      }
+      .resume-document { gap: 0; }
+      .page-number { display: none; }
+    }
+    @media (max-width: 640px) {
+      .review-head,
+      .tabs,
+      .workspace { width: min(100% - 32px, 1180px); }
+      .review-head { min-height: 78px; align-items: flex-start; padding: 12px 0; }
+      .status-group { align-items: flex-end; flex-direction: column; gap: 2px; }
+      .updated { font-size: 11px; }
+      .tab { padding-inline: 12px; }
+      .tab::after { right: 12px; left: 12px; }
+      .resume-section > h2 { gap: 10px; font-size: 21px; }
+      .section-meta { margin-left: 28px; flex-basis: 100%; }
+      .resume-section[data-section="핵심 성과"] > h3 { font-size: 20px; }
+      .support-document table { display: block; overflow-x: auto; white-space: nowrap; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    @media print {
+      .review-bar,
+      .review-rail { display: none; }
+      .workspace { display: block; width: auto; }
+      .document-canvas { padding: 0; }
+      .resume-document { gap: 0; }
+      .support-document,
+      .a4-page {
+        width: auto;
+        height: auto;
+        min-height: 0;
+        padding: 0;
+        box-shadow: none;
+      }
+      .a4-page {
+        overflow: visible;
+        break-after: page;
+      }
+      .a4-page:last-child { break-after: auto; }
+      .page-number { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="review-bar">
+    <div class="review-head">
+      <div class="review-identity">
+        <p class="review-context">LOCAL REVIEW · PDF 생성 전</p>
+        <h1 class="review-title">[[PAGE_TITLE]]</h1>
+      </div>
+      <div class="status-group">
+        <span class="status [[STATUS_TONE]]">[[STATUS_TEXT]]</span>
+        <span class="updated">[[UPDATED_AT]] KST</span>
+      </div>
+    </div>
+    <div class="tabs-wrap">
+      <div class="tabs" role="tablist" aria-label="검토 문서">
+        <button class="tab" id="tab-draft" role="tab" aria-selected="true" aria-controls="panel-draft" data-panel="draft">이력서</button>
+        <button class="tab" id="tab-review" role="tab" aria-selected="false" aria-controls="panel-review" data-panel="review" tabindex="-1">검토 메모</button>
+        <button class="tab" id="tab-research" role="tab" aria-selected="false" aria-controls="panel-research" data-panel="research" tabindex="-1">회사 리서치</button>
+        <button class="tab" id="tab-match" role="tab" aria-selected="false" aria-controls="panel-match" data-panel="match" tabindex="-1">JD 매칭</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="workspace">
+    <section class="document-canvas" aria-live="polite">
+      <article class="panel resume-document" id="panel-draft" role="tabpanel" aria-labelledby="tab-draft">[[DRAFT_HTML]]</article>
+      <article class="panel support-document" id="panel-review" role="tabpanel" aria-labelledby="tab-review" hidden>[[REVIEW_HTML]]</article>
+      <article class="panel support-document" id="panel-research" role="tabpanel" aria-labelledby="tab-research" hidden>[[RESEARCH_HTML]]</article>
+      <article class="panel support-document" id="panel-match" role="tabpanel" aria-labelledby="tab-match" hidden>[[MATCH_HTML]]</article>
+    </section>
+
+    <aside class="review-rail" aria-label="검토 도구">
+      <section class="rail-card">
+        <h2>Contents</h2>
+        <ol class="toc" id="toc"></ol>
+      </section>
+      <section class="rail-card source-card">
+        <h2>Source Markdown</h2>
+        <div class="source-links">
+          <a href="../content-draft.md">content-draft.md</a>
+          <a href="../company-research.md">company-research.md</a>
+          <a href="../match-report.md">match-report.md</a>
+        </div>
+      </section>
+      <section class="rail-card">
+        <h2>Status</h2>
+        <p class="privacy-note">[[APPLICATION_DIR]]<br>local-only 검토본이며 공개 홈페이지와 PDF에는 자동 반영되지 않습니다.</p>
+      </section>
+    </aside>
+  </main>
+
+  <script>
+    const resume = document.querySelector('#panel-draft');
+    const sectionNames = new Map([
+      ['Summary', ['요약', 'Summary']],
+      ['Experience', ['경력', 'Career']],
+      ['MGRV 직무와 연결되는 경험', ['핵심 성과', 'Outcomes']],
+      ['03 핵심 성과 · Outcomes', ['핵심 성과', 'Outcomes']],
+      ['How I Work', ['일하는 방식', 'How I Work']],
+      ['Skills', ['기술', 'Skills']],
+      ['Education & Credentials', ['학력·수상·자격', 'Credentials']],
+    ]);
+    const sectionOrder = ['요약', '경력', '핵심 성과', '일하는 방식', '기술', '학력·수상·자격'];
+
+    function prepareResume() {
+      const original = [...resume.children];
+      const header = document.createElement('header');
+      header.className = 'resume-header';
+      resume.prepend(header);
+      let section = null;
+
+      original.forEach((element) => {
+        if (element.tagName === 'H2') {
+          const mapped = sectionNames.get(element.textContent.trim());
+          if (mapped) element.textContent = mapped[0];
+          section = document.createElement('section');
+          section.className = 'resume-section';
+          section.dataset.section = element.textContent.trim();
+          const meta = document.createElement('span');
+          meta.className = 'section-meta';
+          meta.textContent = mapped?.[1] || element.textContent.trim();
+          element.append(meta);
+          section.append(element);
+          resume.append(section);
+          return;
+        }
+        (section || header).append(element);
+      });
+
+      const sections = [...resume.querySelectorAll('.resume-section')];
+      sections.sort((a, b) => sectionOrder.indexOf(a.dataset.section) - sectionOrder.indexOf(b.dataset.section));
+      sections.forEach((item) => resume.append(item));
+    }
+
+    function splitSectionIntoGroups(section) {
+      const groups = [];
+      let group = document.createElement('section');
+      group.className = section.className;
+      group.dataset.section = section.dataset.section;
+      let hasSubheading = false;
+
+      [...section.children].forEach((element) => {
+        if (element.tagName === 'H3' && hasSubheading) {
+          groups.push(group);
+          group = document.createElement('section');
+          group.className = `${section.className} resume-fragment`;
+          group.dataset.section = section.dataset.section;
+        }
+        if (element.tagName === 'H3') hasSubheading = true;
+        group.append(element);
+      });
+      if (group.children.length) groups.push(group);
+      return groups;
+    }
+
+    function paginateResume() {
+      const header = resume.querySelector('.resume-header');
+      const sections = [...resume.querySelectorAll('.resume-section')];
+      const groups = [header, ...sections.flatMap(splitSectionIntoGroups)].filter(Boolean);
+
+      resume.replaceChildren();
+      resume.classList.add('paginating');
+      let page;
+
+      function createPage() {
+        const nextPage = document.createElement('div');
+        nextPage.className = 'a4-page';
+        resume.append(nextPage);
+        return nextPage;
+      }
+
+      page = createPage();
+      groups.forEach((group) => {
+        page.append(group);
+        if (page.scrollHeight > page.clientHeight + 1 && page.children.length > 1) {
+          group.remove();
+          page = createPage();
+          if (group.matches('.resume-section') && !group.querySelector(':scope > h2')) {
+            group.classList.add('resume-fragment');
+          }
+          page.append(group);
+        }
+      });
+
+      const pages = [...resume.querySelectorAll('.a4-page')];
+      pages.forEach((item, index) => {
+        const number = document.createElement('span');
+        number.className = 'page-number';
+        number.textContent = `${index + 1} / ${pages.length}`;
+        item.append(number);
+      });
+      resume.classList.remove('paginating');
+    }
+
+    function slugify(text, index) {
+      const slug = text.trim().toLowerCase().replace(/[^\p{L}\p{N}]+/gu, '-').replace(/^-|-$/g, '');
+      return slug || `section-${index + 1}`;
+    }
+
+    const tabs = [...document.querySelectorAll('[role="tab"]')];
+    const panels = [...document.querySelectorAll('[role="tabpanel"]')];
+    const toc = document.querySelector('#toc');
+
+    function rebuildToc(panel) {
+      toc.replaceChildren();
+      const headings = panel.matches('.resume-document')
+        ? [...panel.querySelectorAll('.resume-section > h2')]
+        : [...panel.querySelectorAll('h2, h3')];
+      headings.forEach((heading, index) => {
+        if (!heading.id) heading.id = `${panel.id}-${slugify(heading.childNodes[0].textContent, index)}`;
+        const item = document.createElement('li');
+        const link = document.createElement('a');
+        link.href = `#${heading.id}`;
+        const label = heading.childNodes[0].textContent.trim();
+        link.innerHTML = `<span class="toc-index">${String(index + 1).padStart(2, '0')}</span>${label}`;
+        item.append(link);
+        toc.append(item);
+      });
+    }
+
+    function activateTab(tab, moveFocus = false) {
+      tabs.forEach((candidate) => {
+        const selected = candidate === tab;
+        candidate.setAttribute('aria-selected', String(selected));
+        candidate.tabIndex = selected ? 0 : -1;
+      });
+      panels.forEach((panel) => {
+        panel.hidden = panel.id !== `panel-${tab.dataset.panel}`;
+      });
+      rebuildToc(document.querySelector(`#panel-${tab.dataset.panel}`));
+      window.scrollTo({ top: 0, behavior: 'instant' });
+      if (moveFocus) tab.focus();
+    }
+
+    tabs.forEach((tab, index) => {
+      tab.addEventListener('click', () => activateTab(tab));
+      tab.addEventListener('keydown', (event) => {
+        if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+        event.preventDefault();
+        let next = index;
+        if (event.key === 'ArrowLeft') next = (index - 1 + tabs.length) % tabs.length;
+        if (event.key === 'ArrowRight') next = (index + 1) % tabs.length;
+        if (event.key === 'Home') next = 0;
+        if (event.key === 'End') next = tabs.length - 1;
+        activateTab(tabs[next], true);
+      });
+    });
+
+    document.querySelectorAll('.support-document a').forEach((link) => {
+      if (/^https?:\/\//.test(link.href)) {
+        link.target = '_blank';
+        link.rel = 'noreferrer';
+      }
+    });
+
+    prepareResume();
+    paginateResume();
+    rebuildToc(resume);
+  </script>
+</body>
+</html>

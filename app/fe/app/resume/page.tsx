@@ -1,8 +1,5 @@
 import type { Metadata } from "next";
-import { AskLauncher } from "@/components/site/ask-launcher";
-import { Container } from "@/components/site/container";
-import { SiteFooter } from "@/components/site/site-footer";
-import { TopBar } from "@/components/site/topbar";
+import { ResumePageShell } from "./resume-page-shell";
 import { ResumeView } from "./resume-view";
 
 export const metadata: Metadata = {
@@ -13,13 +10,8 @@ export const metadata: Metadata = {
 
 export default function ResumePage() {
   return (
-    <>
-      <TopBar variant="subpage" crumb="Resume" />
-      <Container variant="doc" className="flex-1">
-        <ResumeView />
-      </Container>
-      <SiteFooter />
-      <AskLauncher />
-    </>
+    <ResumePageShell>
+      <ResumeView />
+    </ResumePageShell>
   );
 }

@@ -9,8 +9,9 @@
   portfolio-template.html — 회사별 포트폴리오 템플릿 (tailor-resume 스킬 asset)
 
   사용법:
-  - 계약: products/portfolio/decisions.md / 케이스 원천: products/portfolio/cases/
-  - [[SLOT:...]] 영역만 채운다. 케이스는 이력서 04 대표 프로젝트와 1:1 (같은 케이스, 같은 순서).
+  - 계약: products/portfolio/decisions.md / proof 원천: products/portfolio/cases/
+  - [[SLOT:...]] 영역만 채운다. 목차는 이력서 핵심 성과와 1:1이며 같은 순서를 유지한다.
+  - 각 성과 축은 서로 다른 case의 1~N개 proof block을 가질 수 있다. 프로젝트명은 proof의 출처로만 표시한다.
   - 케이스 md의 `diagram:` 라인은 .diagram 노드로 변환 (`->` 구분, `[soft]` = soft 노드).
   - FIXED 영역(헤더 연락처, 일하는 방식, 부록, 푸터)은 유지. 일하는 방식은 유지/삭제 두 상태만.
   - noindex 유지 — 회사별 페이지는 검색 노출 금지.
@@ -114,46 +115,46 @@
     </div>
   </header>
 
-  <!-- [[SLOT:casenav]] 케이스 수에 맞게 생성 — 01~0N 케이스 + 일하는 방식 + 부록 -->
+  <!-- [[SLOT:casenav]] 성과 축 수에 맞게 생성 — 01~0N 성과 + 일하는 방식 + 부록 -->
   <nav class="casenav">
-    <a href="#case-(slug)"><span class="n">01</span>(케이스 축약명)</a>
+    <a href="#outcome-(slug)"><span class="n">01</span>(성과 축약명)</a>
     <a href="#workflow"><span class="n">0N</span>일하는 방식</a>
     <a href="#appendix"><span class="n">0N</span>부록</a>
   </nav>
 
   <!-- [[SLOT:intro]] 이력서 01과 동일 논지 2~3줄, 확장 금지 -->
   <div class="intro">
-    (JD 대응 인트로 — 이력서에서 소개한 프로젝트들의 왜와 어떻게. 모든 서술은 검증 기준 언급)
+    (JD 대응 인트로 — 이력서의 성과 축과 동일한 논지. 여러 프로젝트 proof의 출처와 한계를 분리)
   </div>
 
-  <!-- [[SLOT:cases]] products/portfolio/cases/에서 로드 — 이력서 04와 같은 케이스, 같은 순서. 케이스 블록 패턴: -->
-  <div class="case" id="case-(slug)">
+  <!-- [[SLOT:outcomes]] 성과 축별 반복. 각 축은 products/portfolio/cases/의 1~N개 proof를 묶고 source 경계를 유지한다. -->
+  <div class="case outcome" id="outcome-(slug)" data-outcome="(outcome-slug)">
     <div class="case-head">
-      <div class="tagrow"><span class="tag">(resume_tag)</span><span class="origin">(origin)</span></div>
-      <h3>(title)</h3>
-      <div class="strength">role: (claim_strength의 공개 표현)</div>
+      <div class="tagrow"><span class="tag">OUTCOME 01</span><span class="origin">(source project 1 · source project 2)</span></div>
+      <h3>(채용사가 맡길 수 있는 결과)</h3>
+      <div class="strength">evidence: (N개 프로젝트/경력의 verified claim)</div>
     </div>
     <div class="step">
-      <h4>문제</h4>
-      <p>(문제 섹션)</p>
+      <h4>회사가 얻는 결과</h4>
+      <p>(JD의 업무·문제를 결과 관점으로 번역)</p>
     </div>
     <div class="step">
-      <h4>접근</h4>
-      <ul><li>(접근 bullet)</li></ul>
+      <h4>반복 가능한 방식</h4>
+      <ul><li>(여러 맥락에서 반복된 판단·실행)</li></ul>
     </div>
     <div class="step">
-      <h4>구현</h4>
+      <h4>Proof · (프로젝트/경력 라벨)</h4>
       <div class="diagram-caption">(다이어그램 제목)</div>
       <div class="diagram">
         <div class="node">(노드)</div>
         <div class="arr">→</div>
         <div class="node soft">(soft 노드)</div>
       </div>
-      <ul><li>(구현 bullet)</li></ul>
+      <ul><li>(이 source에 귀속되는 구현·결과)</li></ul>
     </div>
     <div class="step">
-      <h4>운영 · 결과</h4>
-      <ul><li>(운영/결과 bullet)</li></ul>
+      <h4>Proof · (다른 프로젝트/경력 라벨)</h4>
+      <ul><li>(이 source에 귀속되는 구현·결과·한계)</li></ul>
     </div>
     <div class="stack-line">(Stack 라인)</div>
   </div>
