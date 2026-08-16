@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { cn } from "@/lib/cn";
 
 const SUGGESTED = [
   "김대정은 어떤 엔지니어인가요?",
@@ -56,10 +57,15 @@ export function AskPanel() {
   );
 }
 
-export function AskLauncher() {
+export function AskLauncher({ className = "" }: { className?: string }) {
   const [open, setOpen] = useState(false);
   return (
-    <div className="fixed bottom-4 right-4 z-50 grid justify-items-end gap-2.5 sm:bottom-6 sm:right-6">
+    <div
+      className={cn(
+        "fixed bottom-4 right-4 z-50 grid justify-items-end gap-2.5 print:hidden sm:bottom-6 sm:right-6",
+        className,
+      )}
+    >
       {open && <AskPanel />}
       <button
         type="button"

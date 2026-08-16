@@ -1,6 +1,6 @@
 import { cn } from "@/lib/cn";
 
-/* 좌측 mono 라벨 컬럼 + 텍스트 행 — summary 56px / creds 110px / career 150px */
+/* 좌측 mono 라벨 컬럼 + 텍스트 행 — 순번 56px / record metadata 150px */
 const COLS = {
   sm: "grid-cols-[40px_1fr] sm:grid-cols-[56px_1fr]",
   "sm-t": "grid-cols-[40px_1fr_auto] sm:grid-cols-[56px_1fr_auto]",

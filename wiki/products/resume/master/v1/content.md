@@ -3,6 +3,7 @@ type: resume-content
 title: Resume Master v1 Content
 description: Evidence-linked Korean A4 master resume copy before HTML composition.
 timestamp: 2026-07-11
+status: superseded
 tags: [resume, v1, content, korean]
 ---
 

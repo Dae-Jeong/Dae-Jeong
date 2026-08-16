@@ -1,15 +1,17 @@
 ---
 type: draft
 title: 플랫폼 붙여넣기 문안
-description: sync-spec 기준으로 작성한 플랫폼별 실제 입력 텍스트. 그대로 복사해 붙여넣는다.
-timestamp: 2026-08-09
-status: ready
+description: 2026-08-09 v3 플랫폼 문안 기록. active 문안은 dual-track-copy-draft.md가 소유한다.
+timestamp: 2026-08-13
+status: superseded
 tags: [platform, copy, draft]
 ---
 
 # 플랫폼 붙여넣기 문안
 
-기준: [sync-spec](sync-spec.md) · [canonical-baseline](../../profile/canonical-baseline.md) · [resume v4](../../products/resume/master/v4/content.md)
+> **Superseded:** 이 파일은 v3 당시 기록이며 현재 입력 문안으로 사용하지 않는다. active 플랫폼 변환본은 [dual-track-copy-draft.md](dual-track-copy-draft.md)가 소유한다.
+
+당시 기준: [sync-spec](sync-spec.md) · [canonical-baseline](../../profile/canonical-baseline.md) · superseded resume v4
 
 **2026-08-09 갱신**: v4의 관통 주제 3축을 문안에 반영했다. 연차(4년차)·수치는 이전부터 최신이었고, 바뀐 것은 **서사 구조**다.
 

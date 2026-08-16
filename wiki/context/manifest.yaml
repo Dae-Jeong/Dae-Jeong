@@ -1,5 +1,5 @@
 version: 2
-last_updated: 2026-08-09
+last_updated: 2026-08-13
 
 summary: >
   Portable source-of-truth manifest for Kim Daejeong's profile, evidence,
@@ -16,8 +16,12 @@ layers:
     owns: [verified_facts, claims, confidence, public_scope, audits, client_masking]
     canonical: true
   products:
-    owns: [resume, portfolio, homepage, jd_analysis]
+    owns: [resume_contracts, portfolio_contracts, homepage_contracts, artifact_mapping, jd_analysis]
     canonical: true
+  app:
+    owns: [public_site_code, active_public_expression]
+    canonical: true
+    note: 표현만 소유한다. 사실·claim은 profile/evidence를 따른다.
   rules:
     owns: [document_routing, evidence_policy, public_safety, recency_weighting]
     canonical: true
@@ -44,14 +48,14 @@ roles:
     read: [rules/evidence-policy.md, rules/public-safety.md]
     write: [evidence/]
   resume_editor:
-    read: [products/resume/README.md, profile/, evidence/claims/]
-    write: [products/resume/]
+    read: [products/resume/README.md, products/resume/content-contract.md, products/site/content-sot.md, products/site/surface-roles.md, profile/, evidence/claims/, app/fe/app/resume/resume-view.tsx]
+    write: [products/resume/, app/fe/app/resume/resume-view.tsx]
   portfolio_editor:
     read: [products/portfolio/README.md, evidence/projects/, evidence/claims/]
     write: [products/portfolio/]
   homepage_editor:
-    read: [products/homepage/README.md, profile/, evidence/claims/]
-    write: [products/homepage/]
+    read: [products/homepage/README.md, products/site/content-sot.md, profile/, evidence/claims/, app/fe/app/page.tsx]
+    write: [products/homepage/, app/fe/app/page.tsx]
   jd_analyst:
     read: [products/jd/README.md, profile/capabilities.md, evidence/claims/]
     write: [products/jd/]

@@ -1,4 +1,5 @@
 import { Container } from "./container";
+import { cn } from "@/lib/cn";
 
 const LINKS: { label: string; href: string; disabled?: boolean; external?: boolean }[] = [
   { label: "GitHub ↗", href: "https://github.com/Dae-Jeong", external: true },
@@ -8,9 +9,9 @@ const LINKS: { label: string; href: string; disabled?: boolean; external?: boole
   { label: "Labs", href: "/labs" },
 ];
 
-export function SiteFooter() {
+export function SiteFooter({ className = "" }: { className?: string }) {
   return (
-    <footer className="border-t border-border py-8">
+    <footer className={cn("border-t border-border py-8", className)}>
       <Container
         variant="hub"
         className="flex flex-wrap items-center justify-between gap-4"

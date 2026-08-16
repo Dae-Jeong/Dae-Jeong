@@ -54,6 +54,7 @@ DAY, BAY, RAY, SAY는 별도 제품이 아니라 Centurion CRM & ERP 제품을 �
 ## SAY Realtime AI
 
 - Code-backed: WebSocket consultation runtime, STT/LLM provider lifecycle, zombie session cleanup, reconnect race 처리, translation/audio pipeline, dashboard AI analysis가 SAY/PROTON cluster에서 확인됐다.
+- Code-backed (2026-08-15): `workspace:SAY-BE-API`의 WebSocket session 처리에서 중복 event를 debounce하고 기존 task를 cancel한 뒤 재생성하는 흐름, `CancelledError` 처리, STT 결과 retry, turn-state guard가 확인됐다. Git history와 blame에서 해당 lifecycle 변경의 KimMarin 기여가 확인된다.
 - Contribution boundary: SAY 공동 주 기여와 연계 영역 주도를 합친 `co-led` claim. provider 실명은 공개하지 않는다.
 
 ## DAY Product Integration

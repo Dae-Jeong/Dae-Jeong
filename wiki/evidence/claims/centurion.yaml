@@ -65,9 +65,11 @@ claims:
     evidence: [evidence/projects/centurion.md#say-realtime-ai]
     allowed_copy:
       - realtime AI 상담 backend의 세션 lifecycle과 provider 경계 안정화 공동 주 기여
+      - WebSocket session의 중복 event를 task cancellation·debounce·retry·turn-state guard로 제어
     forbidden_copy:
       - provider 실명
       - 상담 backend 전체 단독 구축
+      - asyncio 전반의 심화 전문성
     verified_at: 2026-07-04
   - id: centurion.day-product-integration
     statement: DAY 예약 정책을 backend 판단, frontend 표시, QA seed/test, release docs로 연결

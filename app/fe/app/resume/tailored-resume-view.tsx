@@ -1,15 +1,22 @@
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { Chip } from "@/components/ui/chip";
 import { KeyValueRows } from "@/components/ui/key-value-list";
 import { NumberedList, NumberedRow } from "@/components/ui/numbered-row";
 import { SectionHead } from "@/components/ui/section-head";
-import type { ResumeText, TailoredResume } from "@/content/resumes/types";
+import type {
+  ResumeOutcomeDescriptionItem,
+  ResumeOutcomeEvidence,
+  ResumeText,
+  TailoredResume,
+} from "@/content/resumes/types";
+import { cn } from "@/lib/cn";
+import { ResumeLayout } from "./resume-layout";
+import { ResumePeriod } from "./resume-period";
+import { resumeType } from "./resume-typography";
 
 const SECTIONS = [
-  { id: "s1", label: "요약" },
-  { id: "s2", label: "경력" },
-  { id: "s3", label: "핵심 성과" },
+  { id: "s1", label: "소개" },
+  { id: "s2", label: "핵심 성과" },
+  { id: "s3", label: "경력" },
   { id: "s4", label: "일하는 방식" },
   { id: "s5", label: "기술" },
   { id: "s6", label: "학력·수상·자격" },
@@ -28,7 +35,7 @@ function RichText({ value }: { value: ResumeText }) {
         <span
           key={`${segment.text}-${index}`}
           data-metric
-          className="font-semibold tabular-nums text-success"
+          className={resumeType.metric}
         >
           {segment.text}
         </span>
@@ -36,7 +43,7 @@ function RichText({ value }: { value: ResumeText }) {
     }
     if (segment.tone === "strong") {
       return (
-        <strong key={`${segment.text}-${index}`} className="font-semibold text-fg">
+        <strong key={`${segment.text}-${index}`} className={resumeType.inlineStrong}>
           {segment.text}
         </strong>
       );
@@ -51,12 +58,76 @@ function PlainList({ items }: { items: readonly ResumeText[] }) {
       {items.map((item, index) => (
         <li
           key={index}
-          className="relative pl-4 text-fg-2 before:absolute before:left-0 before:font-mono before:text-muted before:content-['—'] [&_strong]:font-semibold [&_strong]:text-fg"
+          className="relative pl-4 text-fg-2 before:absolute before:left-0 before:font-mono before:text-muted before:content-['—'] [&_strong]:font-medium [&_strong]:text-fg"
         >
           <RichText value={item} />
         </li>
       ))}
     </ul>
+  );
+}
+
+function isOutcomeEvidence(
+  item: ResumeOutcomeDescriptionItem,
+): item is ResumeOutcomeEvidence {
+  return typeof item === "object" && !Array.isArray(item) && "text" in item;
+}
+
+function OutcomeDescription({
+  items,
+}: {
+  items: readonly ResumeOutcomeDescriptionItem[];
+}) {
+  const groups: Array<
+    | { kind: "paragraph"; content: ResumeText }
+    | { kind: "evidence"; items: ResumeOutcomeEvidence[] }
+  > = [];
+
+  items.forEach((item) => {
+    if (!isOutcomeEvidence(item)) {
+      groups.push({ kind: "paragraph", content: item });
+      return;
+    }
+
+    const last = groups.at(-1);
+    if (last?.kind === "evidence") {
+      last.items.push(item);
+      return;
+    }
+
+    groups.push({ kind: "evidence", items: [item] });
+  });
+
+  return (
+    <div className={resumeType.achievementDescription}>
+      {groups.map((group, groupIndex) => {
+        if (group.kind === "paragraph") {
+          return (
+            <p key={groupIndex} className={resumeType.achievementParagraph}>
+              <RichText value={group.content} />
+            </p>
+          );
+        }
+
+        return (
+          <ul key={groupIndex} className={resumeType.achievementEvidenceList}>
+            {group.items.map((item, itemIndex) => (
+              <li
+                key={`${groupIndex}-${itemIndex}`}
+                className={resumeType.achievementEvidenceItem}
+              >
+                <RichText value={item.text} />
+                {item.source && (
+                  <span className="ml-1.5 whitespace-nowrap font-mono text-xs text-muted">
+                    [{item.source}]
+                  </span>
+                )}
+              </li>
+            ))}
+          </ul>
+        );
+      })}
+    </div>
   );
 }
 
@@ -74,7 +145,7 @@ function Section({
   children: React.ReactNode;
 }) {
   return (
-    <section id={id} className="pt-9">
+    <section id={id} className={cn(resumeType.documentSection, "scroll-mt-6")}>
       <SectionHead no={no} title={title} meta={meta} size="doc" />
       {children}
     </section>
@@ -82,6 +153,9 @@ function Section({
 }
 
 function ResumeDocument({ resume }: { resume: TailoredResume }) {
+  const hasWorkStyles = resume.workStyles.length > 0;
+  const skillsNo = hasWorkStyles ? "05" : "04";
+  const credentialsNo = hasWorkStyles ? "06" : "05";
   const skillRows = resume.skills.map((skill) => ({
     k: skill.label,
     "data-claim": claim(skill.claimIds),
@@ -95,62 +169,86 @@ function ResumeDocument({ resume }: { resume: TailoredResume }) {
 
   return (
     <div>
-      <header className="border-b-2 border-fg pb-7">
-        <h1 className="m-0 font-mono text-3xl font-semibold tracking-[-0.02em]">
-          {resume.header.name}
-        </h1>
-        <p className="mt-2.5 font-mono text-sm uppercase tracking-[0.06em] text-fg-2">
-          {resume.header.role}
-        </p>
-        <p className="mt-1.5 font-mono text-sm text-fg-2">
-          <RichText value={resume.header.careerLine} />
-        </p>
-        <p className="mt-4 text-lg font-medium">
-          <RichText value={resume.header.tagline} />
-        </p>
-        <div className="mt-4 flex flex-wrap gap-2">
-          {resume.header.contacts.map((contact) => (
-            <Chip
-              key={contact.label}
-              variant="contact"
-              href={contact.href}
-              external={contact.external}
-            >
-              {contact.label}
-            </Chip>
-          ))}
+      <header className={resumeType.documentHeader}>
+        <div className={resumeType.identityBlock}>
+          <h1 className={resumeType.identity}>{resume.header.name}</h1>
+          <p className={resumeType.roleMeta}>{resume.header.role}</p>
+        </div>
+        <div className={resumeType.metaBlock}>
+          <p className={resumeType.careerMeta}>
+            <RichText value={resume.header.careerLine} />
+          </p>
+          <div className={resumeType.contactRow}>
+            {resume.header.contacts.map((contact) => (
+              <Chip
+                key={contact.label}
+                variant="contact"
+                href={contact.href}
+                external={contact.external}
+              >
+                {contact.label}
+              </Chip>
+            ))}
+          </div>
         </div>
       </header>
 
-      <Section id="s1" no="01" title="요약" meta="Summary">
-        <div className="grid gap-3.5 text-fg-2">
-          {resume.summary.map((paragraph, index) => (
-            <p key={index} className="m-0" data-claim={claim(paragraph.claimIds)}>
-              <RichText value={paragraph.text} />
-            </p>
-          ))}
-        </div>
-      </Section>
+      <div className="resume-print-page-one">
+        <Section id="s1" no="01" title="소개" meta="Profile">
+          <div className={resumeType.summaryStack}>
+            {resume.summary.map((paragraph, index) => (
+              <p key={index} className="m-0" data-claim={claim(paragraph.claimIds)}>
+                <RichText value={paragraph.text} />
+              </p>
+            ))}
+          </div>
+        </Section>
 
-      <Section id="s2" no="02" title="경력" meta="Career">
+        <Section id="s2" no="02" title="핵심 성과" meta="Outcomes">
+          <NumberedList>
+            {resume.outcomes.map((outcome, index) => (
+              <NumberedRow
+                key={outcome.no}
+                label={outcome.no}
+                labelWidth="sm"
+                labelClassName="font-mono text-xs text-muted"
+                data-claim={claim(outcome.claimIds)}
+                className={cn(resumeType.achievementRow, index === 0 && "border-t-0")}
+              >
+                <div className="max-w-[70ch] text-base font-normal [&_[data-metric]]:font-medium">
+                  <h3 className={resumeType.achievementTitle}>
+                    {outcome.title}
+                  </h3>
+                  <OutcomeDescription items={outcome.description} />
+                </div>
+              </NumberedRow>
+            ))}
+          </NumberedList>
+        </Section>
+      </div>
+
+      <div className="resume-print-page-two">
+        <Section id="s3" no="03" title="경력" meta="Career">
         <NumberedList className="border-t border-border-soft">
           {resume.careers.map((career) => (
             <NumberedRow
               key={`${career.org}-${career.period}`}
               label={
-                <>
-                  {career.org}
-                  {career.now && <Badge>NOW</Badge>}
-                </>
+                <span className="grid gap-1">
+                  <span>{career.org}</span>
+                  <ResumePeriod
+                    value={career.period}
+                    currentLabel={career.now ? "재직중" : undefined}
+                  />
+                </span>
               }
               labelWidth="lg"
               labelClassName="font-semibold text-fg"
-              trailing={career.period}
               data-claim={claim(career.claimIds)}
-              className="border-border-soft py-3"
+              className={resumeType.careerRow}
             >
               <span className="text-sm text-fg-2">
-                <span className="mb-1.5 block font-medium text-fg">
+                <span className="mb-1.5 block text-base font-medium text-fg">
                   <RichText value={career.role} />
                 </span>
                 <PlainList items={career.details} />
@@ -158,158 +256,73 @@ function ResumeDocument({ resume }: { resume: TailoredResume }) {
             </NumberedRow>
           ))}
         </NumberedList>
-      </Section>
+        </Section>
 
-      <Section id="s3" no="03" title="핵심 성과" meta="Outcomes">
-        <NumberedList>
-          {resume.capabilities.map((capability, index) => (
-            <NumberedRow
-              key={capability.no}
-              label={capability.no}
-              labelWidth="sm"
-              labelClassName="font-mono text-xs text-muted"
-              data-claim={claim(capability.claimIds)}
-              className={index === 0 ? "border-t-0 py-4" : "py-4"}
-            >
-              <div className="max-w-[70ch] text-base font-normal [&_[data-metric]]:font-medium">
-                <h3 className="m-0 mb-2 text-balance font-mono text-xl font-semibold leading-snug">
-                  {capability.title}
-                </h3>
-                <p className="m-0 mb-3.5 text-pretty text-lg font-medium leading-normal text-fg">
-                  <RichText value={capability.claim} />
-                </p>
-                <ul className="m-0 grid list-none gap-2 p-0">
-                  {capability.details.map((detail, detailIndex) => (
-                    <li
-                      key={detailIndex}
-                      className="relative pl-4 text-fg-2 before:absolute before:left-0 before:font-mono before:text-muted before:content-['—'] [&_strong]:font-medium [&_strong]:text-fg"
-                    >
-                      <RichText value={detail.text} />
-                      {detail.source && (
-                        <span className="ml-1.5 whitespace-nowrap font-mono text-xs text-muted">
-                          [{detail.source}]
-                        </span>
-                      )}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </NumberedRow>
-          ))}
-        </NumberedList>
-      </Section>
+        <div className="resume-print-support">
 
-      <Section id="s4" no="04" title="일하는 방식" meta="How I Work">
-        <NumberedList>
-          {resume.workStyles.map((workStyle, index) => (
-            <NumberedRow
-              key={workStyle.no}
-              label={workStyle.no}
-              labelWidth="sm"
-              labelClassName="font-mono text-xs text-muted"
-              className={index === 0 ? "border-t-0 py-3" : "py-3"}
-              data-claim={claim(workStyle.claimIds)}
-            >
-              <div>
-                <p className="m-0 mb-1 font-semibold text-fg">{workStyle.title}</p>
-                <p className="m-0 text-sm text-fg-2">
-                  <RichText value={workStyle.body} />
-                </p>
-              </div>
-            </NumberedRow>
-          ))}
-        </NumberedList>
-      </Section>
+          {hasWorkStyles && (
+            <Section id="s4" no="04" title="일하는 방식" meta="How I Work">
+          <NumberedList>
+            {resume.workStyles.map((workStyle, index) => (
+              <NumberedRow
+                key={workStyle.no}
+                label={workStyle.no}
+                labelWidth="sm"
+                labelClassName="font-mono text-xs text-muted"
+                className={cn(resumeType.workStyleRow, index === 0 && "border-t-0")}
+                data-claim={claim(workStyle.claimIds)}
+              >
+                <div>
+                  <p className={resumeType.itemTitle}>{workStyle.title}</p>
+                  <p className="m-0 text-sm text-fg-2">
+                    <RichText value={workStyle.body} />
+                  </p>
+                </div>
+              </NumberedRow>
+            ))}
+          </NumberedList>
+            </Section>
+          )}
 
-      <Section id="s5" no="05" title="기술" meta="Skills">
-        <KeyValueRows items={skillRows} />
-      </Section>
+          <Section id="s5" no={skillsNo} title="기술" meta="Skills">
+            <KeyValueRows items={skillRows} />
+          </Section>
 
-      <Section
-        id="s6"
-        no="06"
-        title="학력·교육 / 수상·특허·자격"
-        meta="Credentials"
-      >
+          <Section
+            id="s6"
+            no={credentialsNo}
+            title="학력·교육 / 수상·특허·자격"
+            meta="Credentials"
+          >
         <NumberedList>
           {resume.credentials.map((credential, index) => (
             <NumberedRow
               key={`${credential.period}-${credential.text}`}
               label={credential.period}
-              labelWidth="md"
-              labelClassName="text-xs"
-              className={index === 0 ? "border-t-0 py-1" : "py-1"}
+              labelWidth="lg"
+              labelClassName="whitespace-pre-line text-xs"
+              className={cn(resumeType.credentialRow, index === 0 && "border-t-0")}
               data-claim={claim(credential.claimIds)}
             >
               <span className="text-sm text-fg-2">{credential.text}</span>
             </NumberedRow>
           ))}
         </NumberedList>
-      </Section>
+          </Section>
+        </div>
+      </div>
     </div>
   );
 }
 
 export function TailoredResumeView({ resume }: { resume: TailoredResume }) {
+  const sections = SECTIONS.filter(
+    (section) => section.id !== "s4" || resume.workStyles.length > 0,
+  );
+
   return (
-    <div className="grid grid-cols-[minmax(0,1fr)_240px] gap-12 max-lg:grid-cols-1">
-      <main className="max-w-[800px] pb-24 pt-12 max-lg:order-2 max-lg:pt-6">
-        <ResumeDocument resume={resume} />
-      </main>
-      <aside className="sticky top-0 grid content-start gap-5 self-start py-12 max-lg:static max-lg:order-1 max-lg:grid-cols-[1fr_auto] max-lg:items-center max-lg:gap-3 max-lg:py-5">
-        <Button
-          href={resume.pdfHref}
-          disabled={!resume.pdfHref}
-          title={resume.pdfHref ? "A4 PDF 다운로드" : "PDF 준비 중"}
-          className="justify-center"
-        >
-          ↓ PDF 다운로드 (A4)
-        </Button>
-        <div className="flex border border-border" role="group" aria-label="언어">
-          <button
-            type="button"
-            className="focus-ring flex-1 whitespace-nowrap bg-fg px-3 py-2 font-mono text-xs text-accent-on"
-          >
-            KO
-          </button>
-          <button
-            type="button"
-            disabled
-            className="flex-1 cursor-not-allowed whitespace-nowrap bg-bg px-3 py-2 font-mono text-xs text-muted opacity-60"
-          >
-            EN · 준비 중
-          </button>
-        </div>
-        <nav aria-label="목차" className="max-lg:hidden">
-          <h2 className="m-0 mb-2.5 font-mono text-xs uppercase tracking-[0.1em] text-muted">
-            Contents
-          </h2>
-          <ol className="m-0 grid list-none gap-[7px] p-0">
-            {SECTIONS.map((section, index) => (
-              <li key={section.id}>
-                <a
-                  href={`#${section.id}`}
-                  className="focus-ring font-mono text-xs text-fg-2 hover:text-fg"
-                >
-                  <span className="mr-2 text-muted">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  {section.label}
-                </a>
-              </li>
-            ))}
-          </ol>
-        </nav>
-        <p className="m-0 border-t border-border-soft pt-3 font-mono text-xs leading-relaxed text-muted max-lg:hidden">
-          {resume.companyName} 지원용 맞춤 이력서 · {resume.status.toUpperCase()} · {resume.updatedAt}
-          {resume.status === "draft" && (
-            <>
-              <br />
-              DRAFT 표시는 지원 전 문안을 계속 다듬고 있다는 뜻입니다.
-            </>
-          )}
-        </p>
-      </aside>
-    </div>
+    <ResumeLayout sections={sections} pdfHref={resume.pdfHref}>
+      <ResumeDocument resume={resume} />
+    </ResumeLayout>
   );
 }

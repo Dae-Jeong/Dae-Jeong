@@ -21,16 +21,17 @@ export type ResumeCareer = {
   claimIds?: readonly string[];
 };
 
-export type ResumeCapabilityDetail = {
+export type ResumeOutcomeEvidence = {
   text: ResumeText;
   source?: string;
 };
 
-export type ResumeCapability = {
+export type ResumeOutcomeDescriptionItem = ResumeText | ResumeOutcomeEvidence;
+
+export type ResumeOutcome = {
   no: string;
   title: string;
-  claim: ResumeText;
-  details: readonly ResumeCapabilityDetail[];
+  description: readonly ResumeOutcomeDescriptionItem[];
   claimIds?: readonly string[];
 };
 
@@ -66,7 +67,6 @@ export type TailoredResume = {
     name: string;
     role: string;
     careerLine: ResumeText;
-    tagline: ResumeText;
     contacts: readonly ResumeContact[];
   };
   summary: readonly {
@@ -74,7 +74,7 @@ export type TailoredResume = {
     claimIds?: readonly string[];
   }[];
   careers: readonly ResumeCareer[];
-  capabilities: readonly ResumeCapability[];
+  outcomes: readonly ResumeOutcome[];
   workStyles: readonly ResumeWorkStyle[];
   skills: readonly ResumeSkill[];
   credentials: readonly ResumeCredential[];

@@ -1,12 +1,12 @@
 ---
 type: reference
-title: 콘텐츠 SoT — 홈페이지 기준선
-description: 2026-08-13부터 marinkim.xyz 문안이 표현의 SoT다. 플랫폼 프로필은 여기서 파생된다. 사실·강도는 claim registry가 계속 소유한다.
+title: 콘텐츠 SoT — 공개 site surface 기준선
+description: 2026-08-13부터 app/fe의 각 public surface가 자신의 표현 SoT다. 플랫폼 프로필은 관련 surface에서 파생된다. 사실·강도는 claim registry가 계속 소유한다.
 timestamp: 2026-08-13
 tags: [sot, content, site, platform]
 ---
 
-# 콘텐츠 SoT — 홈페이지 기준선 (2026-08-13)
+# 콘텐츠 SoT — 공개 site surface 기준선 (2026-08-13)
 
 > user: "우리 홈페이지를 SoT로 둔 다음에 플랫폼들에 sync를 맞추자"
 
@@ -15,11 +15,11 @@ tags: [sot, content, site, platform]
 | 층 | 소유 | 내용 |
 | --- | --- | --- |
 | **사실·강도** | `wiki/evidence/` + `wiki/evidence/claims/*.yaml` | 무엇이 사실인가, owned/led/co-led/contributed, `allowed_copy`·`forbidden_copy` |
-| **표현 (SoT)** | **`app/fe`** — `app/page.tsx` · `app/resume/resume-view.tsx` | 어떻게 말하는가. 문장·순서·강조 |
+| **표현 (SoT)** | **`app/fe`** — `app/page.tsx` · `app/resume/resume-view.tsx` | 각 surface에서 어떻게 말하는가. 문장·순서·강조 |
 | **파생** | 원티드 · 링크드인 · 리멤버 · 로켓펀치 · 그룹바이 · 사람인 | 플랫폼 제약(글자 수·필드·줄바꿈)에 맞춘 변환본 |
 | **디자인** | D2 → `app/design` | 타입 스케일·컴포넌트 문법·레이아웃 |
 
-**핵심**: "무엇을 말할 수 있는가"는 claim registry가, "어떻게 말하는가"는 홈페이지가 소유한다.
+**핵심**: "무엇을 말할 수 있는가"는 claim registry가, "해당 지면에서 어떻게 말하는가"는 `app/fe`의 각 surface가 소유한다. `/`와 `/resume`는 사실·claim을 서로에서 복사하지 않는다.
 홈페이지가 SoT라고 해서 claim 계약을 넘어설 수 없다 — 문안을 바꿀 때도 `allowed_copy` 안에서 쓴다.
 
 ## 뒤바뀐 것
@@ -39,7 +39,7 @@ tags: [sot, content, site, platform]
 
 ## 동기화 규칙
 
-1. **홈페이지를 먼저 고친다.** 플랫폼부터 고치지 않는다.
+1. **관련 public surface를 먼저 고친다.** 홈 문안은 `/`, 경력·이력서 문안은 `/resume`에서 먼저 확정한다. 플랫폼부터 고치지 않는다.
 2. 고친 뒤 `claim registry` 대조 — `allowed_copy` 밖 표현이 없는지 확인한다.
 3. 플랫폼 변환본을 갱신한다 (`wanted-paste-package.md` · `linkedin-paste-package.md` 등).
 4. 플랫폼에 반영하고 **실측으로 검증**한다 (폼은 `innerText`가 아니라 필드 `value`로 읽는다).

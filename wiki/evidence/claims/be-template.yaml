@@ -20,12 +20,13 @@ claims:
     evidence: [evidence/projects/be-template.md#team-leverage-context]
     allowed_copy:
       - 소수 백엔드 인원이 다수 제품을 담당하는 체제에서 어떤 프로젝트든 정책 파악만으로 대응 가능하게 함
+      - 10명 안팎의 엔지니어 조직에서 2~3명의 백엔드 엔지니어가 다수 제품을 담당하는 환경
       - logging·모니터링 등 횡단 관심사를 전 제품에 일괄 반영
       - FE 엔지니어도 패턴·규약 아래에서 BE 로직 구현이 가능해짐
     forbidden_copy:
-      - 구체 제품 수·인원 수치 (공개 여부 사용자 확인 전)
+      - 정확한 내부 제품 수와 인원 구성
       - 새 프로젝트 비용의 정량 감소 주장
-    verified_at: 2026-07-19
+    verified_at: 2026-08-13
   - id: be-template.agent-context
     statement: 계층적 agent context와 반복 작업 automation skill을 backend template에 내장
     strength: owned

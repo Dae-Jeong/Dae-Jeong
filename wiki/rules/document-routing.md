@@ -26,9 +26,11 @@ tags: [rules, routing, source-of-truth]
 | --- | --- |
 | headline, bio, career timeline, capabilities | `profile/` |
 | Git/user/external verification, claim strength | `evidence/` |
-| resume frame and master artifact | `products/resume/` |
+| resume frame·selection contract·claim mapping | `products/resume/` |
+| deployed resume expression | `app/fe/app/resume/resume-view.tsx` |
 | portfolio cases | `products/portfolio/` |
-| public homepage copy | `products/homepage/` |
+| homepage contract·selection policy | `products/homepage/` |
+| deployed homepage expression | `app/fe/app/page.tsx` |
 | market corpus contract and derived reports | `products/jd/` |
 | evidence labels and public restrictions | `rules/` |
 | current task snapshot | `context/current-state.md` |

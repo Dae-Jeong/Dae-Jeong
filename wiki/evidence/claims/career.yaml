@@ -108,7 +108,7 @@ claims:
       - 미검증 endpoint·package 수치
     verified_at: 2026-07-06
   - id: career.tenure
-    statement: 인턴 기간을 제외한 실무 경력 47개월(만 3년 11개월) — AI Engineer·PM·Backend Engineer 직군 합산, 2026-08 기준
+    statement: 인턴 기간을 제외한 실무 경력 48개월(만 4년) — AI Engineer·PM·Backend Engineer 직군 합산, 2026-08 기준
     strength: contributed
     confidence: high
     public: true
@@ -119,8 +119,8 @@ claims:
     forbidden_copy:
       - 5년차 이상 (인턴 포함 수치)
       - 6년째 (재직 시작 연도 기준 표현)
-      - Backend Engineer 기준 N년차 (BE 구간만은 27개월이다)
-    verified_at: 2026-08-09
+      - Backend Engineer 기준 N년차 (BE 구간만은 28개월이다)
+    verified_at: 2026-08-13
     note: >-
       산정 근거는 profile/career.md#tenure 표다. 시간 경과로 값이 변하므로 분기마다 재산정한다.
       직군 합산 기준이며, Backend 단일 직군 기준으로 표기하면 부풀리기로 읽힌다.

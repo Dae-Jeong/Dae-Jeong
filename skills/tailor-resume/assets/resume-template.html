@@ -39,9 +39,8 @@
   .sheet { max-width: 800px; margin: 0 auto; padding: 42px 44px 32px; }
   /* ===== header ===== */
   header { margin-bottom: 24px; }
-  .role-line { font-family: var(--mono); font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
+  .role-line { margin-top: 6px; font-family: var(--mono); font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
   h1 { font-size: 31px; font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; }
-  .tagline { margin-top: 8px; font-size: 15px; font-weight: 500; color: var(--ink-soft); letter-spacing: -0.015em; }
   .contact { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--line); font-family: var(--mono); font-size: 11px; color: var(--ink-soft); }
   .contact a { color: var(--ink-soft); text-decoration: none; border-bottom: 1px solid var(--line); }
   /* ===== sections ===== */
@@ -118,11 +117,9 @@
 <div class="sheet">
 
   <header>
+    <h1>김대정</h1>
     <!-- [[SLOT:role-line]] JD 포지션명에 맞춰 조정 가능 -->
     <div class="role-line">Backend Engineer · AI Product Systems</div>
-    <h1>김대정</h1>
-    <!-- [[SLOT:tagline]] "N년차 백엔드 엔지니어 | 핵심 키워드 2~3개" 패턴 — JD 핵심 요구에 대응 -->
-    <p class="tagline">4년차 백엔드 엔지니어 | AI 제품 backend · 비동기/실시간 시스템 · Terraform IaC</p>
     <!-- FIXED: 연락처 — 변경 금지 (검증된 값, 주소는 시 단위) -->
     <div class="contact">
       <a href="mailto:marin.backend@gmail.com">marin.backend@gmail.com</a>

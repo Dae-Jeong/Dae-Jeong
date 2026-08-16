@@ -171,50 +171,53 @@
       height: 297mm !important;
       padding: 18mm 16mm !important;
     }
-    .resume-header {
-      border-bottom: 2px solid var(--fg);
-      padding-bottom: 28px;
-    }
-    .resume-header h1 {
-      margin: 0;
-      color: var(--fg);
-      font-family: var(--font-mono);
-      font-size: 30px;
-      font-weight: 600;
-      line-height: 1.1;
-      letter-spacing: -0.02em;
-    }
-    .resume-header p { margin: 0; }
-    .resume-header h1 + p {
-      margin-top: 10px;
-      color: var(--fg-2);
-      font-family: var(--font-mono);
-      font-size: 14px;
-      line-height: 1.45;
-    }
-    .resume-header h1 + p strong { color: var(--fg); font-weight: 600; }
-    .resume-header p:nth-of-type(2) {
-      margin-top: 16px;
-      color: var(--fg);
-      font-size: 18px;
-      font-weight: 500;
-    }
-    .resume-header p:nth-of-type(n+3) {
-      margin-top: 10px;
-      color: var(--muted);
-      font-family: var(--font-mono);
-      font-size: 12px;
-    }
-    .resume-section { padding-top: 36px; }
+.resume-header {
+  border-bottom: 2px solid var(--fg);
+  padding-bottom: 24px;
+}
+.resume-header h1 {
+  margin: 0;
+  color: var(--fg);
+  font-family: var(--font-mono);
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+.resume-header p { margin: 0; }
+.resume-header h1 + p {
+  margin-top: 6px;
+  color: var(--fg);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.45;
+  letter-spacing: 0.04em;
+}
+.resume-header p:nth-of-type(2) {
+  margin-top: 16px;
+  color: var(--fg-2);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.45;
+}
+.resume-header p:nth-of-type(n+3) {
+  margin-top: 12px;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.45;
+}
+.resume-section { padding-top: 40px; }
     .resume-section.resume-fragment { padding-top: 14px; }
     .resume-section > h2 {
       display: flex;
       flex-wrap: wrap;
       align-items: baseline;
       gap: 16px;
-      margin: 0 0 32px;
+      margin: 0 0 28px;
       border-bottom: 1px solid var(--border);
-      padding-bottom: 16px;
+      padding-bottom: 12px;
       color: var(--fg);
       font-family: var(--font-mono);
       font-size: 24px;

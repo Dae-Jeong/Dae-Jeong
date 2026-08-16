@@ -26,11 +26,12 @@ Source locator: `workspace:MEDISOLVEAI-BE-TEMPLATE`
 
 - User-confirmed (2026-07-19 인터뷰): 조직 맥락 — 엔지니어 8명(BE 3·FE 5)이 제품 12개를 담당했고, BE 1명이 외부 프로젝트 차출로 **실질 BE 2명이 12개 제품을 관리**. 통일된 패턴·구성이 생존 조건이었다.
 - User-confirmed (2026-07-19): 효과 3종 — ① 어떤 프로젝트든 제품 정책만 파악하면 대응 가능(컨텍스트 전환 비용 최소화) ② logging·모니터링 등 횡단 관심사를 전 제품에 일괄 반영 ③ 온보딩·FE 엔지니어도 패턴·규약·하네스 아래에서 BE 로직 구현 가능(고민 시간 감소).
-- ⚠️ 공개 여부 확인 필요: 제품 수(12개)·인원 수치는 mediness 가드레일("internal product count 비공개")과 충돌 — 사용자 결정 대기. 확정 전 공개 표현은 "소수 백엔드 인원이 다수 제품을 담당하는 체제"까지.
+- Public-safe scale (2026-08-13 user-confirmed): 정확한 내부 제품 수는 공개하지 않고 **"10명 안팎의 엔지니어 조직에서 2~3명의 백엔드 엔지니어가 다수 제품을 담당"**까지 표현한다.
 
 ## Public Disclosure
 
 - architecture pattern, ADR, runbook, agent context 구조는 일반화해 공개 가능하다.
+- 팀 규모는 `10명 안팎`, 백엔드 규모는 `2~3명`, 담당 범위는 `다수 제품`처럼 근사치로만 공개한다.
 - private repository path와 내부 convention detail은 필요 이상 공개하지 않는다.
 
 ## Rejected Or Unverified Claims

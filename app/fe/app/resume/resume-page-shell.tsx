@@ -14,12 +14,14 @@ export function ResumePageShell({
 }) {
   return (
     <>
-      <TopBar variant="subpage" crumb={crumb} tag={tag} />
+      <div className="print:hidden">
+        <TopBar variant="subpage" crumb={crumb} tag={tag} />
+      </div>
       <Container variant="doc" className="flex-1">
         {children}
       </Container>
-      <SiteFooter />
-      <AskLauncher />
+      <SiteFooter className="relative z-50 bg-bg print:hidden" />
+      <AskLauncher className="xl:right-20" />
     </>
   );
 }

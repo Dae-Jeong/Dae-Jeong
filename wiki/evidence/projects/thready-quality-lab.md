@@ -83,7 +83,9 @@ Source locator: `workspace:thready-lab` (브랜치 `lab/prompt-node-experiments`
 | `thready.falsification-log` | 반증된 접근을 삭제하지 않고 "다시 시도하지 말 것" 로그로 관리해 실험 범위를 좁히는 방식 확립 | owned |
 | `thready.corpus-measurement` | 자체 수집 실측 코퍼스를 n=19에서 n=4,039로 확대하고, 표본 편향을 명시해 소표본 결론을 유지/기각으로 재판정 | owned |
 
-## Agent Structure Design (2026-08-11 추가)
+## Agent Structure Design
+
+2026-08-11에 추가한 user-confirmed 구조 근거다.
 
 - User-confirmed (2026-08-11): **하네스 구축과 agent 구조 설계·구현은 병행된 한 작업이다** — 평가 하네스를 만들면서 그 하네스로 검증할 planner-writer 파이프라인 구조 자체를 설계하고, 이해하면서 구현했다. **대표 영역은 writer**다. 원문: "harness를 구축함과 동시에 실제 agent 구조를 설계하고 이해하면서 구현하는 작업도 하는거지, 그게 대표적으로 writer 영역이고".
 - 표현 허용: "agent 구조(planner-writer 파이프라인) 설계·구현" — 종전 "운영·확인" 수준에서 상향. 분기 판정 재배치 사례(writer 18건 미발동 → planner 이동)는 이 설계 과정의 실측 학습으로 서술한다.

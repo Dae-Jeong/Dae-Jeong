@@ -2,9 +2,9 @@
 type: profile
 title: Canonical Baseline
 description: 여러 레이어에 흩어진 확정값을 한 화면에서 보는 통합 인덱스. canonical은 각 owner 문서가 갖는다.
-timestamp: 2026-08-09
+timestamp: 2026-08-13
 canonical: false
-derived_from: [profile/career.md, profile/identity.md, evidence/claims/, evidence/clients.md, rules/recency-weighting.md, rules/public-safety.md]
+derived_from: [profile/career.md, profile/identity.md, evidence/claims/, evidence/clients.md, rules/recency-weighting.md, rules/public-safety.md, app/fe/app/resume/resume-view.tsx]
 tags: [profile, baseline, derived, index]
 ---
 
@@ -24,14 +24,14 @@ tags: [profile, baseline, derived, index]
 | 1순위 직무 | **Backend Engineer** | [identity.md](identity.md) |
 | 2순위 | AI Product Systems | |
 | 3순위 | Agent-readable Engineering Workflow | |
-| 연차 | **4년차** (인턴 제외 실무 47개월) | [career.md#tenure](career.md#tenure) · `career.tenure` |
+| 연차 | **4년차** (인턴 제외 실무 48개월) | [career.md#tenure](career.md#tenure) · `career.tenure` |
 | 거주지 표기 | 경기 안양시 (시 단위까지) | [public-safety.md](../rules/public-safety.md) |
 | 공개 사이트 | https://marinkim.xyz | |
 | GitHub | https://github.com/Dae-Jeong | |
 
 **연차 규칙 (2026-08-09 확정)**: 인턴 기간을 제외한 실무 경력으로 산정하며 직군(AI Engineer·PM·Backend)은 합산한다 → **4년차**. 산정 근거는 [career.md#tenure](career.md#tenure)가 소유한다.
 
-- **"Backend 기준 N년차"로 쓰지 않는다** — BE 구간만은 27개월(2년 3개월)이라 부풀리기로 읽힌다.
+- **"Backend 기준 N년차"로 쓰지 않는다** — BE 구간만은 28개월(2년 4개월)이라 부풀리기로 읽힌다.
 - **"6년째"·"5년차"는 쓰지 않는다** — 각각 시작 연도 기준·인턴 포함 수치다.
 - AI 엔지니어·PM 경험은 배경으로 서술하되 현재 직무로 내세우지 않는다.
 
@@ -42,19 +42,19 @@ tags: [profile, baseline, derived, index]
 | MediSolve AI | 2025.04 ~ 재직중 | Backend Engineer | 정규직 |
 | 더데이랩스 | 2025.02 ~ 2025.04 | Backend Engineer | 프리랜서 |
 | Memento AI | 2024.10 ~ 2025.01 | Backend Engineer | 인턴 1개월 → 정규직 |
-| STUDIO LAB | 2021.12 ~ **2023.12** | AI Engineer → PM → Backend Engineer | 정규직 |
+| STUDIO LAB | 2021.12 ~ **2024.01** | AI Engineer → PM → Backend Engineer | 정규직 |
 | 아이즈솔 | 2020.08 ~ 2021.06 | AI Engineer (Vision) | 인턴 |
 
 owner: [career.md](career.md) · 근거: [previous-career.md](../evidence/projects/previous-career.md)
 
-**직급**: MediSolve에서 **기업부설연구소장 · Tech Lead · PO 역할 병행** (2026-08-08 user-confirmed).
+**등재 직함·병행 역할**: MediSolve에서 등재 직함은 **기업부설연구소장**, Tech Lead·PO는 병행 역할이다 (2026-08-08 user-confirmed).
 
 **STUDIO LAB 직무 구간** (상세 기재 가능한 곳에서만):
-AI Engineer 2021.12~2022.09 → PM 2022.10~2023.09 → Backend Engineer 2023.10~2023.12
+AI Engineer 2021.12~2022.09 → PM 2022.10~2023.09 → Backend Engineer 2023.10~2024.01
 
 **TellingMe(2024.01~2024.12)는 경력이 아니다.** 개인 프로젝트 섹션으로 분리 표기한다.
 
-**2024.01~2024.10 구간**은 공백이 아니라 backend 전환 준비 기간이다 — TellingMe 개인 프로젝트 + OZ 코딩스쿨 백엔드 캠프(2024.06~10, 6개월). 두 근거 모두 공개 가능하다.
+**STUDIO LAB 종료 후 Memento 시작 전(2024.02~2024.09)**은 backend 전환 준비 기간이다 — TellingMe 개인 프로젝트 + OZ 코딩스쿨 백엔드 캠프(2024.06~10). 두 근거 모두 공개 가능하다.
 
 **표기하지 않는 공백**: 2021.06~2021.12 (서울 취업 준비). 이력서에 쓰지 않고 면접 답변으로만 사용한다.
 
@@ -87,7 +87,7 @@ AI Engineer 2021.12~2022.09 → PM 2022.10~2023.09 → Backend Engineer 2023.10~
 | --- | --- | --- | --- |
 | 현재 (2025.04~) | MediSolve AI | **3~5** | 상세 2~3건 |
 | 직전 (2024.10~2025.04) | 더데이랩스·Memento | 1~2 | 필요 시 1건 |
-| 과거 (2021.12~2023.12) | STUDIO LAB | 1~2 | 1건 |
+| 과거 (2021.12~2024.01) | STUDIO LAB | 1~2 | 1건 |
 | 초기 (2020.08~2021.06) | 아이즈솔 | **1 이하** | 없음 |
 
 owner: [recency-weighting.md](../rules/recency-weighting.md)
@@ -130,21 +130,19 @@ owner: [public-safety.md](../rules/public-safety.md) · [evidence-policy.md](../
 
 어드민 시스템(2025.10~) 대상은 **`D`·`C 피부과`**이거나 고객사를 생략한 "통합 관리 시스템"으로 서술한다.
 
-## 8. 미확정 (사용 금지)
+## 8. 제한 유지
 
 | 항목 | 상태 |
 | --- | --- |
-| SellerCanvas POC 두 번째 브랜드 | 실명 불확실 — 산출물에서 개수를 못박지 않고 SPAO 건만 사용 |
-| 채용 플랫폼 상세 주소 노출 범위 | 사람인에 동·호수까지 기재됨. 시 단위 축소 여부 미정 |
-| ~~medisolve-admin claim 3건~~ | **2026-08-10 해소** — Git 대조로 NEXUS와 동일 저장소임이 확인돼 `nexus.admin-backend-ownership`·`nexus.pool-stabilization`·`nexus.quality-automation`으로 흡수했다. KimMarin 734/881 커밋(83%)으로 강등 사유가 소멸해 `public: true`로 복원. 단 강도는 `owned`가 아니라 **`led`**(17%가 타인)이고, "500 에러 완전 해결"은 지표가 없어 여전히 금지다 |
-| 인증서 실물 | 미확인 — `credentials.ai-accuracy-certification` confidence medium 유지 |
+| SellerCanvas POC 두 번째 브랜드 | 사용자 기억상 이름이 S로 시작하지만 실명 미확정. 내부 단서로만 보존하고 산출물은 SPAO 한 건만 사용 |
+| KCL 인증 | 인증 통과 사실만 공개. 인증서 실물 미확인 상태에서 `credentials.ai-accuracy-certification` confidence medium 유지 |
 
 ## 9. 파생 산출물
 
 | 산출물 | 상태 |
 | --- | --- |
-| [resume v3](../products/resume/master/v3/content.md) | DRAFT — 이 문서 기준 반영됨 |
+| [resume v3](../products/resume/master/v3/content.md) | superseded draft — 현재 표현 source로 사용하지 않음 |
 | [resume v2](../products/resume/master/v2/content.md) | 이전 버전. v3 로 대체됐다 |
-| `resume-view.tsx` (로컬) | **v3 반영 완료** (2026-08-09) — 연차 4년차 · MediSolve 3 bullet · 개인 프로젝트 분리 · CES 를 Credentials 로 · KCL 인증 추가. 규칙 위반 0건 검증 |
-| marinkim.xyz `/resume` | **배포 대기** — push 시 반영된다 |
+| `app/fe/app/resume/resume-view.tsx` | **active expression SoT** (2026-08-13) — KO 웹 이력서의 문장·순서·강조를 소유 |
+| marinkim.xyz `/resume` | **배포됨** — active expression SoT와 동일한 공개 표면 |
 | 채용 플랫폼 7곳 | [sync-spec](../backlog/platform-profile-consolidation/sync-spec.md) 기준 미적용 |

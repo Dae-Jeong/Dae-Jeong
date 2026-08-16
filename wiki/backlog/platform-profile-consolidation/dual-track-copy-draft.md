@@ -2,7 +2,7 @@
 type: spec
 title: Dual Track 전파 문안 (확정)
 description: Backend Engineer + PO 병기와 "정량은 상세가 소유" 원칙의 전 플랫폼 확정 문안.
-timestamp: 2026-08-10
+timestamp: 2026-08-13
 status: confirmed
 tags: [platform, copy, identity, dual-track]
 ---
@@ -11,7 +11,7 @@ tags: [platform, copy, identity, dual-track]
 
 **2026-08-10 확정.** 검토 3건이 모두 답변돼 초안 → 확정본으로 승격했다.
 
-owner 규칙: [identity.md](../../profile/identity.md#dual-track-근거와-경계) · 확정 문안은 [platform-copy](platform-copy.md)로 이관
+owner 규칙: 사실·강도는 [identity.md](../../profile/identity.md#dual-track-근거와-경계)와 claim registry, 플랫폼 변환 문안은 이 문서가 소유한다. [platform-copy.md](platform-copy.md)는 superseded v3 기록이다.
 
 ---
 
@@ -207,7 +207,7 @@ AI 제품만 4년째 만들고 있습니다. 모델을 만들다 기획을 거�
 
 **연차 표기가 바뀌었다 (v5).** 종전 `4년차 백엔드 엔지니어`는
 [career.yaml](../../evidence/claims/career.yaml) `forbidden_copy: Backend Engineer 기준 N년차`에
-걸린다 — 47개월은 AI Engineer·PM·Backend 합산이고 BE 구간만은 27개월이다.
+걸린다 — 48개월은 AI Engineer·PM·Backend 합산이고 BE 구간만은 28개월이다.
 `AI 제품을 만드는 일만 4년째`는 claim statement("궤적 전체가 제품을 만든 경력")와 정확히 맞으면서
 연차 수치를 그대로 살린다.
 

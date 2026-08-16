@@ -3,6 +3,7 @@ type: resume-content
 title: Resume Master v4 Content (DRAFT)
 description: 프로젝트 인벤토리에서 인물 서사로 — 관통 주제 3축으로 재구성. 프로젝트는 증거 위치로 이동.
 timestamp: 2026-08-09
+status: superseded
 tags: [resume, v4, content, korean, draft]
 ---
 

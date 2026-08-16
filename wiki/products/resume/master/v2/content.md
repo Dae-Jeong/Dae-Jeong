@@ -3,6 +3,7 @@ type: resume-content
 title: Resume Master v2 Content (DRAFT)
 description: Interview-harvested, screening-research-driven rewrite — XYZ-lite bullets, trajectory narrative, third-party proof promotion.
 timestamp: 2026-07-19
+status: superseded
 tags: [resume, v2, content, korean, draft]
 ---
 

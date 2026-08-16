@@ -95,7 +95,7 @@ Julia Evans, *Get your work recognized: write a brag document*:
 
 - CES 2024 AI 부문 Best of Innovation (제품 수상)
 - 특허 등록 10-2898273
-- 외부 기관 AI 정확도 인증 통과 (KCL — 인증서 실물 확인 대기)
+- 외부 기관 AI 정확도 인증 통과 (KCL — 인증서 실물 미확인, confidence medium)
 - 공개된 제품·서비스 URL
 
 ⚠️ 단, [public-safety](public-safety.md)와 [recency-weighting](recency-weighting.md)이 우선한다.

@@ -22,6 +22,15 @@ tags: [identity, positioning, branding]
 
 > AI 제품을 만들고, 무엇을 만들지도 함께 정하는 백엔드 엔지니어.
 
+## Brand Line
+
+> Whatever the role, I move the product forward.
+
+- 2026-08-16 user-confirmed.
+- 이 문장은 홈페이지·포트폴리오용 브랜드 서사이며, 이력서 헤더에는 사용하지 않는다 (2026-08-16 user-confirmed).
+- Vision AI Engineer → PM → Backend Engineer 전환을 직무 나열이 아니라, 제품에 더 크게 기여하기 위해 필요한 역할과 역량을 확장해온 서사로 표현한다.
+- 공개 이력서에서는 primary category `Backend Engineer`와 분리된 브랜드 문장으로 사용한다.
+
 ## 관통 질문 (2026-08-11 신설, user-confirmed)
 
 > **"AI가 구현을 점점 더 많이 맡을수록, 사람이 끝까지 책임져야 하는 층을 어떻게 지킬 것인가?"**

@@ -12,7 +12,13 @@ export function SectionHead({
   size?: "hub" | "doc";
 }) {
   return (
-    <div className="mb-8 flex flex-wrap items-baseline gap-4 border-b border-border pb-4">
+    <div
+      className={
+        size === "doc"
+          ? "mb-7 flex flex-wrap items-baseline gap-4 border-b border-border pb-3"
+          : "mb-8 flex flex-wrap items-baseline gap-4 border-b border-border pb-4"
+      }
+    >
       <span className="font-mono text-xs tracking-[0.08em] text-muted">
         {no}
       </span>

@@ -1,14 +1,14 @@
 ---
 type: artifact-readme
-title: Resume Master v1
-description: Evidence-linked public-ready Korean A4 general resume master.
-timestamp: 2026-07-11
-tags: [resume, v1, active, korean]
+title: Resume Master v1 (Superseded)
+description: Superseded evidence-linked Korean A4 resume baseline.
+timestamp: 2026-08-13
+tags: [resume, v1, superseded, korean]
 ---
 
-# Resume Master v1
+# Resume Master v1 (Superseded)
 
-현재 active general resume master다.
+최초 evidence-linked A4 baseline이며 현재 public source가 아니다. active expression SoT는 `app/fe/app/resume/resume-view.tsx`다.
 
 - [content.md](content.md): evidence-linked authoring copy
 - [resume.html](resume.html): responsive screen and A4 print source

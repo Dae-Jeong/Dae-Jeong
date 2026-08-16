@@ -1,44 +1,64 @@
 schema_version: 1
-artifact: products/resume/master/v1/resume.html
+artifact: app/fe/app/resume/resume-view.tsx
 status: active
 sections:
   summary:
-    - thready.backend-rebuild
-    - thready.production-operation-quality
-    - career.medisolve-role-evolution
-    - mediness.product-operations
-  capabilities:
-    - thready.generation-quality-system
-    - centurion.bay-async-backend
-    - centurion.say-realtime-ai
-    - nexus.backend-architecture
-    - nexus.terraform-infra
-    - infra.company-azure-ownership
-    - be-template.backend-standard
-    - be-template.agent-context
-    - mediness.product-operations
-    - mediness.daily-briefing
-  projects:
-    - thready.backend-rebuild
-    - thready.generation-quality-system
-    - thready.release-operation
-    - centurion.bay-async-backend
-    - centurion.say-realtime-ai
-    - be-template.backend-standard
-    - be-template.agent-context
+    - career.tenure
+    - career.ai-pm-backend-continuity
   career:
     - career.medisolve-role-evolution
+    - thready.qa-reopen-reduction
+    - thready.production-operation-quality
+    - infra.company-azure-ownership
+    - mediness.product-operations
     - career.thedaylabs-freelance
     - career.memento-payment
     - career.sellercanvas-product-system
+    - credentials.page-output-patent
+    - credentials.ces-2024
     - career.ai-pm-backend-continuity
-    - career.tellingme-backend-infra
-  agent_workflow:
-    - mediness.product-operations
-    - mediness.daily-briefing
+  capabilities:
+    - thready.rebuild-decision-execution
+    - thready.backend-rebuild
+    - thready.qa-reopen-reduction
+    - thready.production-operation-quality
+    - centurion.async-migration
+    - centurion.bay-async-backend
+    - career.memento-payment
+    - thready.quality-criteria-system
+    - thready.measurement-correction
+    - thready.falsification-log
+    - thready.corpus-measurement
+    - nexus.backend-architecture
+    - nexus.admin-backend-ownership
+    - nexus.quality-automation
+    - thready.agent-pipeline-design
+    - be-template.backend-standard
     - be-template.agent-context
+    - infra.company-azure-ownership
+    - nexus.terraform-infra
+    - centurion.shared-infra
+    - mediness.product-operations
+    - career.medisolve-role-evolution
+    - career.sellercanvas-product-system
+    - credentials.page-output-patent
+    - credentials.ces-2024
+  how_i_work:
+    - thready.rebuild-decision-execution
+    - thready.measurement-correction
+    - thready.quality-criteria-system
+    - be-template.agent-context
+    - mediness.product-operations
+    - centurion.bay-async-backend
+  skills:
+    - be-template.backend-standard
+    - career.tellingme-backend-infra
+    - centurion.bay-async-backend
+    - centurion.async-migration
+    - infra.company-azure-ownership
   credentials:
     - credentials.education
     - credentials.ces-2024
     - credentials.page-output-patent
     - credentials.adsp
+    - credentials.ai-accuracy-certification

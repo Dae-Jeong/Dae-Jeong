@@ -163,3 +163,39 @@ body {
     transform: none;
   }
 }
+
+/* Resume PDF: 사이트 chrome만 제외하고 화면의 구조·위계·간격을 그대로 인쇄한다. */
+@page {
+  size: A4;
+  margin: 8mm;
+}
+
+@media print {
+  html,
+  body {
+    min-height: auto;
+    background: #fff;
+  }
+
+  .resume-print-page-one,
+  .resume-print-page-two,
+  .resume-print-support {
+    display: contents;
+  }
+
+  [data-resume-canvas] section > div:first-child {
+    break-after: avoid;
+  }
+
+  [data-resume-canvas] section li {
+    break-inside: avoid;
+  }
+
+  [data-resume-canvas] #s5 > div:last-child > div {
+    break-inside: avoid;
+  }
+
+  [data-resume-canvas] #s3 {
+    break-before: page;
+  }
+}

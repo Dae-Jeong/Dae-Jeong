@@ -55,4 +55,4 @@ Agent Workflow는 별도 nav가 아니라 Home/case 서술의 differentiator로 
 
 Source: [identity](../../profile/identity.md), [capabilities](../../profile/capabilities.md), [public safety](../../rules/public-safety.md)
 
-Resume: [active master v1](../resume/master/v1/README.md)
+Resume expression SoT: `app/fe/app/resume/resume-view.tsx` · contract: [resume README](../resume/README.md)

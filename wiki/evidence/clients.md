@@ -2,7 +2,7 @@
 type: evidence
 title: Client Masking Registry
 description: 고객사 실명과 공개 산출물용 마스킹 코드의 단독 매핑 소유자. 내부 전용.
-timestamp: 2026-08-08
+timestamp: 2026-08-13
 canonical: true
 tags: [evidence, client, masking, internal]
 ---
@@ -43,7 +43,7 @@ MediSolve 고객사는 **세라미크·데이뷰·벨리셀 3곳**이다 (user-c
 | --- | --- | --- | --- |
 | `E 브랜드` | **이랜드 — SPAO** | **user-confirmed (2026-08-09)** | SellerCanvas 패션 대기업 POC. SPAO는 이랜드월드 브랜드이므로 이니셜 `E`와 정합 |
 
-**`M 브랜드` 코드는 폐기한다 (2026-08-09).** 두 번째 POC 대상은 기억이 불확실해 실명을 확정하지 않는다. 부정확한 실명을 registry에 남기면 면접에서 방어할 수 없으므로 **비워 두는 편이 낫다.**
+**`M 브랜드` 코드는 폐기한다 (2026-08-09).** 두 번째 POC 대상은 실명이 불확실하다. 2026-08-13 사용자 기억으로는 **이름이 S로 시작**하지만, 검증된 실명이나 public masking code로 승격하지 않는다. SPAO 역시 S로 시작해 혼동될 수 있으므로 내부 단서로만 보존한다.
 
 → 산출물에서는 **SPAO 건만 근거로 쓰고**, 두 번째 대상은 언급하지 않는다. "패션 대기업 브랜드 POC" 정도의 서술은 가능하나 개수를 못박지 않는다.
 

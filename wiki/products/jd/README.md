@@ -19,6 +19,10 @@ tags: [jd, recruiting, gap-analysis, product]
 
 시점별 cross-platform 정성 분석은 [reports/2026-07-11-market-talent-signals.md](reports/2026-07-11-market-talent-signals.md)에 별도로 보존한다.
 
+개별 공고 적용 검토:
+
+- [토스페이먼츠 Server Developer 이력서 적합성 검토](reports/2026-08-13-toss-payments-resume-fit.md) — 공고의 문제 해결·리팩터링·비즈니스 해결 기준을 active claim에 매핑하고 경력 상한 gate를 분리했다.
+
 ## 대상 직군 (5개)
 
 | # | 직군 쿼리 | 내 포지셔닝과의 관계 |

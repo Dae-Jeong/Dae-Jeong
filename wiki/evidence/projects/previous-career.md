@@ -2,7 +2,7 @@
 type: career-evidence
 title: Previous Career And Credentials Evidence
 description: Prior roles, personal project, education, awards, patent, and certification evidence.
-timestamp: 2026-07-16
+timestamp: 2026-08-13
 source_roots: [workspace]
 tags: [career, credentials, tellingme, evidence]
 ---
@@ -95,12 +95,12 @@ tags: [career, credentials, tellingme, evidence]
 | VGG Network 분류 정확도 (프로토타입 시기) | 평균 85%+ (종류 5종 90%+, 세부 특징 80%+) | 리멤버 |
 | FastAPI 도입으로 개발 기간 단축 | 30% 이상 (12일 → 7일) | 리멤버 |
 
-- **한국건설생활환경시험연구원(KCL) 인증만 예외 후보다.** 정확도 수치(99%)는 쓰지 않되, **"외부 기관 AI 정확도 인증 통과"라는 사실 자체**는 제3자 검증이라 시점 무관 자산에 해당한다 ([recency weighting](../../rules/recency-weighting.md) 예외 1). 인증서 실물 확인 시 `credentials.yaml` 승격을 검토한다. → **사용자 확인 대기**
+- **한국건설생활환경시험연구원(KCL) 인증은 제한된 확정 상태다.** 정확도 수치(99%)는 쓰지 않되, **"외부 기관 AI 정확도 인증 통과"라는 사실 자체**는 제3자 검증이라 시점 무관 자산에 해당한다 ([recency weighting](../../rules/recency-weighting.md) 예외 1). 현재 공개 범위는 인증 통과 사실까지이며 `credentials.ai-accuracy-certification`은 인증서 실물 미확인으로 confidence medium을 유지한다.
 - VGG(프로토타입, 85%+)와 Yolo v8(99%+)은 시기가 다른 별개 모델로 보인다. 어차피 수치를 공개하지 않으므로 산출물에서는 구분이 불필요하나, 면접 답변 시 혼용하지 않는다.
 
 ### 그 밖 (Self-reported)
 
-- **패션 대기업 브랜드 POC 담당** — 기획·일정 관리·기술 검증, 비즈니스 요구사항을 기술 스펙으로 변환. 확정 대상은 **이랜드 SPAO** (user-confirmed 2026-08-09). 플랫폼 기재는 "2개 브랜드"이나 두 번째는 기억이 불확실해 확정하지 않는다 — **산출물에서는 개수를 못박지 않고 SPAO 건만 근거로 쓴다** ([clients.md](../clients.md)). 공개 시 마스킹 코드 사용.
+- **패션 대기업 브랜드 POC 담당** — 기획·일정 관리·기술 검증, 비즈니스 요구사항을 기술 스펙으로 변환. 확정 대상은 **이랜드 SPAO** (user-confirmed 2026-08-09). 플랫폼 기재는 "2개 브랜드"이고, 두 번째는 2026-08-13 사용자 기억상 이름이 S로 시작하지만 실명은 미확정이다. **산출물에서는 개수를 못박지 않고 SPAO 건만 근거로 쓴다** ([clients.md](../clients.md)). 공개 시 마스킹 코드 사용.
 - **Node.js 레거시 → NestJS 마이그레이션** — PM 경험으로 레거시 문제점 파악 및 개선 방향 설계, NestMiddleware·ExceptionFilter 기반 예외 처리 구축.
 - **Nest.js 도입 개발 템플릿 제작 (2023.08~12)** — JWT 인증/인가, ExceptionFilter 기반 ExceptionHandler, NestMiddleware Logger, MVC 기반 Controller→Service→DAO 흐름. **현재 [be-template](be-template.md) 작업의 원류로 보인다** — 조직 표준 템플릿 설계라는 같은 패턴의 첫 사례다.
 - SellerCanvas는 **현재 Gency로 리브랜딩**됐다 (oopy·그룹바이 기재).
@@ -158,9 +158,11 @@ tags: [career, credentials, tellingme, evidence]
 
 ## Career Gaps And Freelance
 
+> **Superseded 판정 (2026-08-13):** 이 섹션의 2026-08-08 STUDIO LAB 종료일 `2023.12.31` 판정은 폐기됐다. 최신 사용자 확정값은 **2024.01**이며 active owner는 [profile/career.md](../../profile/career.md)다. 아래 구판 문장은 변경 이력일 뿐 사실 판정이나 공개 문안의 근거로 사용하지 않는다. 최신값 기준 STUDIO LAB 이후 Memento 시작 전 구간은 2024.02–2024.09다.
+
 - User-confirmed (2026-07-16): 2021.06–2021.12 공백은 AI 엔지니어로 서울 취업을 준비한 기간이다. 이력서에는 표기하지 않고 면접 답변으로 사용한다.
-- User-confirmed (2026-08-08): STUDIO LAB 퇴사일은 **2023.12.31**이다. 기존 표기 2024.01은 오류였으며 profile/career.md·resume v2·웹 이력서를 정정했다.
-- 그 결과 **2024.01–2024.10 구간(약 9개월)**이 새로 드러난다. 공백이 아니라 backend 전환 준비 기간으로 설명된다: TellingMe 개인 프로젝트(2024.01–2024.12, Spring Boot backend·AWS 인프라 리드)와 OZ 코딩스쿨 백엔드 웹개발 초격차 캠프(2024.06.20–2024.10.20, 6개월)가 이 구간을 채운다. 두 근거 모두 공개 가능하므로 이력서 표기가 가능하다.
+- Superseded record (2026-08-08): 당시 STUDIO LAB 종료일을 `2023.12.31`로 판정했으나, 2026-08-13 사용자 확정값 **2024.01**로 대체됐다.
+- 최신값 기준 STUDIO LAB 종료 후 Memento 시작 전 구간은 **2024.02–2024.09**다. TellingMe 개인 프로젝트(2024.01–2024.12, Spring Boot backend·AWS 인프라 리드)와 OZ 코딩스쿨 백엔드 웹개발 초격차 캠프(2024.06.20–2024.10.20)가 이 기간에 포함된다.
 - [persona review](../audits/2026-07-16-persona-resume-review.md)가 지적한 "공백 2구간"은 이 정정으로 3구간이 되지만, 2024 구간은 근거가 있어 오히려 방어가 쉬워진다. AI 엔지니어·PM에서 backend로 직무를 전환한 서사의 실증 구간이다.
 - User-confirmed (2026-07-16): Memento 폐업 후 MediSolve 합류 전인 2025.02–2025.04에 더데이랩스에서 프리랜서로 근무했다.
 - Code-backed (별도 시점): `workspace:thedaylabs-infra`에 KimMarin 단독 저자 커밋(Azure VM·Blob·docker-compose 배포)이 확인되나 커밋 시점이 2025-10이라 프리랜서 기간(02–04)의 업무 근거로 사용하지 않는다.
@@ -199,8 +201,8 @@ tags: [career, credentials, tellingme, evidence]
 Self-reported (과거 자기 기록) — 현행 evidence와 대조한 발견 3건:
 
 1. **특허가 [PM] 성과로 분류돼 있다** — "[PM] 상세페이지 제작 관련 특허 출원 (특허명: 페이지 출력 방법)".
-   현행 가드는 "특허와 SellerCanvas의 연결 (확정 전)" 금지인데, 본인의 동시대 기록이
-   상세페이지 제작 관련·PM 성과로 명시한다. → **사용자 확정 시 금지 해제 후보.**
+   본인의 동시대 기록과 2026-08-12 사용자 확인이 일치해 SellerCanvas와 특허의 연결은 해금됐다.
+   단독 발명 표현은 계속 금지한다.
 2. **Deep Scan이 별도 프로젝트로 2023.05~2023.06에 기록** — 의류 색상·종류 분류 모델,
    "의류 색상 도출 알고리즘 개발을 통한 모델 정확도 보정", KCL AI 정확도 인증 통과가 이 프로젝트 성과로 귀속.
    ⚠️ **시기 충돌**: oopy 실측 표는 딥스캔을 AI 엔지니어 시기(2021.12~2022.09) 서비스로 기록.

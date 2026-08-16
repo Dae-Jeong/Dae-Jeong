@@ -17,12 +17,6 @@ export const GNA_COMPANY_RESUME = {
       { text: "STUDIO LAB", tone: "strong" },
       { text: " · PM (2021.12 — 2024.01)" },
     ],
-    tagline: [
-      {
-        text: "운영 안정성을 유지하며 반복되는 문제를 구조적으로 해결하는 백엔드 엔지니어",
-        tone: "strong",
-      },
-    ],
     contacts: [
       { label: "marin.backend@gmail.com", href: "mailto:marin.backend@gmail.com" },
       {
@@ -62,7 +56,7 @@ export const GNA_COMPANY_RESUME = {
   careers: [
     {
       org: "MediSolve AI",
-      period: "2025.04 —",
+      period: "2025. 04 —",
       now: true,
       claimIds: [
         "career.medisolve-role-evolution",
@@ -161,23 +155,23 @@ export const GNA_COMPANY_RESUME = {
       details: ["Vision AI 모델과 데이터 pipeline을 제품 기능으로 연결하는 개발·검증"],
     },
   ],
-  capabilities: [
+  outcomes: [
     {
       no: "01",
       title: "운영을 유지한 FastAPI backend 전환",
-      claim: [
-        {
-          text: "기존 frontend와 운영 버전은 유지하고, 신규 backend를 병렬 구축해 검증 후 cutover했습니다.",
-          tone: "strong",
-        },
-      ],
       claimIds: [
         "thready.backend-rebuild",
         "thready.production-operation-quality",
         "thready.release-operation",
         "career.memento-payment",
       ],
-      details: [
+      description: [
+        [
+          {
+            text: "기존 frontend와 운영 버전은 유지하고, 신규 backend를 병렬 구축해 검증 후 cutover했습니다.",
+            tone: "strong",
+          },
+        ],
         {
           text: "향후 AI 모듈 확장과 누적 복잡도를 고려해 서비스 초기 단계에서 backend 구조 전환 결정",
           source: "Threads 마케팅 서비스",
@@ -202,15 +196,15 @@ export const GNA_COMPANY_RESUME = {
     {
       no: "02",
       title: "Background·realtime 작업의 실패 격리와 복구",
-      claim: [
-        { text: "요청과 후속 작업의 경계를 나누고, 실패를 다시 처리할 수 있는 상태로 만듭니다.", tone: "strong" },
-      ],
       claimIds: [
         "centurion.bay-async-backend",
         "centurion.async-migration",
         "centurion.say-realtime-ai",
       ],
-      details: [
+      description: [
+        [
+          { text: "요청과 후속 작업의 경계를 나누고, 실패를 다시 처리할 수 있는 상태로 만듭니다.", tone: "strong" },
+        ],
         {
           text: "병원 주문·상품·재고 관리 서비스의 API와 RabbitMQ·TaskIQ worker·retry 구축 주도",
           source: "주문·재고 관리 서비스",
@@ -228,16 +222,16 @@ export const GNA_COMPANY_RESUME = {
     {
       no: "03",
       title: "API·test·배포 기준의 표준화",
-      claim: [
-        { text: "한 번 해결한 판단을 규약·문서·자동 검증으로 남겨 팀이 반복해서 사용하게 합니다.", tone: "strong" },
-      ],
       claimIds: [
         "nexus.quality-automation",
         "centurion.test-ci-foundation",
         "be-template.backend-standard",
         "career.tellingme-backend-infra",
       ],
-      details: [
+      description: [
+        [
+          { text: "한 번 해결한 판단을 규약·문서·자동 검증으로 남겨 팀이 반복해서 사용하게 합니다.", tone: "strong" },
+        ],
         {
           text: "의료기관 통합 관리 시스템의 Swagger·API·DB 문서와 Ruff·Pyright·pre-commit 검증 체계 구축",
           source: "통합 관리 시스템",
@@ -328,7 +322,7 @@ export const GNA_COMPANY_RESUME = {
   ],
   credentials: [
     {
-      period: "2016 — 2021",
+      period: "2016. 03\n- 2021.08",
       text: "우송대학교 게임멀티미디어 전공",
       claimIds: ["credentials.education"],
     },

@@ -3,11 +3,13 @@ type: handoff
 title: 브라우저 반영 실행 지시서 (Codex agent용)
 description: 확정 문안을 채용 플랫폼에 반영하는 브라우저 작업 지시서. 문안 수정 권한 없음 — 반영과 검증만.
 timestamp: 2026-08-10
-status: active
+status: superseded
 tags: [handoff, browser, platform]
 ---
 
 # 브라우저 반영 실행 지시서
+
+> **Superseded execution record:** 이 파일의 붙여넣기 문안과 날짜는 당시 브라우저 작업 기록이다. 현재 입력 문안은 [dual-track-copy-draft.md](dual-track-copy-draft.md), 사실 기준은 [profile/career.md](../../profile/career.md), 미완 작업은 [2026-08-13-sync-matrix.md](2026-08-13-sync-matrix.md)를 사용한다.
 
 너의 임무는 **아래 문안을 채용 플랫폼에 그대로 반영하고, 저장을 검증하는 것**이다.
 

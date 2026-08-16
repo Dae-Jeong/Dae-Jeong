@@ -3,6 +3,7 @@ type: resume-content
 title: Resume Master v3 Content (DRAFT)
 description: recency weighting 적용 — 현재 소속 비중 확대, 초기 경력 압축, 검증 자산 분리. 연차 기준을 인턴 제외 실무 4년차로 확정.
 timestamp: 2026-08-08
+status: superseded
 tags: [resume, v3, content, korean, draft]
 ---
 
