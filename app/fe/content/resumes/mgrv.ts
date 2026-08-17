@@ -6,8 +6,7 @@ export const MGRV_RESUME = {
   position: "Backend Engineer",
   status: "approved",
   visibility: "public",
-  updatedAt: "2026-08-16",
-  pdfHref: "/resumes/mgrv-resume.pdf",
+  updatedAt: "2026-08-17",
   header: {
     name: "김대정",
     role: "Backend Engineer · Python / FastAPI / SQLAlchemy",
@@ -29,26 +28,20 @@ export const MGRV_RESUME = {
   summary: [
     {
       claimIds: [
-        "nexus.admin-backend-ownership",
-        "mediness.product-operations",
+        "thready.prototype-to-user-operation",
+        "thready.backend-rebuild",
         "thready.release-operation",
       ],
-      text: "운영 현장의 요구를 권한·상태·데이터 규칙으로 구조화하고, 이를 API·QA·배포·운영까지 연결해 온 Backend Engineer입니다.",
+      text: "제품을 실제 사용자에게 전달하고 운영하는 Backend Engineer입니다.",
     },
     {
       claimIds: [
+        "career.sellercanvas-product-system",
+        "career.ai-pm-backend-continuity",
         "centurion.day-product-integration",
-        "centurion.ray-backend",
-        "centurion.bay-async-backend",
-        "career.memento-payment",
-        "mediness.product-operations",
+        "nexus.branch-access-boundary",
       ],
-      text: [
-        { text: "FastAPI·SQLAlchemy", tone: "strong" },
-        {
-          text: "를 주력으로 예약·시설·결제·주문·재고처럼 상태 변화와 복구가 중요한 제품을 개발했습니다. 운영팀·PM·프론트엔드·QA와 요구사항의 배경을 구체화하고, 실패 가능한 후속 작업은 worker·retry·rollback 경계로 분리합니다. 여러 제품에 반복되는 개발 기준은 공통 백엔드 표준으로 고정합니다.",
-        },
-      ],
+      text: "AI Engineer와 Product Manager로 일하며 제품의 0→1을 이끌었던 경험을 바탕으로, 사용자·운영자의 흐름을 상태·권한·데이터·실패 복구 규칙으로 설계하고 구현합니다.",
     },
   ],
   careers: [
@@ -58,36 +51,45 @@ export const MGRV_RESUME = {
       now: true,
       claimIds: [
         "career.medisolve-role-evolution",
+        "thready.prototype-to-user-operation",
         "thready.backend-rebuild",
-        "thready.production-operation-quality",
         "thready.release-operation",
         "centurion.bay-async-backend",
         "centurion.day-product-integration",
         "centurion.ray-backend",
+        "nexus.backend-architecture",
         "nexus.admin-backend-ownership",
-        "be-template.backend-standard",
-        "be-template.team-leverage",
+        "nexus.branch-access-boundary",
+        "infra.company-azure-ownership",
       ],
       role: [
         { text: "Backend Engineer", tone: "strong" },
-        { text: " · 기업부설연구소장 — Tech Lead·PO 역할 병행" },
+        { text: " · Tech Lead·PO 역할 병행" },
       ],
       details: [
         [
-          { text: "의료기관 통합 관리", tone: "strong" },
-          { text: " — 운영 어드민·홈페이지 백엔드와 API gateway·service boundary 설계·구축 주도(진행 중)" },
+          { text: "Thready · AI 콘텐츠 제품", tone: "strong" },
+          {
+            text: " — FastAPI 백엔드 개발과 실제 사용자 대상 배포·QA·운영",
+          },
         ],
         [
-          { text: "Centurion CRM", tone: "strong" },
-          { text: " — 예약·시설·주문·재고 백엔드와 worker 개발, 정책 변경을 프론트엔드·QA·배포까지 연결" },
+          { text: "피부과 운영 어드민·홈페이지", tone: "strong" },
+          {
+            text: " — 백엔드 서비스 경계와 API Gateway를 설계·구축 중",
+          },
         ],
         [
-          { text: "AI 콘텐츠 생성", tone: "strong" },
-          { text: " — 기존 Next.js를 유지한 채 FastAPI 백엔드를 병렬 구축·전환하고 이후 배포·QA·운영 담당" },
+          { text: "피부과 예약·시설·주문·재고", tone: "strong" },
+          {
+            text: " — API와 RabbitMQ·TaskIQ worker 개발·운영",
+          },
         ],
         [
-          { text: "Backend Standard", tone: "strong" },
-          { text: " — FastAPI template과 코드 품질·테스트·CI·onboarding 기준을 여러 제품의 공통 기반으로 구축" },
+          { text: "회사 인프라", tone: "strong" },
+          {
+            text: " — Azure·Terraform 기반으로 제품·환경별 인프라 경계를 나누고 배포·운영 절차를 관리",
+          },
         ],
       ],
     },
@@ -101,8 +103,10 @@ export const MGRV_RESUME = {
       ],
       details: [
         [
-          { text: "Centurion CRM 초기 구축", tone: "strong" },
-          { text: " — 제품 시작 단계부터 백엔드 구조·개발 규약·문서·테스트 기반을 마련하고, MediSolve AI 합류 후 같은 제품군의 개발·운영 지속" },
+          { text: "제품 초기 백엔드 구축", tone: "strong" },
+          {
+            text: " — FastAPI 구조·개발 규칙·문서·테스트 기반을 마련하고, 이후 같은 제품군의 개발·운영 지속",
+          },
         ],
       ],
     },
@@ -117,28 +121,27 @@ export const MGRV_RESUME = {
       details: [
         [
           { text: "예약·결제 서비스", tone: "strong" },
-          { text: " — FastAPI·SQLAlchemy·MySQL 기반 API를 개발하고 선결제·환불·마일리지·티켓 rollback 흐름 안정화에 기여" },
+          {
+            text: " — FastAPI·SQLAlchemy·MySQL 기반 API 개발과 선결제 실패 시 환불·마일리지·티켓 상태 복구에 기여",
+          },
         ],
       ],
     },
     {
       org: "STUDIO LAB",
       period: "2021.12 — 2024.01",
-      claimIds: [
-        "career.sellercanvas-product-system",
-        "credentials.ces-2024",
-        "credentials.page-output-patent",
-      ],
+      claimIds: ["career.sellercanvas-product-system"],
       role: [
         { text: "Product Manager", tone: "strong" },
-        { text: " — AI Engineer → PM(메인 역할) → Backend Engineer" },
+        { text: " — AI Engineer → PM(메인 역할)" },
       ],
       details: [
         [
-          { text: "SellerCanvas", tone: "strong" },
-          { text: " — 생성형 AI 커머스 제품을 아이디어 단계부터 v1.0 출시까지 PM으로 이끌고 이후 백엔드 개발까지 담당" },
+          { text: "SellerCanvas · 생성형 AI 제품", tone: "strong" },
+          {
+            text: " — v1.0 제품 기획·운영",
+          },
         ],
-        "기획·디자인·개발 요구사항의 배경과 우선순위를 정리하며 제품의 0→1 출시를 조율",
       ],
     },
     {
@@ -146,13 +149,15 @@ export const MGRV_RESUME = {
       period: "2020.08 — 2021.06",
       claimIds: ["career.ai-pm-backend-continuity"],
       role: [
-        { text: "Vision AI Engineer", tone: "strong" },
+        { text: "AI Engineer", tone: "strong" },
         { text: " — 인턴" },
       ],
       details: [
         [
           { text: "Vision AI 제품 개발", tone: "strong" },
-          { text: " — AI 모델과 데이터 pipeline을 제품 기능으로 연결하는 개발·검증에 참여" },
+          {
+            text: " — AI 모델과 데이터 파이프라인을 제품 기능으로 연결하는 개발·검증에 참여",
+          },
         ],
       ],
     },
@@ -160,151 +165,195 @@ export const MGRV_RESUME = {
   outcomes: [
     {
       no: "01",
-      title: "운영 요구를 백엔드가 판단할 수 있는 규칙으로 바꿨습니다",
+      title: "운영자의 권한과 작업 범위를 분리하는 다지점 데이터 경계를 설계·구축하고 있습니다",
       claimIds: [
+        "nexus.branch-access-boundary",
         "nexus.backend-architecture",
         "nexus.admin-backend-ownership",
-        "mediness.product-operations",
       ],
       description: [
-        "운영팀의 요구는 화면을 추가하는 것만으로 해결되지 않았습니다. 누가 어떤 상태에서 어떤 데이터를 조회하고 변경할 수 있는지 백엔드에서 먼저 정의해야 어드민·API·QA·배포가 같은 기준으로 움직일 수 있다고 판단했습니다.",
+        "운영 어드민과 홈페이지를 독립 FastAPI 서비스로 나누고 API Gateway로 연결하는 백엔드를 구축 중입니다. Admin API에서는 운영자의 소속 지점과 현재 작업 지점을 분리해, 데이터 접근 범위를 클라이언트 입력이 아니라 서버 인증 상태가 결정하도록 설계하고 있습니다.",
         {
-          text: "의료기관 통합 관리 시스템의 운영 어드민·홈페이지 API와 service boundary·migration flow 설계·구축 주도(진행 중)",
-          source: "의료기관 통합 관리",
+        text: "FastAPI·SQLAlchemy 2.0 기반으로 Admin·Homepage API를 분리하고, 공통 모델·Repository와 migration 흐름을 설계·구축 중",
+          source: "피부과 운영 어드민·홈페이지",
         },
         {
-          text: "제품 요구사항을 SPEC·Work Package·QA approval·release gate로 연결해 개발부터 배포까지 같은 실행 기준으로 운영",
-          source: "제품팀 운영",
+          text: "작업 지점 전환을 권한 검증 전용 API로 제한하고, 본사 미선택과 권한 밖 접근을 구분해 차단하도록 구현 중. Homepage API의 기존 지점 식별 계약은 유지",
+          source: "피부과 운영 어드민·홈페이지",
         },
       ],
     },
     {
       no: "02",
-      title: "예약 정책을 배포 가능한 변경 단위로 연결했습니다",
-      claimIds: [
-        "centurion.day-product-integration",
-        "centurion.ray-backend",
-      ],
-      description: [
-        "예약 정책은 API에 구현하는 것만으로 실제 운영에 반영되지 않았습니다. 백엔드의 판단, 프론트엔드의 표시, QA 검증 데이터, release 문서까지 하나의 변경 단위로 다뤘습니다.",
-        {
-          text: "예약 정책을 백엔드의 판단·프론트엔드의 표시·QA seed/test·release 문서로 연결",
-          source: "예약 운영",
-        },
-        {
-          text: "시설 현황·긴급 호출·재고 연동 백엔드에 참여해 예약 이후의 운영 흐름까지 제품 안에서 연결",
-          source: "시설 운영",
-        },
-      ],
-    },
-    {
-      no: "03",
-      title: "부분 실패를 복구 가능한 경계로 나눴습니다",
+      title: "비동기 작업의 실패를 확인하고 복구할 수 있게 만들었습니다",
       claimIds: [
         "centurion.bay-async-backend",
         "centurion.async-migration",
         "career.memento-payment",
       ],
       description: [
-        "주문·결제·재고처럼 여러 상태가 함께 바뀌는 기능에서는 후속 작업 하나의 실패도 데이터 불일치로 이어질 수 있습니다. 실패 가능한 작업을 API 요청에서 분리하고 각 단계에 retry와 rollback 경계를 뒀습니다.",
+        "API 요청과 후속 작업의 책임을 나누고, 실패가 사라지지 않도록 상태·재시도·최종 실패 기록·수동 재처리 경계를 설계했습니다.",
         {
-          text: "주문·상품·재고 API와 RabbitMQ·TaskIQ worker를 구축하고, 실패 가능한 후속 작업을 제품 시작 단계부터 요청 경계 밖으로 분리",
-          source: "주문·재고",
+          text: "FastAPI의 비동기 실행 모델과 맞는 TaskIQ·RabbitMQ로 전환해 API와 worker의 배포·실행 경계를 분리",
+          source: "Centurion · 주문·재고",
         },
         {
-          text: "결제 실패 시 환불·마일리지·티켓 rollback 흐름 안정화에 기여",
-          source: "예약·결제",
+          text: "알림 작업의 상태·최대 3회 재시도·최종 실패 기록·수동 재처리 경로 구축",
+          source: "Centurion · 주문·재고",
+        },
+        {
+          text: "예약 실패 시 환불·마일리지·티켓 상태를 되돌리는 흐름 안정화에 기여",
+          source: "Memento AI · 예약·결제",
+        },
+      ],
+    },
+    {
+      no: "03",
+      title: "초기 프로토타입의 백엔드 전환부터 실제 사용자 운영까지 책임졌습니다",
+      claimIds: [
+        "thready.prototype-to-user-operation",
+        "thready.backend-rebuild",
+        "thready.release-operation",
+        "thready.production-operation-quality",
+      ],
+      description: [
+        "Next.js·Supabase 기반 초기 프로토타입 단계에 합류해 FastAPI 백엔드를 설계·구축하고, 인증·계정·콘텐츠 생성·발행 흐름을 운영 가능한 구조로 전환했습니다.",
+        {
+          text: "v1.0~v1.2 동안 출시 준비·QA를 진행하고 v1.1.0에 백엔드를 전환한 뒤, v1.3.0부터 실제 사용자 운영 시작",
+          source: "Thready · AI 콘텐츠 제품",
+        },
+        {
+          text: [
+            {
+              text: "실제 사용자 운영 시작 이후 릴리스·QA·백엔드 운영을 이어가며, 30일간 수만 건의 요청에서 ",
+            },
+            { text: "HTTP 5xx 약 0.3%", tone: "metric" },
+            { text: "를 확인" },
+          ],
+          source: "Thready · AI 콘텐츠 제품",
         },
       ],
     },
     {
       no: "04",
-      title: "기존 운영을 유지한 채 백엔드를 전환했습니다",
+      title: "AI 실행부를 분리하고 데이터 전달의 일관성을 설계했습니다",
       claimIds: [
-        "thready.backend-rebuild",
-        "thready.rebuild-decision-execution",
-        "thready.release-operation",
+        "thready.ai-service-boundary",
+        "thready.ai-replica-outbox",
       ],
       description: [
-        "AI 기능 확장을 앞두고 기존 구조의 복잡도가 커질 것으로 예상했습니다. 다만 프론트엔드까지 한꺼번에 교체하면 변경 범위와 검증 부담도 함께 커질 수 있었습니다.",
+      "AI 실행부를 독립 FastAPI 애플리케이션과 DB로 분리했습니다. 제품 정책과 원장 데이터는 백엔드가, 생성 과정과 실행 상태는 AI 애플리케이션이 맡도록 책임을 나눴습니다.",
         {
-          text: "아키텍처·컴포넌트·인프라 검증 기반을 먼저 세운 뒤, AI와 함께 코드베이스 파악·기능 정의·재구축을 총 36시간(작업 시간 기준)에 완료",
-          source: "AI 콘텐츠 서비스",
+          text: "원장 변경과 Outbox 기록을 같은 트랜잭션으로 처리하고, 전달 작업은 트랜잭션 이후로 분리해 재시도·버전 검증으로 보호",
+          source: "Thready · AI 콘텐츠 제품",
         },
-        "프론트엔드까지 한꺼번에 바꾸지 않고 기존 Next.js를 유지한 채 FastAPI 백엔드만 병렬로 구축·검증해 전환 범위를 제한했습니다.",
         {
-          text: [
-            { text: "v1.1.0 cutover 이후 배포·QA·백엔드 운영을 이어가며 월 수만 건 요청을 " },
-            { text: "HTTP 5xx 약 0.3%", tone: "metric" },
-            { text: " 수준으로 운영" },
-          ],
-          source: "AI 콘텐츠 서비스",
+          text: "운영 전환 전에 전체 회귀, migration 왕복, 이전 버전의 PUT/DELETE 요청 차단까지 검증",
+          source: "Thready · AI 콘텐츠 제품",
         },
       ],
     },
     {
       no: "05",
-      title: "여러 제품을 효율적으로 관리할 공통 백엔드 기준을 만들었습니다",
+      title: "프로토타입을 v1.0 제품과 기업 PoC로 연결했습니다",
       claimIds: [
-        "be-template.backend-standard",
-        "be-template.team-leverage",
-        "nexus.quality-automation",
-        "centurion.test-ci-foundation",
+        "career.sellercanvas-product-system",
+        "career.sellercanvas-enterprise-poc",
+        "credentials.page-output-patent",
       ],
       description: [
-        "제품마다 구조와 개발 규칙이 다르면 담당 제품이 바뀔 때마다 코드베이스 파악, 환경 구성, 품질 검증을 반복해야 합니다. 제품별 정책과 공통 기술 기준을 분리하고, 반복되는 판단은 template과 자동 검증에 고정했습니다.",
+        "AI Engineer로 합류한 SellerCanvas에서 Product Manager 메인 역할을 맡았습니다. 이미지 입력부터 AI 분석·상세페이지 생성·편집·출력까지 제품 흐름을 정의하고, 프로토타입을 v1.0으로 발전시키는 0→1 구간을 이끌었습니다.",
         {
-          text: "layered architecture·DI·ADR·convention·runbook을 FastAPI template으로 구성해 여러 제품이 같은 백엔드 기반을 사용",
-          source: "조직 표준",
+          text: "사용자·비즈니스 요구를 기능 범위·생성 흐름·출시 우선순위로 구체화",
+          source: "SellerCanvas · Product Manager",
         },
         {
-          text: "Ruff·Pyright·pre-commit, API test·Docker CI·로컬 실행 및 onboarding 문서를 적용해 환경 구성과 품질 검증의 반복을 줄임",
-          source: "통합 관리 · 주문·재고",
+          text: "외부 패션 브랜드 PoC를 진행하고, 상세페이지 출력 흐름을 발전시켜 관련 특허 등록에 기여",
+          source: "SellerCanvas · Product Manager",
         },
       ],
     },
   ],
-  workStyles: [],
+  workStyles: [
+    {
+      no: "01",
+      title: "제품 요구를 실행 가능한 기준으로 바꿉니다",
+      body: "사용자·운영 흐름과 비즈니스 목표를 먼저 맞춘 뒤 상태·권한·데이터 규칙과 QA·배포 조건으로 구체화합니다.",
+      claimIds: [
+        "centurion.day-product-integration",
+        "mediness.product-system-design-participation",
+        "mediness.product-operations",
+      ],
+    },
+    {
+      no: "02",
+      title: "반복되는 판단을 공통 기반에 남깁니다",
+      body: "FastAPI·SQLAlchemy 구조와 ADR·개발 규칙·운영 문서를 정리하고, Ruff·Pyright·테스트·CI로 자동 검증합니다.",
+      claimIds: [
+        "be-template.backend-standard",
+        "nexus.quality-automation",
+        "centurion.test-ci-foundation",
+      ],
+    },
+    {
+      no: "03",
+      title: "AI의 속도를 검증 가능한 작업으로 바꿉니다",
+      body: "AI에는 탐색·비교·초안을 맡기되 경계 설계와 완료 판단은 사람이 맡고, 결과를 테스트·CI·배포 근거로 확인합니다.",
+      claimIds: [
+        "be-template.agent-context",
+        "thready.rebuild-decision-execution",
+      ],
+    },
+  ],
   skills: [
     {
       label: "주력",
       stack: "Python, FastAPI, SQLAlchemy",
       via: "예약·결제, 운영 어드민, AI 콘텐츠 제품 백엔드",
+      claimIds: [
+        "thready.backend-rebuild",
+        "centurion.bay-async-backend",
+        "nexus.admin-backend-ownership",
+      ],
     },
     {
       label: "Data / ORM",
       stack: "PostgreSQL, MySQL, SQLAlchemy",
-      via: "제품 schema·transaction·데이터 정합성",
+      via: "제품 스키마·트랜잭션·데이터 정합성",
       claimIds: ["career.memento-payment", "thready.backend-rebuild"],
     },
     {
-      label: "Async / Messaging",
+      label: "Async / Queue",
       stack: "RabbitMQ, TaskIQ",
-      via: "주문·재고 background worker·retry",
+      via: "작업 상태·재시도·백그라운드 처리",
       claimIds: ["centurion.bay-async-backend", "centurion.async-migration"],
     },
     {
       label: "API / Auth",
       stack: "REST API, Swagger/OpenAPI, JWT/session",
-      via: "REST API·gateway·multi-service session",
-      claimIds: ["nexus.backend-architecture", "centurion.sso-session"],
+      via: "API Gateway·다중 서비스 세션·다지점 접근 경계",
+      claimIds: [
+        "nexus.branch-access-boundary",
+        "nexus.backend-architecture",
+        "centurion.sso-session",
+      ],
     },
     {
-      label: "Quality / Delivery",
+      label: "Quality / CI",
       stack: "pytest, Ruff, Pyright, pre-commit, GitHub Actions, Docker",
-      via: "API test·static analysis·Docker CI",
+      via: "API 테스트·정적 분석·Docker CI",
       claimIds: ["nexus.quality-automation", "centurion.test-ci-foundation"],
     },
     {
-      label: "Cloud / Infra",
-      stack: "Azure, AWS, Terraform",
-      via: "제품 인프라 운영과 배포",
+      label: "Cloud / Delivery",
+      stack: "Azure, Terraform, AWS, Render, Vercel",
+      via: "제품·환경별 인프라와 배포 운영",
       claimIds: ["infra.company-azure-ownership", "centurion.shared-infra"],
     },
     {
       label: "보조",
       stack: "TypeScript, NestJS",
-      via: "API Gateway·multi-service session",
+      via: "API Gateway·다중 서비스 세션",
       claimIds: ["centurion.sso-session"],
     },
   ],

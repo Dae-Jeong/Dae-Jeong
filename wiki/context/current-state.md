@@ -37,7 +37,7 @@ tags: [current-state, migration, resume]
 | root routing hubs | complete |
 | evidence/claim registry | complete |
 | profile normalization | complete |
-| resume/portfolio/homepage/JD products | active; resume SoT aligned (2026-08-13) |
+| resume/portfolio/homepage/JD products | active; MGRV resume and portfolio approved (2026-08-17) |
 | skill adapters | complete |
 | temporary clean-clone verification | complete (2026-07-11) |
 

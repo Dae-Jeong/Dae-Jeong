@@ -201,7 +201,7 @@ export const DETAILS: Record<string, CaseDetail> = {
   "bay-async": {
     eyebrow: "Case 02 / 05 · Async Backend",
     positioning:
-      "실패 가능한 주문·재고 작업을 API에서 분리하고, worker 경계와 운영 검증을 연결한 케이스.",
+      "async FastAPI와 worker 실행 모델을 맞추고, 비동기 작업의 실패 상태와 복구 경계를 운영 가능한 흐름으로 재구성한 케이스.",
     kv: [
       { k: "Role", v: "Lead" },
       { k: "Scope", v: "Async Backend" },
@@ -210,110 +210,143 @@ export const DETAILS: Record<string, CaseDetail> = {
     ],
     problem: [
       <>
-        주문·재고 처리 흐름에 외부 알림과 재고 연동처럼{" "}
-        <strong>실패 가능한 작업</strong>이 섞여 있었다. 이 작업을 API 요청 안에서
-        끝까지 기다리면 외부 지연과 실패가 사용자 요청의 응답 경계까지 전파될 수
-        있었다.
+        기존에도 Celery가 외부 알림을 비동기로 처리하고 있었다. 문제는{" "}
+        <strong>비동기 처리의 유무가 아니라 실행 모델의 정합성</strong>이었다.
+        asyncio를 중심으로 구성한 FastAPI backend와 당시 Celery worker의 실행
+        방식이 달랐다.
       </>,
       <>
-        작업을 API 밖으로 분리하는 것만으로는 충분하지 않았다. retry, 회귀 검증,
-        worker까지 로컬에서 재현할 수 있는 개발 환경을 함께 만들어야 했다.
+        worker를 교체하는 것만으로는 충분하지 않았다. 작업 상태와 retry, 최종
+        실패 기록, 수동 재처리, API·worker를 함께 검증하는 환경까지 하나의 운영
+        경계로 만들어야 했다.
       </>,
     ],
     review: {
       groups: [
         {
-          title: "실패 가능한 작업을 어디서 다루나",
+          title: "기존 Celery 실행 모델을 유지할 것인가",
           options: [
-            { name: "API 요청 안에서 처리", verdict: "기각", reason: <>외부 지연과 실패가 사용자 응답의 경계까지 전파된다</> },
-            { name: "장애가 난 뒤에 분리", verdict: "기각", reason: <>직전 회사에서 결제 실패의 불일치 — 롤백·환불 순서·티켓 정합성 — 를 직접 수습했다. 사후 수습이 훨씬 비싸다는 걸 겪었다</> },
-            { name: "제품 시작 시점부터 worker로 분리", verdict: "채택", reason: <>실패 가능한 작업을 처음부터 API 경계 밖에 두고, 재고 차감에는 retry를 붙였다</> },
+            {
+              name: "Celery 유지",
+              verdict: "기각",
+              reason: (
+                <>
+                  당시 사용한 Celery 5.3.6은 asyncio worker pool을 공식 실행
+                  모델로 제공하지 않아 async FastAPI 코드베이스와 별도 방식으로
+                  운용해야 했다.
+                </>
+              ),
+            },
+            {
+              name: "TaskIQ로 전환",
+              verdict: "채택",
+              reason: (
+                <>
+                  async function과 FastAPI 의존성 구조를 직접 지원하고 기존
+                  RabbitMQ를 계속 사용할 수 있어 실행 모델을 맞출 수 있었다.
+                </>
+              ),
+            },
           ],
+          note: (
+            <>
+              TaskIQ가 비동기 처리를 처음 도입한 것은 아니다. 기존 Celery 기반
+              경계를 옮기면서 실패 상태와 복구 책임을 다시 설계한 전환이다.
+            </>
+          ),
         },
       ],
     },
     decisionIntro: (
       <>
-        API의 응답 책임과 외부 작업의 완료 책임을 분리하고, 실패를{" "}
-        <strong>worker 경계에서 다룰 수 있는 흐름</strong>으로 만들었다.
+        전환의 기준은 새로운 기술 도입 자체가 아니라{" "}
+        <strong>async 실행 모델과 실패 복구의 운영 가능성</strong>이었다.
       </>
     ),
     decisions: [
       {
-        k: "API Boundary",
+        k: "Execution Model",
         t: (
           <>
-            API는 주문·상품·재고의 판정과 저장에 집중하고, 외부 상태를 기다리는 작업은
-            요청 처리 경계 밖으로 보낸다.
+            Celery 기반 처리를 <strong>TaskIQ·RabbitMQ</strong>로 전환해 async
+            FastAPI 코드베이스와 worker 실행 모델을 맞췄다.
           </>
         ),
       },
       {
-        k: "Worker Flow",
+        k: "Failure State",
         t: (
           <>
-            <strong>RabbitMQ·TaskIQ worker</strong>로 알림과 재고 연동을 분리해,
-            API와 외부 작업의 실패 경계를 나눈다.
+            알림 작업을 <strong>PENDING · SENDING · SUCCESS · FAILED</strong>{" "}
+            상태로 기록하고 retry와 최종 실패 이력을 남겼다.
           </>
         ),
       },
       {
-        k: "Regression Loop",
+        k: "Recovery Boundary",
         t: (
           <>
-            재고 retry와 API test, Docker CI, local setup을 함께 구성해 비동기 흐름을
-            반복 검증하고 협업자가 재현할 수 있게 한다.
+            자동 retry 이후에도 실패한 작업은 수동 재발송으로 복구하고, 재고
+            연동은 별도 worker retry 경계에서 다시 처리하게 했다.
           </>
         ),
       },
     ],
     systemIntro: (
       <>
-        주문·상품·재고 API에서 판단과 저장을 수행한 뒤, 외부 알림과 재고 연동은{" "}
-        <strong>queue 뒤의 worker</strong>로 넘기는 구조다.
+        API는 판정과 작업 상태 생성을 담당하고, 외부 연동과 복구는 broker 뒤의
+        worker가 담당한다.
       </>
     ),
     system: [
       {
-        title: "Order · Product · Inventory API",
-        desc: "주문·상품·재고의 판정과 저장을 API 경계에 두고 외부 작업과 분리.",
+        title: "API · State",
+        desc: "주문·상품·재고 판정과 알림 작업 상태를 생성.",
       },
       {
-        title: "RabbitMQ · TaskIQ Worker",
-        desc: "알림과 재고 연동처럼 실패 가능한 작업을 message queue 뒤에서 처리.",
+        title: "RabbitMQ · TaskIQ",
+        desc: "알림·재고 작업을 각 worker로 전달하고 async dependency context를 연결.",
       },
       {
-        title: "Retry Boundary",
-        desc: "재고 차감 실패를 API 재요청과 섞지 않고 worker retry 경계에서 복구.",
+        title: "Worker · External",
+        desc: "외부 연동을 수행하고 성공·실패 상태와 retry 이력을 기록.",
       },
       {
-        title: "Test · CI · Onboarding",
-        desc: "API test, Docker CI, one-command local setup과 FE onboarding으로 흐름을 재현.",
+        title: "Retry · Manual Recovery",
+        desc: "자동 retry와 수동 재발송 경로로 실패한 작업을 다시 처리.",
       },
     ],
     opsIntro: (
       <>
-        비동기 경계는 retry와 회귀 검증, 로컬 재현 절차까지 연결해 운영 가능한 형태로
-        구성했다. 성능이나 작업 성공률의 정량 결과는 확인된 근거가 없어 별도로 주장하지
-        않는다.
+        알림 작업은 최대 3회·10초 간격으로 retry하고, 재고 worker도 최대 3회
+        retry한다. API test, Docker CI와 local setup으로 API·broker·worker 흐름을
+        함께 재현한다. exactly-once나 전환 전후 성능 개선 수치는 주장하지 않는다.
       </>
     ),
     evidence: [
       {
         index: "근거 1",
-      label: "주문·재고 API와 worker flow",
-      claim:
-        "주문·재고 API와 RabbitMQ·TaskIQ 비동기 worker flow 구축을 주도",
-      source: "Centurion 주문·재고 backend 개발 기록",
-      claimIds: ["centurion.bay-async-backend", "centurion.async-migration"],
+        label: "Celery → TaskIQ 전환",
+        claim:
+          "async FastAPI 실행 모델과의 정합성을 기준으로 Celery 기반 처리를 TaskIQ·RabbitMQ로 전환",
+        source: "Centurion 주문·재고 backend Git history·dependency",
+        claimIds: ["centurion.async-migration"],
       },
       {
         index: "근거 2",
-      label: "retry·test·CI·onboarding",
-      claim:
-        "재고 연동 retry, API test infrastructure, Docker CI, local setup·onboarding 구축을 주도",
-      source: "Centurion 주문·재고 backend 개발 기록",
-      claimIds: ["centurion.test-ci-foundation"],
+        label: "상태·retry·재처리 경계",
+        claim:
+          "알림 상태·retry·최종 실패 기록·수동 재발송과 재고 worker retry 경계 구축 주도",
+        source: "Centurion 주문·재고 backend code·test",
+        claimIds: ["centurion.bay-async-backend"],
+      },
+      {
+        index: "근거 3",
+        label: "test·CI·onboarding",
+        claim:
+          "API test infrastructure, Docker CI, local setup·onboarding 구축 주도",
+        source: "Centurion 주문·재고 backend 개발 기록",
+        claimIds: ["centurion.test-ci-foundation"],
       },
     ],
   },
@@ -554,14 +587,20 @@ export const DETAILS: Record<string, CaseDetail> = {
   "mediness-ops": {
     eyebrow: "Case 05 / 05 · Product Operations",
     positioning:
-      "제품 결정이 스펙·작업·릴리스로 끊기지 않고 이어지도록 운영 구조를 만들고 리드한 케이스.",
+      "서비스 구현 담당자와 제품 요구·운영 흐름을 구체화하는 설계에 참여하고, 확정된 결정을 스펙·작업·릴리스로 이어지게 운영한 케이스.",
     kv: [
-      { k: "Role", v: "Lead" },
-      { k: "Scope", v: "Product Operations" },
+      { k: "Role", v: "Design Contributor · Operations Lead" },
+      { k: "Scope", v: "Product Design · Product Operations" },
       { k: "Stack", v: "Registry · Agent" },
-      { k: "Status", v: "구축·운영" },
+      { k: "Status", v: "설계 참여·운영" },
     ],
     problem: [
+      <>
+        서비스 구현은 담당 개발자들이 맡았고, 저는{" "}
+        <strong>제품 요구와 운영 흐름을 구체화하는 설계에 참여</strong>했다.
+        서비스 직접 구현이나 전체 설계 주도는 이 케이스의 ownership으로 주장하지
+        않는다.
+      </>,
       <>
         여러 제품의 일정·이슈·릴리스 상태가 회의, 개인의 기억, 협업 도구에 나뉘어
         있었다. 어떤 결정이 어떤 SPEC과 실행 작업으로 이어졌는지, release를 막는
@@ -641,6 +680,14 @@ export const DETAILS: Record<string, CaseDetail> = {
       </>
     ),
     evidence: [
+      {
+        index: "설계 근거",
+        label: "제품 설계 참여",
+        claim:
+          "서비스 구현 담당자와 제품 요구·운영 흐름을 구체화하는 설계에 참여",
+        source: "사용자 확정 contribution boundary",
+        claimIds: ["mediness.product-system-design-participation"],
+      },
       {
         index: "근거 1",
         label: "제품 운영 pipeline",

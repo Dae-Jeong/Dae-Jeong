@@ -215,7 +215,7 @@ function ResumeDocument({ resume }: { resume: TailoredResume }) {
                 data-claim={claim(outcome.claimIds)}
                 className={cn(resumeType.achievementRow, index === 0 && "border-t-0")}
               >
-                <div className="max-w-[70ch] text-base font-normal [&_[data-metric]]:font-medium">
+                <div className="text-base font-normal [&_[data-metric]]:font-medium">
                   <h3 className={resumeType.achievementTitle}>
                     {outcome.title}
                   </h3>

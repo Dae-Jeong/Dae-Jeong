@@ -2,7 +2,7 @@
 type: index
 title: Case Library
 description: 포트폴리오 케이스 스터디 마스터 라이브러리 — 회사별 페이지는 여기서 선별·조립만 한다.
-timestamp: 2026-08-14
+timestamp: 2026-08-17
 tags: [portfolio, cases, library]
 ---
 
@@ -16,9 +16,12 @@ tags: [portfolio, cases, library]
 | --- | --- | --- | --- |
 | [thready-rebuild.md](thready-rebuild.md) | THREADY | AI product + 재구축 | 재구축·운영 전담 |
 | [be-template.md](be-template.md) | BE TEMPLATE | 엔지니어링 표준 | 전담 설계·구축 |
-| [mediness-ops.md](mediness-ops.md) | MEDINESS | agent 운영 시스템 | 구축·운영 |
+| [mediness-ops.md](mediness-ops.md) | MEDINESS | 제품 요구·운영 흐름 설계 참여 + agent 운영 시스템 | 설계 `contributed` · 운영 `led` |
 | [bay-async.md](bay-async.md) | BAY | backend 비동기 아키텍처 | 구축·설계 주도 |
 | [say-realtime.md](say-realtime.md) | SAY | realtime AI backend | cluster 단위 주도 |
+| [infrastructure-delivery.md](infrastructure-delivery.md) | INFRASTRUCTURE DELIVERY | Azure/Terraform delivery | 설계·구축·운영 전담 |
+| [thready-ai-system.md](thready-ai-system.md) | THREADY AI SYSTEM | AI service boundary·durable delivery | 설계·구현 전담 |
+| [operating-policy-delivery.md](operating-policy-delivery.md) | OPERATING POLICY DELIVERY | 운영 요청을 규칙·실행으로 연결한 cross-project pattern | 프로젝트별 `led` 상한 |
 
 ## Resume Coverage
 
@@ -27,6 +30,9 @@ tags: [portfolio, cases, library]
 | Thready | [thready-rebuild.md](thready-rebuild.md) | backend rebuild, 3층 품질 판정, 측정 교정, QA·운영 지표, release operation |
 | Centurion | [bay-async.md](bay-async.md), [say-realtime.md](say-realtime.md) | async migration, test·CI, realtime AI |
 | BE Template | [be-template.md](be-template.md) | backend standard, team leverage, agent context |
+| Company Infrastructure | [infrastructure-delivery.md](infrastructure-delivery.md) | Azure/Terraform ownership, product/environment boundary, deploy/runbook |
+| Thready AI System | [thready-ai-system.md](thready-ai-system.md) | AI service boundary, transactional Outbox, retry·version fence, pre-production verification |
+| Operating Policy Delivery | [operating-policy-delivery.md](operating-policy-delivery.md) | NEXUS 관리 backend·Centurion DAY·Product Operations의 독립 근거를 연결한 정책 전달 패턴 |
 
 [mediness-ops.md](mediness-ops.md)는 selected-project claim이 아니라 Agent-Readable Operations differentiator의 기술·운영 근거다.
 

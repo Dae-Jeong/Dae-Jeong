@@ -38,6 +38,7 @@ sections:
     - infra.company-azure-ownership
     - nexus.terraform-infra
     - centurion.shared-infra
+    - mediness.product-system-design-participation
     - mediness.product-operations
     - career.medisolve-role-evolution
     - career.sellercanvas-product-system

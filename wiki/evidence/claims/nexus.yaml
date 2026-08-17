@@ -78,6 +78,29 @@ claims:
       "30개 도메인"도 statement 에서 뺐다. 실측 서비스 파일은 admin-api 44 + homepage-api 9 로
       자기보고보다 많지만, 파일 수를 도메인 수로 단정할 근거가 없다.
       Closure Table 은 repo 전수 검색에서 발견되지 않아 allowed_copy 에서 제거했다.
+  - id: nexus.branch-access-boundary
+    statement: NEXUS Admin API에서 운영자의 working branch를 server auth state로 소유하고 권한 검증된 전환 경계 설계·구현 주도 (진행 중)
+    strength: led
+    confidence: high
+    public: true
+    evidence: [evidence/projects/nexus.md#working-branch-access-boundary]
+    allowed_copy:
+      - 운영자의 소속 지점과 현재 작업 지점을 분리하고 데이터 접근 범위를 server auth state가 결정하도록 설계
+      - Admin API의 working branch를 X-Branch-Id 입력으로 변경하지 못하게 하고 권한 검증 전용 API로만 전환
+      - 본사 미선택과 권한 밖 지점 접근을 409와 403으로 구분해 차단
+      - Admin API의 접근 경계를 변경하면서 shared auth middleware와 Homepage API의 기존 지점 식별 계약 유지
+    forbidden_copy:
+      - 전체 branch 접근 회귀 시나리오 검증 완료
+      - NEXUS 전체 접근 제어·보안 체계 단독 구축
+      - 기존 보안 문제를 단독으로 해결
+      - Homepage API도 server auth state로 working branch를 결정한다는 표현
+      - 완료형 표현 (2026-08 기준 진행 중)
+    verified_at: 2026-08-17
+    note: >-
+      `fd8e1173`, `fade5bb9`, `1766c1ea`에서 Admin working branch의
+      server-owned 결정, 권한 검증 전환, 본사 미선택·권한 밖 접근의
+      구분 차단을 확인했다. 다만 일부 연관 test가 skip·xfail이고 과거 header 기반
+      description이 남아 있어 전체 회귀 시나리오 검증 완료로 확대하지 않는다.
   - id: nexus.pool-stabilization
     statement: 커넥션 풀 타임아웃 원인 분석과 풀 설정·세션 생명주기 재조정
     strength: led

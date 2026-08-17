@@ -63,6 +63,21 @@ Git 대조 결과 **동일 저장소**다 — `packages/admin-api`·`packages/ho
 
 Closure Table은 `grep`이 base64 문자열에 우연 일치했을 뿐 실제 구현이 없다. 자기보고 오류다.
 
+## Working Branch Access Boundary
+
+Code-backed (2026-08-17, `workspace:NEXUS`):
+
+- Admin API의 working branch는 클라이언트 `X-Branch-Id`로 바꾸지 못하고, 로그인 시 `AccessToken` DB에서 읽은 값을 JWT·server auth state로 전달해 결정한다.
+- working branch 전환은 권한을 검증하는 `PATCH /branches/select/{branch_id}`로만 수행하고, 본사 사용자의 지점 미선택은 `409`, 권한 밖 지점 접근은 `403`으로 구분해 차단한다.
+- 변경 범위를 Admin API에 한정해 shared auth middleware와 Homepage API의 기존 header 기반 지점 식별 계약은 유지했다.
+- 연관 commit: `fd8e1173`, `fade5bb9`, `1766c1ea`.
+
+**검증·기여 경계**:
+
+- NEXUS는 2026-08 기준 구축 진행 중이다.
+- 연관 test 중 `skip`·`xfail`과 과거 header 기반 test description이 남아 있어 **전체 branch 접근 회귀 시나리오 검증 완료**는 claim하지 않는다.
+- 기여 상한은 Admin API의 server-owned working branch·권한 검증 전환 경계 설계·구현 주도다. 제품 전체 접근 제어 체계나 보안 문제를 단독으로 해결했다고 표현하지 않는다.
+
 ## Connection Pool
 
 - Code-backed: `feat(P2-11): Connection Pool 설정 환경변수화` 커밋으로 **작업 사실** 확인

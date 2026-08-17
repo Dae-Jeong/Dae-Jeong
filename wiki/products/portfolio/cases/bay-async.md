@@ -1,7 +1,7 @@
 ---
 type: portfolio-case
 case: bay-async
-title: 주문·재고 backend의 비동기 아키텍처 — 실패 가능한 작업을 API에서 분리
+title: 주문·재고 backend의 비동기 운영 경계
 resume_tag: BAY
 origin: MediSolve AI · Centurion 재고 관리
 claim_ids: [centurion.bay-async-backend, centurion.async-migration, centurion.test-ci-foundation]
@@ -10,7 +10,7 @@ claim_strength: led
 
 ## Executive Summary
 
-주문·재고 API에서 외부 알림과 재고 연동처럼 실패 가능한 작업을 RabbitMQ·TaskIQ worker로 분리했습니다. 해당 backend 영역의 설계·구축을 주도하고 retry, API test, Docker CI, onboarding까지 운영 가능한 경계로 연결했습니다.
+Celery로 이미 분리돼 있던 비동기 처리를 async FastAPI 실행 모델과 맞는 RabbitMQ·TaskIQ worker로 전환했습니다. 알림·재고 작업의 상태, retry, 실패 기록, 수동 재처리와 검증 환경까지 운영 가능한 경계로 연결했습니다.
 
 ## My Scope
 
@@ -18,32 +18,31 @@ claim_strength: led
 - 재고 연동 retry, API test infrastructure, Docker CI, local setup·onboarding 구축
 - Centurion 전체 backend ownership이 아니라 BAY 주문·재고 backend 영역의 `led` 범위
 
-## Problem And Constraints
+## Problem & Constraints
 
-주문·재고 처리 흐름에 외부 알림과 재고 차감처럼 네트워크·외부 상태 때문에 실패 가능한 작업이 섞여 있었습니다. 이 작업을 API 요청 안에서 끝까지 기다리면 응답 지연과 외부 실패가 사용자 요청 경계까지 전파됩니다.
+기존에도 Celery가 비동기 작업을 담당했지만, asyncio를 중심으로 구성한 FastAPI backend와 worker의 실행 모델은 달랐습니다. 전환의 목적은 비동기를 새로 도입하는 것이 아니라 async 함수·의존성·외부 연동을 같은 실행 모델에서 다루고, 실패 상태와 복구 책임을 명확히 하는 것이었습니다.
 
-API 응답과 실제 외부 작업 완료 시점이 달라질 수 있으므로, 단순 분리뿐 아니라 retry와 회귀 검증, 로컬에서 worker까지 재현할 수 있는 개발 환경이 함께 필요했습니다.
+## Decision & Alternatives
 
-## Decision And Alternatives
+- Celery를 유지하는 대신 async function과 FastAPI 의존성 구조를 직접 지원하는 TaskIQ를 선택했습니다.
+- RabbitMQ broker는 유지하고 알림·재고 작업을 별도 worker 책임으로 나눴습니다.
+- Trade-off: 전환 뒤에도 작업 완료는 지연될 수 있고 retry 상태를 별도로 운영해야 합니다. 현재 근거만으로 exactly-once 처리를 주장하지 않습니다.
 
-- API는 주문·상품·재고 판정과 저장에 집중하고, 실패 가능한 외부 작업은 message queue 뒤의 worker로 분리했습니다.
-- 동기 처리를 유지하면 구현은 단순하지만 외부 지연과 실패가 API latency와 성공 여부를 함께 흔듭니다.
-- Trade-off: worker 분리는 API를 보호하는 대신 작업 완료가 지연될 수 있고, retry 상태를 별도로 운영해야 합니다. 현재 근거만으로 exactly-once 처리를 주장하지 않습니다.
+## System Design & Implementation
 
-## System Design And Implementation
+diagram: API (판정·작업 상태 생성) -> RabbitMQ -> TaskIQ worker (외부 연동) -> SUCCESS/FAILED -> retry·수동 재처리
 
-diagram: API (주문·상품·재고 판정) -> RabbitMQ -> TaskIQ worker (알림톡 발송 · 재고 연동) -> [soft] retry (재고 차감 실패 복구)
+- 알림과 재고 broker·worker를 분리하고 TaskIQ dependency context로 application service를 연결
+- 알림 작업은 PENDING·SENDING·SUCCESS·FAILED 상태와 최대 3회·10초 간격 retry를 기록
+- 재고 작업은 별도 queue에서 최대 3회 retry
+- API test infrastructure와 Docker 기반 CI, local setup·onboarding 구성
 
-- TaskIQ staged 설정, worker context 주입, RabbitMQ exchange·queue 연결 옵션 정리
-- 주문 취소·pending 조회 최적화, 상품 목록·필터 API, cursor pagination
-- Object Mother 패턴 API test infrastructure와 Docker 기반 CI 구성
+## Failure Modes & Operation
 
-## Failure Modes And Operation
-
-- 재고 차감 실패를 API 재요청과 섞지 않고 worker retry 경계에서 복구
-- 주문 취소·pending 상태 조회와 상품 filter/pagination 경로를 API test로 고정
-- Docker CI에서 API 회귀를 검증하고, one-command Docker Compose로 API·worker local setup 제공
-- FE onboarding guide에 실행·연동 절차를 분리해 협업자가 비동기 흐름을 재현할 수 있게 함
+- 외부 알림 실패는 worker가 상태와 실패 이력을 남기고 retry 후에도 실패하면 수동 재발송 경로로 복구
+- 재고 연동 실패는 API 재요청과 섞지 않고 worker retry 경계에서 다시 처리
+- Docker CI에서 API 회귀를 검증하고, local setup에서 API·broker·worker 흐름을 재현
+- exactly-once delivery와 전환 전후 성능 개선은 측정 근거가 없어 주장하지 않음
 
 ## Evidence, Result, And Limits
 

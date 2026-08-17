@@ -48,6 +48,7 @@ claims:
       - SellerCanvas(생성형 AI 커머스 콘텐츠, CES 2024 최고혁신상 제품)의 PM 메인 역할로 제품 시스템 기획·구축
       - LLM 붐 이전부터 Vision AI 기반 생성 제품의 제품 시스템을 기획·구축
       - 프로토타입 단계에서 v1.0 제품까지 0→1 구간을 PM으로 통과
+      - 프로토타입에서 v1.0까지 제품 흐름·기능 범위·출시 우선순위를 정한 PM 메인 역할로 0→1 구간을 이끌었던 경험
       - 무엇을 만들지 정하는 일부터 제품이 굴러가는 구조를 세우는 일까지 담당
     forbidden_copy:
       - 제품 전체 단독 기획·총괄
@@ -66,6 +67,21 @@ claims:
       작업에서 나온 것이 맞다 — "특허와 SellerCanvas의 연결 (확정 전)" 금지를 해제한다.
       구버전 원티드 이력서의 "[PM] 상세페이지 제작 관련 특허 출원" 자기 기록과 정합.
       단독 발명 표현 금지는 유지.
+  - id: career.sellercanvas-enterprise-poc
+    statement: SellerCanvas Product Manager 메인 역할로 외부 패션 브랜드 PoC 진행
+    strength: led
+    confidence: high
+    public: true
+    evidence: [evidence/projects/previous-career.md#studio-lab-and-sellercanvas]
+    allowed_copy:
+      - SellerCanvas Product Manager로 외부 패션 브랜드 PoC 진행
+      - SellerCanvas 프로토타입·v1.0 제품을 기업 PoC로 연결
+    forbidden_copy:
+      - 고객 검증 완료
+      - 상용 계약·매출 달성
+      - 고객사 실명·PoC 건수
+      - 제품 전체와 PoC 단독 총괄
+    verified_at: 2026-08-17
   - id: career.memento-payment
     statement: 예약·결제 backend의 Stripe 선결제 도입과 환불·마일리지·티켓 rollback 안정화
     strength: contributed

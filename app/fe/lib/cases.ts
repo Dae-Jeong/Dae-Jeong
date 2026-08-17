@@ -41,10 +41,10 @@ export const CASES: CaseMeta[] = [
   {
     slug: "bay-async",
     no: "02",
-    name: "주문·재고 비동기 처리",
+    name: "비동기 실패·복구 경계",
     tag: "AI 메디컬 플랫폼 · Centurion",
     blurb:
-      "주문·재고 API와 RabbitMQ·TaskIQ 비동기 worker를 설계하고, retry·test·CI 구축을 주도. 실패 가능한 작업을 worker로 분리해 처리 경계를 명확히 했다.",
+      "async FastAPI 실행 모델과 맞도록 Celery 기반 처리를 TaskIQ·RabbitMQ로 전환하고, 상태·retry·실패 기록·수동 재처리 경계를 운영 흐름으로 연결했다.",
     role: "Lead",
     scope: "Async · CI",
     claimIds: [
@@ -88,11 +88,59 @@ export const CASES: CaseMeta[] = [
     name: "제품 운영 게이트",
     tag: "제품팀 운영 · MediSolve AI",
     blurb:
-      "decision·spec·work·release gate로 이어지는 제품 운영 구조를 구조화·리드. 일정·이슈·릴리스 운영을 agent-readable workflow로 정리했다.",
+      "서비스 구현 담당자와 제품 요구·운영 흐름을 구체화하는 설계에 참여하고, decision·spec·work·release gate로 일정·이슈·릴리스 운영을 연결했다.",
     role: "Lead",
     scope: "Product Ops",
-    claimIds: ["mediness.product-operations", "mediness.daily-briefing"],
+    claimIds: [
+      "mediness.product-system-design-participation",
+      "mediness.product-operations",
+      "mediness.daily-briefing",
+    ],
     available: true,
+  },
+  {
+    slug: "infrastructure-delivery",
+    no: "06",
+    name: "Azure/Terraform 인프라 전달 경계",
+    tag: "회사 인프라 · MediSolve AI",
+    blurb:
+      "회사 Azure/Terraform 인프라 전반의 설계·구축·운영과 제품·환경별 resource boundary·deploy/runbook을 담당했다.",
+    role: "Owner",
+    scope: "Infrastructure Delivery",
+    claimIds: ["infra.company-azure-ownership", "centurion.shared-infra"],
+    available: false,
+  },
+  {
+    slug: "thready-ai-system",
+    no: "07",
+    name: "AI 실행 경계와 durable delivery",
+    tag: "AI 콘텐츠 생성 제품 · Thready",
+    blurb:
+      "AI 실행부를 독립 FastAPI application·DB로 분리하고, transactional Outbox·retry·version fence로 전달 경계를 설계·구현했다.",
+    role: "Owner",
+    scope: "AI Service Boundary",
+    claimIds: ["thready.ai-service-boundary", "thready.ai-replica-outbox"],
+    available: false,
+  },
+  {
+    slug: "operating-policy-delivery",
+    no: "08",
+    name: "운영 요청을 제품 규칙으로 연결",
+    tag: "교차 프로젝트 패턴 · MediSolve AI",
+    blurb:
+      "관리 backend·예약 정책·제품 운영의 독립 근거에서, 운영 요청을 backend 계약과 프로젝트별 검증·release 기준으로 연결해 온 반복 패턴을 정리했다.",
+    role: "Lead / Contributor",
+    scope: "Product Rules · Delivery",
+    claimIds: [
+      "nexus.backend-architecture",
+      "nexus.admin-backend-ownership",
+      "centurion.day-product-integration",
+      "mediness.product-system-design-participation",
+      "mediness.product-operations",
+      "be-template.agent-context",
+      "nexus.quality-automation",
+    ],
+    available: false,
   },
 ];
 

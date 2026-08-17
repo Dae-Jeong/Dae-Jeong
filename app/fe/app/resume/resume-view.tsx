@@ -3,7 +3,6 @@
 import { Children, isValidElement, useState } from "react";
 import { cn } from "@/lib/cn";
 import { Banner } from "@/components/ui/banner";
-import { Card, CardGrid } from "@/components/ui/card-grid";
 import { Chip } from "@/components/ui/chip";
 import { KeyValueRows } from "@/components/ui/key-value-list";
 import { NumberedList, NumberedRow } from "@/components/ui/numbered-row";
@@ -32,15 +31,6 @@ function PlainList({ items }: { items: React.ReactNode[] }) {
         </li>
       ))}
     </ul>
-  );
-}
-
-function CapCard({ title, children }: { title: string; children: React.ReactNode }) {
-  return (
-    <Card className="gap-1.5 p-4">
-      <h3 className="m-0 font-mono text-sm font-semibold">{title}</h3>
-      <p className="m-0 text-sm text-fg-2">{children}</p>
-    </Card>
   );
 }
 
@@ -107,7 +97,7 @@ function Axis({
       data-claim={dataClaim}
       className={cn(resumeType.achievementRow, first && "border-t-0")}
     >
-      <div className="max-w-[70ch] text-base font-normal [&_[data-metric]]:font-medium">
+    <div className="text-base font-normal [&_[data-metric]]:font-medium">
         <h3 className={resumeType.achievementTitle}>
           {title}
         </h3>
@@ -494,11 +484,11 @@ function DocKo() {
           <Axis
             no="06"
             title="제품 운영 · 의사결정"
-            data-claim="mediness.product-operations career.medisolve-role-evolution career.sellercanvas-product-system credentials.page-output-patent credentials.ces-2024"
+            data-claim="mediness.product-system-design-participation mediness.product-operations career.medisolve-role-evolution career.sellercanvas-product-system credentials.page-output-patent credentials.ces-2024"
             description="무엇을 만들지 정하고, 만들어진 뒤의 운영 구조까지 설계합니다."
             evidence={[
               <>AI 제품 백엔드를 개발하면서 <strong>제품팀 운영도 함께 주도</strong> — Backend Engineer로 합류해 기업부설연구소장·Tech Lead·PO 역할을 병행<Src>MediSolve AI</Src></>,
-              <>파이프라인 레지스트리와 릴리스 게이트를 기반으로 제품팀의 일정·이슈·릴리스를 운영 — 제품 의사결정을 BE·FE·QA의 실행과 릴리스 기준으로 연결<Src>제품팀 운영</Src></>,
+              <>서비스 구현은 담당 개발자가 맡았고, <strong>제품 요구와 운영 흐름을 구체화하는 설계에 참여</strong>. 이후 파이프라인 레지스트리와 릴리스 게이트로 제품 의사결정을 BE·FE·QA의 실행과 릴리스 기준에 연결<Src>제품 운영 플랫폼</Src></>,
               <>CES 2024 수상 제품의 <strong>프로토타입부터 v1.0까지 PM을 담당</strong><Src>커머스 AI 제품</Src></>,
               <>상세페이지 제작 흐름 재설계가 <strong>특허 「페이지 출력 방법」 출원·등록으로 이어짐</strong><Src>커머스 AI 제품</Src></>,
               <><strong>제품이 원활하게 운영되는 구조</strong>를 기획·구축 — 개발 도구가 아니라 제품 자체의 운영 구조를 설계한 경험으로, 현재 제품 운영 역할의 기반이 됨<Src>커머스 AI 제품</Src></>,
@@ -753,11 +743,11 @@ function DocEn() {
           <Axis
             no="06"
             title="Product operations · decisions"
-            data-claim="mediness.product-operations career.medisolve-role-evolution career.sellercanvas-product-system credentials.page-output-patent credentials.ces-2024"
+            data-claim="mediness.product-system-design-participation mediness.product-operations career.medisolve-role-evolution career.sellercanvas-product-system credentials.page-output-patent credentials.ces-2024"
             description="I help decide what to build, and design how it runs once it exists."
             evidence={[
               <>Build AI product backends while <strong>helping run the product team</strong> — joined as a Backend Engineer and now also serve as head of the R&amp;D center, Tech Lead and PO<Src>MediSolve AI</Src></>,
-              <>Lead product-team scheduling, issues and releases on a pipeline registry and release gates — connecting product decisions to BE, FE, QA and release execution<Src>제품팀 운영</Src></>,
+              <>Implementation was owned by the assigned engineers; I <strong>contributed to defining product requirements and operating flows</strong>, then connected product decisions to BE, FE, QA, and release execution through the pipeline registry and release gates<Src>제품 운영 플랫폼</Src></>,
               <>Took a CES 2024 Best of Innovation-winning product <strong>from prototype to v1.0 as its primary PM</strong> — ran a proof of concept with a major fashion brand along the way, and the detail-page production flow I redesigned led to a registered patent<Src>커머스 AI 제품</Src></>,
               <>Planned and built <strong>the systems that kept the product running</strong> — not developer tooling but the operating structure of the product itself, the earlier form of the product operations I lead today<Src>커머스 AI 제품</Src></>,
               <>Was planning and building product systems for generative Vision-AI products <strong>before the LLM boom (2021&ndash;22)</strong>, and built a color-classification model hands-on while serving as PM<Src>커머스 AI 제품</Src></>,

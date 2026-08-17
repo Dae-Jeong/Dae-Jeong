@@ -13,6 +13,23 @@ claims:
       - 제품 전체 단독 구축
       - frontend 포함 전체 제품 전면 재구축
     verified_at: 2026-07-05
+  - id: thready.prototype-to-user-operation
+    statement: 초기 prototype 이후 합류해 FastAPI backend 전환과 release·QA를 거쳐 v1.3.0 실제 사용자 운영까지 연결
+    strength: led
+    confidence: high
+    public: true
+    evidence: [evidence/projects/thready.md#prototype-to-user-operation]
+    allowed_copy:
+      - 초기 prototype에서 실제 사용자 운영까지 Thready의 backend 전환·release·QA·운영을 책임
+      - 초기 prototype 이후 실제 사용자 운영까지 0→1 구간의 backend 전환을 주도
+      - v1.3.0부터 실제 사용자가 쓰는 AI 콘텐츠 제품의 backend를 구축·운영
+    forbidden_copy:
+      - Thready를 0부터 혼자 구축
+      - frontend 포함 제품 전체 0→1을 단독 주도
+      - v1.0부터 실제 사용자 운영
+      - AI 기능을 처음부터 0→1로 구축
+      - 사람 사용자 수를 runtime request 수로 환산
+    verified_at: 2026-08-17
   - id: thready.generation-quality-system
     statement: typed prompt builder, LLM judge, 평가 루프, 관측 로깅 기반 생성 품질 시스템 구축
     strength: owned
@@ -25,6 +42,34 @@ claims:
       - 생성 품질 완전 해결
       - 품질 N배 개선
     verified_at: 2026-07-05
+  - id: thready.ai-service-boundary
+    statement: AI 실행부를 독립 FastAPI application과 DB로 분리하고 product backend와 authenticated HTTP 계약으로 연결
+    strength: owned
+    confidence: high
+    public: true
+    evidence: [evidence/projects/thready.md#ai-service-boundary-and-durable-delivery]
+    allowed_copy:
+      - AI 실행부를 독립 FastAPI application·DB로 분리하고 product backend와 HTTP 계약으로 연결
+      - 제품 정책·원장은 backend, 생성 lifecycle·실행 상태는 AI application이 소유하도록 경계 설계·구현
+    forbidden_copy:
+      - production 전환 완료
+      - AI 서비스 무중단 운영
+      - 전체 AI platform 단독 구축
+    verified_at: 2026-08-16
+  - id: thready.ai-replica-outbox
+    statement: owner mutation과 durable outbox를 같은 transaction으로 처리하고 retry·delivery version fence로 BE→AI replica 전달 경계 설계·구현
+    strength: owned
+    confidence: high
+    public: true
+    evidence: [evidence/projects/thready.md#ai-service-boundary-and-durable-delivery]
+    allowed_copy:
+      - 원장 변경과 Outbox 기록을 같은 transaction으로 처리하고 전달은 retry·version fence로 분리
+      - AI 장애나 역순 전달이 최신 원장 상태를 덮지 않도록 durable delivery 경계 설계·구현
+    forbidden_copy:
+      - 데이터 유실 0건
+      - exactly-once 보장
+      - production 장애율 개선
+    verified_at: 2026-08-16
   - id: thready.production-operation-quality
     statement: AI 콘텐츠 생성 production backend를 월 수만 건 규모 요청, HTTP 5xx 0.3% 수준으로 운영 유지
     strength: owned

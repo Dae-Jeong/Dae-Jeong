@@ -2,7 +2,7 @@
 type: project-evidence
 title: Mediness Product Operations Evidence
 description: Agent-readable product operations, daily briefing, and role boundary evidence.
-timestamp: 2026-07-14
+timestamp: 2026-08-17
 source_roots: [agentspace]
 tags: [mediness, agent-workflow, product-operations, evidence]
 ---
@@ -10,6 +10,14 @@ tags: [mediness, agent-workflow, product-operations, evidence]
 # Mediness Product Operations Evidence
 
 Source locator: `agentspace:mediness`
+
+## Product Design Participation
+
+- User-confirmed (2026-08-17): MEDINESS 서비스의 코드 구현은 담당 개발자들이 맡았고, 김대정은 제품 요구와 운영 흐름을 구체화하는 설계에 참여했다.
+- Source-backed: MEDINESS 원장에는 backend·frontend·agent 경계와 회의·의사결정·실행·release 흐름을 연결하는 planning·decision·SPEC·Work Package가 존재한다. 이 문서들은 설계 대상의 범위를 보여주며, 김대정의 단독 저작이나 구현 ownership을 증명하는 근거로 사용하지 않는다.
+- Git-backed boundary (2026-08-17): 로컬 Git author 기록에서 김대정의 MEDINESS app 구현은 문서 asset 전달 수정의 제한된 범위만 확인된다. 따라서 서비스 전체 구현이나 공통 architecture 설계 주도 claim으로 확장하지 않는다.
+- Contribution boundary: 제품 요구·운영 흐름 설계 참여는 `contributed`다. 서비스 직접 구현, architecture·시스템 구조 설계 주도·전담, 제품 기획 전담으로 표현하지 않는다.
+- Verification gap: GitHub CLI 인증 만료로 PR review·comment에 남은 설계 토론 참여 기록은 이번 검토에서 확인하지 못했다. 이 claim은 사용자 확정값을 owner로 두며, review evidence를 확보하면 confidence를 재평가한다.
 
 ## Product Operations
 
@@ -34,11 +42,13 @@ Source locator: `agentspace:mediness`
 ## Public Disclosure
 
 - pipeline registry, daily briefing, decision/spec/work/release gate의 일반 구조는 공개 가능하다.
+- 서비스 구현 담당자와 제품 요구·운영 흐름을 구체화하는 설계에 참여했다는 contribution boundary는 공개 가능하다.
 - 제품 수, 담당자, 날짜, blocker, private collaboration content는 공개하지 않는다.
 
 ## Rejected Or Unverified Claims
 
 - 조직 전체 운영 총괄
 - 제품 기획 전담
+- MEDINESS 서비스 직접 구현 또는 architecture·시스템 구조 설계 주도·전담
 - 사람의 운영 업무 완전 자동화
 - internal product count와 운영 metric

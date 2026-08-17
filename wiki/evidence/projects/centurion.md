@@ -45,6 +45,12 @@ DAY, BAY, RAY, SAY는 별도 제품이 아니라 Centurion CRM & ERP 제품을 �
 ## BAY Async Backend
 
 - Code-backed: order, product, inventory API와 TaskIQ/RabbitMQ worker, inventory retry, API test infrastructure, Docker CI, onboarding documents가 확인됐다.
+- Code-backed (2026-08-16 재검증): TaskIQ 도입 직전 revision에도 Celery 기반 `notification.send_alimtalk` task와 API의 queue 호출이 존재했다. 따라서 **"TaskIQ를 도입하며 동기 API에서 비동기 작업을 처음 분리했다"는 판정은 superseded**다.
+- Code-backed (2026-08-16 재검증): 현재 알림 worker는 `PENDING → SENDING → SUCCESS/FAILED` 상태를 기록하고 최대 3회·10초 간격 retry, 최종 실패 이력, 수동 재발송 경로를 제공한다. 재고 worker도 RabbitMQ/TaskIQ 경계와 최대 3회 retry를 갖는다.
+- User-confirmed (2026-08-16): 전환 당시 FastAPI backend를 async로 운용하고 있었고, Celery가 asyncio task를 공식 실행 모델로 제공하지 않아 async-native worker 조합으로 평가한 TaskIQ를 선택했다.
+- Code-backed (2026-08-16): TaskIQ 도입 직전 dependency는 FastAPI `>=0.115.11,<0.116.0`, Celery `>=5.3.6,<6.0.0`이었고, 전환 뒤 TaskIQ `>=0.11.18,<0.12.0`과 `taskiq-aio-pika`를 사용한다.
+- Source-backed: Celery 5.3.6 공식 CLI의 worker pool 선택지는 prefork·eventlet·gevent·solo·processes·threads·custom이며 asyncio pool을 제공하지 않는다. TaskIQ 공식 문서는 sync/async function 실행과 FastAPI 통합을 명시한다. ([Celery 5.3.6 CLI](https://docs.celeryq.dev/en/v5.3.6/reference/cli.html), [TaskIQ](https://taskiq-python.github.io/guide/))
+- Current public framing: TaskIQ의 성과는 비동기 분리 자체의 최초 도입이 아니라, 기존 Celery 기반 처리를 TaskIQ/RabbitMQ로 전환하면서 상태·retry·실패 기록·재처리 경계를 운영 가능한 형태로 재구성한 것이다.
 - User-confirmed (2026-07-19 인터뷰): worker 분리는 실패를 겪은 뒤의 사후 대응이 아니라 **제품 시작 시점부터의 예방 설계** — 실패 가능한 작업(주문·결제)을 처음부터 API 경계 밖 worker로 분리했다. 배경: Memento에서 결제 실패 실사례(롤백·환불 순서·티켓 정합성)를 직접 수습한 경험의 전이 ([previous-career](previous-career.md#memento-payment)).
 - Contribution boundary: 해당 backend 영역의 구축·설계 주도. Centurion 전체 backend ownership은 아니다.
 - **Code-backed (2026-08-09 실측, Unverified 해제)**: `Celery -> TaskIQ migration` 이 `workspace:BAY-BE-API` Git history 로 확인됐다 — "feat: 대규모 시스템 리팩토링 - Notification/Celery 제거 및 Alimtalk/TaskIQ 마이그레이션"(2025-09-14), "Remove/notification celery (#304)"(2025-09-15), TaskIQ 1~3차 구성(2025-09-08~09), "fix: taskIQ 재고 차감 처리 오류 시, retry 로직 추가"(2025-10-01). 전부 KimMarin 명의이며 플랫폼 기재 문구와 일치한다. → `centurion.async-migration` 으로 승격.
@@ -87,5 +93,6 @@ DAY, BAY, RAY, SAY는 별도 제품이 아니라 Centurion CRM & ERP 제품을 �
 
 - Centurion 제품 전체 단독 구축
 - SSO 전체 구축
-- Celery에서 TaskIQ로 migration 완료
+- TaskIQ 도입으로 동기 API에서 비동기 처리를 처음 분리했다는 서술
+- TaskIQ 전환 이전에는 외부 연동 실패가 API 응답과 주문 상태에 직접 결합돼 있었다는 서술
 - production traffic과 안정성 수치

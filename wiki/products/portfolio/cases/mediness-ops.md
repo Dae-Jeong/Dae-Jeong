@@ -4,20 +4,26 @@ case: mediness-ops
 title: agent 기반 제품 운영 시스템 — 리드 업무를 회의가 아니라 시스템으로
 resume_tag: MEDINESS
 origin: MediSolve AI · 제품 운영
-claim_ids: [mediness.product-operations, mediness.daily-briefing]
-claim_strength: led
+claim_ids:
+  - mediness.product-system-design-participation
+  - mediness.product-operations
+  - mediness.daily-briefing
+claim_strength: mixed (design contributed · operations led)
 ---
 
 ## Executive Summary
 
-여러 제품의 일정·이슈·릴리스 상태를 decision -> SPEC -> Work Package -> release gate로 연결하고, 협업 도구 활동을 daily briefing agent가 집계하도록 만들었습니다. 제품 운영을 리드하면서 human decision과 agent aggregation의 경계를 유지한 운영 시스템입니다.
+서비스 구현은 담당 개발자들이 맡았고, 김대정은 제품 요구와 운영 흐름을 구체화하는 설계에 참여했습니다. 이후 여러 제품의 일정·이슈·릴리스 상태를 decision -> SPEC -> Work Package -> release gate로 연결하고, 협업 도구 활동은 daily briefing agent가 집계하도록 운영했습니다. 설계 참여는 `contributed`, 제품 운영은 `led`로 구분합니다.
 
 ## My Scope
+
+- MEDINESS 제품 요구와 운영 흐름을 구체화하는 설계 참여
 
 - 제품팀 일정·이슈·release operation 리드
 - decision/SPEC/WP pipeline, registry, release gate workflow 구축·운영
 - daily briefing agent와 blocker triage flow 구축·운영
 - product·business 최종 결정은 human owner의 범위이며 agent의 자율 의사결정으로 claim하지 않음
+- 서비스 코드 구현, 공통 architecture 최초 설계, 시스템 구조 설계 주도는 claim하지 않음
 
 ## Problem And Constraints
 
@@ -48,10 +54,12 @@ diagram: [soft] Slack · Jira · GitHub · Confluence 활동 -> daily briefing a
 
 ## Evidence, Result, And Limits
 
+- User-confirmed: 서비스 구현 담당자와 제품 요구·운영 흐름을 구체화하는 설계에 참여함. `contributed` 상한.
+
 - Workflow-backed: decision/SPEC/WP pipeline, registry, release gate, version cut 운영이 확인됨
 - Tool-backed: daily briefing 자동 집계와 blocker triage flow가 확인됨
 - Operating evidence: 생성 품질 blocker를 당일 판단·수정 배포로 연결한 사례가 확인됨
-- Limits: status 확인 시간 절감과 구성원 adoption rate는 측정되지 않았으며, agent가 product decision을 자율 수행했다는 claim은 하지 않음
+- Limits: 서비스 직접 구현과 architecture·시스템 구조 설계 주도·전담을 주장하지 않음. status 확인 시간 절감과 구성원 adoption rate는 측정되지 않았으며, agent가 product decision을 자율 수행했다는 claim도 하지 않음
 
 ## Stack
 

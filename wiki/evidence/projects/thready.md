@@ -17,11 +17,29 @@ Source locator: `workspace:thready`
 - Code-backed: cutover 이후 version cycle의 backend 개발·운영에서 주 기여가 지속됐다.
 - Contribution boundary: backend rebuild와 이후 backend operation은 `owned`; frontend 포함 제품 전체 구축은 아니다.
 
+## Prototype To User Operation
+
+- Code-backed: 2026-03-30 다른 구성원이 Next.js·Supabase 기반 초기 prototype을 시작했고, 김대정은 2026-04-14 합류해 FastAPI backend와 API Gateway, 인증·계정·콘텐츠 생성·발행 흐름을 구축했다.
+- Code-backed: `v1.0`~`v1.2`는 release·QA와 `v1.1.0` backend cutover를 포함한 제품화 구간이다. release milestone과 실제 사용자 운영 시작은 같은 의미로 사용하지 않는다.
+- User-confirmed (2026-08-17): 실제 사용자가 제품을 사용하기 시작한 시점은 `v1.3.0`부터다.
+- Code-backed: `v1.3.0` release에는 고객 생성·계약 기간·AI 사용 한도·Threads account slot·삭제/복구·비밀번호 재설정·고객 session stream 등 실제 고객 운영을 위한 변경이 포함됐다.
+- Tool-backed: 실제 사용자 운영 시작 이후를 포함하는 Azure App Service 30일 집계에서 월 수만 건 규모의 production request가 확인됐다. 이 수치는 runtime 근거이며 사람 사용자 수로 해석하지 않는다.
+- Contribution boundary: 초기 prototype을 처음 만든 사람이나 frontend 포함 제품 전체의 단독 구축자는 아니다. 초기 prototype 이후 실제 사용자 운영까지 backend 전환·release·QA·operation 범위는 `led`, 제품 전체 0→1 기여는 `co-led` 이하로 표현한다.
+
 ## Generation Quality System
 
 - Code-backed: typed prompt builder와 `source_context` 계약, generation pipeline, LLM judge, local evaluation sweep, observability logging이 확인됐다.
 - Tool-backed/operation-backed: 생성 품질 이슈를 evaluation과 release/QA task로 연결한 운영 기록이 있다.
 - Contribution boundary: 품질 system 구축은 말할 수 있으나 business metric이나 품질 배수는 검증되지 않았다.
+
+## AI Service Boundary And Durable Delivery
+
+- Code-backed (2026-08-16): AI 실행부를 별도 FastAPI application과 DB로 분리하고, product backend는 authenticated HTTP client로만 접근하도록 경계를 구현했다.
+- Code-backed: 제품 정책과 원장 데이터는 backend, 생성 lifecycle과 실행 상태는 AI application이 소유하도록 구분했다.
+- Code-backed: owner mutation과 durable outbox 기록을 같은 transaction에서 처리하고, relay retry와 `delivery_version` fence로 역순 전달이 최신 상태를 덮지 않도록 구현했다.
+- Test-backed: backend와 AI application의 전체 회귀, migration 왕복, stale PUT/DELETE fence를 검증한 기록이 있다.
+- Verification boundary: 독립 서비스 분리와 outbox/fence의 설계·구현은 확인됐지만, production 전환 완료·무중단·유실 0건은 검증되지 않았다.
+- Contribution boundary: 해당 backend/AI 경계와 전달 안전성 설계·구현은 `owned`.
 
 ## Release Operation
 

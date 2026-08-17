@@ -1,6 +1,23 @@
 schema_version: 1
 project: mediness
 claims:
+  - id: mediness.product-system-design-participation
+    statement: MEDINESS 서비스 구현 담당자와 제품 요구·운영 흐름을 구체화하는 설계에 참여
+    strength: contributed
+    confidence: medium
+    public: true
+    evidence:
+      - evidence/projects/mediness.md#product-design-participation
+    allowed_copy:
+      - MEDINESS 서비스 구현 담당자와 제품 요구·운영 흐름을 구체화하는 설계에 참여
+      - 제품 요구와 운영 흐름을 구체화하는 설계에 참여
+    forbidden_copy:
+      - MEDINESS 서비스 직접 구현
+      - architecture 또는 시스템 구조 설계 주도·전담
+      - 공통 문서 pipeline 또는 architecture 최초 설계
+      - 제품 기획 전담
+    verified_at: 2026-08-17
+
   - id: mediness.product-operations
     statement: 제품팀의 일정·이슈·릴리스 운영을 pipeline registry와 decision·spec·work·release gate로 구조화하고 리드
     strength: led
