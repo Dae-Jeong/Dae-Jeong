@@ -17,7 +17,6 @@ import {
   CaseNarrative,
   EvidenceRows,
   JdFitSection,
-  OperationAndLimits,
 } from "./portfolio-sections";
 
 export const metadata: Metadata = {
@@ -116,7 +115,6 @@ export default function MgrvPortfolioPage() {
               <section
                 key={outcome.no}
                 id={`outcome-${outcome.no}`}
-                data-claim={outcome.claimIds.join(" ")}
                 className="scroll-mt-6 border-t-2 border-fg pt-16 first:border-t-0 first:pt-14"
               >
                 <header className="break-inside-avoid">
@@ -135,11 +133,7 @@ export default function MgrvPortfolioPage() {
                   lead={outcome.narrative.visualLead}
                 />
                 <CaseDetails details={outcome.details} />
-                <OperationAndLimits
-                  operation={outcome.operation}
-                  limits={outcome.limits}
-                />
-                <EvidenceRows evidence={outcome.evidence} />
+                <EvidenceRows evidence={outcome.evidence.slice(0, 2)} />
                 <JdFitSection jdFit={outcome.jdFit} />
               </section>
             ))}

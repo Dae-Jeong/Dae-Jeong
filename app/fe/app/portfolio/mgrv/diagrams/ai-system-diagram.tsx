@@ -501,7 +501,7 @@ export function AiSystemDiagram({ visual }: { visual: AiSystemVisual }) {
         </ul>
       </section>
 
-      <figcaption className="mt-4 max-w-[82ch] text-sm leading-[1.65] text-fg-2">
+      <figcaption className="mt-4 text-sm leading-[1.65] text-fg-2">
         {visual.caption}
       </figcaption>
     </figure>

@@ -59,7 +59,7 @@ export function IndependentLanesDiagram({
           </section>
         ))}
       </div>
-      <figcaption className="mt-4 max-w-[76ch] text-sm leading-[1.65] text-fg-2">
+      <figcaption className="mt-4 text-sm leading-[1.65] text-fg-2">
         {visual.caption}
       </figcaption>
     </figure>

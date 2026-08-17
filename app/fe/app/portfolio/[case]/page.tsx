@@ -67,7 +67,7 @@ export default async function CasePage({
 
       <Container variant="doc" className="flex-1">
         <div className="grid grid-cols-[minmax(0,1fr)_240px] gap-12 max-lg:grid-cols-1">
-          <main data-claim={meta.claimIds.join(" ")} className="max-w-[800px] pb-24 pt-12">
+          <main data-claim={meta.claimIds.join(" ")} className="pb-24 pt-12">
             <header className="border-b-2 border-fg pb-7">
               <span className="font-mono text-xs uppercase tracking-[0.1em] text-muted">
                 {detail.eyebrow}
@@ -75,13 +75,13 @@ export default async function CasePage({
               <h1 className="mt-3 font-mono text-3xl font-semibold leading-[1.06] tracking-[-0.025em]">
                 {meta.name}
               </h1>
-              <p className="mt-4 max-w-[52ch] text-lg font-medium">{detail.positioning}</p>
-              <KeyValueCard groups={[detail.kv]} className="mt-5 max-w-[420px]" />
+              <p className="mt-4 text-lg font-medium">{detail.positioning}</p>
+              <KeyValueCard groups={[detail.kv]} className="mt-5" />
             </header>
 
             <section id="problem" className="pt-10">
               <SectionHead no={no("problem")} title="문제" meta="Problem" />
-              <div className="grid max-w-[62ch] gap-4 text-base leading-[1.6] text-fg-2 [&_strong]:font-semibold [&_strong]:text-fg">
+              <div className="grid gap-4 text-base leading-[1.6] text-fg-2 [&_strong]:font-semibold [&_strong]:text-fg">
                 {detail.problem.map((p, i) => (
                   <p key={i} className="m-0">
                     {p}
@@ -94,7 +94,7 @@ export default async function CasePage({
               <section id="review" className="pt-10">
                 <SectionHead no={no("review")} title="검토" meta="Alternatives" />
                 {detail.review.intro && (
-                  <p className="m-0 mb-5 max-w-[62ch] text-base text-fg-2 [&_strong]:font-semibold [&_strong]:text-fg">
+                  <p className="m-0 mb-5 text-base text-fg-2 [&_strong]:font-semibold [&_strong]:text-fg">
                     {detail.review.intro}
                   </p>
                 )}
@@ -102,7 +102,7 @@ export default async function CasePage({
                   {detail.review.groups.map((g) => (
                     <div key={g.title}>
                       <h3 className="m-0 mb-2.5 font-mono text-sm font-semibold">{g.title}</h3>
-                      <div className="grid max-w-[640px] gap-px border border-border-soft bg-border-soft">
+                      <div className="grid gap-px border border-border-soft bg-border-soft">
                         {g.options.map((o) => (
                           <div key={o.name} className="grid gap-1.5 bg-bg p-4">
                             <div className="flex items-center gap-2.5">
@@ -122,7 +122,7 @@ export default async function CasePage({
                         ))}
                       </div>
                       {g.note && (
-                        <p className="m-0 mt-2.5 max-w-[62ch] text-sm text-fg-2">{g.note}</p>
+                        <p className="m-0 mt-2.5 text-sm text-fg-2">{g.note}</p>
                       )}
                     </div>
                   ))}
@@ -132,7 +132,7 @@ export default async function CasePage({
 
             <section id="decision" className="pt-10">
               <SectionHead no={no("decision")} title="결정" meta="Decision" />
-              <p className="m-0 mb-5 max-w-[62ch] text-base text-fg-2 [&_strong]:font-semibold [&_strong]:text-fg">
+              <p className="m-0 mb-5 text-base text-fg-2 [&_strong]:font-semibold [&_strong]:text-fg">
                 {detail.decisionIntro}
               </p>
               <NumberedList className="border-t border-border-soft">
@@ -154,7 +154,7 @@ export default async function CasePage({
 
             <section id="system" className="pt-10">
               <SectionHead no={no("system")} title="시스템" meta="System" />
-              <p className="m-0 mb-5 max-w-[62ch] text-base text-fg-2 [&_strong]:font-semibold [&_strong]:text-fg">
+              <p className="m-0 mb-5 text-base text-fg-2 [&_strong]:font-semibold [&_strong]:text-fg">
                 {detail.systemIntro}
               </p>
               <CardGrid cols={2}>
@@ -169,7 +169,7 @@ export default async function CasePage({
 
             <section id="ops" className="pt-10">
               <SectionHead no={no("ops")} title="결과" meta="Result" />
-              <p className="m-0 mb-5 max-w-[62ch] text-base text-fg-2 [&_strong]:font-semibold [&_strong]:text-fg">
+              <p className="m-0 mb-5 text-base text-fg-2 [&_strong]:font-semibold [&_strong]:text-fg">
                 {detail.opsIntro}
               </p>
               <div className="grid justify-items-start gap-4">

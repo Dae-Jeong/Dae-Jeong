@@ -42,7 +42,7 @@ export default function PortfolioPage() {
           <h1 className="mt-3 font-mono text-3xl font-semibold leading-[1.06] tracking-[-0.025em]">
             Portfolio
           </h1>
-          <p className="mt-4 max-w-[52ch] text-lg font-medium">
+          <p className="mt-4 text-lg font-medium">
             <b className="font-semibold">성과를 먼저 두고, 그 근거가 된 프로젝트를 예시로 답니다.</b>{" "}
             이력서가 요약이라면 여기는 문제·결정·시스템·운영 근거까지 확인하는 곳입니다.
           </p>
@@ -70,7 +70,7 @@ export default function PortfolioPage() {
                     <h3 className="m-0 text-xl font-semibold leading-[1.35] tracking-[-0.01em] max-md:text-lg">
                       {a.claim}
                     </h3>
-                    <p className="m-0 max-w-[62ch] text-sm leading-[1.6] text-fg-2">{a.proof}</p>
+                    <p className="m-0 text-sm leading-[1.6] text-fg-2">{a.proof}</p>
                     <div className="mt-1 grid gap-px bg-border-soft">
                       {a.cases.map((slug) => {
                         const c = CASES.find((x) => x.slug === slug);

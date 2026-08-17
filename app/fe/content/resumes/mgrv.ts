@@ -131,19 +131,28 @@ export const MGRV_RESUME = {
     {
       org: "STUDIO LAB",
       period: "2021.12 — 2024.01",
-      claimIds: ["career.sellercanvas-product-system"],
+    claimIds: [
+      "career.sellercanvas-product-system",
+      "career.sellercanvas-enterprise-poc",
+    ],
       role: [
         { text: "Product Manager", tone: "strong" },
         { text: " — AI Engineer → PM(메인 역할)" },
       ],
       details: [
         [
-          { text: "SellerCanvas · 생성형 AI 제품", tone: "strong" },
-          {
-            text: " — v1.0 제품 기획·운영",
-          },
-        ],
+        { text: "SellerCanvas · 생성형 AI 제품", tone: "strong" },
+        {
+          text: " — 프로토타입에서 v1.0까지 0→1 제품 기획·운영",
+        },
       ],
+      [
+        { text: "기업 PoC", tone: "strong" },
+        {
+          text: " — 외부 패션 브랜드 요구를 제품 흐름과 검증 범위로 구체화하고 진행",
+        },
+      ],
+    ],
     },
     {
       org: "아이즈솔",
@@ -166,21 +175,28 @@ export const MGRV_RESUME = {
   outcomes: [
     {
       no: "01",
-      title: "운영자의 권한과 작업 범위를 분리하는 다지점 데이터 경계를 설계·구축하고 있습니다",
+      title: "초기 프로토타입의 백엔드 전환부터 실제 사용자 운영까지 책임졌습니다",
       claimIds: [
-        "nexus.branch-access-boundary",
-        "nexus.backend-architecture",
-        "nexus.admin-backend-ownership",
+        "thready.prototype-to-user-operation",
+        "thready.backend-rebuild",
+        "thready.release-operation",
+        "thready.production-operation-quality",
       ],
       description: [
-        "운영 어드민과 홈페이지를 독립 FastAPI 서비스로 나누고 API Gateway로 연결하는 백엔드를 구축 중입니다. Admin API에서는 운영자의 소속 지점과 현재 작업 지점을 분리해, 데이터 접근 범위를 클라이언트 입력이 아니라 서버 인증 상태가 결정하도록 설계하고 있습니다.",
+        "Next.js·Supabase 기반 초기 프로토타입 단계에 합류해 FastAPI 백엔드를 설계·구축하고, 인증·계정·콘텐츠 생성·발행 흐름을 운영 가능한 구조로 전환했습니다.",
         {
-        text: "FastAPI·SQLAlchemy 2.0 기반으로 Admin·Homepage API를 분리하고, 공통 모델·Repository와 migration 흐름을 설계·구축 중",
-          source: "피부과 운영 어드민·홈페이지",
+          text: "v1.0~v1.2 동안 출시 준비·QA를 진행하고 v1.1.0에 백엔드를 전환한 뒤, v1.3.0부터 실제 사용자 운영 시작",
+          source: "Thready · AI 콘텐츠 제품",
         },
         {
-          text: "작업 지점 전환을 권한 검증 전용 API로 제한하고, 본사 미선택과 권한 밖 접근을 구분해 차단하도록 구현 중. Homepage API의 기존 지점 식별 계약은 유지",
-          source: "피부과 운영 어드민·홈페이지",
+          text: [
+            {
+              text: "실제 사용자 운영 시작 이후 릴리스·QA·백엔드 운영을 이어가며, 30일간 수만 건의 요청에서 ",
+            },
+            { text: "HTTP 5xx 약 0.3%", tone: "metric" },
+            { text: "를 확인" },
+          ],
+          source: "Thready · AI 콘텐츠 제품",
         },
       ],
     },
@@ -210,28 +226,21 @@ export const MGRV_RESUME = {
     },
     {
       no: "03",
-      title: "초기 프로토타입의 백엔드 전환부터 실제 사용자 운영까지 책임졌습니다",
+      title: "운영자의 권한과 작업 범위를 분리하는 다지점 데이터 경계를 설계·구축하고 있습니다",
       claimIds: [
-        "thready.prototype-to-user-operation",
-        "thready.backend-rebuild",
-        "thready.release-operation",
-        "thready.production-operation-quality",
+        "nexus.branch-access-boundary",
+        "nexus.backend-architecture",
+        "nexus.admin-backend-ownership",
       ],
       description: [
-        "Next.js·Supabase 기반 초기 프로토타입 단계에 합류해 FastAPI 백엔드를 설계·구축하고, 인증·계정·콘텐츠 생성·발행 흐름을 운영 가능한 구조로 전환했습니다.",
+        "운영 어드민과 홈페이지를 독립 FastAPI 서비스로 나누고 API Gateway로 연결하는 백엔드를 구축 중입니다. Admin API에서는 운영자의 소속 지점과 현재 작업 지점을 분리해, 데이터 접근 범위를 클라이언트 입력이 아니라 서버 인증 상태가 결정하도록 설계하고 있습니다.",
         {
-          text: "v1.0~v1.2 동안 출시 준비·QA를 진행하고 v1.1.0에 백엔드를 전환한 뒤, v1.3.0부터 실제 사용자 운영 시작",
-          source: "Thready · AI 콘텐츠 제품",
+        text: "FastAPI·SQLAlchemy 2.0 기반으로 Admin·Homepage API를 분리하고, 공통 모델·Repository와 migration 흐름을 설계·구축 중",
+          source: "피부과 운영 어드민·홈페이지",
         },
         {
-          text: [
-            {
-              text: "실제 사용자 운영 시작 이후 릴리스·QA·백엔드 운영을 이어가며, 30일간 수만 건의 요청에서 ",
-            },
-            { text: "HTTP 5xx 약 0.3%", tone: "metric" },
-            { text: "를 확인" },
-          ],
-          source: "Thready · AI 콘텐츠 제품",
+          text: "작업 지점 전환을 권한 검증 전용 API로 제한하고, 본사 미선택과 권한 밖 접근을 구분해 차단하도록 구현 중. Homepage API의 기존 지점 식별 계약은 유지",
+          source: "피부과 운영 어드민·홈페이지",
         },
       ],
     },

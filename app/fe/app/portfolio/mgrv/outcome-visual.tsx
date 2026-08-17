@@ -29,7 +29,7 @@ export function OutcomeVisual({
             흐름 참고
           </span>
         </div>
-        <p className="m-0 mt-3 max-w-[920px] text-sm leading-[1.7] text-fg-2">
+        <p className="m-0 mt-3 text-sm leading-[1.7] text-fg-2">
           {lead}
         </p>
       </header>

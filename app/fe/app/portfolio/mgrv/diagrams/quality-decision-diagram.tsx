@@ -13,7 +13,6 @@ export function QualityDecisionDiagram({
 }) {
   return (
     <figure
-      data-claim={qualityLab.claimIds.join(" ")}
       aria-label={qualityLab.title}
       className="m-0 mt-5 break-inside-avoid border-y border-border py-6"
     >

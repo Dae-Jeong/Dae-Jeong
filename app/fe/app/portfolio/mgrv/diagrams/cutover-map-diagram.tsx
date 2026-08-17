@@ -132,7 +132,7 @@ export function CutoverMapDiagram({
         <span>▣ 전환 gate</span>
         <span className="text-success">□ 검증 근거</span>
       </div>
-      <figcaption className="mt-4 max-w-[76ch] text-sm leading-[1.65] text-fg-2">
+      <figcaption className="mt-4 text-sm leading-[1.65] text-fg-2">
         {visual.caption}
       </figcaption>
     </figure>

@@ -23,14 +23,13 @@ const laneTone = {
 export function WorkSystemDiagram({ workSystem }: { workSystem: WorkSystem }) {
   return (
     <figure
-      data-claim={workSystem.claimIds.join(" ")}
       aria-label={workSystem.title}
       className="m-0 border-y-2 border-fg py-8"
     >
       <h3 className="m-0 text-2xl font-semibold leading-[1.25] tracking-[-0.02em] text-balance">
         {workSystem.title}
       </h3>
-      <div className="mt-4 grid max-w-[76ch] gap-2 text-base leading-[1.65] text-fg-2">
+      <div className="mt-4 grid gap-2 text-base leading-[1.65] text-fg-2">
         {workSystem.summary.map((paragraph) => (
           <p key={paragraph} className="m-0">
             {paragraph}
@@ -101,7 +100,6 @@ export function WorkSystemDiagram({ workSystem }: { workSystem: WorkSystem }) {
           {workSystem.evidence.map((evidence) => (
             <article
               key={`${evidence.project}-${evidence.scope}`}
-              data-claim={evidence.claimIds.join(" ")}
               className="grid break-inside-avoid grid-cols-[minmax(180px,0.38fr)_minmax(0,1fr)] border-t border-border-soft px-5 py-4 first:border-t-0 max-lg:grid-cols-1 max-lg:gap-2"
             >
               <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
@@ -129,7 +127,7 @@ export function WorkSystemDiagram({ workSystem }: { workSystem: WorkSystem }) {
         </ul>
       </section>
 
-      <figcaption className="mt-5 max-w-[82ch] text-sm leading-[1.65] text-fg-2">
+      <figcaption className="mt-5 text-sm leading-[1.65] text-fg-2">
         설계·검증·릴리스 판단은 사람이 소유하고, AI는 정해진 작업 경계 안에서 실행하며,
         자동 검증 결과는 다시 다음 판단의 근거로 돌아옵니다.
       </figcaption>

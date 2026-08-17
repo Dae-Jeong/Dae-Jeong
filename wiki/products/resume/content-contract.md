@@ -64,7 +64,7 @@ Daejeong Design의 Profile 프로젝트와 `app/design/resume-page-prototype.htm
 - 헤더는 `이름 → 직무 → 경력 → 연락처`만 둔다. 개인 브랜드 문장과 서사는 홈페이지·포트폴리오가 소유하며 이력서 헤더에는 반복하지 않는다.
 - 간격은 이름–직무 6px, 직무–경력 16px, 경력–연락처 12px, 헤더 하단 24px, 다음 섹션 시작 40px(모바일 32px), 섹션 제목–본문 28px을 기준으로 한다.
 - 섹션 내부는 정보 밀도에 따라 `경력 16px / 핵심 성과 20px / 일하는 방식 16px / Credentials 8px`의 세로 여백을 사용한다. 핵심 성과는 title과 description 사이에 6px을 두고, description 내부의 문장과 bullet은 본문 흐름에 따라 배치한다.
-- 직무·경력 metadata에는 임의의 좁은 `max-width`를 두지 않는다. 데스크톱 공간을 우선 사용하고 모바일에서만 자연스럽게 줄바꿈한다. 장문 본문과 성과 설명의 `70ch` 상한은 가독성을 위해 유지한다.
+- 이력서의 제목·설명·본문에는 `ch`나 임의의 `px` 기반 `max-width`로 줄 길이를 제한하지 않는다. 문서 컨테이너의 가용 폭을 사용하고 화면 폭에 따라 자연스럽게 줄바꿈한다.
 - 경력·기술·Credentials의 record형 행은 좌측 metadata column을 150px로 통일한다. 경력의 기간은 우측 trailing column을 만들지 않고 회사명 아래에 둔다.
 - 기간·출처·스킬 라벨·조직 라벨 같은 supporting metadata만 12–13px IBM Plex Mono를 사용한다. 12px 아래로 내리지 않는다.
 - 구조 제목은 600, claim과 inline emphasis·metric은 500, 본문은 400을 사용한다. 본문 한 문단의 inline emphasis는 1–2개를 상한으로 한다.
