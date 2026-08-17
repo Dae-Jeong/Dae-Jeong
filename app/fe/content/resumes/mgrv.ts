@@ -7,6 +7,7 @@ export const MGRV_RESUME = {
   status: "approved",
   visibility: "public",
   updatedAt: "2026-08-17",
+  pdfHref: "/resumes/mgrv-resume.pdf",
   header: {
     name: "김대정",
     role: "Backend Engineer · Python / FastAPI / SQLAlchemy",

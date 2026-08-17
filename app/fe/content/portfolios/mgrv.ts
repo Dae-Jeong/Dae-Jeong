@@ -50,26 +50,26 @@ export const MGRV_PORTFOLIO = {
       caseMode: "cross-project-pattern",
       layers: ["Product", "Backend", "Operations", "AI"],
       status: {
-        label: "NEXUS 구축 진행 중",
+        label: "운영 어드민·홈페이지 backend 구축 중",
         tone: "in-progress",
       },
       outcomeLine:
         "운영자가 조회·변경해야 할 상태를 먼저 정의하고, 확정된 판단을 사람·AI·자동 검증이 함께 소비할 수 있는 작업 계약으로 남깁니다.",
       compositionCaption:
-        "제품 규칙 근거(NEXUS·DAY·MEDINESS 설계 참여·제품 운영)와 현재 AX 실행 근거(BE Template·NEXUS 품질 자동화)를 분리합니다. 각 근거의 ownership과 시점을 하나의 시스템이나 과거 AI 성과로 합성하지 않습니다.",
+        "제품 규칙 근거(같은 제품군의 운영 어드민·홈페이지 backend와 예약 정책, MEDINESS 설계 참여·제품 운영)와 현재 AX 실행 근거(BE Template·운영 관리 backend 품질 자동화)를 분리합니다. 근거의 ownership과 시점을 하나의 시스템이나 과거 AI 성과로 합성하지 않습니다.",
       narrative: {
         context:
-          "서로 다른 피부과 운영 관리 제품과 제품 운영 업무에서 반복해 온 방식입니다. NEXUS backend는 현재 구축 중입니다.",
+          "피부과 운영 제품군의 서로 다른 backend 영역과 제품 운영 업무에서 반복해 온 방식입니다. 운영 어드민·홈페이지 backend는 현재 구축 중입니다.",
         problem:
           "운영 요청은 보통 화면 기능으로 전달되지만, 화면부터 만들면 누가 어떤 상태에서 무엇을 조회·변경할지에 대한 기준이 API·화면·QA·배포에 서로 다르게 남을 수 있습니다.",
         actions: [
-          "NEXUS 운영 어드민과 홈페이지 backend에서는 두 API의 책임을 분리하고 gateway·데이터 이전 경계를 설계·구축하고 있습니다.",
-          "Centurion DAY 예약 정책에서는 backend 판단을 화면 표시, QA seed·test, release 문서까지 같은 기준으로 연결했습니다.",
+          "피부과 운영 어드민과 홈페이지 backend에서는 두 API의 책임을 분리하고 gateway·데이터 이전 경계를 설계·구축하고 있습니다.",
+          "같은 제품군의 예약 정책에서는 backend 판단을 화면 표시, QA seed·test, release 문서까지 같은 기준으로 연결했습니다.",
           "MEDINESS 서비스 구현은 담당 개발자들이 맡았고, 저는 제품 요구와 운영 흐름을 구체화하는 설계에 참여했습니다. 이후 확정된 결정을 SPEC·Work Package·QA 승인·release gate까지 이어지게 운영했습니다.",
         ],
         resultLabel: "남은 상태",
         result:
-          "NEXUS는 구축 진행 중입니다. DAY와 제품 운영에서는 정책 변경이 코드 한 곳에 머물지 않고 구현·검증·배포가 같은 기준으로 움직이는 작업 단위를 만들었습니다.",
+          "운영 어드민·홈페이지 backend는 구축 진행 중입니다. 같은 제품군의 예약 정책과 제품 운영에서는 정책을 코드에 머물지 않고 구현·검증·배포가 같은 기준으로 움직이는 단위로 만들었습니다.",
         visualLead:
           "아래 그림은 과거 세 사례를 하나의 pipeline으로 합친 것이 아니라, 그 판단 방식을 현재의 Agent Context와 품질 자동화 근거로 확장한 AX 작업 흐름입니다.",
         axExtension: {
@@ -120,7 +120,7 @@ export const MGRV_PORTFOLIO = {
               text: "운영자·사용자·서비스마다 접근 범위가 다르고, 정책 변경이 backend·frontend·QA·release에 함께 전달되어야 합니다.",
             },
             {
-              text: "NEXUS backend는 2026년 8월 기준 구축 진행 중이므로 완료형 표현을 사용하지 않습니다.",
+              text: "운영 어드민·홈페이지 backend는 2026년 8월 기준 구축 진행 중이므로 완료형 표현을 사용하지 않습니다.",
             },
           ],
         },
@@ -194,11 +194,11 @@ export const MGRV_PORTFOLIO = {
         evidenceBands: [
           {
             label: "제품 규칙 전달 근거",
-            text: "NEXUS boundary·DAY 제품 전달·MEDINESS 제품 요구와 운영 흐름 설계 참여·Product Operations gate는 서로 다른 scope와 ownership의 근거입니다.",
+            text: "운영 어드민·홈페이지 backend boundary·같은 제품군의 예약 정책 제품 전달·MEDINESS 제품 요구와 운영 흐름 설계 참여·Product Operations gate는 서로 다른 scope와 ownership의 근거입니다.",
           },
           {
             label: "AX 실행 방식 근거",
-            text: "BE Template의 Agent Context·automation은 owned·verified, NEXUS 품질 자동화는 led·in-progress 근거로 구분합니다.",
+            text: "BE Template의 Agent Context·automation은 owned·verified, 운영 관리 backend 품질 자동화는 led·in-progress 근거로 구분합니다.",
           },
         ],
         caption:
@@ -213,8 +213,8 @@ export const MGRV_PORTFOLIO = {
       limits: [
         "공유주거·PMS를 직접 운영한 경험으로 확장하지 않습니다.",
       "세 작업 맥락의 근거를 하나의 end-to-end 구축 사례로 표현하지 않습니다.",
-      "NEXUS는 Centurion 제품군의 repository label이며 DAY와 별도 제품으로 세지 않습니다.",
-        "NEXUS backend는 진행 중이므로 완료형 결과를 주장하지 않습니다.",
+      "운영 어드민·홈페이지 backend와 예약 정책은 같은 제품군의 서로 다른 범위이며 별도 제품으로 세지 않습니다.",
+        "운영 어드민·홈페이지 backend는 진행 중이므로 완료형 결과를 주장하지 않습니다.",
         "MEDINESS 서비스 직접 구현이나 architecture·시스템 구조 설계 주도·전담을 주장하지 않습니다.",
         "운영 시간이나 오류 감소 같은 미측정 효과를 추가하지 않습니다.",
         "AI가 제품 판단·architecture·release 결정을 대신하거나 세 사례를 end-to-end로 수행한 것으로 표현하지 않습니다.",
@@ -222,7 +222,7 @@ export const MGRV_PORTFOLIO = {
       ],
       evidence: [
         {
-          project: "NEXUS",
+          project: "피부과 운영 어드민·홈페이지",
           scope: "운영 어드민·홈페이지 backend boundary",
           ownership: "led",
           status: "in-progress",
@@ -231,7 +231,7 @@ export const MGRV_PORTFOLIO = {
           claimIds: ["nexus.backend-architecture", "nexus.admin-backend-ownership"],
         },
         {
-          project: "Centurion DAY",
+          project: "피부과 예약 정책",
           scope: "예약 정책의 제품 전달",
           ownership: "led",
           status: "verified",
@@ -267,12 +267,12 @@ export const MGRV_PORTFOLIO = {
           claimIds: ["be-template.agent-context"],
         },
         {
-          project: "NEXUS Quality Automation",
+          project: "운영 관리 backend 품질 자동화",
           scope: "정적 분석·타입 검사·pre-commit gate",
           ownership: "led",
           status: "in-progress",
           relation: "corroborating",
-          text: "구축 중인 NEXUS에서 코드 컨벤션과 Ruff·Pyright·pre-commit 기반 자동 검증 체계를 구축했습니다.",
+          text: "구축 중인 운영 관리 backend에 코드 컨벤션과 Ruff·Pyright·pre-commit 기반 자동 검증 체계를 구축했습니다.",
           claimIds: ["nexus.quality-automation"],
         },
       ],
@@ -284,18 +284,18 @@ export const MGRV_PORTFOLIO = {
           "제품 결정을 BE·FE·QA·release gate 실행으로 연결",
           "결정된 권한·상태·데이터·서비스 경계를 작업 계약으로 남기고 AI 탐색·초안·반복 구현 보조에 연결",
           "BE Template에 계층적 Agent Context와 반복 작업 automation skill 내장",
-          "NEXUS의 Ruff·Pyright·pre-commit 품질 자동 검증 체계 구축 리드",
+          "운영 관리 backend의 Ruff·Pyright·pre-commit 품질 자동 검증 체계 구축 리드",
         ],
         forbidden: [
           "고객사·브랜드 실명",
           "병원 SaaS 또는 제품 전체 단독 구축",
-          "NEXUS 구축 완료",
+          "운영 어드민·홈페이지 backend 구축 완료",
           "PMS·프롭테크 직접 경험",
           "MEDINESS 서비스 직접 구현 또는 architecture·시스템 구조 설계 주도·전담",
           "AI가 제품 판단 또는 architecture·release 결정을 대체",
           "AI가 세 사례를 end-to-end로 수행",
           "AX 완전 자동화 또는 생산성·품질의 정량 향상",
-          "BE Template·NEXUS 품질 자동화를 DAY·Product Operations의 과거 적용 성과로 소급",
+          "BE Template·운영 관리 backend 품질 자동화를 예약 정책·Product Operations의 과거 적용 성과로 소급",
         ],
       },
       jdFit: {
@@ -795,7 +795,7 @@ export const MGRV_PORTFOLIO = {
               text: "정확한 고객·resource·cost·security detail은 공개하지 않습니다.",
             },
             {
-              text: "NEXUS는 진행 중인 제품이므로 IaC 작업 사실과 전체 제품 완료 상태를 구분합니다.",
+              text: "피부과 운영 제품은 진행 중인 제품이므로 IaC 작업 사실과 전체 제품 완료 상태를 구분합니다.",
             },
           ],
         },
@@ -825,7 +825,7 @@ export const MGRV_PORTFOLIO = {
           items: [
             {
               title: "IaC boundary",
-              text: "B2B·B2C·NEXUS·제품 환경별 Terraform root와 remote state, resource separation을 관리했습니다.",
+              text: "B2B·B2C·피부과 운영 제품의 환경별 Terraform root와 remote state, resource separation을 관리했습니다.",
             },
             {
               title: "Delivery",
@@ -888,7 +888,7 @@ export const MGRV_PORTFOLIO = {
           claimIds: ["infra.company-azure-ownership"],
         },
         {
-          project: "NEXUS",
+          project: "피부과 운영 제품",
           scope: "외부 제품 Terraform IaC",
           ownership: "owned",
           status: "in-progress",
@@ -1211,7 +1211,7 @@ export const MGRV_PORTFOLIO = {
         claimIds: ["mediness.product-operations"],
       },
       {
-        project: "NEXUS",
+        project: "운영 관리 backend",
         scope: "Static analysis·pre-commit·documentation",
         ownership: "led",
         status: "in-progress",
