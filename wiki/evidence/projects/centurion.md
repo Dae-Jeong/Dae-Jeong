@@ -2,7 +2,7 @@
 type: project-evidence
 title: Centurion Evidence
 description: CRM and ERP product backend evidence across BAY, SAY, DAY, RAY, SSO, and shared infra.
-timestamp: 2026-07-11
+timestamp: 2026-08-19
 source_roots: [workspace]
 tags: [centurion, backend, realtime, async, infra, evidence]
 ---
@@ -19,20 +19,24 @@ DAY, BAY, RAY, SAY는 별도 제품이 아니라 Centurion CRM & ERP 제품을 �
 - Code-backed: 제품 시작 시점(더데이랩스 프리랜서 기간)부터 backend를 구축했다 — `workspace:BAY-BE-API` 2025-03-18 first initialize와 정합 ([previous-career](previous-career.md#career-gaps-and-freelance)).
 - Public wording: "피부과 CRM으로 시작한 Centurion을 제품 시작 시점부터 구축"까지 허용. ⚠️ "피부과 생태계를 관장하는 시스템" 표현은 보도에서 미확인 — 공개 표기 보류 유지.
 
-## Stack Boundary (2026-08-13 user-confirmed)
+## Stack Boundary (2026-08-18 source recheck)
 
-> "지금 api gateway랑 centurion은 NestJS였어" / "메디솔브에서도 NestJS는 사용했었어"
+> Historical user report: "지금 api gateway랑 centurion은 NestJS였어" / "메디솔브에서도 NestJS는 사용했었어"
 
-**Centurion과 API Gateway는 NestJS다.** 지금까지 산출물이 MediSolve 스택을 Python·FastAPI로만
-표기해 NestJS 사용 사실이 빠져 있었다.
+현재 source 기준으로 Centurion product family는 단일 stack이 아니다.
 
-- Code-backed 보강: `workspace:SSO-BE-API`의 `package.json`에서 NestJS·JWT·Prisma·TypeScript 확인
-  ([workspace-project-audit](../audits/workspace-project-audit.md#sso-be-api)).
-- ⚠️ **Centurion은 단일 스택이 아니다** — `BAY-BE-API`의 비동기 worker 계열은 TaskIQ·Celery로
-  Python이 code-backed다. 즉 **NestJS와 Python이 서비스별로 공존**한다.
-  공개 표기 시 "Centurion = NestJS"로 단정하지 말고 **"Centurion·API Gateway에 NestJS"**까지 쓴다.
-- 공개 표현: `NestJS — Centurion · API Gateway (MediSolve)` / `TypeScript·NestJS를 실무에서 사용`
+- Code-backed: `workspace:CENTURION-API-GATEWAY`는 Express package이며 route config 기반 gateway다. API Gateway를 NestJS로 표기하지 않는다.
+- Code-backed: `workspace:SSO-BE-API`의 `package.json`에서 NestJS·JWT·Prisma·TypeScript가 확인된다 ([workspace-project-audit](../audits/workspace-project-audit.md#sso-be-api)).
+- Code-backed: `BAY-BE-API`의 API·TaskIQ/Celery worker와 DAY/RAY/SAY 계열 일부는 Python·FastAPI다.
+- 공개 표현: `TypeScript·Express API Gateway`, `TypeScript·NestJS SSO`, `Python·FastAPI product backend`처럼 검증된 service boundary를 분리해 쓴다.
 - 금지: Centurion 전체를 단일 언어·프레임워크로 단정, 서비스별 비중 수치화.
+
+## Multi-Service / MSA Context
+
+- Code-backed: Centurion은 route-config 기반 Express API Gateway와 NestJS SSO를 공유하고, 기능별 Python·FastAPI backend, RabbitMQ·TaskIQ worker, WebSocket realtime AI service가 application·runtime·deployment boundary로 분리된 multi-service 환경이다.
+- Contribution-backed: 김대정은 BAY 주문·재고 backend와 worker flow를 `led`, 통합 관리 Admin·Homepage backend를 `led`, SAY realtime session/provider boundary를 `co-led`, RAY 시설·재고 연동과 SSO session policy를 `contributed`, 공통 Azure·Terraform infra를 `owned` 범위로 담당했다.
+- Public wording: `API Gateway·SSO 기반 의료 MSA에서 서비스별 backend 경계와 연동을 담당` 또는 각 하위 claim의 기여 강도를 함께 밝힌 표현까지 허용한다.
+- Contribution boundary: Centurion 전체 MSA를 단독 설계·구축하거나 모든 service를 직접 만들었다고 표현하지 않는다. API Gateway와 SSO 전체 ownership도 주장하지 않으며, service별 stack과 기여 범위를 하나의 단일 stack·단일 ownership으로 합치지 않는다.
 
 ## Company Public Coverage (2026-07-17 확인)
 

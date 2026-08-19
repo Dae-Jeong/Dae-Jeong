@@ -1,0 +1,193 @@
+---
+type: product-contract
+title: Resume Role Positioning Standard
+description: 김대정의 역할을 직함이 아니라 반복된 판단·기술 경계·운영 결과로 전달하는 이력서 기준.
+timestamp: 2026-08-18
+derived_from:
+  - profile/identity.md
+  - evidence/claims/
+  - products/resume/research/2026-08-18-engineer-self-positioning.md
+tags: [resume, positioning, role, backend]
+---
+
+# Resume Role Positioning Standard
+
+## 한 문장 결론
+
+> 제품 요구와 기술 리스크를 backend 경계로 구체화하고, 설계·배포·운영까지 책임지는 Backend Engineer.
+
+이 문장은 새 직함이 아니다. primary category는 계속 `Backend Engineer`, specialty는 `AI Product Systems`다. `Product Owner`는 슬래시로 병기할 별도 정체성이 아니라 무엇을 만들지 판단하고 그 판단을 실행 가능한 backend contract로 바꾼 경험으로 증명한다.
+
+## 역할 전달식
+
+```text
+역할 전달력
+= 인식 가능한 기본 직군
+× 반복해서 소유한 문제
+× 직접 내린 판단의 범위
+× 구체적인 backend mechanism
+× 출시·운영 결과
+```
+
+한 항이 0이면 역할이 흐려진다.
+
+- 직군만 있으면 평범한 직함이다.
+- 문제만 있으면 회사·제품 소개다.
+- 판단만 있으면 기획 서사다.
+- mechanism이 없으면 기술 전문성을 판정할 수 없다.
+- 결과·운영이 없으면 실제로 닫힌 일인지 알 수 없다.
+
+## 세 층의 정체성
+
+| 층 | 값 | 이력서에서의 역할 |
+| --- | --- | --- |
+| 시장이 알아보는 직군 | `Backend Engineer` | 헤더·검색·지원 직군 고정 |
+| 전문 영역 | `AI Product Systems` | AI runtime·quality·async/realtime·infra 범위 |
+| 차별화되는 작동 방식 | 제품 판단을 backend contract와 운영 결과로 연결 | 소개와 반복된 사례로 증명 |
+
+금지:
+
+- `Backend Engineer / PO / PM / AI Engineer` 슬래시 나열
+- `제품도 알고 기술도 압니다` 같은 추상적인 자기평가
+- Product Owner 직함을 primary category와 경쟁시키기
+- 과거 PM 경험을 별도 PM 자기소개 섹션으로 분리하기
+
+## 대표 사례의 6문답
+
+주요 case는 아래 여섯 질문에 답한다.
+
+1. 어떤 사용자·사업·운영 문제였는가.
+2. 어떤 제약과 failure mode가 있었는가.
+3. 내가 직접 정한 기준·범위·대안은 무엇인가.
+4. 어떤 데이터·transaction·API·worker·service·infra 경계로 구현했는가.
+5. 배포·운영·장애 대응·품질 판정 중 어디까지 책임졌는가.
+6. 수치·운영 상태·외부 검증·code/document artifact 중 무엇이 이를 증명하는가.
+
+### 상단 배치 gate
+
+- 3번 `판단 범위`와 4번 `backend mechanism`은 필수다.
+- 둘을 포함해 여섯 항목 중 최소 다섯 항목이 검증돼야 대표 case로 상단에 둔다.
+- 네 항목 이하는 supporting evidence로 경력에 남긴다.
+- 결과 수치가 없다는 이유만으로 탈락시키지 않는다. 이때는 failure boundary, 운영 상태, 재사용 효과, 검증 artifact가 6번을 대신할 수 있다.
+- evidence가 없는 대안·인과·규모는 빈칸으로 두며 만들어내지 않는다.
+
+## AX·Engineering System 사례의 6문답
+
+AX 사례는 application code 유무가 아니라 실제 delivery 방식이 바뀌었는지로 판정한다.
+
+1. 어떤 수작업·handoff·의사결정 병목이 있었는가.
+2. 무엇을 source of truth로 삼았는가.
+3. decision·SPEC·Work Package·QA·release 상태를 어떻게 연결했는가.
+4. 사람·agent·도구의 read/write·approval 경계는 무엇인가.
+5. 본인이 설계 참여·적용/운영 리드·직접 구축 중 어디까지 했는가.
+6. 실제 운영 artifact, version trace, release 결과, 재사용 효과 중 무엇이 남았는가.
+
+`AX`라는 단어만으로는 대표 사례가 되지 않는다. 위 여섯 항목 중 다섯 개 이상을 검증하고,
+기여 동사를 claim strength에 맞게 나눠야 한다. 직접 service code를 작성하지 않았더라도 실행 가능한
+contract·state·gate를 세팅하고 실제 운영을 책임했다면 이력으로 사용한다.
+
+## 김대정에게 반복되는 역할 패턴
+
+| 반복된 역할 | 대표 근거 | 독자가 내려야 할 결론 |
+| --- | --- | --- |
+| 제품 단계에 맞는 backend 변화 범위 결정 | Thready 재구축 시점·범위·하네스·cutover | 무조건 재작성하는 사람이 아니라 부채와 위험을 계산하는 engineer |
+| 실패 가능한 상태의 정합성·복구 경계 설계 | Memento rollback, Centurion worker·retry | 정상 경로보다 실패 경로를 먼저 설계하는 backend engineer |
+| AI 실행과 품질을 운영 가능한 system으로 구체화 | AI service boundary·Outbox·3층 품질 판정 | prompt 사용자가 아니라 AI product runtime과 quality를 다루는 engineer |
+| 제품 정책을 여러 실행 주체의 계약으로 번역 | 예약 정책의 BE·FE·QA·release 연결, 제품 운영 gate | 기획을 구현으로 넘기는 사람이 아니라 실행 기준까지 닫는 engineer |
+| 해결을 팀의 반복 가능한 기반으로 확장 | FastAPI template·runbook·agent context | 개인 생산성에 머물지 않고 team leverage를 만드는 engineer |
+| 제품 delivery를 AX 운영 체계로 전환 | 제품별 Decision·SPEC·Work Package·owner lane·release gate 적용·운영 | AI 기능만 붙이는 사람이 아니라 사람·agent의 실행과 승인 경계를 설계하는 engineer |
+| application과 운영 환경을 함께 책임 | Azure·Terraform infra, product backend 운영 | 배포 이후를 다른 역할에 넘기지 않는 infra-aware backend engineer |
+
+## 섹션별 역할
+
+### Header
+
+- `Backend Engineer · AI Product Systems`만 고정한다.
+- 현재·이전 주요 회사, 직함, 기간을 즉시 보여준다.
+- 브랜드 문장·PO 병기는 넣지 않는다.
+
+### 소개
+
+다른 섹션이 하지 못하는 두 가지만 말한다.
+
+1. 채용하면 어떤 범위의 backend 문제를 맡길 수 있는가.
+2. 과거 AI·PM 경험이 현재 backend 판단에 어떻게 쓰이는가.
+
+경로 서사를 먼저 두거나 아래 성과를 다시 요약하지 않는다.
+
+### 경력
+
+- 소개 다음에 둔다. 사실이 주장보다 먼저다.
+- 각 회사의 첫 문장은 `제품·도메인 + 맡은 범위`다.
+- 이어지는 bullet은 판단, 기술 구현, 운영 결과를 구분한다.
+- 과거 PM 성과는 `요구 발견 → 범위·우선순위 결정 → 기술 실행·외부 검증`으로 연결한다.
+
+### 대표 기술 사례
+
+- 회사별 연대기가 아니라 위 6문답을 완결하는 case다.
+- 결과를 opener에 두고, 바로 뒤에 제약·판단·mechanism·검증을 붙인다.
+- 내부 코드명 대신 독자가 아는 시스템 성격으로 쓴다.
+- `일하는 방식`을 별도 선언하지 않는다. 여러 case의 반복된 모양으로 읽히게 한다.
+
+### 기술
+
+- 앞선 case를 빠르게 찾는 index다.
+- 주력·병행·개인 프로젝트를 구분하고 사용 맥락을 함께 적는다.
+- 면접에서 깊게 답할 수 없거나 stable evidence가 없는 사용 범위는 확장하지 않는다.
+
+### Credentials
+
+- 제3자 검증을 독립 노출한다.
+- 개인 단독 성과로 오독되지 않게 contribution boundary를 유지한다.
+
+## 읽는 시간별 acceptance
+
+### 15초
+
+독자가 다음을 답할 수 있어야 한다.
+
+- Backend Engineer인가.
+- 현재 어느 회사에서 어떤 범위를 맡는가.
+- AI Product Systems가 구체적으로 무엇을 뜻하는가.
+
+### 60초
+
+다음 두 반복 패턴을 찾아야 한다.
+
+- backend를 설계·구축하고 production 운영까지 닫는다.
+- 제품 판단을 domain·API·transaction·QA·release 계약으로 바꾼다.
+
+### 전체 읽기
+
+각 대표 case에서 판단의 이유, 실제 mechanism, failure mode, 기여 강도, 검증 근거와 한계를 면접 질문으로 전환할 수 있어야 한다.
+
+## 문장 규칙
+
+- 제목: 문제 또는 결과가 먼저 보이는 명사형 문장.
+- 첫 bullet: 결과·운영 상태 또는 책임 범위.
+- 다음 bullet: 실제 제약과 판단.
+- 다음 bullet: backend mechanism과 failure boundary.
+- 마지막 bullet: 검증·운영 결과와 한계.
+- `담당했다`, `참여했다`, `기여했다`만으로 끝내지 않고 무엇을 결정·설계·구현·운영했는지 밝힌다.
+- 단 contribution strength가 `contributed`라면 강한 동사로 ownership을 부풀리지 않는다.
+
+## 편집 우선순위
+
+분량이 늘었을 때 제거 순서는 다음과 같다.
+
+1. 같은 claim의 반복 설명
+2. 형용사·철학 선언
+3. 제품 소개
+4. 오래된 stack 나열
+5. 새로운 판정 근거가 없는 supporting bullet
+
+기술적 판단, failure mode, mechanism, 운영 검증은 page 수를 맞추기 위한 첫 삭제 대상이 아니다.
+
+## 관련
+
+- [외부 benchmark 조사](research/2026-08-18-engineer-self-positioning.md)
+- [Resume Content Contract](content-contract.md)
+- [Backend Case Achievement Inventory](backend-case-achievements.md)
+- [Product Decision Achievement Inventory](product-decision-achievements.md)
+- [Evidence Policy](../../rules/evidence-policy.md)
+- [Public Safety](../../rules/public-safety.md)

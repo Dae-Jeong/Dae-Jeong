@@ -1,6 +1,21 @@
 schema_version: 1
 project: centurion
 claims:
+  - id: centurion.msa-platform-context
+    statement: Express API Gateway와 NestJS SSO를 공유하고 FastAPI product backend·RabbitMQ/TaskIQ worker·WebSocket realtime service가 분리된 Centurion 의료 MSA 환경에서 service별 backend 구축·연동을 기여 강도에 따라 수행
+    strength: contributed
+    confidence: high
+    public: true
+    evidence: [evidence/projects/centurion.md#multi-service-msa-context]
+    allowed_copy:
+      - API Gateway·SSO 기반 의료 MSA에서 service별 backend 경계와 연동을 담당
+      - Express Gateway·NestJS SSO·FastAPI product backend가 연결된 multi-service 환경에서 주문·재고 worker, 통합 관리 backend, realtime AI session과 공통 infra를 기여 강도에 따라 담당
+    forbidden_copy:
+      - Centurion 전체 MSA 단독 설계·구축
+      - 모든 service를 직접 구축
+      - API Gateway 또는 SSO 전체 구축
+      - Centurion 전체를 단일 언어·framework로 구성
+    verified_at: 2026-08-19
   - id: centurion.bay-async-backend
     statement: BAY 주문·재고 backend와 RabbitMQ·TaskIQ worker flow, 명시적 상태·retry·실패 기록·재처리 경계 구축 주도
     strength: led

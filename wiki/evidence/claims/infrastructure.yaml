@@ -14,3 +14,35 @@ claims:
       - 모든 Azure resource를 최초부터 단독 생성
       - 정확한 고객·resource·cost·security detail
     verified_at: 2026-07-11
+  - id: infra.terraform-state-safety
+    statement: 회사 Azure Terraform을 6개 독립 root·remote state와 400+ state object로 운영하고 state·plan·live inventory 교차 검증으로 destructive drift를 apply 전에 차단
+    strength: owned
+    confidence: high
+    public: true
+    evidence: [evidence/projects/infrastructure.md#terraform-state-and-drift-safety]
+    allowed_copy:
+      - Shared·STG·Prod 기준 6개 독립 Terraform root·remote state와 400+ state object 운영
+      - state snapshot·Terraform plan·Azure live inventory를 교차 검증하는 apply gate 운영
+      - 의도하지 않은 destroy·replace와 환경 간 변경 전파를 apply 전에 차단
+    forbidden_copy:
+      - 모든 Azure resource를 최초부터 단독 생성
+      - 모든 resource가 Terraform으로 완전 관리됨
+      - drift 0건·destructive change 0건 보장
+      - 완전 자동화된 CI/CD·무인 apply
+      - NEXUS replacement plan을 실제 apply
+    verified_at: 2026-08-18
+  - id: infra.azure-observability
+    statement: Azure Monitor·Log Analytics와 AMA/DCR로 10대 VM log를 중앙화하고 8개 Production alert를 Terraform으로 구축·운영
+    strength: owned
+    confidence: high
+    public: true
+    evidence: [evidence/projects/infrastructure.md#production-observability]
+    allowed_copy:
+      - Azure Monitor·Log Analytics와 AMA/DCR로 10대 VM의 container log 중앙화
+      - CPU·memory·disk·API health/5xx·DB availability/storage/failed connection을 포함한 8개 Production alert를 Terraform으로 운영
+    forbidden_copy:
+      - 가용성 99.9% 달성
+      - MTTR·장애율 개선 수치
+      - 모든 workload log 완전 수집
+      - WebSocket workload 전체 coverage
+    verified_at: 2026-08-18

@@ -47,7 +47,7 @@ export function KeyValueCard({
   );
 }
 
-/* skills row 변형 — 150px key 컬럼 + 값, 행 경계선 */
+/* skills row 변형 — compact 128px capability 컬럼 + 값, 행 경계선 */
 export function KeyValueRows({
   items,
   className = "",
@@ -61,9 +61,9 @@ export function KeyValueRows({
         <div
           key={k}
           data-claim={dataClaim}
-          className="grid grid-cols-[150px_1fr] gap-4 border-b border-border-soft py-[11px] max-sm:grid-cols-1 max-sm:gap-1"
+          className="grid grid-cols-[128px_1fr] gap-5 border-b border-border-soft py-3 max-sm:grid-cols-1 max-sm:gap-1"
         >
-          <span className="font-mono text-xs uppercase tracking-[0.06em] text-muted">
+          <span className="font-mono text-sm font-medium uppercase tracking-[0.04em] text-fg-2">
             {k}
           </span>
           <span className="text-sm text-fg-2">{v}</span>

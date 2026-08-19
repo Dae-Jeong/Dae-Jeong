@@ -2,7 +2,7 @@
 type: index
 title: TODO — 통합 작업 목록
 description: 여러 문서에 흩어진 남은 작업의 단일 진입점. 상세는 각 owner 문서가 소유한다.
-timestamp: 2026-08-14
+timestamp: 2026-08-19
 canonical: false
 derived_from: [context/current-state.md, products/site/content-sot.md, products/resume/content-contract.md, backlog/platform-profile-consolidation/sync-spec.md, backlog/README.md]
 tags: [context, todo, routing]
@@ -29,7 +29,9 @@ owner: [sync-spec](../backlog/platform-profile-consolidation/sync-spec.md) · �
 
 ### A2. claim 근거 보강
 
+- [ ] Thready production 안정성 최신화 — 최근 30/90일 request·5xx를 endpoint와 user-impact incident 단위로 재집계하고, 동일 Jira 정의로 resolve 대비 reopen 비율을 2026-08-19 현재까지 갱신. 재측정 전에는 `HTTP 5xx 0.3%`를 active resume 성과로 사용하지 않음
 - [ ] `nexus.pool-stabilization`을 공개 성과로 쓸 필요가 생기면 전후 모니터링 지표를 먼저 확보
+- [ ] `mediness.daily-briefing`의 non-code 운영 ownership과 직접 구축 범위를 PR review·운영 기록으로 재검증 — 확인 전 active resume에서 제외
 
 ---
 
@@ -37,13 +39,12 @@ owner: [sync-spec](../backlog/platform-profile-consolidation/sync-spec.md) · �
 
 ### B1. 산출물 파이프라인
 
-- [ ] active KO expression 기준 PDF 재생성 및 A4 2장 [Acceptance Gate 6](../products/resume/content-contract.md#acceptance-gates) 검증
+- [ ] active KO expression 기준 PDF 재생성 및 첫 장 scanability·페이지별 technical signal·A4 visual [Acceptance Gate 6](../products/resume/content-contract.md#acceptance-gates) 검증
 - [ ] sitemap 갱신
 
 ### B2. 콘텐츠
 
 - [ ] `/blog`·`/labs` COMING SOON 해소, blog MDX 파이프라인 — [blog setup](../backlog/blog-setup/README.md)
-- [ ] 실제 JD 1건으로 `tailor-resume` 지원 패키지 생성
 
 ### B3. 이력서 후속
 

@@ -33,7 +33,7 @@ description: Use when the user provides a company job-posting URL, pastes or att
 
 ### 3. Decide Outcome Axes
 
-회사가 가장 원하는 결과 2~4개를 판정한다. 이것이 요약, 이력서, 포트폴리오의 공통 목차다.
+회사가 가장 원하는 결과를 판정한다. 축의 수를 미리 고정하지 않고 JD 우선순위와 검증 가능한 case가 결정하게 한다.
 
 - 직무명·기술명·프로젝트명 대신 `돈을 주고 맡기면 어떤 상태를 만들어 주는가`로 축을 쓴다.
 - `FastAPI`, `비동기`, `어드민`은 성과가 아니라 수단이다. `실패 가능한 업무를 격리하고 복구한다`, `운영 중인 서비스를 재구축해 안정화한다`처럼 결과와 동작을 함께 쓴다.
@@ -56,7 +56,8 @@ description: Use when the user provides a company job-posting URL, pastes or att
 `assets/application-package/content-draft.md`를 복사해 지원 폴더의 `content-draft.md`를 만든다. 이 파일이 승인 전 문안의 canonical owner다.
 
 - resume와 portfolio에 들어갈 **실제 공개 문장 전체**를 Markdown에 먼저 쓴다.
-- 이력서의 `핵심 성과`는 성과 제목 → 채용사가 맡길 수 있는 일 → source별 짧은 proof 순으로 쓴다.
+- 이력서의 `대표 기술 사례`는 문제·제약 → 실제 대안과 선택 → 구현 경계 → failure mode → 검증·운영 → 결과·한계 순으로 resume 안에서 자립적으로 쓴다.
+- 기술 사례 수와 줄 수를 먼저 고정하지 않는다. JD와 가까운 강한 case를 깊게 쓰고, 추가 case는 새로운 technical signal을 제공할 때만 포함한다.
 - 포트폴리오는 이력서와 같은 성과 축·순서를 사용하고, 각 축 아래 1~N개 프로젝트를 proof block으로 배치한다.
 - 프로젝트별 상세 문제·판단·기여·결과·한계를 분리한다.
 - 서로 다른 프로젝트의 수치를 더하거나 하나의 인과관계·통합 프로젝트처럼 쓰지 않는다.
@@ -153,6 +154,6 @@ uv run --project tools python skills/tailor-resume/scripts/html_to_pdf.py \
 4. 모든 bullet이 claim ID와 역추적되는지 확인한다.
 5. `allowed_copy`와 public-safety 상한을 넘지 않는지 확인한다.
 6. 여러 프로젝트를 묶은 문장이 source별 claim 경계와 metric 귀속을 보존하는지 확인한다.
-7. PDF가 A4 1~2페이지이고 잘림·겹침이 없는지 image로 확인한다.
+7. PDF page 수는 gate로 쓰지 않는다. 첫 장의 category·경력·최강 근거 scanability, 이후 페이지의 technical signal, A4 100% scale의 잘림·겹침을 image로 확인한다.
 8. 면접에서 근거를 설명할 수 없는 문장을 완화하거나 제거한다.
 9. 최종 응답에 archive 경로, 현재 단계, `[확인 필요]`, 실제 플랫폼 제출 여부를 명시한다.

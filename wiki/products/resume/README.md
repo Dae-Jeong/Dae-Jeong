@@ -2,7 +2,7 @@
 type: index
 title: Resume Product
 description: Active web resume expression, evidence mapping, and JD-tailored resume contract.
-timestamp: 2026-08-13
+timestamp: 2026-08-18
 tags: [resume, product, master]
 ---
 
@@ -12,7 +12,7 @@ tags: [resume, product, master]
 
 ## Product Contract
 
-- 목적: 15초 안에 `Backend Engineer`와 `AI Product Systems` 적합성을 판단하게 한다.
+- 목적: 첫 장에서 `Backend Engineer`와 `AI Product Systems` 적합성 판정을 시작하고, 전체 문서만으로 기술적 판단·구현·운영 역량을 검증하게 한다.
 - 차별점: `Agent-readable Engineering Workflow`는 backend 실행 방식의 근거로 제시한다.
 - 입력: [profile](../../profile/README.md), [claim registry](../../evidence/claims/README.md)
 - 상세 설명: [portfolio](../portfolio/README.md)
@@ -20,7 +20,11 @@ tags: [resume, product, master]
 - 표현 SoT 소유권: [content-sot.md](../site/content-sot.md)
 - 이력서 지면 역할: [surface-roles.md](../site/surface-roles.md)
 - 표현 선택 기록: [decisions.md](decisions.md)
+- 역할 전달 기준: [role-positioning-standard.md](role-positioning-standard.md)
 - artifact와 근거 연결: [claim-map.yaml](claim-map.yaml)
+- backend 케이스별 성과 후보: [backend-case-achievements.md](backend-case-achievements.md)
+- 과거 회사의 제품 판단·기획 성과 후보: [product-decision-achievements.md](product-decision-achievements.md)
+- 국내외 엔지니어 자기 PR benchmark: [research/2026-08-18-engineer-self-positioning.md](research/2026-08-18-engineer-self-positioning.md)
 
 ## Artifacts
 

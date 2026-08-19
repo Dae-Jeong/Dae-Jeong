@@ -14,7 +14,7 @@ claim_map: claim-map.yaml
 ## 검토 요약
 
 - 지원 자격 판정: [[ELIGIBILITY]]
-- 핵심 성과 축: [[OUTCOME_COUNT]]개
+- 대표 기술 case: [[TECHNICAL_CASE_COUNT]]개
 - 주요 gap: [[GAPS]]
 - 확인 필요: [[CONFIRM_NEEDED]]
 
@@ -26,30 +26,15 @@ claim_map: claim-map.yaml
 
 ### 요약
 
-[[RESUME_SUMMARY]]
+<!-- 선택 섹션. 고정 줄 수 없음. category·specialty·경력 궤적만 프레이밍하고 technical case를 대신 요약하지 않는다. -->
 
-### 핵심 성과 · 맡길 수 있는 일
+[[RESUME_INTRO]]
 
-#### 1. [[OUTCOME_1_TITLE]]
+### 핵심 성과
 
-- 회사가 맡길 수 있는 일: [[OUTCOME_1_EMPLOYER_NEED]]
-- proof · [[OUTCOME_1_SOURCE_A]]: [[OUTCOME_1_PROOF_A]]
-- proof · [[OUTCOME_1_SOURCE_B]]: [[OUTCOME_1_PROOF_B]]
-- claim IDs: `[[OUTCOME_1_CLAIMS]]`
+<!-- case마다 문제·제약 / 대안·선택 / 구현 경계 / failure mode / 검증·운영 / 결과·한계 / claim IDs를 연결한다. 고정 개수 없음. -->
 
-#### 2. [[OUTCOME_2_TITLE]]
-
-- 회사가 맡길 수 있는 일: [[OUTCOME_2_EMPLOYER_NEED]]
-- proof · [[OUTCOME_2_SOURCE_A]]: [[OUTCOME_2_PROOF_A]]
-- proof · [[OUTCOME_2_SOURCE_B]]: [[OUTCOME_2_PROOF_B]]
-- claim IDs: `[[OUTCOME_2_CLAIMS]]`
-
-#### 3. [[OUTCOME_3_TITLE]]
-
-- 회사가 맡길 수 있는 일: [[OUTCOME_3_EMPLOYER_NEED]]
-- proof · [[OUTCOME_3_SOURCE_A]]: [[OUTCOME_3_PROOF_A]]
-- proof · [[OUTCOME_3_SOURCE_B]]: [[OUTCOME_3_PROOF_B]]
-- claim IDs: `[[OUTCOME_3_CLAIMS]]`
+[[RESUME_TECHNICAL_CASES]]
 
 ### 경력
 
@@ -69,26 +54,7 @@ claim_map: claim-map.yaml
 
 [[PORTFOLIO_INTRO]]
 
-### Outcome 1 · [[OUTCOME_1_TITLE]]
-
-- 회사가 얻는 결과: [[OUTCOME_1_RESULT]]
-- 반복 가능한 방식: [[OUTCOME_1_APPROACH]]
-- proof · [[OUTCOME_1_SOURCE_A]]
-  - 문제·맥락: [[OUTCOME_1_SOURCE_A_CONTEXT]]
-  - 판단·기여: [[OUTCOME_1_SOURCE_A_CONTRIBUTION]]
-  - 결과·한계: [[OUTCOME_1_SOURCE_A_RESULT_LIMIT]]
-- proof · [[OUTCOME_1_SOURCE_B]]
-  - 문제·맥락: [[OUTCOME_1_SOURCE_B_CONTEXT]]
-  - 판단·기여: [[OUTCOME_1_SOURCE_B_CONTRIBUTION]]
-  - 결과·한계: [[OUTCOME_1_SOURCE_B_RESULT_LIMIT]]
-
-### Outcome 2 · [[OUTCOME_2_TITLE]]
-
-[[OUTCOME_2_PORTFOLIO_COPY]]
-
-### Outcome 3 · [[OUTCOME_3_TITLE]]
-
-[[OUTCOME_3_PORTFOLIO_COPY]]
+[[PORTFOLIO_CASES]]
 
 ## 사용자 검토 체크
 

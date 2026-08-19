@@ -154,8 +154,8 @@ export function ChatView() {
                 백엔드, Agent Workflow, Evaluation이 중심입니다.
               </p>
               <p>
-                MediSolve AI에 Backend Engineer로 합류한 뒤 기업부설연구소장·Tech
-                Lead·PO 역할을 병행하고 있습니다.
+                MediSolve AI에서 Tech Lead를 맡고 Backend Engineer·PO 역할을 병행하고
+                있습니다.
               </p>
               <Evidence ids={["profile.identity", "career.medisolve-role-evolution"]} />
               <Related

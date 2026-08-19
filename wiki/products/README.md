@@ -10,7 +10,7 @@ tags: [products, resume, portfolio, homepage, jd]
 
 | Product | Purpose | Entry |
 | --- | --- | --- |
-| Resume | 15초 hooking과 지원용 A4 산출물 | [resume/README.md](resume/README.md) |
+| Resume | 첫 장 scanability와 self-contained technical proof를 갖춘 지원 산출물 | [resume/README.md](resume/README.md) |
 | Portfolio | case depth와 구현 검증 | [portfolio/README.md](portfolio/README.md) |
 | Homepage | personal brand와 탐색 surface | [homepage/README.md](homepage/README.md) |
 | JD | 시장 분석과 맞춤 선별 | [jd/README.md](jd/README.md) |

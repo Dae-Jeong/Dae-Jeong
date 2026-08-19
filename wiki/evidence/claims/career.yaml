@@ -10,23 +10,18 @@ claims:
     allowed_copy:
       - Backend Engineer 합류 후 Tech Lead·PO·AI agent 역할 병행
       - Backend Engineer 합류 후 Tech Lead·PO 역할 병행
-      - Backend Engineer 합류 후 기업부설연구소장·Tech Lead·PO 역할 병행
-      - 기업부설연구소장
     forbidden_copy:
       - 공식 직함이 모두 Tech Lead / PO / AI Agent Engineer라고 단정
       - 제품 기획 전담
-      - 기업부설연구소장을 권한·지위로 서술 (연구개발 조직 대표·총괄 등)
-      - 기업부설연구소장을 문장의 주어나 강조(굵게)로 앞세우기
+      - 공개 resume·homepage·portfolio에서 기업부설연구소장 표기
     verified_at: 2026-08-13
     note: >-
       기업부설연구소장은 등재 직함이다 (2026-08-08 user-confirmed, canonical-baseline.md).
-      Tech Lead·PO는 역할 병행이며 등재 직함이 아니다 — 셋을 나열할 때 모두 공식 직함으로
-      읽히지 않게 "역할 병행"을 함께 쓴다.
+      다만 2026-08-18 user-confirmed 기준 공개 resume·homepage·portfolio에는 표기하지 않고
+      evidence fact로만 보존한다. Tech Lead를 primary로, Backend Engineer를 supporting role로
+      제시하며 Tech Lead·PO가 등재 직함이라고 단정하지 않는다.
 
-      톤 가드 (2026-08-13 user-confirmed): "기업 부설 연구소장이라는 타이틀이 있기는 하지만
-      그냥 하고있었다 정도로만 하고 이걸 막 자랑할 요소로는 안적었으면 좋겠어."
-      직함은 사실로 표기하되 강조하지 않는다. 문장의 주어로 쓰거나 굵게 처리하지 않고,
-      권한·지위 서술을 붙이지 않는다. 주장은 한 일로 하고 직함은 뒤에 덧붙인다.
+      공개 positioning은 Tech Lead의 판단·실행 책임과 backend 전문성으로 증명한다.
   - id: career.ai-pm-backend-continuity
     statement: Vision AI Engineer, PM, Backend Engineer 경험이 AI product system 관점으로 연결됨
     strength: contributed
@@ -38,6 +33,48 @@ claims:
     forbidden_copy:
       - 전 직무 최고 책임자
     verified_at: 2026-07-06
+  - id: career.product-ux-practice
+    statement: PM 및 외부 활동에서 사용자 흐름의 문제를 분석하고 UX 개선 가설·요구사항·prototype artifact로 구체화
+    strength: contributed
+    confidence: medium
+    public: true
+    evidence: [evidence/projects/previous-career.md#product-and-ux-practice]
+    allowed_copy:
+      - 사용자 흐름의 pain point를 solution·expected result로 구조화하고 UX 개선안을 설계
+      - 운영 서비스 UX 컨설팅과 Speak 추천 흐름 분석을 통해 사용자 문제를 제품 요구사항으로 구체화
+      - 보상 포인트 인지·재방문 흐름의 pain point를 badge·push 개선 가설과 Figma 화면안으로 구체화
+      - Speak 학습 완료 후 추천 맥락 문제를 분석해 다음 콘텐츠 흐름 요구사항을 설계
+      - YouTube Music 사례를 통해 UX 심리 원리를 분석·발표
+      - Speak 개선안 발표로 IPS 12기 MVP 선정
+      - PM·UX 분석 경험을 제품 요구를 backend contract로 번역하는 배경으로 활용
+    forbidden_copy:
+      - UX Designer 직함·전문 사용자 리서치 전담
+      - 컨설팅 개선안 전체가 실제 제품에 구현됐다고 단정
+      - 신규 유저 유입 200% 증가를 개인 UX 제안의 직접 성과로 귀속
+      - 전환율·리텐션·매출 개선 수치
+      - TellingMe 제품 기획 ownership
+    verified_at: 2026-08-18
+  - id: career.ux-consulting-product-outcome
+    statement: 운영 서비스 UX 개선안이 다른 제품 업데이트와 함께 반영된 뒤 3개월 이내 App Store 순위가 9위에서 5위로 상승하고 DAU가 기존 대비 200% 수준이 됐다는 사후 결과를 공유받음
+    strength: contributed
+    confidence: medium
+    public: true
+    evidence: [evidence/projects/previous-career.md#product-and-ux-practice]
+    allowed_copy:
+      - 사후 공유 결과, 개선안 반영 후 3개월 이내 App Store 순위 9위→5위·DAU 기존 대비 200% 수준 — 복수 개선의 공동 결과에 기여
+      - UX 개선안이 반영된 제품의 3개월 내 App Store 순위 상승과 DAU 증가에 기여
+    forbidden_copy:
+      - 내 제안만으로 App Store 순위와 DAU를 개선
+      - DAU 200% 증가
+      - category·region이 확인되지 않은 App Store 순위의 세부 범주 단정
+      - DAU 절대 기준값·사용자 수·집계 정의 단정
+      - 컨설팅 개선안 전체가 실제 제품에 구현됐다고 단정
+      - 전환율·리텐션·매출 개선 수치
+    verified_at: 2026-08-18
+    note: >-
+      2026-08-18 user-confirmed 사후 공유 결과다. raw dashboard는 확인하지 못했고 여러 제품 개선이
+      함께 반영됐으므로 제품·팀 outcome에 대한 contributed 상한만 허용한다. `기존 대비 200% 수준`은
+      baseline의 2배 수준이라는 뜻이며 `+200%` 또는 `200% 증가`로 변환하지 않는다.
   - id: career.sellercanvas-product-system
     statement: 생성형 AI 커머스 콘텐츠 제품 SellerCanvas에서 PM 메인 롤로 제품이 원활하게 돌아가는 시스템을 기획·구축
     strength: led
@@ -83,35 +120,93 @@ claims:
       - 제품 전체와 PoC 단독 총괄
     verified_at: 2026-08-17
   - id: career.memento-payment
-    statement: 예약·결제 backend의 Stripe 선결제 도입과 환불·마일리지·티켓 rollback 안정화
+    statement: 환불 유형별 처리 순서와 마일리지 복원·티켓 삭제 시점을 조정해 예약·결제 backend의 상태 정합성을 보완
     strength: contributed
     confidence: high
     public: true
     evidence: [evidence/projects/previous-career.md#memento-payment]
     allowed_copy:
-      - 예약·결제 backend의 Stripe 선결제 도입과 환불·마일리지·티켓 rollback 안정화
-      - 예약·결제 backend의 선결제와 환불·마일리지·티켓 rollback 안정화
+      - 환불 요청과 완료를 분리하고 마일리지 복원·티켓 삭제를 환불 완료 transition으로 이동
+      - 현금·Stripe·0원·전액 마일리지 경로별 상태 변경 순서를 보완
       - 재직 종료 사유는 회사 폐업
     forbidden_copy:
       - 결제 장애 완전 해결
       - 결제 시스템 전체 ownership
-    verified_at: 2026-07-19
+      - 예약 확정 시점 변경을 production에 반영
+      - DB와 provider 결제의 atomic rollback 보장
+      - webhook idempotency·exactly-once
+    verified_at: 2026-08-18
+  - id: career.memento-stripe-prepayment
+    statement: Stripe Checkout 기반 manual-capture 선결제 영역을 구축하고 local transaction ID로 PaymentHistory·PaymentMethod와 Checkout·Webhook event를 연결
+    strength: led
+    confidence: high
+    public: true
+    evidence: [evidence/projects/previous-career.md#memento-payment]
+    allowed_copy:
+      - Stripe Checkout 기반 manual-capture 선결제 영역 구축
+      - local transaction ID를 provider metadata에 연결해 결제 이력과 Checkout·Webhook event를 매핑
+      - 예약 처리 실패 시 PaymentIntent 상태에 따라 cancel/refund하는 provider-side 보상 처리
+    forbidden_copy:
+      - 회사 결제 시스템 전체 ownership
+      - webhook idempotency·exactly-once
+      - 결제 불일치 0건
+      - 구독·다국가 결제
+      - production 운영 전담
+      - DB와 provider 결제의 atomic transaction·완전한 rollback
+    verified_at: 2026-08-18
+  - id: career.memento-happycall-survey
+    statement: 기존 다국어 Happy Call 흐름에서 알림톡·이메일 즉시/예약 발송, Celery 예약 변경·발송 이력과 설문 당첨 결과 조회·filter를 구현
+    strength: led
+    confidence: high
+    public: true
+    evidence: [evidence/projects/previous-career.md#memento-happy-call-and-survey]
+    allowed_copy:
+      - 다국어 해피콜의 알림톡·이메일 즉시/예약 발송과 Celery task 취소·재등록·발송 이력 구현
+      - 설문 당첨 결과 조회·요약과 기간·검색 filter 구현
+    forbidden_copy:
+      - 해피콜·설문 system 전체 단독 구축
+      - 설문 응답 validation 구현
+      - 3회 retry·delivery 보장·멱등 messaging
+      - 운영 효과 수치
+      - branch-only homepage winner publish 기능
+    verified_at: 2026-08-18
   - id: career.thedaylabs-freelance
-    statement: 현 MediSolve AI 대표의 더데이랩스에서 프리랜서로 Centurion 초기 backend 구축과 개발팀 시스템·backend 기준 수립을 시작해 창업과 함께 합류 (2025.02-2025.04)
+    statement: MediSolve AI 법인 설립 전 더데이랩스의 환경에서 프리랜서로 Centurion 초기 backend와 개발팀 system·backend 기준을 선행 구축 (2025.02-2025.04)
     strength: led
     confidence: high
     public: true
     evidence: [evidence/projects/previous-career.md#career-gaps-and-freelance]
     allowed_copy:
       - 더데이랩스 프리랜서 (2025.02-2025.04)
-      - 현 MediSolve AI 대표와 프리랜서로 협업 시작 — Centurion 초기 backend 구축과 개발팀 시스템·backend 기준 수립, 창업과 함께 합류
+      - MediSolve AI 법인 설립 전 더데이랩스 프리랜서로 Centurion 초기 backend와 개발팀 system·backend 기준을 선행 구축
+      - 더데이랩스 프리랜서로 법인 설립 전 제품 개발을 선행하고 MediSolve AI 설립과 함께 정규 합류
       - 피부과 CRM Centurion을 제품 시작 시점부터 구축
       - 피부과 운영 AI 메디컬 플랫폼 centurion을 제품 시작 시점부터 구축
     forbidden_copy:
       - 해당 기간의 성과 수치
       - 2025.10 repo 활동의 공개 표기
       - 제품 전략 서술 (생태계 관장 등 — 회사 공개 자료 확인 전)
-    verified_at: 2026-07-17
+      - 더데이랩스와 MediSolve AI가 같은 법인
+      - 법인 전환·고용 연속·승진
+    verified_at: 2026-08-18
+  - id: career.memento-to-medisolve-early-member
+    statement: Memento AI에서의 개발 성과를 인정받아 MediSolve AI 초기 멤버로 영입되고, 더데이랩스 프리랜서 선행 개발 뒤 법인 설립과 함께 정규 합류해 Tech Lead 역할을 맡음
+    strength: contributed
+    confidence: high
+    public: true
+    evidence: [evidence/projects/previous-career.md#memento-to-medisolve-early-member-path]
+    allowed_copy:
+      - Memento AI에서의 개발 성과를 인정받아 MediSolve AI 초기 멤버로 영입
+      - 더데이랩스 프리랜서로 법인 설립 전 제품 개발 선행 후 MediSolve AI 설립과 함께 정규 합류·Tech Lead 역할
+      - 합류 경로 · Memento AI 성과 인정 → MediSolve AI 초기 멤버 영입 → 법인 설립 전 선행 개발 → 설립과 함께 정규 합류·Tech Lead 역할
+    forbidden_copy:
+      - Memento AI와 MediSolve AI가 같은 법인
+      - 더데이랩스와 MediSolve AI가 같은 법인
+      - 법인 전환·고용 연속·사업 승계
+      - 승진
+      - 공동창업자·창업 멤버를 공동창업 의미로 표현
+      - 세 회사의 대표 관계를 단일 대표로 단순화
+    verified_at: 2026-08-18
   - id: career.tellingme-backend-infra
     statement: TellingMe 개인 프로젝트의 Spring Boot backend와 AWS 배포·모니터링 리드
     strength: led

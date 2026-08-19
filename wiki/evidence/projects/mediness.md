@@ -31,7 +31,8 @@ Source locator: `agentspace:mediness`
 ## Daily Briefing
 
 - Tool-backed: collaboration tool activity를 집계해 제품 상태와 blocker를 요약하는 daily briefing workflow가 확인됐다.
-- Contribution boundary: briefing agent 구축·운영. 사람의 판단과 운영을 완전히 대체했다는 의미는 아니다.
+- Git-backed verification gap (2026-08-18): briefing automation의 최초 구현과 pipeline·DB 재설계 commit은 다른 author이며, 김대정 author의 구현 변경은 확인되지 않았다. non-code 운영 ownership 가능성까지 부정하는 근거는 아니지만, 별도 운영 기록을 확인하기 전에는 기본 이력서에서 `구축` claim을 사용하지 않는다.
+- Existing contribution boundary: registry에는 briefing agent 구축·운영으로 등록돼 있으나 위 author 불일치 때문에 재검증이 필요하다. 사람의 판단과 운영을 완전히 대체했다는 의미로 확장하지 않는다.
 
 ## Role Boundary
 

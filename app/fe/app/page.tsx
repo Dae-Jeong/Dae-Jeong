@@ -66,8 +66,8 @@ const SUMMARY: { no: string; accent?: boolean; text: React.ReactNode }[] = [
     no: "04",
     text: (
       <>
-        AI 제품 backend를 만들면서 <strong>무엇을 만들지 정하는 일도 같이 한다</strong> —
-        Backend Engineer로 합류해 기업부설연구소장·Tech Lead·PO를 병행하고 있다
+        Tech Lead로서 AI 제품 backend를 만들면서 <strong>무엇을 만들지 정하는 일도 같이 한다</strong> —
+        Backend Engineer·PO 역할을 병행하고 있다
       </>
     ),
   },

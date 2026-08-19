@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
 import { Container } from "@/components/site/container";
 import { SiteFooter } from "@/components/site/site-footer";
 import { TopBar } from "@/components/site/topbar";
 import { SectionHead } from "@/components/ui/section-head";
 import { MGRV_PORTFOLIO } from "@/content/portfolios/mgrv";
+import type { TailoredPortfolio } from "@/content/portfolios/types";
 
 import { WorkSystemDiagram } from "./diagrams";
 import { OutcomeNavigator, type PortfolioNavItem } from "./outcome-navigator";
@@ -44,6 +46,15 @@ const navigationItems: PortfolioNavItem[] = [
 ];
 
 export default function MgrvPortfolioPage() {
+  const portfolio: TailoredPortfolio = MGRV_PORTFOLIO;
+
+  if (
+    process.env.NODE_ENV === "production" &&
+    portfolio.visibility !== "public"
+  ) {
+    notFound();
+  }
+
   return (
     <>
       <TopBar

@@ -2,7 +2,7 @@
 type: project-evidence
 title: NEXUS Evidence
 description: External hospital product backend monorepo and Terraform evidence. 어드민 시스템 evidence를 흡수했다.
-timestamp: 2026-08-10
+timestamp: 2026-08-18
 source_roots: [workspace, agentspace]
 tags: [nexus, backend, terraform, admin, evidence]
 ---
@@ -47,11 +47,11 @@ Git 대조 결과 **동일 저장소**다 — `packages/admin-api`·`packages/ho
 
 ## Admin Backend
 
-`medisolve-admin.md`에서 이관 (2026-08-10). 기간 2025.10~ 진행 중, 스택 Python 3.13 · FastAPI · SQLAlchemy 2.0 · MySQL · Docker · Azure.
+`medisolve-admin.md`에서 이관 (2026-08-10, 2026-08-18 source 정정). 기간 2025.10~ 진행 중, 스택 Python 3.13 · FastAPI · Tortoise ORM · MySQL · Docker · Azure.
 
 - Code-backed: **Homepage/Admin API 독립 모듈** — `packages/admin-api`, `packages/homepage-api`를 `api-gateway`로 단일 엔드포인트 제공
 - Code-backed: **Router–Service–Repository–Model 계층 분리**, DI Container 기반 의존성 주입
-- Code-backed: **Generic BaseRepository** — SQLAlchemy 2.0 Generic 타입으로 공통 CRUD 표준화
+- Code-backed: **Generic BaseRepository** — Tortoise ORM model generic으로 공통 CRUD 표준화
 - Code-backed: **Multi-tenancy(`BranchMixin`)**, Soft Delete 자동 필터링으로 데이터 격리
 
 **자기보고 정정 2건** (2026-08-10 Git 대조):
@@ -109,7 +109,7 @@ Code-backed (2026-08-17, `workspace:NEXUS`):
 
 ## Public Disclosure
 
-- `NEXUS`는 외부 병원 product backend를 가리키는 public label로 사용한다.
+- active public resume에서는 `NEXUS`를 Centurion과 병렬 제품명으로 쓰지 않고 `어드민/통합 관리 시스템` 기능명으로 푼다. claim namespace는 repository trace를 위해 유지한다.
 - 고객사와 브랜드명은 공개하지 않는다. 어드민 고객사는 **`D·C 피부과`** 마스킹 코드로만 쓴다.
 
 ## Rejected Or Unverified Claims

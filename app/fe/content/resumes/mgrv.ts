@@ -4,9 +4,9 @@ export const MGRV_RESUME = {
   slug: "mgrv",
   companyName: "MGRV",
   position: "Backend Engineer",
-  status: "approved",
-  visibility: "public",
-  updatedAt: "2026-08-17",
+  status: "closed",
+  visibility: "local",
+  updatedAt: "2026-08-18",
   pdfHref: "/resumes/mgrv-resume.pdf",
   header: {
     name: "김대정",

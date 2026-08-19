@@ -12,7 +12,8 @@ tags: [identity, positioning, branding]
 
 | Level | Canonical value |
 | --- | --- |
-| Primary category | Backend Engineer |
+| Primary category | Tech Lead |
+| Supporting role | Backend Engineer |
 | **Dual role** | **Product Owner** (2026-08-10 user-confirmed — 병기하되 primary를 대체하지 않는다) |
 | Specialty | AI Product Systems |
 | Differentiator | **만들면서 무엇을 만들지도 함께 정한다** + Agent-readable Engineering Workflow |
@@ -20,7 +21,7 @@ tags: [identity, positioning, branding]
 
 ## Canonical One-Line
 
-> AI 제품을 만들고, 무엇을 만들지도 함께 정하는 백엔드 엔지니어.
+> 백엔드 기반으로 AI 제품의 방향과 실행을 연결하는 Tech Lead.
 
 ## Brand Line
 
@@ -29,7 +30,7 @@ tags: [identity, positioning, branding]
 - 2026-08-16 user-confirmed.
 - 이 문장은 홈페이지·포트폴리오용 브랜드 서사이며, 이력서 헤더에는 사용하지 않는다 (2026-08-16 user-confirmed).
 - Vision AI Engineer → PM → Backend Engineer 전환을 직무 나열이 아니라, 제품에 더 크게 기여하기 위해 필요한 역할과 역량을 확장해온 서사로 표현한다.
-- 공개 이력서에서는 primary category `Backend Engineer`와 분리된 브랜드 문장으로 사용한다.
+- 공개 이력서에서는 `Tech Lead`를 primary, `Backend Engineer`를 supporting role로 사용한다.
 
 ## 관통 질문 (2026-08-11 신설, user-confirmed)
 
@@ -43,7 +44,7 @@ user-confirmed)에서 도출한 것으로 차용이 아니다. 문안 canonical�
 
 ## English
 
-> Backend Engineer who builds AI products and decides what to build.
+> Tech Lead with a backend engineering core who builds AI products and decides what to build.
 
 ## Dual Track 근거와 경계
 
@@ -61,7 +62,7 @@ user-confirmed(2026-08-10): "백엔드 엔지니어 / PO 혼용해도 좋을 것
 **그래서 병기 방식을 고정한다.**
 
 - ✅ **한 문장으로 묶는다** — "만들고, 무엇을 만들지도 함께 정한다". 두 축이 **하나의 희소성**으로 읽혀야 한다
-- ✅ 검색·직군 매칭이 필요한 필드(플랫폼 직무 태그, 이력서 최상단 카테고리)는 **Backend Engineer 단독**을 유지한다
+- ✅ 이력서 최상단은 **Tech Lead → Backend Engineer** 순서로 고정한다
 - ❌ `Backend Engineer / PO`처럼 **슬래시로 나열하지 않는다** — 두 직군에 걸친 사람으로 읽힌다
 - ❌ PO를 primary로 올리지 않는다 — 4,000 커밋이 설명되지 않는다
 
@@ -71,8 +72,8 @@ FastAPI/NestJS 기반 product backend, AI generation quality, async/realtime pro
 
 ## Positioning Logic
 
-1. Backend credibility를 먼저 제시한다.
-2. AI product runtime과 quality system 경험으로 전문 영역을 좁힌다.
+1. Tech Lead의 판단·실행 책임을 먼저 제시한다.
+2. Backend credibility와 AI product runtime·quality system 경험으로 전문 영역을 증명한다.
 3. Agent workflow는 별도 직군이 아니라 engineering execution의 차별점으로 제시한다.
 4. PM/Vision AI 경험은 product-system 관점의 배경으로만 사용한다.
 5. 리드 경험은 "무엇을 왜 만들고 어떤 기준으로 운영할지 결정한 뒤, 사람·agent·시스템의 실행을 정렬한다"는 작동 방식으로 서술한다. Director 등 직함으로 표현하지 않는다.
@@ -80,8 +81,8 @@ FastAPI/NestJS 기반 product backend, AI generation quality, async/realtime pro
 ## Guardrails
 
 - `Backend Architect`, `AX Engineer`, `AI Agent Engineer`를 sole primary category로 사용하지 않는다.
-- ~~Tech Lead, PO, AI agent 관련 역할은 공식 직함처럼 나열하지 않고 병행 역할로 설명한다.~~
-  → **2026-08-10 개정**: **PO는 dual role로 병기한다** (위 Dual Track 참조). 단 병기 방식은 "한 문장으로 묶기"로 고정하며, 슬래시 나열과 primary 승격은 계속 금지한다. Tech Lead·AI agent 역할은 종전대로 병행 역할로만 설명한다.
+- Tech Lead는 primary positioning으로 사용하되 등재 직함이라고 단정하지 않는다. PO·AI agent는 병행 역할로만 설명한다.
+- 기업부설연구소장 등재 사실은 evidence에만 보존하고 공개 resume·homepage·portfolio에는 표기하지 않는다.
 - 특정 병원/헬스케어 산업에 identity를 제한하지 않는다.
 - 근거 없는 `단독`, `완전 해결`, 성능 배수, business outcome을 사용하지 않는다.
 

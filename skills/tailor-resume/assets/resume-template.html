@@ -9,7 +9,7 @@
 
   사용법:
   - 이 템플릿은 정적 프레임이다 — 섹션 구성/개수/분량 규칙은 references/content-rules.md 준수.
-  - 문체: 전 영역 개조식 (명사형 종결). "~합니다" 문장체·마케팅 수사 금지 (content-rules 문체 규칙).
+  - 문체: 소개는 필요할 때 문단형을 허용하고, 경력·technical case는 명사형 bullet을 기본으로 한다. 판단 연결에 필요한 문장을 억지로 압축하지 않으며 마케팅 수사는 금지한다.
   - [[SLOT:...]] 주석 영역만 JD 맞춤 내용으로 채운다. JD 맞춤 = 선별과 순서, 프레임 변경 금지.
   - FIXED 표기 영역(연락처, 수상/특허/교육, 푸터)은 검증된 값 — 변경 금지.
   - 디자인 토큰은 :root 블록에서만 수정한다 (색/폰트 일관성 유지).
@@ -133,21 +133,19 @@
   <div class="part"><span class="en">A — CAPABILITY</span><span class="ko">무엇을 할 수 있는가</span></div>
 
   <section>
-    <div class="sec-label"><span class="num">01</span><h2>요약</h2></div>
-    <!-- [[SLOT:summary]] 개조식 3줄 고정 — JD 핵심 요구 2~3개에 직접 대응. 15초 테스트 통과 필수 -->
+    <div class="sec-label"><span class="num">01</span><h2>소개</h2></div>
+    <!-- [[SLOT:summary]] 선택 섹션. 고정 줄 수 없음. category·specialty·경력 궤적만 프레이밍하고 뒤의 technical case를 대신 요약하지 않음. -->
     <div class="summary">
       <ul class="bullets">
-        <li>(개조식 요약 1 — 현재 역할/역할 확장)</li>
-        <li>(개조식 요약 2 — JD 핵심 요구 대응 경험)</li>
-        <li>(개조식 요약 3 — 차별화 요소)</li>
+        <li>(필요한 경우에만 쓰는 orientation — 현재 역할과 경력 궤적)</li>
       </ul>
     </div>
   </section>
 
   <section>
     <div class="sec-label"><span class="num">02</span><h2>핵심 역량</h2></div>
-    <!-- [[SLOT:capabilities]] 기술/역량 기준 그룹 5~6개 고정 — 그룹당 [할 수 있는 것 선언 1줄 + 근거 1줄(프로젝트 태그, 회사/개인 무관)].
-         프로젝트 소개 금지 — 능력 서술만. JD 맞춤 = 그룹 순서 재배열 + 근거 선별 -->
+    <!-- [[SLOT:capabilities]] 선택 섹션. 고정 그룹 수 없음. 뒤 technical case에서 이미 증명되는 선언은 반복하지 않고,
+         여러 case를 가로지르는 반복 가능성만 claim과 근거로 제시. -->
     <dl class="cgroups">
       <div class="cgroup"><dt>(역량 라벨)</dt><dd>
         <p class="claim">(할 수 있는 것 선언 1줄)</p>
@@ -172,21 +170,24 @@
   </section>
 
   <section>
-    <div class="sec-label"><span class="num">04</span><h2>핵심 성과</h2></div>
-    <!-- [[SLOT:outcomes]] JD가 돈을 주고 맡기는 결과를 기준으로 최대 3개. 제목은 프로젝트명·기술명이 아니라 "무엇을 어떤 상태로 만든다"로 쓴다.
-         해당 없으면 이 section 통째로 삭제. 배경 설명/사유 서술 금지 — 포트폴리오 몫 -->
+    <div class="sec-label"><span class="num">04</span><h2>대표 기술 사례</h2></div>
+    <!-- [[SLOT:outcomes]] JD와 가까운 verified technical case를 필요한 만큼 선별한다. 고정 개수 없음.
+         각 case는 문제·제약, 대안·선택, 구현 경계, failure mode, 검증·운영, 결과·한계를 resume 안에서 자립적으로 설명한다.
+         Portfolio는 diagram·상세 evidence·긴 failure analysis를 확장할 뿐 필수 전제가 아니다. -->
     <div class="proj outcome" data-outcome="(outcome-slug)">
       <div class="proj-name"><span class="tag">(성과 축)</span><span class="desc">(채용사가 맡길 수 있는 일)</span></div>
       <ul class="bullets">
-        <li><strong>(프로젝트/경력 라벨)</strong> (검증된 proof)</li>
+        <li><strong>문제·제약</strong> (실제 failure mode와 선택 조건)</li>
+        <li><strong>선택·구현</strong> (대안, trade-off, 본인의 구현 경계)</li>
+        <li><strong>검증·운영·결과</strong> (test, 배포·운영, metric 또는 확인된 한계)</li>
       </ul>
     </div>
   </section>
 
   <section>
     <div class="sec-label"><span class="num">05</span><h2>경력</h2></div>
-    <!-- [[SLOT:career]] 컴팩트 타임라인 고정 — 회사 4 + 개인 1 (시간 역순), 항목당 [회사·역할·기간 + 한 줄 요약].
-         상세 bullet 금지 (역량 근거는 02 담당). JD 맞춤 = 한 줄 요약 문구만 -->
+    <!-- [[SLOT:career]] 검증된 전체 경력을 시간 역순으로 제시한다. 회사·역할·기간·scope가 먼저 보이게 하고,
+         대표 technical case와 중복하지 않는 세부 성과는 필요한 만큼 bullet로 추가한다. 회사·개인 project 수 고정 없음. -->
     <div class="tl">
       <div>
         <div class="job-head">

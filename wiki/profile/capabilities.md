@@ -2,8 +2,8 @@
 type: profile
 title: Capabilities
 description: Canonical capability groups, evidence anchors, and confidence.
-timestamp: 2026-07-11
-tags: [capabilities, backend, ai-product, infra, agent-workflow]
+timestamp: 2026-08-18
+tags: [capabilities, backend, ai-product, infra, agent-workflow, product, ux]
 ---
 
 # Capabilities
@@ -16,6 +16,7 @@ tags: [capabilities, backend, ai-product, infra, agent-workflow]
 | Infra-Aware Delivery | Terraform, Azure/AWS, Docker, GitHub Actions, deploy/runbook 연결 | Company Azure infra, NEXUS, Centurion, TellingMe | High |
 | Engineering Standard | layered architecture, DI, ADR, convention, runbook, project bootstrap 설계 | BE Template | High |
 | Agent-Readable Workflow | source-of-truth routing, decision/spec/work/release gate, daily briefing, evidence gate 운영 | mediness, BE Template | High for evidence; emerging public category |
+| Product And UX Reasoning | 사용자 흐름의 pain point를 개선 가설·요구사항·prototype artifact로 구체화 | SellerCanvas, MoneyWalk UX consulting, Speak analysis | Medium |
 
 ## Working Stack
 
@@ -24,6 +25,7 @@ tags: [capabilities, backend, ai-product, infra, agent-workflow]
 - Runtime/Integration: WebSocket, SSE, STT/LLM integration
 - Infra: Azure, AWS, Terraform, Docker, GitHub Actions
 - AI Product: typed prompt builder, LLM judge/evaluation, structured output, observability logging
+- Product/UX: user flow analysis, problem framing, requirement design, Figma artifact
 
 ## Boundaries
 

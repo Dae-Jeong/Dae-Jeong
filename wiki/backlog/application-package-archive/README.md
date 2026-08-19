@@ -162,4 +162,5 @@ skill은 다음까지만 자동으로 수행한다.
 - tracked package template 추가
 - `tailor-resume`에 Markdown-first content review gate 반영
 - 공개가 승인된 회사별 문안은 `/resume/{company}` typed content route로 export하며 DRAFT와 visibility를 분리
-- MGRV 공고 1건으로 content draft와 preview PDF까지 검증, 사용자 문안 승인 대기
+- MGRV 공고 1건으로 content draft·preview PDF·공개 route까지 검증
+- 2026-08-18 서류 탈락으로 지원 종료. 맞춤 이력서·포트폴리오는 production에서 내리고 local reference로 보존

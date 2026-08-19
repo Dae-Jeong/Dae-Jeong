@@ -43,7 +43,13 @@ export default async function CompanyResumePage({ params }: PageProps) {
           Resume / {resume.companyName}
         </>
       }
-      tag={resume.status === "draft" ? "DRAFT" : undefined}
+      tag={
+        resume.status === "draft"
+          ? "DRAFT"
+          : resume.status === "closed"
+            ? "CLOSED"
+            : undefined
+      }
     >
       <TailoredResumeView resume={resume} />
     </ResumePageShell>

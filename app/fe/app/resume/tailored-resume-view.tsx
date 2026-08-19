@@ -161,8 +161,8 @@ function ResumeDocument({ resume }: { resume: TailoredResume }) {
     "data-claim": claim(skill.claimIds),
     v: (
       <>
-        {skill.stack}
-        <span className="mt-0.5 block font-mono text-xs text-muted">{skill.via}</span>
+        <span className="block text-base font-medium leading-normal text-fg">{skill.stack}</span>
+        <span className="mt-1 block text-pretty text-sm leading-relaxed text-fg-2">{skill.via}</span>
       </>
     ),
   }));

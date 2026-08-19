@@ -10,10 +10,10 @@ export const GNA_COMPANY_RESUME = {
   pdfHref: "/resumes/gna-company-resume.pdf",
   header: {
     name: "김대정",
-    role: "Backend Engineer · Python / FastAPI",
+    role: "Tech Lead · Backend Engineer · Python / FastAPI",
     careerLine: [
       { text: "MediSolve AI", tone: "strong" },
-      { text: " · Backend Engineer · 기업부설연구소장 (2025.04 — 재직 중) / 이전 " },
+      { text: " · Tech Lead · Backend Engineer (2025.04 — 재직 중) / 이전 " },
       { text: "STUDIO LAB", tone: "strong" },
       { text: " · PM (2021.12 — 2024.01)" },
     ],
@@ -68,8 +68,8 @@ export const GNA_COMPANY_RESUME = {
         "infra.company-azure-ownership",
       ],
       role: [
-        { text: "Backend Engineer · 기업부설연구소장", tone: "strong" },
-        { text: " — Tech Lead·PO 역할 병행" },
+        { text: "Tech Lead · Backend Engineer", tone: "strong" },
+        { text: " — PO 역할 병행" },
       ],
       details: [
         [

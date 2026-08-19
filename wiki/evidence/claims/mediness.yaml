@@ -27,11 +27,13 @@ claims:
     allowed_copy:
       - pipeline registry와 release gate 기반 제품팀 일정·이슈·릴리스 운영 리드
       - 제품 결정을 BE·FE·QA·release gate 실행으로 연결하는 제품 운영 리드
+      - 제품별 Decision·SPEC·Work Package를 실행 원장으로 적용하고 BE·FE·QA owner lane과 QA approval을 release gate에 연결
+      - release gate·version cut을 실제 완료 시점에 연결해 release note 생성을 자동화하고 버전 변경 이력을 추적
     forbidden_copy:
       - 제품 기획 전담
       - 조직 전체 운영 총괄
       - 전사 문서 pipeline 규칙 단독 설계
-    verified_at: 2026-07-14
+    verified_at: 2026-08-18
   - id: mediness.daily-briefing
     statement: 협업 도구 활동을 집계하는 daily briefing agent 구축·운영
     strength: owned

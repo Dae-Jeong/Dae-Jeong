@@ -1,10 +1,10 @@
 ---
 type: career-evidence
 title: Previous Career And Credentials Evidence
-description: Prior roles, personal project, education, awards, patent, and certification evidence.
-timestamp: 2026-08-13
+description: Prior roles, product/UX activities, personal project, education, awards, patent, and certification evidence.
+timestamp: 2026-08-18
 source_roots: [workspace]
-tags: [career, credentials, tellingme, evidence]
+tags: [career, credentials, product, ux, tellingme, evidence]
 ---
 
 # Previous Career And Credentials Evidence
@@ -105,19 +105,48 @@ tags: [career, credentials, tellingme, evidence]
 - **Nest.js 도입 개발 템플릿 제작 (2023.08~12)** — JWT 인증/인가, ExceptionFilter 기반 ExceptionHandler, NestMiddleware Logger, MVC 기반 Controller→Service→DAO 흐름. **현재 [be-template](be-template.md) 작업의 원류로 보인다** — 조직 표준 템플릿 설계라는 같은 패턴의 첫 사례다.
 - SellerCanvas는 **현재 Gency로 리브랜딩**됐다 (oopy·그룹바이 기재).
 
+## Product And UX Practice
+
+- Source-/tool-backed (공개 Oopy, 2026-08-18 확인): [UX 심리학 파헤치기](https://daejeongkim.oopy.io/10e1a342-7113-8195-8d7d-f5a0e0dbf2f6)에서 UX 심리 원리를 학습하고 YouTube Music 적용 사례를 발표했으며, 운영 중인 서비스의 사용자 흐름을 분석하는 UX 컨설팅을 수행했다.
+- Artifact-backed: 공개 Figma의 `머니워크 컨설팅 - SM1 (대정)` 보드는 사용자 pain point를 `Solution → Expected Result → Laws of UX`로 구조화하고, 포인트 인지와 재방문을 위한 badge·push 개선안을 화면 예시와 함께 제시한다.
+- Source-/tool-backed: [IPS](https://daejeongkim.oopy.io/10e1a342-7113-819d-bcd5-c45d72ebe6ae)에서는 Speak 학습 완료 화면의 다음 콘텐츠 추천이 단조롭고 현재 학습과 연결되지 않는 문제를 정의하고, 추천 흐름 개선 요구사항을 설계·발표했다. 해당 발표로 IPS 12기 MVP를 수상했다는 자기 기록이 있다.
+- Source-/tool-backed: [PSE](https://daejeongkim.oopy.io/10e1a342-7113-81e2-a253-cfbbfd861110)에서는 Delivery Hero APAC 시장과 플랫폼·솔루션 business model을 분석·발표했다. 이 활동은 UX 설계 자체보다 제품·시장 맥락을 읽는 보조 근거로만 사용한다.
+- Code-/source boundary: TellingMe에서는 backend 구현과 함께 신규 기능 기획을 보조했지만, 제품 의사결정 ownership은 현재 Git만으로 분리되지 않는다. 공개 UX claim의 직접 근거로 확대하지 않는다.
+- User-confirmed outcome (2026-08-18): UX 개선안이 다른 제품 업데이트와 함께 반영된 뒤, 3개월 이내 App Store 순위가 9위에서 5위로 상승하고 DAU가 기존 대비 200% 수준이 됐다는 사후 결과를 공유받았다.
+- Measurement boundary: 위 수치는 공유받은 제품 지표이며 raw dashboard로 독립 검증하지 못했다. App Store 순위의 category·region, DAU의 절대 기준값·집계 정의는 확인되지 않았다. 사용자는 여러 개선의 공동 결과에 기여한 것으로만 귀속하며, 개인 UX 제안의 단독·직접 인과나 `DAU 200% 증가`로 확대하지 않는다.
+- Contribution boundary: 공개 상한은 `사용자 흐름의 문제를 분석하고 개선 가설·요구사항·prototype artifact로 구체화한 경험`이다. `UX Designer`, 전문 사용자 리서치 전담, 실제 구현 전담, 전환율·리텐션 직접 개선으로 확대하지 않는다.
+
 ## Memento Payment
 
-- Code-backed (2026-07-19 실측): `workspace:feynman_api` — marin@mement.ai 명의(김대정·MementoAI-Daejeong) 28커밋, 2024-11-13~2025-01-07. 결제·환불·롤백·마일리지·티켓·Stripe 관련 13건이 claim 문장과 문자 그대로 일치: "선결제 예약 실패 시, 롤백 로직 추가"(#1375), "환불 처리 논리 순서 변경"(#1355), "환불 시, 티켓 제거 시점 변경"(#1335), "전액 마일리지 구매 시, 마일리지 환불 안되는 이슈 해결"(#1358).
-- Code-backed (2026-07-19): **"[FQA-524,538] feat: stripe 도입 및 선결제 로직 추가"(#1269)** — 안정화만이 아니라 Stripe 선결제 도입 자체를 수행. claim을 "도입+안정화"로 상향.
-- Contribution boundary: 예약·결제 backend의 선결제 도입·안정화 기여. 회사 결제 시스템 전체 ownership은 아니다.
+- Git identity (2026-08-18 재확인): `workspace:feynman_api`의 `main == origin/main`이며 `marin@mement.ai` 명의(`MementoAI-Daejeong`, `김대정`) non-merge commit은 **28건**(2024-11-13~2025-01-07)이다. 전체 ref의 48개 object 중 20개는 branch-only·PR/cherry-pick 계열이므로 shipped 근거에서 제외한다.
+- Code-backed: `fedfdd6a`에서 Stripe Checkout·Webhook과 독립 `PaymentHistory`·`PaymentMethod`를 도입했고, local transaction UUID와 payment type을 provider metadata에 실어 결제 이력과 event를 연결했다. 현재 `main`의 Stripe package 6개 파일 594/594 lines가 김대정 작성으로 확인된다.
+- Code-backed: `f26b4782`에서 manual capture와 예약 전 PaymentIntent 상태 검증을 적용하고, 예약 처리 실패 시 provider 상태가 `requires_capture`이면 cancel, `succeeded`이면 refund하는 **provider-side 보상 처리**를 추가했다. `558e80b5`에서는 0원·전액 마일리지 경로가 불필요한 provider 조회를 거치지 않도록 분기했다.
+- Code-backed: `df3405d1`에서 티켓 삭제를 환불 요청 시점이 아니라 환불 완료 transition으로 이동했다. 현금·Stripe·0원·전액 마일리지 경로를 나누고, 완료 시 PaymentMethod 확인 → PaymentHistory 환불 → 사용 mileage 복원 → package ticket 삭제 순서로 상태 변경을 정리했다.
+- Verification boundary: Stripe live-call test는 현재 `main`에서 skip 상태다. webhook event dedup·reconciliation과 DB/provider 간 atomic transaction은 확인되지 않았다. local DB 확정 뒤 provider capture가 수행되므로 공개 문구는 `완전한 rollback`이 아니라 `cancel/refund 보상 처리`로 제한한다.
+- Contribution boundary: Stripe 선결제 integration slice는 `led`, 공유 payment domain의 환불·마일리지·티켓 정합성 보완은 `contributed`다. 회사 결제 시스템 전체 ownership이나 production 운영 전담으로 확대하지 않는다.
 - User-confirmed (2026-07-16): 재직 종료 사유는 회사 폐업 — 이력서에 사유 표기 가능.
 - User-confirmed (2026-07-19): **학습 전이** — Memento에서 결제 실패의 실사례(롤백·환불 순서·티켓 정합성)를 직접 수습한 경험이, Centurion에서 실패 가능한 작업(주문·결제)을 처음부터 worker로 분리하는 예방 설계 판단의 배경이 됐다.
+
+## Memento Happy Call And Survey
+
+- Code-backed: 인턴 구간과 겹치는 `main` commit에서 기존 Happy Call 흐름을 고객 언어별 template 선택, 알림톡·이메일 즉시/예약 발송, Celery ETA task 식별자·취소·재등록, 발송 이력 조회로 확장했다 (`d5b9441c`~`b34751d2`).
+- Code-backed: 설문 영역에서는 당첨 결과 조회·요약과 기간·검색 filter를 구현했다. 설문 응답 validation은 다른 작성자 영역이므로 김대정 구현으로 주장하지 않는다.
+- Test-backed: ETA 예약, revoke/reschedule, 이력 조회와 email/update case의 non-skipped mocked unit test가 존재한다. provider 통합 E2E나 production delivery 결과를 증명하지는 않는다.
+- Contribution boundary: 위 bounded slice는 `led`. 다국어 messaging·survey system 전체 단독 구축, 3회 retry, delivery 보장·멱등성, 운영 효과 수치는 금지한다.
+
+## Memento To MediSolve Early-Member Path
+
+- User-confirmed (2026-08-18): Memento AI에서의 개발 성과를 당시 대표에게 인정받아, 새로 설립할 MediSolve AI의 초기 멤버로 영입됐다.
+- User-confirmed (2026-08-18): MediSolve AI 법인 설립 전에는 향후 MediSolve AI 공동대표가 된 더데이랩스 대표가 먼저 개발할 수 있는 환경을 마련했고, 2025.02~04 더데이랩스 프리랜서 형태로 Centurion 선행 개발을 시작했다.
+- User-confirmed (2026-08-18): 2025.04 MediSolve AI 설립과 함께 정규직으로 합류해 Tech Lead 역할을 맡았다. Tech Lead는 역할이며 등재 직함으로 단정하지 않는다.
+- Legal boundary: Memento AI, 더데이랩스 프리랜서 계약, MediSolve AI 정규직은 서로 다른 법적 관계다. `법인 전환`, `승진`, `고용 연속`, `사업 승계`, `공동창업자`, `같은 회사로 이직`으로 표현하지 않는다.
+- Public wording: `Memento AI에서의 개발 성과를 인정받아 MediSolve AI 초기 멤버로 영입 → 더데이랩스 프리랜서로 법인 설립 전 개발 선행 → MediSolve AI 설립과 함께 정규 합류·Tech Lead 역할`까지 허용한다.
 
 ### 세부 (Self-reported — 플랫폼 기재)
 
 - **Feynman** (2024.11.21~2025.01.10, 정규직) — 피부과 통합 관리 시스템. 대상 고객사는 **뮤즈클리닉**(강남) — 공개 산출물에서는 `M 피부과` 마스킹 코드를 쓰거나 고객사를 생략한다 ([clients.md](../clients.md)). oopy·그룹바이의 "강남 피부과 운영" 표현이 이것이다. Python 3.10, FastAPI, SQLAlchemy, MySQL, AWS. 외부 연동 Stripe·Notifly.
-  - Stripe **Hongkong API** 연동으로 다국가 결제 처리, 구독·환불 통합 및 트랜잭션 상태 관리
-  - **Notifly 알림톡 자동화** — 결제 완료·예약 확인 등 트리거 기반 발송, **발송 실패 시 3회 자동 재시도** 구현
+  - 플랫폼의 `Stripe Hongkong API·다국가·구독` 표기는 현재 `main`의 검증 범위를 넘으므로 active public claim에서 제외한다.
+  - 플랫폼의 `Notifly 발송 실패 3회 자동 재시도` 표기는 현재 `main`에서 확인되지 않아 active public claim에서 제외한다.
 - **Check** (2024.10.20~2024.11.20, 인턴) — 병원 내부 직원 일정 관리 어드민. Python 3.11, FastAPI, SQLAlchemy, MySQL, AWS.
   - **0→1 구축** — 서비스 기획부터 API 설계, DB 스키마 설계, 구현까지 전 과정
   - 회원 도메인 설계 (이메일/비밀번호 인증, JWT 세션 관리)
@@ -127,6 +156,8 @@ tags: [career, credentials, tellingme, evidence]
 ## TellingMe
 
 - Code-backed/user-confirmed: Spring Boot/JPA backend, OAuth2/JWT, gamification domain, AWS deploy/monitoring 범위와 backend lead/infra 역할이 확인됐다.
+- Code-backed (2026-08-18): `workspace:tellingme-server`의 김대정 authored commit `68f9b07`은 Main 화면 BFF API, `c38d963`은 신규 기능 Dummy API, `84fd363`은 v2 신규 기능 domain·Mock API 반영을 구현했다. 제품 요구를 mobile/backend 사이의 domain·API contract로 구체화한 흔적이다.
+- Contribution boundary: 위 commit은 contract 구현 사실을 확인하지만, 어떤 제품 요구를 직접 결정했고 무엇을 전달받아 구현했는지까지는 분리하지 못한다. 제품 기획 ownership이나 cross-functional lead로 공개하려면 협업 artifact와 별도 stable claim이 필요하다.
 - Public-safe summary: 개인 프로젝트의 Spring Boot backend와 AWS 배포·모니터링 리드.
 - User-confirmed (2026-07-16): Memento 재직(2024.10–2025.01)과 병행한 사이드 프로젝트다. 이력서에서는 경력란이 아니라 개인 프로젝트로 구분 표기한다 (persona review 4인 합의 반영).
 - Unverified: package와 endpoint 개수는 repo 재대조 전 사용하지 않는다.
@@ -166,10 +197,10 @@ tags: [career, credentials, tellingme, evidence]
 - [persona review](../audits/2026-07-16-persona-resume-review.md)가 지적한 "공백 2구간"은 이 정정으로 3구간이 되지만, 2024 구간은 근거가 있어 오히려 방어가 쉬워진다. AI 엔지니어·PM에서 backend로 직무를 전환한 서사의 실증 구간이다.
 - User-confirmed (2026-07-16): Memento 폐업 후 MediSolve 합류 전인 2025.02–2025.04에 더데이랩스에서 프리랜서로 근무했다.
 - Code-backed (별도 시점): `workspace:thedaylabs-infra`에 KimMarin 단독 저자 커밋(Azure VM·Blob·docker-compose 배포)이 확인되나 커밋 시점이 2025-10이라 프리랜서 기간(02–04)의 업무 근거로 사용하지 않는다.
-- User-confirmed (2026-07-17): 더데이랩스와 MediSolve AI는 **대표가 같다** — 더데이랩스에서 프리랜서로 협업을 시작했고, 대표가 MediSolve AI를 창업하면서 엔지니어로 합류해 업무가 연속된다. 2025-10 repo 활동은 부업이 아니라 이 연속 관계 안의 회사 infra 운영으로 설명되며, thedaylabs-infra가 회사 infra source 목록([infrastructure.md](infrastructure.md))에 포함된 것과 정합한다.
-- User-confirmed (2026-07-17): 더데이랩스의 첫 제품이 Centurion이며 창업과 함께 MediSolve AI로 그대로 이관됐다 — 업무가 그대로 연속됐고, 처음 만들어진 개발팀의 시스템 구축과 backend 기준 수립에 주력했다.
+- Superseded wording (2026-08-18): 과거의 `더데이랩스와 MediSolve AI는 대표가 같다`는 요약은 공동대표 관계와 법인 설립 전 선행 개발 맥락을 과도하게 단순화하므로 사용하지 않는다. 정확한 합류 경로는 [Memento To MediSolve Early-Member Path](#memento-to-medisolve-early-member-path)가 소유한다.
+- User-confirmed (2026-07-17, 2026-08-18 정밀화): 더데이랩스 환경에서 시작한 Centurion 선행 개발은 MediSolve AI 설립 후에도 이어졌다. 새로 꾸려지는 개발팀의 system과 backend 기준 수립에 주력했다.
 - Code-backed (2026-07-17): `workspace:BAY-BE-API`를 2025-03-18 "first initialize"로 직접 생성 — 초기 커밋이 프로젝트 기본 구조, Config 설계, SSH 터널링 lifecycle, README 환경·실행 문서, ISSUE/PR Template 등 팀 시스템·기준 수립 성격이며, 프리랜서 기간(2025.02–05) 내 커밋 132건.
-- Public wording: "현 MediSolve AI 대표와 프리랜서로 협업 시작 — Centurion 초기 backend 구축과 개발팀 시스템·backend 기준 수립, 창업과 함께 합류"까지 허용. 성과 수치는 여전히 금지.
+- Public wording: `MediSolve AI 법인 설립 전 더데이랩스 프리랜서로 Centurion 초기 backend와 개발팀 system·backend 기준을 선행 구축하고, 법인 설립과 함께 정규 합류`까지 허용한다. 성과 수치는 여전히 금지한다.
 
 ## Education
 
@@ -179,8 +210,17 @@ tags: [career, credentials, tellingme, evidence]
 ## Awards And Patent
 
 - Source-backed: SellerCanvas가 CES 2024 Best of Innovation AI 부문에 공식 등재됐다.
-- Source-backed: `페이지 출력 방법`, 출원 10-2022-0130234, 등록 10-2898273가 확인됐다.
+- Source-backed/user-confirmed (2026-08-18): 특허 상세는 다음과 같다.
+  - 발명의 명칭: `페이지 출력 방법`
+  - 영문명: `METHOD FOR DISPLAYING PAGE`
+  - 출원인: 주식회사 스튜디오랩
+  - 출원번호: `10-2022-0130234`
+  - 공개번호: `KR20240050627A`
+  - 등록번호: `10-2898273`
+  - 출원일: 2022-10-13
+  - 등록 시점: 2025-12경 — 정확한 등록일은 현재 미확인
 - Self-reported (그룹바이·oopy 기재): SellerCanvas 의류 이미지 분석 모델이 **한국건설생활환경시험연구원(KCL) AI 정확도 부문 인증**을 통과했다.
+  - User-confirmed (2026-08-18): 인증 시점은 **2022-11경**이다. 정확한 일자는 인증서·시험성적서 대조 전까지 확정하지 않는다.
   - User-confirmed (2026-08-08) 표기 방침: **"인증 통과" 사실만 쓰고 정확도 수치와 사용 모델(Yolo 등)은 쓰지 않는다.** 과거 정량 미사용 원칙([recency weighting](../../rules/recency-weighting.md))의 예외로, 제3자 검증이라는 성격 때문에 사실만 남긴다.
   - ⚠️ confidence medium — 인증서 실물 대조 전이다. 확인 시 `credentials.ai-accuracy-certification`의 confidence를 high로 올리고 `verified_at`을 기입한다.
 - Contribution boundary: 회사/팀 수상이며 개인 단독 수상으로 쓰지 않는다. 특허 발명자 범위는 별도 확인 없이 단독 표현을 쓰지 않는다. 인증도 제품 단위 인증이며 개인 단독으로 표현하지 않는다.

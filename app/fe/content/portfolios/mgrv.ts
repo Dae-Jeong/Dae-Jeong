@@ -4,8 +4,9 @@ export const MGRV_PORTFOLIO = {
   slug: "mgrv",
   companyName: "MGRV",
   position: "Backend Engineer",
-  status: "approved",
-  updatedAt: "2026-08-17",
+  status: "closed",
+  visibility: "local",
+  updatedAt: "2026-08-18",
   introduction: [
     "운영 요구를 backend의 권한·상태·데이터 규칙으로 구체화하고, 이를 API·비동기 작업·검증·배포까지 연결합니다.",
     "MGRV의 홈페이지·PMS·운영 어드민처럼 운영자가 매일 사용하는 제품을 실제로 운영할 수 있는 상태까지 책임지는 방식을 다섯 가지 사례로 설명합니다.",

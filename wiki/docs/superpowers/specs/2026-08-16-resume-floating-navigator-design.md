@@ -35,7 +35,7 @@ tags: [resume, frontend, layout, navigation, responsive]
 
 ### Document
 
-- 최대 폭: 920px
+- 최대 폭: A4 기준 210mm
 - 정렬: viewport 중앙
 - navigator가 없는 것처럼 독립적으로 폭을 계산한다.
 - 장문 description은 기존 `70ch` measure를 유지한다.
@@ -69,8 +69,8 @@ tags: [resume, frontend, layout, navigation, responsive]
 
 | Viewport | Document | Navigator |
 | --- | --- | --- |
-| Tailwind `xl` 이상 | 최대 920px, 중앙 정렬 | 44px floating rail |
-| `xl` 미만 | 가용 폭 안에서 최대 920px | floating rail 제거, 문서 앞의 static compact actions만 표시 |
+| Tailwind `xl` 이상 | 최대 A4 폭 210mm, 중앙 정렬 | 44px floating rail |
+| `xl` 미만 | 가용 폭 안에서 최대 210mm | floating rail 제거, 문서 앞의 static compact actions만 표시 |
 | print | A4 문서 규칙 | 모든 navigation/action 숨김 |
 
 `AskLauncher`는 우하단을 계속 사용한다. floating rail은 launcher의 상단 경계보다 아래로 내려오지 않으며, 두 fixed element의 hit area가 겹치지 않아야 한다.

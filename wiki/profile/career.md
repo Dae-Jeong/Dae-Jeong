@@ -2,7 +2,7 @@
 type: profile
 title: Career
 description: Canonical career timeline and role evolution.
-timestamp: 2026-08-13
+timestamp: 2026-08-18
 tags: [career, timeline, role]
 ---
 
@@ -12,12 +12,19 @@ tags: [career, timeline, role]
 
 | Period | Organization | Role | Anchor |
 | --- | --- | --- | --- |
-| 2025.04-current | MediSolve AI | Backend Engineer; Tech Lead·PO·AI agent 역할 병행 | Thready, Centurion, NEXUS, BE Template, mediness |
-| 2025.02-2025.04 | 더데이랩스 | Freelance — 현 MediSolve AI 대표와 협업 시작, 창업과 함께 합류 | freelance engagement |
+| 2025.04-current | MediSolve AI | Tech Lead; Backend Engineer·PO·AI agent 역할 병행 | Thready, Centurion, NEXUS, BE Template, mediness |
+| 2025.02-2025.04 | 더데이랩스 | Freelance — MediSolve AI 법인 설립 전 Centurion 선행 개발 | pre-incorporation engagement |
 | 2024.10-2025.01 | Memento AI | Backend Engineer; PM Intern 1개월 병행 — 회사 폐업으로 종료 | reservation/payment backend |
 | 2024.01-2024.12 | TellingMe | Personal project (Memento 재직과 병행), Backend Lead & Infra | Spring Boot backend, AWS deployment |
 | 2021.12-2024.01 | STUDIO LAB | AI Engineer -> PM -> Backend Engineer | SellerCanvas |
 | 2020.08-2021.06 | 아이즈솔 | Vision AI Engineer | Kidsly |
+
+## Presentation And Joining Path
+
+- Canonical 법적 timeline과 tenure는 더데이랩스 프리랜서(2025.02-04)와 MediSolve AI 정규직(2025.04-current)을 별도 구간으로 유지한다.
+- General resume에서는 두 구간을 `MediSolve AI` CareerRow 하나 안의 stage timeline으로 그룹화할 수 있다. 더데이랩스 명칭·기간·프리랜서 형태는 row 안에 명시한다.
+- User-confirmed (2026-08-18): Memento AI에서의 개발 성과를 인정받아 MediSolve AI 초기 멤버로 영입됐다. 법인 설립 전에는 향후 MediSolve AI 공동대표가 된 더데이랩스 대표가 개발 환경을 마련해 프리랜서로 먼저 착수했고, 2025.04 설립과 함께 정규 합류해 Tech Lead 역할을 맡았다.
+- Memento AI는 별도 법인·별도 CareerRow로 유지한다. `법인 전환`, `고용 연속`, `사업 승계`, `승진`, `공동창업자`로 표현하지 않는다.
 
 ## Tenure
 
@@ -45,7 +52,7 @@ Vision AI에서 시작해 PM을 거쳐 Backend Engineer로 확장했다. 현재 
 
 STUDIO LAB 시절의 메인 롤은 PM이었고, 그때의 시스템 구축은 개발 시스템이 아니라 "제품이 원활하게 돌아가는 시스템"을 기획·구축하는 일이었다. LLM 붐 이전부터 이어진 이 제품-시스템 설계 근육이 현재의 제품 운영 시스템(decision·spec·release gate) 리드와 agent-readable workflow로 이어진다.
 
-MediSolve AI에서는 Backend Engineer로 합류한 뒤 제품팀의 일정·이슈·릴리스 운영을 리드하고 Tech Lead·PO·AI agent 관련 역할을 병행했다. 제품 기획 전담으로 표현하지 않는다.
+MediSolve AI에는 법인 설립 전 초기 멤버로 영입돼 설립과 함께 Backend Engineer로 정규 합류했다. 이후 제품팀의 일정·이슈·릴리스 운영을 리드하고 Tech Lead 역할을 맡아 Backend Engineer·PO·AI agent 관련 역할을 병행했다. 공개 positioning에서는 Tech Lead를 먼저, Backend Engineer를 supporting role로 제시한다. 제품 기획 전담이나 공동창업자로 표현하지 않는다.
 
 ## Project Anchors
 

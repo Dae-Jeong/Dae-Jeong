@@ -59,7 +59,7 @@ export type TailoredResume = {
   slug: string;
   companyName: string;
   position: string;
-  status: "draft" | "approved";
+  status: "draft" | "approved" | "closed";
   visibility: "local" | "public";
   updatedAt: string;
   pdfHref?: string;

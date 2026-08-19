@@ -154,7 +154,7 @@ export function ResumeLayout({
   return (
     <div className="relative">
       {hasCompactActions && (
-        <div className="mx-auto flex w-full items-center justify-end gap-3 border-b border-border-soft py-5 print:hidden xl:hidden">
+        <div className="mx-auto flex w-full max-w-[210mm] items-center justify-end gap-3 border-b border-border-soft py-5 print:hidden xl:hidden">
           {pdfHref && (
             <a
               href={pdfHref}
@@ -171,7 +171,7 @@ export function ResumeLayout({
       <main
         data-resume-canvas
         className={cn(
-          "mx-auto w-full pb-24",
+          "mx-auto w-full max-w-[210mm] pb-24 print:pb-0",
           hasCompactActions ? "pt-6 xl:pt-12" : "pt-12",
         )}
       >

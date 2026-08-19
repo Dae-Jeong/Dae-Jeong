@@ -63,7 +63,7 @@ export function NumberedRow({
       >
         {label}
       </span>
-      <span className="text-lg font-[450] max-sm:text-base">{children}</span>
+      <span className="min-w-0 text-lg font-[450] max-sm:text-base">{children}</span>
       {trailing !== undefined && (
         <span className="whitespace-nowrap text-right font-mono text-xs tracking-[0.04em] text-muted max-sm:text-left">
           {trailing}

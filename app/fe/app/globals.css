@@ -191,11 +191,11 @@ body {
     break-inside: avoid;
   }
 
-  [data-resume-canvas] #s5 > div:last-child > div {
+  [data-resume-canvas] #s5 {
     break-inside: avoid;
   }
 
-  [data-resume-canvas] #s3 {
+  [data-resume-canvas] #s7 {
     break-before: page;
   }
 }

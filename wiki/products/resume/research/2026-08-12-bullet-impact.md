@@ -9,6 +9,10 @@ tags: [copy, format, bullet, research, eye-tracking]
 
 # bullet impact 분석 (2026-08-12)
 
+> **2026-08-18 policy update:** 이 보고서의 `block당 3~5개`, `1~2줄` 같은 수치 cap은 superseded다.
+> 라벨 반복을 피하고 한 bullet에 한 판정 단위를 두는 가독성 발견만 유지한다. active 분량·case 깊이 기준은
+> [Resume Content Contract](../content-contract.md)와 [Persuasive Writing Policy](../../../rules/persuasive-writing.md)가 소유한다.
+
 user 요청: "그 bullet을 어떻게 활용해야 가장 impact가 좋을지는 한번 분석을 하면 좋을것 같아".
 
 ## 1. 실증 데이터

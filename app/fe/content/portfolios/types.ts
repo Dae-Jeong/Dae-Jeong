@@ -242,7 +242,8 @@ export type TailoredPortfolio = {
   slug: string;
   companyName: string;
   position: string;
-  status: "draft" | "approved";
+  status: "draft" | "approved" | "closed";
+  visibility: "local" | "public";
   updatedAt: string;
   introduction: string[];
   careerBridge: PortfolioCareerBridge;

@@ -4,59 +4,91 @@ status: active
 sections:
   summary:
     - career.tenure
+    - career.thedaylabs-freelance
     - career.ai-pm-backend-continuity
+    - career.product-ux-practice
+    - thready.backend-rebuild
+    - thready.release-operation
+    - thready.ai-service-boundary
+    - thready.ai-replica-outbox
+    - thready.quality-criteria-system
+    - centurion.bay-async-backend
+    - centurion.day-product-integration
+    - mediness.product-operations
+    - be-template.backend-standard
+    - be-template.agent-context
+    - be-template.team-leverage
+    - infra.company-azure-ownership
+    - infra.terraform-state-safety
   career:
     - career.medisolve-role-evolution
-    - thready.qa-reopen-reduction
-    - thready.production-operation-quality
-    - infra.company-azure-ownership
-    - mediness.product-operations
+    - career.memento-to-medisolve-early-member
     - career.thedaylabs-freelance
+    - centurion.msa-platform-context
+    - centurion.bay-async-backend
+    - centurion.say-realtime-ai
+    - centurion.ray-backend
+    - centurion.sso-session
+    - thready.prototype-to-user-operation
+    - thready.subscription-revenue-band
+    - mediness.product-system-design-participation
+    - mediness.product-operations
+    - thready.qa-reopen-reduction
+    - infra.company-azure-ownership
+    - career.memento-happycall-survey
+    - career.memento-stripe-prepayment
     - career.memento-payment
     - career.sellercanvas-product-system
+    - career.sellercanvas-enterprise-poc
     - credentials.page-output-patent
     - credentials.ces-2024
     - career.ai-pm-backend-continuity
-  capabilities:
+  backend_ai_cases:
     - thready.rebuild-decision-execution
     - thready.backend-rebuild
     - thready.qa-reopen-reduction
-    - thready.production-operation-quality
+    - thready.release-operation
+    - thready.ai-service-boundary
+    - thready.ai-service-migration
+    - thready.ai-replica-outbox
     - centurion.async-migration
     - centurion.bay-async-backend
-    - career.memento-payment
+    - thready.threads-market-outcome-design
+    - thready.labeling-corpus-workbench
+    - thready.hook-rubric-experiment
+    - thready.generation-quality-system
     - thready.quality-criteria-system
-    - thready.measurement-correction
-    - thready.falsification-log
-    - thready.corpus-measurement
+    - centurion.msa-platform-context
     - nexus.backend-architecture
     - nexus.admin-backend-ownership
-    - nexus.quality-automation
-    - thready.agent-pipeline-design
-    - be-template.backend-standard
-    - be-template.agent-context
-    - infra.company-azure-ownership
-    - nexus.terraform-infra
-    - centurion.shared-infra
+    - nexus.branch-access-boundary
+    - career.memento-stripe-prepayment
+    - career.memento-payment
+  ax_engineering_systems:
     - mediness.product-system-design-participation
     - mediness.product-operations
-    - career.medisolve-role-evolution
-    - career.sellercanvas-product-system
-    - credentials.page-output-patent
-    - credentials.ces-2024
-  how_i_work:
-    - thready.rebuild-decision-execution
-    - thready.measurement-correction
-    - thready.quality-criteria-system
-    - be-template.agent-context
-    - mediness.product-operations
-    - centurion.bay-async-backend
-  skills:
     - be-template.backend-standard
-    - career.tellingme-backend-infra
-    - centurion.bay-async-backend
-    - centurion.async-migration
+    - be-template.team-leverage
+    - be-template.agent-context
     - infra.company-azure-ownership
+    - infra.terraform-state-safety
+    - infra.azure-observability
+  skills:
+    - career.tellingme-backend-infra
+    - career.memento-stripe-prepayment
+    - centurion.bay-async-backend
+    - centurion.say-realtime-ai
+    - nexus.backend-architecture
+    - infra.company-azure-ownership
+    - infra.terraform-state-safety
+    - infra.azure-observability
+    - thready.backend-rebuild
+    - thready.ai-service-boundary
+    - thready.ai-replica-outbox
+    - thready.quality-criteria-system
+  external_activities:
+    - career.product-ux-practice
+    - career.ux-consulting-product-outcome
   credentials:
     - credentials.education
     - credentials.ces-2024
