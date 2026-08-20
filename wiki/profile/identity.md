@@ -86,6 +86,7 @@ FastAPI/NestJS 기반 product backend, AI generation quality, async/realtime pro
 - Tech Lead는 primary positioning으로 사용하되 등재 직함이라고 단정하지 않는다. PO·AI agent는 병행 역할로만 설명한다.
 - 기업부설연구소장 등재 사실은 evidence에만 보존하고 공개 resume·homepage·portfolio에는 표기하지 않는다.
 - 특정 병원/헬스케어 산업에 identity를 제한하지 않는다.
+- 공통 소개에서는 `데이터 정합성`, `비동기 복구` 같은 구현 메커니즘을 역할처럼 나열하지 않는다. 해당 기술은 관련 경력·프로젝트 상세에서만 설명한다.
 - 근거 없는 `단독`, `완전 해결`, 성능 배수, business outcome을 사용하지 않는다.
 
 Evidence: [career claims](../evidence/claims/career.yaml), [project claims](../evidence/claims/README.md)

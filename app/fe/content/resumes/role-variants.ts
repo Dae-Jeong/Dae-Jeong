@@ -610,7 +610,7 @@ export const BACKEND_RESUME = makeBase({
       claimIds: ["thready.backend-rebuild", "nexus.backend-architecture", "career.memento-stripe-prepayment"],
     },
     {
-      label: "데이터 정합성 / 비동기",
+      label: "메시징 / 비동기 처리",
       stack: "RabbitMQ · TaskIQ · Transactional Outbox",
       via: "retry·failure record·manual reprocessing·delivery version fence",
       claimIds: ["centurion.bay-async-backend", "thready.ai-replica-outbox"],

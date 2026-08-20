@@ -31,6 +31,9 @@ tags: [platform, profile, maker, distribution, draft]
 `Maker`는 직함이나 직군 태그로 등록하지 않는다. 소개에서만 사용하고, 검색·경력 필드는
 `Tech Lead · Backend Engineer`와 검증된 기술 키워드가 맡는다.
 
+공통 소개에서는 맡아온 제품 범위를 평이하게 설명한다. `데이터 정합성`, `비동기 복구`,
+`Transactional Outbox` 같은 구현 메커니즘은 직무명이 아니므로 관련 경력·프로젝트 상세에서만 사용한다.
+
 플랫폼이 `공식 직책`과 `headline/역할 설명`을 분리하면 공식 직책 필드는 `Backend Engineer`를
 사용하고, headline과 경력 설명에서 `Tech Lead 역할`을 먼저 보여준다. `기업부설연구소장`은
 evidence에만 보존하고 공개 profile의 첫 정체성으로 쓰지 않는다.
@@ -43,13 +46,13 @@ evidence에만 보존하고 공개 profile의 첫 정체성으로 쓰지 않는�
 >
 > 기획·QA·마케팅과 Thready 제품 운영을 리드하고, FastAPI 백엔드·AI 생성/평가 시스템·Next.js 핵심 흐름을 직접 구현했습니다. 제품은 2026년 8월 기준 월 약 800만~1,000만원의 구독료 매출이 발생합니다.
 >
-> 현재 MediSolve AI에서 Tech Lead · Backend Engineer로 일하며, 출시 이후의 데이터 정합성·비동기 복구와 회사 Azure·Terraform 인프라까지 맡고 있습니다.
+> 현재 MediSolve AI에서 Tech Lead · Backend Engineer로 여러 제품을 직접 개발하고 운영하고 있습니다.
 
 매출은 제품·팀 outcome이다. `내가 월 매출을 만들었다`, `MRR`, 연환산 수치로 바꾸지 않는다.
 
 ### 300자 안쪽 — RocketPunch
 
-> 아이디어를 새로운 가치로 실현하는 메이커, 김대정입니다. 기획·QA·마케팅과 AI 제품 운영을 리드하고, 필요한 백엔드·AI·핵심 화면을 직접 구현합니다. 현재 Tech Lead · Backend Engineer로 출시 뒤의 데이터·비동기 작업·인프라까지 맡고 있습니다. 포트폴리오: https://marinkim.xyz
+> 아이디어를 새로운 가치로 실현하는 메이커, 김대정입니다. 기획·QA·마케팅과 AI 제품 운영을 리드하고, 필요한 백엔드·AI·핵심 화면을 직접 구현합니다. 현재 Tech Lead · Backend Engineer로 여러 제품을 직접 개발하고 운영하고 있습니다. 포트폴리오: https://marinkim.xyz
 
 ### LinkedIn headline
 
@@ -67,7 +70,7 @@ evidence에만 보존하고 공개 profile의 첫 정체성으로 쓰지 않는�
 >
 > I lead Thready’s product operations with planning, QA, and marketing, and directly build its FastAPI backend, AI generation and evaluation system, and core Next.js workflows. As of August 2026, the product generates roughly KRW 8–10 million in monthly subscription revenue.
 >
-> I currently work as a Tech Lead and Backend Engineer at MediSolve AI, staying responsible after launch for data consistency, async recovery, and the company’s Azure and Terraform infrastructure.
+> I currently work as a Tech Lead and Backend Engineer at MediSolve AI, directly developing and operating the company’s products.
 >
 > Resume & Portfolio → https://marinkim.xyz
 
@@ -79,7 +82,7 @@ evidence에만 보존하고 공개 profile의 첫 정체성으로 쓰지 않는�
 
 1. **제품 운영·매출** — 기획·QA·마케팅과 Thready 제품 운영을 리드하고 FastAPI 백엔드·AI 생성/평가 시스템·Next.js 핵심 흐름을 직접 구현했습니다. 제품은 2026.08 기준 월 약 800만~1,000만원의 구독료 매출이 발생합니다.
 2. **백엔드 재구축** — 기존 frontend와 출시 흐름을 유지한 채 FastAPI backend를 병렬 구축·검증해 전환했습니다. 같은 기준에서 해결된 QA 이슈의 재오픈 비율이 26%p 낮아졌습니다.
-3. **데이터·비동기 복구** — AI application·DB 분리 과정의 STG 이관을 행 수·MD5·참조 무결성·API E2E로 검증하고, Transactional Outbox와 version fence로 지연·중복·역순 전달을 통제했습니다.
+3. **AI 서비스 분리와 데이터 전달** — AI application·DB 분리 과정의 STG 이관을 행 수·MD5·참조 무결성·API E2E로 검증하고, Transactional Outbox와 version fence로 지연·중복·역순 전달을 통제했습니다.
 4. **의료 제품 backend** — 주문·재고 비동기 backend 구축을 주도하고, 실시간 AI 상담 backend에 공동 주 기여했습니다. 별도의 피부과 운영·예약 시스템에서는 backend architecture와 Admin·Homepage API 구축을 주도했습니다.
 5. **회사 인프라·개발 기반** — 회사 Azure를 6개 Terraform state와 400개 이상의 state object로 관리하고 state·plan·live inventory 대조를 apply gate로 운영했습니다. 조직 표준 FastAPI template과 agent context도 구축했습니다.
 

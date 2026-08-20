@@ -4,8 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { cn } from "@/lib/cn";
 
-/* Phase 2 프리뷰 — 입력 비활성, suggestion 클릭 시 확정 데모 대화 표시.
-   대화 문장·claim id 는 확정 프로토타입(chat-page-v2) 그대로 (창작 금지) */
+/* Phase 2 프리뷰 — 입력 비활성, suggestion 클릭 시 검증된 데모 대화 표시. */
 
 const SUGGESTIONS = [
   "김대정은 어떤 엔지니어인가요?",
@@ -24,8 +23,8 @@ const RAIL_CLAIMS = [
     desc: "typed prompt builder·LLM judge 기반 생성 품질 시스템",
   },
   {
-    id: "thready.production-operation-quality",
-    desc: "월 수만 건 규모 요청, HTTP 5xx 0.3% 수준 운영",
+    id: "thready.qa-reopen-reduction",
+    desc: "같은 기준에서 해결된 QA 이슈의 재오픈 비율 26%p 감소",
   },
 ];
 
@@ -149,12 +148,7 @@ export function ChatView() {
             <AgentMsg>
               <p>
                 아이디어를 새로운 가치로 실현하는 메이커, 김대정입니다. 현재는 Tech
-                Lead로 제품의 방향을 정하고 Backend Engineer로 백엔드·AI·핵심 화면을
-                직접 만듭니다.
-              </p>
-              <p>
-                출시 뒤에는 데이터 정합성·비동기 복구·인프라 변경까지 운영하며, 제품
-                판단을 실제 동작과 검증 기준으로 남기는 일을 해왔습니다.
+                Lead · Backend Engineer로 여러 제품을 직접 개발하고 운영하고 있습니다.
               </p>
               <Evidence ids={["profile.identity", "career.medisolve-role-evolution"]} />
               <Related
@@ -175,9 +169,8 @@ export function ChatView() {
                 생성 품질은 감이 아니라 시스템으로 다룹니다 — typed prompt builder,
                 LLM judge, 관측 로깅 위에, 자동 게이트·실측 분포 대조·사람 판정의 세
                 층으로 판정 체계를 세웠습니다. 생성 파이프라인 자체도 planner·writer
-                역할로 분리해 설계·구현했습니다. 재구축 이후 QA 티켓 reopen 비율이
-                37%에서 11%로 내려갔고, 현재 월 수만 건 규모 요청을 HTTP 5xx 0.3%
-                수준으로 운영하고 있습니다.
+                역할로 분리해 설계·구현했습니다. 재구축과 validation harness 적용 뒤,
+                같은 기준에서 해결된 QA 이슈의 재오픈 비율이 26%p 낮아졌습니다.
               </p>
               <p>
                 더 깊은 배경과 트레이드오프는{" "}
@@ -194,7 +187,7 @@ export function ChatView() {
                   "thready.backend-rebuild",
                   "thready.generation-quality-system",
                   "thready.release-operation",
-                  "thready.production-operation-quality",
+                  "thready.qa-reopen-reduction",
                 ]}
               />
               <Related items={[{ label: "→ Thready Rebuild · CASE", href: "/portfolio/thready" }]} />

@@ -30,7 +30,7 @@ const ROLE_PORTFOLIOS_BY_SLUG = {
       },
       {
         title: "반복 가능한 실행",
-        description: "비동기 복구·백엔드 표준·인프라 변경 절차를 팀의 기준으로 남깁니다.",
+        description: "제품 개발·운영 기준과 인프라 변경 절차를 팀의 기준으로 남깁니다.",
       },
     ],
     cases: [
@@ -62,7 +62,7 @@ const ROLE_PORTFOLIOS_BY_SLUG = {
   },
   backend: {
     ...ROLE_CATALOG.backend,
-    description: "재구축·데이터 정합성·실패 복구를 전면에 둔 포트폴리오",
+    description: "운영 중인 제품의 백엔드를 재구축하고 안정화한 사례를 다룹니다.",
     status: "draft",
     visibility: "local",
     updatedAt: UPDATED_AT,
@@ -77,7 +77,7 @@ const ROLE_PORTFOLIOS_BY_SLUG = {
         description: "기존 사용자 흐름을 유지하면서 백엔드만 검증하고 교체합니다.",
       },
       {
-        title: "데이터 정합성",
+        title: "데이터 이전 검증",
         description: "서비스·DB의 소유권을 나누고 이전 전후의 데이터를 검증합니다.",
       },
       {
