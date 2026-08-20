@@ -11,8 +11,9 @@ const plexMono = IBM_Plex_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "김대정 — Backend Engineer · AI Product Systems",
-  description: "AI 제품을 만들고, 무엇을 만들지도 함께 정하는 백엔드 엔지니어 — LLM 백엔드 · Agent Workflow · LLM Evaluation",
+  title: "김대정 — Tech Lead · Backend Engineer",
+  description:
+    "아이디어를 새로운 가치로 실현하는 메이커, 김대정입니다. Tech Lead · Backend Engineer · AI Product Systems",
 };
 
 export default function RootLayout({

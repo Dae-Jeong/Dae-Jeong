@@ -2,7 +2,7 @@
 type: product
 title: Role Portfolio Variants
 description: 동일한 case library를 직군별 읽기 순서와 강조점으로 재조립하는 local portfolio contract.
-timestamp: 2026-08-20
+timestamp: 2026-08-21
 tags: [portfolio, role, draft, backend, ai, ax, platform]
 ---
 
@@ -24,6 +24,7 @@ tags: [portfolio, role, draft, backend, ai, ax, platform]
 
 ## Assembly Contract
 
+- 모든 variant는 공통 `Maker` brand line을 유지하고, 지원 직군별 headline·소개·proof axis·case 순서만 바꾼다.
 - `app/fe/content/role-catalog.ts`가 resume와 portfolio가 공유하는 5개 role slug·label을 소유한다.
 - role pack은 headline·소개·proof axis·case slug·focus만 소유한다.
 - 프로젝트 설명·수치·claim ID는 `app/fe/lib/cases.ts`, `app/fe/app/portfolio/case-dossier.tsx`, [case library](cases/README.md)를 재사용한다.

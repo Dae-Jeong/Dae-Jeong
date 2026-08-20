@@ -2,7 +2,7 @@
 type: product
 title: Role Resume Variants
 description: 공통 이력서 틀에서 직군별로 성과·근거·기술 순서를 바꾸는 local draft contract.
-timestamp: 2026-08-20
+timestamp: 2026-08-21
 tags: [resume, role, draft, backend, ai, ax, platform]
 ---
 
@@ -24,6 +24,7 @@ tags: [resume, role, draft, backend, ai, ax, platform]
 
 ## Shared Contract
 
+- 모든 variant는 `아이디어를 새로운 가치로 실현하는 메이커, 김대정입니다.`를 같은 소개 문장으로 사용한다. 지원 직군에 따라 바꾸는 것은 뒤의 기술 근거와 사례 순서다.
 - 공개 정체성은 `Tech Lead · Backend Engineer` 순서를 유지한다. 지원 관점은 실제 과거 직함으로 표현하지 않는다.
 - 연락처·프로필 사진·법적 경력 timeline·외부 활동·credentials는 공통으로 유지한다.
 - 더데이랩스 프리랜서 선행 개발은 MediSolve AI 경력 row의 stage로 묶되 명칭·기간·고용형태를 숨기지 않는다.

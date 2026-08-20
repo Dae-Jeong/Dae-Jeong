@@ -2,7 +2,7 @@
 type: decision-log
 title: Resume Decisions
 description: General A4 resume의 positioning, scope, and version decisions.
-timestamp: 2026-08-18
+timestamp: 2026-08-21
 tags: [resume, decisions, positioning]
 ---
 
@@ -12,6 +12,7 @@ tags: [resume, decisions, positioning]
 
 | Decision | Rationale |
 | --- | --- |
+| `Maker`는 브랜드 정체성, `Tech Lead · Backend Engineer`는 채용 역할 label | 소개에서는 `아이디어를 새로운 가치로 실현하는 메이커, 김대정입니다.`를 사용하되 경력·metadata·검색 직군은 시장에서 인식 가능한 역할로 유지한다. |
 | Primary headline은 `Tech Lead`, supporting role은 `Backend Engineer` | 현재 맡은 판단·실행 책임을 먼저 제시하고, backend 사례와 메커니즘으로 전문성을 증명한다. |
 | Specialty는 `AI Product Systems` | prompt 사용이 아니라 runtime, quality, async/realtime 운영 경험을 묶는다. |
 | Agent workflow는 differentiator | 별도 직군 주장보다 engineering execution 방식으로 제시할 때 신뢰도가 높다. |

@@ -2,7 +2,7 @@
 type: decision-log
 title: Portfolio Decisions
 description: Portfolio case library, tailored assembly, and delivery decisions.
-timestamp: 2026-08-20
+timestamp: 2026-08-21
 tags: [portfolio, decisions, pipeline]
 ---
 
@@ -10,6 +10,7 @@ tags: [portfolio, decisions, pipeline]
 
 ## Product Boundary
 
+- 공통 hero는 Maker 브랜드 문장을 사용하고, eyeline의 `Tech Lead · Backend Engineer`와 case proof를 채용 역할·기술 근거로 분리한다.
 - 정적 case library로 시작하며 profile application을 먼저 만들지 않는다.
 - 대표 case는 공통 opener에서 역할·문제·결과를 먼저 제시하되, 본문은 각 사례의 판단 근거에 맞게 차등 구성한다. Thready는 제품화·재구축·data/AI boundary, Centurion은 contribution map·workload별 failure boundary, Infrastructure는 topology·change gate, Backend Template은 반복되는 backend 판단과 agent-readable execution을 중심으로 설명한다. 검증 상한은 내부 원장에만 둔다.
 - 단일 문서는 성과 문구의 반복보다 `제품 0→1 / MSA failure boundary / infrastructure operation / engineering system` 네 대표 case를 먼저 보여준다.

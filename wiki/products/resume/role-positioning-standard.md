@@ -2,7 +2,7 @@
 type: product-contract
 title: Resume Role Positioning Standard
 description: 김대정의 역할을 직함이 아니라 반복된 판단·기술 경계·운영 결과로 전달하는 이력서 기준.
-timestamp: 2026-08-20
+timestamp: 2026-08-21
 derived_from:
   - profile/identity.md
   - evidence/claims/
@@ -12,11 +12,11 @@ tags: [resume, positioning, role, backend]
 
 # Resume Role Positioning Standard
 
-## 한 문장 결론
+## 브랜드 소개와 채용 역할
 
-> 제품 판단을 backend 경계로 바꾸고, 직접 구현·배포·운영까지 연결하는 Tech Lead · Backend Engineer.
+> 아이디어를 새로운 가치로 실현하는 메이커, 김대정입니다.
 
-이 문장은 등재 직함을 새로 만드는 표현이 아니다. primary category는 `Tech Lead`, supporting role은 `Backend Engineer`, specialty는 `AI Product Systems`다. `Product Owner`는 슬래시로 병기할 별도 정체성이 아니라 무엇을 만들지 판단하고 그 판단을 실행 가능한 backend contract로 바꾼 경험으로 증명한다.
+이 문장은 브랜드 소개다. 채용 역할 label은 `Tech Lead · Backend Engineer`, specialty는 `AI Product Systems`다. `Maker`를 직함처럼 사용하지 않고, 아이디어를 실제 제품과 가치로 만든 범위는 경력과 대표 사례가 증명한다. `Product Owner` 역시 슬래시로 병기할 별도 정체성이 아니라 무엇을 만들지 판단하고 그 판단을 실행 가능한 backend contract로 바꾼 경험으로 증명한다.
 
 ## 역할 전달식
 
@@ -41,6 +41,7 @@ tags: [resume, positioning, role, backend]
 
 | 층 | 값 | 이력서에서의 역할 |
 | --- | --- | --- |
+| 브랜드 정체성 | `Maker` | 공통 소개 한 문장으로 제시하고 아래 사례가 증명 |
 | 주 역할 | `Tech Lead` | 제품 범위·품질 기준·실행 정렬 책임을 먼저 전달 |
 | 기술 기반 | `Backend Engineer` | API·data·transaction·async/realtime·infra 전문성을 증명 |
 | 전문 영역 | `AI Product Systems` | AI runtime·quality·서비스 경계와 운영 범위 |
@@ -109,12 +110,7 @@ contract·state·gate를 세팅하고 실제 운영을 책임했다면 이력으
 
 ### 소개
 
-다른 섹션이 하지 못하는 두 가지만 말한다.
-
-1. 채용하면 어떤 범위의 backend 문제를 맡길 수 있는가.
-2. 과거 AI·PM 경험이 현재 backend 판단에 어떻게 쓰이는가.
-
-경로 서사를 먼저 두거나 아래 성과를 다시 요약하지 않는다.
+공통 Maker 문장 한 문장만 둔다. 채용하면 맡길 수 있는 backend 범위와 AI·PM 경험의 쓰임은 경력·대표 성과의 구체적인 문제, 판단, mechanism으로 증명하며 소개에서 다시 요약하지 않는다.
 
 ### 경력
 

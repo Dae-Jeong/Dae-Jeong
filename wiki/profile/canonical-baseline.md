@@ -2,7 +2,7 @@
 type: profile
 title: Canonical Baseline
 description: 여러 레이어에 흩어진 확정값을 한 화면에서 보는 통합 인덱스. canonical은 각 owner 문서가 갖는다.
-timestamp: 2026-08-20
+timestamp: 2026-08-21
 canonical: false
 derived_from: [profile/career.md, profile/identity.md, evidence/claims/, evidence/clients.md, rules/recency-weighting.md, rules/public-safety.md, app/fe/app/resume/resume-view.tsx]
 tags: [profile, baseline, derived, index]
@@ -21,6 +21,8 @@ tags: [profile, baseline, derived, index]
 | 항목 | 확정값 | owner |
 | --- | --- | --- |
 | 이름 | 김대정 | [identity.md](identity.md) |
+| 브랜드 정체성 | **Maker** | [identity.md](identity.md) |
+| 공통 소개 문장 | **아이디어를 새로운 가치로 실현하는 메이커, 김대정입니다.** | [identity.md](identity.md) |
 | 1순위 직무 | **Tech Lead** | [identity.md](identity.md) |
 | 지원 역할 | **Backend Engineer** | [identity.md](identity.md) |
 | 전문 영역 | AI Product Systems | [identity.md](identity.md) |

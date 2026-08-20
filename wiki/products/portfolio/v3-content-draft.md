@@ -71,16 +71,16 @@ Checked: 2026-08-20
 #### Eyeline
 
 ```text
-김대정 · Tech Lead · Backend Engineer · 실무 4년차
+Tech Lead · Backend Engineer · 실무 4년차
 ```
 
 #### Headline
 
-> 제품 판단을 백엔드 경계로 바꾸고, 운영까지 연결합니다.
+> 아이디어를 새로운 가치로 실현하는 메이커, 김대정입니다.
 
 #### Introduction
 
-> 사용자 문제를 기능·품질 기준으로 구체화하고, 기술 리스크를 API·데이터·AI 실행·인프라의 책임 경계로 나눠 직접 구현·배포·운영하는 Tech Lead · Backend Engineer입니다.
+> 고객의 문제를 제품 범위와 품질 기준으로 좁히고, 백엔드·AI·핵심 화면을 직접 만들어 배포와 운영까지 맡아왔습니다.
 
 #### First proof lines
 

@@ -2,7 +2,7 @@
 type: product-contract
 title: Resume Content Contract
 description: Active web resume의 구조, claim, public safety, derived-output 계약.
-timestamp: 2026-08-20
+timestamp: 2026-08-21
 tags: [resume, contract, content]
 ---
 
@@ -22,11 +22,12 @@ tags: [resume, contract, content]
 
 1. Primary category: Tech Lead
 2. Supporting category: Backend Engineer
-3. Specialty: AI Product Systems
-4. Career facts: 어느 회사에서 어떤 직함·기간·담당 범위였는지
-5. Ownership: 어떤 시스템을 전담·주도·공동 기여했는지
-6. Differentiator: agent-readable workflow로 실행과 운영을 구조화한 방식
-7. Role: 제품 판단을 backend 경계로 바꾸고 직접 구현·배포·운영까지 닫는 Tech Lead · Backend Engineer
+3. Brand identity: Maker
+4. Specialty: AI Product Systems
+5. Career facts: 어느 회사에서 어떤 직함·기간·담당 범위였는지
+6. Ownership: 어떤 시스템을 전담·주도·공동 기여했는지
+7. Differentiator: agent-readable workflow로 실행과 운영을 구조화한 방식
+8. Role: 제품 판단을 backend 경계로 바꾸고 직접 구현·배포·운영까지 닫는 Tech Lead · Backend Engineer
 
 Canonical positioning은 [profile/identity.md](../../profile/identity.md)를, 역할 전달 방식은
 [role-positioning-standard.md](role-positioning-standard.md)를, 지면의 역할은
@@ -48,7 +49,7 @@ Canonical positioning은 [profile/identity.md](../../profile/identity.md)를, �
 | # | Section | Contract |
 | --- | --- | --- |
 | - | Header | 이름·category·현재/이전 주요 경력·연락처. 회사·직함·기간이 즉시 보여야 함 |
-| 01 | 소개 | 채용하면 맡길 수 있는 backend 범위와 AI·PM 경험이 현재 판단에 쓰이는 방식만 프레이밍. 뒤 섹션을 대신 요약하지 않음 |
+| 01 | 소개 | 공통 Maker 문장 한 문장만 둔다. 역할·기술 전문성은 헤더·경력·대표 성과가 증명하며 소개에서 다시 요약하지 않음 |
 | 02 | 경력 | 최신순. 좌측 metadata column에 조직명과 기간을 세로로 쌓고, 우측에 직함·제품 성격·담당 범위를 배치. 사실과 시간축이 주장보다 먼저 읽혀야 함 |
 | 03 | 대표 성과 | 여섯 사례를 한 섹션에서 연결: `Thready 제품 운영·매출·생성 품질 → 병렬 재구축·QA reopen 26%p 감소 → AI/DB 분리·migration·Outbox → Decision→release 운영 → 조직 표준 Backend Template·agent 기준 → Azure 변경 gate`. 각 사례는 ownership·mechanism·검증 경계를 claim 범위 안에서 완결 |
 | 04 | 기술 | `Backend Core → Data/Async → AI Runtime → Cloud/Delivery`의 4개 capability lane으로 구성. 스택보다 다룬 mechanism과 적용 맥락을 먼저 찾는 index 역할 |
@@ -70,7 +71,7 @@ Daejeong Design의 Profile 프로젝트와 `app/design/resume-page-prototype.htm
 | Description bullet | 14px | 400 | Pretendard | 설명 안에서 스캔이 필요한 사실·수치 |
 | Body / Item | 16px | 400 / 600 | Pretendard | 본문 / 행 제목 |
 
-- 헤더는 `이름 → 직무 → 경력 → 연락처`만 둔다. 개인 브랜드 문장과 서사는 홈페이지·포트폴리오가 소유하며 이력서 헤더에는 반복하지 않는다.
+- 헤더는 `이름 → 직무 → 경력 → 연락처`만 둔다. Maker 문장은 별도 `소개` 섹션에만 두고 헤더에는 반복하지 않는다.
 - 간격은 이름–직무 6px, 직무–경력 16px, 경력–연락처 12px, 헤더 하단 24px, 다음 섹션 시작 40px(모바일 32px), 섹션 제목–본문 28px을 기준으로 한다.
 - 섹션 내부는 정보 밀도에 따라 `경력 16px / 대표 기술 사례 20px / Credentials 8px`의 세로 여백을 사용한다. 대표 기술 사례는 title과 description 사이에 6px을 두고, description 내부의 문장과 bullet은 본문 흐름에 따라 배치한다.
 - 이력서의 제목·설명·본문에는 `ch`나 임의의 `px` 기반 `max-width`로 줄 길이를 제한하지 않는다. 문서 컨테이너의 가용 폭을 사용하고 화면 폭에 따라 자연스럽게 줄바꿈한다.

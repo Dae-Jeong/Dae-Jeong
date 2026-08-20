@@ -9,7 +9,7 @@ import { CaseDossier } from "./case-dossier";
 export const metadata: Metadata = {
   title: "Portfolio — 김대정 · Tech Lead · Backend Engineer",
   description:
-    "고객 문제를 제품으로 만들고 백엔드·배포·운영까지 맡아온 김대정의 포트폴리오",
+    "아이디어를 새로운 가치로 실현하는 메이커, 김대정의 제품·백엔드·인프라 포트폴리오",
 };
 
 export default function PortfolioPage() {
@@ -19,17 +19,16 @@ export default function PortfolioPage() {
       <Container variant="doc" className="flex-1 pb-24 print:pb-0">
         <main data-portfolio-document>
           <header className="border-b-2 border-fg pb-10 pt-14 print:pt-0">
-            <p className="m-0 font-mono text-xs text-muted">김대정 · Tech Lead · Backend Engineer · 실무 4년차</p>
+            <p className="m-0 font-mono text-xs text-muted">Tech Lead · Backend Engineer · 실무 4년차</p>
             <h1 className="mt-4 text-[clamp(2.2rem,5vw,4.8rem)] font-semibold leading-[0.98] tracking-[-0.04em]">
-              제품 판단을 백엔드 경계로 바꾸고,
+              아이디어를 새로운 가치로 실현하는 메이커,
               <br />
-              운영까지 연결합니다.
+              김대정입니다.
             </h1>
             <div className="mt-8 grid grid-cols-[minmax(0,1.15fr)_minmax(320px,0.85fr)] gap-12 border-y border-border py-6 max-lg:grid-cols-1 max-lg:gap-6">
               <p className="m-0 text-lg leading-[1.72] text-fg-2">
-                사용자 문제를 기능·품질 기준으로 구체화하고, 기술 리스크를
-                API·데이터·AI 실행·인프라의 책임 경계로 나눠 직접 구현·배포·운영하는
-                Tech Lead · Backend Engineer입니다.
+                고객의 문제를 제품 범위와 품질 기준으로 좁히고, 백엔드·AI·핵심 화면을
+                직접 만들어 배포와 운영까지 맡아왔습니다.
               </p>
               <dl className="m-0 grid content-start gap-3">
                 {[

@@ -21,6 +21,7 @@ export type RolePortfolio = {
   status: "draft";
   visibility: "local";
   updatedAt: string;
+  brandLine: string;
   headline: string;
   introduction: string;
   proofAxes: readonly {

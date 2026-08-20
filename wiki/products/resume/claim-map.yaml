@@ -2,25 +2,7 @@ schema_version: 1
 artifact: app/fe/app/resume/resume-view.tsx
 status: active
 sections:
-  summary:
-    - career.tenure
-    - career.medisolve-role-evolution
-    - career.ai-pm-backend-continuity
-    - career.product-ux-practice
-    - career.memento-stripe-prepayment
-    - thready.product-zero-to-one-contribution
-    - thready.frontend-product-delivery
-    - thready.release-operation
-    - thready.ai-service-migration
-    - thready.ai-replica-outbox
-    - centurion.bay-async-backend
-    - centurion.day-product-integration
-    - mediness.product-operations
-    - be-template.backend-standard
-    - be-template.team-leverage
-    - be-template.agent-context
-    - infra.company-azure-ownership
-    - infra.terraform-state-safety
+  summary: []
   career:
     - career.medisolve-role-evolution
     - career.memento-to-medisolve-early-member

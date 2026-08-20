@@ -2,7 +2,7 @@
 type: reference
 title: 콘텐츠 SoT — 공개 site surface 기준선
 description: 2026-08-13부터 app/fe의 각 public surface가 자신의 표현 SoT다. 플랫폼 프로필은 관련 surface에서 파생된다. 사실·강도는 claim registry가 계속 소유한다.
-timestamp: 2026-08-13
+timestamp: 2026-08-21
 tags: [sot, content, site, platform]
 ---
 
@@ -15,6 +15,7 @@ tags: [sot, content, site, platform]
 | 층 | 소유 | 내용 |
 | --- | --- | --- |
 | **사실·강도** | `wiki/evidence/` + `wiki/evidence/claims/*.yaml` | 무엇이 사실인가, owned/led/co-led/contributed, `allowed_copy`·`forbidden_copy` |
+| **브랜드 정체성** | `wiki/profile/identity.md` | 공통 Maker 문장과 채용 역할 hierarchy |
 | **표현 (SoT)** | **`app/fe`** — `app/page.tsx` · `app/resume/resume-view.tsx` | 각 surface에서 어떻게 말하는가. 문장·순서·강조 |
 | **파생** | 원티드 · 링크드인 · 리멤버 · 로켓펀치 · 그룹바이 · 사람인 | 플랫폼 제약(글자 수·필드·줄바꿈)에 맞춘 변환본 |
 | **디자인** | D2 → `app/design` | 타입 스케일·컴포넌트 문법·레이아웃 |
@@ -45,10 +46,10 @@ tags: [sot, content, site, platform]
 4. 플랫폼에 반영하고 **실측으로 검증**한다 (폼은 `innerText`가 아니라 필드 `value`로 읽는다).
 5. 결과를 [동기화 매트릭스](../../backlog/platform-profile-consolidation/2026-08-13-sync-matrix.md)에 기록한다.
 
-## 현재 SoT 스냅샷 (2026-08-13)
+## 현재 SoT 스냅샷 (2026-08-21)
 
-- 섹션 순서: `요약 → 경력 → 할 수 있는 일 → 일하는 방식 → 기술 → credentials`
-- 경력은 **회사별 역할·담당 범위** 중심. 사내 코드명 노출 금지 (§14)
-- 역량 축 6종 — 구축·재구축 / 품질 판정·평가 / 어드민 시스템 / Agent 워크플로우·AX /
-  인프라·플랫폼 / 제품 운영·결정
-- 스택 3층 — 주력(Python·FastAPI) / 함께 씀(TypeScript·NestJS) / 개인 프로젝트(Java·Spring Boot)
+- 공통 소개: `아이디어를 새로운 가치로 실현하는 메이커, 김대정입니다.`
+- 채용 역할: `Tech Lead · Backend Engineer`; 전문 영역: `AI Product Systems`
+- resume 순서: `소개 → 경력 → 대표 성과 → 기술 → 외부 활동 → credentials`
+- portfolio 순서: `Thready → Centurion → Company Infrastructure → Backend Template`, supporting `Memento Payment → Product Operations`
+- 플랫폼 프로필은 이 기준선의 문장·경력·대표 성과를 각 필드와 글자 수에 맞게 축약하며 새 사실을 만들지 않는다.

@@ -2,7 +2,7 @@
 type: profile
 title: Identity
 description: Canonical personal category, positioning, bio, and branding guardrails.
-timestamp: 2026-07-14
+timestamp: 2026-08-21
 tags: [identity, positioning, branding]
 ---
 
@@ -12,6 +12,7 @@ tags: [identity, positioning, branding]
 
 | Level | Canonical value |
 | --- | --- |
+| Brand identity | **Maker** |
 | Primary category | Tech Lead |
 | Supporting role | Backend Engineer |
 | **Dual role** | **Product Owner** (2026-08-10 user-confirmed — 병기하되 primary를 대체하지 않는다) |
@@ -21,14 +22,13 @@ tags: [identity, positioning, branding]
 
 ## Canonical One-Line
 
-> 백엔드 기반으로 AI 제품의 방향과 실행을 연결하는 Tech Lead.
+> 아이디어를 새로운 가치로 실현하는 메이커, 김대정입니다.
 
-## Brand Line
+## Brand Line Application
 
-> Whatever the role, I move the product forward.
-
-- 2026-08-16 user-confirmed.
-- 이 문장은 홈페이지·포트폴리오용 브랜드 서사이며, 이력서 헤더에는 사용하지 않는다 (2026-08-16 user-confirmed).
+- 위 `Canonical One-Line`을 public brand line으로 사용한다 (2026-08-21 user-confirmed).
+- `Maker`는 브랜드 정체성이며 채용 직함이 아니다. 채용 역할 표기는 `Tech Lead · Backend Engineer`를 유지한다.
+- 이 문장은 홈 hero와 이력서·포트폴리오의 소개에 사용하되 경력 행·역할 label을 대체하지 않는다.
 - Vision AI Engineer → PM → Backend Engineer 전환을 직무 나열이 아니라, 제품에 더 크게 기여하기 위해 필요한 역할과 역량을 확장해온 서사로 표현한다.
 - 공개 이력서에서는 `Tech Lead`를 primary, `Backend Engineer`를 supporting role로 사용한다.
 
@@ -44,7 +44,7 @@ user-confirmed)에서 도출한 것으로 차용이 아니다. 문안 canonical�
 
 ## English
 
-> Tech Lead with a backend engineering core who builds AI products and decides what to build.
+> I’m Daejeong Kim, a maker who turns ideas into new value.
 
 ## Dual Track 근거와 경계
 
@@ -72,15 +72,17 @@ FastAPI/NestJS 기반 product backend, AI generation quality, async/realtime pro
 
 ## Positioning Logic
 
-1. Tech Lead의 판단·실행 책임을 먼저 제시한다.
-2. Backend credibility와 AI product runtime·quality system 경험으로 전문 영역을 증명한다.
-3. Agent workflow는 별도 직군이 아니라 engineering execution의 차별점으로 제시한다.
-4. PM/Vision AI 경험은 product-system 관점의 배경으로만 사용한다.
-5. 리드 경험은 "무엇을 왜 만들고 어떤 기준으로 운영할지 결정한 뒤, 사람·agent·시스템의 실행을 정렬한다"는 작동 방식으로 서술한다. Director 등 직함으로 표현하지 않는다.
+1. `Maker`는 아이디어를 실제 가치로 만드는 사람이라는 브랜드 프레임이다.
+2. 채용 시장에서는 Tech Lead의 판단·실행 책임과 Backend Engineer의 기술 기반을 분리해 명확히 표기한다.
+3. Backend credibility와 AI product runtime·quality system 경험으로 전문 영역을 증명한다.
+4. Agent workflow는 별도 직군이 아니라 engineering execution의 차별점으로 제시한다.
+5. PM/Vision AI 경험은 product-system 관점의 배경으로만 사용한다.
+6. 리드 경험은 "무엇을 왜 만들고 어떤 기준으로 운영할지 결정한 뒤, 사람·agent·시스템의 실행을 정렬한다"는 작동 방식으로 서술한다. Director 등 직함으로 표현하지 않는다.
 
 ## Guardrails
 
 - `Backend Architect`, `AX Engineer`, `AI Agent Engineer`를 sole primary category로 사용하지 않는다.
+- `Maker`를 경력 직함·채용 직군·검색 태그로 사용하지 않는다.
 - Tech Lead는 primary positioning으로 사용하되 등재 직함이라고 단정하지 않는다. PO·AI agent는 병행 역할로만 설명한다.
 - 기업부설연구소장 등재 사실은 evidence에만 보존하고 공개 resume·homepage·portfolio에는 표기하지 않는다.
 - 특정 병원/헬스케어 산업에 identity를 제한하지 않는다.

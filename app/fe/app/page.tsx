@@ -35,10 +35,9 @@ const SUMMARY: { no: string; accent?: boolean; text: React.ReactNode }[] = [
     accent: true,
     text: (
       <>
-        돌아가는 backend를 다시 세우자고 설득했고,{" "}
-        <strong>재구축 이후 오히려 재발이 줄었다</strong> — QA 티켓 reopen 비율{" "}
-        <strong>37% → 11%</strong> (cutover 전후 관측). 범위는 backend로 한정하고 FE는
-        그대로 뒀다
+        기존 frontend를 유지한 채 FastAPI backend를 병렬 재구축하고 validation
+        harness로 전환을 검증했다 — 같은 기준에서 해결된 QA 이슈의{" "}
+        <strong>재오픈 비율이 26%p 낮아졌다</strong>
       </>
     ),
   },
@@ -66,8 +65,9 @@ const SUMMARY: { no: string; accent?: boolean; text: React.ReactNode }[] = [
     no: "04",
     text: (
       <>
-        Tech Lead로서 AI 제품 backend를 만들면서 <strong>무엇을 만들지 정하는 일도 같이 한다</strong> —
-        Backend Engineer·PO 역할을 병행하고 있다
+        고객 문제에서 출발해 기획·QA·마케팅과 제품 운영을 리드하고 backend·AI·핵심
+        화면을 직접 구현했다 — 제품은 2026.08 기준{" "}
+        <strong>월 약 800만~1,000만원의 구독료 매출</strong>이 발생하고 있다
       </>
     ),
   },
@@ -79,14 +79,14 @@ const ROUTES = [
     href: "/resume",
     badge: "LIVE",
     warn: false,
-    desc: "A4 마스터 이력서 — 요약·역량·경력 전체를 한 페이지에.",
+    desc: "A4 마스터 이력서 — 경력·대표 성과·기술·외부 활동을 한 문서에.",
   },
   {
     name: "Portfolio",
     href: "/portfolio",
     badge: "LIVE",
     warn: false,
-    desc: "case 5건 — 문제·결정·시스템·운영 근거. 현재 Thready 상세 활성.",
+    desc: "대표 사례 4건과 supporting 사례 2건 — 문제·판단·시스템·운영 근거.",
   },
   {
     name: "Chat",
@@ -111,17 +111,13 @@ export default function Home() {
           >
             <div>
               <span className="mb-6 inline-flex items-center gap-2 border border-border px-2.5 py-1 font-mono text-xs tracking-[0.06em] text-fg-2">
-                MediSolve AI · Backend Engineer · 재직 중
+                MediSolve AI · Tech Lead · Backend Engineer · 재직 중
               </span>
-              <h1 className="font-mono text-4xl font-semibold tracking-[-0.025em] max-md:text-[34px]">
-                김대정
+              <h1 className="max-w-[18ch] text-balance font-mono text-4xl font-semibold leading-[1.18] tracking-[-0.025em] max-md:max-w-none max-md:text-[34px]">
+                아이디어를 새로운 가치로 실현하는 메이커, 김대정입니다.
               </h1>
               <p className="mt-4 font-mono text-base uppercase tracking-[0.06em] text-fg-2">
-                <b className="font-semibold text-fg">Backend Engineer</b> · AI
-                Product Systems
-              </p>
-              <p className="mt-6 max-w-[22ch] text-xl font-medium leading-[1.4] max-md:max-w-none max-md:text-lg">
-                AI 제품을 만들고, 무엇을 만들지도 함께 정하는 백엔드 엔지니어
+                <b className="font-semibold text-fg">Tech Lead · Backend Engineer</b> · AI Product Systems
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 {/* Resume PDF 준비 시 다운로드 chip 복귀 (7차 결정) */}
@@ -144,7 +140,7 @@ export default function Home() {
               valueClassName="text-cred"
               groups={[
                 [
-                  { k: "Role", v: "Backend · PO" },
+                  { k: "Role", v: "Tech Lead · Backend" },
                   { k: "Domain", v: "AI Product" },
                   { k: "Career", v: "2020 —" },
                 ],

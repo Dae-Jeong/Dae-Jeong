@@ -353,14 +353,9 @@ function DocKo() {
 
       <OrderedSections order={SECTIONS_KO.map((section) => section.id)}>
       <Sec id="s1" no="01" title="소개" meta="Profile">
-        <div className={resumeType.summaryStack}>
-          <p className="m-0" data-claim="career.tenure career.medisolve-role-evolution thready.product-zero-to-one-contribution thready.frontend-product-delivery thready.release-operation thready.ai-service-migration thready.ai-replica-outbox centurion.bay-async-backend infra.company-azure-ownership infra.terraform-state-safety">
-            <strong className={resumeType.inlineStrong}>고객이 어디에서 막히는지 찾고 제품 범위와 품질 기준을 정한 뒤, 백엔드·AI·핵심 화면을 직접 구현하는 Tech Lead이자 Backend Engineer</strong>입니다. 배포 이후에는 데이터 정합성·비동기 복구·인프라 변경까지 운영해 온 <Metric>실무 4년차</Metric>입니다.
-          </p>
-          <p className="m-0" data-claim="career.ai-pm-backend-continuity career.product-ux-practice career.memento-stripe-prepayment centurion.bay-async-backend centurion.day-product-integration mediness.product-operations be-template.backend-standard be-template.team-leverage be-template.agent-context">
-            Vision AI 개발과 PM·UX 경험을 거쳐, 요청을 그대로 구현하기보다 고객 문제와 운영 제약을 함께 봅니다. <strong className={resumeType.inlineStrong}>제품 판단을 도메인 모델·API·트랜잭션·작업 상태·QA·릴리스 기준으로 구체화</strong>하고, 팀과 AI 에이전트가 다시 쓸 수 있는 결정 기록과 운영 문서·자동화로 남깁니다.
-          </p>
-        </div>
+        <p className="m-0 text-xl font-medium leading-relaxed tracking-[-0.015em]">
+          아이디어를 새로운 가치로 실현하는 메이커, 김대정입니다.
+        </p>
       </Sec>
 
       <Sec id="s3" no="02" title="경력" meta="Career">
@@ -560,14 +555,9 @@ function DocEn() {
 
       <OrderedSections order={SECTIONS_EN.map((section) => section.id)}>
       <Sec id="s1" no="01" title="Profile">
-        <div className={resumeType.summaryStack}>
-          <p className="m-0" data-claim="career.tenure career.medisolve-role-evolution thready.product-zero-to-one-contribution thready.frontend-product-delivery thready.release-operation thready.ai-service-migration thready.ai-replica-outbox centurion.bay-async-backend infra.company-azure-ownership infra.terraform-state-safety">
-            I am a <strong className={resumeType.inlineStrong}>Tech Lead and Backend Engineer who identifies where customers get stuck, sets product scope and quality criteria, and directly builds backend, AI, and core frontend flows.</strong> Across <Metric>four years</Metric> of professional experience, I have continued ownership after deployment through data consistency, async recovery, infrastructure changes, releases, and operations.
-          </p>
-          <p className="m-0" data-claim="career.ai-pm-backend-continuity career.product-ux-practice career.memento-stripe-prepayment centurion.bay-async-backend centurion.day-product-integration mediness.product-operations be-template.backend-standard be-template.team-leverage be-template.agent-context">
-            My background in Vision AI development, product management, and UX helps me evaluate customer problems and operating constraints before implementation. I <strong className={resumeType.inlineStrong}>turn product decisions into domain models, APIs, transaction and worker states, QA criteria, and release gates</strong>, then preserve them as decision records, runbooks, and automation that teams and AI agents can reuse.
-          </p>
-        </div>
+        <p className="m-0 text-xl font-medium leading-relaxed tracking-[-0.015em]">
+          I&apos;m Daejeong Kim, a maker who turns ideas into new value.
+        </p>
       </Sec>
 
       <Sec id="s3" no="02" title="Career">

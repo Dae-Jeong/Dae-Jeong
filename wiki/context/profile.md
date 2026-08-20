@@ -2,7 +2,7 @@
 type: profile-snapshot
 title: Compact Profile Snapshot
 description: Agent routing용 compact profile; canonical profile 문서에서 파생됨.
-timestamp: 2026-07-11
+timestamp: 2026-08-21
 canonical: false
 derived_from: [profile/identity.md, profile/career.md, profile/capabilities.md]
 tags: [profile, snapshot, derived]
@@ -12,11 +12,13 @@ tags: [profile, snapshot, derived]
 
 ## Positioning
 
-AI 제품을 운영 가능한 시스템으로 만드는 백엔드 엔지니어.
+아이디어를 새로운 가치로 실현하는 메이커, 김대정입니다.
 
 ## Category
 
-- Primary: Backend Engineer
+- Brand identity: Maker
+- Primary: Tech Lead
+- Supporting: Backend Engineer
 - Specialty: AI Product Systems
 - Differentiator: Agent-readable Engineering Workflow
 

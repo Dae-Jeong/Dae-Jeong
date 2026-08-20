@@ -2,7 +2,7 @@
 type: index
 title: Portfolio Product
 description: Resume-selected claims의 문제, 접근, 구현, 운영 깊이를 제공한다.
-timestamp: 2026-08-20
+timestamp: 2026-08-21
 tags: [portfolio, cases, product]
 ---
 
@@ -27,7 +27,7 @@ Portfolio는 resume가 선택한 claim의 깊이를 검증하는 제품이다.
 - Resume claim을 반복하지 않고 `Problem -> Decision -> Design/Visualization -> Operating Result -> Responsibility -> JD fit`으로 확장한다.
 - Portfolio는 resume보다 자세할 수 있지만 더 강한 ownership을 주장할 수 없다.
 - 기본 공개 artifact는 `/portfolio` 단일 페이지다. `Thready → Centurion → Company Infrastructure → Backend Template` 네 대표 case의 문제·판단·failure handling·system flow·운영 결과와 `Memento Payment → Product Operations` supporting case를 한 문서에서 읽고 PDF로 변환할 수 있어야 한다.
-- 공통 headline은 `제품 판단을 백엔드 경계로 바꾸고, 운영까지 연결합니다.`다. 직함을 반복하는 대신 제품 판단·직접 구현·운영 책임이 이어지는 방식을 첫 화면에서 전달한다.
+- 공통 headline은 `아이디어를 새로운 가치로 실현하는 메이커, 김대정입니다.`다. `Maker`는 브랜드 정체성이고, `Tech Lead · Backend Engineer` 역할과 제품 판단·직접 구현·운영 책임은 바로 아래 proof와 case가 증명한다.
 - 내부 검증용 claim ID·forbidden copy·limits는 evidence와 case library에만 남기고 공개 문서에서는 자연스러운 역할·결과 문장으로 표현한다.
 - claim ID, 검증용 limits, 내부 taxonomy와 evidence policy는 내부 원장에만 두고 공개 DOM에는 노출하지 않는다.
 - 제목·설명·본문에는 `ch`나 임의의 `px` 기반 `max-width`로 줄 길이를 제한하지 않는다. 문서 컨테이너의 가용 폭을 사용하고 화면 폭에 따라 자연스럽게 줄바꿈한다.

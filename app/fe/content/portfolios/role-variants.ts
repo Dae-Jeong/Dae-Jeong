@@ -5,7 +5,8 @@ import {
 } from "@/content/role-catalog";
 import type { RolePortfolio } from "./types";
 
-const UPDATED_AT = "2026-08-20";
+const UPDATED_AT = "2026-08-21";
+const MAKER_HOOK = "아이디어를 새로운 가치로 실현하는 메이커, 김대정입니다.";
 
 const ROLE_PORTFOLIOS_BY_SLUG = {
   "tech-lead-product": {
@@ -14,6 +15,7 @@ const ROLE_PORTFOLIOS_BY_SLUG = {
     status: "draft",
     visibility: "local",
     updatedAt: UPDATED_AT,
+    brandLine: MAKER_HOOK,
     headline: "무엇을 만들지 정하고, 직접 만들어 실제 운영까지 가져갔습니다.",
     introduction:
       "Thready에서는 고객 문제를 기능·실험·품질 기준으로 바꾸고 기획·QA·마케팅과 제품 운영을 이끌었습니다. FastAPI 백엔드와 AI 생성·평가, Next.js 핵심 흐름을 직접 구현했고, 여러 제품이 같은 기준으로 개발·배포되도록 실행 기반도 만들었습니다.",
@@ -64,6 +66,7 @@ const ROLE_PORTFOLIOS_BY_SLUG = {
     status: "draft",
     visibility: "local",
     updatedAt: UPDATED_AT,
+    brandLine: MAKER_HOOK,
     headline:
       "운영 중인 백엔드를 재구축하고, 어긋난 데이터와 실패한 작업을 복구할 수 있게 만들었습니다.",
     introduction:
@@ -109,6 +112,7 @@ const ROLE_PORTFOLIOS_BY_SLUG = {
     status: "draft",
     visibility: "local",
     updatedAt: UPDATED_AT,
+    brandLine: MAKER_HOOK,
     headline:
       "AI 실행부를 제품 원장과 나누고, 데이터 전달과 생성 품질을 검증 가능한 구조로 만들었습니다.",
     introduction:
@@ -148,6 +152,7 @@ const ROLE_PORTFOLIOS_BY_SLUG = {
     status: "draft",
     visibility: "local",
     updatedAt: UPDATED_AT,
+    brandLine: MAKER_HOOK,
     headline:
       "고객의 문제를 제품 규칙으로 바꾸고, 팀과 AI가 실행할 수 있는 상태까지 연결했습니다.",
     introduction:
@@ -199,6 +204,7 @@ const ROLE_PORTFOLIOS_BY_SLUG = {
     status: "draft",
     visibility: "local",
     updatedAt: UPDATED_AT,
+    brandLine: MAKER_HOOK,
     headline:
       "여러 제품의 인프라와 백엔드 기반을, 한 사람이 안전하게 운영할 수 있는 구조로 만들었습니다.",
     introduction:

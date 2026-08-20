@@ -127,7 +127,7 @@ export function RolePortfolioView({
         <header className="border-b-2 border-fg pb-10 pt-6 print:pt-0">
           <div className="flex flex-wrap items-baseline justify-between gap-3">
             <p className="m-0 font-mono text-xs text-muted">
-              김대정 · Tech Lead · Backend Engineer · {portfolio.label}
+              Tech Lead · Backend Engineer · {portfolio.label}
             </p>
             <Link
               href={`/resume/${portfolio.slug}`}
@@ -136,6 +136,9 @@ export function RolePortfolioView({
               같은 직군 이력서 →
             </Link>
           </div>
+          <p className="m-0 mt-4 text-base font-medium leading-relaxed">
+            {portfolio.brandLine}
+          </p>
           <h1 className="mt-4 text-[clamp(2.2rem,5vw,4.8rem)] font-semibold leading-[0.98] tracking-[-0.04em] text-balance">
             {portfolio.headline}
           </h1>

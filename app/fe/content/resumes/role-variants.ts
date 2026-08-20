@@ -9,7 +9,8 @@ import type {
 import { ROLE_CATALOG, ROLE_VARIANT_SLUGS } from "../role-catalog";
 import type { RoleVariantSlug } from "../role-catalog";
 
-const UPDATED_AT = "2026-08-20";
+const UPDATED_AT = "2026-08-21";
+const MAKER_HOOK = "아이디어를 새로운 가치로 실현하는 메이커, 김대정입니다.";
 
 const CONTACTS = [
   { label: "marin.backend@gmail.com", href: "mailto:marin.backend@gmail.com" },
@@ -220,7 +221,12 @@ function makeBase({
       ],
       contacts: CONTACTS,
     },
-    summary,
+    summary: [
+      {
+        text: [{ text: MAKER_HOOK, tone: "strong" }],
+      },
+      ...summary,
+    ],
     careers,
     outcomes,
     workStyles,

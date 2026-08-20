@@ -2,7 +2,7 @@
 type: reference
 title: 지면별 역할 정의
 description: 홈·이력서·포트폴리오·chat·블로그·플랫폼 프로필이 각각 무엇을 담고 무엇을 담지 않는지 정의한다. 표류를 막는 기준.
-timestamp: 2026-08-20
+timestamp: 2026-08-21
 derived_from: [products/site/content-sot.md, rules/persuasive-writing.md, products/resume/career-axes.md]
 tags: [site, surface, role, reference]
 ---
@@ -51,7 +51,7 @@ user: "각 영역별로 역할을 좀 정의를 해볼까? 이력서 롤, 포폴
 ## 3. `/portfolio` — 한 문서에서 고르고 검증하는 곳
 
 - **목적**: 첫 화면과 index에서 확인할 경험을 고르게 한 뒤, route 이동 없이 문제·판단·시스템·운영 근거까지 검증하게 한다.
-- **headline**: `제품 판단을 백엔드 경계로 바꾸고, 운영까지 연결합니다.`
+- **headline**: `아이디어를 새로운 가치로 실현하는 메이커, 김대정입니다.`
 - **primary**: Thready → Centurion → Company Infrastructure → Backend Template.
 - **supporting**: Memento Payment → Product Operations.
 - **담는 것**: 각 case의 맥락·책임 범위·핵심 기술 판단·고유한 시각화·검증 가능한 proof.

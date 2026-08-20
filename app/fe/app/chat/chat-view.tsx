@@ -148,14 +148,13 @@ export function ChatView() {
             <VisitorMsg>김대정은 어떤 엔지니어인가요?</VisitorMsg>
             <AgentMsg>
               <p>
-                AI 제품을 만들고, 무엇을 만들지도 함께 정하는 백엔드
-                엔지니어입니다. LLM 기능을 제품에 붙이는 일보다, AI의 출력을 판정하고
-                통제해서 사람이 믿고 쓸 수 있는 제품으로 만드는 일을 다룹니다 — LLM
-                백엔드, Agent Workflow, Evaluation이 중심입니다.
+                아이디어를 새로운 가치로 실현하는 메이커, 김대정입니다. 현재는 Tech
+                Lead로 제품의 방향을 정하고 Backend Engineer로 백엔드·AI·핵심 화면을
+                직접 만듭니다.
               </p>
               <p>
-                MediSolve AI에서 Tech Lead를 맡고 Backend Engineer·PO 역할을 병행하고
-                있습니다.
+                출시 뒤에는 데이터 정합성·비동기 복구·인프라 변경까지 운영하며, 제품
+                판단을 실제 동작과 검증 기준으로 남기는 일을 해왔습니다.
               </p>
               <Evidence ids={["profile.identity", "career.medisolve-role-evolution"]} />
               <Related
