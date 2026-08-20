@@ -27,6 +27,7 @@ tags: [backlog, profile, platform, distribution]
 
 ## 연결
 
+- [2026-08-21 Maker platform draft](2026-08-21-maker-profile-draft.md) — 현재 홈페이지·이력서 SoT에서 파생한 플랫폼별 게시 문안 검토본
 - [products/resume/master/v2/content.md](../../products/resume/master/v2/content.md) — 최신 서사·수치 기준
 - [rules/public-safety.md](../../rules/public-safety.md) — 공개 범위 게이트
 - [evidence/claims/](../../evidence/claims/) — allowed_copy 상한

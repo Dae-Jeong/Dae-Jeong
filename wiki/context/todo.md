@@ -20,7 +20,7 @@ tags: [context, todo, routing]
 
 ### A1. 플랫폼 프로필 sync
 
-owner: [sync-spec](../backlog/platform-profile-consolidation/sync-spec.md) · 현황: [sync matrix](../backlog/platform-profile-consolidation/2026-08-13-sync-matrix.md) · 문안: [dual-track copy](../backlog/platform-profile-consolidation/dual-track-copy-draft.md)
+owner: [sync-spec](../backlog/platform-profile-consolidation/sync-spec.md) · 현황: [sync matrix](../backlog/platform-profile-consolidation/2026-08-13-sync-matrix.md) · 문안 초안: [Maker platform draft](../backlog/platform-profile-consolidation/2026-08-21-maker-profile-draft.md)
 
 - [ ] **사람인** — 로그인 후 `인증 경력 불러오기`, 소개·경력·스킬·링크 반영
 - [ ] **원티드** — 자동화할 수 없는 텍스트 필드에 확정 문안 붙여넣기
