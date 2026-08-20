@@ -43,26 +43,26 @@ user: "각 회사들별로 이 구조가 좀 변동될 수 있겠지 / 그 관�
 
 ## 2. 회사별 축 구성
 
-### 메디솔브에이아이 (2025.04 —, Backend Engineer · 기업부설연구소장)
+### 메디솔브에이아이 (2025.04 —, Tech Lead · Backend Engineer)
 
-담당 제품: Thready(AI 콘텐츠 생성) · Centurion(AI 메디컬 플랫폼 — 피부과 운영 CRM·통합 관리 시스템)
+담당 제품: Thready(AI 콘텐츠 생성) · Centurion(범용 피부과 CRM·주문·재고·실시간 상담) · 외부 피부과 운영·예약 시스템
 
-> ⚠️ **NEXUS는 별도 제품이 아니다** (2026-08-12 user-confirmed: "centurion & nexus 사실 거의 동일하거든").
-> Centurion 제품군의 저장소 라벨이며, 고객사 내부 매핑은 [clients.md](../../evidence/clients.md)만 소유한다.
-> 공개 문안에서 Centurion과 나란히 병기하면 담당 제품이 하나 더 있는 것처럼 읽혀 범위가 부풀려진다.
-> `nexus.*` claim namespace는 저장소 추적용으로 유지하되, **표기는 「어드민/통합 관리 시스템」 기능명으로 푼다.**
+> ⚠️ **DAY는 Centurion의 CRM 영역이고, NEXUS만 Centurion과 별도다** (2026-08-20 user-confirmed correction).
+> NEXUS는 외부 피부과 여러 곳의 홈페이지·관리·예약 운영 시스템이고, DAY는 Centurion을 구성하는 범용 피부과 CRM 영역이다.
+> 같은 회사의 의료 domain·infra 맥락이 일부 겹치더라도 repository·고객·성과를 합치지 않는다.
+> 공개 문안에서는 고객사와 코드명을 빼고 **「여러 피부과의 운영·예약 시스템」**으로 설명한다.
 
 | # | 축 | 근거 제품 | claim ID | 강도 | 현재 copy inventory (quota 아님) |
 | --- | --- | --- | --- | --- | --- |
-| 1 | AI 제품 backend 구축·재구축 | Thready · Centurion | `thready.backend-rebuild` `thready.rebuild-decision-execution` `thready.ai-service-migration` `thready.ai-replica-outbox` `centurion.bay-async-backend` | owned / owned / owned / owned / led | 5 |
+| 1 | AI 제품 full-stack 구축·backend 재구축 | Thready · Centurion | `thready.frontend-product-delivery` `thready.backend-rebuild` `thready.rebuild-decision-execution` `thready.ai-service-migration` `thready.ai-replica-outbox` `centurion.bay-async-backend` | led / owned / owned / owned / owned / led | 6 |
 | 2 | 시장 데이터 제품화·AI 출력 평가 | Thready | `thready.threads-market-outcome-design` `thready.labeling-corpus-workbench` `thready.hook-rubric-experiment` `thready.generation-quality-system` | owned ×4 | 4 |
-| 3 | 어드민 시스템 구축·운영 | Centurion 통합 관리 시스템 | `nexus.admin-backend-ownership` `nexus.backend-architecture` `nexus.quality-automation` | led ×3 | 5 |
+| 3 | 피부과 운영·예약 시스템 구축 | 외부 피부과 운영·예약 시스템 | `nexus.admin-backend-ownership` `nexus.backend-architecture` `nexus.quality-automation` `nexus.hospital-operations-revenue-contribution` | led ×3 / contributed ×1 | 6 |
 | 4 | Agent 워크플로우·AX | Thready · 조직 표준 템플릿 | `thready.agent-pipeline-design` `be-template.backend-standard` `be-template.agent-context` `be-template.team-leverage` | owned ×4 | 5 |
 | 5 | 인프라·플랫폼 운영 | 회사 Azure · Centurion | `infra.company-azure-ownership` `infra.terraform-state-safety` `infra.azure-observability` `nexus.terraform-infra` `centurion.shared-infra` | **owned ×5** | 4 |
-| 6 | 제품 운영·결정 | 제품팀 · Centurion | `career.medisolve-role-evolution` `mediness.product-operations` `centurion.say-realtime-ai` | led / led / **co-led** | 4 |
+| 6 | 제품 운영·결정 | Thready · 제품팀 · Centurion | `thready.product-zero-to-one-contribution` `career.medisolve-role-evolution` `mediness.product-operations` `centurion.say-realtime-ai` | led / led / led / **co-led** | 5 |
 
-**⚠️ 축 3은 `led`이고 진행 중이다** — "단독 구축"(Git 커밋 83%, 100% 아님)·완료형·도메인 개수 단정·
-Closure Table(repo에 없는 자기보고 오류)·고객사 실명 전부 금지. 고객사는 `D·C 피부과` 마스킹.
+**⚠️ 축 3의 backend 재구축은 `led`이고 진행 중이다** — "단독 구축"(Git 커밋 83%, 100% 아님)·완료형·도메인 개수 단정·
+Closure Table(repo에 없는 자기보고 오류)·고객사 실명 전부 금지. 예약률·매출은 기존 제품의 `contributed/medium` outcome이며 정확한 수치·개인 단독 인과를 쓰지 않는다.
 
 **⚠️ 축 4의 SAY는 co-led다** — "공동 주 기여"를 반드시 유지한다. 강도 상향 금지.
 
@@ -149,7 +149,7 @@ PM 축은 `0→1 구간 통과 → 대기업 POC → 상세페이지 제작 flow
 
 수치(App Service 13대·Terraform 관리 231 resource)는 `forbidden_copy`의 "정확한 resource detail"에 걸린다 — 쓰지 않는다.
 
-### ~~메디솔브 — NEXUS가 경력 설명에 없다~~ → **해소 (2026-08-12)**
+### ~~메디솔브 — 외부 피부과 운영·예약 시스템이 경력 설명에 없다~~ → **해소 (2026-08-20 정정)**
 
 「어드민 시스템 구축·운영」 축으로 신설해 반영했다. 아래는 그때 사용한 근거다.
 
@@ -160,11 +160,12 @@ PM 축은 `0→1 구간 통과 → 대기업 POC → 상세페이지 제작 flow
 | `nexus.pool-stabilization` | 커넥션 풀 타임아웃 원인 분석과 풀 설정·세션 생명주기 재조정 | led |
 | `nexus.quality-automation` | 코드 컨벤션 정립과 Ruff·Pyright·pre-commit 기반 품질 자동 검증 체계 구축 | led |
 | `nexus.domain-audit-governance` | multi-brand backend monorepo의 domain audit과 documentation governance | contributed |
+| `nexus.hospital-operations-revenue-contribution` | 여러 피부과의 운영·예약 시스템 backend 구축과 예약률·매출 성과 기여 | contributed |
 
 잔여: `nexus.pool-stabilization`(커넥션 풀 설정·세션 생명주기 재조정)은 **작업까지만 claim 가능**하다 —
 전후 모니터링 지표가 없어 효과를 쓸 수 없고 `confidence: medium`이다. 지면이 남을 때만 쓴다.
 `nexus.domain-audit-governance`는 `contributed`라 현재 축에서 제외했다.
-고객사 표기는 `D·C 피부과` 마스킹 ([clients.md](../../evidence/clients.md)) — 그룹바이·oopy의 `A 피부과`는 오기.
+고객사는 기본적으로 생략하고 `여러 피부과의 운영·예약 시스템`으로 쓴다 ([clients.md](../../evidence/clients.md)) — 그룹바이·oopy의 `A 피부과`는 오기.
 
 ### Centurion — 미사용 4건
 
@@ -215,3 +216,4 @@ PM 축은 `0→1 구간 통과 → 대기업 POC → 상세페이지 제작 flow
 | 2026-08-12 | v4.4 스튜디오랩 PM 축 강화 (배분 예외 — 목표 포지션 직결 축) |
 | 2026-08-12 | v4.5 PM 축을 0→1 서사로 재구성 (0→1 → POC → Flow 재설계 → 특허) |
 | 2026-08-18 | 고정 bullet·회사별 분량 quota 폐기. recency는 정렬 신호로만 사용하고 고유한 technical evidence는 필요한 깊이로 유지 |
+| 2026-08-20 | 기존 NEXUS ≡ Centurion 판정을 supersede. NEXUS는 외부 피부과 운영·예약 시스템, DAY는 범용 피부과 CRM으로 분리하고 예약률·매출 기여를 제품 outcome으로 추가 |

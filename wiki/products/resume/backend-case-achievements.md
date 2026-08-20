@@ -30,7 +30,7 @@ tags: [resume, backend, cases, achievements, evidence]
 | 우선순위 | Case | 가장 강한 backend signal | 현재 판정 |
 | --- | --- | --- | --- |
 | A | 주문·재고 비동기 처리 | API/worker 경계, 상태·retry·최종 실패·재처리 | 즉시 주력 가능 |
-| A | 통합 관리 backend | service boundary, multi-tenancy, server-owned access scope | 진행 중임을 밝히고 주력 가능 |
+| A | 외부 피부과 운영·예약 backend | service boundary, multi-tenancy, server-owned access scope | 현재 재구축이 진행 중임을 밝히고 주력 가능 |
 | A | AI 콘텐츠 backend 재구축·운영 | rebuild/cutover, release·QA, production ownership | 즉시 주력 가능 |
 | A-특화 | AI service 분리·migration·durable delivery | DB ownership, 실데이터 이관 검증, transactional Outbox, stale-write fence | STG migration과 구현·test 성과로 사용; Prod 완료는 보류 |
 | A-특화 | realtime AI 상담 backend | WebSocket session lifecycle와 경쟁 조건 | 공동 주 기여 범위로 사용 가능 |
@@ -53,10 +53,10 @@ tags: [resume, backend, cases, achievements, evidence]
 | 02 | AI 실행부·DB 분리와 migration·Outbox | service/data boundary 이후 기존 이력 이관과 이후 원장 전달이 같은 정합성 문제이므로 결합 |
 | 03 | 주문·재고 worker 복구 흐름 | async runtime 선택·retry·terminal failure·manual reprocess가 하나의 운영 상태 계약이므로 유지 |
 | 04 | Threads 데이터 기반 성과 기준과 AI 생성 품질 evaluation | `잘되는 글을 어떻게 정의하고 생성 결과를 어떻게 판정할 것인가`라는 같은 제품 질문이므로 결합하되, 13.1만/318만·11.1만/18.5만 corpus와 20,256건 prompt/judge 실험의 범위는 별도 bullet로 분리 |
-| 05 | server auth state 기반 지점 권한 | MSA는 이 사례의 시스템 배경으로만 표기하고, client input·tenant scope·HTTP 상태 계약이라는 구체적 backend 판단을 중심에 둠 |
+| 05 | server auth state 기반 지점 권한 | 여러 피부과 운영·예약 시스템의 독립 사례로 두고, client input·tenant scope·HTTP 상태 계약이라는 구체적 backend 판단을 중심에 둠 |
 | 06 | Stripe 선결제 provider-side 보상 | local DB와 외부 provider의 원자성 부재를 다룬 초기 경력의 독립 failure-mode 사례라 유지 |
 
-Centurion의 MSA 경험은 별도 유행어 case로 만들지 않는다. Express API Gateway·NestJS SSO·FastAPI product backend·RabbitMQ/TaskIQ worker·WebSocket realtime service가 분리된 환경이라는 context를 경력과 05번 사례에 제시하고, BAY `led`·SAY `co-led`·RAY/SSO `contributed`·infra `owned`의 기여 강도는 하위 claim대로 유지한다.
+Centurion의 MSA 경험은 별도 유행어 case로 만들지 않는다. Express API Gateway·NestJS SSO·FastAPI product backend·RabbitMQ/TaskIQ worker·WebSocket realtime service가 분리된 환경이라는 context는 BAY·DAY·SAY·RAY·SSO claim에만 사용한다. DAY는 Centurion의 범용 피부과 CRM 영역이며, NEXUS의 Admin/Homepage backend와 지점 권한은 Centurion과 분리된 외부 피부과 운영·예약 시스템 사례로 둔다.
 
 ## A. 일반 Backend 주력 Case
 
@@ -76,31 +76,35 @@ Claims: `centurion.bay-async-backend` (`led/high`), `centurion.async-migration`
 - 기존에도 Celery 기반 비동기 처리는 존재했다. 성과는 “비동기 최초 도입”이 아니라 실행 모델 선택, 명시적 상태 전이, 최대 3회 retry, 최종 실패 기록과 수동 재처리 경계를 완결한 것이다.
 - exactly-once, latency·성공률 개선, retry 회복률은 근거가 없다. 외부 연동 실패가 기존 API 응답에 직접 결합돼 있었다고도 쓰지 않는다.
 
-### 2. 통합 관리 backend의 멀티테넌시·접근 경계
+### 2. 외부 피부과 운영·예약 backend의 멀티테넌시·접근 경계
 
 Claims: `nexus.backend-architecture` (`led/high`), `nexus.admin-backend-ownership`
 (`led/high`, 진행 중), `nexus.branch-access-boundary` (`led/high`, 진행 중),
 `nexus.quality-automation` (`led/high`), `nexus.terraform-infra` (`owned/high`),
 `nexus.domain-audit-governance` (`contributed/high`), `nexus.pool-stabilization`
-(`led/medium`, 운영 효과 미확인)
+(`led/medium`, 운영 효과 미확인), `nexus.hospital-operations-revenue-contribution`
+(`contributed/medium`)
 
 성과 후보:
 
-- 통합 관리 backend의 Admin/Homepage API를 독립 모듈로 분리하고 API Gateway를 단일 진입점으로 두는 계층 구조의 설계·구축을 주도하고 있다.
+- 여러 피부과의 홈페이지·관리·예약 backend에서 Admin/Homepage API를 독립 모듈로 분리하고 API Gateway를 단일 진입점으로 두는 계층 구조의 설계·구축을 주도하고 있다.
 - Router–Service–Repository–Model과 DI, Tortoise ORM 기반 Generic Repository를 적용하고 multi-tenancy·soft delete 자동 필터로 공통 CRUD와 데이터 격리 경계를 구성했다.
 - 운영자의 소속 지점과 현재 작업 지점을 분리하고, client header가 아니라 server auth state와 권한 검증 전용 API가 접근 범위를 결정하도록 전환을 설계·구현했다.
 - 미선택과 권한 밖 접근을 `409`와 `403`으로 구분하면서 shared middleware와 기존 Homepage API 계약을 유지했다.
 - Ruff·Pyright·pre-commit 기반 정적 분석·타입 검증과 API·DB 설계 가이드를 구축하고, 이 시스템의 Terraform IaC repository를 전담 구축했다.
+- 제품은 예약률 개선을 통해 고객사 매출 성과에 기여했다. 이는 제품·팀 outcome이며 정확한 예약률·매출 증분과 backend 단독 인과는 확인되지 않았다.
 
 깊이를 만드는 설명:
 
 - 핵심 failure mode는 untrusted client input이 tenant access scope를 결정하는 것이다. 이를 server-owned auth state로 이동하면서 일부 기존 client 계약은 보존하는 migration 판단이 중심이다.
 - 진행 중 case다. 회귀 test에 남은 `skip`·`xfail`, 미확인 운영 효과를 숨기지 않는다. connection pool 변경은 작업 사실만 확인됐으므로 5xx 해소·성능 개선으로 쓰지 않는다.
 - domain audit·documentation governance는 `contributed`이며 architecture와 함께 전부 `led`로 묶지 않는다.
+- DAY는 Centurion의 CRM 영역이고 NEXUS는 Centurion과 별도다. NEXUS의 접근 경계·business outcome을 Centurion 또는 DAY의 성과로 합치지 않는다.
 
 ### 3. AI 콘텐츠 backend 재구축·cutover·production 운영
 
-Claims: `thready.backend-rebuild` (`owned/high`), `thready.prototype-to-user-operation`
+Claims: `thready.backend-rebuild` (`owned/high`), `thready.frontend-product-delivery`
+(`led/high`), `thready.prototype-to-user-operation`
 (`led/high`), `thready.subscription-revenue-band` (`contributed/medium`),
 `thready.rebuild-decision-execution` (`owned/high`),
 `thready.release-operation` (`owned/high`), `thready.qa-reopen-reduction` (`owned/high`).
@@ -110,6 +114,7 @@ Claims: `thready.backend-rebuild` (`owned/high`), `thready.prototype-to-user-ope
 
 - AI 도구로 빠르게 검증한 초기 prototype을 production 운영 단계로 전환하면서, 재구축 범위·architecture·validation harness·cutover 판단은 직접 소유하고 AI를 codebase 파악·기능 inventory·구현에 적극 활용했다.
 - 기존 release·QA 흐름과 Next.js frontend를 유지하면서 FastAPI backend를 parallel rebuild해 `v1.1.0`에서 cutover하고 이후 개발·release·운영을 전담했다.
+- backend cutover 이후 Next.js의 콘텐츠 생성·가져오기·예약·발행·dashboard·관리·labeling workflow도 직접 구현·운영해 backend·AI 기능을 실제 사용자·관리 흐름으로 닫았다.
 - 작은 서비스 단계에서 AI 모듈 확장 비용을 근거로 부분 수정 대신 backend 재구축을 선택하고, architecture·component·infra validation harness를 먼저 세운 뒤 auth/account와 frontend 호출 전환까지 실행했다.
 - `v1.3.0`부터 실제 사용자가 쓰는 AI 콘텐츠 제품의 backend version cycle과 생성 품질 blocker의 판단·수정·배포를 운영했다.
 - 제품은 2026년 8월 기준 월 약 800만~1,000만원의 구독료 매출이 발생한다. 이 수치는 제품·팀 outcome이며, 개인 기여는 초기 prototype 이후 backend 전환·release·QA·operation을 실제 사용자 운영까지 이끈 범위로 분리한다.
@@ -342,9 +347,9 @@ Node.js에서 NestJS로의 backend migration은 현재 self-report만 있고 sta
 
 | JD 성격 | 주력 case | Supporting evidence |
 | --- | --- | --- |
-| 일반 Backend / SaaS | 주문·재고 비동기 처리 + 통합 관리 backend + AI 콘텐츠 backend 재구축 | SSO, 결제 정합성 |
+| 일반 Backend / SaaS | 주문·재고 비동기 처리 + 피부과 운영·예약 backend + AI 콘텐츠 backend 재구축 | SSO, 결제 정합성 |
 | AI Backend | AI 콘텐츠 backend 재구축 + AI service boundary + realtime session | AI evaluation system |
-| Platform / 초기 스타트업 | 조직 표준 FastAPI template + Azure/Terraform delivery + 통합 관리 backend | agent 기반 제품 운영 |
+| Platform / 초기 스타트업 | 조직 표준 FastAPI template + Azure/Terraform delivery + 피부과 운영·예약 backend | agent 기반 제품 운영 |
 | AX / Engineering Productivity | 제품별 decision→release 운영 + 조직 표준 FastAPI template | Azure/Terraform delivery, 제품 정책 전달 |
 | Product Backend | 주문·재고 비동기 처리 + 예약 정책 전달 + 결제 정합성 | AI 콘텐츠 production 운영 |
 

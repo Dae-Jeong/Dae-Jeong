@@ -55,10 +55,35 @@ export type ResumeCredential = {
   claimIds?: readonly string[];
 };
 
+export type ResumeExternalActivity = {
+  label: string;
+  title: string;
+  description: string;
+  outcome: string;
+  claimIds?: readonly string[];
+};
+
+export type ResumeRoleVariant = {
+  label: string;
+  shortLabel: string;
+  description: string;
+};
+
+export type ResumeSectionKey =
+  | "profile"
+  | "outcomes"
+  | "career"
+  | "workStyles"
+  | "skills"
+  | "externalActivities"
+  | "credentials";
+
 export type TailoredResume = {
   slug: string;
   companyName: string;
   position: string;
+  roleVariant?: ResumeRoleVariant;
+  sectionOrder?: readonly ResumeSectionKey[];
   status: "draft" | "approved" | "closed";
   visibility: "local" | "public";
   updatedAt: string;
@@ -66,6 +91,7 @@ export type TailoredResume = {
   header: {
     name: string;
     role: string;
+    photoSrc?: string;
     careerLine: ResumeText;
     contacts: readonly ResumeContact[];
   };
@@ -77,5 +103,6 @@ export type TailoredResume = {
   outcomes: readonly ResumeOutcome[];
   workStyles: readonly ResumeWorkStyle[];
   skills: readonly ResumeSkill[];
+  externalActivities?: readonly ResumeExternalActivity[];
   credentials: readonly ResumeCredential[];
 };

@@ -2,7 +2,7 @@
 type: profile
 title: Career
 description: Canonical career timeline and role evolution.
-timestamp: 2026-08-18
+timestamp: 2026-08-20
 tags: [career, timeline, role]
 ---
 
@@ -12,7 +12,7 @@ tags: [career, timeline, role]
 
 | Period | Organization | Role | Anchor |
 | --- | --- | --- | --- |
-| 2025.04-current | MediSolve AI | Tech Lead; Backend Engineer·PO·AI agent 역할 병행 | Thready, Centurion, NEXUS, BE Template, mediness |
+| 2025.04-current | MediSolve AI | Tech Lead; Backend Engineer·제품 운영·AI agent 역할 병행 | Thready, Centurion, NEXUS, BE Template, mediness |
 | 2025.02-2025.04 | 더데이랩스 | Freelance — MediSolve AI 법인 설립 전 Centurion 선행 개발 | pre-incorporation engagement |
 | 2024.10-2025.01 | Memento AI | Backend Engineer; PM Intern 1개월 병행 — 회사 폐업으로 종료 | reservation/payment backend |
 | 2024.01-2024.12 | TellingMe | Personal project (Memento 재직과 병행), Backend Lead & Infra | Spring Boot backend, AWS deployment |
@@ -48,17 +48,17 @@ tags: [career, timeline, role]
 
 ## Role Evolution
 
-Vision AI에서 시작해 PM을 거쳐 Backend Engineer로 확장했다. 현재 primary category는 Backend Engineer이며, 이전 AI/PM 경험은 AI product를 runtime과 product operation 관점에서 다루는 배경이다.
+Vision AI에서 시작해 PM을 거쳐 Backend Engineer로 확장했다. 현재 primary category는 Tech Lead, supporting role은 Backend Engineer이며, 이전 AI/PM 경험은 AI product를 runtime과 product operation 관점에서 다루는 배경이다.
 
 STUDIO LAB 시절의 메인 롤은 PM이었고, 그때의 시스템 구축은 개발 시스템이 아니라 "제품이 원활하게 돌아가는 시스템"을 기획·구축하는 일이었다. LLM 붐 이전부터 이어진 이 제품-시스템 설계 근육이 현재의 제품 운영 시스템(decision·spec·release gate) 리드와 agent-readable workflow로 이어진다.
 
-MediSolve AI에는 법인 설립 전 초기 멤버로 영입돼 설립과 함께 Backend Engineer로 정규 합류했다. 이후 제품팀의 일정·이슈·릴리스 운영을 리드하고 Tech Lead 역할을 맡아 Backend Engineer·PO·AI agent 관련 역할을 병행했다. 공개 positioning에서는 Tech Lead를 먼저, Backend Engineer를 supporting role로 제시한다. 제품 기획 전담이나 공동창업자로 표현하지 않는다.
+MediSolve AI에는 법인 설립 전 초기 멤버로 영입돼 설립과 함께 Backend Engineer로 정규 합류했다. 이후 제품팀의 일정·이슈·릴리스 운영을 리드하고 Tech Lead 역할을 맡아 Backend Engineer·제품 운영·AI agent 관련 역할을 병행했다. 공개 positioning에서는 Tech Lead를 먼저, Backend Engineer를 supporting role로 제시한다. 제품 기획 전담이나 공동창업자로 표현하지 않는다.
 
 ## Project Anchors
 
 | Product/Project | Relationship |
 | --- | --- |
-| Thready | AI 콘텐츠 생성 product backend 재구축·운영 |
+| Thready | 기획·QA·마케팅과 함께 0→1 제품 운영·관리 리드; backend·AI와 Next.js 핵심 제품 workflow 직접 개발·운영 |
 | Centurion | CRM & ERP product backend: DAY/BAY/RAY/SAY and shared platform |
 | NEXUS | 외부 병원 product backend and IaC |
 | BE Template | organization backend engineering standard |

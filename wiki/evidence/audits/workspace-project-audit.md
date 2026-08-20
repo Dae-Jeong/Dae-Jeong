@@ -50,7 +50,7 @@ Important caveat:
 | `MEDISOLVEAI-B2C-INFRA` | B2C Azure Terraform infra | KimMarin 25 commits | `AGENTS.md`, `azure/` | Thready/Selly B2C infra separation and slot-swap 근거 |
 | `NEXUS-infra` | NEXUS Azure Terraform infra | KimMarin 19 commits | `terraform/`, `scripts/`, `docs/` | tenant/service infra 확장/remote backend/ACR/App Service 근거 |
 | `CENTURION-BE-API` | legacy NestJS multi-module backend | KimMarin 381 commits | `README.md`, `apps/`, `libs/`, `prisma/` | legacy-to-current platform history, reservation/domain fixes |
-| `CENTURION_DAY` | FastAPI/Next product backend monorepo | KimMarin 203 commits | `README.md`, `AGENTS.md`, `backend/`, `frontend/`, `docs/`, `planning/` | NEXUS 이전/병행 full-stack platform and planning 근거 |
+| `CENTURION_DAY` | Centurion의 범용 피부과 CRM 영역을 구현한 FastAPI/Next monorepo | KimMarin 203 commits | `README.md`, `AGENTS.md`, `backend/`, `frontend/`, `docs/`, `planning/` | Centurion DAY의 full-stack product integration·planning 근거 |
 | `CENTURION-API-GATEWAY` | Express API Gateway | KimMarin 44 commits | `README.md`, `src/`, `routes.json`, `docs/` | service routing/auth/CORS/WebSocket proxy 근거 |
 | `CENTURION-CHARTY` | consultation/chart AI assistant surface | KimMarin 38 commits | `frontend/`, `ai/`, `backend/`, `.github/` | AI/FE/BE integration and Azure CD supporting evidence |
 | `PROTON-BACKOFFICE` | serverless consultation analysis backoffice | KimMarin 36 commits | `README.md`, `pyproject.toml`, `shared/`, `tests/`, `scripts/` | Azure Functions + LangChain + Blob Storage supporting evidence |
@@ -383,7 +383,7 @@ Contribution interpretation:
 
 - Strong supporting evidence for full-stack product-system work before or alongside NEXUS.
 - Good evidence for turning product policy into BE/FE implementation plus docs/planning artifacts.
-- NEXUS remains the cleaner first-screen case study; CENTURION_DAY is useful for historical depth.
+- NEXUS는 Centurion과 별개의 외부 피부과 운영·예약 시스템이고, `CENTURION_DAY`는 Centurion 내부 CRM 영역의 product integration 근거다. 두 범위를 합치지 않는다.
 
 Public-safe draft:
 

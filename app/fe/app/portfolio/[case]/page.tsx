@@ -1,237 +1,169 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { AskLauncher } from "@/components/site/ask-launcher";
 import { Container } from "@/components/site/container";
+import { ReviewLauncher } from "@/components/site/review-launcher";
 import { SiteFooter } from "@/components/site/site-footer";
 import { TopBar } from "@/components/site/topbar";
-import { Card, CardGrid } from "@/components/ui/card-grid";
-import { EvidencePopover } from "@/components/ui/evidence-popover";
 import { KeyValueCard } from "@/components/ui/key-value-list";
-import { NumberedList, NumberedRow } from "@/components/ui/numbered-row";
-import { SectionHead } from "@/components/ui/section-head";
-import { CASES } from "@/lib/cases";
+import { CASES, NAVIGABLE_CASES } from "@/lib/cases";
 import { DETAILS } from "./case-details";
 import { CaseRail } from "./case-rail";
+import { SYSTEM_DETAILS } from "./system-details";
 
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return CASES.filter((c) => c.available).map((c) => ({ case: c.slug }));
+  return CASES.filter((item) => item.available).map((item) => ({ case: item.slug }));
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ case: string }>;
-}): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ case: string }> }): Promise<Metadata> {
   const { case: slug } = await params;
-  const meta = CASES.find((c) => c.slug === slug);
-  return {
-    title: `${meta?.name ?? "Case"} — Portfolio · 김대정`,
-    description: meta?.blurb,
-  };
+  const meta = CASES.find((item) => item.slug === slug);
+  return { title: `${meta?.name ?? "Case"} — Portfolio · 김대정`, description: meta?.blurb };
 }
 
-export default async function CasePage({
-  params,
-}: {
-  params: Promise<{ case: string }>;
-}) {
+function SectionTitle({ id, label, title }: { id: string; label: string; title: string }) {
+  return (
+    <div id={id} className="scroll-mt-8 border-b border-border pb-4">
+      <p className="m-0 font-mono text-xs text-muted">{label}</p>
+      <h2 className="m-0 mt-2 text-2xl font-semibold tracking-[-0.025em]">{title}</h2>
+    </div>
+  );
+}
+
+export default async function CasePage({ params }: { params: Promise<{ case: string }> }) {
   const { case: slug } = await params;
-  const meta = CASES.find((c) => c.slug === slug);
-  const detail = DETAILS[slug];
-  /* 12차: 검토(선택 섹션) 유무에 따라 섹션 번호를 동적 계산 */
-  const secIds = ["problem", ...(detail.review ? ["review"] : []), "decision", "system", "ops"];
-  const no = (id: string) => String(secIds.indexOf(id) + 1).padStart(2, "0");
+  const meta = CASES.find((item) => item.slug === slug);
+  const system = SYSTEM_DETAILS[slug];
+  const legacy = DETAILS[slug];
+  if (!meta || (!system && !legacy)) notFound();
 
-  if (!meta || !detail) notFound();
+  const navIndex = NAVIGABLE_CASES.findIndex((item) => item.slug === slug);
+  const prev = navIndex > 0 ? NAVIGABLE_CASES[navIndex - 1] : null;
+  const next = navIndex >= 0 && navIndex < NAVIGABLE_CASES.length - 1 ? NAVIGABLE_CASES[navIndex + 1] : null;
 
-  const idx = CASES.findIndex((c) => c.slug === slug);
-  const prev = idx > 0 ? CASES[idx - 1] : null;
-  const next = idx < CASES.length - 1 ? CASES[idx + 1] : null;
+  const eyebrow = system?.eyebrow ?? legacy.eyebrow;
+  const summary = system?.summary ?? legacy.positioning;
+  const kv = system?.kv ?? legacy.kv;
+  const problem = system?.problem ?? legacy.problem;
+  const decisions = system?.decisions ?? legacy.decisions;
 
   return (
     <>
-      <TopBar
-        variant="subpage"
-        crumb={
-          <>
-            <Link href="/portfolio" className="focus-ring hover:text-fg">
-              Portfolio
-            </Link>{" "}
-            / {meta.name.split(" ")[0]}
-          </>
-        }
-      />
-
+      <TopBar variant="subpage" crumb={<><Link href="/portfolio" className="focus-ring hover:text-fg">Portfolio</Link> / {meta.no}</>} />
       <Container variant="doc" className="flex-1">
-        <div className="grid grid-cols-[minmax(0,1fr)_240px] gap-12 max-lg:grid-cols-1">
-          <main data-claim={meta.claimIds.join(" ")} className="pb-24 pt-12">
-            <header className="border-b-2 border-fg pb-7">
-              <span className="font-mono text-xs uppercase tracking-[0.1em] text-muted">
-                {detail.eyebrow}
-              </span>
-              <h1 className="mt-3 font-mono text-3xl font-semibold leading-[1.06] tracking-[-0.025em]">
-                {meta.name}
-              </h1>
-              <p className="mt-4 text-lg font-medium">{detail.positioning}</p>
-              <KeyValueCard groups={[detail.kv]} className="mt-5" />
+        <div className="grid grid-cols-[minmax(0,1fr)_220px] gap-12 max-lg:grid-cols-1">
+          <main className="min-w-0 pb-24 pt-12">
+            <header className="border-b-2 border-fg pb-9">
+              <p className="m-0 font-mono text-xs text-muted">{eyebrow}</p>
+              <h1 className="m-0 mt-4 max-w-[820px] text-[clamp(2rem,4vw,3.5rem)] font-semibold leading-[1.08] tracking-[-0.04em]">{meta.name}</h1>
+              <p className="m-0 mt-6 max-w-[780px] text-lg leading-[1.7] text-fg-2 [&_strong]:font-semibold [&_strong]:text-fg">{summary}</p>
+              <KeyValueCard groups={[kv]} className="mt-7" />
             </header>
 
-            <section id="problem" className="pt-10">
-              <SectionHead no={no("problem")} title="문제" meta="Problem" />
-              <div className="grid gap-4 text-base leading-[1.6] text-fg-2 [&_strong]:font-semibold [&_strong]:text-fg">
-                {detail.problem.map((p, i) => (
-                  <p key={i} className="m-0">
-                    {p}
-                  </p>
-                ))}
+            {system?.invariant && (
+              <div className="mt-8 border border-fg bg-fg px-6 py-5 text-bg">
+                <span className="font-mono text-xs opacity-70">설계 원칙</span>
+                <p className="m-0 mt-2 text-base font-semibold leading-[1.6]">{system.invariant}</p>
+              </div>
+            )}
+
+            <section className="pt-12">
+              <SectionTitle id="problem" label="Problem & constraints" title="왜 이 문제를 풀어야 했는가" />
+              <div className="mt-6 grid max-w-[780px] gap-5 text-base leading-[1.75] text-fg-2 [&_strong]:font-semibold [&_strong]:text-fg">
+                {problem.map((paragraph, index) => <p key={index} className="m-0">{paragraph}</p>)}
               </div>
             </section>
 
-            {detail.review && (
-              <section id="review" className="pt-10">
-                <SectionHead no={no("review")} title="검토" meta="Alternatives" />
-                {detail.review.intro && (
-                  <p className="m-0 mb-5 text-base text-fg-2 [&_strong]:font-semibold [&_strong]:text-fg">
-                    {detail.review.intro}
-                  </p>
-                )}
-                <div className="grid gap-6">
-                  {detail.review.groups.map((g) => (
-                    <div key={g.title}>
-                      <h3 className="m-0 mb-2.5 font-mono text-sm font-semibold">{g.title}</h3>
-                      <div className="grid gap-px border border-border-soft bg-border-soft">
-                        {g.options.map((o) => (
-                          <div key={o.name} className="grid gap-1.5 bg-bg p-4">
-                            <div className="flex items-center gap-2.5">
-                              <span
-                                className={
-                                  o.verdict === "채택"
-                                    ? "border border-accent bg-accent px-[7px] py-0.5 font-mono text-xs tracking-[0.06em] text-accent-on"
-                                    : "border border-border px-[7px] py-0.5 font-mono text-xs tracking-[0.06em] text-muted"
-                                }
-                              >
-                                {o.verdict}
-                              </span>
-                              <span className="font-mono text-sm font-semibold">{o.name}</span>
-                            </div>
-                            <p className="m-0 text-sm leading-[1.6] text-fg-2">{o.reason}</p>
-                          </div>
-                        ))}
-                      </div>
-                      {g.note && (
-                        <p className="m-0 mt-2.5 text-sm text-fg-2">{g.note}</p>
-                      )}
+            {system ? (
+              <section className="pt-12">
+                <SectionTitle id="failure" label="Failure boundary" title="실패하면 어디에서 멈추고, 어떻게 복구하는가" />
+                <div className="mt-6 overflow-hidden border-y border-border">
+                  <div className="grid grid-cols-[0.8fr_1fr_1.5fr] gap-5 border-b border-border bg-surface px-4 py-3 font-mono text-xs text-muted max-sm:hidden">
+                    <span>Trigger</span><span>Risk</span><span>Boundary</span>
+                  </div>
+                  {system.failures.map((row) => (
+                    <div key={row.trigger} className="grid grid-cols-[0.8fr_1fr_1.5fr] gap-5 border-b border-border-soft px-4 py-4 text-sm leading-[1.55] last:border-b-0 max-sm:grid-cols-1 max-sm:gap-2">
+                      <strong>{row.trigger}</strong><span className="text-fg-2">{row.risk}</span><span>{row.boundary}</span>
                     </div>
                   ))}
                 </div>
               </section>
-            )}
+            ) : legacy.review ? (
+              <section className="pt-12">
+                <SectionTitle id="failure" label="Alternatives" title="어떤 선택지를 검토했는가" />
+                <div className="mt-6 grid gap-7">
+                  {legacy.review.groups.map((group) => (
+                    <div key={group.title} className="border-b border-border pb-6">
+                      <h3 className="m-0 text-base font-semibold">{group.title}</h3>
+                      <div className="mt-3 grid gap-3">
+                        {group.options.map((option) => <p key={option.name} className="m-0 text-sm leading-[1.65] text-fg-2"><strong className="mr-2 text-fg">{option.verdict} · {option.name}</strong>{option.reason}</p>)}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            ) : null}
 
-            <section id="decision" className="pt-10">
-              <SectionHead no={no("decision")} title="결정" meta="Decision" />
-              <p className="m-0 mb-5 text-base text-fg-2 [&_strong]:font-semibold [&_strong]:text-fg">
-                {detail.decisionIntro}
-              </p>
-              <NumberedList className="border-t border-border-soft">
-                {detail.decisions.map((d) => (
-                  <NumberedRow
-                    key={d.k}
-                    label={d.k}
-                    labelWidth="lg"
-                    labelClassName="font-semibold text-fg"
-                    className="border-border-soft py-4"
-                  >
-                    <span className="text-base text-fg-2 [&_strong]:font-semibold [&_strong]:text-fg">
-                      {d.t}
-                    </span>
-                  </NumberedRow>
-                ))}
-              </NumberedList>
-            </section>
-
-            <section id="system" className="pt-10">
-              <SectionHead no={no("system")} title="시스템" meta="System" />
-              <p className="m-0 mb-5 text-base text-fg-2 [&_strong]:font-semibold [&_strong]:text-fg">
-                {detail.systemIntro}
-              </p>
-              <CardGrid cols={2}>
-                {detail.system.map((s) => (
-                  <Card key={s.title} className="gap-1.5 p-4">
-                    <h4 className="m-0 font-mono text-sm font-semibold">{s.title}</h4>
-                    <p className="m-0 text-sm text-fg-2">{s.desc}</p>
-                  </Card>
-                ))}
-              </CardGrid>
-            </section>
-
-            <section id="ops" className="pt-10">
-              <SectionHead no={no("ops")} title="결과" meta="Result" />
-              <p className="m-0 mb-5 text-base text-fg-2 [&_strong]:font-semibold [&_strong]:text-fg">
-                {detail.opsIntro}
-              </p>
-              <div className="grid justify-items-start gap-4">
-                {detail.evidence.map((e) => (
-                  <EvidencePopover
-                    key={e.index}
-                    index={e.index}
-                    label={e.label}
-                    claim={e.claim}
-                    source={e.source}
-                    claimIds={e.claimIds}
-                  />
+            <section className="pt-12">
+              <SectionTitle id="decision" label="Decisions" title="핵심 기술 판단" />
+              <div className="mt-6 border-t border-border">
+                {decisions.map((decision) => (
+                  <div key={decision.k} className="grid grid-cols-[180px_minmax(0,1fr)] gap-6 border-b border-border py-5 max-sm:grid-cols-1 max-sm:gap-2">
+                    <h3 className="m-0 font-mono text-sm font-semibold">{decision.k}</h3>
+                    <p className="m-0 text-base leading-[1.65] text-fg-2 [&_strong]:text-fg">{decision.t}</p>
+                  </div>
                 ))}
               </div>
             </section>
 
-            <nav
-              aria-label="케이스 이동"
-              className="mt-14 grid grid-cols-2 gap-px border border-border-soft bg-border-soft"
-            >
-              {[
-                { dir: "← 이전", c: prev },
-                { dir: "다음 →", c: next },
-              ].map(({ dir, c }) => {
-                const body = (
-                  <>
-                    <span className="font-mono text-xs uppercase tracking-[0.08em] text-muted">
-                      {dir}
-                    </span>
-                    <span className="font-mono text-sm font-semibold">
-                      {c ? c.name : dir.startsWith("←") ? "— 첫 케이스" : "— 마지막 케이스"}
-                    </span>
-                  </>
-                );
-                return c && c.available ? (
-                  <Link
-                    key={dir}
-                    href={`/portfolio/${c.slug}`}
-                    className="focus-ring grid gap-1 bg-bg p-4 transition-colors duration-100 hover:bg-surface"
-                  >
-                    {body}
-                  </Link>
-                ) : (
-                  <span
-                    key={dir}
-                    aria-disabled
-                    title={c ? "상세 준비 중" : undefined}
-                    className="grid gap-1 bg-bg p-4 opacity-60"
-                  >
-                    {body}
-                  </span>
-                );
-              })}
+            <section className="pt-12">
+              <SectionTitle id="system" label="System flow" title="판단을 실제 시스템으로 옮긴 구조" />
+              {system ? (
+                <div className="mt-7 grid grid-cols-4 border border-border max-md:grid-cols-2 max-sm:grid-cols-1">
+                  {system.flow.map((node, index) => (
+                    <div key={node.label} className={`relative min-w-0 p-5 ${index > 0 ? "border-l border-border max-sm:border-l-0 max-sm:border-t" : ""} ${index === 2 ? "max-md:border-l-0 max-md:border-t max-sm:border-l-0" : ""}`}>
+                      <span className="font-mono text-xs text-accent">{node.label}</span>
+                      <h3 className="m-0 mt-4 text-base font-semibold">{node.title}</h3>
+                      <p className="m-0 mt-2 text-sm leading-[1.6] text-fg-2">{node.desc}</p>
+                      {index < system.flow.length - 1 && <span aria-hidden className="absolute -right-3 top-1/2 z-10 grid size-6 -translate-y-1/2 place-items-center bg-bg font-mono text-muted max-sm:hidden">→</span>}
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="mt-6 border-t border-border">
+                  {legacy.system.map((item) => <div key={item.title} className="grid grid-cols-[220px_minmax(0,1fr)] gap-6 border-b border-border py-5 max-sm:grid-cols-1 max-sm:gap-2"><h3 className="m-0 text-base font-semibold">{item.title}</h3><p className="m-0 text-sm leading-[1.65] text-fg-2">{item.desc}</p></div>)}
+                </div>
+              )}
+            </section>
+
+            <section className="pt-12">
+              <SectionTitle id="proof" label="Evidence" title="운영에서 확인한 결과" />
+              {system ? (
+                <>
+                  <div className="mt-7 grid grid-cols-2 gap-x-8 max-sm:grid-cols-1">
+                    {system.evidence.map((item) => <div key={item.label} className="border-b border-border py-5"><span className="font-mono text-xs text-muted">{item.label}</span><strong className="mt-2 block text-xl font-semibold tracking-[-0.02em]">{item.value}</strong><p className="m-0 mt-2 text-sm leading-[1.55] text-fg-2">{item.note}</p></div>)}
+                  </div>
+                </>
+              ) : (
+                <div className="mt-6 border-t border-border">
+                  {legacy.evidence.map((item) => <div key={item.index} className="grid grid-cols-[160px_minmax(0,1fr)] gap-6 border-b border-border py-5 max-sm:grid-cols-1 max-sm:gap-2"><span className="font-mono text-xs text-muted">{item.label}</span><div><strong className="block text-sm">{item.claim}</strong><span className="mt-2 block text-xs text-muted">{item.source}</span></div></div>)}
+                </div>
+              )}
+            </section>
+
+            <nav aria-label="케이스 이동" className="mt-14 grid grid-cols-2 border-y border-border">
+              {[{ label: "← 이전", item: prev }, { label: "다음 →", item: next }].map(({ label, item }) => item ? (
+                <Link key={label} href={`/portfolio/${item.slug}`} className="focus-ring grid gap-1 py-5 first:pr-5 last:border-l last:border-border last:pl-5 hover:bg-surface"><span className="font-mono text-xs text-muted">{label}</span><span className="text-sm font-semibold">{item.shortName}</span></Link>
+              ) : <span key={label} className="py-5 text-sm text-muted first:pr-5 last:border-l last:border-border last:pl-5">{label}</span>)}
             </nav>
           </main>
-
-          <CaseRail cases={CASES} currentSlug={slug} hasReview={!!detail.review} />
+          <CaseRail cases={NAVIGABLE_CASES} currentSlug={slug} hasReview={!!system || !!legacy.review} />
         </div>
       </Container>
-
       <SiteFooter />
-      <AskLauncher />
+      <ReviewLauncher />
     </>
   );
 }

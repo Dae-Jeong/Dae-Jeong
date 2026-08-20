@@ -2,7 +2,7 @@
 type: project-evidence
 title: Centurion Evidence
 description: CRM and ERP product backend evidence across BAY, SAY, DAY, RAY, SSO, and shared infra.
-timestamp: 2026-08-19
+timestamp: 2026-08-20
 source_roots: [workspace]
 tags: [centurion, backend, realtime, async, infra, evidence]
 ---
@@ -12,6 +12,13 @@ tags: [centurion, backend, realtime, async, infra, evidence]
 Source locators: `workspace:BAY-BE-API`, `workspace:SAY-BE-API`, `workspace:PROTON`, `workspace:CENTURION_DAY`, `workspace:RAY-BE-API`, `workspace:SSO-BE-API`, `workspace:MEDISOLVEAI-INFRA`
 
 DAY, BAY, RAY, SAY는 별도 제품이 아니라 Centurion CRM & ERP 제품을 구성하는 feature다.
+
+## Product Boundary With NEXUS
+
+- User-confirmed correction (2026-08-20): DAY는 별도 제품이 아니라 Centurion을 구성하는 범용 피부과 CRM 영역이다.
+- NEXUS는 Centurion과 별개로, 외부 피부과 여러 곳의 홈페이지·관리·예약 운영을 지원하는 multi-brand system이다.
+- 같은 회사의 의료 domain·Gateway·SSO·infra 맥락이 일부 겹치더라도 NEXUS의 Admin/Homepage backend, 지점 권한, 예약률·매출 outcome을 Centurion 또는 DAY의 성과로 합치지 않는다.
+- 금지: NEXUS를 DAY의 기반·이전 버전·repository label로 설명, NEXUS 통합 관리 backend를 Centurion MSA 내부 service로 설명.
 
 ## Origin
 
@@ -34,7 +41,7 @@ DAY, BAY, RAY, SAY는 별도 제품이 아니라 Centurion CRM & ERP 제품을 �
 ## Multi-Service / MSA Context
 
 - Code-backed: Centurion은 route-config 기반 Express API Gateway와 NestJS SSO를 공유하고, 기능별 Python·FastAPI backend, RabbitMQ·TaskIQ worker, WebSocket realtime AI service가 application·runtime·deployment boundary로 분리된 multi-service 환경이다.
-- Contribution-backed: 김대정은 BAY 주문·재고 backend와 worker flow를 `led`, 통합 관리 Admin·Homepage backend를 `led`, SAY realtime session/provider boundary를 `co-led`, RAY 시설·재고 연동과 SSO session policy를 `contributed`, 공통 Azure·Terraform infra를 `owned` 범위로 담당했다.
+- Contribution-backed: 김대정은 BAY 주문·재고 backend와 worker flow를 `led`, DAY 예약 정책의 backend·frontend·QA·release 연결을 `led`, SAY realtime session/provider boundary를 `co-led`, RAY 시설·재고 연동과 SSO session policy를 `contributed`, 공통 Azure·Terraform infra를 `owned` 범위로 담당했다.
 - Public wording: `API Gateway·SSO 기반 의료 MSA에서 서비스별 backend 경계와 연동을 담당` 또는 각 하위 claim의 기여 강도를 함께 밝힌 표현까지 허용한다.
 - Contribution boundary: Centurion 전체 MSA를 단독 설계·구축하거나 모든 service를 직접 만들었다고 표현하지 않는다. API Gateway와 SSO 전체 ownership도 주장하지 않으며, service별 stack과 기여 범위를 하나의 단일 stack·단일 ownership으로 합치지 않는다.
 
@@ -64,6 +71,8 @@ DAY, BAY, RAY, SAY는 별도 제품이 아니라 Centurion CRM & ERP 제품을 �
 ## SAY Realtime AI
 
 - Code-backed: WebSocket consultation runtime, STT/LLM provider lifecycle, zombie session cleanup, reconnect race 처리, translation/audio pipeline, dashboard AI analysis가 SAY/PROTON cluster에서 확인됐다.
+- User-confirmed / Git-backed (2026-08-20): PROTON은 독립 실시간 상담 backend로 시작했고 김대정이 SAY 제품 cluster로 가져왔다. `workspace:PROTON`은 초기 snapshot 이후 김대정의 application 구조·배포·Blob·WebSocket·session lifecycle 작업이 이어진 정본이다. `workspace:SAY-BE-API` commit `4a46ad6`은 SAY·PROTON·STARGATE를 독립 application으로 유지한 monorepo 통합, `5a52b8a`는 공통 model·enum의 `say_core` 통합을 기록한다. 현재 문서와 코드는 SAY가 HTTP로 PROTON session lifecycle을 조율하고 상담 client가 PROTON WebSocket에 연결하는 경계를 보여준다.
+- Provenance boundary: `ai-workspace:PROTON`은 `workspace:PROTON`과 동일한 최초 commit `a2ca7df`만 가진 오래된 clone이다. 이를 별도 프로젝트·별도 기여로 합산하지 않으며, 개인 기여 근거는 `workspace:PROTON`과 `workspace:SAY-BE-API`가 소유한다.
 - Code-backed (2026-08-15): `workspace:SAY-BE-API`의 WebSocket session 처리에서 중복 event를 debounce하고 기존 task를 cancel한 뒤 재생성하는 흐름, `CancelledError` 처리, STT 결과 retry, turn-state guard가 확인됐다. Git history와 blame에서 해당 lifecycle 변경의 KimMarin 기여가 확인된다.
 - Contribution boundary: SAY 공동 주 기여와 연계 영역 주도를 합친 `co-led` claim. provider 실명은 공개하지 않는다.
 
@@ -100,3 +109,4 @@ DAY, BAY, RAY, SAY는 별도 제품이 아니라 Centurion CRM & ERP 제품을 �
 - TaskIQ 도입으로 동기 API에서 비동기 처리를 처음 분리했다는 서술
 - TaskIQ 전환 이전에는 외부 연동 실패가 API 응답과 주문 상태에 직접 결합돼 있었다는 서술
 - production traffic과 안정성 수치
+- NEXUS Admin/Homepage backend·지점 권한·예약률·매출 outcome을 Centurion 또는 DAY 성과로 합산

@@ -2,13 +2,22 @@
 type: index
 title: Portfolio Product
 description: Resume-selected claims의 문제, 접근, 구현, 운영 깊이를 제공한다.
-timestamp: 2026-08-14
+timestamp: 2026-08-20
 tags: [portfolio, cases, product]
 ---
 
 # Portfolio Product
 
 Portfolio는 resume가 선택한 claim의 깊이를 검증하는 제품이다.
+
+## Active Architecture
+
+- [Portfolio V3 Content Specification](v3-content-draft.md) — `/portfolio` 단일 문서 안에서 Thready는 제품화·재구축, Centurion은 기여도·failure boundary, Infrastructure는 current runtime topology·state/change gate, Backend Template은 반복 판단·agent-readable execution을 차등 구성한 현재 구조. Memento 결제와 Product Operations는 supporting case로 배치한다. stable claim과 case library를 거쳐 `app/fe`에 반영됐다.
+- [Role Portfolio Variants](role-variants.md) — 같은 case library를 5개 직군별로 선택·정렬하고 읽을 초점을 바꾸는 local-only 단일 문서 초안.
+
+## Historical Revision
+
+- [Portfolio V2 Content Specification](v2-content-draft.md) — 네 대표 사례를 동일한 system dossier 문법으로 구성했던 이전 구조.
 
 ## Contract
 
@@ -17,6 +26,9 @@ Portfolio는 resume가 선택한 claim의 깊이를 검증하는 제품이다.
 - Portfolio: 왜 필요했는지, 무엇을 선택했는지, 어떻게 구현·운영했는지 설명
 - Resume claim을 반복하지 않고 `Problem -> Decision -> Design/Visualization -> Operating Result -> Responsibility -> JD fit`으로 확장한다.
 - Portfolio는 resume보다 자세할 수 있지만 더 강한 ownership을 주장할 수 없다.
+- 기본 공개 artifact는 `/portfolio` 단일 페이지다. `Thready → Centurion → Company Infrastructure → Backend Template` 네 대표 case의 문제·판단·failure handling·system flow·운영 결과와 `Memento Payment → Product Operations` supporting case를 한 문서에서 읽고 PDF로 변환할 수 있어야 한다.
+- 공통 headline은 `제품 판단을 백엔드 경계로 바꾸고, 운영까지 연결합니다.`다. 직함을 반복하는 대신 제품 판단·직접 구현·운영 책임이 이어지는 방식을 첫 화면에서 전달한다.
+- 내부 검증용 claim ID·forbidden copy·limits는 evidence와 case library에만 남기고 공개 문서에서는 자연스러운 역할·결과 문장으로 표현한다.
 - claim ID, 검증용 limits, 내부 taxonomy와 evidence policy는 내부 원장에만 두고 공개 DOM에는 노출하지 않는다.
 - 제목·설명·본문에는 `ch`나 임의의 `px` 기반 `max-width`로 줄 길이를 제한하지 않는다. 문서 컨테이너의 가용 폭을 사용하고 화면 폭에 따라 자연스럽게 줄바꿈한다.
 - 현재 공개 문장·순서·강조는 `app/fe/app/portfolio/`와 `app/fe/lib/cases.ts`가 표현 SoT로 소유하고, 이 library는 케이스 범위·claim 연결·표현 상한을 소유한다.
@@ -24,4 +36,4 @@ Portfolio는 resume가 선택한 claim의 깊이를 검증하는 제품이다.
 - Product decisions: [decisions.md](decisions.md)
 - Historical visual baseline: [prototypes/v0.1.0/README.md](prototypes/v0.1.0/README.md)
 
-회사별 페이지는 canonical case를 새로 쓰지 않고, 같은 JD 분석 결과로 resume와 동일한 case를 같은 순서로 선별·조립한다. 표현 강도는 연결된 claim registry를 넘지 않는다.
+회사별·직군별 페이지는 canonical case를 새로 쓰지 않고, 같은 JD·직군 분석 결과로 resume와 동일한 case를 선별·조립한다. 표현 강도는 연결된 claim registry를 넘지 않는다.

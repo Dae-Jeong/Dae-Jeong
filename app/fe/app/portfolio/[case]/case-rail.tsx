@@ -8,14 +8,13 @@ import type { CaseMeta } from "@/lib/cases";
 
 /* 12차: 5단 — 검토는 선택 섹션이라 케이스별로 TOC를 동적 구성한다 */
 function buildToc(hasReview: boolean) {
-  const ids = [
+  return [
     { id: "problem", label: "문제" },
-    ...(hasReview ? [{ id: "review", label: "검토" }] : []),
+    ...(hasReview ? [{ id: "failure", label: "실패·대안" }] : []),
     { id: "decision", label: "결정" },
     { id: "system", label: "시스템" },
-    { id: "ops", label: "결과" },
+    { id: "proof", label: "운영 결과" },
   ];
-  return ids.map((t, i) => ({ ...t, no: String(i + 1).padStart(2, "0") }));
 }
 
 /* 디자이너 결정: sticky rail — 목차 scroll-spy(임의 점프) + 케이스 이동.
@@ -60,7 +59,7 @@ export function CaseRail({
       className="sticky top-0 grid content-start gap-5 self-start py-12 max-lg:hidden"
     >
       <Button href="/portfolio" className="justify-center">
-        ← 목록으로
+        ← 전체 포트폴리오
       </Button>
 
       <nav aria-label="목차">
@@ -77,7 +76,6 @@ export function CaseRail({
                   active === t.id && "font-semibold text-fg",
                 )}
               >
-                <span className="mr-2 text-muted">{t.no}</span>
                 {t.label}
               </a>
             </li>
@@ -93,8 +91,7 @@ export function CaseRail({
           {cases.map((c) => {
             const inner = (
               <>
-                <span className="mr-2 text-muted">{c.no}</span>
-                {c.name}
+                {c.shortName}
               </>
             );
             if (c.slug === currentSlug)
@@ -105,11 +102,7 @@ export function CaseRail({
               );
             if (!c.available)
               return (
-                <li
-                  key={c.slug}
-                  title="상세 준비 중"
-                  className="font-mono text-xs text-muted"
-                >
+                <li key={c.slug} className="font-mono text-xs text-muted">
                   {inner}
                 </li>
               );
@@ -128,8 +121,7 @@ export function CaseRail({
       </nav>
 
       <p className="m-0 border-t border-border-soft pt-3 font-mono text-xs leading-relaxed text-muted">
-        모든 성과 문장은 검증된 표현만 사용합니다. 수치는 운영 시점 기준이며 미확정
-        값은 TBD로 표기합니다.
+        각 사례는 맡은 역할과 실제 운영에서 확인한 결과를 중심으로 정리했습니다.
       </p>
     </aside>
   );

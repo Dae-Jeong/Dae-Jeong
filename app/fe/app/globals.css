@@ -191,11 +191,36 @@ body {
     break-inside: avoid;
   }
 
+  /* 회사 행은 여러 bullet을 포함하므로 페이지를 넘길 수 있고, 내부 bullet은 위 규칙으로 유지한다. */
+  [data-resume-canvas] .resume-career-row {
+    break-inside: auto;
+  }
+
   [data-resume-canvas] #s5 {
     break-inside: avoid;
   }
 
-  [data-resume-canvas] #s7 {
+  [data-portfolio-document] .portfolio-case,
+  [data-portfolio-document] .portfolio-support,
+  [data-portfolio-document] .portfolio-role-support {
     break-before: page;
+  }
+
+  [data-portfolio-document] .portfolio-keep,
+  [data-portfolio-document] .portfolio-role-support,
+  [data-portfolio-document] .portfolio-row,
+  [data-portfolio-document] .portfolio-flow,
+  [data-portfolio-document] h2,
+  [data-portfolio-document] h3 {
+    break-inside: avoid;
+  }
+
+  [data-portfolio-document] h2,
+  [data-portfolio-document] h3 {
+    break-after: avoid;
+  }
+
+  [data-portfolio-document] .portfolio-subhead {
+    break-after: avoid-page;
   }
 }

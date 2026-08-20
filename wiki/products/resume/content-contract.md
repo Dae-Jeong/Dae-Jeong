@@ -2,7 +2,7 @@
 type: product-contract
 title: Resume Content Contract
 description: Active web resume의 구조, claim, public safety, derived-output 계약.
-timestamp: 2026-08-18
+timestamp: 2026-08-20
 tags: [resume, contract, content]
 ---
 
@@ -20,12 +20,13 @@ tags: [resume, contract, content]
 
 헤더와 경력만 읽어도 다음을 판단할 수 있어야 한다.
 
-1. Primary category: Backend Engineer
-2. Specialty: AI Product Systems
-3. Career facts: 어느 회사에서 어떤 직함·기간·담당 범위였는지
-4. Ownership: 어떤 시스템을 전담·주도·공동 기여했는지
-5. Differentiator: agent-readable workflow로 실행과 운영을 구조화한 방식
-6. Role: 제품 판단을 domain·API·transaction·QA·release 계약으로 바꾸고 production 운영까지 닫는 Backend Engineer
+1. Primary category: Tech Lead
+2. Supporting category: Backend Engineer
+3. Specialty: AI Product Systems
+4. Career facts: 어느 회사에서 어떤 직함·기간·담당 범위였는지
+5. Ownership: 어떤 시스템을 전담·주도·공동 기여했는지
+6. Differentiator: agent-readable workflow로 실행과 운영을 구조화한 방식
+7. Role: 제품 판단을 backend 경계로 바꾸고 직접 구현·배포·운영까지 닫는 Tech Lead · Backend Engineer
 
 Canonical positioning은 [profile/identity.md](../../profile/identity.md)를, 역할 전달 방식은
 [role-positioning-standard.md](role-positioning-standard.md)를, 지면의 역할은
@@ -49,11 +50,10 @@ Canonical positioning은 [profile/identity.md](../../profile/identity.md)를, �
 | - | Header | 이름·category·현재/이전 주요 경력·연락처. 회사·직함·기간이 즉시 보여야 함 |
 | 01 | 소개 | 채용하면 맡길 수 있는 backend 범위와 AI·PM 경험이 현재 판단에 쓰이는 방식만 프레이밍. 뒤 섹션을 대신 요약하지 않음 |
 | 02 | 경력 | 최신순. 좌측 metadata column에 조직명과 기간을 세로로 쌓고, 우측에 직함·제품 성격·담당 범위를 배치. 사실과 시간축이 주장보다 먼저 읽혀야 함 |
-| 03 | Backend·AI Product Systems | code·data·transaction·API·worker·service·infra 경계와 production 결과를 self-contained하게 연결 |
-| 04 | AX·Engineering Systems | decision·SPEC·work·QA·release 상태, human·agent boundary, 조직 표준과 재사용 효과를 기여 강도별로 분리 |
-| 05 | 기술 | `Backend Core → Data/Async → AI Runtime → Cloud/Delivery`의 4개 capability lane으로 구성. 스택보다 다룬 mechanism과 적용 맥락을 먼저 찾는 index 역할 |
-| 06 | 외부 활동 | 제품·UX 외부 활동을 경력·기술·자격과 분리하고 `UX 컨설팅`과 `UX 스터디` 두 행으로 구성. 각 행은 활동명 뒤에 문제·판단·산출물을 한 문장으로 설명하며 상세 근거는 evidence 문서가 소유 |
-| 07 | Credentials | 특허·수상·외부 인증·자격·학력을 배치하고 검증된 고정 사실만 사용 |
+| 03 | 대표 성과 | 여섯 사례를 한 섹션에서 연결: `Thready 제품 운영·매출·생성 품질 → 병렬 재구축·QA reopen 26%p 감소 → AI/DB 분리·migration·Outbox → Decision→release 운영 → 조직 표준 Backend Template·agent 기준 → Azure 변경 gate`. 각 사례는 ownership·mechanism·검증 경계를 claim 범위 안에서 완결 |
+| 04 | 기술 | `Backend Core → Data/Async → AI Runtime → Cloud/Delivery`의 4개 capability lane으로 구성. 스택보다 다룬 mechanism과 적용 맥락을 먼저 찾는 index 역할 |
+| 05 | 외부 활동 | 제품·UX 외부 활동을 경력·기술·자격과 분리하고 `UX 컨설팅`과 `UX 스터디` 두 행으로 구성. 각 행은 활동명 뒤에 문제·판단·산출물을 한 문장으로 설명하며 상세 근거는 evidence 문서가 소유 |
+| 06 | Credentials | 특허·수상·외부 인증·자격·학력을 배치하고 검증된 고정 사실만 사용 |
 
 `일하는 방식`은 active frame에서 제거한다. 대표 기술 사례가 같은 행동을 반복해서 증명하므로 별도 선언은 중복이다.
 
@@ -117,5 +117,5 @@ Daejeong Design의 Profile 프로젝트와 `app/design/resume-page-prototype.htm
 5. Surface split: 이력서는 경력과 대표 기술 사례의 self-contained proof를, portfolio는 diagram·상세 evidence·긴 failure analysis를 소유한다.
 6. Derived output: PDF page 수는 acceptance gate가 아니다. 첫 장에서 핵심 category·경력·최강 근거가 보이는지, 이후 각 페이지가 검증 가능한 technical signal을 추가하는지, 100% scale에서 잘림·겹침이 없는지 검증한다.
 7. Role reconstruction: 60초 안에 `backend 설계·운영을 닫는다`와 `제품 판단을 backend contract로 바꾼다`는 두 패턴을 경력과 사례에서 찾을 수 있다.
-8. Backend case depth: Backend·AI 사례는 [role positioning standard](role-positioning-standard.md)의 판단 범위와 backend mechanism을 포함하고, 해당 6문답 중 5개 이상을 충족한다.
-9. AX case depth: `AX`는 직함이나 AI 도입 선언이 아니라 source of truth, human·agent decision right, execution state, approval/release gate, 운영 결과와 정확한 contribution verb로 증명한다.
+8. Case depth: 대표 성과는 [role positioning standard](role-positioning-standard.md)의 판단 범위와 backend mechanism을 포함하고, 해당 6문답 중 5개 이상을 충족한다.
+9. Engineering-system depth: Decision→release와 Backend Template 사례는 source of truth, human·agent decision right, execution state, approval/release gate, 운영 결과와 정확한 contribution verb로 증명한다.

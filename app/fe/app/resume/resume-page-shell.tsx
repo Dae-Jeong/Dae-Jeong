@@ -1,5 +1,5 @@
-import { AskLauncher } from "@/components/site/ask-launcher";
 import { Container } from "@/components/site/container";
+import { ReviewLauncher } from "@/components/site/review-launcher";
 import { SiteFooter } from "@/components/site/site-footer";
 import { TopBar } from "@/components/site/topbar";
 
@@ -21,7 +21,7 @@ export function ResumePageShell({
         {children}
       </Container>
       <SiteFooter className="relative z-50 bg-bg print:hidden" />
-      <AskLauncher className="xl:right-20" />
+      <ReviewLauncher className="xl:right-20" />
     </>
   );
 }

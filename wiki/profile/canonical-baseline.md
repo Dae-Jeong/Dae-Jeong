@@ -2,7 +2,7 @@
 type: profile
 title: Canonical Baseline
 description: 여러 레이어에 흩어진 확정값을 한 화면에서 보는 통합 인덱스. canonical은 각 owner 문서가 갖는다.
-timestamp: 2026-08-13
+timestamp: 2026-08-20
 canonical: false
 derived_from: [profile/career.md, profile/identity.md, evidence/claims/, evidence/clients.md, rules/recency-weighting.md, rules/public-safety.md, app/fe/app/resume/resume-view.tsx]
 tags: [profile, baseline, derived, index]
@@ -21,9 +21,10 @@ tags: [profile, baseline, derived, index]
 | 항목 | 확정값 | owner |
 | --- | --- | --- |
 | 이름 | 김대정 | [identity.md](identity.md) |
-| 1순위 직무 | **Backend Engineer** | [identity.md](identity.md) |
-| 2순위 | AI Product Systems | |
-| 3순위 | Agent-readable Engineering Workflow | |
+| 1순위 직무 | **Tech Lead** | [identity.md](identity.md) |
+| 지원 역할 | **Backend Engineer** | [identity.md](identity.md) |
+| 전문 영역 | AI Product Systems | [identity.md](identity.md) |
+| 차별화 방식 | Agent-readable Engineering Workflow | [identity.md](identity.md) |
 | 연차 | **4년차** (인턴 제외 실무 48개월) | [career.md#tenure](career.md#tenure) · `career.tenure` |
 | 거주지 표기 | 경기 안양시 (시 단위까지) | [public-safety.md](../rules/public-safety.md) |
 | 공개 사이트 | https://marinkim.xyz | |
@@ -39,7 +40,7 @@ tags: [profile, baseline, derived, index]
 
 | 회사 | 기간 | 직무 | 고용형태 |
 | --- | --- | --- | --- |
-| MediSolve AI | 2025.04 ~ 재직중 | Backend Engineer | 정규직 |
+| MediSolve AI | 2025.04 ~ 재직중 | Tech Lead · Backend Engineer | 정규직 |
 | 더데이랩스 | 2025.02 ~ 2025.04 | Backend Engineer | 프리랜서 |
 | Memento AI | 2024.10 ~ 2025.01 | Backend Engineer | 인턴 1개월 → 정규직 |
 | STUDIO LAB | 2021.12 ~ **2024.01** | AI Engineer → PM → Backend Engineer | 정규직 |
@@ -47,7 +48,7 @@ tags: [profile, baseline, derived, index]
 
 owner: [career.md](career.md) · 근거: [previous-career.md](../evidence/projects/previous-career.md)
 
-**등재 직함·병행 역할**: MediSolve에서 등재 직함은 **기업부설연구소장**, Tech Lead·PO는 병행 역할이다 (2026-08-08 user-confirmed).
+**공개 역할 표기**: MediSolve AI는 `Tech Lead · Backend Engineer`로 표기한다. Product Owner 성격은 제품 판단과 운영 책임으로 증명하고 별도 직함으로 병기하지 않는다. 기업부설연구소장 등재 사실은 evidence에만 보존하고 공개 산출물에는 사용하지 않는다.
 
 **STUDIO LAB 직무 구간** (상세 기재 가능한 곳에서만):
 AI Engineer 2021.12~2022.09 → PM 2022.10~2023.09 → Backend Engineer 2023.10~2024.01
@@ -72,14 +73,14 @@ AI Engineer 2021.12~2022.09 → PM 2022.10~2023.09 → Backend Engineer 2023.10~
 - **인증은 "통과" 사실만.** 정확도 수치와 사용 모델(Yolo 등)은 쓰지 않는다. confidence medium — 인증서 실물 확인 시 상향.
 - 검증 자산은 경력 본문에 묻지 않고 **Credentials 섹션에 독립 배치**한다 ([recency weighting](../rules/recency-weighting.md)).
 
-## 4. 대표 성과 (모든 산출물 공통)
+## 4. Common Resume 대표 성과
 
-1. AI 도구로 빠르게 구축된 생성 backend **전면 재구축** → QA 버그 재발률 **37% → 11%**, 재발 일평균 약 **94% 감소** (`thready.qa-reopen-reduction`)
-2. 월 수만 건 규모 요청을 **HTTP 5xx 0.3% 수준**으로 운영 (`thready.production-operation-quality`)
-3. **CES 2024 수상 제품의 PM 메인 역할** · 특허 등록 1건
-4. Backend Engineer 합류 후 **기업부설연구소장·Tech Lead·PO 병행**
-5. 스펙·이슈·릴리스 게이트를 **agent가 읽고 실행하는 workflow**로 설계·리드 (`mediness.product-operations`)
-6. AI 생성 품질을 **자동 게이트·실측 분포·사람 판정 3층**으로 계량화 (`thready.quality-criteria-system`)
+1. Thready의 제품 운영을 리드하고 backend·AI·핵심 frontend와 typed prompt builder·LLM judge·평가 루프를 직접 구축해, 제품·팀의 **월 약 800만~1,000만원 구독료 매출**에 기여 (`thready.product-zero-to-one-contribution`, `thready.frontend-product-delivery`, `thready.generation-quality-system`, `thready.subscription-revenue-band`)
+2. 기존 frontend contract를 유지한 채 FastAPI backend를 병렬 재구축하고 validation harness와 cutover를 운영. 동일 기준의 QA reopen 비율 **26%p 감소** (`thready.rebuild-decision-execution`, `thready.backend-rebuild`, `thready.qa-reopen-reduction`)
+3. AI application·DB 분리, STG 실데이터 migration 검증, Transactional Outbox 기반 복구 경계 구축 (`thready.ai-service-boundary`, `thready.ai-service-migration`, `thready.ai-replica-outbox`)
+4. 제품 결정을 Decision·SPEC·Work Package·BE/FE/QA·release gate로 연결해 운영 (`mediness.product-system-design-participation`, `mediness.product-operations`)
+5. 백엔드 2~3명이 여러 제품을 맡는 환경에서 FastAPI architecture·contract와 agent context를 조직 표준 template로 구축 (`be-template.backend-standard`, `be-template.team-leverage`, `be-template.agent-context`)
+6. 회사 Azure 변경 범위를 6개 Terraform state로 분리하고 plan·live inventory·human apply gate로 파괴적 변경을 사전 차단 (`infra.company-azure-ownership`, `infra.ai-assisted-change-harness`, `infra.terraform-state-safety`)
 
 ## 5. 서술 비중 (recency weighting)
 

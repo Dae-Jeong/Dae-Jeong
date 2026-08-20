@@ -101,8 +101,8 @@ export const DETAILS: Record<string, CaseDetail> = {
         k: "Rebuild First",
         t: (
           <>
-            디자인 패턴과 인프라 하네스를 <strong>먼저</strong> 세운 뒤 AI 코딩
-            에이전트와 협업 — 파악부터 재구축까지 작업 시간 기준 36시간.
+            기존 기능과 API 동작을 검사하는 하네스를 <strong>먼저</strong> 세운 뒤,
+            AI를 활용해 기능 파악과 반복 구현을 진행하고 backend를 재구축했습니다.
           </>
         ),
       },
@@ -467,7 +467,7 @@ export const DETAILS: Record<string, CaseDetail> = {
     ],
   },
   "be-template": {
-    eyebrow: "Case 04 / 05 · Backend Standard",
+    eyebrow: "Engineering System · Backend Standard",
     positioning:
       "반복되는 backend 구조와 agent context 구성을 조직 표준 FastAPI template으로 묶은 케이스.",
     kv: [
@@ -585,7 +585,7 @@ export const DETAILS: Record<string, CaseDetail> = {
     ],
   },
   "mediness-ops": {
-    eyebrow: "Case 05 / 05 · Product Operations",
+    eyebrow: "Product Operations · Delivery",
     positioning:
       "서비스 구현 담당자와 제품 요구·운영 흐름을 구체화하는 설계에 참여하고, 확정된 결정을 스펙·작업·릴리스로 이어지게 운영한 케이스.",
     kv: [

@@ -1,0 +1,59 @@
+---
+type: product
+title: Role Portfolio Variants
+description: 동일한 case library를 직군별 읽기 순서와 강조점으로 재조립하는 local portfolio contract.
+timestamp: 2026-08-20
+tags: [portfolio, role, draft, backend, ai, ax, platform]
+---
+
+# Role Portfolio Variants
+
+직군별 포트폴리오는 새로운 사례나 성과를 만드는 문서가 아니다. [case library](cases/README.md)의 사실·수치·기여 범위는 그대로 두고, 직군마다 먼저 확인할 사례의 순서와 각 사례에서 읽을 기술 판단만 바꾼다.
+
+## Local Drafts
+
+| Local route | 지원 관점 | 먼저 보여주는 범위 |
+| --- | --- | --- |
+| `/portfolio/role/tech-lead-product` | Backend-first Tech Lead · Product Engineer | 제품 판단·직접 구현·운영 체계 |
+| `/portfolio/role/backend` | Backend Engineer | 재구축·migration·비동기 복구·결제 보상 |
+| `/portfolio/role/ai-product-backend` | AI Product Backend | AI 실행 경계·데이터 이전·생성 품질·realtime lifecycle |
+| `/portfolio/role/ax-fde` | AX / Forward Deployed Engineer | 고객 문제·제품 규칙·agent-readable execution |
+| `/portfolio/role/backend-platform` | Backend Platform · Cloud Operations | IaC 변경 안전성·관측·공통 backend 기반 |
+
+모든 route는 `draft`·`local`이며 production에서는 404와 `noindex`를 유지한다. 기본 `/portfolio`는 `Thready → Centurion → Company Infrastructure → Backend Template`을 primary, `Memento Payment → Product Operations`를 supporting으로 두는 공개용 master다.
+
+## Assembly Contract
+
+- `app/fe/content/role-catalog.ts`가 resume와 portfolio가 공유하는 5개 role slug·label을 소유한다.
+- role pack은 headline·소개·proof axis·case slug·focus만 소유한다.
+- 프로젝트 설명·수치·claim ID는 `app/fe/lib/cases.ts`, `app/fe/app/portfolio/case-dossier.tsx`, [case library](cases/README.md)를 재사용한다.
+- `focus`는 같은 사실에서 이번 직군이 먼저 볼 판단을 가리키는 편집 문장이다. 새로운 결과나 더 강한 ownership을 추가할 수 없다.
+- 기본 읽기와 PDF 변환은 개별 상세 route가 아니라 선택된 사례를 모두 펼친 하나의 긴 document route를 기준으로 한다.
+- 사례 번호는 canonical case 번호가 아니라 각 role page의 읽기 순서로 다시 매긴다. case slug와 claim 연결은 바꾸지 않는다.
+
+## Selection
+
+| Variant | Case order |
+| --- | --- |
+| Tech Lead | Thready → Centurion → Backend Template → Company Infrastructure |
+| Backend | Thready → Centurion → Memento Payment |
+| AI Backend | Thready → Centurion |
+| AX / FDE | Thready → Product Operations → Backend Template → Centurion |
+| Platform | Company Infrastructure → Backend Template → Thready → Centurion |
+
+Backend Template은 공통 V3의 primary dossier다. Memento Payment는 공통 master에서는 supporting이지만 Backend variant에서는 결제 상태 전이의 깊이를 보여주는 dossier로 승격할 수 있다. Product Operations는 metadata와 proof를 사용하는 compact section으로 유지한다. NEXUS·SellerCanvas는 현재 독립 V3 dossier가 없어서 다른 사례에 합성하지 않는다.
+
+## Update Flow
+
+1. 사실·성과 변경은 evidence와 stable claim에서 먼저 검증한다.
+2. case library와 현재 portfolio 표현을 갱신한다.
+3. 직군별로 case 순서와 focus만 다시 선택한다.
+4. resume와 portfolio가 같은 role slug를 공유하는지 type check한다.
+5. workspace validator·lint·build·browser·print를 검증한다.
+
+현재 구현:
+
+- pack: `app/fe/content/portfolios/role-variants.ts`
+- renderer: `app/fe/app/portfolio/role/role-portfolio-view.tsx`
+- route: `app/fe/app/portfolio/role/[role]/page.tsx`
+- local switcher: `app/fe/components/site/review-launcher.tsx`

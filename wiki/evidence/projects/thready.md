@@ -1,10 +1,10 @@
 ---
 type: project-evidence
 title: Thready Evidence
-description: AI content product backend rebuild, generation quality, and operation evidence.
+description: AI content product operation, full-stack delivery, backend rebuild, generation quality, and operation evidence.
 timestamp: 2026-08-18
 source_roots: [workspace]
-tags: [thready, ai-product, backend, evidence]
+tags: [thready, ai-product, full-stack, backend, frontend, evidence]
 ---
 
 # Thready Evidence
@@ -24,7 +24,25 @@ Source locator: `workspace:thready`
 - User-confirmed (2026-08-17): 실제 사용자가 제품을 사용하기 시작한 시점은 `v1.3.0`부터다.
 - Code-backed: `v1.3.0` release에는 고객 생성·계약 기간·AI 사용 한도·Threads account slot·삭제/복구·비밀번호 재설정·고객 session stream 등 실제 고객 운영을 위한 변경이 포함됐다.
 - Tool-backed: 실제 사용자 운영 시작 이후를 포함하는 Azure App Service 30일 집계에서 월 수만 건 규모의 production request가 확인됐다. 이 수치는 runtime 근거이며 사람 사용자 수로 해석하지 않는다.
-- Contribution boundary: 초기 prototype을 처음 만든 사람이나 frontend 포함 제품 전체의 단독 구축자는 아니다. 초기 prototype 이후 실제 사용자 운영까지 backend 전환·release·QA·operation 범위는 `led`, 제품 전체 0→1 기여는 `co-led` 이하로 표현한다.
+- Contribution boundary: 초기 prototype을 처음 만든 사람이나 제품 전체의 단독 구축자는 아니다. 초기 prototype 이후 실제 사용자 운영까지 backend 전환·핵심 frontend 개발·release·QA·operation 범위는 `led`, 제품 전체 0→1 기여는 `co-led` 이하로 표현한다.
+
+## Frontend Product Delivery
+
+- User-confirmed (2026-08-20): Thready에서 backend·AI뿐 아니라 frontend 개발도 함께 진행했다.
+- Git-backed (`workspace:thready`, `release/v1.8.0` at `8d0a529b…`): 현재 release branch의 `frontend/` 비병합 commit 546개 중 `KimMarin <marin@medisolveai.com>` authored commit은 410개다. release/version 문서를 포함한 활동량 지표이므로 공개 성과 수치로 사용하지 않고 지속적인 직접 기여를 확인하는 내부 근거로만 둔다.
+- Blame-backed: copy·rename 추적을 적용한 현재 `frontend/src` 49,603행 중 38,366행(77.35%)이 같은 author identity로 귀속됐다. 생성 코드·이동·리팩터링 영향을 포함할 수 있으므로 개인 생산성이나 제품 전체 ownership 비율로 해석하지 않는다.
+- Code-backed: Next.js frontend에서 콘텐츠 생성·가져오기, 콘텐츠 목록·상태, 예약·발행 calendar, dashboard, account/settings, super-admin과 labeling workbench의 사용자·관리 workflow를 구현·보완했다.
+- Commit-backed examples: `workspace:thready@44828203…`에서 콘텐츠 가져오기 UI·state·API 연동 12개 파일을 구현했고, `workspace:thready@5144d998…`에서 labeling API client와 평가 workbench 22개 파일을 backend bounded context와 함께 구축했다. 그 밖에도 생성 실패·발행 상태·계정 관리·관리자 화면의 release 변경이 현재 branch에 포함돼 있다.
+- Contribution boundary: 핵심 사용자·관리 workflow의 frontend 구현·운영은 `led`. 2026-03-30 초기 prototype UI의 최초 개발, frontend 전체 단독 구축, design 전담은 주장하지 않는다.
+
+## Product Zero-To-One Contribution
+
+- User-confirmed (2026-08-19): 기획자로 일한 경험을 바탕으로 Threads 콘텐츠 제작과 성과 판단 과정의 고객 불편을 제품 문제로 구체화하고, 시장·콘텐츠 data 분석에서 생성·평가 기능 요구를 도출했다.
+- User-confirmed (2026-08-20): Thready에서는 PO 역할을 병행하며 기획·QA·마케팅 담당자와 함께 제품 운영·관리를 리드했다. 고객 문제 정의, 기능·실험 우선순위, 생성 품질 기준, QA·release·production operation을 하나의 제품 실행 흐름으로 조율했다.
+- User-confirmed: 초기 prototype 이후 제품 요구 구체화, backend·frontend·AI 품질 system 구축, QA·release·production operation을 실제 사용자 운영까지 연결하는 0→1 실행을 주도했다.
+- Evidence-backed support: 아래 market data·labeling·quality evidence와 backend rebuild·release evidence가 각 실행 영역을 독립적으로 뒷받침한다.
+- Business boundary: 2026년 8월 기준 월 약 800만~1,000만원 구독료 매출이 발생하는 제품에 문제 정의부터 기술 구현·운영까지 상당 부분 기여했다. 매출은 제품·팀 outcome이며 특정 기능 또는 개인의 단독 인과가 아니다.
+- Contribution boundary: cross-functional team과 함께한 PO 역할의 제품 운영과 제품 0→1 실행은 `led`; PO가 공식 등재 직함이라고 단정하거나 기획·QA·마케팅·design·acquisition의 실행까지 혼자 담당한 것으로 표현하지 않는다. frontend는 별도 code-backed claim 범위에서 직접 개발로 표현하되, 제품 전체 frontend를 단독 구축한 것으로 확대하지 않는다. 공개 문구는 responsibility map과 함께 사용한다.
 
 ## Threads Market Data And Outcome Design
 
@@ -137,7 +155,7 @@ Source locator: `workspace:thready`
 ## Rejected Or Unverified Claims
 
 - 제품 전체 단독 구축
-- frontend 포함 전체 제품 전면 재구축
+- 초기 prototype frontend의 최초 개발 또는 frontend 전체 단독 구축
 - 품질 N배 개선 또는 품질 완전 해결
 - `MRR`·`ARR`, 월평균·지속 기간, 순매출·영업이익·고객 수 등 확인되지 않은 business outcome 정의
 - backend 재구축이나 Threads 마케팅 기준이 구독 매출을 직접 만들었다는 개인 단독 인과

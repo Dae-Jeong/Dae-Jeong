@@ -2,7 +2,7 @@
 type: product-contract
 title: Resume Role Positioning Standard
 description: 김대정의 역할을 직함이 아니라 반복된 판단·기술 경계·운영 결과로 전달하는 이력서 기준.
-timestamp: 2026-08-18
+timestamp: 2026-08-20
 derived_from:
   - profile/identity.md
   - evidence/claims/
@@ -14,9 +14,9 @@ tags: [resume, positioning, role, backend]
 
 ## 한 문장 결론
 
-> 제품 요구와 기술 리스크를 backend 경계로 구체화하고, 설계·배포·운영까지 책임지는 Backend Engineer.
+> 제품 판단을 backend 경계로 바꾸고, 직접 구현·배포·운영까지 연결하는 Tech Lead · Backend Engineer.
 
-이 문장은 새 직함이 아니다. primary category는 계속 `Backend Engineer`, specialty는 `AI Product Systems`다. `Product Owner`는 슬래시로 병기할 별도 정체성이 아니라 무엇을 만들지 판단하고 그 판단을 실행 가능한 backend contract로 바꾼 경험으로 증명한다.
+이 문장은 등재 직함을 새로 만드는 표현이 아니다. primary category는 `Tech Lead`, supporting role은 `Backend Engineer`, specialty는 `AI Product Systems`다. `Product Owner`는 슬래시로 병기할 별도 정체성이 아니라 무엇을 만들지 판단하고 그 판단을 실행 가능한 backend contract로 바꾼 경험으로 증명한다.
 
 ## 역할 전달식
 
@@ -41,15 +41,16 @@ tags: [resume, positioning, role, backend]
 
 | 층 | 값 | 이력서에서의 역할 |
 | --- | --- | --- |
-| 시장이 알아보는 직군 | `Backend Engineer` | 헤더·검색·지원 직군 고정 |
-| 전문 영역 | `AI Product Systems` | AI runtime·quality·async/realtime·infra 범위 |
+| 주 역할 | `Tech Lead` | 제품 범위·품질 기준·실행 정렬 책임을 먼저 전달 |
+| 기술 기반 | `Backend Engineer` | API·data·transaction·async/realtime·infra 전문성을 증명 |
+| 전문 영역 | `AI Product Systems` | AI runtime·quality·서비스 경계와 운영 범위 |
 | 차별화되는 작동 방식 | 제품 판단을 backend contract와 운영 결과로 연결 | 소개와 반복된 사례로 증명 |
 
 금지:
 
 - `Backend Engineer / PO / PM / AI Engineer` 슬래시 나열
 - `제품도 알고 기술도 압니다` 같은 추상적인 자기평가
-- Product Owner 직함을 primary category와 경쟁시키기
+- Product Owner를 primary category와 경쟁시키기
 - 과거 PM 경험을 별도 PM 자기소개 섹션으로 분리하기
 
 ## 대표 사례의 6문답
@@ -102,7 +103,7 @@ contract·state·gate를 세팅하고 실제 운영을 책임했다면 이력으
 
 ### Header
 
-- `Backend Engineer · AI Product Systems`만 고정한다.
+- `Tech Lead · Backend Engineer` 순서를 고정한다.
 - 현재·이전 주요 회사, 직함, 기간을 즉시 보여준다.
 - 브랜드 문장·PO 병기는 넣지 않는다.
 
@@ -146,7 +147,7 @@ contract·state·gate를 세팅하고 실제 운영을 책임했다면 이력으
 
 독자가 다음을 답할 수 있어야 한다.
 
-- Backend Engineer인가.
+- Tech Lead인가, 그리고 무엇을 직접 구현하는 Backend Engineer인가.
 - 현재 어느 회사에서 어떤 범위를 맡는가.
 - AI Product Systems가 구체적으로 무엇을 뜻하는가.
 

@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import {
   canViewTailoredResume,
   getTailoredResume,
+  listRoleResumes,
 } from "@/content/resumes";
 import { ResumePageShell } from "../resume-page-shell";
 import { TailoredResumeView } from "../tailored-resume-view";
@@ -19,9 +20,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     return { title: "Resume — 김대정" };
   }
 
+  const target = resume.roleVariant?.label ?? `${resume.companyName} ${resume.position}`;
+
   return {
-    title: `${resume.companyName} ${resume.position} Resume — 김대정`,
-    description: `${resume.companyName} ${resume.position} 지원용 맞춤 이력서`,
+    title: `${target} Resume — 김대정`,
+    description: resume.roleVariant?.description ?? `${target} 지원용 맞춤 이력서`,
     robots: {
       index: false,
       follow: false,
@@ -36,11 +39,14 @@ export default async function CompanyResumePage({ params }: PageProps) {
 
   if (!resume || !canViewTailoredResume(resume)) notFound();
 
+  const roleOptions = resume.roleVariant ? listRoleResumes() : undefined;
+  const crumbLabel = resume.roleVariant?.shortLabel ?? resume.companyName;
+
   return (
     <ResumePageShell
       crumb={
         <>
-          Resume / {resume.companyName}
+          Resume / {crumbLabel}
         </>
       }
       tag={
@@ -51,7 +57,7 @@ export default async function CompanyResumePage({ params }: PageProps) {
             : undefined
       }
     >
-      <TailoredResumeView resume={resume} />
+      <TailoredResumeView resume={resume} roleOptions={roleOptions} />
     </ResumePageShell>
   );
 }

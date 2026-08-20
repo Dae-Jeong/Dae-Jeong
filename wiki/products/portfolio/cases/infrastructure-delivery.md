@@ -1,59 +1,69 @@
 ---
 type: portfolio-case
 case: infrastructure-delivery
-title: 회사 Azure/Terraform 인프라의 제품·환경 경계와 배포 운영
+title: 회사 Azure runtime topology와 1인 운영 체계
 resume_tag: INFRASTRUCTURE DELIVERY
 origin: MediSolve AI · 회사 인프라
 claim_ids:
   - infra.company-azure-ownership
+  - infra.workload-runtime-topology
+  - infra.ai-assisted-change-harness
+  - infra.terraform-state-safety
+  - infra.azure-observability
   - centurion.shared-infra
 claim_strength: owned
 ---
 
 ## Executive Summary
 
-회사 Azure/Terraform 인프라 전반의 설계·구축·운영을 담당하고 있습니다. B2B/B2C·제품·환경별 resource boundary와 deploy/runbook을 관리해, 제품 백엔드의 변경을 인프라 배포와 운영 절차까지 연결합니다.
+회사 Azure 운영을 맡아 기존 Shared·B2B·B2C 리소스를 제품군·환경별 root/state로 통합하고 현재 runtime topology와 변경 체계를 관리합니다. 공통 이미지는 Shared ACR에서 공급하되 B2B와 B2C의 runtime·data·state는 분리하고, workload에 따라 App Service와 VM을 함께 사용합니다. 운영 신호는 환경별 Azure Monitor·Log Analytics에서 같은 기준으로 보고, 변경은 6개 독립 root·remote state와 사람의 apply gate로 통제합니다. 별도 project IaC는 core monorepo와 분리해 관리합니다.
 
 ## My Scope
 
-- 회사 Azure/Terraform 인프라 repository와 지속적인 운영·관리 전담
-- B2B/B2C·제품·환경별 resource boundary와 deploy/runbook 관리
-- Centurion 인프라 구축·운영과 runbook·문서화 담당
-- 모든 Azure resource의 최초 생성 주체나 고객·resource·cost·security 세부 정보는 이 범위에 포함하지 않음
+- B2B/B2C·제품·환경별 Azure resource boundary와 Terraform repository 운영 전담
+- shared ACR, workload별 App Service·VM runtime, managed data, 환경별 observability의 현재 운영 구조 관리
+- state migration, drift audit, deploy/runbook, log·alert 운영
+- AI-assisted inventory·implementation과 사람이 승인하는 apply gate 설계
+- 모든 Azure resource를 최초부터 만들었거나 모든 변경이 무인 자동화됐다고 주장하지 않음
 
 ## Problem And Constraints
 
-- 여러 제품과 환경의 인프라 변경을 하나의 운영 책임 안에서 다루되, 제품·환경별 변경 경계를 유지해야 했습니다.
-- 애플리케이션 배포와 Terraform 변경, 운영 runbook이 서로 다른 기준으로 움직이지 않도록 관리해야 했습니다.
-- 실제 resource 수와 비용·보안 설정은 시점에 따라 바뀌며 공개 범위가 아니므로, 구조와 운영 책임만 설명합니다.
+여러 제품과 환경을 한 사람이 관리하려면 기억과 수동 명령에 의존할 수 없었습니다. 기존 resource를 코드에 편입할 때 잘못된 state 주소나 region 차이는 운영 리소스의 destroy·replace로 이어질 수 있고, 제품별 변경이 다른 환경으로 전파되지 않도록 blast radius도 분리해야 했습니다.
 
 ## Decision And Alternatives
 
-- 제품·환경별 resource boundary를 유지하고, 변경과 배포 절차를 Terraform과 runbook에 남기는 방식을 선택했습니다.
-- 모든 제품·환경을 하나의 공용 경계로 묶는 대안은 변경 범위와 운영 책임을 분리하기 어렵게 만듭니다. 다만 공식 대안 검토 기록은 확인되지 않아, 이 문서에서는 현재 채택한 구조와 trade-off만 설명합니다.
-- 분리된 경계는 변경 범위를 나눌 수 있는 대신 repository·state·runbook을 지속해서 관리해야 하는 운영 비용이 있습니다.
+- 공통 image artifact는 Shared ACR에서 공급하고, B2B/Centurion과 B2C 제품의 runtime·data·state ownership은 분리했습니다.
+- B2B는 App Service Gateway 뒤 환경별 VNet의 Docker service·managed data로, B2C는 Thready API·AI App Service와 다른 App Service·VM workload·managed data로 구성했습니다.
+- Shared·STG·Prod 기준 6개 독립 Terraform root·remote state로 변경 범위를 나눴습니다.
+- AI는 live resource 탐색과 Terraform 초안에 사용하고, 사람은 state snapshot·fmt·validate·plan·Azure live inventory를 교차 검증한 뒤 apply를 승인합니다.
+- 현재 workload와 조직 규모에 맞는 Azure managed application runtime을 사용해 platform 운영 부담을 제한했습니다. 특정 기술의 우열이 아니라 현재 제약에 맞춘 운영 선택입니다.
 
 ## System Design And Implementation
 
-diagram: 제품·환경별 Terraform boundary -> Azure resource -> deploy/runbook -> 제품 운영
+diagram: Shared ACR -> B2B/Centurion(App Service Gateway -> environment boundary -> VNet의 VM·managed DB + VNet 밖 Storage) | B2C(Thready API·AI App Services + other App Service/VM workloads -> managed data) | Azure Monitor 아래 환경별 Log Analytics와 metric alert를 병렬 운영
 
-- B2B/B2C와 제품·환경 단위로 Terraform root와 resource boundary를 관리합니다.
-- 원격 상태와 배포 구성을 코드로 추적하고, 제품 배포 절차를 runbook과 함께 유지합니다.
-- Centurion 범위에서는 Azure/Terraform 인프라 구축·운영과 runbook·문서화를 담당했습니다.
+- 실제 runtime topology와 Terraform control plane을 분리해 설명한다. topology는 traffic·compute·data·observability를, core monorepo의 6개 root/state는 제품군·환경 간 변경 범위와 blast radius를 보여준다.
+- runtime topology는 Microsoft 공식 Azure architecture icon을 변형 없이 사용하고 서비스명과 함께 표기한다. Terraform control plane은 Azure 실행 경계 밖에 둔다. Source: https://learn.microsoft.com/en-us/azure/architecture/icons/ (checked 2026-08-20)
+- 6개 root·remote state와 400개 이상의 state object 운영
+- state snapshot·plan·Azure CLI inventory를 교차 검증하는 apply gate
+- Azure Monitor·환경별 Log Analytics와 AMA/DCR로 구성된 10대 VM container log 수집 범위 운영
+- CPU·memory·disk·API health/5xx·DB availability/storage/failed connection을 포함한 8개 Production alert 운영
 
 ## Failure Modes And Operation
 
-- 제품·환경 경계를 넘어가는 변경은 영향 범위를 키울 수 있어 boundary 단위로 변경을 구분합니다.
-- 코드와 실제 운영 절차가 어긋나지 않도록 deploy/runbook을 인프라 변경과 함께 관리합니다.
-- 인프라 운영은 일회성 구축으로 끝내지 않고, 제품 배포와 환경 변경에 맞춰 지속적으로 갱신합니다.
+- 의도하지 않은 destroy·replace는 apply 전에 plan과 live inventory 비교로 차단
+- 수동 변경은 무조건 오류로 취급하지 않고 의도된 변경과 실제 drift를 분리
+- AI가 만든 Terraform은 바로 apply하지 않으며 state와 live resource를 근거로 사람이 승인
+- 가용성·MTTR·실제 비용 절감처럼 아직 전후 측정이 없는 성과는 주장하지 않음
 
-## Evidence, Result, Limits
+## Evidence, Result, And Limits
 
-- Code-backed: B2B/B2C·제품·환경별 Terraform root, remote state, 배포 구성과 runbook 변경이 확인됨
-- Tool-backed: Azure 환경이 실제 운영 중인 상태를 read-only snapshot으로 확인함
-- Result: 회사 Azure/Terraform 인프라 전반의 설계·구축·운영과 제품·환경별 배포 경계를 담당
-- Limits: 모든 Azure resource를 최초부터 단독 생성했다고 주장하지 않으며, 정확한 고객·resource·cost·security detail과 운영 규모 수치는 공개하지 않음
+- 6개 Terraform state, 400+ state object
+- 10대 VM log 수집 범위, 8개 Production alert 구성·운영
+- region 불일치에 의한 강제 교체와 App Service log·health check 제거 위험을 apply 전에 확인한 drift audit 기록
+- 회사 전체 인프라 ownership은 말할 수 있지만 모든 resource의 최초 생성이나 완전 자동화는 범위 밖
+- Hub-Spoke·Azure Container Apps·Tailscale·Key Vault consolidation·GitHub OIDC 등 target proposal은 현재 구현과 분리
 
 ## Stack
 
-Azure · Terraform · App Service · Container Registry · PostgreSQL · monitoring · deploy/runbook
+Azure · Terraform · App Service · VM · Azure Monitor · Log Analytics · GitHub Actions

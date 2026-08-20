@@ -1,6 +1,27 @@
 schema_version: 1
 project: nexus
 claims:
+  - id: nexus.hospital-operations-revenue-contribution
+    statement: 외부 피부과 여러 곳의 운영·예약 시스템 backend 구축을 주도하고, 제품의 예약률 개선과 고객사 매출 성과에 기여
+    strength: contributed
+    confidence: medium
+    public: true
+    evidence: [evidence/projects/nexus.md#product-scope-and-business-outcome]
+    allowed_copy:
+      - 여러 피부과의 운영·예약 시스템 backend 구축을 주도하고 예약률 개선과 고객사 매출 성과에 기여
+      - 외부 피부과 운영·예약 흐름을 지원하는 제품의 backend 구축 주도; 제품은 예약률 개선을 통해 고객사 매출에 기여
+    forbidden_copy:
+      - 고객사 실명
+      - 예약률 증가의 정확한 수치 또는 매출 증분
+      - backend 구축만으로 예약률·매출을 만들었다는 직접 인과
+      - 고객사 매출을 단독으로 만들었다는 표현
+      - NEXUS를 Centurion 또는 그 내부 DAY 영역과 같은 프로젝트로 표현
+      - 현재 진행 중인 repository 변경이 production outcome을 만들었다는 표현
+    verified_at: 2026-08-20
+    note: >-
+      제품 범위와 business outcome은 user-confirmed다. 현재 repository의 backend ownership은
+      Git/code로 별도 검증됐지만 예약률·매출의 기준 수치와 기능별 인과는 확인되지 않았다.
+      따라서 제품·팀 outcome에 대한 contributed/medium 상한으로 공개한다.
   - id: nexus.backend-architecture
     statement: 외부 병원 product backend monorepo의 service boundary와 migration flow 주도
     strength: led

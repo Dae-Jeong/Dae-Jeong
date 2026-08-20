@@ -1,3 +1,5 @@
+import Image from "next/image";
+import Link from "next/link";
 import { Chip } from "@/components/ui/chip";
 import { KeyValueRows } from "@/components/ui/key-value-list";
 import { NumberedList, NumberedRow } from "@/components/ui/numbered-row";
@@ -5,6 +7,7 @@ import { SectionHead } from "@/components/ui/section-head";
 import type {
   ResumeOutcomeDescriptionItem,
   ResumeOutcomeEvidence,
+  ResumeSectionKey,
   ResumeText,
   TailoredResume,
 } from "@/content/resumes/types";
@@ -13,14 +16,60 @@ import { ResumeLayout } from "./resume-layout";
 import { ResumePeriod } from "./resume-period";
 import { resumeType } from "./resume-typography";
 
-const SECTIONS = [
-  { id: "s1", label: "소개" },
-  { id: "s2", label: "핵심 성과" },
-  { id: "s3", label: "경력" },
-  { id: "s4", label: "일하는 방식" },
-  { id: "s5", label: "기술" },
-  { id: "s6", label: "학력·수상·자격" },
-] as const;
+const DEFAULT_SECTION_ORDER: readonly ResumeSectionKey[] = [
+  "profile",
+  "outcomes",
+  "career",
+  "workStyles",
+  "skills",
+  "credentials",
+];
+
+const SECTION_META: Record<
+  ResumeSectionKey,
+  { id: string; label: string; title: string; meta: string }
+> = {
+  profile: { id: "s1", label: "소개", title: "소개", meta: "Profile" },
+  outcomes: { id: "s2", label: "핵심 성과", title: "핵심 성과", meta: "Outcomes" },
+  career: { id: "s3", label: "경력", title: "경력", meta: "Career" },
+  workStyles: { id: "s4", label: "일하는 방식", title: "일하는 방식", meta: "How I Work" },
+  skills: { id: "s5", label: "기술", title: "기술", meta: "Skills" },
+  externalActivities: {
+    id: "s6",
+    label: "외부 활동",
+    title: "외부 활동",
+    meta: "External Activities",
+  },
+  credentials: {
+    id: "s6",
+    label: "학력·수상·자격",
+    title: "학력·교육 / 수상·특허·자격",
+    meta: "Credentials",
+  },
+};
+
+type ResumeSectionSpec = (typeof SECTION_META)[ResumeSectionKey] & {
+  key: ResumeSectionKey;
+  no: string;
+};
+
+function getResumeSections(resume: TailoredResume): readonly ResumeSectionSpec[] {
+  const hasExternalActivities = (resume.externalActivities?.length ?? 0) > 0;
+  const order = resume.sectionOrder ?? DEFAULT_SECTION_ORDER;
+
+  return order
+    .filter((key) => {
+      if (key === "workStyles") return resume.workStyles.length > 0;
+      if (key === "externalActivities") return hasExternalActivities;
+      return true;
+    })
+    .map((key, index) => ({
+      ...SECTION_META[key],
+      id: key === "credentials" && hasExternalActivities ? "s7" : SECTION_META[key].id,
+      key,
+      no: String(index + 1).padStart(2, "0"),
+    }));
+}
 
 function claim(ids?: readonly string[]) {
   return ids?.join(" ");
@@ -153,9 +202,7 @@ function Section({
 }
 
 function ResumeDocument({ resume }: { resume: TailoredResume }) {
-  const hasWorkStyles = resume.workStyles.length > 0;
-  const skillsNo = hasWorkStyles ? "05" : "04";
-  const credentialsNo = hasWorkStyles ? "06" : "05";
+  const sections = getResumeSections(resume);
   const skillRows = resume.skills.map((skill) => ({
     k: skill.label,
     "data-claim": claim(skill.claimIds),
@@ -166,6 +213,168 @@ function ResumeDocument({ resume }: { resume: TailoredResume }) {
       </>
     ),
   }));
+
+  function renderSection(section: ResumeSectionSpec) {
+    const sectionProps = {
+      id: section.id,
+      no: section.no,
+      title: section.title,
+      meta: section.meta,
+    };
+
+    if (section.key === "profile") {
+      return (
+        <Section key={section.key} {...sectionProps}>
+          <div className={resumeType.summaryStack}>
+            {resume.summary.map((paragraph, index) => (
+              <p key={index} className="m-0" data-claim={claim(paragraph.claimIds)}>
+                <RichText value={paragraph.text} />
+              </p>
+            ))}
+          </div>
+        </Section>
+      );
+    }
+
+    if (section.key === "outcomes") {
+      return (
+        <Section key={section.key} {...sectionProps}>
+          <NumberedList>
+            {resume.outcomes.map((outcome, index) => (
+              <NumberedRow
+                key={outcome.no}
+                label={outcome.no}
+                labelWidth="sm"
+                labelClassName="font-mono text-xs text-muted"
+                data-claim={claim(outcome.claimIds)}
+                className={cn(resumeType.achievementRow, index === 0 && "border-t-0")}
+              >
+                <div className="text-base font-normal [&_[data-metric]]:font-medium">
+                  <h3 className={resumeType.achievementTitle}>{outcome.title}</h3>
+                  <OutcomeDescription items={outcome.description} />
+                </div>
+              </NumberedRow>
+            ))}
+          </NumberedList>
+        </Section>
+      );
+    }
+
+    if (section.key === "career") {
+      return (
+        <Section key={section.key} {...sectionProps}>
+          <NumberedList className="border-t border-border-soft">
+            {resume.careers.map((career) => (
+              <NumberedRow
+                key={`${career.org}-${career.period}`}
+                label={
+                  <span className="grid gap-1">
+                    <span>{career.org}</span>
+                    <ResumePeriod
+                      value={career.period}
+                      currentLabel={career.now ? "재직중" : undefined}
+                    />
+                  </span>
+                }
+                labelWidth="lg"
+                labelClassName="font-semibold text-fg"
+                data-claim={claim(career.claimIds)}
+                className={resumeType.careerRow}
+              >
+                <span className="text-sm text-fg-2">
+                  <span className="mb-1.5 block text-base font-medium text-fg">
+                    <RichText value={career.role} />
+                  </span>
+                  <PlainList items={career.details} />
+                </span>
+              </NumberedRow>
+            ))}
+          </NumberedList>
+        </Section>
+      );
+    }
+
+    if (section.key === "workStyles") {
+      return (
+        <Section key={section.key} {...sectionProps}>
+          <NumberedList>
+            {resume.workStyles.map((workStyle, index) => (
+              <NumberedRow
+                key={workStyle.no}
+                label={workStyle.no}
+                labelWidth="sm"
+                labelClassName="font-mono text-xs text-muted"
+                className={cn(resumeType.workStyleRow, index === 0 && "border-t-0")}
+                data-claim={claim(workStyle.claimIds)}
+              >
+                <div>
+                  <p className={resumeType.itemTitle}>{workStyle.title}</p>
+                  <p className="m-0 text-sm text-fg-2">
+                    <RichText value={workStyle.body} />
+                  </p>
+                </div>
+              </NumberedRow>
+            ))}
+          </NumberedList>
+        </Section>
+      );
+    }
+
+    if (section.key === "skills") {
+      return (
+        <Section key={section.key} {...sectionProps}>
+          <KeyValueRows items={skillRows} />
+        </Section>
+      );
+    }
+
+    if (section.key === "externalActivities") {
+      return (
+        <Section key={section.key} {...sectionProps}>
+          <NumberedList className="border-t border-border-soft">
+            {(resume.externalActivities ?? []).map((activity) => (
+              <NumberedRow
+                key={`${activity.label}-${activity.title}`}
+                label={activity.label}
+                labelWidth="lg"
+                className={resumeType.careerRow}
+                data-claim={claim(activity.claimIds)}
+              >
+                <span className="block text-base font-medium leading-normal text-fg">
+                  {activity.title}
+                </span>
+                <span className="mt-1 block text-pretty text-sm leading-relaxed text-fg-2">
+                  {activity.description}
+                </span>
+                <span className="mt-1.5 block text-pretty text-sm font-medium leading-relaxed text-fg">
+                  <span className="text-success">성과</span> · {activity.outcome}
+                </span>
+              </NumberedRow>
+            ))}
+          </NumberedList>
+        </Section>
+      );
+    }
+
+    return (
+      <Section key={section.key} {...sectionProps}>
+        <NumberedList>
+          {resume.credentials.map((credential, index) => (
+            <NumberedRow
+              key={`${credential.period}-${credential.text}`}
+              label={credential.period}
+              labelWidth="lg"
+              labelClassName="whitespace-pre-line text-xs"
+              className={cn(resumeType.credentialRow, index === 0 && "border-t-0")}
+              data-claim={claim(credential.claimIds)}
+            >
+              <span className="text-sm text-fg-2">{credential.text}</span>
+            </NumberedRow>
+          ))}
+        </NumberedList>
+      </Section>
+    );
+  }
 
   return (
     <div>
@@ -191,137 +400,92 @@ function ResumeDocument({ resume }: { resume: TailoredResume }) {
             ))}
           </div>
         </div>
-      </header>
-
-      <div className="resume-print-page-one">
-        <Section id="s1" no="01" title="소개" meta="Profile">
-          <div className={resumeType.summaryStack}>
-            {resume.summary.map((paragraph, index) => (
-              <p key={index} className="m-0" data-claim={claim(paragraph.claimIds)}>
-                <RichText value={paragraph.text} />
-              </p>
-            ))}
+        {resume.header.photoSrc && (
+          <div className={resumeType.profilePhoto}>
+            <Image
+              src={resume.header.photoSrc}
+              alt=""
+              fill
+              priority
+              sizes="(max-width: 639px) 80px, 112px"
+              className="object-contain"
+            />
           </div>
-        </Section>
-
-        <Section id="s2" no="02" title="핵심 성과" meta="Outcomes">
-          <NumberedList>
-            {resume.outcomes.map((outcome, index) => (
-              <NumberedRow
-                key={outcome.no}
-                label={outcome.no}
-                labelWidth="sm"
-                labelClassName="font-mono text-xs text-muted"
-                data-claim={claim(outcome.claimIds)}
-                className={cn(resumeType.achievementRow, index === 0 && "border-t-0")}
-              >
-                <div className="text-base font-normal [&_[data-metric]]:font-medium">
-                  <h3 className={resumeType.achievementTitle}>
-                    {outcome.title}
-                  </h3>
-                  <OutcomeDescription items={outcome.description} />
-                </div>
-              </NumberedRow>
-            ))}
-          </NumberedList>
-        </Section>
-      </div>
-
-      <div className="resume-print-page-two">
-        <Section id="s3" no="03" title="경력" meta="Career">
-        <NumberedList className="border-t border-border-soft">
-          {resume.careers.map((career) => (
-            <NumberedRow
-              key={`${career.org}-${career.period}`}
-              label={
-                <span className="grid gap-1">
-                  <span>{career.org}</span>
-                  <ResumePeriod
-                    value={career.period}
-                    currentLabel={career.now ? "재직중" : undefined}
-                  />
-                </span>
-              }
-              labelWidth="lg"
-              labelClassName="font-semibold text-fg"
-              data-claim={claim(career.claimIds)}
-              className={resumeType.careerRow}
-            >
-              <span className="text-sm text-fg-2">
-                <span className="mb-1.5 block text-base font-medium text-fg">
-                  <RichText value={career.role} />
-                </span>
-                <PlainList items={career.details} />
-              </span>
-            </NumberedRow>
-          ))}
-        </NumberedList>
-        </Section>
-
-        <div className="resume-print-support">
-
-          {hasWorkStyles && (
-            <Section id="s4" no="04" title="일하는 방식" meta="How I Work">
-          <NumberedList>
-            {resume.workStyles.map((workStyle, index) => (
-              <NumberedRow
-                key={workStyle.no}
-                label={workStyle.no}
-                labelWidth="sm"
-                labelClassName="font-mono text-xs text-muted"
-                className={cn(resumeType.workStyleRow, index === 0 && "border-t-0")}
-                data-claim={claim(workStyle.claimIds)}
-              >
-                <div>
-                  <p className={resumeType.itemTitle}>{workStyle.title}</p>
-                  <p className="m-0 text-sm text-fg-2">
-                    <RichText value={workStyle.body} />
-                  </p>
-                </div>
-              </NumberedRow>
-            ))}
-          </NumberedList>
-            </Section>
-          )}
-
-          <Section id="s5" no={skillsNo} title="기술" meta="Skills">
-            <KeyValueRows items={skillRows} />
-          </Section>
-
-          <Section
-            id="s6"
-            no={credentialsNo}
-            title="학력·교육 / 수상·특허·자격"
-            meta="Credentials"
-          >
-        <NumberedList>
-          {resume.credentials.map((credential, index) => (
-            <NumberedRow
-              key={`${credential.period}-${credential.text}`}
-              label={credential.period}
-              labelWidth="lg"
-              labelClassName="whitespace-pre-line text-xs"
-              className={cn(resumeType.credentialRow, index === 0 && "border-t-0")}
-              data-claim={claim(credential.claimIds)}
-            >
-              <span className="text-sm text-fg-2">{credential.text}</span>
-            </NumberedRow>
-          ))}
-        </NumberedList>
-          </Section>
-        </div>
-      </div>
+        )}
+      </header>
+      {sections.map(renderSection)}
     </div>
   );
 }
 
-export function TailoredResumeView({ resume }: { resume: TailoredResume }) {
-  const sections = SECTIONS.filter(
-    (section) => section.id !== "s4" || resume.workStyles.length > 0,
+export type RoleResumeOption = {
+  slug: string;
+  label: string;
+  shortLabel: string;
+  description: string;
+};
+
+function ResumeVariantNav({
+  activeSlug,
+  options,
+}: {
+  activeSlug: string;
+  options: readonly RoleResumeOption[];
+}) {
+  const active = options.find((option) => option.slug === activeSlug);
+
+  return (
+    <nav
+      aria-label="직군별 이력서 초안"
+      className="mb-8 border-y border-border-soft py-4 print:hidden"
+    >
+      <div className="mb-3 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
+        <p className="m-0 font-mono text-xs font-medium tracking-[0.06em] text-fg">
+          ROLE DRAFTS
+        </p>
+        {active && (
+          <p className="m-0 text-sm text-fg-2">{active.description}</p>
+        )}
+      </div>
+      <div className="flex flex-wrap gap-2">
+        {options.map((option) => {
+          const isActive = option.slug === activeSlug;
+          return (
+            <Link
+              key={option.slug}
+              href={`/resume/${option.slug}`}
+              aria-current={isActive ? "page" : undefined}
+              title={option.label}
+              className={cn(
+                "focus-ring inline-flex min-h-11 items-center border px-3 font-mono text-xs transition-colors duration-100",
+                isActive
+                  ? "border-fg bg-fg text-accent-on"
+                  : "border-border bg-bg text-fg-2 hover:border-fg hover:text-fg",
+              )}
+            >
+              {option.shortLabel}
+            </Link>
+          );
+        })}
+      </div>
+    </nav>
   );
+}
+
+export function TailoredResumeView({
+  resume,
+  roleOptions,
+}: {
+  resume: TailoredResume;
+  roleOptions?: readonly RoleResumeOption[];
+}) {
+  const sections = getResumeSections(resume).map(({ id, label }) => ({ id, label }));
 
   return (
     <ResumeLayout sections={sections} pdfHref={resume.pdfHref}>
+      {resume.roleVariant && roleOptions && (
+        <ResumeVariantNav activeSlug={resume.slug} options={roleOptions} />
+      )}
       <ResumeDocument resume={resume} />
     </ResumeLayout>
   );

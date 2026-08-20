@@ -21,6 +21,7 @@ tags: [resume, product, master]
 - 이력서 지면 역할: [surface-roles.md](../site/surface-roles.md)
 - 표현 선택 기록: [decisions.md](decisions.md)
 - 역할 전달 기준: [role-positioning-standard.md](role-positioning-standard.md)
+- 직군별 local draft 계약: [role-variants.md](role-variants.md)
 - artifact와 근거 연결: [claim-map.yaml](claim-map.yaml)
 - backend 케이스별 성과 후보: [backend-case-achievements.md](backend-case-achievements.md)
 - 과거 회사의 제품 판단·기획 성과 후보: [product-decision-achievements.md](product-decision-achievements.md)
@@ -31,6 +32,7 @@ tags: [resume, product, master]
 | Path | Status | Role |
 | --- | --- | --- |
 | `app/fe/app/resume/resume-view.tsx` | active | KO 웹 이력서의 표현 SoT. EN은 같은 파일의 draft 파생본 |
+| [role-variants.md](role-variants.md) | draft/local | 공통 틀에서 직군별 성과·근거·기술 순서를 바꾸는 지원본 계약 |
 | [master/v0/](master/v0/) | baseline | 기존 초안을 보존한 구조·시각 inventory. public-ready 아님 |
 | [master/v1/](master/v1/) | superseded | 최초 evidence-linked A4 HTML baseline. 현재 source로 사용하지 않음 |
 | `master/v2/`–`master/v4/` | superseded drafts | 현재 표현으로 이동하는 과정의 검토 기록 |

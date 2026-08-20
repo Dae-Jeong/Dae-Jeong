@@ -4,20 +4,21 @@ status: active
 sections:
   summary:
     - career.tenure
-    - career.thedaylabs-freelance
+    - career.medisolve-role-evolution
     - career.ai-pm-backend-continuity
     - career.product-ux-practice
-    - thready.backend-rebuild
+    - career.memento-stripe-prepayment
+    - thready.product-zero-to-one-contribution
+    - thready.frontend-product-delivery
     - thready.release-operation
-    - thready.ai-service-boundary
+    - thready.ai-service-migration
     - thready.ai-replica-outbox
-    - thready.quality-criteria-system
     - centurion.bay-async-backend
     - centurion.day-product-integration
     - mediness.product-operations
     - be-template.backend-standard
-    - be-template.agent-context
     - be-template.team-leverage
+    - be-template.agent-context
     - infra.company-azure-ownership
     - infra.terraform-state-safety
   career:
@@ -26,15 +27,24 @@ sections:
     - career.thedaylabs-freelance
     - centurion.msa-platform-context
     - centurion.bay-async-backend
+    - centurion.day-product-integration
     - centurion.say-realtime-ai
     - centurion.ray-backend
     - centurion.sso-session
+    - nexus.backend-architecture
+    - nexus.admin-backend-ownership
     - thready.prototype-to-user-operation
-    - thready.subscription-revenue-band
+    - thready.product-zero-to-one-contribution
+    - thready.frontend-product-delivery
+    - thready.generation-quality-system
     - mediness.product-system-design-participation
     - mediness.product-operations
-    - thready.qa-reopen-reduction
+    - be-template.backend-standard
+    - be-template.team-leverage
+    - be-template.agent-context
     - infra.company-azure-ownership
+    - infra.terraform-state-safety
+    - infra.azure-observability
     - career.memento-happycall-survey
     - career.memento-stripe-prepayment
     - career.memento-payment
@@ -43,34 +53,26 @@ sections:
     - credentials.page-output-patent
     - credentials.ces-2024
     - career.ai-pm-backend-continuity
-  backend_ai_cases:
+  selected_impact:
+    - thready.product-zero-to-one-contribution
+    - thready.frontend-product-delivery
+    - thready.prototype-to-user-operation
+    - thready.subscription-revenue-band
+    - thready.release-operation
+    - thready.generation-quality-system
     - thready.rebuild-decision-execution
     - thready.backend-rebuild
     - thready.qa-reopen-reduction
-    - thready.release-operation
     - thready.ai-service-boundary
     - thready.ai-service-migration
     - thready.ai-replica-outbox
-    - centurion.async-migration
-    - centurion.bay-async-backend
-    - thready.threads-market-outcome-design
-    - thready.labeling-corpus-workbench
-    - thready.hook-rubric-experiment
-    - thready.generation-quality-system
-    - thready.quality-criteria-system
-    - centurion.msa-platform-context
-    - nexus.backend-architecture
-    - nexus.admin-backend-ownership
-    - nexus.branch-access-boundary
-    - career.memento-stripe-prepayment
-    - career.memento-payment
-  ax_engineering_systems:
     - mediness.product-system-design-participation
     - mediness.product-operations
     - be-template.backend-standard
     - be-template.team-leverage
     - be-template.agent-context
     - infra.company-azure-ownership
+    - infra.ai-assisted-change-harness
     - infra.terraform-state-safety
     - infra.azure-observability
   skills:

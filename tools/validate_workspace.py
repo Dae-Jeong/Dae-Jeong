@@ -41,6 +41,9 @@ MARKDOWN_LINK = re.compile(r"\[[^\]]+\]\(([^)]+)\)")
 HEADING = re.compile(r"^#{1,6}\s+(.+?)\s*$", re.MULTILINE)
 DATA_CLAIM = re.compile(r'(?:data-claim=|"data-claim":\s*)"([^"]+)"')
 CLAIM_IDS_BLOCK = re.compile(r"claimIds:\s*\[(.*?)\]", re.DOTALL)
+TAILORED_CLAIM_IDS_BLOCK = re.compile(
+    r"(?:claimIds|currentClaimIds):\s*\[(.*?)\]", re.DOTALL
+)
 STRING_LITERAL = re.compile(r'"([a-z0-9][a-z0-9.-]+)"')
 
 
@@ -258,10 +261,39 @@ def _validate_resume_artifact_claims(root: Path) -> list[str]:
     return errors
 
 
+def _validate_tailored_resume_claims(root: Path) -> list[str]:
+    base = root / "app" / "fe" / "content" / "resumes"
+    if not base.exists():
+        return []
+
+    claims, _ = _load_claims(root)
+    known = {str(claim.get("id")) for claim in claims}
+    public = {str(claim.get("id")) for claim in claims if claim.get("public") is True}
+    errors: list[str] = []
+
+    for artifact in sorted(base.glob("*.ts")):
+        text = artifact.read_text(encoding="utf-8")
+        used = {
+            claim_id
+            for block in TAILORED_CLAIM_IDS_BLOCK.findall(text)
+            for claim_id in STRING_LITERAL.findall(block)
+        }
+        for claim_id in sorted(used - known):
+            errors.append(
+                f"tailored resume: {artifact.relative_to(root)} has unknown claimIds value {claim_id}"
+            )
+        for claim_id in sorted(used - public):
+            errors.append(
+                f"tailored resume: {artifact.relative_to(root)} claimIds value {claim_id} is not public"
+            )
+    return errors
+
+
 def _validate_portfolio_artifact_claims(root: Path) -> list[str]:
     artifacts = (
         root / "app" / "fe" / "lib" / "cases.ts",
         root / "app" / "fe" / "app" / "portfolio" / "[case]" / "case-details.tsx",
+        root / "app" / "fe" / "app" / "portfolio" / "[case]" / "system-details.tsx",
     )
     claims, _ = _load_claims(root)
     known = {str(claim.get("id")) for claim in claims}
@@ -319,6 +351,7 @@ def validate(root: Path) -> list[str]:
         + _validate_claim_map(root)
         + _validate_product_claim_refs(root)
         + _validate_resume_artifact_claims(root)
+        + _validate_tailored_resume_claims(root)
         + _validate_portfolio_artifact_claims(root)
     )
 

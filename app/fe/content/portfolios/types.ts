@@ -1,3 +1,35 @@
+import type { RoleVariantSlug } from "@/content/role-catalog";
+import type { DossierCaseSlug, SupportingCaseSlug } from "@/lib/cases";
+
+export type RolePortfolioCaseSelection =
+  | {
+      kind: "dossier";
+      slug: DossierCaseSlug;
+      focus: string;
+    }
+  | {
+      kind: "supporting";
+      slug: SupportingCaseSlug;
+      focus: string;
+    };
+
+export type RolePortfolio = {
+  slug: RoleVariantSlug;
+  label: string;
+  shortLabel: string;
+  description: string;
+  status: "draft";
+  visibility: "local";
+  updatedAt: string;
+  headline: string;
+  introduction: string;
+  proofAxes: readonly {
+    title: string;
+    description: string;
+  }[];
+  cases: readonly RolePortfolioCaseSelection[];
+};
+
 export type PortfolioLayer =
   | "Product"
   | "Backend"

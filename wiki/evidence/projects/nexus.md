@@ -2,7 +2,7 @@
 type: project-evidence
 title: NEXUS Evidence
 description: External hospital product backend monorepo and Terraform evidence. 어드민 시스템 evidence를 흡수했다.
-timestamp: 2026-08-18
+timestamp: 2026-08-20
 source_roots: [workspace, agentspace]
 tags: [nexus, backend, terraform, admin, evidence]
 ---
@@ -14,7 +14,9 @@ Source locators: `workspace:NEXUS`, `workspace:NEXUS-infra`, `agentspace:medines
 ⚠️ **2026-08-10 통합**: 별도 문서였던 `medisolve-admin.md`를 이 문서로 흡수했다.
 Git 대조 결과 **동일 저장소**다 — `packages/admin-api`·`packages/homepage-api`·`api-gateway` 구조가
 어드민 evidence 서술과 일치하고, `migration-daybeau.local.md`와 데이뷰 예약 데이터가 함께 있다.
-어드민 대상 고객사는 **데이뷰 + 세라미크**이며 공개 시 **`D·C 피부과`** 마스킹 코드를 쓴다 ([clients.md](../clients.md)).
+Repository에서 직접 확인되는 어드민·예약 데이터는 데이뷰·세라미크 범위이고, 사용자 확인상 NEXUS의
+제품 대상은 데이뷰·세라미크·벨리셀을 포함한다. 공개 산출물에서는 고객사명을 쓰지 않는다
+([clients.md](../clients.md)).
 
 ⚠️ 플랫폼 프로필(그룹바이·oopy)에 `A 피부과`로 기재돼 있으나 **A로 시작하는 고객사는 존재하지 않는다.** 교체 대상이다.
 
@@ -39,6 +41,14 @@ Git 대조 결과 **동일 저장소**다 — `packages/admin-api`·`packages/ho
 - Code-backed: multi-brand backend monorepo의 service boundary, migration/domain audit, documentation governance가 확인됐다.
 - Contribution boundary: backend architecture와 migration flow 주도. 고객 제품 전체 단독 구축은 아니다.
 - 분리 기록 (2026-08-09): domain audit 과 documentation governance 를 `nexus.domain-audit-governance` 로 분리했다. **strength 는 `contributed`** — 위 contribution boundary 가 architecture 와 migration flow 만 '주도'로 명시하므로 audit·governance 를 `led` 로 표현할 근거가 없다. Git history 로 주도권이 확인되면 상향한다.
+
+## Product Scope And Business Outcome
+
+- User-confirmed (2026-08-20): NEXUS는 외부 피부과 여러 곳의 홈페이지·관리·예약 운영을 지원하는 시스템이다.
+- User-confirmed (2026-08-20): 제품 적용 뒤 예약률이 개선됐고, 그 결과 고객사의 매출 성과에 기여했다.
+- Contribution boundary: 김대정의 직접 기여는 NEXUS backend architecture·Admin/Homepage API·권한·데이터 경계의 설계·구축 주도다. 예약률과 매출은 여러 기능과 운영 변화가 함께 만든 제품·팀·고객사 outcome이므로 개인 단독 인과로 표현하지 않는다.
+- Measurement boundary: 예약률의 기준 기간·분모·전후 수치와 매출 증분은 아직 확인되지 않았다. 공개 문구는 `예약률 개선과 고객사 매출 성과에 기여`까지만 허용하며, 정확한 증가율·매출액·직접 귀속은 사용하지 않는다.
+- Delivery boundary: 현재 repository의 재구축·접근 경계 작업은 진행 중이다. 기존 운영 제품의 outcome을 현재 branch의 production 배포 완료나 안정화 효과로 소급하지 않는다.
 
 ## Terraform Infra
 
@@ -90,27 +100,18 @@ Code-backed (2026-08-17, `workspace:NEXUS`):
 - Managed Identity 인증과 롤링 배포 파이프라인
 - **be-template(조직 표준)과 범위가 다르다** — 이것은 단일 제품 내 품질 체계다
 
-## Relation To Centurion (2026-08-12 user-confirmed)
+## Project Boundary With DAY And Centurion
 
-> user: "centurion & nexus 사실 거의 동일하거든"
-
-**NEXUS는 별도 제품이 아니라 Centurion 제품군의 저장소 라벨이다.**
-`clients.md`도 어드민 시스템을 "**Centurion** 데이뷰 & 세라미크 어드민 시스템"으로 기록한다.
-
-→ **공개 문안에서 NEXUS를 Centurion과 나란히 놓지 않는다.** 저장소 라벨을 제품으로 병기하면
-담당 제품이 하나 더 있는 것처럼 읽혀 범위가 부풀려진다 (claim 강도 부풀리기와 같은 문제).
-
-→ 공개 표기는 **어드민/통합 관리 시스템**이라는 기능 명칭으로 푼다
-(2026-08-12 user 제안: "그런 어드민 시스템 구축 및 운용 이런식으로 풀어도 되지않을까?").
-역량 축 제목에 제품·저장소 코드명을 쓰지 않는 v4.1 규칙과도 정합한다.
-
-→ evidence 문서와 claim namespace(`nexus.*`)는 저장소 단위 추적을 위해 그대로 둔다.
-바뀌는 것은 **공개 문안의 표기**뿐이다.
+- User-confirmed correction (2026-08-20): **NEXUS와 DAY는 서로 다른 프로젝트다.**
+- NEXUS는 특정 외부 피부과들의 홈페이지·관리·예약 운영을 지원하는 multi-brand system이다.
+- DAY는 특정 고객사 전용 운영 시스템이 아니라 범용 피부과 CRM을 목표로 한 Centurion project다.
+- 두 프로젝트는 같은 회사의 의료 제품·infra context를 공유할 수 있지만, 제품 범위·고객·repository·성과를 서로의 근거로 합치지 않는다.
+- 2026-08-12의 `NEXUS는 Centurion 제품군의 repository label` 판정은 이번 사용자 정정으로 superseded다. NEXUS를 DAY의 이전 버전·기반 시스템 또는 Centurion의 기능명으로 설명하지 않는다.
 
 ## Public Disclosure
 
-- active public resume에서는 `NEXUS`를 Centurion과 병렬 제품명으로 쓰지 않고 `어드민/통합 관리 시스템` 기능명으로 푼다. claim namespace는 repository trace를 위해 유지한다.
-- 고객사와 브랜드명은 공개하지 않는다. 어드민 고객사는 **`D·C 피부과`** 마스킹 코드로만 쓴다.
+- active public resume에서는 고객사·코드명을 빼고 `여러 피부과의 운영·예약 시스템`으로 설명한다. claim namespace `nexus.*`는 repository trace를 위해 유지한다.
+- 고객사와 브랜드명은 공개하지 않는다. 고객사 식별이 필요하지 않은 문장에서는 마스킹 코드도 생략한다.
 
 ## Rejected Or Unverified Claims
 
@@ -122,6 +123,8 @@ Code-backed (2026-08-17, `workspace:NEXUS`):
 - **도메인 개수 단정** — 파일 수를 도메인 수로 환산할 근거가 없다
 - **500 에러 완전 해결·응답 시간 개선** — 모니터링 지표 없음
 - **MAU·긴급 이슈 발생률·서버 비용 절감률** — evidence 어디에도 없다 (그룹바이 기재분, 2026-08-10 확인)
+- 예약률 개선의 정확한 수치·매출 증분·개인 단독 인과
+- NEXUS와 DAY를 같은 제품·repository·성과로 합치는 표현
 
 ## 관련
 

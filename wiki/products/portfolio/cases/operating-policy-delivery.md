@@ -8,6 +8,7 @@ tags: [portfolio, backend, product-operations, ax, cross-project-pattern]
 resume_tag: OPERATING POLICY DELIVERY
 origin: NEXUS 관리 backend · Centurion DAY · MediSolve AI Product Operations
 claim_ids:
+  - nexus.hospital-operations-revenue-contribution
   - nexus.backend-architecture
   - nexus.admin-backend-ownership
   - centurion.day-product-integration
@@ -36,7 +37,7 @@ AI가 만든 변경은 Ruff·Pyright·pre-commit과 static·type·test, QA·rele
 
 ## My Scope
 
-- NEXUS에서는 병원 product backend monorepo의 service boundary와 migration flow, admin/homepage API를 독립 모듈로 둔 backend 설계·구축을 리드하고 있습니다. 2026년 8월 기준 진행 중이며 제품 전체나 단독 구축으로 표현하지 않습니다.
+- NEXUS에서는 외부 피부과 여러 곳의 홈페이지·관리·예약 backend monorepo의 service boundary와 migration flow, admin/homepage API를 독립 모듈로 둔 설계·구축을 리드하고 있습니다. 현재 repository의 재구축은 2026년 8월 기준 진행 중이며 제품 전체나 단독 구축으로 표현하지 않습니다.
 - Centurion DAY에서는 예약 정책의 backend 판단, frontend 표시, QA seed/test, release 문서 연결을 리드했습니다. DAY 제품 전체 구축은 담당 범위가 아닙니다.
 - MEDINESS 서비스는 구현 담당자와 제품 요구·운영 흐름을 구체화하는 설계에 참여했습니다. `contributed` 상한이며 서비스 구현이나 architecture·시스템 구조 설계 주도·전담은 주장하지 않습니다.
 - MediSolve AI Product Operations에서는 제품 결정을 decision·SPEC·Work Package와 BE·FE·QA·release gate 실행으로 연결하는 운영을 리드했습니다. 제품 기획 전담이나 조직 전체 운영 총괄로 표현하지 않습니다.
@@ -47,7 +48,7 @@ AI가 만든 변경은 Ruff·Pyright·pre-commit과 static·type·test, QA·rele
 - 운영 요청은 화면이나 기능의 형태로 들어오지만, 구현 전에 누가 어떤 상태에서 무엇을 조회·변경할 수 있는지와 데이터 규칙을 정해야 합니다.
 - 정책 변경은 backend 판단에만 머물지 않고, 프로젝트별로 검증된 frontend 표시·QA·release 또는 migration·운영 gate까지 전달되어야 합니다.
 - 세 작업 맥락은 코드베이스, 전달 범위, ownership이 서로 다릅니다. 공통점은 판단 패턴이며 시스템 구성이나 결과를 합산할 수 없습니다.
-- NEXUS 관리 backend는 진행 중이므로 완료형 결과나 production 안정화 효과를 주장할 수 없습니다.
+- NEXUS backend 재구축은 진행 중이므로 현재 branch의 production 안정화 효과를 주장할 수 없습니다. 기존 운영 제품의 예약률·매출 outcome과 현재 재구축 상태를 분리합니다.
 
 ## Decision And Alternatives
 
@@ -92,6 +93,7 @@ diagram: 제품 결정 -> decision·SPEC -> Work Package -> BE·FE·QA·release 
 ## Evidence, Result, Limits
 
 - Code-backed · NEXUS: backend monorepo service boundary와 migration flow 주도, admin/homepage API 독립 모듈과 gateway 구성이 확인됨. `led`, 진행 중.
+- User-confirmed · NEXUS Product Outcome: 기존 운영 제품은 예약률 개선을 통해 고객사 매출 성과에 기여함. `contributed/medium`; 정확한 증가율·매출 증분·backend 단독 인과는 claim하지 않음.
 - Code-backed · Centurion DAY: 예약 정책을 backend 판단, frontend 표시, QA seed/test, release 문서로 연결한 변경이 확인됨. `led`, 검증 완료.
 - User-confirmed · MEDINESS Product Design: 서비스 구현 담당자와 제품 요구·운영 흐름을 구체화하는 설계에 참여함. `contributed`; 서비스 구현 및 architecture·시스템 구조 설계 주도는 claim하지 않음.
 - Source-backed · Product Operations: pipeline registry와 decision·SPEC·Work Package·owner lane·QA approval·release gate 구조가 확인됨. `led`, 제품 운영 범위.
@@ -101,7 +103,7 @@ diagram: 제품 결정 -> decision·SPEC -> Work Package -> BE·FE·QA·release 
 - Result: 세 근거의 검증된 범위 안에서 제품 판단과 backend·검증·release 실행 사이의 연결을 설명할 수 있음.
 - Limits: 하나의 통합 시스템, 세 작업 맥락 전체의 단독 구축, 공유주거·PMS 직접 경험, 제품 기획 전담, 운영 시간·오류 감소 같은 미측정 효과를 주장하지 않음.
 - AX Limits: AI가 제품 판단·architecture·release 결정을 대체했다거나 세 사례를 end-to-end로 수행했다고 주장하지 않음. 완전 자동화와 생산성·품질 정량 향상도 주장하지 않음.
-- NEXUS는 Centurion 제품군의 repository label이며 DAY와 별개의 제품으로 부풀리지 않습니다. 이 케이스의 세 lane은 서로 독립적으로 검증된 프로젝트·작업 맥락을 뜻합니다.
+- DAY는 Centurion의 범용 피부과 CRM 영역이고, NEXUS는 Centurion과 별도의 외부 피부과 운영·예약 시스템입니다. 이 케이스의 세 lane은 서로 독립적으로 검증된 프로젝트·작업 맥락을 뜻합니다.
 
 ## Stack
 
