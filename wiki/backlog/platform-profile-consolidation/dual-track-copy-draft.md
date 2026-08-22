@@ -1,13 +1,15 @@
 ---
 type: spec
-title: Dual Track 전파 문안 (확정)
-description: Backend Engineer + PO 병기와 "정량은 상세가 소유" 원칙의 전 플랫폼 확정 문안.
-timestamp: 2026-08-13
-status: confirmed
+title: Dual Track 전파 문안 (과거 확정본)
+description: 2026-08-13 당시 Backend Engineer + PO 병기와 플랫폼 문안 결정 기록.
+timestamp: 2026-08-22
+status: superseded
 tags: [platform, copy, identity, dual-track]
 ---
 
 # Dual Track 전파 문안 (확정)
+
+> **Superseded (2026-08-22)**: 현재 identity는 `Maker` 브랜드와 `Tech Lead · Backend Engineer` 역할 hierarchy를 사용한다. 플랫폼 문안은 [Platform Profile Paste Package — Maker v1](2026-08-22-platform-paste-package.md)이 소유한다.
 
 **2026-08-10 확정.** 검토 3건이 모두 답변돼 초안 → 확정본으로 승격했다.
 

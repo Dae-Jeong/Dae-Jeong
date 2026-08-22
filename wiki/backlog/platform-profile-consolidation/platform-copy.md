@@ -9,7 +9,7 @@ tags: [platform, copy, draft]
 
 # 플랫폼 붙여넣기 문안
 
-> **Superseded:** 이 파일은 v3 당시 기록이며 현재 입력 문안으로 사용하지 않는다. active 플랫폼 변환본은 [dual-track-copy-draft.md](dual-track-copy-draft.md)가 소유한다.
+> **Superseded:** 이 파일은 v3 당시 기록이며 현재 입력 문안으로 사용하지 않는다. active 플랫폼 변환본은 [Platform Profile Paste Package — Maker v1](2026-08-22-platform-paste-package.md)이 소유한다.
 
 당시 기준: [sync-spec](sync-spec.md) · [canonical-baseline](../../profile/canonical-baseline.md) · superseded resume v4
 

@@ -1,0 +1,222 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1774" height="1050" viewBox="0 0 1774 1050" role="img" aria-labelledby="title desc">
+  <title id="title">Thready 제품 런타임과 배포 운영 아키텍처</title>
+  <desc id="desc">현재 운영 중인 브라우저, Next.js와 Vercel, FastAPI 제품 API와 Azure App Service, PostgreSQL, Object Storage, Threads API 경로와 구현 및 STG 검증 단계인 독립 AI Application과 데이터 전달 경계, GitHub Actions 기반 배포 및 관측 흐름을 보여주는 구조도</desc>
+
+  <defs>
+    <pattern id="architecture-grid" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M32 0H0V32" fill="none" stroke="#EEF1F4" stroke-width="1"/>
+    </pattern>
+    <marker id="arrow-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10Z" fill="#252A31"/>
+    </marker>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10Z" fill="#0B67D1"/>
+    </marker>
+    <style>
+      .ko { font-family: "Pretendard Variable", Pretendard, Arial, sans-serif; fill: #171A1F; }
+      .tech { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #59616B; }
+      .region-title { font-size: 40px; font-weight: 700; letter-spacing: -0.02em; }
+      .region-en { font-size: 28px; font-weight: 600; letter-spacing: 0.02em; }
+      .node-title { font-size: 30px; font-weight: 700; letter-spacing: -0.015em; }
+      .node-tech { font-size: 28px; font-weight: 500; }
+      .edge-label { font-size: 28px; font-weight: 600; }
+      .badge { font-size: 28px; font-weight: 700; }
+      .node { fill: #FFFFFF; stroke: #929CA7; stroke-width: 2; rx: 10; }
+      .node-blue { fill: #F7FAFE; stroke: #0B67D1; stroke-width: 2; rx: 10; }
+      .current-line { fill: none; stroke: #252A31; stroke-width: 3; marker-end: url(#arrow-ink); }
+      .ai-line { fill: none; stroke: #0B67D1; stroke-width: 3; stroke-dasharray: 11 9; marker-end: url(#arrow-blue); }
+    </style>
+  </defs>
+
+  <rect width="1774" height="1050" fill="#FFFFFF"/>
+
+  <!-- Product runtime canvas -->
+  <rect x="45" y="72" width="1684" height="648" fill="url(#architecture-grid)" stroke="#AEB7C2" stroke-width="2" rx="12"/>
+  <text x="80" y="126" class="ko region-title">제품 런타임</text>
+  <text x="330" y="126" class="tech region-en">PRODUCT RUNTIME · 현재 운영</text>
+
+  <g aria-label="현재 운영 범례">
+    <path d="M1372 115H1430" stroke="#252A31" stroke-width="3"/>
+    <text x="1446" y="126" class="ko node-tech">현재 운영</text>
+  </g>
+
+  <!-- Browser -->
+  <g aria-label="사용자 브라우저">
+    <rect x="80" y="220" width="205" height="132" class="node"/>
+    <rect x="100" y="245" width="54" height="40" fill="none" stroke="#252A31" stroke-width="4" rx="3"/>
+    <path d="M112 299H142M127 286V299" fill="none" stroke="#252A31" stroke-width="4" stroke-linecap="round"/>
+    <text x="173" y="267" class="ko node-title">사용자</text>
+    <text x="173" y="309" class="tech node-tech">Browser</text>
+  </g>
+
+  <!-- Next.js / Vercel -->
+  <g aria-label="Next.js 프론트엔드 Vercel">
+    <rect x="345" y="220" width="248" height="132" class="node"/>
+    <rect x="365" y="244" width="58" height="58" fill="#111111" rx="8"/>
+    <path d="M379 289V257L409 289V257" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linejoin="round"/>
+    <text x="432" y="266" class="ko node-title">Vercel 웹 앱</text>
+    <text x="432" y="307" class="tech node-tech">Next.js</text>
+  </g>
+
+  <!-- Product API / Azure App Service -->
+  <g aria-label="FastAPI 제품 API Azure App Service">
+    <rect x="670" y="220" width="286" height="132" class="node"/>
+    <circle cx="705" cy="273" r="29" fill="#009688"/>
+    <path d="M712 243L690 277H704L698 303L722 267H708Z" fill="#FFFFFF"/>
+    <text x="749" y="266" class="ko node-title">제품 API</text>
+    <text x="749" y="307" class="tech node-tech">FastAPI</text>
+  </g>
+
+  <!-- Threads API -->
+  <g aria-label="외부 Threads API">
+    <rect x="1410" y="220" width="290" height="132" class="node"/>
+    <circle cx="1447" cy="273" r="29" fill="#111111"/>
+    <text x="1447" y="284" text-anchor="middle" font-family="Arial, sans-serif" font-size="38" font-weight="700" fill="#FFFFFF">@</text>
+    <text x="1487" y="266" class="ko node-title">발행 채널</text>
+    <text x="1487" y="307" class="tech node-tech">Threads API</text>
+  </g>
+
+  <!-- Current runtime request path -->
+  <path d="M285 286H345" class="current-line"/>
+  <text x="300" y="266" class="tech edge-label">HTTPS</text>
+  <path d="M593 286H670" class="current-line"/>
+  <text x="602" y="266" class="tech edge-label">REST</text>
+  <path d="M956 286H1410" class="current-line"/>
+  <text x="968" y="266" class="tech edge-label">OAuth · publish · metrics</text>
+
+  <!-- Product-owned data -->
+  <g aria-label="제품 PostgreSQL 원장과 Outbox">
+    <rect x="80" y="395" width="350" height="135" class="node"/>
+    <ellipse cx="119" cy="430" rx="27" ry="10" fill="#336791"/>
+    <path d="M92 430V481C92 488 104 494 119 494C134 494 146 488 146 481V430" fill="#336791"/>
+    <ellipse cx="119" cy="481" rx="27" ry="10" fill="#27526F"/>
+    <text x="163" y="432" class="ko node-title">제품 원장</text>
+    <text x="163" y="470" class="tech node-tech">PostgreSQL</text>
+    <text x="150" y="510" class="tech node-tech">Outbox · SAME TX</text>
+  </g>
+
+  <g aria-label="Object Storage">
+    <rect x="470" y="408" width="330" height="114" class="node"/>
+    <rect x="494" y="433" width="54" height="14" fill="#2E8B80" rx="3"/>
+    <rect x="494" y="453" width="54" height="14" fill="#39A99B" rx="3"/>
+    <rect x="494" y="473" width="54" height="14" fill="#65C7BB" rx="3"/>
+    <text x="558" y="451" class="ko node-title">파일 저장</text>
+    <text x="558" y="491" class="tech node-tech">Object Storage</text>
+  </g>
+
+  <path d="M720 352V374H255V395" class="current-line"/>
+  <rect x="92" y="353" width="386" height="38" fill="#FFFFFF"/>
+  <text x="104" y="382" class="tech edge-label">SQL · same transaction</text>
+  <path d="M846 352V374H610V408" class="current-line"/>
+  <rect x="602" y="353" width="212" height="38" fill="#FFFFFF"/>
+  <text x="614" y="382" class="tech edge-label">object I/O</text>
+
+  <!-- Implemented and STG-verified AI boundary -->
+  <rect x="820" y="520" width="870" height="174" fill="#F7FAFE" stroke="#0B67D1" stroke-width="2" stroke-dasharray="12 9" rx="10"/>
+  <text x="846" y="557" class="ko node-title" fill="#0B67D1">AI 실행 경계</text>
+  <text x="1035" y="557" class="tech node-tech" fill="#0B67D1">AI APPLICATION BOUNDARY</text>
+  <rect x="1452" y="531" width="214" height="42" fill="#E7F1FD" stroke="#0B67D1" stroke-width="2" rx="21"/>
+  <text x="1559" y="562" text-anchor="middle" class="ko badge" fill="#0B67D1">구현·STG 검증</text>
+
+  <g aria-label="FastAPI AI Application">
+    <rect x="840" y="580" width="320" height="92" class="node-blue"/>
+    <circle cx="875" cy="626" r="25" fill="#0B67D1"/>
+    <text x="875" y="636" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#FFFFFF">AI</text>
+    <text x="915" y="614" class="ko node-title">AI 실행부</text>
+    <text x="915" y="651" class="tech node-tech">FastAPI AI App</text>
+  </g>
+
+  <g aria-label="AI PostgreSQL">
+    <rect x="1180" y="580" width="240" height="92" class="node-blue"/>
+    <ellipse cx="1214" cy="610" rx="22" ry="8" fill="#0B67D1"/>
+    <path d="M1192 610V642C1192 648 1202 652 1214 652C1226 652 1236 648 1236 642V610" fill="#0B67D1"/>
+    <ellipse cx="1214" cy="642" rx="22" ry="8" fill="#0954A9"/>
+    <text x="1250" y="614" class="ko node-title">실행 DB</text>
+    <text x="1250" y="651" class="tech node-tech">PostgreSQL</text>
+  </g>
+
+  <g aria-label="외부 AI와 소재 Provider">
+    <rect x="1440" y="580" width="226" height="92" class="node-blue"/>
+    <circle cx="1468" cy="612" r="9" fill="#0B67D1"/>
+    <circle cx="1493" cy="612" r="9" fill="#2E8B80"/>
+    <circle cx="1481" cy="635" r="9" fill="#59616B"/>
+    <text x="1514" y="614" class="ko node-title">외부 연동</text>
+    <text x="1514" y="651" class="tech node-tech">AI API</text>
+  </g>
+
+  <path d="M812 352V500H1000V580" class="ai-line"/>
+  <rect x="826" y="468" width="610" height="42" fill="#FFFFFF"/>
+  <text x="838" y="499" class="tech edge-label" fill="#0B67D1">authenticated HTTP · 생성 요청</text>
+
+  <path d="M430 465V558H800V626H840" class="ai-line"/>
+  <rect x="128" y="536" width="670" height="42" fill="#FFFFFF"/>
+  <text x="140" y="567" class="tech edge-label" fill="#0B67D1">relay · retry · delivery version fence</text>
+
+  <path d="M1160 626H1180" class="ai-line"/>
+  <path d="M1420 626H1440" class="ai-line"/>
+
+  <!-- Delivery and operations canvas -->
+  <rect x="45" y="752" width="1684" height="258" fill="url(#architecture-grid)" stroke="#AEB7C2" stroke-width="2" rx="12"/>
+  <text x="80" y="802" class="ko region-title">배포·운영</text>
+  <text x="278" y="802" class="tech region-en">DELIVERY &amp; OPERATIONS</text>
+
+  <g aria-label="GitHub source repository">
+    <rect x="80" y="830" width="210" height="100" class="node"/>
+    <circle cx="114" cy="880" r="25" fill="#171A1F"/>
+    <path d="M101 888V874L114 866L127 874V888M114 866V894" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="150" y="868" class="ko node-title">소스 저장소</text>
+    <text x="150" y="907" class="tech node-tech">GitHub</text>
+  </g>
+
+  <g aria-label="GitHub Actions CI build">
+    <rect x="350" y="830" width="300" height="100" class="node"/>
+    <circle cx="390" cy="880" r="25" fill="#2088FF"/>
+    <path d="M383 867L402 880L383 893Z" fill="#FFFFFF"/>
+    <text x="415" y="868" class="ko node-title">검증·빌드</text>
+    <text x="415" y="907" class="tech node-tech">GitHub Actions</text>
+  </g>
+
+  <g aria-label="Vercel frontend delivery">
+    <rect x="710" y="830" width="190" height="100" class="node"/>
+    <path d="M738 897L758 861L778 897Z" fill="#111111"/>
+    <text x="793" y="868" class="ko node-title">프런트</text>
+    <text x="793" y="907" class="tech node-tech">Vercel</text>
+  </g>
+
+  <g aria-label="Azure Container Registry">
+    <rect x="980" y="830" width="280" height="100" class="node"/>
+    <path d="M1006 867L1030 856L1054 867L1030 879Z" fill="#0B67D1"/>
+    <path d="M1006 867V891L1030 904V879ZM1054 867V891L1030 904V879Z" fill="#69A7E8"/>
+    <text x="1070" y="868" class="ko node-title">컨테이너 이미지</text>
+    <text x="1070" y="907" class="tech node-tech">Azure ACR</text>
+  </g>
+
+  <g aria-label="Azure App Service product API deployment">
+    <rect x="1320" y="830" width="340" height="100" class="node"/>
+    <circle cx="1357" cy="880" r="25" fill="#0078D4"/>
+    <path d="M1343 884L1353 870L1360 877L1372 866M1345 891H1371" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="1396" y="868" class="ko node-title">제품 API 배포</text>
+    <text x="1396" y="907" class="tech node-tech">Azure App Service</text>
+  </g>
+
+  <path d="M290 880H350" class="current-line"/>
+  <text x="304" y="856" class="tech edge-label">PR</text>
+  <path d="M650 868H710" class="current-line"/>
+  <path d="M500 930V942H950V880H980" class="current-line"/>
+  <path d="M1260 880H1320" class="current-line"/>
+
+  <!-- Verification and observability rails -->
+  <g aria-label="STG migration verification">
+    <rect x="80" y="952" width="830" height="42" fill="#F3FAF5" stroke="#16833B" stroke-width="2" rx="6"/>
+    <circle cx="108" cy="973" r="11" fill="#16833B"/>
+    <path d="M102 973L107 978L116 968" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="132" y="983" class="ko node-tech" fill="#176B36">STG 이관 · rehearsal · count/MD5 · FK · API E2E</text>
+  </g>
+
+  <g aria-label="Azure observability">
+    <rect x="950" y="952" width="710" height="42" fill="#F7FAFE" stroke="#0B67D1" stroke-width="2" rx="6"/>
+    <path d="M978 983V967M994 983V960M1010 983V972" fill="none" stroke="#0B67D1" stroke-width="4" stroke-linecap="round"/>
+    <text x="1035" y="983" class="ko node-tech" fill="#0954A9">운영 관측 · Azure Monitor · Log Analytics</text>
+  </g>
+  <path d="M1490 930V952" class="current-line"/>
+</svg>

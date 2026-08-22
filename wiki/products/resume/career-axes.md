@@ -2,7 +2,7 @@
 type: reference
 title: 회사별 역량 축 지도
 description: 각 회사 경력 설명의 축 구성·근거 claim·미사용 자산을 한 장으로 본다. 축은 회사마다 다르고 JD에 따라 재배치된다.
-timestamp: 2026-08-18
+timestamp: 2026-08-21
 derived_from: [rules/persuasive-writing.md, backlog/platform-profile-consolidation/dual-track-copy-draft.md, evidence/claims/]
 tags: [resume, career, axes, reference]
 ---
@@ -35,7 +35,7 @@ user: "각 회사들별로 이 구조가 좀 변동될 수 있겠지 / 그 관�
 
 | 층위 | 어디에 | 축 |
 | --- | --- | --- |
-| **전역** | 웹 이력서 `핵심 역량` 섹션 | ① backend 구축·재구축 ② AI 출력 품질 판정·평가 ③ 어드민 시스템 구축·운영 ④ Agent 워크플로우·AX ⑤ 인프라·플랫폼 운영 ⑥ 제품 운영·결정 |
+| **전역** | 웹 이력서 `대표 성과`·`기술` 섹션 | ① backend 구축·재구축 ② AI 출력 품질 판정·평가 ③ 어드민 시스템 구축·운영 ④ 회사 업무 AX·Agent 실행 기준 ⑤ 인프라·플랫폼 운영 ⑥ 제품 운영·결정 |
 | **회사별** | 플랫폼 경력 설명 · 웹 이력서 경력 | 회사마다 다름 (아래) |
 
 전역 축은 **여러 회사를 가로지르는 주장**이다 (예: ①은 메디솔브 + 스튜디오랩 둘 다 걸침).
@@ -57,14 +57,18 @@ user: "각 회사들별로 이 구조가 좀 변동될 수 있겠지 / 그 관�
 | 1 | AI 제품 full-stack 구축·backend 재구축 | Thready · Centurion | `thready.frontend-product-delivery` `thready.backend-rebuild` `thready.rebuild-decision-execution` `thready.ai-service-migration` `thready.ai-replica-outbox` `centurion.bay-async-backend` | led / owned / owned / owned / owned / led | 6 |
 | 2 | 시장 데이터 제품화·AI 출력 평가 | Thready | `thready.threads-market-outcome-design` `thready.labeling-corpus-workbench` `thready.hook-rubric-experiment` `thready.generation-quality-system` | owned ×4 | 4 |
 | 3 | 피부과 운영·예약 시스템 구축 | 외부 피부과 운영·예약 시스템 | `nexus.admin-backend-ownership` `nexus.backend-architecture` `nexus.quality-automation` `nexus.hospital-operations-revenue-contribution` | led ×3 / contributed ×1 | 6 |
-| 4 | Agent 워크플로우·AX | Thready · 조직 표준 템플릿 | `thready.agent-pipeline-design` `be-template.backend-standard` `be-template.agent-context` `be-template.team-leverage` | owned ×4 | 5 |
+| 4 | 회사 업무 AX·Agent 실행 기준 | MEDINESS · Thready · 조직 표준 템플릿 | `mediness.company-work-ax-design` `thready.agent-pipeline-design` `be-template.backend-standard` `be-template.agent-context` `be-template.team-leverage` | contributed / owned ×4 | 6 |
 | 5 | 인프라·플랫폼 운영 | 회사 Azure · Centurion | `infra.company-azure-ownership` `infra.terraform-state-safety` `infra.azure-observability` `nexus.terraform-infra` `centurion.shared-infra` | **owned ×5** | 4 |
 | 6 | 제품 운영·결정 | Thready · 제품팀 · Centurion | `thready.product-zero-to-one-contribution` `career.medisolve-role-evolution` `mediness.product-operations` `centurion.say-realtime-ai` | led / led / led / **co-led** | 5 |
 
 **⚠️ 축 3의 backend 재구축은 `led`이고 진행 중이다** — "단독 구축"(Git 커밋 83%, 100% 아님)·완료형·도메인 개수 단정·
 Closure Table(repo에 없는 자기보고 오류)·고객사 실명 전부 금지. 예약률·매출은 기존 제품의 `contributed/medium` outcome이며 정확한 수치·개인 단독 인과를 쓰지 않는다.
 
-**⚠️ 축 4의 SAY는 co-led다** — "공동 주 기여"를 반드시 유지한다. 강도 상향 금지.
+**⚠️ 축 6의 SAY는 co-led다** — "공동 주 기여"를 반드시 유지한다. 강도 상향 금지.
+
+**⚠️ 회사 AX·제품 운영·Backend Template의 동사를 합치지 않는다** — `mediness.company-work-ax-design`은 회사 업무 구조의
+`설계 참여`, `mediness.product-operations`는 제품별 Decision→release `적용·운영 리드`, Backend Template 3개 claim은
+`직접 구축/owned`다. 이력서에서는 인접한 04·05 사례로 보여주되 하나의 ownership으로 묶지 않는다.
 
 ### 더데이랩스 (2025.02 — 2025.04, 프리랜서 Backend Engineer)
 
@@ -200,6 +204,7 @@ PM 축은 `0→1 구간 통과 → 대기업 POC → 상세페이지 제작 flow
 | AI Engineer (LLM·Agent) | ② 품질 판정 → ④ Agent → ① 구축 → ⑥ 운영 | eval 설계가 2026 1순위 스크린 |
 | Backend Engineer | ① 구축 → ⑤ 인프라 → ③ 어드민 → ④ Agent | 인프라·어드민이 전면 |
 | AI PM / AI PO | ⑥ 운영·결정 → ② 품질 판정 → ① 구축 | 스튜디오랩 축 1을 함께 올린다 |
+| AX / FDE | ⑥ 제품 운영·결정 → ④ 회사 업무 AX·Agent 실행 기준 → ① 구축 | 고객·제품 문제를 실행 구조와 human gate로 바꾼 범위를 전면에 둔다 |
 | Platform / DevOps | ⑤ 인프라 → ① 구축 → ③ 어드민 | Azure·Terraform owned 3건이 최강 근거 |
 
 ## 5. 변경 이력
@@ -217,3 +222,4 @@ PM 축은 `0→1 구간 통과 → 대기업 POC → 상세페이지 제작 flow
 | 2026-08-12 | v4.5 PM 축을 0→1 서사로 재구성 (0→1 → POC → Flow 재설계 → 특허) |
 | 2026-08-18 | 고정 bullet·회사별 분량 quota 폐기. recency는 정렬 신호로만 사용하고 고유한 technical evidence는 필요한 깊이로 유지 |
 | 2026-08-20 | 기존 NEXUS ≡ Centurion 판정을 supersede. NEXUS는 외부 피부과 운영·예약 시스템, DAY는 범용 피부과 CRM으로 분리하고 예약률·매출 기여를 제품 outcome으로 추가 |
+| 2026-08-21 | 회사 업무 AX 구조 설계 참여를 제품 운영·Backend Template·인프라와 구분하고, 직군별로 AX 비중만 조절하도록 축과 기여 동사를 재정의 |

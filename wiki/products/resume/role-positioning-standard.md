@@ -2,7 +2,7 @@
 type: product-contract
 title: Resume Role Positioning Standard
 description: 김대정의 역할을 직함이 아니라 반복된 판단·기술 경계·운영 결과로 전달하는 이력서 기준.
-timestamp: 2026-08-21
+timestamp: 2026-08-22
 derived_from:
   - profile/identity.md
   - evidence/claims/
@@ -45,7 +45,7 @@ tags: [resume, positioning, role, backend]
 | 주 역할 | `Tech Lead` | 제품 범위·품질 기준·실행 정렬 책임을 먼저 전달 |
 | 기술 기반 | `Backend Engineer` | API·data·transaction·async/realtime·infra 전문성을 증명 |
 | 전문 영역 | `AI Product Systems` | AI runtime·quality·서비스 경계와 운영 범위 |
-| 차별화되는 작동 방식 | 제품 판단을 backend contract와 운영 결과로 연결 | 소개와 반복된 사례로 증명 |
+| 차별화되는 작동 방식 | 고객 문제를 유료 제품 운영으로 연결하고, 그 제품을 버틸 backend 경계를 직접 설계 | 제품 운영·재구축·비동기 복구·AI 데이터 경계·Backend Template·인프라 사례가 반복해서 증명 |
 
 금지:
 
@@ -75,18 +75,22 @@ tags: [resume, positioning, role, backend]
 
 ## AX·Engineering System 사례의 6문답
 
-AX 사례는 application code 유무가 아니라 실제 delivery 방식이 바뀌었는지로 판정한다.
+AX 사례는 application code 유무가 아니라 제품과 회사 업무를 어떻게 다시 설계하고 실제 운영에 적용했는지로 판정한다.
 
-1. 어떤 수작업·handoff·의사결정 병목이 있었는가.
-2. 무엇을 source of truth로 삼았는가.
-3. decision·SPEC·Work Package·QA·release 상태를 어떻게 연결했는가.
-4. 사람·agent·도구의 read/write·approval 경계는 무엇인가.
+1. 제품 개발과 의사결정·회의·업무 배정·승인·후속 작업 중 무엇이 끊기거나 반복됐는가.
+2. 어떤 기록과 상태를 source of truth로 삼았는가.
+3. 제품의 Decision·SPEC·Work Package·QA·release와 회사 업무의 decision·assignment·approval·follow-up을 어떻게 연결했는가.
+4. agent가 맥락을 읽고 준비할 일과 사람이 판단·승인할 일의 경계는 무엇인가.
 5. 본인이 설계 참여·적용/운영 리드·직접 구축 중 어디까지 했는가.
 6. 실제 운영 artifact, version trace, release 결과, 재사용 효과 중 무엇이 남았는가.
 
 `AX`라는 단어만으로는 대표 사례가 되지 않는다. 위 여섯 항목 중 다섯 개 이상을 검증하고,
 기여 동사를 claim strength에 맞게 나눠야 한다. 직접 service code를 작성하지 않았더라도 실행 가능한
 contract·state·gate를 세팅하고 실제 운영을 책임했다면 이력으로 사용한다.
+
+현재 공통 이력서에서는 회사 AX 구조 설계 참여와 제품별 적용·운영 리드를 경력·기술에 남기고,
+직접 구축한 backend 사례를 대표 성과에서 우선한다. AX/FDE 등 직군별 지원본에서 AX를 대표 사례로
+올리더라도 `참여`·`리드`·`owned`를 하나의 동사로 압축하지 않는다.
 
 ## 김대정에게 반복되는 역할 패턴
 
@@ -97,7 +101,7 @@ contract·state·gate를 세팅하고 실제 운영을 책임했다면 이력으
 | AI 실행과 품질을 운영 가능한 system으로 구체화 | AI service boundary·Outbox·3층 품질 판정 | prompt 사용자가 아니라 AI product runtime과 quality를 다루는 engineer |
 | 제품 정책을 여러 실행 주체의 계약으로 번역 | 예약 정책의 BE·FE·QA·release 연결, 제품 운영 gate | 기획을 구현으로 넘기는 사람이 아니라 실행 기준까지 닫는 engineer |
 | 해결을 팀의 반복 가능한 기반으로 확장 | FastAPI template·runbook·agent context | 개인 생산성에 머물지 않고 team leverage를 만드는 engineer |
-| 제품 delivery를 AX 운영 체계로 전환 | 제품별 Decision·SPEC·Work Package·owner lane·release gate 적용·운영 | AI 기능만 붙이는 사람이 아니라 사람·agent의 실행과 승인 경계를 설계하는 engineer |
+| 제품과 회사 업무를 AX 관점에서 다시 설계 | 제품별 Decision·SPEC·Work Package·owner lane·release gate 적용·운영, 의사결정·회의·업무 배정·승인·후속 작업의 human gate 설계 참여 | AI 기능만 붙이는 사람이 아니라 조직이 일하는 흐름과 사람·agent의 책임 경계를 설계하는 engineer |
 | application과 운영 환경을 함께 책임 | Azure·Terraform infra, product backend 운영 | 배포 이후를 다른 역할에 넘기지 않는 infra-aware backend engineer |
 
 ## 섹션별 역할
@@ -160,7 +164,7 @@ contract·state·gate를 세팅하고 실제 운영을 책임했다면 이력으
 
 ## 문장 규칙
 
-- 제목: 문제 또는 결과가 먼저 보이는 명사형 문장.
+- 제목: 문제 또는 결과가 먼저 보이는 짧은 문장. contribution strength가 다른 범위를 합칠 때는 `참여`·`리드`·`직접 구축`을 제목이나 첫 문장부터 분리한다.
 - 첫 bullet: 결과·운영 상태 또는 책임 범위.
 - 다음 bullet: 실제 제약과 판단.
 - 다음 bullet: backend mechanism과 failure boundary.

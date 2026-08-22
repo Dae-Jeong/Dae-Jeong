@@ -34,15 +34,37 @@ claims:
       - 조직 전체 운영 총괄
       - 전사 문서 pipeline 규칙 단독 설계
     verified_at: 2026-08-18
-  - id: mediness.daily-briefing
-    statement: 협업 도구 활동을 집계하는 daily briefing agent 구축·운영
-    strength: owned
-    confidence: high
+
+  - id: mediness.company-work-ax-design
+    statement: 제품 개발 흐름과 의사결정·회의·업무 배정·승인·후속 작업을 agent-readable context·tool·human gate로 연결하는 회사 AX 전환 업무 구조 설계에 참여
+    strength: contributed
+    confidence: medium
     public: true
-    evidence: [evidence/projects/mediness.md#daily-briefing]
+    evidence: [evidence/projects/mediness.md#company-work-ax-design]
     allowed_copy:
-      - 협업 도구 활동 집계와 blocker triage를 지원하는 daily briefing agent 구축·운영
+      - 제품 개발과 회사 업무를 agent가 읽을 수 있는 맥락·도구·사람의 승인 경계로 연결하는 AX 구조 설계에 참여
+      - 의사결정·회의·업무 배정·승인·후속 작업을 같은 실행 맥락으로 연결하는 회사 AX 전환 설계에 참여
+      - 제품 Decision→release 운영에서 쌓이는 맥락을 회사 업무 AX로 확장하는 구조 설계에 참여
     forbidden_copy:
+      - MEDINESS 서비스 또는 platform 직접 구현
+      - 회사 AX 전환 완료
+      - 전사 업무를 하나의 시스템으로 완전 통합
+      - AI가 의사결정·업무 배정·승인·release를 자율 수행
+      - 회사 업무 자동화 전체를 단독 설계·구축
+      - 검증되지 않은 생산성·회의 시간·승인 속도·release lead time 개선
+    verified_at: 2026-08-21
+
+  - id: mediness.daily-briefing
+    statement: MEDINESS에는 협업 도구 활동을 집계하는 daily briefing workflow가 존재하나 김대정의 직접 구축·운영 ownership은 미확인
+    strength: contributed
+    confidence: low
+    public: false
+    evidence: [evidence/projects/mediness.md#daily-briefing-ownership-reverification]
+    allowed_copy: []
+    forbidden_copy:
+      - daily briefing agent 직접 구축
+      - daily briefing agent 운영
+      - 협업 도구 활동 집계와 blocker triage를 지원하는 daily briefing agent 구축·운영
       - 내부 제품 수치
       - 사람의 운영 업무 완전 자동화
-    verified_at: 2026-07-04
+    verified_at: 2026-08-18

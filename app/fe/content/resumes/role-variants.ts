@@ -9,7 +9,7 @@ import type {
 import { ROLE_CATALOG, ROLE_VARIANT_SLUGS } from "../role-catalog";
 import type { RoleVariantSlug } from "../role-catalog";
 
-const UPDATED_AT = "2026-08-21";
+const UPDATED_AT = "2026-08-22";
 const MAKER_HOOK = "아이디어를 새로운 가치로 실현하는 메이커, 김대정입니다.";
 
 const CONTACTS = [
@@ -26,7 +26,7 @@ const CONTACTS = [
 const JOINING_PATH: ResumeText = [
   { text: "합류 경로 · ", tone: "strong" },
   {
-    text: "Memento AI에서의 개발 성과를 인정받아 MediSolve AI 초기 멤버로 영입됐습니다. 법인 설립 전에는 더데이랩스 프리랜서로 제품 개발을 먼저 시작했고(2025.02–04), 2025년 4월 정규직으로 합류해 Tech Lead를 맡았습니다.",
+    text: "Memento AI 개발 성과를 인정받아 MediSolve AI 초기 멤버로 영입됐고, 법인 설립 전 더데이랩스 프리랜서 기간(2025.02–04)을 거쳐 2025년 4월 정규 합류했습니다.",
   },
 ];
 
@@ -122,7 +122,7 @@ function makeCareers({
         { text: "Tech Lead · Backend Engineer", tone: "strong" },
         { text: " — 제품 운영 리드" },
       ],
-      details: [JOINING_PATH, ...currentDetails],
+      details: [...currentDetails, JOINING_PATH],
       claimIds: [
         "career.medisolve-role-evolution",
         "career.thedaylabs-freelance",
@@ -268,13 +268,33 @@ const TECH_LEAD_SKILLS: readonly ResumeSkill[] = [
     ],
   },
   {
-    label: "Cloud / Engineering System",
-    stack: "Azure · Terraform · Docker · GitHub Actions · ADR · runbook",
-    via: "state·drift 변경 gate와 조직 공통 FastAPI·agent 실행 기준 운영",
+    label: "제품 실행 / AX",
+    stack: "Decision · SPEC · Work Package · human gate · agent context",
+    via: "제품 개발과 의사결정·회의·업무 배정·승인·후속 작업의 상태와 책임을 연결",
     claimIds: [
-      "infra.terraform-state-safety",
+      "mediness.company-work-ax-design",
+      "mediness.product-system-design-participation",
+      "mediness.product-operations",
+    ],
+  },
+  {
+    label: "Engineering System",
+    stack: "FastAPI · layered architecture · DI · ADR · runbook · agent context",
+    via: "사람과 agent가 함께 쓰는 backend 구조·작업 규칙을 조직 표준으로 구축",
+    claimIds: [
       "be-template.backend-standard",
+      "be-template.team-leverage",
       "be-template.agent-context",
+    ],
+  },
+  {
+    label: "Cloud / Delivery",
+    stack: "Azure · Terraform · Docker · GitHub Actions",
+    via: "remote state·drift 검증·배포와 운영 로그·알림 관리",
+    claimIds: [
+      "infra.company-azure-ownership",
+      "infra.terraform-state-safety",
+      "infra.azure-observability",
     ],
   },
 ];
@@ -302,14 +322,13 @@ export const TECH_LEAD_PRODUCT_RESUME = makeBase({
       ],
     },
     {
-      text: "백엔드에서는 서비스와 데이터의 책임, migration 정합성, 비동기 작업의 복구 상태, 권한 경계와 인프라 변경 범위를 설계합니다. Vision AI·PM·UX 경험은 제품 정책을 domain model·API·transaction·QA·release 조건으로 구체화하는 데 쓰고, AI를 구현에 적극 활용하되 최종 판단은 검증 gate로 남깁니다.",
+      text: "백엔드에서는 서비스와 데이터의 책임, migration 정합성, 비동기 작업의 복구 상태와 인프라 변경 범위를 설계합니다. 최근에는 제품 개발과 의사결정·회의·업무 배정·승인·후속 작업을 잇는 회사 AX 구조 설계에 참여하고, 제품별 적용·운영을 리드했습니다.",
       claimIds: [
-        "career.ai-pm-backend-continuity",
-        "career.product-ux-practice",
         "thready.ai-service-boundary",
         "centurion.bay-async-backend",
+        "mediness.company-work-ax-design",
+        "mediness.product-system-design-participation",
         "mediness.product-operations",
-        "infra.ai-assisted-change-harness",
       ],
     },
   ],
@@ -327,6 +346,10 @@ export const TECH_LEAD_PRODUCT_RESUME = makeBase({
       "nexus.hospital-operations-revenue-contribution",
       "nexus.backend-architecture",
       "be-template.backend-standard",
+      "be-template.team-leverage",
+      "be-template.agent-context",
+      "mediness.company-work-ax-design",
+      "mediness.product-system-design-participation",
       "mediness.product-operations",
       "infra.company-azure-ownership",
     ],
@@ -334,25 +357,26 @@ export const TECH_LEAD_PRODUCT_RESUME = makeBase({
       [
         { text: "Thready 제품 운영", tone: "strong" },
         {
-          text: "을 기획·QA·마케팅과 함께 리드하고 FastAPI backend·AI 생성/평가 system과 Next.js 핵심 흐름을 직접 구현했습니다. 제품 성과: 월 약 800만~1,000만원 구독료 매출(2026.08 기준)",
+          text: "을 기획·QA·마케팅과 함께 리드하고 FastAPI backend·AI 생성/평가 system과 Next.js 핵심 흐름을 직접 구현했습니다. 제품은 2026년 8월 기준 월 약 800만~1,000만원의 구독료 매출이 발생하고 있습니다.",
         },
       ],
-      "초기 prototype의 의존성과 반복 결함을 운영 위험으로 판단해 validation harness를 먼저 구축하고 FastAPI backend를 병렬 재구축·전환했습니다. 전환 전후 해결된 QA issue의 reopen 비율은 26%p 낮아졌습니다.",
+      "빠른 기능 검증 중심으로 만들어진 초기 prototype backend를 인계받아 validation harness를 먼저 구축하고 FastAPI backend를 병렬 재구축·전환했습니다. 전환 전후 같은 기준의 Jira 집계에서 해결된 QA issue의 reopen 비율은 26%p 낮게 관측됐습니다.",
       "Centurion 초기 backend와 개발 기준을 세우고, 의료 MSA에서 주문·재고 worker의 상태·retry·실패 기록·재처리와 DAY 예약 정책의 backend·frontend·QA·release 연결을 주도했습니다.",
       "별도의 여러 피부과 운영·예약 backend architecture와 migration 흐름 구축을 주도했습니다. 제품은 예약률 개선을 통해 고객사 매출에 기여했습니다.",
-      "조직 표준 FastAPI template과 agent context를 구축하고, 제품별 Decision·SPEC·Work Package·QA approval·release gate를 실행 원장으로 운영했습니다.",
+      "MEDINESS의 제품 요구·운영 흐름 설계에 참여하고, 제품별 Decision·SPEC·Work Package·QA approval·release gate 적용과 운영을 리드했습니다. 회사 AX 구조는 회의·의사결정·업무 배정·승인·후속 작업에서 agent가 맥락·실행안을 준비하고 판단은 사람이 확정하도록 설계하는 데 참여했습니다.",
+      "layered architecture·DI·ADR·runbook을 갖춘 조직 표준 FastAPI template과 agent context를 직접 구축했습니다.",
       "회사 Azure·Terraform 인프라 전반을 맡아 6개 독립 state·400개 이상의 state object와 운영 로그·알림을 관리했습니다.",
     ],
   }),
   outcomes: [
     {
       no: "01",
-      title: "Thready 0→1 제품 운영과 핵심 시스템 구현",
+      title: "고객 문제에서 시작해 팀과 함께 Thready를 유료 제품으로 만들고 운영",
       description: [
         "잘되는 콘텐츠의 기준을 알기 어렵다는 고객 문제를 데이터·기능·생성 품질 문제로 나누고, 팀과 제품 운영을 이끄는 동시에 핵심 제품 흐름을 직접 구현했습니다.",
         { text: "기능·실험 우선순위, 생성 품질 기준, QA·release 운영 리드", source: "제품 운영" },
         { text: "FastAPI backend·AI 생성/평가와 Next.js 생성·예약·발행·관리 흐름 구현", source: "제품 개발" },
-        { text: "URL 기준 최신 상태 13.1만 행·시계열 관측 318만 행을 바탕으로 outcome 후보 5개 설계", source: "시장 데이터" },
+        { text: "최근 1년 내 게시된 공개 콘텐츠와 반응 추이를 바탕으로 콘텐츠 outcome 후보 설계", source: "시장 데이터" },
         { text: "제품 성과: 월 약 800만~1,000만원 구독료 매출(2026.08 기준)", source: "팀 outcome" },
       ],
       claimIds: [
@@ -395,22 +419,36 @@ export const TECH_LEAD_PRODUCT_RESUME = makeBase({
     },
     {
       no: "04",
-      title: "소수 인원이 여러 제품을 맡는 backend 실행 기준 통합",
+      title: "회사 AX 구조 설계에 참여하고 제품 적용·운영을 리드",
       description: [
-        "구조와 작업 규칙을 매번 다시 설명하지 않도록 application architecture와 제품 실행 상태를 재사용 가능한 기준으로 만들었습니다.",
-        { text: "layered architecture·DI·ADR·convention·runbook 기반 FastAPI template", source: "조직 표준" },
-        { text: "agent context와 반복 작업 automation skill 내장", source: "AI-assisted delivery" },
-        { text: "Decision·SPEC·Work Package와 BE·FE·QA owner lane·release gate 운영", source: "제품 운영" },
+        "제품 개발과 의사결정·회의·업무 배정·승인·후속 작업이 끊기지 않게 연결하되, agent가 준비할 일과 사람이 판단할 일을 나눴습니다.",
+        { text: "MEDINESS 제품 요구·운영 흐름과 회사 업무 구조 설계 참여", source: "회사 AX 설계" },
+        { text: "Decision·SPEC·Work Package와 BE·FE·QA owner lane·approval 상태 운영", source: "제품 적용" },
+        { text: "완료 시점의 version cut·release note·변경 이력 운영", source: "제품 운영" },
       ],
       claimIds: [
-        "be-template.backend-standard",
-        "be-template.team-leverage",
-        "be-template.agent-context",
+        "mediness.company-work-ax-design",
+        "mediness.product-system-design-participation",
         "mediness.product-operations",
       ],
     },
     {
       no: "05",
+      title: "FastAPI 구조와 agent 작업 규칙을 조직 표준으로 구축",
+      description: [
+        "제품마다 architecture와 작업 규칙을 다시 설명하지 않도록 직접 실행 가능한 backend 기준을 만들었습니다.",
+        { text: "layered architecture·DI·ADR·convention·runbook 기반 FastAPI template", source: "조직 표준" },
+        { text: "logging·monitoring 등 횡단 관심사의 공통 적용", source: "team leverage" },
+        { text: "계층형 agent context와 반복 작업 automation skill", source: "AI-assisted delivery" },
+      ],
+      claimIds: [
+        "be-template.backend-standard",
+        "be-template.team-leverage",
+        "be-template.agent-context",
+      ],
+    },
+    {
+      no: "06",
       title: "6개 Terraform state로 회사 Azure 변경 범위 격리",
       description: [
         "AI로 resource inventory와 Terraform 구현을 빠르게 진행하되, 실제 변경 여부는 state·plan·live inventory를 사람이 대조해 판단했습니다.",
@@ -442,8 +480,8 @@ export const TECH_LEAD_PRODUCT_RESUME = makeBase({
     {
       no: "03",
       title: "팀이 다시 쓸 수 있는 기준을 남깁니다",
-      body: "결정 이유와 실행 상태를 ADR·runbook·Decision·SPEC·Work Package·agent context로 남겨 다음 제품과 다음 담당자가 재사용하게 합니다.",
-      claimIds: ["be-template.backend-standard", "be-template.agent-context", "mediness.product-operations"],
+      body: "backend 구조와 작업 규칙을 ADR·runbook·agent context로 남겨 다음 제품과 다음 담당자가 그대로 쓸 수 있게 합니다.",
+      claimIds: ["be-template.backend-standard", "be-template.agent-context"],
     },
   ],
   skills: TECH_LEAD_SKILLS,
@@ -499,7 +537,7 @@ export const BACKEND_RESUME = makeBase({
       "be-template.backend-standard",
     ],
     currentDetails: [
-      "초기 prototype의 의존성과 반복 결함을 운영 위험으로 판단해 validation harness를 먼저 세우고 FastAPI backend를 병렬 재구축·cutover했습니다. 전환 전후 해결된 QA issue의 reopen 비율은 26%p 낮아졌습니다.",
+      "빠른 기능 검증 중심으로 만들어진 초기 prototype backend를 인계받아 validation harness를 먼저 세우고 FastAPI backend를 병렬 재구축·cutover했습니다. 전환 전후 같은 기준의 Jira 집계에서 해결된 QA issue의 reopen 비율은 26%p 낮게 관측됐습니다.",
       "AI 실행부와 DB를 제품 backend에서 분리하고 STG 이력 migration, MD5·FK·E2E 검증, Outbox·retry·version fence 기반 원장 전달 경계를 구현했습니다.",
       "Centurion의 주문·재고 API와 RabbitMQ·TaskIQ worker에서 상태·retry·terminal failure·수동 재처리 경계를 구축했습니다.",
       "여러 피부과 운영·예약 backend의 service boundary와 migration을 주도하고, client header 대신 server auth state가 작업 지점을 결정하는 접근 경계를 구현 중입니다.",
@@ -510,12 +548,12 @@ export const BACKEND_RESUME = makeBase({
   outcomes: [
     {
       no: "01",
-      title: "기존 frontend를 유지한 FastAPI backend 병렬 재구축·전환",
+      title: "인계받은 초기 backend를 production 운영 단계에 맞게 FastAPI로 재구축",
       description: [
-        "부분 수정과 재구축 범위를 비교해 초기 단계의 전면 재구축을 결정하고, 검증 기준을 먼저 세운 뒤 backend만 병렬 전환했습니다.",
+        "빠른 기능 검증 중심의 초기 prototype backend를 인계받아 부분 수정과 재구축 범위를 비교하고, 검증 기준을 먼저 세운 뒤 backend만 병렬 전환했습니다.",
         { text: "architecture·component·infra validation harness 선행", source: "Thready" },
         { text: "기존 Next.js와 release 흐름을 유지한 backend-only cutover", source: "v1.1.0" },
-        { text: "전환 전후 해결된 QA issue의 reopen 비율 26%p 하락", source: "Jira 전후 관측" },
+        { text: "전환 전후 같은 기준에서 QA issue reopen 비율 26%p 낮게 관측", source: "Jira 전후 관측" },
       ],
       claimIds: [
         "thready.rebuild-decision-execution",
@@ -682,7 +720,7 @@ export const AI_PRODUCT_BACKEND_RESUME = makeBase({
     currentDetails: [
       "기획·QA·마케팅과 Thready 제품 운영을 리드하며 FastAPI backend·AI 생성/평가 system과 Next.js의 핵심 사용자·관리 흐름을 직접 구현했습니다. 제품 성과: 월 약 800만~1,000만원 구독료 매출(2026.08 기준)",
       "AI application과 DB를 product backend에서 분리하고 STG 생성 이력 2,616건·품질 snapshot 795건·trace 7,111건을 이관했습니다. MD5·FK·API E2E와 Outbox·version fence로 정합성을 검증했습니다.",
-      "Threads URL 최신 상태 13.1만 행과 시계열 관측 318만 행에서 5개 outcome 후보를 설계하고, 11.1만 본문·18.5만 이어쓰기 labeling workflow와 3단계 생성 품질 기준을 구축했습니다.",
+      "최근 1년 내 게시된 Threads 공개 콘텐츠와 반응 추이를 중심으로 outcome 후보를 설계하고, 본문·이어쓰기 labeling workflow와 3단계 생성 품질 기준을 구축했습니다.",
       "실시간 AI 상담 backend의 session lifecycle과 provider 경계 안정화에 공동 주 기여하고, 주문·재고 worker의 상태·retry·재처리 경계를 구축했습니다.",
     ],
   }),
@@ -720,13 +758,13 @@ export const AI_PRODUCT_BACKEND_RESUME = makeBase({
     },
     {
       no: "03",
-      title: "13.1만 최신 상태·318만 관측을 콘텐츠 성과 기준으로 구조화",
+      title: "공개 콘텐츠와 반응 추이를 콘텐츠 성과 기준으로 구조화",
       description: [
         "감에 의존하던 콘텐츠 판단을 비교 가능한 outcome 후보, labeling workflow, 생성 품질 평가 절차로 나눴습니다.",
-        { text: "절대·작성자 상대·도메인 상대 등을 포함한 outcome 후보 5개", source: "market data" },
-        { text: "11.1만 본문·18.5만 이어쓰기의 typed validation·멱등 importer·API/UI workbench", source: "labeling" },
+        { text: "절대·작성자 상대·도메인 상대 관점의 outcome 후보", source: "market data" },
+        { text: "본문·이어쓰기의 typed validation·멱등 importer·API/UI workbench", source: "labeling" },
         { text: "자동 gate 12종·실측 분포·사람 판정의 3단계 품질 기준", source: "quality" },
-        { text: "20,256건 8축 rubric을 실험 writer prompt·LLM judge에 적용", source: "experiment" },
+        { text: "hook-quality rubric을 실험 writer prompt·LLM judge에 적용", source: "experiment" },
       ],
       claimIds: [
         "thready.threads-market-outcome-design",
@@ -748,12 +786,12 @@ export const AI_PRODUCT_BACKEND_RESUME = makeBase({
     },
     {
       no: "05",
-      title: "검증 하네스를 먼저 세운 AI prototype backend 재구축",
+      title: "인계받은 prototype backend를 검증 하네스와 함께 재구축",
       description: [
-        "빠른 검증을 위해 만들어진 초기 backend가 production 운영과 AI 기능 확장의 제약이 된다고 판단해 backend만 병렬 재구축했습니다.",
+        "빠른 기능 검증 중심으로 만들어진 초기 backend를 인계받아 production 운영과 AI 기능 확장의 제약을 확인하고 backend만 병렬 재구축했습니다.",
         { text: "frontend·기존 release 흐름을 유지한 backend-only cutover", source: "Thready" },
         { text: "architecture·component·infra validation harness 선행", source: "verification" },
-        { text: "전환 전후 해결된 QA issue의 reopen 비율 26%p 하락", source: "Jira 전후 관측" },
+        { text: "전환 전후 같은 기준에서 QA issue reopen 비율 26%p 낮게 관측", source: "Jira 전후 관측" },
       ],
       claimIds: [
         "thready.rebuild-decision-execution",
@@ -812,7 +850,7 @@ export const AI_PRODUCT_BACKEND_RESUME = makeBase({
 
 export const AX_FDE_RESUME = makeBase({
   ...ROLE_CATALOG["ax-fde"],
-  description: "고객 문제 정의·제품 실행·AI-assisted delivery를 전면에 둔 지원본",
+  description: "제품과 회사 업무를 사람·agent가 함께 실행하는 구조를 전면에 둔 지원본",
   position: "Product Delivery · AI Transformation",
   summary: [
     {
@@ -827,16 +865,16 @@ export const AX_FDE_RESUME = makeBase({
         "career.medisolve-role-evolution",
         "career.product-ux-practice",
         "thready.product-zero-to-one-contribution",
-        "mediness.product-operations",
       ],
     },
     {
-      text: "Vision AI 개발과 PM·UX 경험을 바탕으로 모호한 요구를 domain model·API·transaction·작업 상태로 바꿉니다. 최근에는 Decision·SPEC·Work Package와 release gate를 제품 운영에 적용해 기획·개발·QA와 AI agent가 같은 기준으로 움직이게 하고 있습니다.",
+      text: "Vision AI 개발과 PM·UX 경험을 바탕으로 모호한 요구를 domain model·API·transaction·작업 상태로 바꿉니다. 최근에는 제품 개발뿐 아니라 의사결정·회의·업무 배정·승인·후속 작업까지 이어지는 회사 AX 구조 설계에 참여했고, 제품별 Decision·SPEC·Work Package·release gate 적용과 운영을 리드했습니다.",
       claimIds: [
         "career.ai-pm-backend-continuity",
         "career.product-ux-practice",
+        "mediness.company-work-ax-design",
+        "mediness.product-system-design-participation",
         "mediness.product-operations",
-        "be-template.agent-context",
       ],
     },
   ],
@@ -845,6 +883,8 @@ export const AX_FDE_RESUME = makeBase({
       "thready.product-zero-to-one-contribution",
       "thready.frontend-product-delivery",
       "thready.subscription-revenue-band",
+      "mediness.company-work-ax-design",
+      "mediness.product-system-design-participation",
       "mediness.product-operations",
       "be-template.backend-standard",
       "be-template.agent-context",
@@ -855,8 +895,8 @@ export const AX_FDE_RESUME = makeBase({
     ],
     currentDetails: [
       "고객의 콘텐츠 제작 문제를 기능·실험·품질 기준으로 구체화하고 기획·QA·마케팅과 Thready 제품 운영을 리드했습니다. backend·AI·핵심 frontend도 직접 구현했으며 제품은 월 약 800만~1,000만원의 구독료 매출이 발생합니다(2026.08 기준).",
-      "제품별 Decision·SPEC·Work Package와 BE·FE·QA owner lane, QA approval·release gate를 실행 원장으로 운영했습니다.",
-      "layered architecture·DI·ADR·runbook 기반 FastAPI template과 agent-readable context를 구축해 소수 인원이 여러 제품을 지원하는 기반을 만들었습니다.",
+      "MEDINESS의 제품 요구·운영 흐름 설계에 참여하고, 제품별 Decision·SPEC·Work Package와 BE·FE·QA owner lane, QA approval·release gate 적용과 운영을 리드했습니다. 회사 AX 구조는 회의·의사결정·업무 배정·승인·후속 작업에서 agent가 맥락·실행안을 준비하고 판단은 사람이 확정하도록 설계하는 데 참여했습니다.",
+      "layered architecture·DI·ADR·runbook 기반 FastAPI template과 agent-readable context를 직접 구축했습니다.",
       "DAY 예약 정책을 backend 판단·frontend 표시·QA·release로 연결하고, 별도 피부과 운영·예약 backend 구축을 주도해 제품의 예약률·고객사 매출 성과에 기여했습니다.",
       "회사 여러 서비스의 Azure 인프라를 한 사람이 관리할 수 있도록 AI-assisted inventory·Terraform 구현과 사람의 state·plan·live 검증 gate를 분리했습니다.",
     ],
@@ -879,14 +919,18 @@ export const AX_FDE_RESUME = makeBase({
     },
     {
       no: "02",
-      title: "제품 결정을 실행·검증·release 상태로 연결",
+      title: "회사 AX 구조 설계에 참여하고 제품 적용·운영을 리드",
       description: [
-        "구두 결정과 직군별 handoff로 흩어질 수 있는 작업을 하나의 실행 원장에서 추적하고, 완료와 검증이 끝난 작업만 release로 넘겼습니다.",
-        { text: "Decision·SPEC·Work Package와 pipeline registry", source: "제품 운영" },
-        { text: "BE·FE·QA owner lane·QA approval·release gate", source: "delivery" },
-        { text: "실제 완료 시점의 version cut·release note 생성·변경 이력", source: "release" },
+        "제품 개발과 의사결정·회의·업무 배정·승인·후속 작업을 연결하되, agent가 준비할 일과 사람이 판단할 일을 분리했습니다.",
+        { text: "MEDINESS 제품 요구·운영 흐름과 회사 업무 구조 설계 참여", source: "회사 AX 설계" },
+        { text: "Decision·SPEC·Work Package와 BE·FE·QA owner lane·QA approval 상태 운영", source: "제품 적용" },
+        { text: "실제 완료 시점의 version cut·release note·변경 이력 운영", source: "제품 운영" },
       ],
-      claimIds: ["mediness.product-operations", "mediness.product-system-design-participation"],
+      claimIds: [
+        "mediness.company-work-ax-design",
+        "mediness.product-system-design-participation",
+        "mediness.product-operations",
+      ],
     },
     {
       no: "03",
@@ -946,8 +990,8 @@ export const AX_FDE_RESUME = makeBase({
     {
       no: "02",
       title: "문장을 실행 가능한 계약으로 바꿉니다",
-      body: "제품 요구를 domain model·API·transaction·owner lane·QA approval·release gate로 나눠 담당자와 상태를 드러냅니다.",
-      claimIds: ["mediness.product-operations", "centurion.day-product-integration"],
+      body: "제품 요구와 회사 업무를 domain model·API·transaction·owner lane·human gate로 나눠 담당자와 상태를 드러냅니다.",
+      claimIds: ["mediness.company-work-ax-design", "mediness.product-operations", "centurion.day-product-integration"],
     },
     {
       no: "03",
@@ -960,8 +1004,12 @@ export const AX_FDE_RESUME = makeBase({
     {
       label: "Product Delivery / AX",
       stack: "Decision · SPEC · Work Package · QA/release gate · agent context",
-      via: "제품 판단을 담당자·상태·검증 조건이 있는 실행 원장으로 전환",
-      claimIds: ["mediness.product-operations", "be-template.agent-context"],
+      via: "제품 개발과 회사 업무를 담당자·상태·human gate가 있는 실행 흐름으로 연결",
+      claimIds: [
+        "mediness.company-work-ax-design",
+        "mediness.product-system-design-participation",
+        "mediness.product-operations",
+      ],
     },
     {
       label: "Backend Core",

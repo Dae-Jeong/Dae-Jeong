@@ -5,20 +5,20 @@ import {
 } from "@/content/role-catalog";
 import type { RolePortfolio } from "./types";
 
-const UPDATED_AT = "2026-08-21";
+const UPDATED_AT = "2026-08-22";
 const MAKER_HOOK = "아이디어를 새로운 가치로 실현하는 메이커, 김대정입니다.";
 
 const ROLE_PORTFOLIOS_BY_SLUG = {
   "tech-lead-product": {
     ...ROLE_CATALOG["tech-lead-product"],
-    description: "제품 판단·직접 구현·운영 체계를 전면에 둔 포트폴리오",
+    description: "제품 판단·직접 구현·회사 AX 실행 체계를 전면에 둔 포트폴리오",
     status: "draft",
     visibility: "local",
     updatedAt: UPDATED_AT,
     brandLine: MAKER_HOOK,
-    headline: "무엇을 만들지 정하고, 직접 만들어 실제 운영까지 가져갔습니다.",
+    headline: "제품을 만들고, 회사가 반복해서 실행할 방식도 함께 설계했습니다.",
     introduction:
-      "Thready에서는 고객 문제를 기능·실험·품질 기준으로 바꾸고 기획·QA·마케팅과 제품 운영을 이끌었습니다. FastAPI 백엔드와 AI 생성·평가, Next.js 핵심 흐름을 직접 구현했고, 여러 제품이 같은 기준으로 개발·배포되도록 실행 기반도 만들었습니다.",
+      "Thready에서는 고객 문제를 기능·품질 기준으로 바꾸고 기획·QA·마케팅과 실제 유료 운영 단계까지 제품을 이끌었습니다. Next.js 핵심 흐름과 FastAPI 백엔드·AI 생성·평가 영역을 직접 구현하고, 빠른 기능 검증 중심으로 만들어진 초기 백엔드를 팀이 운영할 수 있는 구조로 재구축했습니다. 이후 제품 개발에서 쌓인 결정·작업·검증을 회사 업무까지 이어갈 수 있도록 AX 전환 구조 설계에 참여했습니다.",
     proofAxes: [
       {
         title: "문제에서 제품까지",
@@ -29,8 +29,8 @@ const ROLE_PORTFOLIOS_BY_SLUG = {
         description: "백엔드·AI·핵심 프런트엔드를 실제 사용자 흐름으로 연결합니다.",
       },
       {
-        title: "반복 가능한 실행",
-        description: "제품 개발·운영 기준과 인프라 변경 절차를 팀의 기준으로 남깁니다.",
+        title: "회사 AX 실행 체계",
+        description: "제품 개발과 의사결정·회의·업무 배정·승인·후속 작업을 같은 맥락으로 잇습니다.",
       },
     ],
     cases: [
@@ -38,19 +38,19 @@ const ROLE_PORTFOLIOS_BY_SLUG = {
         kind: "dossier",
         slug: "thready",
         focus:
-          "기획·QA·마케팅과 제품 운영을 이끌면서 백엔드·AI·핵심 프런트엔드를 직접 구현해 유료 제품을 운영한 범위를 봅니다.",
+          "기획·QA·마케팅과 유료 제품 운영을 이끌고, Next.js 핵심 흐름과 FastAPI·AI를 직접 구현한 뒤 BE–AI 경계를 나눈 과정을 봅니다.",
+      },
+      {
+        kind: "dossier",
+        slug: "be-template",
+        focus:
+          "MEDINESS 설계 참여·제품 적용 운영 리드·Backend Template 직접 구축을 구분하면서 회사 AX 전환 구조를 만든 방식을 봅니다.",
       },
       {
         kind: "dossier",
         slug: "centurion-platform",
         focus:
           "서비스별 기여 범위를 구분하면서 주문·재고 작업과 예약 정책을 개발·QA·릴리스까지 이끈 방식을 봅니다.",
-      },
-      {
-        kind: "supporting",
-        slug: "be-template",
-        focus:
-          "소수 인원이 여러 제품을 맡는 환경에서 아키텍처·개발 규칙·agent context를 공통 시작점으로 만든 경험을 봅니다.",
       },
       {
         kind: "dossier",
@@ -70,7 +70,7 @@ const ROLE_PORTFOLIOS_BY_SLUG = {
     headline:
       "운영 중인 백엔드를 재구축하고, 어긋난 데이터와 실패한 작업을 복구할 수 있게 만들었습니다.",
     introduction:
-      "Thready에서는 기존 프런트엔드와 출시 흐름을 유지한 채 FastAPI 백엔드를 병렬 전환하고, AI 애플리케이션·DB 이전과 Outbox 전달 경계를 구현했습니다. Centurion과 Memento에서는 비동기 작업과 외부 결제가 실패했을 때 남겨야 할 상태와 보상 흐름을 설계했습니다.",
+      "Thready에서는 빠른 기능 검증 중심으로 만들어진 초기 백엔드를 기존 프런트엔드와 출시 흐름을 유지한 채 FastAPI로 병렬 재구축했습니다. AI는 코드 분석과 반복 구현에 활용하고 아키텍처·검증 기준·전환 시점은 직접 판단했습니다. 이어 STG 데이터 이전과 Outbox 전달 경계를 검증했으며, Centurion과 Memento에서는 비동기 작업과 외부 결제의 실패 상태와 보상 흐름을 설계했습니다.",
     proofAxes: [
       {
         title: "재구축과 전환",
@@ -90,13 +90,19 @@ const ROLE_PORTFOLIOS_BY_SLUG = {
         kind: "dossier",
         slug: "thready",
         focus:
-          "FastAPI 백엔드 병렬 전환, STG 데이터 이전 검증, Outbox·retry·version fence를 하나의 정합성 문제로 다룬 과정을 봅니다.",
+          "FastAPI 병렬 재구축부터 STG 데이터 이전, 중복·지연·역순 전달에도 최신 상태를 지키는 Outbox·version fence까지 이어진 과정을 봅니다.",
       },
       {
         kind: "dossier",
         slug: "centurion-platform",
         focus:
           "주문·재고 작업을 API 요청에서 분리하고 재시도 소진 뒤에도 실패 기록과 수동 복구 경로를 남긴 설계를 봅니다.",
+      },
+      {
+        kind: "dossier",
+        slug: "be-template",
+        focus:
+          "제품별 차이를 숨기지 않으면서 layered core·contract·agent context를 조직의 실행 가능한 백엔드 기준으로 만든 경험을 봅니다.",
       },
       {
         kind: "dossier",
@@ -116,7 +122,7 @@ const ROLE_PORTFOLIOS_BY_SLUG = {
     headline:
       "AI 실행부를 제품 원장과 나누고, 데이터 전달과 생성 품질을 검증 가능한 구조로 만들었습니다.",
     introduction:
-      "Thready에서는 제품 정책·원장과 생성 실행 상태의 소유권을 분리하고, STG 데이터 이전과 Outbox 전달을 검증했습니다. 시장 데이터·labeling workbench·생성 평가 실험은 근거 범위를 구분해 제품 품질 판단에 사용했고, Centurion에서는 실시간 상담 세션과 외부 AI 연동 경계에 공동 주 기여했습니다.",
+      "Thready에서는 제품 정책·원장과 생성 실행 상태의 소유권을 분리하고, STG 데이터 이전과 중복·지연·역순 전달에도 최신 상태로 수렴하는 Outbox 경계를 검증했습니다. 시장 데이터·labeling workbench·생성 평가 실험은 근거 범위를 구분해 제품 품질 판단에 사용했고, Centurion에서는 실시간 상담 세션과 외부 AI 연동 경계에 공동 주 기여했습니다.",
     proofAxes: [
       {
         title: "AI 실행 경계",
@@ -144,19 +150,25 @@ const ROLE_PORTFOLIOS_BY_SLUG = {
         focus:
           "실시간 AI 상담에서 WebSocket 세션, 중복 이벤트와 외부 AI lifecycle을 분리해 다룬 공동 기여 범위를 봅니다.",
       },
+      {
+        kind: "dossier",
+        slug: "be-template",
+        focus:
+          "agent가 맥락을 찾고 초안·반복·검증 근거를 준비하되 제품·아키텍처·QA·release 판단은 사람이 소유하도록 나눈 실행 구조를 봅니다.",
+      },
     ],
   },
   "ax-fde": {
     ...ROLE_CATALOG["ax-fde"],
-    description: "고객 문제 정의·제품 실행·AI-assisted delivery를 전면에 둔 포트폴리오",
+    description: "고객 문제 정의·제품 실행·회사 AX 전환 설계를 전면에 둔 포트폴리오",
     status: "draft",
     visibility: "local",
     updatedAt: UPDATED_AT,
     brandLine: MAKER_HOOK,
     headline:
-      "고객의 문제를 제품 규칙으로 바꾸고, 팀과 AI가 실행할 수 있는 상태까지 연결했습니다.",
+      "고객의 문제를 제품으로 만들고, 회사 업무를 잇는 구조도 함께 설계했습니다.",
     introduction:
-      "Thready에서는 고객이 막히는 지점을 기능·실험·품질 기준으로 바꾸고 직접 제품으로 구현했습니다. 이후 제품 결정을 Decision·SPEC·Work Package·QA·release 상태로 연결하고, 사람과 AI agent가 같은 아키텍처와 작업 기준을 읽도록 실행 체계를 만들었습니다.",
+      "Thready에서는 고객이 막히는 지점을 기능·품질 기준으로 바꾸고 기획·QA·마케팅과 실제 유료 운영 단계까지 제품을 이끌었습니다. 백엔드·AI·핵심 프런트엔드를 직접 구현한 뒤 제품의 Decision·SPEC·Work Package·QA·release 흐름을 운영했고, 의사결정·회의·업무 배정·승인·후속 작업까지 같은 맥락으로 연결하는 회사 AX 구조 설계에 참여했습니다.",
     proofAxes: [
       {
         title: "문제 정의와 제품화",
@@ -168,7 +180,7 @@ const ROLE_PORTFOLIOS_BY_SLUG = {
       },
       {
         title: "사람과 AI의 책임 분리",
-        description: "반복 작업은 AI로 가속하고 제품 판단과 승인은 사람이 확인할 수 있게 남깁니다.",
+        description: "Agent는 탐색·초안·반복·근거 준비를 맡고 제품·아키텍처·배정·승인은 사람이 소유합니다.",
       },
     ],
     cases: [
@@ -176,19 +188,13 @@ const ROLE_PORTFOLIOS_BY_SLUG = {
         kind: "dossier",
         slug: "thready",
         focus:
-          "고객의 콘텐츠 제작 문제를 기능·실험·품질 기준으로 바꾸고 제품 운영과 직접 구현을 함께 수행한 범위를 봅니다.",
+          "고객의 콘텐츠 제작 문제를 기능·품질 기준으로 바꾸고, 팀의 유료 제품 운영과 직접 구현을 함께 수행한 범위를 봅니다.",
       },
       {
-        kind: "supporting",
-        slug: "mediness-ops",
-        focus:
-          "제품 요구·운영 흐름의 설계 참여와 Decision·SPEC·작업·QA·release 운영 리드를 구분해 봅니다.",
-      },
-      {
-        kind: "supporting",
+        kind: "dossier",
         slug: "be-template",
         focus:
-          "사람과 AI agent가 같은 아키텍처·개발 규칙·자동화 절차를 읽도록 만든 조직 표준을 봅니다.",
+          "제품 요구·운영 구조 설계 참여, 제품별 실행 운영 리드, Backend Template 직접 구축을 구분한 회사 AX 전환 구조를 봅니다.",
       },
       {
         kind: "dossier",
@@ -231,16 +237,16 @@ const ROLE_PORTFOLIOS_BY_SLUG = {
           "6개 Terraform state와 state·plan·실제 Azure 리소스 대조를 통해 변경 범위와 적용 책임을 통제한 운영 체계를 봅니다.",
       },
       {
-        kind: "supporting",
+        kind: "dossier",
         slug: "be-template",
         focus:
-          "공통 아키텍처와 프로젝트별 선택지를 분리하고 ADR·runbook·agent context까지 묶은 백엔드 기반을 봅니다.",
+          "제품·회사 업무의 control plane과 layered core·ADR·runbook·agent context를 연결한 실행 기반을 봅니다.",
       },
       {
         kind: "dossier",
         slug: "thready",
         focus:
-          "애플리케이션·DB 분리 과정에서 기존 데이터 이전과 이후의 지연·중복·역순 전달을 함께 다룬 경험을 봅니다.",
+          "애플리케이션·DB 분리 과정에서 STG 데이터 이전과 중복·지연·역순 전달에도 최신 상태를 지키는 구조를 함께 다룬 경험을 봅니다.",
       },
       {
         kind: "dossier",

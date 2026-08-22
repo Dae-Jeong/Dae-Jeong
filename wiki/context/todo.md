@@ -2,9 +2,9 @@
 type: index
 title: TODO — 통합 작업 목록
 description: 여러 문서에 흩어진 남은 작업의 단일 진입점. 상세는 각 owner 문서가 소유한다.
-timestamp: 2026-08-19
+timestamp: 2026-08-23
 canonical: false
-derived_from: [context/current-state.md, products/site/content-sot.md, products/resume/content-contract.md, backlog/platform-profile-consolidation/sync-spec.md, backlog/README.md]
+derived_from: [context/current-state.md, products/site/content-sot.md, products/resume/content-contract.md, backlog/platform-profile-consolidation/2026-08-22-live-verification.md, backlog/platform-profile-consolidation/2026-08-22-platform-paste-package.md, backlog/README.md]
 tags: [context, todo, routing]
 ---
 
@@ -20,12 +20,11 @@ tags: [context, todo, routing]
 
 ### A1. 플랫폼 프로필 sync
 
-owner: [sync-spec](../backlog/platform-profile-consolidation/sync-spec.md) · 현황: [sync matrix](../backlog/platform-profile-consolidation/2026-08-13-sync-matrix.md) · 문안 초안: [Maker platform draft](../backlog/platform-profile-consolidation/2026-08-21-maker-profile-draft.md)
+owner: [Live 적용 검증](../backlog/platform-profile-consolidation/2026-08-22-live-verification.md) · 목표 문안: [Platform Paste Package](../backlog/platform-profile-consolidation/2026-08-22-platform-paste-package.md)
 
-- [ ] **사람인** — 로그인 후 `인증 경력 불러오기`, 소개·경력·스킬·링크 반영
-- [ ] **원티드** — 자동화할 수 없는 텍스트 필드에 확정 문안 붙여넣기
-- [~] **링크드인** — 아이즈솔 종료일 2021.06 확인, 영어 프로필, CES·특허 섹션
-- [ ] **oopy** — 레거시 프로필 링크를 marinkim.xyz로 교체하고 공개 범위 판단
+- [ ] **LinkedIn EN secondary** — 영문 resume의 `allowed_copy_en` 검수가 끝난 뒤에만 선택적으로 입력
+- [ ] **Oopy** — 다른 플랫폼 링크를 marinkim.xyz로 교체하고 공개 종료 여부 판단
+- [ ] **플랫폼 UI 잔여값** — Wanted의 더데이랩스 row·credentials, RocketPunch 자동 생성 AI 요약·HTML title, LinkedIn Featured URL 검증의 안전한 수정 경로 확인
 
 ### A2. claim 근거 보강
 

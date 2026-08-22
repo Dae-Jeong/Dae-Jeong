@@ -2,7 +2,7 @@
 type: index
 title: Case Library
 description: 포트폴리오 케이스 스터디 마스터 라이브러리 — 회사별 페이지는 여기서 선별·조립만 한다.
-timestamp: 2026-08-20
+timestamp: 2026-08-22
 tags: [portfolio, cases, library]
 ---
 
@@ -14,12 +14,12 @@ tags: [portfolio, cases, library]
 
 | 파일 | resume_tag | 유형 | claim strength |
 | --- | --- | --- | --- |
-| [thready-rebuild.md](thready-rebuild.md) | THREADY | 제품 0→1 + full-stack system | 제품화·frontend 주도 / backend 전담 |
+| [thready-rebuild.md](thready-rebuild.md) | THREADY | 유료 제품 운영 + full-stack system | 제품·팀 outcome 기여 / 제품 운영·frontend 주도 / backend 전담 |
 | [centurion-platform.md](centurion-platform.md) | CENTURION | 의료 MSA failure boundary | service별 `led/co-led/contributed` |
 | [infrastructure-delivery.md](infrastructure-delivery.md) | INFRASTRUCTURE DELIVERY | 회사 인프라 설계·운영 harness | 전담 |
 | [memento-payment.md](memento-payment.md) | MEMENTO PAYMENT | supporting 외부 결제 보상·상태 정합성 | `led/contributed` |
-| [be-template.md](be-template.md) | BE TEMPLATE | primary 엔지니어링 표준·agent execution | 전담 설계·구축 |
-| [mediness-ops.md](mediness-ops.md) | MEDINESS | supporting 제품 요구·운영 흐름 설계 참여 + agent 운영 시스템 | 설계 `contributed` · 운영 `led` |
+| [be-template.md](be-template.md) | COMPANY AX | primary 회사 AX 실행 체계 — MEDINESS 운영 plane + 직접 구축한 backend/agent execution | 회사 업무 설계 `contributed` · 제품 운영 `led` · engineering system `owned` |
+| [mediness-ops.md](mediness-ops.md) | MEDINESS | Company AX 사례의 product/work control plane 근거 | 설계 `contributed` · 제품별 운영 `led` |
 | [bay-async.md](bay-async.md) | BAY | backend 비동기 아키텍처 | 구축·설계 주도 |
 | [say-realtime.md](say-realtime.md) | SAY | realtime AI backend | cluster 단위 주도 |
 | [thready-ai-system.md](thready-ai-system.md) | THREADY AI SYSTEM | AI service boundary·durable delivery | 설계·구현 전담 |
@@ -29,10 +29,10 @@ tags: [portfolio, cases, library]
 
 | Resume selected proof | Portfolio case | Claim coverage |
 | --- | --- | --- |
-| Thready 제품 운영·매출·생성 품질 | [thready-rebuild.md](thready-rebuild.md) | 0→1 제품화, 제품·팀 매출 기여 경계, 핵심 frontend, typed prompt builder·LLM judge·평가 루프, QA·release |
+| Thready 제품 운영·매출·생성 품질 | [thready-rebuild.md](thready-rebuild.md) | 고객 문제의 제품화, 팀의 유료 운영·매출 outcome, 핵심 frontend 직접 구현, typed prompt builder·LLM judge·평가 루프, QA·release |
 | FastAPI 병렬 재구축 | [thready-rebuild.md](thready-rebuild.md) | validation harness, frontend contract 유지, cutover, QA reopen 26%p 감소 |
-| AI application·DB migration·Outbox | [thready-ai-system.md](thready-ai-system.md) | AI service boundary, STG migration 검증, transactional Outbox, retry·version fence |
-| Decision→release 운영 | [mediness-ops.md](mediness-ops.md) | 요구·운영 흐름 설계 참여와 제품별 실행 원장·release 운영 리드의 분리 |
+| Centurion 주문·재고 비동기 복구 | [centurion-platform.md](centurion-platform.md) | API와 후속 작업 분리, TaskIQ·RabbitMQ, 상태·retry·terminal failure·수동 재처리, test/CI 기반 |
+| AI application·DB migration·Outbox | [thready-ai-system.md](thready-ai-system.md) | AI service boundary, STG migration 검증, transactional Outbox, lease·attempt token·retry·version fence·멱등 consumer·terminal failure 보존 |
 | Backend Template·agent 기준 | [be-template.md](be-template.md) | backend standard, team leverage, agent context |
 | Company Infrastructure | [infrastructure-delivery.md](infrastructure-delivery.md) | Azure runtime topology, AI-assisted change harness, state safety, observability |
 
@@ -40,8 +40,10 @@ tags: [portfolio, cases, library]
 
 | Tier | Case order |
 | --- | --- |
-| Primary | [Thready](thready-rebuild.md) → [Centurion](centurion-platform.md) → [Company Infrastructure](infrastructure-delivery.md) → [Backend Template](be-template.md) |
-| Supporting | [Memento Payment](memento-payment.md) → [Product Operations](mediness-ops.md) |
+| Primary | [Thready](thready-rebuild.md) → [Company AX](be-template.md) → [Centurion](centurion-platform.md) → [Company Infrastructure](infrastructure-delivery.md) |
+| Supporting | [Memento Payment](memento-payment.md) |
+
+`Company AX`는 서로 다른 contribution strength를 하나로 뭉개지 않는다. MEDINESS의 제품·회사 업무 구조는 설계 참여와 제품별 적용·운영 근거를, Backend Template은 직접 설계·구축한 engineering execution 근거를, Azure/Vercel은 production runtime 근거를 각각 유지한 채 한 사례 안에서 연결한다.
 
 Centurion·NEXUS·Stripe의 세부 근거는 common resume의 Career 또는 common portfolio의 supporting/context proof로 남을 수 있다. 이를 대표 성과에 넣기 위해 다른 사례와 합성하거나 ownership을 높이지 않는다.
 
@@ -53,6 +55,7 @@ Centurion·NEXUS·Stripe의 세부 근거는 common resume의 Career 또는 comm
 - frontmatter의 `claim_ids`가 [claim registry](../../../evidence/claims/README.md)를 직접 가리킨다. 케이스 본문은 해당 claim의 strength와 allowed copy 상한을 넘지 못한다.
 - 공개 가드레일 상속: provider 실명 X, 고객사/브랜드명 X, 팀원 실명 X, 커밋 수 X, 미검증 수치 X.
 - **전임자/기존 코드 폄하 금지** — "빠른 검증에 맞춘 초기 구조" 같은 중립 서술.
+- **AI와 사람의 역할 분리** — AI는 코드 분석·반복 구현에 활용하되 아키텍처·검증 기준·cutover 판단은 직접 수행한 범위로 쓴다.
 - **결과 주장은 확인된 사실만** — 적용/효과를 확인 안 했으면 "~하도록 설계"까지만.
 - `diagram:` 라인 컨벤션 — `->`로 노드 구분, `[soft]` 접두는 보조 노드. 조립 시 CSS 다이어그램으로 변환.
 - stack 항목도 검증 대상 (repo 의존성/설정으로 확인).

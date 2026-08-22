@@ -1,56 +1,91 @@
 ---
 type: portfolio-case
 case: be-template
-title: 조직 표준 backend 템플릿 — 아키텍처 표준과 agent 컨텍스트 시스템을 한 번에
-resume_tag: BE TEMPLATE
-origin: MediSolve AI · 조직 표준
-claim_ids: [be-template.backend-standard, be-template.team-leverage, be-template.agent-context]
-claim_strength: owned
+title: 회사 AX 전환 — 제품과 회사 업무를 잇는 실행 체계
+resume_tag: COMPANY AX
+origin: MediSolve AI · 제품 운영·engineering system
+claim_ids:
+  - mediness.company-work-ax-design
+  - mediness.product-system-design-participation
+  - mediness.product-operations
+  - be-template.backend-standard
+  - be-template.team-leverage
+  - be-template.agent-context
+  - infra.company-azure-ownership
+  - infra.ai-assisted-change-harness
+claim_strength: mixed (company AX design contributed · product operations led · backend system owned)
 ---
 
 ## Executive Summary
 
-새 backend를 시작할 때 반복되던 architecture·convention·setup과 agent context 구성을 하나의 조직 표준 FastAPI template로 만들었습니다. stable layered core와 project별 option을 분리하고, 사람과 agent가 같은 source-of-truth와 automation skill을 사용하도록 설계·구축했습니다.
+제품의 Decision·SPEC·Work Package·QA·release 흐름을 실제 제품에 적용해 운영하고, 여기서 쌓이는 결정·작업·검증 기록을 의사결정·회의·업무 배정·승인·후속 작업으로 넓히는 회사 AX 전환 구조 설계에 참여했습니다. MEDINESS 앱·데이터·도구는 담당 개발팀이 구현했고, 김대정은 제품 요구·운영 구조 설계에 참여하면서 제품별 적용·운영을 리드했습니다. Backend Template과 agent context는 직접 설계·구축했습니다.
 
 ## My Scope
 
-- organization FastAPI template architecture, convention, runbook 설계·구축 전담
-- project-local agent context routing과 반복 작업 automation skill 구축 전담
-- template의 조직 전체 adoption이나 절감 시간을 정량 성과로 claim하지 않음
+- MEDINESS 제품 요구와 운영 흐름을 구체화하는 설계 참여 — `contributed`
+- Decision·SPEC·Work Package·QA·release를 제품별로 적용하고 일정·이슈·릴리스를 운영 — `led`
+- 의사결정·회의·업무 배정·승인·후속 작업을 agent-readable context와 human gate로 연결하는 회사 업무 AX 구조 설계 참여 — `contributed`
+- 조직 표준 FastAPI template, ADR·runbook·agent context, automation skill 설계·구축 — `owned`
+- 회사 Azure·Terraform 운영과 제품별 delivery 연결 — 직접 담당
+- MEDINESS 서비스 앱·DB·도구 구현 — 담당 개발팀
 
 ## Problem And Constraints
 
-새 backend project마다 directory structure, DI, transaction, error response, local setup을 다시 결정하고 있었습니다. AI agent도 project context와 작업 절차를 매번 새로 읽고 추론해야 했습니다.
+제품 개발은 기획 문서, 작업 티켓, 코드, QA, 릴리스 기록에 나뉘고 회사 업무는 회의, 결정, 담당 배정, 승인, 후속 작업에 나뉩니다. 기록을 더 만드는 것만으로는 어떤 결정이 어떤 실행과 검증으로 이어졌는지 되짚기 어렵습니다.
 
-반면 project마다 multi-tenancy 여부, ID type, authentication, storage가 달라 하나의 고정 scaffold로 모든 선택을 강제할 수 없었습니다. 표준을 만들되 실제 product 차이를 숨기지 않는 경계가 필요했습니다.
+Agent가 이 맥락을 읽는다고 해서 제품 판단과 사람의 책임까지 넘길 수는 없습니다. 제품 우선순위·아키텍처·업무 담당·QA·release 승인은 사람이 계속 소유하면서, agent는 탐색·초안·반복·근거 준비를 맡는 경계가 필요했습니다.
 
-## Decision And Alternatives
+## Current Operation And AX Extension
 
-- Router -> Service -> Repository, DI, transaction, error contract는 stable core로 고정하고 tenancy·ID·auth·storage는 명시적인 option으로 분리했습니다.
-- project별 copy-and-modify는 처음에는 빠르지만 convention과 문서가 서로 drift합니다.
-- Trade-off: 모든 차이를 흡수하는 generic framework는 유연하지만 이해·도입 비용과 option 조합 복잡도가 커집니다. template은 반복되는 core만 표준화하고 product-specific domain은 생성 후 확장하도록 제한했습니다.
+```text
+현재 제품 운영 — 실선
+요청·기획·디자인 → Decision·SPEC → Work Package → BE·FE·QA
+                 → Release Gate → Git·CI/CD → Azure·Vercel
 
-## System Design And Implementation
+회사 업무 AX 확장 설계 — 점선
+회의·요청 ⇢ 의사결정 ⇢ 업무 배정 ⇢ 승인 ⇢ 후속 작업
+```
 
-diagram: layered architecture (Router -> Service -> Repository) -> DI · @transactional · type safety (Pyright) -> ADR · convention · runbook -> [soft] agent context system (hierarchical context · skills)
+- 제품의 Decision→release 흐름은 현재 실제 적용·운영 범위다.
+- 회사 업무의 의사결정→후속 작업 흐름은 AX 확장 설계 범위다.
+- 전사 AX 완료, 모든 회사 업무 통합, agent의 자율 의사결정·업무 배정·승인은 주장하지 않는다.
 
-- response wrapper matrix, ErrorCode domain prefix, contract test 구성
-- multi-tenancy / ID type / authentication(JWT·SSO) / storage(local·S3·Azure) option 설계
-- 영역별 context routing과 `init-project`·`add-domain`·`db-reset`·`local-setup` automation skill 내장
+## Responsibility Boundary
 
-## Failure Modes And Operation
+| 영역 | 김대정의 역할 | 구현·운영 경계 |
+| --- | --- | --- |
+| MEDINESS 제품 요구·운영 구조 | 설계 참여 | 제품 요구와 운영 흐름을 구체화 |
+| 제품별 실행 | 운영 리드 | Decision·SPEC·WP·QA·release 상태를 실제 제품에 적용 |
+| 회사 업무 AX 확장 | 설계 참여 | 의사결정·회의·업무 배정·승인·후속 작업을 같은 맥락으로 연결 |
+| Backend Template·agent context | 직접 설계·구축 | 아키텍처·계약·runbook·automation을 실행 가능한 기준으로 구현 |
+| MEDINESS 앱·데이터·도구 | 담당 개발팀 | 플랫폼 서비스 구현은 담당 개발자들이 수행 |
 
-- option 조합이 core architecture를 분기시키지 않도록 변경 지점을 명시적인 설정과 생성 workflow로 제한
-- response·error contract가 project마다 달라지는 문제를 matrix와 contract test로 고정
-- type·transaction boundary 회귀를 Pyright, DI, `@transactional` convention으로 제한
-- 문서가 여러 진입점에서 갈라지는 문제를 Hub-and-Spoke 단방향 routing과 ADR로 관리
+## Engineering Execution Plane
+
+새 backend project마다 architecture·DI·transaction·error contract와 agent context를 다시 정하지 않도록 반복되는 core를 FastAPI template로 고정했습니다. multi-tenancy·ID·authentication·storage처럼 제품마다 다른 선택은 generic framework에 숨기지 않고 명시적 option으로 분리했습니다.
+
+```text
+Stable Core
+Router → Service → Repository
+DI · transaction · error contract · contract test · Pyright
+             ↓
+Explicit Options
+tenancy · ID · authentication · storage
+             ↓
+Shared Execution
+ADR · convention · runbook · agent context · automation skill
+```
+
+사람과 agent는 같은 ADR·convention·runbook을 읽고 contract test·Pyright·automation skill로 같은 기준을 검증합니다. 이 기준을 통과한 변경은 Git·CI/CD를 거쳐 제품별 Azure·Vercel 실행 환경으로 전달됩니다. Azure topology와 Terraform change gate의 상세 근거는 Infrastructure case가 소유합니다.
 
 ## Evidence, Result, And Limits
 
-- Code-backed: layered architecture, DI, transaction, option matrix, contract test, automation skill이 확인됨
+- User-confirmed: 회사 업무 AX 구조 설계 참여와 제품별 적용·운영 리드의 역할 경계가 확인됨
+- Source-backed: MEDINESS의 제품·조직·결정·회의·작업·배포·도구·human authority surface가 확인됨
+- Code-backed: Backend Template의 layered architecture, DI, transaction, option matrix, contract test, automation skill이 확인됨
 - Documentation-backed: ADR, convention, runbook, Hub-and-Spoke context routing이 확인됨
-- Limits: template adoption project 수, 초기 setup 시간, context cost 절감의 before/after는 측정되지 않아 설계·구축 범위까지만 표현함
+- Limits: MEDINESS 플랫폼 직접 구현·회사 AX 단독 설계·전사 전환 완료·agent 자율 의사결정·정량 생산성 개선은 주장하지 않음
 
 ## Stack
 
-FastAPI · SQLAlchemy 2.0 · dependency-injector · Alembic · Pyright · ADR · agent context system
+MEDINESS product workflow · FastAPI · SQLAlchemy 2.0 · dependency-injector · Alembic · Pyright · ADR · agent context · Git · CI/CD · Azure · Vercel

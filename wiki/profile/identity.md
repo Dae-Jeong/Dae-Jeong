@@ -17,7 +17,7 @@ tags: [identity, positioning, branding]
 | Supporting role | Backend Engineer |
 | **Dual role** | **Product Owner** (2026-08-10 user-confirmed — 병기하되 primary를 대체하지 않는다) |
 | Specialty | AI Product Systems |
-| Differentiator | **만들면서 무엇을 만들지도 함께 정한다** + Agent-readable Engineering Workflow |
+| Differentiator | **만들면서 무엇을 만들지도 함께 정한다** + 제품·회사 업무를 잇는 Agent-readable Workflow |
 | Supporting narrative | Vision AI -> PM -> Backend -> AI Product/Agent Workflow |
 
 ## Canonical One-Line
@@ -68,14 +68,14 @@ user-confirmed(2026-08-10): "백엔드 엔지니어 / PO 혼용해도 좋을 것
 
 ## Short Bio
 
-FastAPI/NestJS 기반 product backend, AI generation quality, async/realtime processing, Azure/Terraform deployment를 다뤄왔다. 최근에는 제품 운영과 engineering standard를 agent-readable workflow로 구조화하고 있다.
+FastAPI/NestJS 기반 product backend, AI generation quality, async/realtime processing, Azure/Terraform deployment를 다뤄왔다. 최근에는 제품별 Decision→release 운영을 리드하고, 의사결정·회의·업무 배정·승인·후속 작업을 agent가 읽는 맥락·도구·사람의 승인 경계로 연결하는 회사 AX 구조 설계에 참여하고 있다. 그 실행 기반인 Backend Template과 agent context는 직접 구축했다.
 
 ## Positioning Logic
 
 1. `Maker`는 아이디어를 실제 가치로 만드는 사람이라는 브랜드 프레임이다.
 2. 채용 시장에서는 Tech Lead의 판단·실행 책임과 Backend Engineer의 기술 기반을 분리해 명확히 표기한다.
 3. Backend credibility와 AI product runtime·quality system 경험으로 전문 영역을 증명한다.
-4. Agent workflow는 별도 직군이 아니라 engineering execution의 차별점으로 제시한다.
+4. Agent workflow는 별도 직군이 아니라 제품 개발과 회사 업무의 맥락을 실행·검증·사람의 판단으로 잇는 차별점으로 제시한다.
 5. PM/Vision AI 경험은 product-system 관점의 배경으로만 사용한다.
 6. 리드 경험은 "무엇을 왜 만들고 어떤 기준으로 운영할지 결정한 뒤, 사람·agent·시스템의 실행을 정렬한다"는 작동 방식으로 서술한다. Director 등 직함으로 표현하지 않는다.
 
@@ -87,6 +87,7 @@ FastAPI/NestJS 기반 product backend, AI generation quality, async/realtime pro
 - 기업부설연구소장 등재 사실은 evidence에만 보존하고 공개 resume·homepage·portfolio에는 표기하지 않는다.
 - 특정 병원/헬스케어 산업에 identity를 제한하지 않는다.
 - 공통 소개에서는 `데이터 정합성`, `비동기 복구` 같은 구현 메커니즘을 역할처럼 나열하지 않는다. 해당 기술은 관련 경력·프로젝트 상세에서만 설명한다.
+- 회사 AX는 설계 참여 범위로 표현한다. MEDINESS 플랫폼 직접 구현, 전사 업무 통합 완료, agent의 자율 의사결정·배정·승인·release로 확대하지 않는다.
 - 근거 없는 `단독`, `완전 해결`, 성능 배수, business outcome을 사용하지 않는다.
 
 Evidence: [career claims](../evidence/claims/career.yaml), [project claims](../evidence/claims/README.md)

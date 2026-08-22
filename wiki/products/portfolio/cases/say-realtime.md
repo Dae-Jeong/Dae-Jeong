@@ -32,7 +32,11 @@ STT/LLM provider마다 인증, 언어 코드, session 종료 조건이 다르지
 
 ## System Design And Implementation
 
-diagram: 상담 클라이언트 -> WebSocket runtime (세션 lifecycle 관리) -> STT/LLM provider 추상화 계층 -> 번역·오디오 파이프라인 -> [soft] dashboard AI 분석 (structured output · fallback)
+diagram: 상담 화면 -> Express API Gateway -> NestJS SSO -> WebSocket API -> session orchestrator -> STT adapter -> transcript event -> advice·upsell·process pipeline -> client event
+
+diagram inset: Audio -> VAD(speech boundary) + DELTA(domain keyword fast path) / COMPLETE(context·store) + optional same-sequence correction; session end -> stop guard -> reconnect blocked
+
+visual_asset: `app/fe/public/portfolio/centurion-say-realtime-architecture-v2.svg` — runtime, transcript event detail, session lifecycle, provider benchmark·E2E replay·regression test를 하나의 reference architecture로 표현한다.
 
 - zombie session 방지, GC TTL, reconnect race 처리, turn-complete 기반 session 전환
 - realtime STT 복수 지원과 staggered pipeline, audio sequence matching, 이중->단일 translation session refactoring

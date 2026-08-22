@@ -2,7 +2,7 @@
 type: profile
 title: Contribution Boundaries
 description: Canonical project contribution framing and maximum public claim strength.
-timestamp: 2026-07-11
+timestamp: 2026-08-21
 tags: [contribution, ownership, claims]
 ---
 
@@ -19,7 +19,7 @@ tags: [contribution, ownership, claims]
 | NEXUS | backend architecture 주도, Terraform IaC 전담 | [claims](../evidence/claims/nexus.yaml) |
 | Company Azure infra | infra repository 전체와 Azure/Terraform infra 설계·구축·운영 담당 | [claims](../evidence/claims/infrastructure.yaml) |
 | BE Template | organization FastAPI template 설계·구축 전담 | [claims](../evidence/claims/be-template.yaml) |
-| mediness | 제품팀 일정·이슈·릴리스 운영 리드, workflow 구축·운영 | [claims](../evidence/claims/mediness.yaml) |
+| MEDINESS | 제품 요구·운영 흐름 설계 참여(`contributed`), 제품별 Decision→SPEC→Work Package→QA→release 적용·운영 리드(`led`), 회사 업무 AX 구조 설계 참여(`contributed`); app·DB·runtime 구현은 담당 개발팀 | [claims](../evidence/claims/mediness.yaml) |
 | Memento | reservation/payment backend 안정화 기여 | [claims](../evidence/claims/career.yaml) |
 | TellingMe | personal project backend lead and infra | [claims](../evidence/claims/career.yaml) |
 
@@ -29,6 +29,8 @@ tags: [contribution, ownership, claims]
 2. AI product runtime and quality
 3. Infra-aware delivery
 4. Engineering standard
-5. Agent-readable workflow
+5. Agent-readable product/company workflow
 
 Public output은 [evidence policy](../rules/evidence-policy.md)의 strength를 넘을 수 없다.
+
+MEDINESS의 회사 AX 설계와 BE Template을 하나의 `owned` claim으로 합치지 않는다. 전자는 설계 참여, 후자는 직접 설계·구축으로 contribution strength가 다르다. daily briefing 직접 구축·운영은 author 근거 재검증 전 공개하지 않는다.

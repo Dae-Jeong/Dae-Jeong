@@ -4,7 +4,7 @@ title: Homepage Public Content
 description: Homepage hero, bio, and section-level public-safe canonical copy.
 timestamp: 2026-08-21
 tags: [homepage, public, branding]
-claim_ids: [thready.product-zero-to-one-contribution, thready.frontend-product-delivery, thready.subscription-revenue-band, thready.backend-rebuild, thready.qa-reopen-reduction, thready.generation-quality-system, centurion.bay-async-backend, centurion.say-realtime-ai, be-template.backend-standard, be-template.agent-context, mediness.product-operations]
+claim_ids: [thready.product-zero-to-one-contribution, thready.frontend-product-delivery, thready.subscription-revenue-band, thready.backend-rebuild, thready.qa-reopen-reduction, thready.generation-quality-system, centurion.bay-async-backend, centurion.say-realtime-ai, be-template.backend-standard, be-template.agent-context, mediness.company-work-ax-design, mediness.product-operations]
 ---
 
 # Homepage Public Content
@@ -33,8 +33,8 @@ Agent Workflow는 별도 nav가 아니라 Home/case 서술의 differentiator로 
 
 1. Backend systems ownership
 2. AI product runtime and quality system
-3. Async/realtime and infra-aware execution
-4. Agent-readable engineering workflow
+3. Product·company AX work design
+4. Async/realtime and infra-aware execution
 
 ## Selected Proof
 
@@ -42,7 +42,7 @@ Agent Workflow는 별도 nav가 아니라 Home/case 서술의 differentiator로 
 - Thready backend: 기존 frontend를 유지한 병렬 재구축·validation harness·cutover — 같은 기준의 QA 이슈 재오픈 비율 26%p 감소
 - Centurion(피부과 운영 AI 메디컬 플랫폼): 제품 시작 시점부터 구축 — 주문·재고 async backend 구축 주도와 realtime AI backend 공동 주 기여
 - BE Template: 조직 표준 FastAPI template 설계·구축 전담과 agent context system
-- Agent Workflow: 제품 운영 pipeline·release gate와 daily briefing agent
+- Company AX: 제품 개발 흐름과 의사결정·회의·업무 배정·승인·후속 작업을 agent-readable context와 human gate로 연결하는 구조 설계 참여; 제품별 Decision→release 적용·운영 리드
 
 대표 proof의 문구와 강도는 [claim registry](../../evidence/claims/README.md)에서 선택한다. case 상세는 [portfolio library](../portfolio/cases/README.md)를 연결하고 이 문서에 복제하지 않는다.
 

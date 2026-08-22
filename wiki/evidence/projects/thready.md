@@ -20,6 +20,7 @@ Source locator: `workspace:thready`
 ## Prototype To User Operation
 
 - Code-backed: 2026-03-30 다른 구성원이 Next.js·Supabase 기반 초기 prototype을 시작했고, 김대정은 2026-04-14 합류해 FastAPI backend와 API Gateway, 인증·계정·콘텐츠 생성·발행 흐름을 구축했다.
+- User-confirmed (2026-08-22): 초기 prototype의 구현은 김대정의 작업이 아니다. 공개 문구에서는 이를 김대정의 바이브 코딩 경험으로 귀속하지 않고, 기존 prototype을 인계받아 재구축 범위·architecture·validation·cutover를 맡은 경험으로 구분한다.
 - Code-backed: `v1.0`~`v1.2`는 release·QA와 `v1.1.0` backend cutover를 포함한 제품화 구간이다. release milestone과 실제 사용자 운영 시작은 같은 의미로 사용하지 않는다.
 - User-confirmed (2026-08-17): 실제 사용자가 제품을 사용하기 시작한 시점은 `v1.3.0`부터다.
 - Code-backed: `v1.3.0` release에는 고객 생성·계약 기간·AI 사용 한도·Threads account slot·삭제/복구·비밀번호 재설정·고객 session stream 등 실제 고객 운영을 위한 변경이 포함됐다.
@@ -99,6 +100,8 @@ Source locator: `workspace:thready`
 - Code-backed (2026-08-16): AI 실행부를 별도 FastAPI application과 DB로 분리하고, product backend는 authenticated HTTP client로만 접근하도록 경계를 구현했다.
 - Code-backed: 제품 정책과 원장 데이터는 backend, 생성 lifecycle과 실행 상태는 AI application이 소유하도록 구분했다.
 - Code-backed: owner mutation과 durable outbox 기록을 같은 transaction에서 처리하고, relay retry와 `delivery_version` fence로 역순 전달이 최신 상태를 덮지 않도록 구현했다.
+- Code-backed (2026-08-22 re-audit): outbox relay는 짧은 lease로 전달 row를 claim하고 `delivery_version`과 `attempt_count`를 함께 fencing token으로 사용한다. worker가 중단된 마지막 claim은 lease 만료 뒤 terminal failure로 보존하고, 최대 시도 전 실패는 재시도 가능한 상태로 되돌린다.
+- Code-backed (2026-08-22 re-audit): AI replica consumer는 delivery fence가 이미 처리했거나 더 최신인 version을 no-op으로 끝내고, stable id·natural key 충돌을 최신 row 하나로 수렴시키는 멱등 upsert/delete 경계를 소유한다.
 - Test-backed: backend와 AI application의 전체 회귀, migration 왕복, stale PUT/DELETE fence를 검증한 기록이 있다.
 - Verification boundary: 독립 서비스 분리와 outbox/fence의 설계·구현은 확인됐지만, production 전환 완료·무중단·유실 0건은 검증되지 않았다.
 - Contribution boundary: 해당 backend/AI 경계와 전달 안전성 설계·구현은 `owned`.

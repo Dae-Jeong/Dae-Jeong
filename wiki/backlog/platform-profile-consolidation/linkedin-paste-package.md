@@ -3,11 +3,13 @@ type: handoff
 title: 링크드인 붙여넣기 패키지 — 줄바꿈 포맷 적용
 description: 링크드인은 자동화로 줄바꿈 있는 한글을 넣을 수 없다. 아래를 순서대로 복사→붙여넣기한다.
 timestamp: 2026-08-11
-status: done
+status: superseded
 tags: [linkedin, paste, formatting]
 ---
 
 # 링크드인 붙여넣기 패키지
+
+> **Superseded (2026-08-22)**: `done`은 2026-08-11 당시 반영 이력일 뿐 현재 문안의 정합 완료를 뜻하지 않는다. 다음 반영에는 [Platform Profile Paste Package — Maker v1](2026-08-22-platform-paste-package.md)을 사용한다.
 
 > **✅ 2026-08-11 사용자가 직접 전량 반영 완료** — 소개(줄바꿈판)·헤드라인·경력 6건.
 > 사용자 수정: 소개 첫 문장 `사람들에게 필요한 제품을 4년째 만들고 있습니다`,

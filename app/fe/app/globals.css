@@ -215,6 +215,11 @@ body {
     break-inside: avoid;
   }
 
+  [data-portfolio-document] .portfolio-signal-section {
+    break-before: page;
+    break-inside: avoid;
+  }
+
   [data-portfolio-document] h2,
   [data-portfolio-document] h3 {
     break-after: avoid;

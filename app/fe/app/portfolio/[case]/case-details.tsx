@@ -149,7 +149,7 @@ export const DETAILS: Record<string, CaseDetail> = {
       },
       {
         title: "3층 판정 체계",
-        desc: "자동 게이트 12종으로 틀린 출력을 코드가 먼저 걸러내고, 직접 수집한 실측 코퍼스(n=19→4,039)와의 분포 대조로 '플랫폼다운 글'인지 판정하며, 남는 층만 사람이 본다.",
+        desc: "자동 게이트로 틀린 출력을 코드가 먼저 걸러내고, 최근 1년 게시물이 중심인 실측 코퍼스와의 분포 대조로 '플랫폼다운 글'인지 판정하며, 남는 층만 사람이 본다.",
       },
       {
         title: "planner · writer 파이프라인",
@@ -193,7 +193,7 @@ export const DETAILS: Record<string, CaseDetail> = {
         label: "품질 기준값의 자기 되먹임 발견",
       claim:
         "측정값으로 신뢰하던 품질 기준값이 자사 출력을 되먹이고 있었음을 발견 — 순환을 끊고 기준을 다시 세우는 과정에서 문제 정의 자체의 오류도 드러남",
-      source: "실측 코퍼스 재수집 (n=19 → 4,039)",
+      source: "최근 1년 게시물 중심의 실측 코퍼스 재수집",
       claimIds: ["thready.measurement-correction", "thready.corpus-measurement"],
       },
     ],
@@ -467,120 +467,150 @@ export const DETAILS: Record<string, CaseDetail> = {
     ],
   },
   "be-template": {
-    eyebrow: "Engineering System · Backend Standard",
+    eyebrow: "Company AX · Product / Work System",
     positioning:
-      "반복되는 backend 구조와 agent context 구성을 조직 표준 FastAPI template으로 묶은 케이스.",
+      "제품의 Decision→release 흐름을 운영하고, 의사결정·회의·업무 배정·승인·후속 작업까지 같은 맥락으로 잇는 회사 AX 구조 설계에 참여한 케이스. Backend Template과 agent context는 직접 구축했다.",
     kv: [
-      { k: "Role", v: "Owner" },
-      { k: "Scope", v: "Backend Standard" },
-      { k: "Stack", v: "FastAPI · Pyright" },
-      { k: "Status", v: "설계·구축 전담" },
+      { k: "Role", v: "Design Contributor · Product Operations Lead · Backend System Owner" },
+      { k: "Scope", v: "Product · Work System · Agent Context · Human Gate" },
+      { k: "Stack", v: "MEDINESS · FastAPI · Git · Azure/Vercel" },
+      { k: "Status", v: "제품 운영 · 회사 AX 확장 설계" },
     ],
     problem: [
       <>
-        새 backend project마다 directory structure, DI, transaction, error response와
-        local setup을 다시 결정하고 있었다. agent도 project context와 작업 절차를
-        매번 새로 읽고 추론해야 해, 반복되는 판단이 구현마다 흩어졌다.
+        제품 개발의 결정·스펙·작업·QA·릴리스는 서로 다른 도구와 문서에, 회사 업무의
+        회의·의사결정·담당 배정·승인·후속 작업은 사람의 기억과 대화에 흩어져 있었다.
+        기록을 더 만드는 것만으로는 결정이 어떤 실행과 검증으로 이어졌는지 보기 어려웠다.
       </>,
       <>
-        동시에 multi-tenancy, ID type, authentication, storage는 project마다 달랐다.
-        표준을 만들되 product-specific 선택을 숨기지 않는 경계가 필요했다.
+        서비스 앱·데이터·도구는 담당 개발팀이 구현했다. 저는 제품 요구·운영 구조
+        설계에 참여하고 제품별 Decision→release 적용·운영을 리드했다. 회사 AX 구조도
+        설계 참여 범위이며, Backend Template·agent context는 직접 설계·구축한 범위다.
+      </>,
+      <>
+        Agent가 이 맥락을 읽는다고 해서 제품 판단과 사람의 책임까지 넘길 수는 없었다.
+        제품 우선순위·아키텍처·업무 담당·QA·release 승인은 사람이 계속 소유해야 했다.
       </>,
     ],
     review: {
       groups: [
         {
-          title: "표준을 어떤 형태로 세우나",
+          title: "제품과 회사 업무를 어떻게 연결하나",
           options: [
-            { name: "제품마다 각자 구조", verdict: "기각", reason: <>소수 백엔드 인원이 다수 제품을 담당하는 체제에서는 제품 간 이동 비용이 그대로 병목이 된다</> },
-            { name: "문서 가이드만 배포", verdict: "기각", reason: <>규약이 코드에 강제되지 않으면 제품마다 다시 갈라진다</> },
-            { name: "실행 가능한 템플릿 + agent context 내장", verdict: "채택", reason: <>신규 backend가 같은 구조에서 출발하고, 사람과 코딩 에이전트가 같은 규칙 위에서 일한다</> },
+            { name: "상태 요약 문서 추가", verdict: "기각", reason: <>기존 기록과 다시 동기화해야 해 확인 비용과 책임 공백이 남는다</> },
+            { name: "Agent에게 판단 위임", verdict: "기각", reason: <>제품·아키텍처·업무 담당·승인의 책임이 흐려진다</> },
+            { name: "공통 맥락 + Human Gate", verdict: "채택", reason: <>Agent는 탐색·초안·반복·근거를 준비하고 사람은 판단과 승인을 소유한다</> },
           ],
         },
       ],
     },
     decisionIntro: (
       <>
-        모든 차이를 generic framework에 넣는 대신, 반복되는 core는 고정하고 제품별
-        선택은 <strong>명시적인 option과 생성 workflow</strong>로 분리했다.
+        먼저 제품의 Decision→release 흐름을 실제 운영했다. 그 위에서 회사 업무를
+        연결할 범위의 설계에 참여하고, 반복되는 backend 판단은 <strong>실행 가능한
+        template과 agent context</strong>로 직접 만들었다.
       </>
     ),
     decisions: [
       {
-        k: "Stable Core",
+        k: "Current Product Flow",
         t: (
           <>
-            Router → Service → Repository, DI, transaction, error contract를 stable
-            layered core로 고정한다.
+            Decision·SPEC·Work Package를 BE·FE·QA owner와 release gate로 연결해 실제
+            제품에 적용·운영한다.
           </>
         ),
       },
       {
-        k: "Explicit Options",
+        k: "Company Work Extension",
         t: (
           <>
-            multi-tenancy, ID type, authentication, local·managed storage는
-            option으로 분리해 product-specific 차이를 생성 후 확장한다.
+            의사결정·회의·업무 배정·승인·후속 작업을 같은 맥락으로 잇는 범위는 현재
+            제품 운영과 구분된 <strong>AX 확장 설계</strong>로 둔다.
           </>
         ),
       },
       {
-        k: "Shared Context",
+        k: "Agent / Human Boundary",
         t: (
           <>
-            사람과 agent가 같은 ADR·convention·runbook과 계층형 context routing을
-            바라보도록 반복 작업 automation skill을 template에 내장한다.
+            Agent는 필요한 맥락과 작업안·반복 실행·검증 근거를 준비하고, 제품 판단·
+            architecture·assignment·QA·release 승인은 사람이 맡는다.
+          </>
+        ),
+      },
+      {
+        k: "Engineering Execution",
+        t: (
+          <>
+            Router→Service→Repository·DI·transaction·error contract는 stable core로,
+            제품 차이는 명시적 option으로 분리하고 ADR·runbook·agent context를 함께 둔다.
           </>
         ),
       },
     ],
     systemIntro: (
       <>
-        backend의 안정적인 구조 계약과 project별 선택, agent 작업 context를{" "}
-        <strong>하나의 생성·운영 표준</strong>으로 연결했다.
+        현재 제품 운영은 실선, 회사 업무 AX 확장 설계는 점선으로 구분하고, 양쪽 모두
+        <strong>사람의 판단과 승인</strong>을 마지막 경계로 둔다.
       </>
     ),
     system: [
       {
-        title: "Layered Core",
-        desc: "Router → Service → Repository, DI, transaction boundary를 stable core로 표준화.",
+        title: "제품 개발 · 현재 운영",
+        desc: "요청·기획·디자인 → Decision·SPEC → Work Package → BE·FE·QA → release gate.",
       },
       {
-        title: "Option Matrix",
-        desc: "tenancy·ID·authentication·storage 차이를 명시적인 option으로 분리.",
+        title: "회사 업무 · 확장 설계",
+        desc: "회의·요청 → 의사결정 → 업무 배정 → 승인 → 후속 작업.",
       },
       {
-        title: "Contract Guard",
-        desc: "response wrapper matrix, ErrorCode domain prefix, contract test와 Pyright로 회귀를 제한.",
+        title: "Agent Preparation",
+        desc: "맥락 탐색, 작업안 초안, 반복 실행, 검증 근거 준비.",
       },
       {
-        title: "Agent Context",
-        desc: "Hub-and-Spoke routing과 init-project·add-domain·db-reset·local-setup skill을 내장.",
+        title: "Human Gate",
+        desc: "제품·아키텍처·업무 담당 판단, QA·release 최종 승인.",
+      },
+      {
+        title: "Backend Execution",
+        desc: "Stable core·explicit option·contract test·Pyright·ADR·runbook·automation skill.",
+      },
+      {
+        title: "Production Runtime",
+        desc: "Git·CI/CD를 거쳐 제품별 Azure·Vercel 실행 환경으로 전달.",
       },
     ],
     opsIntro: (
       <>
-        layered architecture, DI, transaction, option matrix, contract test와 automation
-        skill이 코드 근거로 확인되고, ADR·convention·runbook과 Hub-and-Spoke context
-        routing이 문서 근거로 연결되어 있다. adoption과 setup 시간의 before/after는
-        측정되지 않아 정량 효과는 주장하지 않는다.
+        제품별 Decision→release는 현재 운영 범위, 회사 업무 AX는 확장 설계 범위다.
+        Backend Template·agent context는 직접 구축했다. <strong>전사 AX 완료·MEDINESS
+        플랫폼 직접 구현·agent 자율 의사결정·정량 생산성 개선은 주장하지 않는다.</strong>
       </>
     ),
     evidence: [
       {
         index: "근거 1",
-        label: "backend standard",
-      claim:
-        "layered architecture·DI·ADR·convention·runbook 기반 조직 표준 FastAPI template 설계·구축 전담",
-      source: "Backend Template 도입 기록",
-      claimIds: ["be-template.backend-standard"],
+        label: "회사 업무 AX 설계",
+        claim:
+          "의사결정·회의·업무 배정·승인·후속 작업을 agent-readable context와 human gate로 잇는 구조 설계에 참여",
+        source: "사용자 확정 contribution boundary",
+        claimIds: ["mediness.company-work-ax-design"],
       },
       {
         index: "근거 2",
-      label: "agent context system",
-      claim: "계층적 agent context와 반복 작업 automation skill을 backend template에 내장",
-      source: "Backend Template agent context 기록",
-      claimIds: ["be-template.agent-context"],
+        label: "제품 운영",
+        claim: "Decision·SPEC·Work Package와 QA·release gate 기반 제품별 운영을 리드",
+        source: "MEDINESS 제품 운영 workflow 기록",
+        claimIds: ["mediness.product-operations"],
+      },
+      {
+        index: "근거 3",
+        label: "backend standard",
+        claim:
+          "layered architecture·DI·ADR·runbook·agent context 기반 조직 표준 FastAPI template 설계·구축 전담",
+        source: "Backend Template 도입 기록",
+        claimIds: ["be-template.backend-standard", "be-template.agent-context"],
       },
     ],
   },
@@ -591,7 +621,7 @@ export const DETAILS: Record<string, CaseDetail> = {
     kv: [
       { k: "Role", v: "Design Contributor · Operations Lead" },
       { k: "Scope", v: "Product Design · Product Operations" },
-      { k: "Stack", v: "Registry · Agent" },
+      { k: "Stack", v: "Registry · Human Gate" },
       { k: "Status", v: "설계 참여·운영" },
     ],
     problem: [
@@ -607,15 +637,16 @@ export const DETAILS: Record<string, CaseDetail> = {
         blocker가 남아 있는지 확인하는 비용이 반복됐다.
       </>,
       <>
-        협업 도구 activity는 최신 상태를 추정하는 재료일 뿐 완전한 source-of-truth가
-        아니었다. 누락·지연·충돌 가능성이 있으므로 agent summary가 사람의 product
-        decision을 대신해서는 안 됐다.
+        제품 개발에서 쌓이는 기록을 회사 업무로 넓힐 때에도 의사결정·회의·업무
+        배정·승인·후속 작업의 소유자가 흐려져서는 안 됐다. Agent가 맥락을 찾고
+        초안을 준비하더라도 product decision은 사람이 맡아야 했다.
       </>,
     ],
     decisionIntro: (
       <>
         상태를 다시 요약하는 문서를 하나 더 만드는 대신, 결정을 실행과 release evidence로
-        잇고 agent의 역할은 <strong>집계와 triage 입력</strong>으로 제한했다.
+        이었다. 회사 업무로 확장하는 설계에서는 agent의 역할을 <strong>탐색·초안·반복·근거
+        준비</strong>로 제한했다.
       </>
     ),
     decisions: [
@@ -633,8 +664,8 @@ export const DETAILS: Record<string, CaseDetail> = {
         k: "Human Boundary",
         t: (
           <>
-            브리핑 에이전트는 활동 기록과 <strong>막힌 지점 후보</strong>를 모으는 데까지
-            한다. 정말 막힌 것인지, 무엇을 결정할지는 사람이 판단한다.
+            Agent는 필요한 맥락을 찾고 회의·요청을 작업안으로 정리한다. 제품 우선순위,
+            아키텍처, 업무 담당, QA·release 승인은 사람이 판단한다.
           </>
         ),
       },
@@ -650,8 +681,8 @@ export const DETAILS: Record<string, CaseDetail> = {
     ],
     systemIntro: (
       <>
-        활동은 자동으로 모으되, <strong>최종 상태와 결정은 기록·문서·릴리스 게이트가
-        확인</strong>하는 구조다. 자동화가 판단까지 대신하지 않는다.
+        현재 운영하는 제품 pipeline과 회사 업무로 넓힐 AX 설계를 구분한다. 어느 쪽도
+        <strong>자동화가 사람의 판단과 승인을 대신하지 않는다.</strong>
       </>
     ),
     system: [
@@ -660,8 +691,8 @@ export const DETAILS: Record<string, CaseDetail> = {
         desc: "결정한 날과 담당자를 남기고, 그 결정이 어느 스펙·작업으로 이어졌는지 한 방향으로 잇는다.",
       },
       {
-        title: "일일 브리핑",
-        desc: "협업 도구의 활동과 막힌 지점 후보를 모아 사람이 분류할 입력으로 전달.",
+        title: "회사 업무 AX 확장",
+        desc: "의사결정·회의·업무 배정·승인·후속 작업을 같은 맥락에서 잇도록 설계.",
       },
       {
         title: "근거 연결",
@@ -674,9 +705,9 @@ export const DETAILS: Record<string, CaseDetail> = {
     ],
     opsIntro: (
       <>
-        결정·스펙·작업·릴리스로 이어지는 운영 구조와 게이트·버전 관리가 문서 근거로,
-        일일 브리핑과 분류 흐름이 도구 근거로 남아 있다. 다만 <strong>상태 확인 시간의
-        정량 변화나 에이전트의 자율 의사결정은 주장하지 않는다</strong> — 측정하지 않았다.
+        결정·스펙·작업·릴리스로 이어지는 제품 흐름은 실제 운영 범위이고, 회사 업무 AX는
+        확장 설계 범위다. <strong>조직 전체 전환 완료나 에이전트의 자율 의사결정은
+        주장하지 않는다.</strong>
       </>
     ),
     evidence: [
@@ -698,11 +729,11 @@ export const DETAILS: Record<string, CaseDetail> = {
       },
       {
         index: "근거 2",
-        label: "daily briefing agent",
-      claim:
-        "협업 도구 활동 집계와 blocker triage를 지원하는 daily briefing agent 구축·운영",
-      source: "일일 브리핑 운영 기록",
-      claimIds: ["mediness.daily-briefing"],
+        label: "회사 업무 AX 설계",
+        claim:
+          "의사결정·회의·업무 배정·승인·후속 작업을 agent-readable context와 human gate로 연결하는 구조 설계에 참여",
+        source: "사용자 확정 contribution boundary",
+        claimIds: ["mediness.company-work-ax-design"],
       },
     ],
   },

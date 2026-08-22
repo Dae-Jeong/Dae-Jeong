@@ -1,7 +1,7 @@
 ---
 type: portfolio-case
 case: centurion-platform
-title: 의료 MSA의 서비스 경계와 실패·복구 설계
+title: 의료 MSA의 작업 복구와 실시간 상담 설계
 resume_tag: CENTURION
 origin: MediSolve AI · Centurion
 claim_ids:
@@ -18,7 +18,7 @@ claim_strength: mixed (service led/co-led/contributed)
 
 ## Executive Summary
 
-API Gateway·SSO를 공유하고 예약 CRM, 주문·재고, 실시간 상담 서비스가 분리된 의료 MSA에서 서비스별 backend를 구축·연동했습니다. 전체 플랫폼을 단독 구축한 것이 아니라, 주문·재고 worker와 예약 정책 연결은 주도하고 실시간 상담·시설 연동·공통 인증은 기여 범위를 구분해 맡았습니다.
+API Gateway·SSO를 공유하고 예약 CRM, 주문·재고, 실시간 상담 서비스가 분리된 의료 MSA에서 서비스별 backend를 구축·연동했습니다. 주문·재고는 실패한 후속 작업만 다시 실행할 수 있게 만들었고, 실시간 상담은 빠른 중간 전사와 확정 판단·세션 종료를 서로 다른 경계로 나눴습니다. 전체 플랫폼을 단독 구축한 것이 아니라, 주문·재고 worker와 예약 정책 연결은 주도하고 실시간 상담·시설 연동·공통 인증은 기여 범위를 구분해 맡았습니다.
 
 ## My Scope
 
@@ -36,6 +36,9 @@ API Gateway·SSO를 공유하고 예약 CRM, 주문·재고, 실시간 상담 �
 - Express API Gateway와 NestJS SSO가 공통 진입·인증을 담당하고, FastAPI product backend는 각 업무 경계를 소유합니다.
 - 주문·재고의 외부 연동은 RabbitMQ·TaskIQ worker로 분리하고 상태·retry·terminal failure·수동 재처리 경계를 둡니다.
 - realtime 상담은 WebSocket session lifecycle과 STT/LLM provider adapter를 분리해 reconnect·중복 event·종료 흐름을 통제합니다.
+- realtime STT가 내보내는 VAD speech event·DELTA·COMPLETE를 분기합니다. DELTA는 domain keyword 우선 trigger에, COMPLETE는 context 판단·저장에 사용하며, optional CORRECTED는 같은 sequence의 원래 발화만 교체합니다.
+- provider 후보 비교에서는 383개 domain keyword hint와 WER·CER·keyword retention·latency benchmark를 구성했습니다. keyword별 numeric weight나 accuracy 개선 결과로 표현하지 않습니다.
+- VAD silence 200·350·500ms E2E에서 전체 지연 차이가 작고 모델 추론이 약 80%를 차지함을 확인해, VAD 미세 조정보다 DELTA 조기 trigger와 provider 경계 분리를 우선했습니다.
 
 ## System Design And Implementation
 
@@ -43,17 +46,25 @@ diagram: Client -> Express API Gateway -> NestJS SSO -> FastAPI product services
 
 diagram: 주문·재고 API -> RabbitMQ -> TaskIQ worker -> SUCCESS / FAILED -> retry·수동 재처리
 
-diagram: 상담 client -> WebSocket session lifecycle -> STT/LLM adapter -> translation·audio pipeline
+diagram: 상담 화면 -> Express API Gateway -> NestJS SSO -> WebSocket session orchestrator -> STT adapter -> transcript event -> advice·upsell·process pipeline -> client event
+
+diagram inset: Audio -> VAD(speech boundary) + same-utterance DELTA -> keyword match -> start generation / COMPLETE -> context·store; optional CORRECTED -> replace same sequence; session end -> stop guard -> reconnect blocked
+
+visual_asset: `app/fe/public/portfolio/centurion-say-realtime-architecture-v2.svg` — SAY의 access·session·STT·판단·외부 provider runtime과 benchmark·E2E replay·regression test 경계를 한 장에 배치한 공개용 reference architecture. DELTA·COMPLETE·optional CORRECTED와 stop guard는 같은 이미지의 확대 영역으로 설명한다.
 
 - async FastAPI 실행 모델에 맞춰 Celery 처리를 TaskIQ·RabbitMQ로 전환
 - API test infrastructure·Docker CI·local onboarding 구성
 - 중복 WebSocket event를 cancellation·debounce·retry·turn-state guard로 제한
+- 4분 37초 상담 E2E에서 DELTA 586건·COMPLETE 25건·ADVICE 14건과 sequence 1–25의 event integrity 확인
+- 종료 뒤 reconnect timer가 남는 session failure를 재현하고 lifecycle/race 8개·GC TTL 5개, 총 13개 focused regression scenario로 회귀 고정
 - 시설·재고 연동에서 외부 publish 실패가 핵심 업무 transaction을 중단하지 않도록 실행 경계 분리
 
 ## Failure Modes And Operation
 
 - worker 작업은 상태·retry·최종 실패 기록을 남기고 수동 재처리 가능
 - realtime session은 reconnect race·zombie session·out-of-order event를 lifecycle guard에서 제한
+- VAD는 발화 경계 조정이며 STT recognition accuracy 향상을 뜻하지 않음
+- current SAY에는 keyword별 numeric weight가 없으며 domain keyword hint와 DELTA keyword priority를 구분
 - 시설·재고 연동은 fire-and-forget 경계이므로 exactly-once를 주장하지 않음
 - Centurion 전체 MSA, Gateway, SSO, 모든 service를 단독 설계·구축했다고 주장하지 않음
 

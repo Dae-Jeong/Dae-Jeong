@@ -207,7 +207,7 @@ claims:
       - production migration 성능·소요 시간 개선
     verified_at: 2026-08-18
   - id: thready.ai-replica-outbox
-    statement: owner mutation과 durable outbox를 같은 transaction으로 처리하고 retry·delivery version fence로 BE→AI replica 전달 경계 설계·구현
+    statement: owner mutation과 durable outbox를 같은 transaction으로 처리하고 lease 기반 claim·attempt token·retry·delivery version fence·멱등 consumer·terminal failure 보존으로 BE→AI replica 전달 경계 설계·구현
     strength: owned
     confidence: high
     public: true
@@ -215,11 +215,13 @@ claims:
     allowed_copy:
       - 원장 변경과 Outbox 기록을 같은 transaction으로 처리하고 전달은 retry·version fence로 분리
       - AI 장애나 역순 전달이 최신 원장 상태를 덮지 않도록 durable delivery 경계 설계·구현
+      - lease 기반 재점유와 delivery version·attempt token으로 worker 중단·중복·지연 전달을 통제
+      - 멱등 consumer와 최대 재시도 뒤 terminal failure 보존으로 운영자가 실패 상태를 확인할 수 있게 설계
     forbidden_copy:
       - 데이터 유실 0건
       - exactly-once 보장
       - production 장애율 개선
-    verified_at: 2026-08-16
+    verified_at: 2026-08-22
   - id: thready.production-operation-quality
     statement: AI 콘텐츠 생성 production backend를 월 수만 건 규모 요청, HTTP 5xx 0.3% 수준으로 운영 유지
     strength: owned
@@ -246,7 +248,7 @@ claims:
       - 무중단 운영 보장
     verified_at: 2026-07-05
   - id: thready.rebuild-decision-execution
-    statement: AI 도구로 빠르게 검증한 초기 prototype을 production 운영 단계로 전환하기 위해 전면 재구축을 결정·설득하고, 검증 harness와 architecture 기준을 직접 세운 뒤 AI를 codebase 파악·기능 inventory·구현에 활용해 backend 재구축을 총 36시간(작업 시간)에 완수
+    statement: 다른 구성원이 만든 초기 prototype을 인계받아 production 운영 단계에 맞게 전면 재구축하기로 결정·설득하고, 검증 harness와 architecture 기준을 직접 세운 뒤 AI를 codebase 파악·기능 inventory·구현에 활용해 backend 재구축을 총 36시간(작업 시간)에 완수
     strength: owned
     confidence: high
     public: true
@@ -254,12 +256,13 @@ claims:
     allowed_copy:
       - 서비스가 작은 시점에 전면 재구축을 결정하고 반대를 설득 — 하네스를 먼저 세팅하고 AI와 협업해 파악부터 재구축까지 총 36시간(작업 시간 기준)에 완수
       - AI 모듈 확장을 근거로 FastAPI 분리 도입, FE는 Next.js 유지
-      - AI 도구로 빠르게 검증한 초기 prototype의 backend를 production 운영 단계에 맞게 재구축
+      - 빠른 기능 검증 중심으로 만들어진 기존 prototype backend를 production 운영 단계에 맞게 재구축
       - 재구축 범위·architecture·검증·cutover는 직접 소유하고 AI를 codebase 파악·기능 inventory·구현에 적극 활용
     forbidden_copy:
       - 36시간 만에 서비스 전체 완성 (달력 기간 오독 표현)
       - 전임 작업 폄하 표현
-    verified_at: 2026-07-19
+      - 초기 prototype을 김대정이 직접 또는 바이브 코딩으로 만들었다는 표현
+    verified_at: 2026-08-22
   - id: thready.qa-reopen-reduction
     statement: backend cutover 이후 QA 버그 재발률(해결 대비 reopen)이 37%에서 11%로 하락, 재발 발생 일평균 약 94% 감소 (Jira 236건 실측)
     strength: owned

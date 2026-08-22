@@ -2,7 +2,7 @@
 type: product-reference
 title: Backend Case Achievement Inventory
 description: 검증된 claim을 backend 채용 관점에서 재선별한 사례별 성과 후보와 기술 설명·증거 한계.
-timestamp: 2026-08-19
+timestamp: 2026-08-22
 derived_from:
   - evidence/claims/
   - evidence/projects/
@@ -49,12 +49,14 @@ tags: [resume, backend, cases, achievements, evidence]
 
 | No. | Resume case | 결합 판단 |
 | --- | --- | --- |
-| 01 | AI를 활용한 36시간 FastAPI backend 재구축과 production cutover | 재구축 판단·AI 활용·validation harness·QA/운영 결과가 하나의 전환 서사이므로 결합 |
-| 02 | AI 실행부·DB 분리와 migration·Outbox | service/data boundary 이후 기존 이력 이관과 이후 원장 전달이 같은 정합성 문제이므로 결합 |
-| 03 | 주문·재고 worker 복구 흐름 | async runtime 선택·retry·terminal failure·manual reprocess가 하나의 운영 상태 계약이므로 유지 |
-| 04 | Threads 데이터 기반 성과 기준과 AI 생성 품질 evaluation | `잘되는 글을 어떻게 정의하고 생성 결과를 어떻게 판정할 것인가`라는 같은 제품 질문이므로 결합하되, 13.1만/318만·11.1만/18.5만 corpus와 20,256건 prompt/judge 실험의 범위는 별도 bullet로 분리 |
-| 05 | server auth state 기반 지점 권한 | 여러 피부과 운영·예약 시스템의 독립 사례로 두고, client input·tenant scope·HTTP 상태 계약이라는 구체적 backend 판단을 중심에 둠 |
-| 06 | Stripe 선결제 provider-side 보상 | local DB와 외부 provider의 원자성 부재를 다룬 초기 경력의 독립 failure-mode 사례라 유지 |
+| 01 | Thready 유료 제품 운영과 핵심 시스템 직접 구현 | 제품 운영 리드·직접 구현 범위와 제품·팀의 구독료 매출 outcome을 구분해, 고객 문제를 실제 운영 제품으로 연결한 경험을 먼저 제시 |
+| 02 | 인계받은 초기 backend의 FastAPI 병렬 재구축 | 다른 구성원의 초기 prototype을 인계받은 사실, backend-only cutover, validation harness, QA reopen 전후 관측을 한 전환 서사로 결합 |
+| 03 | 주문·재고 worker 복구 흐름 | 다른 제품에서도 async runtime 선택·retry·terminal failure·manual reprocess를 직접 설계한 반복 가능성을 증명 |
+| 04 | 제품 원장·AI 실행 상태 분리와 STG migration·Outbox | service/data boundary 이후 기존 이력 이관과 지연·중복·역순 전달이 같은 정합성 문제이므로 결합 |
+| 05 | 조직 표준 FastAPI template·agent context | 개인의 구현 기준을 사람이든 agent든 다시 사용할 수 있는 조직 실행 기반으로 확장한 성과 |
+| 06 | Azure/Terraform 변경 안전성 | 6개 state 경계·plan/live inventory gate·중앙 관측으로 application 밖 production 운영 범위를 증명 |
+
+회사 AX 설계 참여와 제품별 적용·운영 리드는 공통 경력·기술과 AX/FDE 등 직군별 지원본에 유지한다. 공통 대표 성과에서는 직접 구축한 backend 사례의 반복 가능성을 먼저 증명한다. Threads 데이터·품질 evaluation, 지점 권한, Stripe 결제는 직군별 지원본과 portfolio supporting case에서 사용한다.
 
 Centurion의 MSA 경험은 별도 유행어 case로 만들지 않는다. Express API Gateway·NestJS SSO·FastAPI product backend·RabbitMQ/TaskIQ worker·WebSocket realtime service가 분리된 환경이라는 context는 BAY·DAY·SAY·RAY·SSO claim에만 사용한다. DAY는 Centurion의 범용 피부과 CRM 영역이며, NEXUS의 Admin/Homepage backend와 지점 권한은 Centurion과 분리된 외부 피부과 운영·예약 시스템 사례로 둔다.
 
@@ -112,7 +114,7 @@ Claims: `thready.backend-rebuild` (`owned/high`), `thready.frontend-product-deli
 
 성과 후보:
 
-- AI 도구로 빠르게 검증한 초기 prototype을 production 운영 단계로 전환하면서, 재구축 범위·architecture·validation harness·cutover 판단은 직접 소유하고 AI를 codebase 파악·기능 inventory·구현에 적극 활용했다.
+- 다른 구성원이 빠른 기능 검증 중심으로 만든 초기 prototype을 인계받아 production 운영 단계로 전환했다. 재구축 범위·architecture·validation harness·cutover 판단은 직접 소유하고, AI는 codebase 파악·기능 inventory·구현에 적극 활용했다.
 - 기존 release·QA 흐름과 Next.js frontend를 유지하면서 FastAPI backend를 parallel rebuild해 `v1.1.0`에서 cutover하고 이후 개발·release·운영을 전담했다.
 - backend cutover 이후 Next.js의 콘텐츠 생성·가져오기·예약·발행·dashboard·관리·labeling workflow도 직접 구현·운영해 backend·AI 기능을 실제 사용자·관리 흐름으로 닫았다.
 - 작은 서비스 단계에서 AI 모듈 확장 비용을 근거로 부분 수정 대신 backend 재구축을 선택하고, architecture·component·infra validation harness를 먼저 세운 뒤 auth/account와 frontend 호출 전환까지 실행했다.

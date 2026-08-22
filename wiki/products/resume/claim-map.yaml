@@ -19,7 +19,9 @@ sections:
     - thready.product-zero-to-one-contribution
     - thready.frontend-product-delivery
     - thready.generation-quality-system
+    - thready.subscription-revenue-band
     - mediness.product-system-design-participation
+    - mediness.company-work-ax-design
     - mediness.product-operations
     - be-template.backend-standard
     - be-template.team-leverage
@@ -45,11 +47,12 @@ sections:
     - thready.rebuild-decision-execution
     - thready.backend-rebuild
     - thready.qa-reopen-reduction
+    - centurion.bay-async-backend
+    - centurion.async-migration
+    - centurion.test-ci-foundation
     - thready.ai-service-boundary
     - thready.ai-service-migration
     - thready.ai-replica-outbox
-    - mediness.product-system-design-participation
-    - mediness.product-operations
     - be-template.backend-standard
     - be-template.team-leverage
     - be-template.agent-context
@@ -70,6 +73,9 @@ sections:
     - thready.ai-service-boundary
     - thready.ai-replica-outbox
     - thready.quality-criteria-system
+    - mediness.product-system-design-participation
+    - mediness.company-work-ax-design
+    - mediness.product-operations
   external_activities:
     - career.product-ux-practice
     - career.ux-consulting-product-outcome

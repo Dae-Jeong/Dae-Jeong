@@ -2,7 +2,7 @@
 type: draft
 title: Maker Profile Platform Draft
 description: 홈페이지 Maker identity와 active resume에서 파생한 채용 플랫폼별 게시 문안 초안.
-status: draft
+status: superseded
 timestamp: 2026-08-21
 derived_from:
   - profile/identity.md
@@ -13,6 +13,8 @@ tags: [platform, profile, maker, distribution, draft]
 ---
 
 # Maker Profile Platform Draft
+
+> **Superseded (2026-08-22)**: 현재 게시 문안은 [Platform Profile Paste Package — Maker v1](2026-08-22-platform-paste-package.md)이 소유한다. 이 문서는 초안 이력으로만 보존한다.
 
 이 문서는 플랫폼에 바로 게시할 canonical이 아니다. 홈페이지와 active resume에서 필요한 내용을
 플랫폼 필드에 맞게 덜어낸 **붙여넣기 전 검토본**이다. 사실·수치·역할 강도는 claim registry를

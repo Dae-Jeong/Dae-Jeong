@@ -3,11 +3,13 @@ type: handoff
 title: 원티드 붙여넣기 패키지 (v6 기준)
 description: 원티드 텍스트 필드는 자동 입력이 저장되지 않는다. 아래를 순서대로 복사→붙여넣기한다.
 timestamp: 2026-08-11
-status: ready
+status: superseded
 tags: [wanted, paste, copy]
 ---
 
 # 원티드 붙여넣기 패키지 — v6 (관점 선언) 기준
+
+> **Superseded (2026-08-22)**: 이 패키지의 5xx·36시간·37→11·4,039건·직책 문안은 현재 기준과 맞지 않는다. 실제 입력에는 [Platform Profile Paste Package — Maker v1](2026-08-22-platform-paste-package.md)을 사용한다.
 
 **이력서 주소**: https://www.wanted.co.kr/cv/fF1dU0gKAAsDCw4BRE4=
 

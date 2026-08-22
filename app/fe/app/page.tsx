@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { KeyValueCard } from "@/components/ui/key-value-list";
 import { Reveal } from "@/components/ui/reveal";
 import { SectionHead } from "@/components/ui/section-head";
-import { CASES } from "@/lib/cases";
+import { PRIMARY_CASES, SUPPORTING_CASES } from "@/lib/cases";
 import { cn } from "@/lib/cn";
 
 /* root = 15초 검증 관문 (v3 확정 — 다이어트형).
@@ -86,7 +86,7 @@ const ROUTES = [
     href: "/portfolio",
     badge: "LIVE",
     warn: false,
-    desc: "대표 사례 4건과 supporting 사례 2건 — 문제·판단·시스템·운영 근거.",
+    desc: "대표 사례 4건과 supporting 사례 1건 — 문제·판단·시스템·운영 근거.",
   },
   {
     name: "Chat",
@@ -95,6 +95,11 @@ const ROUTES = [
     warn: true,
     desc: "프로필 agent와의 전체 대화 — 검증된 claim registry의 근거로만 답합니다. 근거 rail 포함, 우하단 Ask 런처의 full 페이지.",
   },
+];
+
+const HOME_CASES = [
+  ...PRIMARY_CASES,
+  ...SUPPORTING_CASES.filter((item) => item.slug === "memento-payment"),
 ];
 
 export default function Home() {
@@ -217,11 +222,11 @@ export default function Home() {
         <section className="py-20 max-md:py-12">
           <Container variant="hub">
             <Reveal>
-              <SectionHead no="01" title="Selected Proof" meta="Cases · 5 — 상세는 Portfolio" />
+              <SectionHead no="01" title="Selected Proof" meta={`Cases · ${HOME_CASES.length} — 상세는 Portfolio`} />
             </Reveal>
             <Reveal stagger>
               <div>
-                {CASES.map((c) => {
+                {HOME_CASES.map((c) => {
                   const href = c.available ? `/portfolio/${c.slug}` : "/portfolio";
                   return (
                     <Link
@@ -281,14 +286,14 @@ export default function Home() {
               </div>
             </Reveal>
             <p className="m-0 mt-5 text-xs tracking-[0.03em] text-muted">
-              상세 활성 <b className="font-semibold text-fg-2">Thready 1건</b> · 나머지는{" "}
+              네 대표 사례와 Memento 결제 사례는{" "}
               <Link
                 href="/portfolio"
                 className="focus-ring border-b border-border text-fg-2 transition-colors duration-100 hover:border-fg hover:text-fg"
               >
-                /portfolio 목록
+                /portfolio 한 문서
               </Link>
-              에서.
+              에서 이어서 볼 수 있습니다.
             </p>
           </Container>
         </section>

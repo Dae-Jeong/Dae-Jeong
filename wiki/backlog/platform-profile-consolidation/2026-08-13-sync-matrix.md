@@ -3,11 +3,15 @@ type: audit
 title: 플랫폼 게시본 ↔ canonical 동기화 매트릭스
 description: 2026-08-13 브라우저 실측. 각 플랫폼에 실제로 게시된 내용과 canonical v4.5의 차이를 항목 단위로 판정한다.
 timestamp: 2026-08-13
+status: historical
 derived_from: [backlog/platform-profile-consolidation/dual-track-copy-draft.md, products/resume/career-axes.md]
+superseded_by: backlog/platform-profile-consolidation/2026-08-22-live-verification.md
 tags: [platform, sync, audit]
 ---
 
 # 플랫폼 동기화 매트릭스 (2026-08-13 실측)
+
+> **Historical snapshot:** 이 문서는 2026-08-13 당시 게시값의 감사 기록이다. 현재 적용 상태는 [2026-08-22 Live 적용 검증](2026-08-22-live-verification.md)이 소유한다.
 
 user: "지금까지 적었던 내용과 우리 플랫폼에 작성된 내용들을 한번 sync하는거야"
 

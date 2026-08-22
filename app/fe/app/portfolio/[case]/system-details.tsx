@@ -54,7 +54,7 @@ export const SYSTEM_DETAILS: Record<string, SystemCaseDetail> = {
     ],
     evidence: [
       { label: "Product outcome", value: "월 약 800만~1,000만원", note: "2026.08 기준 제품 구독료 매출", claimIds: ["thready.subscription-revenue-band"] },
-      { label: "Data basis", value: "13.1만 / 318만", note: "URL 단위 최신 상태 행 / 시계열 관측 행", claimIds: ["thready.threads-market-outcome-design"] },
+      { label: "Data basis", value: "최근 1년 중심", note: "공개 게시글 / 반응 추이", claimIds: ["thready.threads-market-outcome-design"] },
       { label: "Migration", value: "2,616 / 795 / 7,111", note: "생성 이력 / 품질 snapshot / 실행 추적 · STG", claimIds: ["thready.ai-service-migration"] },
       { label: "QA signal", value: "26%p 감소", note: "같은 집계 기준으로 확인한 cutover 전후 QA reopen 비율", claimIds: ["thready.qa-reopen-reduction"] },
     ],
@@ -62,7 +62,7 @@ export const SYSTEM_DETAILS: Record<string, SystemCaseDetail> = {
   "centurion-platform": {
     eyebrow: "Medical Platform · Multi-service Backend",
     summary: (
-      <>Gateway·SSO를 공유하는 의료 MSA에서 주문·재고, 실시간 상담, 병원 운영 service의 <strong>서로 다른 실패·복구 경계</strong>를 기여 범위에 따라 구축·연동했습니다.</>
+      <>Gateway·SSO를 공유하는 의료 MSA에서 주문·재고는 실패한 후속 작업만 다시 실행하게 만들고, 실시간 상담은 <strong>발화 감지·중간 전사·확정 판단·세션 종료</strong>를 서로 다른 경계로 나눴습니다.</>
     ),
     kv: [
       { k: "Role", v: "주문·재고 주도 · 실시간 상담 공동 기여" },
@@ -78,12 +78,14 @@ export const SYSTEM_DETAILS: Record<string, SystemCaseDetail> = {
     failures: [
       { trigger: "외부 알림·재고 연동 실패", risk: "API 요청과 핵심 업무가 함께 실패", boundary: "RabbitMQ·TaskIQ worker · 상태·retry·terminal failure·수동 재처리" },
       { trigger: "WebSocket reconnect·중복 event", risk: "zombie session·잘못된 turn 연결", boundary: "cancellation·debounce·retry·turn-state guard·GC" },
+      { trigger: "중간·확정·보정 전사 도착", risk: "늦은 결과가 다른 발화를 덮어씀", boundary: "DELTA·COMPLETE·optional CORRECTED를 같은 sequence로 연결" },
       { trigger: "시설→재고 publish 실패", risk: "시술 완료 transaction 중단", boundary: "핵심 업무 완료와 외부 event publish의 실행 경계 분리" },
     ],
     decisions: [
       { k: "Service Boundary", t: <>공통 Gateway·SSO와 product backend를 분리하고, 각 service가 자신의 업무 상태를 소유하게 했습니다.</> },
       { k: "Async Runtime", t: <>async FastAPI 실행 모델에 맞춰 Celery 처리를 TaskIQ·RabbitMQ로 전환했습니다.</> },
-      { k: "Realtime Lifecycle", t: <>session 생성·유지·종료와 provider adapter를 분리해 provider 차이가 runtime 전체로 전파되지 않게 했습니다.</> },
+      { k: "Realtime Signals", t: <>realtime STT가 내보내는 VAD·DELTA·COMPLETE를 분기해, DELTA는 도메인 키워드 기반의 빠른 조언에, COMPLETE는 문맥 판단과 저장에 사용했습니다.</> },
+      { k: "Realtime Lifecycle", t: <>session 생성·유지·종료와 provider adapter를 분리하고, 종료 뒤 남은 reconnect timer가 세션을 다시 살리지 않도록 stop guard와 GC 경계를 보강했습니다.</> },
     ],
     flow: [
       { label: "ENTRY", title: "API Gateway · SSO", desc: "공통 진입점과 인증 context 전달" },
@@ -93,7 +95,10 @@ export const SYSTEM_DETAILS: Record<string, SystemCaseDetail> = {
     ],
     evidence: [
       { label: "Order / Inventory", value: "구축 주도", note: "API·worker flow·retry boundary", claimIds: ["centurion.bay-async-backend"] },
-      { label: "Realtime AI", value: "공동 주 기여", note: "session lifecycle·provider boundary", claimIds: ["centurion.say-realtime-ai"] },
+      { label: "Realtime E2E", value: "586 / 25 / 14", note: "4분 37초 replay의 DELTA / COMPLETE / ADVICE · seq 1—25 무결성", claimIds: ["centurion.say-realtime-ai"] },
+      { label: "Session regression", value: "13 scenarios", note: "reconnect race 8개 · GC TTL 5개", claimIds: ["centurion.say-realtime-ai"] },
+      { label: "Provider benchmark", value: "383 domain terms", note: "WER·CER·용어 보존율·latency 비교 환경", claimIds: ["centurion.say-realtime-ai"] },
+      { label: "VAD trade-off", value: "P50 3.0~3.2초", note: "무음 200·350·500ms 비교 · 모델 추론 약 80%", claimIds: ["centurion.say-realtime-ai"] },
       { label: "Facility / SSO", value: "주요 기능 기여", note: "재고 연동·multi-service session policy", claimIds: ["centurion.ray-backend", "centurion.sso-session"] },
     ],
   },

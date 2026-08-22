@@ -2,7 +2,7 @@
 type: reference
 title: 콘텐츠 SoT — 공개 site surface 기준선
 description: 2026-08-13부터 app/fe의 각 public surface가 자신의 표현 SoT다. 플랫폼 프로필은 관련 surface에서 파생된다. 사실·강도는 claim registry가 계속 소유한다.
-timestamp: 2026-08-21
+timestamp: 2026-08-22
 tags: [sot, content, site, platform]
 ---
 
@@ -42,14 +42,14 @@ tags: [sot, content, site, platform]
 
 1. **관련 public surface를 먼저 고친다.** 홈 문안은 `/`, 경력·이력서 문안은 `/resume`에서 먼저 확정한다. 플랫폼부터 고치지 않는다.
 2. 고친 뒤 `claim registry` 대조 — `allowed_copy` 밖 표현이 없는지 확인한다.
-3. 플랫폼 변환본을 갱신한다 (`wanted-paste-package.md` · `linkedin-paste-package.md` 등).
+3. 플랫폼 변환본을 갱신한다 ([Platform Profile Paste Package](../../backlog/platform-profile-consolidation/2026-08-22-platform-paste-package.md)).
 4. 플랫폼에 반영하고 **실측으로 검증**한다 (폼은 `innerText`가 아니라 필드 `value`로 읽는다).
 5. 결과를 [동기화 매트릭스](../../backlog/platform-profile-consolidation/2026-08-13-sync-matrix.md)에 기록한다.
 
-## 현재 SoT 스냅샷 (2026-08-21)
+## 현재 SoT 스냅샷 (2026-08-22)
 
 - 공통 소개: `아이디어를 새로운 가치로 실현하는 메이커, 김대정입니다.`
 - 채용 역할: `Tech Lead · Backend Engineer`; 전문 영역: `AI Product Systems`
 - resume 순서: `소개 → 경력 → 대표 성과 → 기술 → 외부 활동 → credentials`
-- portfolio 순서: `Thready → Centurion → Company Infrastructure → Backend Template`, supporting `Memento Payment → Product Operations`
+- portfolio 순서: `Thready → Company AX → Centurion → Company Infrastructure`, supporting `Memento Payment`
 - 플랫폼 프로필은 이 기준선의 문장·경력·대표 성과를 각 필드와 글자 수에 맞게 축약하며 새 사실을 만들지 않는다.

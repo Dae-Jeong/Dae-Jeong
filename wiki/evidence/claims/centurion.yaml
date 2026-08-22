@@ -31,7 +31,7 @@ claims:
       - 장애를 겪은 뒤의 사후 대응이라는 서술 (예방 설계다)
       - TaskIQ 도입으로 동기 API에서 비동기 처리를 처음 분리했다는 서술
       - TaskIQ 전환 전 외부 연동 실패가 API 응답과 주문 상태에 직접 결합됐다는 서술
-    verified_at: 2026-07-04
+    verified_at: 2026-08-21
     note: >-
       2026-08-09 분리: test·CI·onboarding 은 centurion.test-ci-foundation 이,
       Celery -> TaskIQ 전환은 centurion.async-migration 이 소유한다.
@@ -84,7 +84,7 @@ claims:
       "Remove/notification celery #304"(2025-09-15), TaskIQ 1~3차 구성(2025-09-08~09),
       "fix: taskIQ 재고 차감 처리 오류 시, retry 로직 추가"(2025-10-01). 전부 KimMarin 명의.
   - id: centurion.say-realtime-ai
-    statement: SAY realtime AI 상담 backend의 세션 lifecycle과 STT/LLM provider 경계, translation/audio pipeline 공동 주 기여
+    statement: SAY realtime AI 상담 backend의 session lifecycle, VAD speech event, DELTA·COMPLETE·CORRECTED 전사 흐름, domain-keyword early trigger와 provider evaluation 경계 공동 주 기여
     strength: co-led
     confidence: high
     public: true
@@ -92,11 +92,23 @@ claims:
     allowed_copy:
       - realtime AI 상담 backend의 세션 lifecycle과 provider 경계 안정화 공동 주 기여
       - WebSocket session의 중복 event를 task cancellation·debounce·retry·turn-state guard로 제어
+      - realtime STT가 내보내는 VAD speech event·DELTA·COMPLETE를 분기하고, DELTA는 domain keyword 우선 판정에, COMPLETE는 context 판단·저장에 사용
+      - DELTA·COMPLETE·optional CORRECTED를 같은 sequence로 연결해 늦게 도착한 보정 결과가 다른 turn을 덮어쓰지 않도록 구성
+      - provider 후보에 383개 domain keyword hint를 적용하고 WER·CER·keyword retention·latency benchmark 구축
+      - VAD silence 200·350·500ms E2E에서 주 병목이 모델 추론임을 확인해 DELTA 조기 trigger와 provider 경계 분리에 집중
+      - 4분 37초 상담 E2E에서 DELTA 586건·COMPLETE 25건·ADVICE 14건과 sequence 1–25의 누락·중복 없음을 확인
+      - 종료 뒤 재연결되던 session의 timer·GC·shutdown 정리 경계를 보강하고 13개 focused regression scenario로 고정
     forbidden_copy:
       - provider 실명
       - 상담 backend 전체 단독 구축
       - asyncio 전반의 심화 전문성
-    verified_at: 2026-07-04
+      - VAD 또는 keyword weighting으로 STT 정확도를 개선했다는 단정
+      - SAY에 keyword별 numeric weight를 구현
+      - AI 답변 token streaming 또는 advice.delta 구현
+      - 대안 STT adapter를 production에 전환하거나 현재 운영 중
+      - 4분 37초 E2E event 수치를 STT 정확도·지연 개선 수치로 해석
+      - VAD tuning으로 전체 지연 또는 STT 정확도를 개선했다고 단정
+    verified_at: 2026-08-21
   - id: centurion.day-product-integration
     statement: DAY 예약 정책을 backend 판단, frontend 표시, QA seed/test, release docs로 연결
     strength: led

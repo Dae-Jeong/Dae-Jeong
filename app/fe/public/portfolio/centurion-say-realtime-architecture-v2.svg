@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1774" height="1050" viewBox="0 0 1774 1050" role="img" aria-labelledby="title desc">
+  <title id="title">Centurion SAY 실시간 AI 상담 reference architecture</title>
+  <desc id="desc">상담 화면에서 Express API Gateway와 NestJS SSO, WebSocket API 경계, 세션 오케스트레이터, STT adapter와 전사 이벤트 파이프라인, 조언·추천·프로세스 파이프라인으로 이어지는 runtime과 provider benchmark, E2E replay, regression test, dev·prod 배포 경계를 함께 보여주는 구조도. 공동 주 기여 범위이며 DELTA는 중간 전사, VAD는 발화 경계를 의미한다.</desc>
+
+  <defs>
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M 32 0 L 0 0 0 32" fill="none" stroke="#E8EDF3" stroke-width="1"/>
+    </pattern>
+    <marker id="arrow-ink" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#26313D"/>
+    </marker>
+    <marker id="arrow-blue" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#1261C9"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#1A7F43"/>
+    </marker>
+    <style>
+      text {
+        font-family: "Pretendard Variable", Pretendard, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+        fill: #18212B;
+      }
+      .mono {
+        font-family: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+      }
+      .region-title { font-size: 30px; font-weight: 700; letter-spacing: 0.04em; }
+      .region-subtitle { font-size: 28px; font-weight: 500; fill: #5F6B78; }
+      .node-title { font-size: 28px; font-weight: 700; }
+      .node-subtitle { font-size: 28px; font-weight: 500; fill: #596675; }
+      .flow-label { font-size: 28px; font-weight: 600; fill: #596675; }
+      .detail-title { font-size: 28px; font-weight: 700; }
+      .detail-subtitle { font-size: 28px; font-weight: 500; fill: #596675; }
+      .node { fill: #FFFFFF; stroke: #AAB6C3; stroke-width: 2; rx: 8; }
+      .node-strong { fill: #FFFFFF; stroke: #26313D; stroke-width: 2.5; rx: 8; }
+      .node-blue { fill: #F7FAFF; stroke: #1261C9; stroke-width: 2.5; rx: 8; }
+      .node-green { fill: #F7FCF8; stroke: #1A7F43; stroke-width: 2.5; rx: 8; }
+      .node-external { fill: #FFFFFF; stroke: #8492A1; stroke-width: 2; stroke-dasharray: 8 7; rx: 8; }
+      .flow { fill: none; stroke: #26313D; stroke-width: 2.5; marker-end: url(#arrow-ink); }
+      .flow-blue { fill: none; stroke: #1261C9; stroke-width: 3; marker-end: url(#arrow-blue); }
+      .flow-green { fill: none; stroke: #1A7F43; stroke-width: 3; marker-end: url(#arrow-green); }
+      .flow-dashed { fill: none; stroke: #667585; stroke-width: 2.5; stroke-dasharray: 8 7; marker-end: url(#arrow-ink); }
+      .flow-dotted { fill: none; stroke: #1A7F43; stroke-width: 2.5; stroke-dasharray: 3 7; marker-end: url(#arrow-green); }
+      .icon { fill: none; stroke: #26313D; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+      .icon-blue { fill: none; stroke: #1261C9; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+      .icon-green { fill: none; stroke: #1A7F43; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+    </style>
+  </defs>
+
+  <rect width="1774" height="1050" fill="#FFFFFF"/>
+  <rect x="24" y="18" width="1726" height="1014" fill="url(#grid)" opacity="0.8"/>
+
+  <!-- Runtime boundary -->
+  <rect x="44" y="34" width="1686" height="716" fill="none" stroke="#9FBFE7" stroke-width="2.5" rx="8"/>
+  <text x="78" y="80" class="region-title mono">REALTIME CONSULTATION RUNTIME</text>
+  <text x="78" y="118" class="region-subtitle">Centurion SAY · 실시간 AI 상담 구조</text>
+  <rect x="1240" y="62" width="222" height="52" fill="#FFFFFF" stroke="#26313D" stroke-width="2" rx="26"/>
+  <text x="1351" y="97" class="detail-title" text-anchor="middle">공동 주 기여</text>
+
+  <!-- Consultation UI -->
+  <rect class="node-strong" x="76" y="232" width="210" height="118"/>
+  <g class="icon" transform="translate(96 250)">
+    <rect x="0" y="0" width="46" height="32" rx="3"/>
+    <path d="M15 42h16M23 32v10"/>
+  </g>
+  <text x="158" y="275" class="node-title">상담 화면</text>
+  <text x="96" y="321" class="node-subtitle mono">Consultation UI</text>
+
+  <!-- Access boundary -->
+  <rect class="node" x="340" y="160" width="250" height="106"/>
+  <g class="icon" transform="translate(360 181)">
+    <path d="M0 12h38M30 4l8 8-8 8M38 34H0M8 26l-8 8 8 8"/>
+  </g>
+  <text x="415" y="203" class="node-title">API Gateway</text>
+  <text x="360" y="241" class="node-subtitle mono">Express</text>
+
+  <rect class="node-blue" x="340" y="328" width="250" height="106"/>
+  <g class="icon-blue" transform="translate(360 349)">
+    <path d="M5 4v34M37 4v34M5 14h12l8 8h12M5 30h12l8-8"/>
+    <circle cx="5" cy="4" r="3" fill="#1261C9"/>
+    <circle cx="37" cy="38" r="3" fill="#1261C9"/>
+  </g>
+  <text x="415" y="371" class="node-title">실시간 경계</text>
+  <text x="360" y="409" class="node-subtitle mono">WebSocket · API</text>
+
+  <!-- Shared authentication -->
+  <rect class="node" x="650" y="110" width="250" height="108"/>
+  <g class="icon" transform="translate(670 130)">
+    <path d="M21 0l18 7v13c0 13-8 21-18 27C11 41 3 33 3 20V7z"/>
+    <path d="M13 22l6 6 11-13"/>
+  </g>
+  <text x="730" y="153" class="node-title">공통 SSO</text>
+  <text x="670" y="192" class="node-subtitle mono">NestJS</text>
+
+  <!-- Session orchestrator -->
+  <rect class="node-strong" x="650" y="282" width="250" height="144"/>
+  <g class="icon" transform="translate(670 307)">
+    <rect x="3" y="0" width="37" height="14" rx="3"/>
+    <rect x="3" y="22" width="37" height="14" rx="3"/>
+    <path d="M21 14v8M0 44h43M8 44v10M35 44v10"/>
+  </g>
+  <text x="730" y="326" class="node-title">세션 조율</text>
+  <text x="670" y="370" class="node-subtitle mono">Session</text>
+  <text x="670" y="402" class="node-subtitle mono">Orchestrator</text>
+
+  <!-- STT provider and adapter -->
+  <rect class="node-external" x="960" y="94" width="240" height="106"/>
+  <g class="icon" transform="translate(980 115)">
+    <path d="M7 32C0 20 10 7 22 12 29 1 47 4 50 18c11 0 16 14 8 22H10"/>
+  </g>
+  <text x="1050" y="137" class="node-title">외부 STT</text>
+  <text x="980" y="176" class="node-subtitle mono">Provider</text>
+
+  <rect class="node-blue" x="960" y="254" width="240" height="112"/>
+  <g class="icon-blue" transform="translate(980 275)">
+    <path d="M0 23h5l5-14 7 29 7-23 7 16 6-22 7 29 6-15h8"/>
+  </g>
+  <text x="1050" y="297" class="node-title">STT Adapter</text>
+  <text x="980" y="339" class="node-subtitle">audio · event 변환</text>
+
+  <!-- Transcript event pipeline -->
+  <rect class="node-blue" x="1230" y="254" width="220" height="112"/>
+  <text x="1340" y="297" class="node-title" text-anchor="middle">전사 이벤트</text>
+  <text x="1340" y="339" class="node-subtitle mono" text-anchor="middle">STT pipeline</text>
+
+  <!-- Decision pipeline and external AI provider -->
+  <rect class="node-external" x="1480" y="94" width="210" height="106"/>
+  <g class="icon" transform="translate(1500 115)">
+    <path d="M7 32C0 20 10 7 22 12 29 1 47 4 50 18c11 0 16 14 8 22H10"/>
+  </g>
+  <text x="1585" y="137" class="node-title" text-anchor="middle">외부 AI</text>
+  <text x="1585" y="176" class="node-subtitle mono" text-anchor="middle">Provider</text>
+
+  <rect class="node-green" x="1480" y="254" width="210" height="160"/>
+  <text x="1585" y="294" class="node-title" text-anchor="middle">조언·추천·절차</text>
+  <text x="1585" y="329" class="node-subtitle mono" text-anchor="middle">Advice</text>
+  <text x="1585" y="361" class="node-subtitle mono" text-anchor="middle">Upsell</text>
+  <text x="1585" y="393" class="node-subtitle mono" text-anchor="middle">Process</text>
+
+  <!-- Session and context store -->
+  <rect class="node-green" x="1050" y="430" width="400" height="80"/>
+  <g class="icon-green" transform="translate(1072 445)">
+    <ellipse cx="23" cy="8" rx="21" ry="7"/>
+    <path d="M2 8v30c0 4 9 7 21 7s21-3 21-7V8M2 23c0 4 9 7 21 7s21-3 21-7"/>
+  </g>
+  <text x="1135" y="463" class="node-title">세션·문맥 데이터</text>
+  <text x="1135" y="497" class="node-subtitle mono">Context store</text>
+
+  <!-- Main flows -->
+  <path class="flow" d="M286 260H340"/>
+  <text x="286" y="220" class="flow-label mono" text-anchor="end">HTTPS · WSS</text>
+
+  <path class="flow" d="M590 205H620V164H650"/>
+  <text x="620" y="148" class="flow-label mono" text-anchor="middle">auth</text>
+
+  <path class="flow-dashed" d="M775 218V282"/>
+  <text x="793" y="257" class="flow-label mono">session</text>
+
+  <path class="flow-blue" d="M465 266V328"/>
+  <text x="483" y="307" class="flow-label mono">route</text>
+
+  <path class="flow-blue" d="M590 381H650"/>
+
+  <path class="flow-blue" d="M900 332H960"/>
+
+  <path class="flow-blue" d="M1080 254V200"/>
+  <text x="1098" y="230" class="flow-label mono">adapter</text>
+
+  <path class="flow-blue" d="M1200 310H1230"/>
+
+  <path class="flow-blue" d="M1450 310H1480"/>
+
+  <path class="flow-green" d="M1585 254V200"/>
+  <text x="1603" y="230" class="flow-label mono">prompt</text>
+
+  <path class="flow-green" d="M1340 366V430"/>
+  <text x="1358" y="412" class="flow-label mono">persist</text>
+
+  <path class="flow-dashed" d="M900 404H1010V467H1050"/>
+  <text x="965" y="448" class="flow-label mono" text-anchor="middle">state</text>
+
+  <path class="flow-blue" d="M1585 414V526H181V350"/>
+  <text x="214" y="515" class="flow-label mono">client events</text>
+
+  <!-- Transcript event detail inset -->
+  <rect x="76" y="536" width="1090" height="202" fill="#FFFFFF" stroke="#B9C4CF" stroke-width="2" rx="8"/>
+  <text x="100" y="572" class="detail-title mono">TRANSCRIPT EVENT DETAIL</text>
+  <text x="100" y="607" class="detail-subtitle">VAD=발화 경계 · DELTA=중간 전사 · COMPLETE=확정 전사</text>
+
+  <g class="icon" transform="translate(100 640)">
+    <path d="M0 22h5l5-12 7 25 7-20 7 14 7-19 7 25 6-13h7"/>
+  </g>
+  <text x="128" y="700" class="detail-title mono" text-anchor="middle">AUDIO</text>
+  <path class="flow-blue" d="M160 659H218V637H248"/>
+  <path class="flow-green" d="M160 666H218V692H248"/>
+
+  <rect class="node-blue" x="248" y="612" width="224" height="54"/>
+  <text x="360" y="648" class="detail-title mono" text-anchor="middle">DELTA</text>
+  <path class="flow-blue" d="M472 639H514"/>
+  <rect class="node-blue" x="514" y="612" width="224" height="54"/>
+  <text x="626" y="648" class="detail-title" text-anchor="middle">도메인 키워드</text>
+  <path class="flow-blue" d="M738 639H780"/>
+  <rect class="node-blue" x="780" y="612" width="240" height="54"/>
+  <text x="900" y="648" class="detail-title" text-anchor="middle">생성 시작</text>
+
+  <rect class="node-green" x="248" y="675" width="224" height="54"/>
+  <text x="360" y="711" class="detail-title mono" text-anchor="middle">COMPLETE</text>
+  <path class="flow-green" d="M472 702H514"/>
+  <rect class="node-external" x="514" y="675" width="224" height="54"/>
+  <text x="626" y="711" class="detail-title mono" text-anchor="middle">CORRECTED</text>
+  <path class="flow-dotted" d="M738 702H780"/>
+  <rect class="node-green" x="780" y="675" width="240" height="54"/>
+  <text x="900" y="711" class="detail-title" text-anchor="middle">문맥 판단·저장</text>
+
+  <!-- Session lifecycle inset -->
+  <rect x="1200" y="536" width="490" height="202" fill="#FFFFFF" stroke="#B9C4CF" stroke-width="2" rx="8"/>
+  <text x="1224" y="572" class="detail-title mono">SESSION LIFECYCLE</text>
+  <text x="1224" y="607" class="detail-subtitle">timer · GC · shutdown 정리</text>
+
+  <rect class="node" x="1224" y="632" width="116" height="60"/>
+  <text x="1282" y="671" class="detail-title" text-anchor="middle">상담 종료</text>
+  <path class="flow" d="M1340 662H1361"/>
+  <rect class="node-strong" x="1361" y="632" width="145" height="60"/>
+  <text x="1434" y="671" class="detail-title" text-anchor="middle">종료 가드</text>
+  <path class="flow" d="M1506 662H1527"/>
+  <rect class="node-strong" x="1527" y="632" width="139" height="60"/>
+  <text x="1597" y="671" class="detail-title" text-anchor="middle">재연결 차단</text>
+
+  <!-- Delivery, test, operations boundary -->
+  <rect x="44" y="778" width="1686" height="230" fill="none" stroke="#9DBFA8" stroke-width="2.5" rx="8"/>
+  <text x="78" y="824" class="region-title mono">DELIVERY · TEST · OPERATIONS</text>
+  <text x="78" y="860" class="region-subtitle">provider 변경을 runtime에서 분리하고, 재생 가능한 검증으로 release를 보호</text>
+
+  <rect class="node" x="80" y="878" width="350" height="112"/>
+  <g class="icon" transform="translate(100 906)">
+    <path d="M0 42V8M0 42h48M9 34l10-12 9 7 14-20"/>
+    <circle cx="19" cy="22" r="3" fill="#26313D"/>
+    <circle cx="28" cy="29" r="3" fill="#26313D"/>
+    <circle cx="42" cy="9" r="3" fill="#26313D"/>
+  </g>
+  <text x="158" y="919" class="node-title">Provider benchmark</text>
+  <text x="158" y="953" class="node-subtitle mono">WER · CER · latency</text>
+  <text x="158" y="981" class="node-subtitle">용어 보존율</text>
+
+  <path class="flow" d="M438 934H460"/>
+  <rect class="node" x="470" y="878" width="350" height="112"/>
+  <g class="icon" transform="translate(490 906)">
+    <path d="M8 8v34l30-17z"/>
+    <path d="M47 10v30"/>
+  </g>
+  <text x="560" y="919" class="node-title">E2E replay</text>
+  <text x="560" y="957" class="node-subtitle">sequence · event integrity</text>
+
+  <path class="flow" d="M828 934H850"/>
+  <rect class="node" x="860" y="878" width="350" height="112"/>
+  <g class="icon" transform="translate(880 906)">
+    <path d="M4 5h40v37H4zM12 16l6 6 11-12M12 32h22"/>
+  </g>
+  <text x="950" y="919" class="node-title">Regression tests</text>
+  <text x="950" y="953" class="node-subtitle">reconnect · GC</text>
+  <text x="950" y="981" class="node-subtitle mono">stop guard</text>
+
+  <path class="flow" d="M1218 934H1240"/>
+  <rect class="node-green" x="1250" y="878" width="404" height="112"/>
+  <g class="icon-green" transform="translate(1270 906)">
+    <path d="M4 4h42v17H4zM4 29h42v17H4zM12 12h2M12 37h2M22 12h15M22 37h15"/>
+  </g>
+  <text x="1340" y="919" class="node-title">배포 경계</text>
+  <text x="1340" y="953" class="node-subtitle">dev / prod resource 분리</text>
+  <text x="1340" y="981" class="node-subtitle">migration 문서</text>
+</svg>

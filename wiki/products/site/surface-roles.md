@@ -21,7 +21,7 @@ user: "각 영역별로 역할을 좀 정의를 해볼까? 이력서 롤, 포폴
 | --- | --- | --- |
 | `/` 홈 | **거르는 곳** — 더 볼지 말지 15초 안에 정한다 | 15초 |
 | `/resume` | **판단하는 곳** — 경력과 기술 사례만으로 인터뷰 여부를 판단한다 | 첫 장 30초, 필요 시 5분+ |
-| `/portfolio` | **검증하는 곳** — 네 대표 case와 두 supporting case를 한 문서에서 확인 | 30초~5분+ |
+| `/portfolio` | **검증하는 곳** — 네 대표 case와 supporting payment case를 한 문서에서 확인 | 30초~5분+ |
 | `/portfolio/{case}` | **직접 연결하는 곳** — 호환용 case anchor·상세 route | 가변 |
 | `/chat` | **묻는 곳** — 근거 범위 안에서 답한다 (Phase 2) | 가변 |
 | `/blog` | **생각을 공개하는 곳** (Phase 2) | 가변 |
@@ -52,11 +52,12 @@ user: "각 영역별로 역할을 좀 정의를 해볼까? 이력서 롤, 포폴
 
 - **목적**: 첫 화면과 index에서 확인할 경험을 고르게 한 뒤, route 이동 없이 문제·판단·시스템·운영 근거까지 검증하게 한다.
 - **headline**: `아이디어를 새로운 가치로 실현하는 메이커, 김대정입니다.`
-- **primary**: Thready → Centurion → Company Infrastructure → Backend Template.
-- **supporting**: Memento Payment → Product Operations.
+- **primary**: Thready → Company AX → Centurion → Company Infrastructure.
+- **supporting**: Memento Payment.
 - **담는 것**: 각 case의 맥락·책임 범위·핵심 기술 판단·고유한 시각화·검증 가능한 proof.
 - **담지 않는 것**: 동일 dossier 형식의 반복, claim ID·forbidden copy·limits 같은 내부 검증 문구, 외부 UX 활동.
 - **구조 특성**: 같은 case 안에서 제품·backend·운영 근거가 함께 나타날 수 있다. 단 하나의 case를 여러 독립 성과처럼 반복하지 않는다.
+- **Company AX 경계**: 현재 운영 중인 제품 Decision→release 흐름과 회사 업무 AX 확장 설계를 실선·점선으로 구분한다. MEDINESS 설계 참여·제품 운영 리드·Backend Template 직접 구축·플랫폼 구현팀의 책임을 한 표에서 분리한다.
 
 ## 4. `/portfolio/{case}` — 직접 링크 호환
 

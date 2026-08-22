@@ -2,7 +2,7 @@
 type: product
 title: Role Portfolio Variants
 description: 동일한 case library를 직군별 읽기 순서와 강조점으로 재조립하는 local portfolio contract.
-timestamp: 2026-08-21
+timestamp: 2026-08-22
 tags: [portfolio, role, draft, backend, ai, ax, platform]
 ---
 
@@ -20,7 +20,7 @@ tags: [portfolio, role, draft, backend, ai, ax, platform]
 | `/portfolio/role/ax-fde` | AX / Forward Deployed Engineer | 고객 문제·제품 규칙·agent-readable execution |
 | `/portfolio/role/backend-platform` | Backend Platform · Cloud Operations | IaC 변경 안전성·관측·공통 backend 기반 |
 
-모든 route는 `draft`·`local`이며 production에서는 404와 `noindex`를 유지한다. 기본 `/portfolio`는 `Thready → Centurion → Company Infrastructure → Backend Template`을 primary, `Memento Payment → Product Operations`를 supporting으로 두는 공개용 master다.
+모든 route는 `draft`·`local`이며 production에서는 404와 `noindex`를 유지한다. 기본 `/portfolio`는 `Thready → Company AX → Centurion → Company Infrastructure`를 primary, `Memento Payment`를 supporting으로 두는 공개용 master다.
 
 ## Assembly Contract
 
@@ -29,6 +29,7 @@ tags: [portfolio, role, draft, backend, ai, ax, platform]
 - role pack은 headline·소개·proof axis·case slug·focus만 소유한다.
 - 프로젝트 설명·수치·claim ID는 `app/fe/lib/cases.ts`, `app/fe/app/portfolio/case-dossier.tsx`, [case library](cases/README.md)를 재사용한다.
 - `focus`는 같은 사실에서 이번 직군이 먼저 볼 판단을 가리키는 편집 문장이다. 새로운 결과나 더 강한 ownership을 추가할 수 없다.
+- 모든 variant의 Thready 설명은 팀의 유료 제품 outcome과 직접 책임진 Next.js·FastAPI·AI 구현, backend 재구축, BE–AI 경계를 분리한다. Backend variant는 AI 활용과 사람의 아키텍처·검증·cutover 판단을 함께 보여주고, AI·Platform variant는 STG 검증 범위를 Prod 완료로 확대하지 않는다.
 - 기본 읽기와 PDF 변환은 개별 상세 route가 아니라 선택된 사례를 모두 펼친 하나의 긴 document route를 기준으로 한다.
 - 사례 번호는 canonical case 번호가 아니라 각 role page의 읽기 순서로 다시 매긴다. case slug와 claim 연결은 바꾸지 않는다.
 
@@ -36,13 +37,13 @@ tags: [portfolio, role, draft, backend, ai, ax, platform]
 
 | Variant | Case order |
 | --- | --- |
-| Tech Lead | Thready → Centurion → Backend Template → Company Infrastructure |
-| Backend | Thready → Centurion → Memento Payment |
-| AI Backend | Thready → Centurion |
-| AX / FDE | Thready → Product Operations → Backend Template → Centurion |
-| Platform | Company Infrastructure → Backend Template → Thready → Centurion |
+| Tech Lead | Thready → Company AX → Centurion → Company Infrastructure |
+| Backend | Thready → Centurion → Company AX → Memento Payment |
+| AI Backend | Thready → Centurion → Company AX |
+| AX / FDE | Thready → Company AX → Centurion |
+| Platform | Company Infrastructure → Company AX → Thready → Centurion |
 
-Backend Template은 공통 V3의 primary dossier다. Memento Payment는 공통 master에서는 supporting이지만 Backend variant에서는 결제 상태 전이의 깊이를 보여주는 dossier로 승격할 수 있다. Product Operations는 metadata와 proof를 사용하는 compact section으로 유지한다. NEXUS·SellerCanvas는 현재 독립 V3 dossier가 없어서 다른 사례에 합성하지 않는다.
+Company AX는 기존 `be-template` slug를 route compatibility를 위해 유지하는 primary dossier다. MEDINESS Product Operations는 별도 compact case로 반복하지 않고 Company AX 안에서 설계 참여·운영 리드·플랫폼 구현팀 경계를 나눠 보여준다. Backend Template은 같은 case의 직접 구축한 engineering execution plane이다. Memento Payment는 공통 master에서는 supporting이지만 Backend variant에서는 결제 상태 전이의 깊이를 보여주는 dossier로 승격할 수 있다. NEXUS·SellerCanvas는 현재 독립 V3 dossier가 없어서 다른 사례에 합성하지 않는다.
 
 ## Update Flow
 

@@ -19,7 +19,7 @@ export function SiteFooter({ className = "" }: { className?: string }) {
         <span className="inline-flex items-center gap-2 font-mono text-sm font-semibold">
           <span aria-hidden className="size-[9px] bg-fg" />
           김대정{" "}
-          <span className="font-normal text-muted">/ Backend Engineer</span>
+          <span className="font-normal text-muted">/ Tech Lead · Backend Engineer</span>
         </span>
         <nav aria-label="외부 링크" className="flex flex-wrap gap-5">
           {LINKS.map((l) => (

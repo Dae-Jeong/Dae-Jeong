@@ -26,7 +26,7 @@ tags: [profile, baseline, derived, index]
 | 1순위 직무 | **Tech Lead** | [identity.md](identity.md) |
 | 지원 역할 | **Backend Engineer** | [identity.md](identity.md) |
 | 전문 영역 | AI Product Systems | [identity.md](identity.md) |
-| 차별화 방식 | Agent-readable Engineering Workflow | [identity.md](identity.md) |
+| 차별화 방식 | 제품과 회사 업무를 agent-readable context와 human gate로 연결하는 AX 실행 설계 | [identity.md](identity.md) |
 | 연차 | **4년차** (인턴 제외 실무 48개월) | [career.md#tenure](career.md#tenure) · `career.tenure` |
 | 거주지 표기 | 경기 안양시 (시 단위까지) | [public-safety.md](../rules/public-safety.md) |
 | 공개 사이트 | https://marinkim.xyz | |
@@ -77,10 +77,10 @@ AI Engineer 2021.12~2022.09 → PM 2022.10~2023.09 → Backend Engineer 2023.10~
 
 ## 4. Common Resume 대표 성과
 
-1. Thready의 제품 운영을 리드하고 backend·AI·핵심 frontend와 typed prompt builder·LLM judge·평가 루프를 직접 구축해, 제품·팀의 **월 약 800만~1,000만원 구독료 매출**에 기여 (`thready.product-zero-to-one-contribution`, `thready.frontend-product-delivery`, `thready.generation-quality-system`, `thready.subscription-revenue-band`)
+1. Thready의 제품 운영을 리드하고 backend·AI·핵심 frontend와 typed prompt builder·LLM judge·평가 루프를 직접 구축. 제품·팀 outcome으로 **월 약 800만~1,000만원 구독료 매출**이 발생 (`thready.product-zero-to-one-contribution`, `thready.frontend-product-delivery`, `thready.generation-quality-system`, `thready.subscription-revenue-band`)
 2. 기존 frontend contract를 유지한 채 FastAPI backend를 병렬 재구축하고 validation harness와 cutover를 운영. 동일 기준의 QA reopen 비율 **26%p 감소** (`thready.rebuild-decision-execution`, `thready.backend-rebuild`, `thready.qa-reopen-reduction`)
-3. AI application·DB 분리, STG 실데이터 migration 검증, Transactional Outbox 기반 복구 경계 구축 (`thready.ai-service-boundary`, `thready.ai-service-migration`, `thready.ai-replica-outbox`)
-4. 제품 결정을 Decision·SPEC·Work Package·BE/FE/QA·release gate로 연결해 운영 (`mediness.product-system-design-participation`, `mediness.product-operations`)
+3. Centurion BAY에서 주문·재고 API와 실패 가능한 후속 작업을 분리하고, Celery→TaskIQ·RabbitMQ 전환, 상태·retry·terminal failure·수동 재처리 경계와 재현 가능한 test/CI 기반 구축 (`centurion.bay-async-backend`, `centurion.async-migration`, `centurion.test-ci-foundation`)
+4. AI application·DB 분리, STG 실데이터 migration 검증, Transactional Outbox의 lease·attempt token·retry·delivery version fence·멱등 consumer·terminal failure 보존 기반 복구 경계 구축 (`thready.ai-service-boundary`, `thready.ai-service-migration`, `thready.ai-replica-outbox`)
 5. 백엔드 2~3명이 여러 제품을 맡는 환경에서 FastAPI architecture·contract와 agent context를 조직 표준 template로 구축 (`be-template.backend-standard`, `be-template.team-leverage`, `be-template.agent-context`)
 6. 회사 Azure 변경 범위를 6개 Terraform state로 분리하고 plan·live inventory·human apply gate로 파괴적 변경을 사전 차단 (`infra.company-azure-ownership`, `infra.ai-assisted-change-harness`, `infra.terraform-state-safety`)
 

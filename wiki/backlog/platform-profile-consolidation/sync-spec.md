@@ -3,11 +3,14 @@ type: spec
 title: Platform Sync Spec
 description: 플랫폼 7곳을 canonical 기준에 맞추기 위한 목표 상태와 수정 액션 목록.
 timestamp: 2026-08-08
-status: ready
+status: superseded
+superseded_by: backlog/platform-profile-consolidation/2026-08-22-platform-paste-package.md
 tags: [platform, sync, spec]
 ---
 
 # Platform Sync Spec
+
+> **Superseded (2026-08-22)**: 이 문서의 필드 관찰과 자동화 제약은 과거 실행 이력으로만 참고한다. 직무 포지셔닝·대표 성과·게시 문안은 [Platform Profile Paste Package — Maker v1](2026-08-22-platform-paste-package.md)이 소유한다.
 
 과거에 왜 어긋났는지는 다루지 않는다. **목표 상태를 정의하고, 각 플랫폼을 거기 맞추는 액션만** 적는다.
 

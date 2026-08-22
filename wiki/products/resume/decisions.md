@@ -2,7 +2,7 @@
 type: decision-log
 title: Resume Decisions
 description: General A4 resume의 positioning, scope, and version decisions.
-timestamp: 2026-08-21
+timestamp: 2026-08-22
 tags: [resume, decisions, positioning]
 ---
 
@@ -25,7 +25,9 @@ tags: [resume, decisions, positioning]
 | 소개 다음에는 경력을, 그 뒤에 대표 기술 사례를 둔다 | 회사·직함·기간·담당 범위라는 사실을 먼저 보여준 뒤 기술적 주장을 검증한다. |
 | 별도 `일하는 방식` 섹션을 사용하지 않는다 | 재구축·품질 판정·표준화 사례와 같은 claim을 반복해 밀도만 낮췄다. 성향은 사례의 반복된 모양으로 전달한다. |
 | Product Owner 성격은 별도 직함이 아니라 제품 판단→backend contract 연결로 증명 | `Backend Engineer / PO` 병렬 표기를 피하고 domain·API·transaction·QA·release에 반영된 실제 판단을 쓴다. |
-| `AX`는 primary title이 아니라 별도 전문 사례 축으로 둔다 | 국내 시장의 AI Transformation 검색성을 확보하되, 실제 주장은 process redesign·execution contract·human approval·agent context로 증명한다. |
+| 공통 이력서는 유료 제품 운영에서 반복 가능한 backend 전문성으로 전개 | Thready 제품·팀 outcome을 먼저 보여준 뒤, 인계받은 backend 재구축, Centurion 비동기 복구, Thready AI 데이터 경계, 조직 표준, Azure 변경 안전성 순으로 재현 가능한 기술 판단을 증명한다. |
+| `AX`는 primary title이 아니라 회사 업무 설계 경험을 보여주는 전문 사례 축으로 둔다 | 제품 개발뿐 아니라 의사결정·회의·업무 배정·승인·후속 작업을 사람·agent의 실행 맥락과 human gate로 연결한 범위를 구체적으로 쓴다. |
+| 회사 AX·제품 운영·Backend Template·인프라는 한 ownership으로 합치지 않는다 | 회사 AX 구조는 `설계 참여`, 제품별 Decision→release 적용·운영은 `리드`, Backend Template과 Azure/Terraform 운영은 `직접 구축/담당`으로 기여 강도가 다르다. 회사 AX는 공통 경력·기술과 직군별 지원본에 남기며, 공통 대표 성과에서는 직접 구축한 backend 사례를 우선한다. |
 | 직접 application code가 없는 설계·운영 기여도 검증되면 포함한다 | code commit만 경력의 기준으로 삼지 않는다. 대신 `참여`·`적용/운영 리드`·`구축`을 contribution strength에 맞게 분리한다. |
 | 하나의 case는 하나의 문제·판단·mechanism을 소유한다 | 시간대와 기여 강도가 다른 DAY·Mediness·BE Template·SellerCanvas를 한 사례에 합치면 각 전문성이 희석된다. |
 | 법인 설립 전 선행 개발과 설립 후 재직은 resume에서 한 CareerRow의 stage timeline으로 그룹화할 수 있다 | 더데이랩스 프리랜서와 MediSolve AI 정규직은 법적 timeline·tenure에서 분리 유지하되, 같은 제품군을 선행 개발한 맥락은 한 row에서 읽히게 한다. 더데이랩스 명칭·기간·고용형태는 숨기지 않는다. |
