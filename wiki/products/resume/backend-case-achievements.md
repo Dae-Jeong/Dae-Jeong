@@ -36,7 +36,7 @@ tags: [resume, backend, cases, achievements, evidence]
 | A-특화 | realtime AI 상담 backend | WebSocket session lifecycle와 경쟁 조건 | 공동 주 기여 범위로 사용 가능 |
 | B | 조직 표준 FastAPI template | architecture convention, contract, team leverage | platform/스타트업 JD에 강함 |
 | B-AX | 제품별 decision→release 운영 체계 | Decision·SPEC·Work Package, owner lane, QA·release gate, version trace | AX·product operating system 주력 가능 |
-| B | Azure/Terraform change safety | 6개 state 경계, 400+ object, drift gate, 중앙 관측 | platform/infra JD의 주력 case 가능 |
+| C | 서비스 배포·기본 운영 | Docker·GitHub Actions·Azure·Terraform | 대표 전문성이 아니라 hands-on delivery 보조 경험 |
 | B-특화 | AI 생성 품질·evaluation system | typed contract, evaluation loop, 측정 오류 교정 | AI backend JD에 강함 |
 | C | SSO·세션 정책 | Redis/JTI session, duplicate login, E2E | supporting case |
 | C | 예약 정책 전달 | backend rule을 FE·QA·release 계약으로 연결 | product backend supporting case |
@@ -54,7 +54,6 @@ tags: [resume, backend, cases, achievements, evidence]
 | 03 | 주문·재고 worker 복구 흐름 | 다른 제품에서도 async runtime 선택·retry·terminal failure·manual reprocess를 직접 설계한 반복 가능성을 증명 |
 | 04 | 제품 원장·AI 실행 상태 분리와 STG migration·Outbox | service/data boundary 이후 기존 이력 이관과 지연·중복·역순 전달이 같은 정합성 문제이므로 결합 |
 | 05 | 조직 표준 FastAPI template·agent context | 개인의 구현 기준을 사람이든 agent든 다시 사용할 수 있는 조직 실행 기반으로 확장한 성과 |
-| 06 | Azure/Terraform 변경 안전성 | 6개 state 경계·plan/live inventory gate·중앙 관측으로 application 밖 production 운영 범위를 증명 |
 
 회사 AX 설계 참여와 제품별 적용·운영 리드는 공통 경력·기술과 AX/FDE 등 직군별 지원본에 유지한다. 공통 대표 성과에서는 직접 구축한 backend 사례의 반복 가능성을 먼저 증명한다. Threads 데이터·품질 evaluation, 지점 권한, Stripe 결제는 직군별 지원본과 portfolio supporting case에서 사용한다.
 
@@ -117,10 +116,10 @@ Claims: `thready.backend-rebuild` (`owned/high`), `thready.frontend-product-deli
 - 다른 구성원이 빠른 기능 검증 중심으로 만든 초기 prototype을 인계받아 production 운영 단계로 전환했다. 재구축 범위·architecture·validation harness·cutover 판단은 직접 소유하고, AI는 codebase 파악·기능 inventory·구현에 적극 활용했다.
 - 기존 release·QA 흐름과 Next.js frontend를 유지하면서 FastAPI backend를 parallel rebuild해 `v1.1.0`에서 cutover하고 이후 개발·release·운영을 전담했다.
 - backend cutover 이후 Next.js의 콘텐츠 생성·가져오기·예약·발행·dashboard·관리·labeling workflow도 직접 구현·운영해 backend·AI 기능을 실제 사용자·관리 흐름으로 닫았다.
-- 작은 서비스 단계에서 AI 모듈 확장 비용을 근거로 부분 수정 대신 backend 재구축을 선택하고, architecture·component·infra validation harness를 먼저 세운 뒤 auth/account와 frontend 호출 전환까지 실행했다.
+- 작은 서비스 단계에서 AI 모듈 확장 비용을 근거로 부분 수정 대신 backend 재구축을 선택하고, contract·component·operational-flow validation harness를 먼저 세운 뒤 auth/account와 frontend 호출 전환까지 실행했다.
 - `v1.3.0`부터 실제 사용자가 쓰는 AI 콘텐츠 제품의 backend version cycle과 생성 품질 blocker의 판단·수정·배포를 운영했다.
 - 제품은 2026년 8월 기준 월 약 800만~1,000만원의 구독료 매출이 발생한다. 이 수치는 제품·팀 outcome이며, 개인 기여는 초기 prototype 이후 backend 전환·release·QA·operation을 실제 사용자 운영까지 이끈 범위로 분리한다.
-- architecture·component·infra validation harness를 먼저 세운 backend cutover 전후, 해결된 QA issue의 reopen 비율이 26%p 낮아졌다. 이는 QA 총건수가 아니라 반복 결함 signal이다.
+- contract·component·operational-flow validation harness를 먼저 세운 backend cutover 전후, 해결된 QA issue의 reopen 비율이 26%p 낮아졌다. 이는 QA 총건수가 아니라 반복 결함 signal이다.
 
 깊이를 만드는 설명:
 
@@ -213,23 +212,24 @@ Claims: `be-template.backend-standard`, `be-template.team-leverage`,
 - “조직의 모든 backend 표준을 단독 결정”으로 확대하지 않는다.
 - onboarding·project setup 시간, drift·defect 감소, 실제 재사용 제품 수는 추가 evidence가 있어야 정량 outcome으로 쓸 수 있다.
 
-### 8. Azure/Terraform state·drift change safety
+### 8. Service deployment and basic cloud operation (supporting only)
 
 Claims: `infra.company-azure-ownership` (`owned/high`), `infra.terraform-state-safety`
-(`owned/high`), `infra.azure-observability` (`owned/high`), `centurion.shared-infra`
+(`owned/high`, internal supporting), `infra.azure-observability` (`contributed/high`, internal supporting), `centurion.shared-infra`
 (`owned/high`), `nexus.terraform-infra` (`owned/high`)
 
-성과 후보:
+내부 evidence inventory:
 
 - 회사 Azure/Terraform infrastructure를 Shared·B2B·B2C STG/Prod의 6개 독립 root·remote state로 나눠 400+ state object를 운영했다.
 - state snapshot·Terraform plan·Azure live inventory를 교차 검증하고, PostgreSQL 강제 교체 같은 destructive plan은 apply 전에 중단했다. 기존 B2C resource 편입도 0 add·0 destroy 조건으로 검토했다.
 - Azure Monitor·Log Analytics와 AMA/DCR로 10대 VM container log를 중앙화하고, API·DB·host signal을 포함한 8개 Production alert를 Terraform으로 운영했다.
 - App Service·container registry·storage·VM의 deploy/runtime 경계를 나누고 service 추가·배포·운영 runbook을 유지했다.
 
-깊이를 만드는 설명:
+Selection boundary:
 
 - `400+`는 2026-08-18 `terraform state list`의 426개 address를 범위화한 snapshot이며 Azure live resource 수와 같지 않다.
 - 가용성·MTTR·장애율·deploy time 개선과 실제 비용 절감은 확인되지 않았다. 모든 resource의 최초 생성이나 완전 자동 apply로 확대하지 않는다.
+- 공통 resume·portfolio의 대표 case로 선택하지 않는다. 공개 문안은 `여러 사내 서비스의 Azure·Vercel 배포 환경 구성과 기본 운영` 수준으로 제한한다.
 
 ## D. Supporting Case
 
@@ -351,8 +351,8 @@ Node.js에서 NestJS로의 backend migration은 현재 self-report만 있고 sta
 | --- | --- | --- |
 | 일반 Backend / SaaS | 주문·재고 비동기 처리 + 피부과 운영·예약 backend + AI 콘텐츠 backend 재구축 | SSO, 결제 정합성 |
 | AI Backend | AI 콘텐츠 backend 재구축 + AI service boundary + realtime session | AI evaluation system |
-| Platform / 초기 스타트업 | 조직 표준 FastAPI template + Azure/Terraform delivery + 피부과 운영·예약 backend | agent 기반 제품 운영 |
-| AX / Engineering Productivity | 제품별 decision→release 운영 + 조직 표준 FastAPI template | Azure/Terraform delivery, 제품 정책 전달 |
+| Platform / 초기 스타트업 | 조직 표준 FastAPI template + AI service/data boundary + 주문·재고 async recovery | 서비스 배포·기본 운영 경험 |
+| AX / Engineering Productivity | 제품별 decision→release 운영 + 조직 표준 FastAPI template | 서비스 배포·기본 운영, 제품 정책 전달 |
 | Product Backend | 주문·재고 비동기 처리 + 예약 정책 전달 + 결제 정합성 | AI 콘텐츠 production 운영 |
 
 선택 후에는 각 주력 case를 한두 줄 기술명 나열로 줄이지 않는다. 독자가 “왜 그 구조였는지,

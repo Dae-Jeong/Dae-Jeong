@@ -86,7 +86,7 @@ const ROUTES = [
     href: "/portfolio",
     badge: "LIVE",
     warn: false,
-    desc: "대표 사례 4건과 supporting 사례 1건 — 문제·판단·시스템·운영 근거.",
+    desc: "대표 사례 3건과 supporting 사례 1건 — 문제·판단·시스템·운영 근거.",
   },
   {
     name: "Chat",
@@ -158,9 +158,9 @@ export default function Home() {
                       <>
                         Python · FastAPI
                         <br />
-                        TypeScript · Azure
+                        TypeScript · PostgreSQL
                         <br />
-                        Terraform
+                        Redis · RabbitMQ
                       </>
                     ),
                   },
@@ -286,7 +286,7 @@ export default function Home() {
               </div>
             </Reveal>
             <p className="m-0 mt-5 text-xs tracking-[0.03em] text-muted">
-              네 대표 사례와 Memento 결제 사례는{" "}
+              세 대표 사례와 Memento 결제 사례는{" "}
               <Link
                 href="/portfolio"
                 className="focus-ring border-b border-border text-fg-2 transition-colors duration-100 hover:border-fg hover:text-fg"

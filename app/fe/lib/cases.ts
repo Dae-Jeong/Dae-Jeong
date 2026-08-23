@@ -84,11 +84,11 @@ export const CASES: CaseMeta[] = [
     shortName: "의료 MSA · 작업 복구와 실시간 상담",
     tag: "의료 통합 플랫폼 · Centurion",
     blurb:
-      "주문·재고 backend는 상태·재시도·수동 복구 경계를 직접 구축했습니다. 실시간 AI 상담은 공동 개발하며 VAD 발화 감지, DELTA·COMPLETE 전사 흐름, session lifecycle을 분리했습니다.",
+      "주문·재고 backend는 요청 처리와 외부 연동의 실패 경계를 나누고, 명시적인 작업 상태·재시도·수동 복구 흐름을 구축했습니다. 실시간 AI 상담은 공동 개발하며 VAD 발화 감지, DELTA·COMPLETE 전사 흐름, session lifecycle을 분리했습니다.",
     role: "주문·재고 주도 · 실시간 상담 공동 기여",
     scope: "멀티 서비스 · 비동기 작업 · 실시간 통신",
     proof: [
-      "주문·재고 API와 RabbitMQ·TaskIQ 작업 흐름 주도",
+      "요청 경계와 RabbitMQ·TaskIQ 작업 상태·복구 흐름 주도",
       "VAD 발화 감지·DELTA/COMPLETE·sequence 기반 실시간 상담 공동 개발",
       "외부 연동이 실패해도 핵심 업무는 완료되도록 분리",
     ],
@@ -128,8 +128,8 @@ export const CASES: CaseMeta[] = [
       "infra.azure-observability",
       "centurion.shared-infra",
     ],
-    tier: "primary",
-    available: true,
+    tier: "archive",
+    available: false,
   },
   {
     slug: "memento-payment",
@@ -172,8 +172,6 @@ export const CASES: CaseMeta[] = [
       "be-template.backend-standard",
       "be-template.team-leverage",
       "be-template.agent-context",
-      "infra.company-azure-ownership",
-      "infra.ai-assisted-change-harness",
     ],
     tier: "primary",
     available: true,

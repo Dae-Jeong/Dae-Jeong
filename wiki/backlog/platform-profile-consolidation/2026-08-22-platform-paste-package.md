@@ -98,7 +98,7 @@ tags: [platform, profile, maker, distribution, paste, ready]
 
 MediSolve AI에서 Tech Lead 역할을 맡고, Backend Engineer로 여러 사내 제품을 직접 개발·운영합니다. Thready에서는 기획·QA·마케팅과 제품 운영을 리드하며 FastAPI 백엔드·AI 생성/평가 시스템·Next.js 핵심 흐름을 직접 구현했습니다.
 
-Python·FastAPI를 중심으로 운영 백엔드 재구축, 주문·재고 비동기 처리, AI 실행부·데이터 분리, Azure·Terraform 변경 체계를 다뤄왔습니다.
+Python·FastAPI를 중심으로 운영 백엔드 재구축, 주문·재고 비동기 처리, AI 실행부·데이터 분리와 조직 표준 backend 기반을 다뤄왔습니다. Azure·Vercel 배포 환경은 서비스가 동작하도록 구성하고 기본 운영을 맡았습니다.
 ```
 
 ### 1.3.3 Groupby — 소개
@@ -118,7 +118,7 @@ Python·FastAPI를 중심으로 운영 백엔드 재구축, 주문·재고 비�
 
 고객이 어디서 막히는지 찾고, 기획·QA·마케팅과 무엇을 먼저 만들지 정한 뒤 필요한 백엔드·AI·핵심 화면을 직접 만듭니다. Thready에서는 이 방식으로 제품 운영을 리드해 실제 사용자와 구독료 매출이 발생하는 유료 제품을 팀과 함께 운영하고 있습니다.
 
-출시 뒤 운영도 직접 맡습니다. 다른 구성원이 빠른 검증을 위해 만든 초기 백엔드를 인계받았을 때는 운영 가능한 FastAPI 구조로 다시 만들고, 검증 하네스와 병렬 전환으로 안정성을 확인했습니다. 의료 플랫폼의 주문·재고 worker와 실시간 AI 상담, 회사 Azure·Terraform까지 운영에 필요한 시스템을 다뤄 왔습니다.
+출시 뒤 운영도 직접 맡습니다. 다른 구성원이 빠른 검증을 위해 만든 초기 백엔드를 인계받았을 때는 운영 가능한 FastAPI 구조로 다시 만들고, 검증 하네스와 병렬 전환으로 안정성을 확인했습니다. 의료 플랫폼의 주문·재고 worker와 실시간 AI 상담, 조직 표준 FastAPI 기반도 직접 다뤄 왔습니다.
 
 현재 MediSolve AI에서 Backend Engineer로 일하며 Tech Lead 역할과 제품 운영을 맡고 있습니다.
 
@@ -132,7 +132,7 @@ I’m Daejeong Kim, a maker who turns ideas into new value.
 
 I turn customer pain into product decisions, align priorities with product, QA, and marketing, and directly build the backend, AI systems, and core workflows needed to ship. At Thready, I lead product operations and helped take the product to paid operation with real users and subscription revenue.
 
-I also rebuild systems for continued operation. I inherited an early backend and rebuilt it into an operable FastAPI system using validation harnesses and a parallel cutover. My work also spans asynchronous order and inventory workers, realtime AI consultation, and Azure/Terraform operations.
+I also rebuild systems for continued operation. I inherited an early backend and rebuilt it into an operable FastAPI system using validation harnesses and a parallel cutover. My work also spans asynchronous order and inventory workers, realtime AI consultation, and shared FastAPI foundations.
 
 I currently work at MediSolve AI as a Backend Engineer, serving in a Tech Lead role and leading product operations.
 
@@ -158,7 +158,7 @@ Tech Lead 역할 · Backend Engineer — 제품 운영 리드
 - [병렬 재구축·검증] 다른 구성원이 빠른 기능 검증을 위해 만든 초기 백엔드를 인계받아 기존 프런트엔드와 출시 흐름을 유지한 채 FastAPI로 병렬 재구축·전환했습니다. 같은 기준의 Jira 집계에서 해결된 QA 이슈의 재오픈 비율이 전환 전보다 26%p 낮게 관측됐습니다.
 - [주문·재고 비동기 처리] Centurion BAY의 주문·재고 API와 TaskIQ·RabbitMQ worker 구축을 주도하고, 작업 상태·retry·terminal failure·수동 재처리 경계를 설계했습니다.
 - [AI 실행부·데이터 경계] 제품 정책·원장은 product backend가, 생성 lifecycle·실행 상태는 독립 FastAPI application·DB가 소유하도록 분리했습니다. STG 이관을 행 수·MD5·FK·API E2E로 검증하고 Outbox·delivery version fence로 지연·중복·역순 전달이 최신 상태를 덮지 않도록 했습니다.
-- [조직 표준·변경 안전성] 조직 표준 FastAPI template과 agent context를 직접 구축했습니다. 회사 Azure 인프라 운영을 담당하며 Shared·B2B·B2C Terraform을 6개 독립 root/state로 관리하고, state snapshot·plan·live inventory 대조로 의도하지 않은 destroy·replace를 apply 전에 차단했습니다.
+- [조직 실행 기반] 조직 표준 FastAPI template과 agent context를 직접 구축했습니다. 여러 사내 서비스의 Azure·Vercel 배포 환경도 서비스가 동작하도록 구성하고 기본 운영을 맡았습니다.
 ```
 
 ### 2.2 MediSolve AI — 3문장 축약형
@@ -166,7 +166,7 @@ Tech Lead 역할 · Backend Engineer — 제품 운영 리드
 ```text
 - 기획·QA·마케팅과 Thready 제품 운영을 리드하고 백엔드·AI·핵심 프런트엔드를 직접 개발·운영. 제품은 2026.08 기준 월 약 800만~1,000만원의 구독료 매출 발생
 - 다른 구성원이 빠른 기능 검증을 위해 만든 초기 백엔드를 인계받아 FastAPI로 병렬 재구축·전환하고 검증 하네스를 선행 구축. 같은 기준의 Jira 집계에서 해결 이슈 재오픈 비율이 26%p 낮게 관측
-- 주문·재고 비동기 worker, 제품 원장–AI 실행 분리, 조직 표준 FastAPI template, Azure·Terraform 변경 gate 구축·운영
+- 주문·재고 비동기 worker, 제품 원장–AI 실행 분리, 조직 표준 FastAPI template 구축·운영
 ```
 
 ### 2.3 더데이랩스 — 법인 설립 전 stage
@@ -212,7 +212,7 @@ Vision AI Engineer 인턴으로 인식 모델과 학습 데이터·전처리 pip
 | 직무 | `백엔드 개발자` |
 | 직책 | `Tech Lead` |
 | 간단 소개 | §1.3 기본 소개 |
-| MediSolve 성과 제목 | `유료 AI 제품 운영과 백엔드·인프라 구축` |
+| MediSolve 성과 제목 | `유료 AI 제품 운영과 백엔드·AI 시스템 구축` |
 | MediSolve 설명 | §2.1 전체형 |
 | Memento 성과 제목 | `Stripe 선결제부터 Webhook·취소·환불까지 결제 상태 흐름 구축` |
 | STUDIO LAB 성과 제목 | `AI 커머스 제품 0→1과 출시 우선순위 리드` |
@@ -265,7 +265,7 @@ Tech Lead · Backend Engineer | AI Product Systems · Python · FastAPI | 아이
 4. Software Architecture
 5. Large Language Models (LLM)
 
-실제 LinkedIn skill taxonomy에 없는 항목은 PostgreSQL → RabbitMQ → Terraform → Microsoft Azure → Product Management 순으로 대체한다.
+실제 LinkedIn skill taxonomy에 없는 항목은 PostgreSQL → RabbitMQ → Product Management → Terraform → Microsoft Azure 순으로 대체한다.
 
 **Featured**
 
@@ -324,7 +324,7 @@ Tech Lead · Backend Engineer | AI Product Systems · Python · FastAPI | 아이
 3. `Company Engineering System — 여러 제품을 운영하는 공통 실행 기준`
    - 조직 표준 FastAPI template과 agent context 직접 구축
    - 제품 요구·QA·릴리스 기록을 agent-readable context로 연결하는 회사 AX 구조 설계 참여
-   - Azure·Terraform 변경을 state·plan·live inventory 대조 뒤 적용하는 운영 gate 구축
+   - 여러 서비스의 Azure·Vercel 배포 환경 구성과 기본 운영
 
 기존 학부 프로젝트는 삭제하지 않더라도 실무 프로젝트 아래로 내린다. `구직 의향` 공개 범위는 콘텐츠와 별도로 사용자 확인 뒤 변경한다.
 

@@ -1,7 +1,9 @@
-import Image from "next/image";
 import type { ReactNode } from "react";
 import type { CaseMeta } from "@/lib/cases";
 import { AzureArchitectureDiagram } from "./azure-architecture-diagram";
+import { CenturionContributionDiagram } from "./centurion-contribution-diagram";
+import { SayRealtimeDiagram } from "./say-realtime-diagram";
+import { ThreadyRuntimeDiagram } from "./thready-runtime-diagram";
 
 function CaseHeader({
   meta,
@@ -88,59 +90,7 @@ function ThreadyCase({
 
       <section className="pt-10">
         <Subhead note="PRODUCT · RUNTIME ARCHITECTURE">제품 운영과 실제 실행 환경을 한 구조로 연결했습니다.</Subhead>
-        <figure className="portfolio-keep m-0 mt-6">
-          <a
-            href="/portfolio/thready-product-runtime-architecture-v2.svg"
-            target="_blank"
-            rel="noreferrer"
-            aria-label="Thready 제품 런타임과 배포 운영 아키텍처 원본 크게 보기"
-            className="hidden border border-border bg-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-fg md:block print:block print:border-0"
-          >
-            <Image
-              src="/portfolio/thready-product-runtime-architecture-v2.svg"
-              alt="사용자 브라우저에서 Vercel Next.js, Azure FastAPI 제품 API와 PostgreSQL·Object Storage, 외부 콘텐츠 API, 구현·STG 검증한 AI application·DB, GitHub Actions 배포와 관측 경계를 연결한 Thready reference architecture"
-              width={1774}
-              height={1050}
-              loading="eager"
-              unoptimized
-              sizes="(max-width: 1024px) calc(100vw - 48px), 1124px"
-              className="block h-auto w-full print:mx-auto print:w-[94%]"
-            />
-          </a>
-          <ol className="m-0 grid list-none border-y border-border p-0 md:hidden print:hidden">
-            {[
-              ["사용자 경로", "Browser → Next.js / Vercel → FastAPI Product API"],
-              ["제품 원장", "PostgreSQL · Object Storage · 외부 콘텐츠 API"],
-              ["AI 경계", "인증된 HTTP · 별도 AI application / DB · STG 검증"],
-              ["배포·운영", "GitHub Actions · Container Registry · Azure · observability"],
-            ].map(([label, value]) => (
-              <li key={label} className="grid grid-cols-[76px_minmax(0,1fr)] gap-3 border-b border-border-soft py-4 last:border-b-0">
-                <strong className="font-mono text-xs text-muted">{label}</strong>
-                <span className="text-sm leading-[1.6] text-fg-2">{value}</span>
-              </li>
-            ))}
-          </ol>
-          <figcaption className="border-b border-border px-1 pb-5 pt-4 text-sm leading-[1.7] text-fg-2">
-            <span className="flex items-center justify-between gap-4 font-mono text-xs text-muted">
-              <span>THREADY · PRODUCT &amp; RUNTIME ARCHITECTURE</span>
-              <a
-                href="/portfolio/thready-product-runtime-architecture-v2.svg"
-                target="_blank"
-                rel="noreferrer"
-                className="shrink-0 underline decoration-border underline-offset-4 hover:text-fg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-fg print:hidden"
-              >
-                원본 크게 보기 ↗
-              </a>
-            </span>
-            <span className="mt-2 block">
-              사용자 화면은 Vercel의 Next.js가, 제품 정책과 원장은 Azure App Service의
-              FastAPI backend와 PostgreSQL이 소유합니다. AI 실행부는 별도 application·DB로
-              분리해 인증된 HTTP로 연결하고, 원장 변경은 같은 transaction의 Outbox와
-              retry·delivery version fence로 전달했습니다. FE·제품 backend 경로는 현재 운영,
-              AI 분리 경계는 구현·STG 검증 범위입니다.
-            </span>
-          </figcaption>
-        </figure>
+        <ThreadyRuntimeDiagram />
         <dl className="portfolio-keep m-0 mt-5 grid grid-cols-3 border-y border-border max-md:grid-cols-1 print:grid-cols-3">
           {[
             ["리드", "제품 운영 · 우선순위 · 품질 · QA · 릴리스"],
@@ -242,7 +192,7 @@ function CenturionCase({
   focus?: string;
 }) {
   const contributions = [
-    ["주문·재고", "구축 주도", "API 요청과 후속 작업을 나누고, 실패 기록·재시도·수동 복구 기능을 만들었습니다."],
+    ["주문·재고", "구축 주도", "요청 처리와 외부 연동의 실패 경계를 나누고, 명시적인 작업 상태·재시도·최종 실패·수동 복구 경계를 만들었습니다."],
     ["실시간 AI 상담", "공동 개발", "DELTA→COMPLETE 전사 흐름과 session lifecycle을 나누고, 도메인 키워드 우선 판정·sequence guard·재연결 정리를 구현했습니다."],
     ["DAY 예약 정책", "연결 주도", "예약 정책을 백엔드 판단부터 프론트엔드 표시·QA·릴리스까지 같은 기준으로 연결했습니다."],
     ["시설·재고·공통 인증", "주요 기능 개발", "재고 연동이 실패해도 시술 완료가 취소되지 않도록 작업을 분리했습니다."],
@@ -265,31 +215,10 @@ function CenturionCase({
       />
 
       <section className="pt-10">
-        <Subhead note="담당 범위">어디까지 맡았는지</Subhead>
-        <div className="portfolio-keep mt-6 border-y border-border py-6">
-          <div className="mx-auto grid w-fit gap-2 text-center">
-            <div className="border border-border px-6 py-3 text-sm font-semibold">Express API Gateway</div>
-            <span aria-hidden className="font-mono text-muted">↓</span>
-            <div className="border border-border px-6 py-3 text-sm font-semibold">NestJS SSO</div>
-          </div>
-          <div className="mt-6 grid grid-cols-3 border border-border max-md:grid-cols-1">
-            {[
-              ["연결 주도", "DAY / CRM", "Backend · Frontend · QA · Release"],
-              ["주도", "주문 / 재고", "RabbitMQ · TaskIQ"],
-              ["공동 개발", "실시간 AI 상담", "WebSocket · 외부 AI 연동"],
-            ].map(([role, title, desc], index) => (
-              <div key={title} className={`p-5 ${index > 0 ? "border-l border-border max-md:border-l-0 max-md:border-t" : ""}`}>
-                <span className="font-mono text-xs text-muted">{role}</span>
-                <h4 className="m-0 mt-3 text-base font-semibold">{title}</h4>
-                <p className="m-0 mt-2 text-sm text-fg-2">{desc}</p>
-              </div>
-            ))}
-          </div>
-          <div className="mt-3 grid grid-cols-[180px_minmax(0,1fr)] gap-5 border-y border-border-soft px-4 py-3 text-sm max-sm:grid-cols-1 max-sm:gap-1">
-            <span className="font-mono text-xs text-muted">기여</span>
-            <span>시설·재고 연동 · 여러 서비스의 로그인 세션 정책</span>
-          </div>
-        </div>
+        <Subhead note="CONTRIBUTION MAP">
+          예약은 끝까지 연결하고, 실패한 작업은 다시 실행되게, 상담은 끊김 없이 이어지게 했습니다.
+        </Subhead>
+        <CenturionContributionDiagram />
       </section>
 
       <section className="pt-10">
@@ -306,26 +235,29 @@ function CenturionCase({
       </section>
 
       <section className="portfolio-keep pt-10">
-        <Subhead note="비동기 작업">주문은 끝내고, 실패한 후속 작업만 다시 돌리게 했습니다.</Subhead>
+        <Subhead note="TRANSACTION · STATE · RECOVERY">외부 연동 실패가 사용자 요청 전체를 되돌리지 않게 했습니다.</Subhead>
         <div className="portfolio-keep mt-6 grid grid-cols-[1fr_auto_1fr_auto_1.15fr] items-stretch gap-3 max-lg:grid-cols-1 print:grid-cols-[1fr_auto_1fr_auto_1.15fr]">
           <div className="border-y border-border p-5 print:p-3">
-            <span className="font-mono text-xs text-muted">API</span>
-            <strong className="mt-3 block">주문 상태 저장</strong>
-            <p className="m-0 mt-2 text-sm text-fg-2">사용자 요청은 여기서 완료</p>
+            <span className="font-mono text-xs text-muted">TRANSACTION BOUNDARY</span>
+            <strong className="mt-3 block">판정·작업 상태 생성</strong>
+            <p className="m-0 mt-2 text-sm leading-[1.55] text-fg-2">사용자 요청과 외부 연동의 실패 경계를 분리</p>
           </div>
           <span aria-hidden className="grid place-items-center font-mono text-muted max-lg:rotate-90 print:rotate-0">→</span>
           <div className="border-y border-border p-5 print:p-3">
-            <span className="font-mono text-xs text-muted">메시지 큐</span>
+            <span className="font-mono text-xs text-muted">EXECUTION HANDOFF</span>
             <strong className="mt-3 block">RabbitMQ</strong>
-            <p className="m-0 mt-2 text-sm text-fg-2">후속 작업을 워커로 전달</p>
+            <p className="m-0 mt-2 text-sm leading-[1.55] text-fg-2">실패 가능한 후속 작업을 worker 경계로 전달</p>
           </div>
           <span aria-hidden className="grid place-items-center font-mono text-muted max-lg:rotate-90 print:rotate-0">→</span>
           <div className="border border-fg p-5 print:p-3">
-            <span className="font-mono text-xs text-muted">작업 처리</span>
-            <strong className="mt-3 block">TaskIQ</strong>
-            <p className="m-0 mt-2 text-sm leading-[1.55] text-fg-2">성공 · 재시도 · 최종 실패를 기록하고 필요하면 수동 복구</p>
+            <span className="font-mono text-xs text-muted">STATE CONSISTENCY · RECOVERY</span>
+            <strong className="mt-3 block">TaskIQ 작업 상태</strong>
+            <p className="m-0 mt-2 text-sm leading-[1.55] text-fg-2">SUCCESS·FAILED 기록 → retry → terminal failure → 수동 재처리</p>
           </div>
         </div>
+        <p className="m-0 mt-4 border-y border-border py-3 text-sm leading-[1.6] text-fg-2 print:mt-2 print:py-2">
+          <strong className="text-fg">설계 원칙</strong> · 실패 상태를 기록으로 남겨 사용자 요청 전체가 아니라 실패한 후속 작업만 다시 실행합니다.
+        </p>
       </section>
 
       <section className="portfolio-signal-section pt-10 print:pt-0">
@@ -337,68 +269,7 @@ function CenturionCase({
           정리 책임을 stop guard로 모았습니다.
         </p>
 
-        <figure className="portfolio-keep m-0 mt-6 border-y border-border py-6 print:mt-3 print:py-2">
-          <a
-            href="/portfolio/centurion-say-realtime-architecture-v2.svg"
-            target="_blank"
-            rel="noreferrer"
-            aria-label="SAY 실시간 AI 상담 reference architecture 원본 크게 보기"
-            className="hidden md:block print:block"
-          >
-            <Image
-              src="/portfolio/centurion-say-realtime-architecture-v2.svg"
-              alt="Express API Gateway와 NestJS SSO를 거쳐 WebSocket session orchestrator, STT adapter, event와 판단 pipeline, AI 조언과 client event로 이어지고 DELTA·COMPLETE·optional CORRECTED 및 stop guard를 확대 영역으로 보여주는 SAY 실시간 AI 상담 reference architecture"
-              width={1774}
-              height={1050}
-              loading="eager"
-              unoptimized
-              sizes="(max-width: 1024px) calc(100vw - 48px), 960px"
-              className="block h-auto w-full print:mx-auto print:w-[90%]"
-            />
-          </a>
-          <ol className="m-0 grid list-none border-y border-border p-0 md:hidden print:hidden">
-            {[
-              ["진입", "상담 화면 → Express Gateway → NestJS SSO → WebSocket session"],
-              ["전사", "STT adapter → VAD / DELTA / COMPLETE event"],
-              ["반응", "DELTA keyword match → 상담 중 조언 생성 시작"],
-              ["종료", "COMPLETE / context · optional same-sequence correction · stop guard"],
-            ].map(([label, value]) => (
-              <li key={label} className="grid grid-cols-[56px_minmax(0,1fr)] gap-3 border-b border-border-soft py-4 last:border-b-0">
-                <strong className="font-mono text-xs text-muted">{label}</strong>
-                <span className="text-sm leading-[1.6] text-fg-2">{value}</span>
-              </li>
-            ))}
-          </ol>
-          <figcaption className="mt-5 grid grid-cols-[190px_minmax(0,1fr)] gap-6 border-t border-border pt-5 max-sm:grid-cols-1 max-sm:gap-2 print:mt-3 print:grid-cols-[150px_minmax(0,1fr)] print:gap-4 print:pt-3">
-            <div>
-              <span className="block font-mono text-xs text-muted">SAY · REALTIME AI CONSULTATION ARCHITECTURE</span>
-              <a
-                href="/portfolio/centurion-say-realtime-architecture-v2.svg"
-                target="_blank"
-                rel="noreferrer"
-                className="mt-2 inline-block text-xs font-medium text-fg underline decoration-border underline-offset-4 print:hidden"
-              >
-                원본 크게 보기 ↗
-              </a>
-            </div>
-            <div>
-              <p className="m-0 text-sm leading-[1.65] text-fg-2">
-                상담 요청은 Gateway·SSO와 WebSocket session lifecycle을 거쳐 STT·판단·AI 조언
-                경로로 이어집니다. DELTA는 같은 발화의 최신 중간 전사로 교체하고 키워드가
-                확인되면 생성을 먼저 시작하며, COMPLETE만 확정 문맥과 저장에 사용합니다.
-                선택적 보정은 같은 sequence만 교체하고, 종료 뒤에는 stop guard가 재연결을 막습니다.
-              </p>
-              <p className="m-0 mt-3 text-sm leading-[1.65] text-fg-2">
-                Provider 차이는 adapter 뒤로 격리하고, benchmark·E2E replay·회귀 테스트를
-                runtime 밖의 검증 경계로 뒀습니다. 전체 구조의 단독 구축이 아니라 실시간 상담
-                cluster의 공동 주 기여 범위입니다.
-              </p>
-              <p className="m-0 mt-3 font-mono text-xs leading-[1.55] text-muted">
-                4분 37초 E2E · DELTA 586 · COMPLETE 25 · ADVICE 14 · sequence 1—25 누락·중복 없음
-              </p>
-            </div>
-          </figcaption>
-        </figure>
+        <SayRealtimeDiagram />
 
         <div className="portfolio-keep mt-8 grid grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] gap-10 border-y border-border py-6 max-md:grid-cols-1 max-md:gap-5 print:mt-3 print:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] print:gap-6 print:py-3">
           <div>

@@ -18,7 +18,7 @@ claim_strength: mixed (service led/co-led/contributed)
 
 ## Executive Summary
 
-API Gateway·SSO를 공유하고 예약 CRM, 주문·재고, 실시간 상담 서비스가 분리된 의료 MSA에서 서비스별 backend를 구축·연동했습니다. 주문·재고는 실패한 후속 작업만 다시 실행할 수 있게 만들었고, 실시간 상담은 빠른 중간 전사와 확정 판단·세션 종료를 서로 다른 경계로 나눴습니다. 전체 플랫폼을 단독 구축한 것이 아니라, 주문·재고 worker와 예약 정책 연결은 주도하고 실시간 상담·시설 연동·공통 인증은 기여 범위를 구분해 맡았습니다.
+API Gateway·SSO를 공유하고 예약 CRM, 주문·재고, 실시간 상담 서비스가 분리된 의료 MSA에서 서비스별 backend를 구축·연동했습니다. 주문·재고는 요청 처리와 외부 연동의 실패 경계를 나누고 명시적인 작업 상태를 남겨 실패한 후속 작업만 다시 실행할 수 있게 했습니다. 실시간 상담은 빠른 중간 전사와 확정 판단·세션 종료를 서로 다른 경계로 나눴습니다. 전체 플랫폼을 단독 구축한 것이 아니라, 주문·재고 worker와 예약 정책 연결은 주도하고 실시간 상담·시설 연동·공통 인증은 기여 범위를 구분해 맡았습니다.
 
 ## My Scope
 
@@ -46,11 +46,15 @@ diagram: Client -> Express API Gateway -> NestJS SSO -> FastAPI product services
 
 diagram: 주문·재고 API -> RabbitMQ -> TaskIQ worker -> SUCCESS / FAILED -> retry·수동 재처리
 
+invariant: 사용자 요청과 외부 연동의 실패 경계를 분리하고, 작업 상태·실패 이력을 기록해 실패한 후속 작업만 재처리한다. exactly-once나 DB·broker의 원자적 transaction은 이 사례의 claim 범위에 포함하지 않는다.
+
 diagram: 상담 화면 -> Express API Gateway -> NestJS SSO -> WebSocket session orchestrator -> STT adapter -> transcript event -> advice·upsell·process pipeline -> client event
 
 diagram inset: Audio -> VAD(speech boundary) + same-utterance DELTA -> keyword match -> start generation / COMPLETE -> context·store; optional CORRECTED -> replace same sequence; session end -> stop guard -> reconnect blocked
 
-visual_asset: `app/fe/public/portfolio/centurion-say-realtime-architecture-v2.svg` — SAY의 access·session·STT·판단·외부 provider runtime과 benchmark·E2E replay·regression test 경계를 한 장에 배치한 공개용 reference architecture. DELTA·COMPLETE·optional CORRECTED와 stop guard는 같은 이미지의 확대 영역으로 설명한다.
+visual_components:
+- `app/fe/app/portfolio/centurion-contribution-diagram.tsx` — 공통 Gateway·SSO 아래의 DAY·BAY·SAY 세 service flow와 역할 강도, cross-service 기여를 한 장에 구분한다.
+- `app/fe/app/portfolio/say-realtime-diagram.tsx` — SAY의 access·session·STT·판단·외부 provider runtime과 benchmark·E2E replay·regression test 경계를 한 장에 배치한다. DELTA·COMPLETE·optional CORRECTED와 stop guard는 같은 component의 확대 영역으로 설명한다.
 
 - async FastAPI 실행 모델에 맞춰 Celery 처리를 TaskIQ·RabbitMQ로 전환
 - API test infrastructure·Docker CI·local onboarding 구성

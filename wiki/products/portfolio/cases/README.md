@@ -2,7 +2,7 @@
 type: index
 title: Case Library
 description: 포트폴리오 케이스 스터디 마스터 라이브러리 — 회사별 페이지는 여기서 선별·조립만 한다.
-timestamp: 2026-08-22
+timestamp: 2026-08-23
 tags: [portfolio, cases, library]
 ---
 
@@ -16,7 +16,7 @@ tags: [portfolio, cases, library]
 | --- | --- | --- | --- |
 | [thready-rebuild.md](thready-rebuild.md) | THREADY | 유료 제품 운영 + full-stack system | 제품·팀 outcome 기여 / 제품 운영·frontend 주도 / backend 전담 |
 | [centurion-platform.md](centurion-platform.md) | CENTURION | 의료 MSA failure boundary | service별 `led/co-led/contributed` |
-| [infrastructure-delivery.md](infrastructure-delivery.md) | INFRASTRUCTURE DELIVERY | 회사 인프라 설계·운영 harness | 전담 |
+| [infrastructure-delivery.md](infrastructure-delivery.md) | INFRASTRUCTURE DELIVERY | 내부 근거로 보존한 회사 배포·Azure 운영 기록 | archive · public master 미선택 |
 | [memento-payment.md](memento-payment.md) | MEMENTO PAYMENT | supporting 외부 결제 보상·상태 정합성 | `led/contributed` |
 | [be-template.md](be-template.md) | COMPANY AX | primary 회사 AX 실행 체계 — MEDINESS 운영 plane + 직접 구축한 backend/agent execution | 회사 업무 설계 `contributed` · 제품 운영 `led` · engineering system `owned` |
 | [mediness-ops.md](mediness-ops.md) | MEDINESS | Company AX 사례의 product/work control plane 근거 | 설계 `contributed` · 제품별 운영 `led` |
@@ -34,16 +34,15 @@ tags: [portfolio, cases, library]
 | Centurion 주문·재고 비동기 복구 | [centurion-platform.md](centurion-platform.md) | API와 후속 작업 분리, TaskIQ·RabbitMQ, 상태·retry·terminal failure·수동 재처리, test/CI 기반 |
 | AI application·DB migration·Outbox | [thready-ai-system.md](thready-ai-system.md) | AI service boundary, STG migration 검증, transactional Outbox, lease·attempt token·retry·version fence·멱등 consumer·terminal failure 보존 |
 | Backend Template·agent 기준 | [be-template.md](be-template.md) | backend standard, team leverage, agent context |
-| Company Infrastructure | [infrastructure-delivery.md](infrastructure-delivery.md) | Azure runtime topology, AI-assisted change harness, state safety, observability |
 
 ## Common Portfolio Placement
 
 | Tier | Case order |
 | --- | --- |
-| Primary | [Thready](thready-rebuild.md) → [Company AX](be-template.md) → [Centurion](centurion-platform.md) → [Company Infrastructure](infrastructure-delivery.md) |
+| Primary | [Thready](thready-rebuild.md) → [Company AX](be-template.md) → [Centurion](centurion-platform.md) |
 | Supporting | [Memento Payment](memento-payment.md) |
 
-`Company AX`는 서로 다른 contribution strength를 하나로 뭉개지 않는다. MEDINESS의 제품·회사 업무 구조는 설계 참여와 제품별 적용·운영 근거를, Backend Template은 직접 설계·구축한 engineering execution 근거를, Azure/Vercel은 production runtime 근거를 각각 유지한 채 한 사례 안에서 연결한다.
+`Company AX`는 서로 다른 contribution strength를 하나로 뭉개지 않는다. MEDINESS의 제품·회사 업무 구조는 설계 참여와 제품별 적용·운영 근거를, Backend Template은 직접 설계·구축한 engineering execution 근거를 유지한다. Azure/Vercel은 배포 목적지 이상으로 확대하지 않는다.
 
 Centurion·NEXUS·Stripe의 세부 근거는 common resume의 Career 또는 common portfolio의 supporting/context proof로 남을 수 있다. 이를 대표 성과에 넣기 위해 다른 사례와 합성하거나 ownership을 높이지 않는다.
 

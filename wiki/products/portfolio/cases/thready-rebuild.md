@@ -29,9 +29,9 @@ claim_strength: mixed (product/frontend led · backend/rebuild/system owned · r
 고객이 Threads 콘텐츠를 만들고 성과를 판단할 때 겪는 문제를 기능·품질 기준으로 바꾸고, 기획·QA·마케팅과 실제 유료 운영 단계까지 제품을 이끌었습니다. Next.js 핵심 workflow를 직접 구현하고, 빠른 기능 검증 중심의 초기 backend를 인계받아 팀이 운영할 수 있는 FastAPI 구조로 재구축한 뒤 제품 원장과 AI 실행 상태의 소유권을 분리했습니다. 제품은 2026년 8월 기준 월 약 800만~1,000만원의 구독료 매출이 발생하고 있으며, 매출은 팀·제품의 결과입니다.
 
 public_visuals:
-  - `/portfolio/thready-product-runtime-architecture-v2.svg`
+  - `app/fe/app/portfolio/thready-runtime-diagram.tsx`
 
-visual_language: 한국어 책임명과 영문 기술명을 함께 쓰는 product/runtime reference architecture. 실선은 현재 운영, 파란 점선은 구현·STG 검증 범위
+visual_language: 기존 Azure topology와 같은 code-native reference architecture. 한국어 책임명과 영문 기술명을 함께 쓰며 product backend와 독립 AI application·DB를 하나의 current STG·Prod runtime으로 표시하고, migration rehearsal만 STG 검증 범위로 분리
 
 ## My Scope
 
@@ -61,7 +61,7 @@ diagram: product backend (policy·owner) -> authenticated HTTP -> AI application
 
 diagram: GitHub -> GitHub Actions -> Vercel / Container Registry -> Azure App Service -> observability
 
-- 공개 구조도는 현재 운영 중인 제품 runtime·data·delivery 경계와 구현·STG 검증한 AI 경계를 한 장에서 상태별로 구분한다.
+- 공개 구조도는 현재 운영 중인 product backend·AI application·data·delivery 경계와 STG migration rehearsal을 한 code-native component에서 구분한다.
 - `Product Backend`는 제품 정책·원장과 동일 transaction의 Outbox를, `AI Application`은 generation lifecycle·실행 상태·active replica를 소유한다.
 - 비동기 전달의 핵심은 같은 transaction의 Outbox, retry, delivery version fence로 요약하고 상세 복구 단계는 본문에서 설명한다.
 - 하단에는 GitHub Actions 기반 FE·backend 배포와 STG migration 검증, 운영 관측 경계를 분리한다.

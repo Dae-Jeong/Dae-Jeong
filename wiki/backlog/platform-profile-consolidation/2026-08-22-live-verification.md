@@ -23,6 +23,7 @@ tags: [platform, sync, live, verification, audit]
 - **대상 제외**: Saramin — 사용하지 않기로 확정해 동기화 대상에서 제외했고 쓰기 0건이다.
 - **Pending**: Oopy — 다른 플랫폼의 레거시 링크 교체와 공개 종료 판단이 남아 있다.
 - 구직 의향·프로필 공개·희망 조건 같은 설정은 문안 동기화와 분리했으며, 이번 작업에서 임의로 바꾸지 않았다.
+- **Infrastructure positioning correction**: 5개 플랫폼의 MediSolve AI 경력에서 Azure topology·Terraform state·apply gate를 대표 성과로 쓰지 않고, `여러 사내 서비스의 Azure·Vercel 배포 환경 구성·기본 운영`이라는 supporting 경험으로 낮춘 뒤 각각 저장·reload를 다시 확인했다.
 
 ## 1. 검증 방법
 
@@ -103,7 +104,7 @@ tags: [platform, sync, live, verification, audit]
 | About | §1.4 | 고객 문제·직접 구현·제품 운영을 중심으로 한 KO 소개 반영 | 통과 | `기업부설연구소장`·36시간·5xx 구문 없음 |
 | 대표 보유기술 | §3.2 | FastAPI·backend·architecture·LLM·제품관리 5개로 재구성 | 통과 | Python은 headline에서 유지 |
 | 웹사이트 | §4 | `Resume · Portfolio` → `https://marinkim.xyz`로 교체 | 통과 | Oopy 링크 제거 |
-| MediSolve AI | §2.1 | title `Backend Engineer`, Tech Lead 역할·제품 운영·대표 기술 성과 반영 | 통과 | 매출은 제품·팀 outcome으로 분리. Azure·Terraform은 제품 실행 기반으로 축약하고 6-state change gate 상세는 resume·portfolio에 유지 |
+| MediSolve AI | §2.1 | title `Backend Engineer`, Tech Lead 역할·제품 운영·대표 기술 성과 반영 | 통과 | Azure topology·6-state change gate 강조를 제거하고 `여러 사내 서비스의 Azure·Vercel 배포 환경 구성·기본 운영`으로 낮춰 저장 후 reload 검증 |
 | 더데이랩스 | §2.3 | 법인명·프리랜서 기간·법인 설립 전 선행 개발 경로 반영 | 통과 | 고용 연속·법인 전환으로 표현하지 않음 |
 | Memento AI 정규직·인턴 | §2.4 | Stripe manual capture·Happy Call 범위로 완전 교체 | 통과 | Hongkong·다국가·3회 재시도·구형 인턴 설명 제거 |
 | STUDIO LAB·아이즈솔 | §2.5–§2.6 | 종료월·역할·0→1/특허/CES·Vision AI 범위 정정 | 통과 | C# 없음 |

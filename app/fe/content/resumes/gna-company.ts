@@ -97,7 +97,7 @@ export const GNA_COMPANY_RESUME = {
           },
           { text: " 공동 주 기여" },
         ],
-        "의료기관 통합 관리 시스템(NEXUS)의 Swagger·API·DB 문서와 static analysis·pre-commit 기반 구축, Azure·Terraform 제품 인프라 운영",
+        "의료기관 통합 관리 시스템(NEXUS)의 Swagger·API·DB 문서와 static analysis·pre-commit 기반 구축, Azure·Vercel 배포 환경 구성·기본 운영",
       ],
     },
     {
@@ -303,8 +303,8 @@ export const GNA_COMPANY_RESUME = {
     },
     {
       label: "Infra / Delivery",
-      stack: "Azure, AWS, Terraform, Docker, GitHub Actions",
-      via: "제품 인프라 운영과 개인 프로젝트 배포·monitoring",
+      stack: "Docker, GitHub Actions, Azure, Terraform, AWS",
+      via: "서비스 배포·환경 설정·기본 로그 확인",
       claimIds: ["infra.company-azure-ownership", "career.tellingme-backend-infra"],
     },
     {

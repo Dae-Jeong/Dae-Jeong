@@ -21,7 +21,7 @@ export const ROLE_CATALOG = {
   },
   "backend-platform": {
     slug: "backend-platform",
-    label: "Backend Platform · Cloud Operations",
+    label: "Backend Platform Engineer",
     shortLabel: "Platform",
   },
 } as const;

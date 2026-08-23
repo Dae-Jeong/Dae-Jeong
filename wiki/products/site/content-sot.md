@@ -51,5 +51,5 @@ tags: [sot, content, site, platform]
 - 공통 소개: `아이디어를 새로운 가치로 실현하는 메이커, 김대정입니다.`
 - 채용 역할: `Tech Lead · Backend Engineer`; 전문 영역: `AI Product Systems`
 - resume 순서: `소개 → 경력 → 대표 성과 → 기술 → 외부 활동 → credentials`
-- portfolio 순서: `Thready → Company AX → Centurion → Company Infrastructure`, supporting `Memento Payment`
+- portfolio 순서: `Thready → Company AX → Centurion`, supporting `Memento Payment`; Infrastructure는 archive evidence
 - 플랫폼 프로필은 이 기준선의 문장·경력·대표 성과를 각 필드와 글자 수에 맞게 축약하며 새 사실을 만들지 않는다.

@@ -10,7 +10,7 @@ claim_strength: led
 
 ## Executive Summary
 
-Celery로 이미 분리돼 있던 비동기 처리를 async FastAPI 실행 모델과 맞는 RabbitMQ·TaskIQ worker로 전환했습니다. 알림·재고 작업의 상태, retry, 실패 기록, 수동 재처리와 검증 환경까지 운영 가능한 경계로 연결했습니다.
+Celery로 이미 분리돼 있던 비동기 처리를 async FastAPI 실행 모델과 맞는 RabbitMQ·TaskIQ worker로 전환했습니다. 요청 처리와 외부 연동의 실패 경계를 나누고, 알림·재고 작업의 상태, retry, 실패 기록, 수동 재처리와 검증 환경까지 운영 가능한 경계로 연결했습니다.
 
 ## My Scope
 
@@ -32,6 +32,9 @@ Celery로 이미 분리돼 있던 비동기 처리를 async FastAPI 실행 모�
 
 diagram: API (판정·작업 상태 생성) -> RabbitMQ -> TaskIQ worker (외부 연동) -> SUCCESS/FAILED -> retry·수동 재처리
 
+- Transaction boundary: 사용자 요청과 실패 가능한 외부 연동을 같은 실행 경계에 묶지 않음
+- State consistency: 작업의 SUCCESS·FAILED 상태와 실패 이력을 명시적으로 기록
+- Recovery: 자동 retry 뒤에도 실패한 작업만 수동으로 다시 처리
 - 알림과 재고 broker·worker를 분리하고 TaskIQ dependency context로 application service를 연결
 - 알림 작업은 PENDING·SENDING·SUCCESS·FAILED 상태와 최대 3회·10초 간격 retry를 기록
 - 재고 작업은 별도 queue에서 최대 3회 retry

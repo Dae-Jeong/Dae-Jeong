@@ -177,7 +177,7 @@ claims:
       - 제3자 계정명·개별 게시물 지표·prompt 원문 공개
     verified_at: 2026-08-18
   - id: thready.ai-service-boundary
-    statement: AI 실행부를 독립 FastAPI application과 DB로 분리하고 product backend와 authenticated HTTP 계약으로 연결
+    statement: AI 실행부를 독립 FastAPI application과 DB로 분리해 product backend와 authenticated HTTP 계약으로 연결하고 STG·Prod에서 운영
     strength: owned
     confidence: high
     public: true
@@ -185,11 +185,13 @@ claims:
     allowed_copy:
       - AI 실행부를 독립 FastAPI application·DB로 분리하고 product backend와 HTTP 계약으로 연결
       - 제품 정책·원장은 backend, 생성 lifecycle·실행 상태는 AI application이 소유하도록 경계 설계·구현
+      - 독립 AI application·DB를 STG·Prod에서 운영
     forbidden_copy:
-      - production 전환 완료
       - AI 서비스 무중단 운영
+      - production 데이터 유실 0건
+      - availability·장애율 수치 개선
       - 전체 AI platform 단독 구축
-    verified_at: 2026-08-16
+    verified_at: 2026-08-23
   - id: thready.ai-service-migration
     statement: 독립 AI application·DB 분리 과정에서 STG 생성 이력 2,616건·품질 snapshot 795건·trace 7,111건을 이관하고 rehearsal·MD5 fingerprint·FK·API E2E로 검증
     strength: owned

@@ -20,6 +20,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ case: string }> }): Promise<Metadata> {
   const { case: slug } = await params;
   const meta = CASES.find((item) => item.slug === slug);
+  if (!meta?.available) return { title: "Not Found" };
   return { title: `${meta?.name ?? "Case"} — Portfolio · 김대정`, description: meta?.blurb };
 }
 
@@ -37,7 +38,7 @@ export default async function CasePage({ params }: { params: Promise<{ case: str
   const meta = CASES.find((item) => item.slug === slug);
   const system = SYSTEM_DETAILS[slug];
   const legacy = DETAILS[slug];
-  if (!meta || (!system && !legacy)) notFound();
+  if (!meta?.available || (!system && !legacy)) notFound();
 
   const navIndex = NAVIGABLE_CASES.findIndex((item) => item.slug === slug);
   const prev = navIndex > 0 ? NAVIGABLE_CASES[navIndex - 1] : null;

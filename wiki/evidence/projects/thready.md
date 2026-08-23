@@ -103,7 +103,8 @@ Source locator: `workspace:thready`
 - Code-backed (2026-08-22 re-audit): outbox relay는 짧은 lease로 전달 row를 claim하고 `delivery_version`과 `attempt_count`를 함께 fencing token으로 사용한다. worker가 중단된 마지막 claim은 lease 만료 뒤 terminal failure로 보존하고, 최대 시도 전 실패는 재시도 가능한 상태로 되돌린다.
 - Code-backed (2026-08-22 re-audit): AI replica consumer는 delivery fence가 이미 처리했거나 더 최신인 version을 no-op으로 끝내고, stable id·natural key 충돌을 최신 row 하나로 수렴시키는 멱등 upsert/delete 경계를 소유한다.
 - Test-backed: backend와 AI application의 전체 회귀, migration 왕복, stale PUT/DELETE fence를 검증한 기록이 있다.
-- Verification boundary: 독립 서비스 분리와 outbox/fence의 설계·구현은 확인됐지만, production 전환 완료·무중단·유실 0건은 검증되지 않았다.
+- Live operation-backed (2026-08-23): Azure live inventory에서 Thready AI App Service 2개가 모두 `Running`이고 health endpoint가 모두 2xx를 반환했다. STG·Prod product backend 2개도 각각 localhost가 아닌 AI base URL을 사용했으며, AI application 2개는 product backend와 다른 database endpoint·database name을 사용했다. resource name·URL·credential은 public evidence에서 노출하지 않는다.
+- Verification boundary: 독립 AI application·DB의 STG·Prod 운영은 확인됐다. 다만 무중단 전환, production 데이터 유실 0건, 정확한 availability·장애율은 검증되지 않았다.
 - Contribution boundary: 해당 backend/AI 경계와 전달 안전성 설계·구현은 `owned`.
 
 ## AI Application Split Migration
@@ -112,7 +113,7 @@ Source locator: `workspace:thready`
 - Operation-backed: STG dump를 local DB에 복원해 schema·history migration을 먼저 rehearsal하고, FK 순서에 맞춰 parent generation → child quality snapshot·trace 순으로 streaming copy했다. permanent `dblink`·`postgres_fdw`는 운영 DB에 흔적을 남겨 사용하지 않았다.
 - Verification-backed: row count뿐 아니라 id·status·domain·failure reason을 결합한 MD5 fingerprint를 양쪽 DB에서 대조해 세 table이 일치했고, migration 후 FK orphan 0건을 확인했다.
 - Incident/operation-backed: workflow·health·authenticated ping이 성공했는데도 실제 생성은 실패한 사례를 확인했다. 이후 배포 성공과 기능 정상 동작을 분리해 URL 없음·외부 소재 URL·개인 분야 생성 API E2E를 post-deploy gate로 명시했다.
-- Verification boundary: 위 수치와 검증 결과는 **STG 실데이터 이관**이다. Prod migration 완료, 무중단 전환, production 데이터 유실 0건으로 확대하지 않는다. Prod dump rehearsal은 당시 checklist상 미완료였다.
+- Verification boundary: 위 수치와 migration 검증 결과는 **STG 실데이터 이관**이다. 현재 Prod AI application·DB 운영 여부와 별개로, 동일 수치가 Prod migration 결과이거나 무중단 전환·production 데이터 유실 0건을 뜻하지 않는다. Prod dump rehearsal은 당시 checklist상 미완료였다.
 - Contribution boundary: application/DB 분리와 migration·검증 절차의 설계·실행은 `owned`.
 
 ## Release Operation

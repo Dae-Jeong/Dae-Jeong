@@ -11,8 +11,6 @@ claim_ids:
   - be-template.backend-standard
   - be-template.team-leverage
   - be-template.agent-context
-  - infra.company-azure-ownership
-  - infra.ai-assisted-change-harness
 claim_strength: mixed (company AX design contributed · product operations led · backend system owned)
 ---
 
@@ -26,7 +24,7 @@ claim_strength: mixed (company AX design contributed · product operations led �
 - Decision·SPEC·Work Package·QA·release를 제품별로 적용하고 일정·이슈·릴리스를 운영 — `led`
 - 의사결정·회의·업무 배정·승인·후속 작업을 agent-readable context와 human gate로 연결하는 회사 업무 AX 구조 설계 참여 — `contributed`
 - 조직 표준 FastAPI template, ADR·runbook·agent context, automation skill 설계·구축 — `owned`
-- 회사 Azure·Terraform 운영과 제품별 delivery 연결 — 직접 담당
+- 제품별 Git·CI/CD와 Azure·Vercel 배포 목적지 연결 — 서비스 배포 경험
 - MEDINESS 서비스 앱·DB·도구 구현 — 담당 개발팀
 
 ## Problem And Constraints
@@ -76,7 +74,7 @@ Shared Execution
 ADR · convention · runbook · agent context · automation skill
 ```
 
-사람과 agent는 같은 ADR·convention·runbook을 읽고 contract test·Pyright·automation skill로 같은 기준을 검증합니다. 이 기준을 통과한 변경은 Git·CI/CD를 거쳐 제품별 Azure·Vercel 실행 환경으로 전달됩니다. Azure topology와 Terraform change gate의 상세 근거는 Infrastructure case가 소유합니다.
+사람과 agent는 같은 ADR·convention·runbook을 읽고 contract test·Pyright·automation skill로 같은 기준을 검증합니다. 이 기준을 통과한 변경은 Git·CI/CD를 거쳐 제품별 Azure·Vercel 실행 환경으로 전달됩니다. 배포 목적지는 실행 흐름의 끝점이며 이 case의 전문성 주장은 Backend Template과 agent context다.
 
 ## Evidence, Result, And Limits
 

@@ -4,6 +4,7 @@ case: infrastructure-delivery
 title: 회사 Azure runtime topology와 1인 운영 체계
 resume_tag: INFRASTRUCTURE DELIVERY
 origin: MediSolve AI · 회사 인프라
+status: archived-evidence
 claim_ids:
   - infra.company-azure-ownership
   - infra.workload-runtime-topology
@@ -11,8 +12,10 @@ claim_ids:
   - infra.terraform-state-safety
   - infra.azure-observability
   - centurion.shared-infra
-claim_strength: owned
+claim_strength: mixed internal evidence; not selected for public positioning
 ---
+
+> 2026-08-23 selection correction: 서비스 배포 환경 구성·기본 운영 경험은 사실로 보존하지만 infrastructure architecture 전문성으로 포지셔닝하지 않는다. 이 case는 public master·role variant에서 선택하지 않는다.
 
 ## Executive Summary
 
@@ -20,7 +23,7 @@ claim_strength: owned
 
 ## My Scope
 
-- B2B/B2C·제품·환경별 Azure resource boundary와 Terraform repository 운영 전담
+- B2B/B2C·제품·환경별 Azure resource와 Terraform repository 운영 참여
 - shared ACR, workload별 App Service·VM runtime, managed data, 환경별 observability의 현재 운영 구조 관리
 - state migration, drift audit, deploy/runbook, log·alert 운영
 - AI-assisted inventory·implementation과 사람이 승인하는 apply gate 설계
@@ -61,7 +64,7 @@ diagram: Shared ACR -> B2B/Centurion(App Service Gateway -> environment boundary
 - 6개 Terraform state, 400+ state object
 - 10대 VM log 수집 범위, 8개 Production alert 구성·운영
 - region 불일치에 의한 강제 교체와 App Service log·health check 제거 위험을 apply 전에 확인한 drift audit 기록
-- 회사 전체 인프라 ownership은 말할 수 있지만 모든 resource의 최초 생성이나 완전 자동화는 범위 밖
+- 서비스 배포 환경 구성·기본 운영은 말할 수 있지만 회사 전체 infrastructure architecture ownership이나 모든 resource의 최초 생성은 범위 밖
 - Hub-Spoke·Azure Container Apps·Tailscale·Key Vault consolidation·GitHub OIDC 등 target proposal은 현재 구현과 분리
 
 ## Stack

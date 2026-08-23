@@ -253,11 +253,11 @@ const SKILLS = [
   },
   {
     k: "클라우드 / 배포",
-    "data-claim": "infra.company-azure-ownership infra.terraform-state-safety infra.azure-observability career.tellingme-backend-infra",
+    "data-claim": "infra.company-azure-ownership career.tellingme-backend-infra",
     v: (
       <Skill
-        stack="Azure · Terraform · Docker · GitHub Actions · AWS"
-        via="원격 state·drift 검증·배포와 운영 로그·알림 관리"
+        stack="Docker · GitHub Actions · Azure · Terraform · AWS"
+        via="서비스 배포·환경 설정·기본 로그 확인 경험"
       />
     ),
   },
@@ -306,11 +306,11 @@ const SKILLS_EN = [
   },
   {
     k: "Cloud / Delivery",
-    "data-claim": "infra.company-azure-ownership infra.terraform-state-safety infra.azure-observability career.tellingme-backend-infra",
+    "data-claim": "infra.company-azure-ownership career.tellingme-backend-infra",
     v: (
       <Skill
-        stack="Azure · Terraform · Docker · GitHub Actions · AWS"
-        via="Remote state, drift gates, deployment, and production log/alert operations"
+        stack="Docker · GitHub Actions · Azure · Terraform · AWS"
+        via="Hands-on experience with service deployment, environment configuration, and basic log checks"
       />
     ),
   },
@@ -388,7 +388,7 @@ function DocKo() {
                 <span key="centurion" data-claim="career.thedaylabs-freelance centurion.msa-platform-context centurion.bay-async-backend centurion.day-product-integration centurion.say-realtime-ai centurion.ray-backend centurion.sso-session">Centurion에서는 법인 설립 전 <strong>초기 백엔드와 개발 기준</strong>을 세웠습니다. 이후 주문·재고 워커와 DAY 예약 정책의 백엔드·프런트엔드·QA·릴리스 연결을 주도했고, 실시간 AI 상담은 공동 주 기여, 시설·재고 연동과 SSO 정책은 일부 기능을 맡았습니다.</span>,
                 <span key="hospital-operations" data-claim="nexus.backend-architecture nexus.admin-backend-ownership">별도의 여러 피부과 운영·예약 시스템에서는 <strong>백엔드 architecture와 migration flow, Admin·Homepage API 구축을 주도</strong>하고 있습니다.</span>,
                 <span key="company-ax" data-claim="mediness.company-work-ax-design mediness.product-system-design-participation mediness.product-operations">MEDINESS의 제품 요구·운영 흐름 설계에 참여하고, Decision·SPEC·Work Package·QA·릴리스는 제품별로 적용·운영했습니다. 회사 AX 구조는 회의·의사결정·업무 배정·승인·후속 작업에서 agent가 맥락·실행안을 준비하고 판단은 사람이 확정하도록 설계하는 데 참여했습니다.</span>,
-                <span key="engineering-infra" data-claim="be-template.backend-standard be-template.team-leverage be-template.agent-context infra.company-azure-ownership infra.terraform-state-safety infra.azure-observability">조직 표준 FastAPI 템플릿과 agent 작업 맥락을 직접 구축했습니다. 회사 Azure·Terraform 인프라는 6개 state로 나누고, state·plan·live inventory 검증부터 운영 로그·알림까지 맡고 있습니다.</span>,
+                <span key="engineering-system" data-claim="be-template.backend-standard be-template.team-leverage be-template.agent-context infra.company-azure-ownership">조직 표준 FastAPI 템플릿과 agent 작업 맥락을 직접 구축했습니다. 여러 사내 서비스의 Azure·Vercel 배포 환경도 서비스가 동작하도록 구성하고 기본 운영을 맡았습니다.</span>,
                 <span key="joining-path" data-claim="career.memento-to-medisolve-early-member career.thedaylabs-freelance"><strong>합류 경로</strong> · Memento AI 개발 성과를 인정받아 MediSolve AI 초기 멤버로 영입됐고, 법인 설립 전 더데이랩스 프리랜서 기간(2025.02–04)을 거쳐 2025.04 정규 합류했습니다.</span>,
               ]}
             />
@@ -442,7 +442,7 @@ function DocKo() {
             data-claim="thready.rebuild-decision-execution thready.backend-rebuild thready.prototype-to-user-operation thready.qa-reopen-reduction thready.release-operation"
             description="빠른 기능 검증 중심으로 만들어진 기존 프로토타입을 인계받았습니다. 기존 프런트엔드와 릴리스 흐름을 유지한 채 백엔드만 병렬로 교체할 범위와 전환 기준을 정했습니다."
             evidence={[
-              <>기존 API 동작을 고정할 아키텍처·컴포넌트·인프라 <strong>검증 하네스를 먼저 구축</strong>했습니다.<Src>Thready</Src></>,
+              <>기존 API 동작을 고정할 계약·컴포넌트·운영 흐름 <strong>검증 하네스를 먼저 구축</strong>했습니다.<Src>Thready</Src></>,
               <>기존 프런트엔드와 릴리스 흐름은 유지하고 새 FastAPI 백엔드를 나란히 만들어 응답을 비교한 뒤 전환했습니다.<Src>Thready</Src></>,
               <>전환 전후 같은 기준의 Jira 집계에서 해결된 QA 이슈의 <strong>재오픈 비율이 26%p 낮게 관측</strong>됐고, 이후 배포·QA·운영을 계속 맡았습니다.<Src>Thready · Jira</Src></>,
             ]}
@@ -478,17 +478,6 @@ function DocKo() {
               <>계층형 아키텍처·DI·트랜잭션·오류 계약·ADR·운영 문서를 갖춘 조직 표준 FastAPI 템플릿을 설계·구축했습니다.<Src>조직 표준</Src></>,
               <>제품별 차이는 명시적인 선택지로 남기고, 로깅·모니터링 같은 공통 기능은 같은 기준으로 적용했습니다.<Src>조직 표준</Src></>,
               <>계층형 AI 에이전트 맥락과 반복 작업 자동화 스킬을 내장해 작업 전 아키텍처 결정과 규칙을 읽도록 했습니다.<Src>조직 표준</Src></>,
-            ]}
-          />
-          <Axis
-            no="06"
-            title="회사 Azure 인프라를 6개 Terraform state로 분리해 파괴적 변경을 사전 차단"
-            data-claim="infra.company-azure-ownership infra.ai-assisted-change-harness infra.terraform-state-safety infra.azure-observability"
-            description="AI로 리소스 조사와 Terraform 초안을 빠르게 진행하되, 실제 적용은 state·plan·Azure 리소스·운영 신호를 사람이 대조한 뒤 결정했습니다."
-            evidence={[
-              <>Shared와 B2B·B2C의 STG·Prod를 <strong>6개 root와 remote state</strong>로 나누고 <Metric>400개가 넘는 state object</Metric>를 관리했습니다.<Src>회사 Azure 인프라</Src></>,
-              <>의도하지 않은 destroy·replace가 포함된 plan은 적용을 중단하고, 기존 리소스 편입도 state snapshot·Terraform plan·Azure live inventory를 교차 검증하는 gate 안에서 준비했습니다.<Src>회사 Azure 인프라</Src></>,
-              <>환경별 Azure Monitor·Log Analytics에서 <Metric>10대 VM 로그와 운영 알림 8개</Metric>를 같은 기준으로 운영했습니다.<Src>회사 Azure 인프라</Src></>,
             ]}
           />
         </NumberedList>
@@ -591,7 +580,7 @@ function DocEn() {
                 <span key="centurion" data-claim="career.thedaylabs-freelance centurion.msa-platform-context centurion.bay-async-backend centurion.day-product-integration centurion.say-realtime-ai centurion.ray-backend centurion.sso-session">For Centurion, I established the <strong>initial backend and engineering standards</strong> before incorporation. I later led order/inventory workers and the backend&ndash;frontend&ndash;QA&ndash;release integration of DAY reservation policy, co-led realtime AI consultation work, and contributed to facility/inventory integration and SSO policy</span>,
                 <span key="hospital-operations" data-claim="nexus.backend-architecture nexus.admin-backend-ownership">Separately, I am leading <strong>backend architecture, migration flows, and the Admin/Homepage API build</strong> for a multi-clinic dermatology operations and booking system</span>,
                 <span key="company-ax" data-claim="mediness.company-work-ax-design mediness.product-system-design-participation mediness.product-operations">I contributed to the product-requirement and operating-flow design of MEDINESS, then led the product-level application of Decision, SPEC, Work Package, QA, and release criteria. Building on that work, I contributed to a <strong>company AX structure</strong> that separates the tasks agents can prepare from the decisions people retain across meetings, assignments, approvals, and follow-up actions</span>,
-                <span key="engineering-infra" data-claim="be-template.backend-standard be-template.team-leverage be-template.agent-context infra.company-azure-ownership infra.terraform-state-safety infra.azure-observability">I directly built the organization-wide FastAPI template and agent context. I also split company Azure and Terraform infrastructure across six states and own state, plan, live-inventory, log, and alert operations</span>,
+                <span key="engineering-system" data-claim="be-template.backend-standard be-template.team-leverage be-template.agent-context infra.company-azure-ownership">I directly built the organization-wide FastAPI template and agent context. I also configured Azure and Vercel deployment environments for several internal services and handled their basic operation</span>,
                 <span key="joining-path" data-claim="career.memento-to-medisolve-early-member career.thedaylabs-freelance"><strong>Joining path</strong> · Recruited as an early member of MediSolve AI after my engineering work at Memento AI was recognized. I began pre-incorporation product development through a TheDayLabs freelance engagement (Feb&ndash;Apr 2025), then joined full-time in Apr 2025</span>,
               ]}
             />
@@ -645,7 +634,7 @@ function DocEn() {
             data-claim="thready.rebuild-decision-execution thready.backend-rebuild thready.prototype-to-user-operation thready.qa-reopen-reduction thready.release-operation"
             description="I inherited a prototype built for rapid feature validation, then defined a parallel backend-only replacement scope that preserved the existing frontend and release flow."
             evidence={[
-              <>Built architecture, component, and infrastructure <strong>validation harnesses before the rebuild</strong><Src>Thready</Src></>,
+              <>Built contract, component, and operational-flow <strong>validation harnesses before the rebuild</strong><Src>Thready</Src></>,
               <>Kept the frontend and release flow intact, ran the new FastAPI backend in parallel, compared responses, then cut over<Src>Thready</Src></>,
               <>In like-for-like Jira measurements across the cutover, the reopen rate of resolved QA issues was <strong>26 percentage points lower</strong>; I continued owning release, QA, and operations<Src>Thready · Jira</Src></>,
             ]}
@@ -681,17 +670,6 @@ function DocEn() {
               <>Designed and built an organization-wide FastAPI template with layered architecture, DI, transaction/error contracts, ADRs, and runbooks<Src>Engineering standard</Src></>,
               <>Kept product-specific differences explicit while applying cross-cutting concerns such as logging and monitoring through the shared baseline<Src>Engineering standard</Src></>,
               <>Embedded hierarchical AI-agent context and recurring-task automation so architecture decisions and work rules are read before implementation<Src>Engineering standard</Src></>,
-            ]}
-          />
-          <Axis
-            no="06"
-            title="Split company Azure infrastructure across six Terraform states to isolate change scope and block destructive applies"
-            data-claim="infra.company-azure-ownership infra.ai-assisted-change-harness infra.terraform-state-safety infra.azure-observability"
-            description="AI accelerates resource discovery and Terraform drafting, while I decide whether to apply by comparing state, plan, live Azure resources, and operating signals."
-            evidence={[
-              <>Split Shared and B2B/B2C STG/Prod into <strong>six roots and remote states</strong>, operating <Metric>400+ state objects</Metric><Src>Company Azure infrastructure</Src></>,
-              <>Stopped plans containing unintended destroy or replacement operations and kept existing-resource adoption behind a gate that cross-checks the state snapshot, Terraform plan, and live Azure inventory<Src>Company Azure infrastructure</Src></>,
-              <>Operate <Metric>logs from 10 VMs and eight production alerts</Metric> through a consistent Azure Monitor and environment-specific Log Analytics approach<Src>Company Azure infrastructure</Src></>,
             ]}
           />
         </NumberedList>

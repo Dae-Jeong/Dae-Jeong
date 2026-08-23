@@ -52,12 +52,6 @@ const ROLE_PORTFOLIOS_BY_SLUG = {
         focus:
           "서비스별 기여 범위를 구분하면서 주문·재고 작업과 예약 정책을 개발·QA·릴리스까지 이끈 방식을 봅니다.",
       },
-      {
-        kind: "dossier",
-        slug: "infrastructure-delivery",
-        focus:
-          "회사 Azure를 전담하면서 AI 활용과 사람의 적용 책임을 분리해 한 사람이 관리할 수 있는 변경 체계를 만든 경험을 봅니다.",
-      },
     ],
   },
   backend: {
@@ -206,41 +200,35 @@ const ROLE_PORTFOLIOS_BY_SLUG = {
   },
   "backend-platform": {
     ...ROLE_CATALOG["backend-platform"],
-    description: "IaC 변경 안전성·관측·공통 백엔드 기반을 전면에 둔 포트폴리오",
+    description: "공통 백엔드 기반·데이터 경계·비동기 복구를 전면에 둔 포트폴리오",
     status: "draft",
     visibility: "local",
     updatedAt: UPDATED_AT,
     brandLine: MAKER_HOOK,
     headline:
-      "여러 제품의 인프라와 백엔드 기반을, 한 사람이 안전하게 운영할 수 있는 구조로 만들었습니다.",
+      "여러 제품의 백엔드 기반을, 다시 사용할 수 있고 운영 가능한 구조로 만들었습니다.",
     introduction:
-      "회사 Azure를 제품·환경별 Terraform state로 나누고, 코드·state·plan·실제 리소스를 대조한 뒤 변경하도록 운영했습니다. 애플리케이션 쪽에서는 공통 FastAPI 기반과 데이터 이전·Outbox·worker 복구 경계를 만들어 여러 제품을 적은 인원으로 운영할 수 있게 했습니다.",
+      "제품마다 구조와 작업 규칙을 다시 만들지 않도록 공통 FastAPI 기반과 agent context를 구축했습니다. Thready에서는 애플리케이션·DB의 소유권을 나누고 데이터 이전과 Outbox 전달을 검증했으며, Centurion에서는 API와 worker를 분리해 재시도 뒤에도 운영자가 복구할 수 있는 상태를 남겼습니다.",
     proofAxes: [
-      {
-        title: "변경 범위 격리",
-        description: "환경·서비스·데이터 소유권별로 변경의 영향 범위를 나눕니다.",
-      },
-      {
-        title: "관측과 복구",
-        description: "로그·알림·재시도·최종 실패와 수동 복구 경로를 운영 상태로 남깁니다.",
-      },
       {
         title: "공통 백엔드 기반",
         description: "반복되는 아키텍처·계약·운영 규칙을 재사용 가능한 시작점으로 만듭니다.",
+      },
+      {
+        title: "데이터 소유권과 이전",
+        description: "서비스와 DB의 책임을 나누고 이전 전후의 데이터를 검증합니다.",
+      },
+      {
+        title: "작업 상태와 복구",
+        description: "재시도·최종 실패·수동 재처리 경계를 운영 가능한 상태로 남깁니다.",
       },
     ],
     cases: [
       {
         kind: "dossier",
-        slug: "infrastructure-delivery",
-        focus:
-          "6개 Terraform state와 state·plan·실제 Azure 리소스 대조를 통해 변경 범위와 적용 책임을 통제한 운영 체계를 봅니다.",
-      },
-      {
-        kind: "dossier",
         slug: "be-template",
         focus:
-          "제품·회사 업무의 control plane과 layered core·ADR·runbook·agent context를 연결한 실행 기반을 봅니다.",
+          "layered core·ADR·runbook·agent context를 여러 제품에서 다시 쓸 수 있는 실행 기반으로 만든 경험을 봅니다.",
       },
       {
         kind: "dossier",

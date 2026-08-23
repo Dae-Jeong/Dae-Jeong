@@ -2,7 +2,7 @@
 type: profile
 title: Contribution Boundaries
 description: Canonical project contribution framing and maximum public claim strength.
-timestamp: 2026-08-21
+timestamp: 2026-08-23
 tags: [contribution, ownership, claims]
 ---
 
@@ -17,7 +17,7 @@ tags: [contribution, ownership, claims]
 | Centurion RAY | backend 주 기여, 한 줄 claim | [claims](../evidence/claims/centurion.yaml) |
 | Centurion SSO | session policy·duplicate login·E2E 담당/참여 | [claims](../evidence/claims/centurion.yaml) |
 | NEXUS | backend architecture 주도, Terraform IaC 전담 | [claims](../evidence/claims/nexus.yaml) |
-| Company Azure infra | infra repository 전체와 Azure/Terraform infra 설계·구축·운영 담당 | [claims](../evidence/claims/infrastructure.yaml) |
+| Company deployment environment | 여러 사내 서비스의 Azure·Vercel 배포 환경 구성·기본 운영 담당; 회사 infrastructure architecture 단독 설계·전문성 claim은 제외 | [claims](../evidence/claims/infrastructure.yaml) |
 | BE Template | organization FastAPI template 설계·구축 전담 | [claims](../evidence/claims/be-template.yaml) |
 | MEDINESS | 제품 요구·운영 흐름 설계 참여(`contributed`), 제품별 Decision→SPEC→Work Package→QA→release 적용·운영 리드(`led`), 회사 업무 AX 구조 설계 참여(`contributed`); app·DB·runtime 구현은 담당 개발팀 | [claims](../evidence/claims/mediness.yaml) |
 | Memento | reservation/payment backend 안정화 기여 | [claims](../evidence/claims/career.yaml) |
@@ -27,7 +27,7 @@ tags: [contribution, ownership, claims]
 
 1. Backend ownership
 2. AI product runtime and quality
-3. Infra-aware delivery
+3. Cloud/Delivery support
 4. Engineering standard
 5. Agent-readable product/company workflow
 

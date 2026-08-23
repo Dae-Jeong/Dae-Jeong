@@ -2,21 +2,24 @@ schema_version: 1
 project: infrastructure
 claims:
   - id: infra.company-azure-ownership
-    statement: MediSolve AI Azure infrastructure repositories and ongoing infrastructure management owned across B2B, B2C, NEXUS, and product environments
+    statement: MediSolve AI의 여러 사내 서비스가 동작하도록 Azure·Vercel 배포 환경을 구성하고 기본 운영을 담당
     strength: owned
     confidence: high
     public: true
     evidence: [evidence/projects/infrastructure.md#company-azure-ownership]
     allowed_copy:
-      - 회사 Azure/Terraform infra 전반의 설계·구축·운영 담당
-      - B2B/B2C·제품·환경별 resource boundary와 deploy/runbook 관리
+      - 여러 사내 서비스의 Azure·Vercel 배포 환경 구성과 기본 운영 담당
+      - Docker·GitHub Actions·Azure·Terraform을 활용한 서비스 배포·환경 설정·기본 로그 확인 경험
     forbidden_copy:
       - 모든 Azure resource를 최초부터 단독 생성
+      - 회사 전체 infrastructure architecture를 단독 설계
+      - infrastructure specialist·cloud architect 수준의 전문성 주장
+      - 고가용성·network·security architecture 전문성 주장
       - 정확한 고객·resource·cost·security detail
     verified_at: 2026-07-11
   - id: infra.workload-runtime-topology
     statement: 기존 Shared·B2B·B2C Azure resource를 제품군·환경별 monorepo root/state로 통합하고 shared ACR, workload별 App Service·VM runtime, managed data, 환경별 observability로 구성된 현재 topology와 변경 체계를 운영
-    strength: owned
+    strength: contributed
     confidence: high
     public: true
     evidence: [evidence/projects/infrastructure.md#workload-aligned-runtime-topology]
@@ -34,7 +37,7 @@ claims:
     verified_at: 2026-08-20
   - id: infra.ai-assisted-change-harness
     statement: 회사 전체 Azure infrastructure를 전담하며 AI를 resource inventory·Terraform 구현에 활용하고 state·plan·live inventory·post-apply 확인으로 변경을 통제하는 운영 harness 설계
-    strength: owned
+    strength: contributed
     confidence: medium
     public: true
     evidence: [evidence/projects/infrastructure.md#ai-assisted-infrastructure-harness]
@@ -70,7 +73,7 @@ claims:
     verified_at: 2026-08-18
   - id: infra.azure-observability
     statement: Azure Monitor·환경별 Log Analytics와 AMA/DCR로 구성된 10대 VM log 수집과 8개 Production alert의 현재 Terraform 구성·운영 범위 담당
-    strength: owned
+    strength: contributed
     confidence: high
     public: true
     evidence: [evidence/projects/infrastructure.md#production-observability]

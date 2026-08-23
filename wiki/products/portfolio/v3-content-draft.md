@@ -1,8 +1,8 @@
 ---
 type: product-spec
 title: Portfolio V3 Content Specification
-description: 제품 0→1, 회사 AX 전환 설계, MSA failure boundary, infrastructure operation을 한 문서에서 검증하는 구현 명세.
-timestamp: 2026-08-22
+description: 제품 0→1, 회사 AX 전환 설계, MSA failure boundary를 한 문서에서 검증하는 구현 명세.
+timestamp: 2026-08-23
 status: implemented
 depends_on:
   - products/portfolio/README.md
@@ -17,11 +17,11 @@ tags: [portfolio, content, tech-lead, company-ax, backend, implemented]
 
 ## 1. 한 줄 결정
 
-`/portfolio` 한 route에서 네 대표 사례와 Memento Payment supporting case를 모두 펼친다. 같은 dossier 문법을 네 번 반복하지 않고, 사례마다 독자가 확인해야 할 판단과 책임 경계를 다른 시각화로 보여준다.
+`/portfolio` 한 route에서 세 대표 사례와 Memento Payment supporting case를 모두 펼친다. 같은 dossier 문법을 반복하지 않고, 사례마다 독자가 확인해야 할 판단과 책임 경계를 다른 시각화로 보여준다.
 
 ```text
-10초  Maker 정체성 · Tech Lead/Backend 역할 · 네 대표 범위
-30초  제품 0→1 · 회사 AX · MSA · 인프라의 기여와 결과
+10초  Maker 정체성 · Tech Lead/Backend 역할 · 세 대표 범위
+30초  제품 0→1 · 회사 AX · MSA의 기여와 결과
 정독  선택 이유 · ownership · failure/human gate · 검증 방식
 ```
 
@@ -39,7 +39,6 @@ tags: [portfolio, content, tech-lead, company-ax, backend, implemented]
 제품          기획·QA·마케팅과 제품 운영 리드 · backend/AI/핵심 frontend 직접 구현
 백엔드·AI    병렬 재구축 · migration · Outbox · worker · realtime failure boundary
 회사 AX      제품 흐름 운영 · 의사결정/회의/업무 배정/승인/후속 작업 확장 설계 참여
-인프라·운영  Azure topology · Terraform change gate · observability 운영
 ```
 
 ### Primary order
@@ -49,7 +48,6 @@ tags: [portfolio, content, tech-lead, company-ax, backend, implemented]
 | 01 | Thready | 고객 문제를 제품·기술·운영으로 닫은 방식 | 제품 운영 리드·직접 구현·구독료 매출 |
 | 02 | Company AX | 제품 개발과 회사 업무를 같은 실행 맥락으로 잇되 사람의 판단을 남긴 방식 | 제품 workflow 운영·회사 업무 AX 설계 참여·Backend Template 직접 구축 |
 | 03 | Centurion | sync·async·realtime workload를 같은 방식으로 다루지 않은 판단 | service별 기여·비동기 복구·실시간 session |
-| 04 | Company Infrastructure | workload·data·state 경계와 변경 적용 책임을 통제한 방식 | current topology·6 state·log/alert |
 
 ### Supporting
 
@@ -165,7 +163,9 @@ API transaction → commit → RabbitMQ → TaskIQ
 
 Centurion 전체 단독 구축이나 모든 service ownership으로 확대하지 않는다.
 
-## 6. Case 04 — Company Infrastructure
+## 6. Archived Evidence — Company Infrastructure
+
+> 2026-08-23 selection correction: 서비스 배포 환경 구성·기본 운영 경험은 사실로 보존하지만 infrastructure architecture 전문성으로 포지셔닝하지 않는다. 아래 내용은 내부 근거이며 public master와 role variant에서 선택하지 않는다.
 
 ### 공개 제목
 
@@ -217,7 +217,6 @@ Stripe Checkout·manual capture·provider-side cancel/refund 영역 구축 주�
 | Thready | product/runtime/delivery reference architecture + compact Outbox/version-fence flow | 제품 운영과 기술 구조를 서로 다른 두 장에 반복 |
 | Company AX | current product flow 실선 + company extension 점선 + responsibility map | 전사 AX 완료나 agent 자율 판단 |
 | Centurion | service map + async recovery + SAY runtime reference architecture와 event inset | 전체 MSA 단독 ownership 또는 event-only 도식 |
-| Infrastructure | official Azure topology + human change gate | Terraform 폴더 tree나 target architecture 혼합 |
 
 - 기존 ruled document 문법을 유지하고 card grid를 늘리지 않는다.
 - 실선은 현재 운영, 점선은 확장 설계라는 의미를 모든 화면·인쇄에서 유지한다.
@@ -229,7 +228,7 @@ Stripe Checkout·manual capture·provider-side cancel/refund 영역 구축 주�
 
 | 구현 지점 | 현재 역할 |
 | --- | --- |
-| `app/fe/lib/cases.ts` | 01 Thready → 02 Company AX → 03 Centurion → 04 Infrastructure 순서와 index copy |
+| `app/fe/lib/cases.ts` | 01 Thready → 02 Company AX → 03 Centurion 순서와 archive Infrastructure metadata |
 | `app/fe/app/portfolio/case-dossier.tsx` | case별 차등 composition, Company AX current/extension·responsibility visual |
 | `app/fe/app/portfolio/page.tsx` | 공통 hero·primary 순서·Memento supporting 조립 |
 | `app/fe/content/portfolios/role-variants.ts` | 같은 Company AX case를 직군별 focus와 순서로 재사용 |
@@ -237,12 +236,12 @@ Stripe Checkout·manual capture·provider-side cancel/refund 영역 구축 주�
 
 ## 10. 완료 기준
 
-- 첫 화면에서 Maker, Tech Lead·Backend Engineer, 제품 0→1, 회사 AX, backend, infrastructure가 10초 안에 구분됨
-- 목차가 `Thready → Company AX → Centurion → Infrastructure` 순서로 읽힘
+- 첫 화면에서 Maker, Tech Lead·Backend Engineer, 제품 0→1, 회사 AX, backend가 10초 안에 구분됨
+- 목차가 `Thready → Company AX → Centurion` 순서로 읽힘
 - Company AX에서 현재 운영과 확장 설계가 실선·점선으로 구분됨
 - MEDINESS 설계 참여·제품 운영 리드·Backend Template 직접 구축·플랫폼 구현팀의 책임이 한 표에서 구분됨
 - Agent가 준비할 일과 사람이 판단·승인할 일이 분리됨
-- Infrastructure가 AX 슬로건이 아니라 concrete runtime proof로 남음
+- Infrastructure가 대표 전문성으로 오독되지 않고 Cloud/Delivery 보조 경험으로만 남음
 - Product Operations가 별도 supporting case로 중복되지 않음
 - single route와 A4 PDF 변환 가능성을 유지함
 - public copy가 stable claim과 ownership boundary를 넘지 않음

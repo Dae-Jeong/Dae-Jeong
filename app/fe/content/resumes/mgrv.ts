@@ -87,9 +87,9 @@ export const MGRV_RESUME = {
           },
         ],
         [
-          { text: "회사 인프라", tone: "strong" },
+          { text: "서비스 배포", tone: "strong" },
           {
-            text: " — Azure·Terraform 기반으로 제품·환경별 인프라 경계를 나누고 배포·운영 절차를 관리",
+            text: " — Azure·Vercel 배포 환경을 구성하고 기본 운영",
           },
         ],
       ],
@@ -356,8 +356,8 @@ export const MGRV_RESUME = {
     },
     {
       label: "Cloud / Delivery",
-      stack: "Azure, Terraform, AWS, Render, Vercel",
-      via: "제품·환경별 인프라와 배포 운영",
+      stack: "Docker, GitHub Actions, Azure, Vercel, Terraform, AWS",
+      via: "서비스 배포·환경 설정·기본 로그 확인",
       claimIds: ["infra.company-azure-ownership", "centurion.shared-infra"],
     },
     {

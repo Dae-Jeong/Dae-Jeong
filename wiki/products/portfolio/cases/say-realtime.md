@@ -36,7 +36,7 @@ diagram: 상담 화면 -> Express API Gateway -> NestJS SSO -> WebSocket API -> 
 
 diagram inset: Audio -> VAD(speech boundary) + DELTA(domain keyword fast path) / COMPLETE(context·store) + optional same-sequence correction; session end -> stop guard -> reconnect blocked
 
-visual_asset: `app/fe/public/portfolio/centurion-say-realtime-architecture-v2.svg` — runtime, transcript event detail, session lifecycle, provider benchmark·E2E replay·regression test를 하나의 reference architecture로 표현한다.
+visual_component: `app/fe/app/portfolio/say-realtime-diagram.tsx` — runtime, transcript event detail, session lifecycle, provider benchmark·E2E replay·regression test를 실제 텍스트로 렌더링하는 code-native reference architecture다. 공통 portfolio의 Azure 도식과 같은 얇은 rule·절제된 blue/green·3단 정보 위계를 사용한다.
 
 - zombie session 방지, GC TTL, reconnect race 처리, turn-complete 기반 session 전환
 - realtime STT 복수 지원과 staggered pipeline, audio sequence matching, 이중->단일 translation session refactoring

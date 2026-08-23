@@ -2,7 +2,7 @@
 type: reference
 title: 회사별 역량 축 지도
 description: 각 회사 경력 설명의 축 구성·근거 claim·미사용 자산을 한 장으로 본다. 축은 회사마다 다르고 JD에 따라 재배치된다.
-timestamp: 2026-08-21
+timestamp: 2026-08-23
 derived_from: [rules/persuasive-writing.md, backlog/platform-profile-consolidation/dual-track-copy-draft.md, evidence/claims/]
 tags: [resume, career, axes, reference]
 ---
@@ -35,7 +35,7 @@ user: "각 회사들별로 이 구조가 좀 변동될 수 있겠지 / 그 관�
 
 | 층위 | 어디에 | 축 |
 | --- | --- | --- |
-| **전역** | 웹 이력서 `대표 성과`·`기술` 섹션 | ① backend 구축·재구축 ② AI 출력 품질 판정·평가 ③ 어드민 시스템 구축·운영 ④ 회사 업무 AX·Agent 실행 기준 ⑤ 인프라·플랫폼 운영 ⑥ 제품 운영·결정 |
+| **전역** | 웹 이력서 `대표 성과`·`기술` 섹션 | ① backend 구축·재구축 ② AI 출력 품질 판정·평가 ③ 어드민 시스템 구축·운영 ④ 회사 업무 AX·Agent 실행 기준 ⑤ 제품 운영·결정. Cloud/Delivery는 보조 경험 |
 | **회사별** | 플랫폼 경력 설명 · 웹 이력서 경력 | 회사마다 다름 (아래) |
 
 전역 축은 **여러 회사를 가로지르는 주장**이다 (예: ①은 메디솔브 + 스튜디오랩 둘 다 걸침).
@@ -58,7 +58,7 @@ user: "각 회사들별로 이 구조가 좀 변동될 수 있겠지 / 그 관�
 | 2 | 시장 데이터 제품화·AI 출력 평가 | Thready | `thready.threads-market-outcome-design` `thready.labeling-corpus-workbench` `thready.hook-rubric-experiment` `thready.generation-quality-system` | owned ×4 | 4 |
 | 3 | 피부과 운영·예약 시스템 구축 | 외부 피부과 운영·예약 시스템 | `nexus.admin-backend-ownership` `nexus.backend-architecture` `nexus.quality-automation` `nexus.hospital-operations-revenue-contribution` | led ×3 / contributed ×1 | 6 |
 | 4 | 회사 업무 AX·Agent 실행 기준 | MEDINESS · Thready · 조직 표준 템플릿 | `mediness.company-work-ax-design` `thready.agent-pipeline-design` `be-template.backend-standard` `be-template.agent-context` `be-template.team-leverage` | contributed / owned ×4 | 6 |
-| 5 | 인프라·플랫폼 운영 | 회사 Azure · Centurion | `infra.company-azure-ownership` `infra.terraform-state-safety` `infra.azure-observability` `nexus.terraform-infra` `centurion.shared-infra` | **owned ×5** | 4 |
+| S | Cloud/Delivery 보조 경험 | 회사 Azure · Centurion | `infra.company-azure-ownership` `nexus.terraform-infra` `centurion.shared-infra` | service deployment owned/contributed; infrastructure architecture claim 제외 | 1 |
 | 6 | 제품 운영·결정 | Thready · 제품팀 · Centurion | `thready.product-zero-to-one-contribution` `career.medisolve-role-evolution` `mediness.product-operations` `centurion.say-realtime-ai` | led / led / led / **co-led** | 5 |
 
 **⚠️ 축 3의 backend 재구축은 `led`이고 진행 중이다** — "단독 구축"(Git 커밋 83%, 100% 아님)·완료형·도메인 개수 단정·
@@ -147,7 +147,7 @@ PM 축은 `0→1 구간 통과 → 대기업 POC → 상세페이지 제작 flow
 
 | claim ID | statement | 강도 |
 | --- | --- | --- |
-| `infra.company-azure-ownership` | 회사 Azure infra repository와 운영을 B2B·B2C·NEXUS·제품 환경 전반에서 담당 | **owned** |
+| `infra.company-azure-ownership` | 여러 사내 서비스의 Azure·Vercel 배포 환경 구성과 기본 운영 담당 | **owned for delivery scope** |
 | `nexus.terraform-infra` | NEXUS Terraform IaC 구축 전담 | **owned** |
 | `centurion.shared-infra` | Centurion Azure/Terraform infra 구축·운영과 runbook·문서화 | **owned** |
 

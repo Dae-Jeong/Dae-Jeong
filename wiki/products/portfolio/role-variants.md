@@ -2,7 +2,7 @@
 type: product
 title: Role Portfolio Variants
 description: 동일한 case library를 직군별 읽기 순서와 강조점으로 재조립하는 local portfolio contract.
-timestamp: 2026-08-22
+timestamp: 2026-08-23
 tags: [portfolio, role, draft, backend, ai, ax, platform]
 ---
 
@@ -18,9 +18,9 @@ tags: [portfolio, role, draft, backend, ai, ax, platform]
 | `/portfolio/role/backend` | Backend Engineer | 재구축·migration·비동기 복구·결제 보상 |
 | `/portfolio/role/ai-product-backend` | AI Product Backend | AI 실행 경계·데이터 이전·생성 품질·realtime lifecycle |
 | `/portfolio/role/ax-fde` | AX / Forward Deployed Engineer | 고객 문제·제품 규칙·agent-readable execution |
-| `/portfolio/role/backend-platform` | Backend Platform · Cloud Operations | IaC 변경 안전성·관측·공통 backend 기반 |
+| `/portfolio/role/backend-platform` | Backend Platform Engineer | 공통 backend 기반·데이터 경계·비동기 복구 |
 
-모든 route는 `draft`·`local`이며 production에서는 404와 `noindex`를 유지한다. 기본 `/portfolio`는 `Thready → Company AX → Centurion → Company Infrastructure`를 primary, `Memento Payment`를 supporting으로 두는 공개용 master다.
+모든 route는 `draft`·`local`이며 production에서는 404와 `noindex`를 유지한다. 기본 `/portfolio`는 `Thready → Company AX → Centurion`을 primary, `Memento Payment`를 supporting으로 두는 공개용 master다.
 
 ## Assembly Contract
 
@@ -37,11 +37,11 @@ tags: [portfolio, role, draft, backend, ai, ax, platform]
 
 | Variant | Case order |
 | --- | --- |
-| Tech Lead | Thready → Company AX → Centurion → Company Infrastructure |
+| Tech Lead | Thready → Company AX → Centurion |
 | Backend | Thready → Centurion → Company AX → Memento Payment |
 | AI Backend | Thready → Centurion → Company AX |
 | AX / FDE | Thready → Company AX → Centurion |
-| Platform | Company Infrastructure → Company AX → Thready → Centurion |
+| Platform | Company AX → Thready → Centurion |
 
 Company AX는 기존 `be-template` slug를 route compatibility를 위해 유지하는 primary dossier다. MEDINESS Product Operations는 별도 compact case로 반복하지 않고 Company AX 안에서 설계 참여·운영 리드·플랫폼 구현팀 경계를 나눠 보여준다. Backend Template은 같은 case의 직접 구축한 engineering execution plane이다. Memento Payment는 공통 master에서는 supporting이지만 Backend variant에서는 결제 상태 전이의 깊이를 보여주는 dossier로 승격할 수 있다. NEXUS·SellerCanvas는 현재 독립 V3 dossier가 없어서 다른 사례에 합성하지 않는다.
 

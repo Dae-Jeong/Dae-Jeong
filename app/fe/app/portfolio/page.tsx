@@ -9,7 +9,7 @@ import { CaseDossier } from "./case-dossier";
 export const metadata: Metadata = {
   title: "Portfolio — 김대정 · Tech Lead · Backend Engineer",
   description:
-    "아이디어를 새로운 가치로 실현하는 메이커, 김대정의 제품·백엔드·회사 AX·인프라 포트폴리오",
+    "아이디어를 새로운 가치로 실현하는 메이커, 김대정의 제품·백엔드·회사 AX 포트폴리오",
 };
 
 export default function PortfolioPage() {
@@ -36,7 +36,6 @@ export default function PortfolioPage() {
                   ["제품", "기획·QA·마케팅과 제품 운영을 리드하고, backend·AI·핵심 frontend를 직접 구현"],
                   ["백엔드·AI", "병렬 재구축·STG migration·Outbox·worker·realtime session의 실패 경계 설계"],
                   ["회사 AX", "제품 개발 흐름을 운영하고, 의사결정·회의·업무 배정·승인·후속 작업으로 확장하는 구조 설계 참여"],
-                  ["인프라·운영", "회사 Azure topology·Terraform 변경 gate·관측 체계 운영"],
                 ].map(([label, value]) => (
                   <div key={label} className="grid grid-cols-[120px_minmax(0,1fr)] gap-4 text-sm max-sm:grid-cols-1 max-sm:gap-1">
                     <dt className="font-mono text-xs text-muted">{label}</dt>
@@ -49,8 +48,8 @@ export default function PortfolioPage() {
 
           <nav aria-label="대표 사례 바로가기" className="py-12 print:py-4">
             <div className="flex items-end justify-between gap-6 border-b border-border pb-4">
-              <h2 className="m-0 text-2xl font-semibold tracking-[-0.025em]">네 가지 대표 사례</h2>
-              <p className="m-0 text-right text-sm text-muted max-sm:hidden">제품 · 회사 AX · 서비스 · 인프라</p>
+              <h2 className="m-0 text-2xl font-semibold tracking-[-0.025em]">세 가지 대표 사례</h2>
+              <p className="m-0 text-right text-sm text-muted max-sm:hidden">제품 · 회사 AX · 서비스</p>
             </div>
             <ol className="m-0 grid list-none p-0">
               {PRIMARY_CASES.map((item) => (

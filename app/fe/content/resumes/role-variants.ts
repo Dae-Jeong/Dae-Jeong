@@ -289,13 +289,9 @@ const TECH_LEAD_SKILLS: readonly ResumeSkill[] = [
   },
   {
     label: "Cloud / Delivery",
-    stack: "Azure · Terraform · Docker · GitHub Actions",
-    via: "remote state·drift 검증·배포와 운영 로그·알림 관리",
-    claimIds: [
-      "infra.company-azure-ownership",
-      "infra.terraform-state-safety",
-      "infra.azure-observability",
-    ],
+    stack: "Docker · GitHub Actions · Azure · Terraform",
+    via: "서비스 배포·환경 설정·기본 로그 확인 경험",
+    claimIds: ["infra.company-azure-ownership"],
   },
 ];
 
@@ -322,7 +318,7 @@ export const TECH_LEAD_PRODUCT_RESUME = makeBase({
       ],
     },
     {
-      text: "백엔드에서는 서비스와 데이터의 책임, migration 정합성, 비동기 작업의 복구 상태와 인프라 변경 범위를 설계합니다. 최근에는 제품 개발과 의사결정·회의·업무 배정·승인·후속 작업을 잇는 회사 AX 구조 설계에 참여하고, 제품별 적용·운영을 리드했습니다.",
+      text: "백엔드에서는 서비스와 데이터의 책임, migration 정합성, 비동기 작업의 복구 상태를 설계합니다. 최근에는 제품 개발과 의사결정·회의·업무 배정·승인·후속 작업을 잇는 회사 AX 구조 설계에 참여하고, 제품별 적용·운영을 리드했습니다.",
       claimIds: [
         "thready.ai-service-boundary",
         "centurion.bay-async-backend",
@@ -365,7 +361,7 @@ export const TECH_LEAD_PRODUCT_RESUME = makeBase({
       "별도의 여러 피부과 운영·예약 backend architecture와 migration 흐름 구축을 주도했습니다. 제품은 예약률 개선을 통해 고객사 매출에 기여했습니다.",
       "MEDINESS의 제품 요구·운영 흐름 설계에 참여하고, 제품별 Decision·SPEC·Work Package·QA approval·release gate 적용과 운영을 리드했습니다. 회사 AX 구조는 회의·의사결정·업무 배정·승인·후속 작업에서 agent가 맥락·실행안을 준비하고 판단은 사람이 확정하도록 설계하는 데 참여했습니다.",
       "layered architecture·DI·ADR·runbook을 갖춘 조직 표준 FastAPI template과 agent context를 직접 구축했습니다.",
-      "회사 Azure·Terraform 인프라 전반을 맡아 6개 독립 state·400개 이상의 state object와 운영 로그·알림을 관리했습니다.",
+      "여러 사내 서비스의 Azure·Vercel 배포 환경을 서비스가 동작하도록 구성하고 기본 운영을 맡았습니다.",
     ],
   }),
   outcomes: [
@@ -447,22 +443,6 @@ export const TECH_LEAD_PRODUCT_RESUME = makeBase({
         "be-template.agent-context",
       ],
     },
-    {
-      no: "06",
-      title: "6개 Terraform state로 회사 Azure 변경 범위 격리",
-      description: [
-        "AI로 resource inventory와 Terraform 구현을 빠르게 진행하되, 실제 변경 여부는 state·plan·live inventory를 사람이 대조해 판단했습니다.",
-        { text: "6개 독립 root·remote state와 400개 이상의 state object 운영", source: "회사 Azure" },
-        { text: "의도하지 않은 destroy·replace와 환경 간 변경 전파를 apply 전에 차단", source: "change gate" },
-        { text: "10대 VM container log 중앙화와 Production alert 8개 운영", source: "observability" },
-      ],
-      claimIds: [
-        "infra.company-azure-ownership",
-        "infra.ai-assisted-change-harness",
-        "infra.terraform-state-safety",
-        "infra.azure-observability",
-      ],
-    },
   ],
   workStyles: [
     {
@@ -474,8 +454,8 @@ export const TECH_LEAD_PRODUCT_RESUME = makeBase({
     {
       no: "02",
       title: "AI는 구현을 빠르게 하고 검증은 gate에 남깁니다",
-      body: "codebase 파악·inventory·구현에는 AI를 적극 활용하지만 test·state·plan·live 상태를 사람이 비교한 뒤 release와 apply를 결정합니다.",
-      claimIds: ["thready.rebuild-decision-execution", "infra.ai-assisted-change-harness"],
+      body: "codebase 파악과 반복 구현에는 AI를 적극 활용하지만 test 결과와 실제 동작을 사람이 비교한 뒤 release를 결정합니다.",
+      claimIds: ["thready.rebuild-decision-execution"],
     },
     {
       no: "03",
@@ -533,7 +513,6 @@ export const BACKEND_RESUME = makeBase({
       "centurion.async-migration",
       "nexus.backend-architecture",
       "nexus.branch-access-boundary",
-      "infra.terraform-state-safety",
       "be-template.backend-standard",
     ],
     currentDetails: [
@@ -541,7 +520,7 @@ export const BACKEND_RESUME = makeBase({
       "AI 실행부와 DB를 제품 backend에서 분리하고 STG 이력 migration, MD5·FK·E2E 검증, Outbox·retry·version fence 기반 원장 전달 경계를 구현했습니다.",
       "Centurion의 주문·재고 API와 RabbitMQ·TaskIQ worker에서 상태·retry·terminal failure·수동 재처리 경계를 구축했습니다.",
       "여러 피부과 운영·예약 backend의 service boundary와 migration을 주도하고, client header 대신 server auth state가 작업 지점을 결정하는 접근 경계를 구현 중입니다.",
-      "회사 Azure/Terraform의 6개 독립 state·400개 이상의 object를 운영하고 state·plan·live inventory 대조로 destructive change를 사전에 차단했습니다.",
+      "여러 사내 서비스의 Azure·Vercel 배포 환경을 구성하고 기본 운영을 맡았습니다.",
       "layered architecture·DI·ADR·runbook을 갖춘 조직 표준 FastAPI template과 agent context를 구축했습니다.",
     ],
   }),
@@ -551,7 +530,7 @@ export const BACKEND_RESUME = makeBase({
       title: "인계받은 초기 backend를 production 운영 단계에 맞게 FastAPI로 재구축",
       description: [
         "빠른 기능 검증 중심의 초기 prototype backend를 인계받아 부분 수정과 재구축 범위를 비교하고, 검증 기준을 먼저 세운 뒤 backend만 병렬 전환했습니다.",
-        { text: "architecture·component·infra validation harness 선행", source: "Thready" },
+        { text: "contract·component·operational-flow validation harness 선행", source: "Thready" },
         { text: "기존 Next.js와 release 흐름을 유지한 backend-only cutover", source: "v1.1.0" },
         { text: "전환 전후 같은 기준에서 QA issue reopen 비율 26%p 낮게 관측", source: "Jira 전후 관측" },
       ],
@@ -636,8 +615,8 @@ export const BACKEND_RESUME = makeBase({
     {
       no: "03",
       title: "변경 범위와 되돌릴 경계를 먼저 정합니다",
-      body: "서비스·DB·worker·Terraform state를 분리하고, 의도하지 않은 변경이 다른 영역으로 전파되기 전에 확인합니다.",
-      claimIds: ["thready.ai-service-boundary", "infra.terraform-state-safety"],
+      body: "서비스·DB·worker의 책임을 분리하고, 의도하지 않은 변경이 다른 영역으로 전파되기 전에 확인합니다.",
+      claimIds: ["thready.ai-service-boundary"],
     },
   ],
   skills: [
@@ -655,9 +634,9 @@ export const BACKEND_RESUME = makeBase({
     },
     {
       label: "Cloud / 배포",
-      stack: "Azure · Terraform · Docker · GitHub Actions",
-      via: "remote state·drift gate·logging·alert",
-      claimIds: ["infra.terraform-state-safety", "infra.azure-observability"],
+      stack: "Docker · GitHub Actions · Azure · Terraform",
+      via: "서비스 배포·환경 설정·기본 로그 확인",
+      claimIds: ["infra.company-azure-ownership"],
     },
     {
       label: "AI 런타임",
@@ -790,7 +769,7 @@ export const AI_PRODUCT_BACKEND_RESUME = makeBase({
       description: [
         "빠른 기능 검증 중심으로 만들어진 초기 backend를 인계받아 production 운영과 AI 기능 확장의 제약을 확인하고 backend만 병렬 재구축했습니다.",
         { text: "frontend·기존 release 흐름을 유지한 backend-only cutover", source: "Thready" },
-        { text: "architecture·component·infra validation harness 선행", source: "verification" },
+        { text: "contract·component·operational-flow validation harness 선행", source: "verification" },
         { text: "전환 전후 같은 기준에서 QA issue reopen 비율 26%p 낮게 관측", source: "Jira 전후 관측" },
       ],
       claimIds: [
@@ -841,9 +820,9 @@ export const AI_PRODUCT_BACKEND_RESUME = makeBase({
     },
     {
       label: "Cloud / Delivery",
-      stack: "Azure · Terraform · Docker · GitHub Actions",
-      via: "service·DB·worker 배포와 post-deploy verification",
-      claimIds: ["infra.company-azure-ownership", "infra.terraform-state-safety"],
+      stack: "Docker · GitHub Actions · Azure · Terraform",
+      via: "service·DB·worker 배포와 기본 post-deploy 확인",
+      claimIds: ["infra.company-azure-ownership"],
     },
   ],
 });
@@ -891,14 +870,14 @@ export const AX_FDE_RESUME = makeBase({
       "centurion.day-product-integration",
       "nexus.hospital-operations-revenue-contribution",
       "nexus.backend-architecture",
-      "infra.ai-assisted-change-harness",
+      "infra.company-azure-ownership",
     ],
     currentDetails: [
       "고객의 콘텐츠 제작 문제를 기능·실험·품질 기준으로 구체화하고 기획·QA·마케팅과 Thready 제품 운영을 리드했습니다. backend·AI·핵심 frontend도 직접 구현했으며 제품은 월 약 800만~1,000만원의 구독료 매출이 발생합니다(2026.08 기준).",
       "MEDINESS의 제품 요구·운영 흐름 설계에 참여하고, 제품별 Decision·SPEC·Work Package와 BE·FE·QA owner lane, QA approval·release gate 적용과 운영을 리드했습니다. 회사 AX 구조는 회의·의사결정·업무 배정·승인·후속 작업에서 agent가 맥락·실행안을 준비하고 판단은 사람이 확정하도록 설계하는 데 참여했습니다.",
       "layered architecture·DI·ADR·runbook 기반 FastAPI template과 agent-readable context를 직접 구축했습니다.",
       "DAY 예약 정책을 backend 판단·frontend 표시·QA·release로 연결하고, 별도 피부과 운영·예약 backend 구축을 주도해 제품의 예약률·고객사 매출 성과에 기여했습니다.",
-      "회사 여러 서비스의 Azure 인프라를 한 사람이 관리할 수 있도록 AI-assisted inventory·Terraform 구현과 사람의 state·plan·live 검증 gate를 분리했습니다.",
+      "여러 사내 서비스의 Azure·Vercel 배포 환경을 구성하고 기본 운영을 맡았습니다.",
     ],
   }),
   outcomes: [
@@ -996,8 +975,8 @@ export const AX_FDE_RESUME = makeBase({
     {
       no: "03",
       title: "AI에게 맡길 일과 사람이 확인할 일을 분리합니다",
-      body: "inventory·구현·반복 작업은 AI로 가속하고, 제품 판단·검증 결과·release·apply 책임은 사람이 확인 가능한 gate에 둡니다.",
-      claimIds: ["be-template.agent-context", "infra.ai-assisted-change-harness"],
+      body: "탐색·구현·반복 작업은 AI로 가속하고, 제품 판단·검증 결과·release 책임은 사람이 확인 가능한 gate에 둡니다.",
+      claimIds: ["be-template.agent-context"],
     },
   ],
   skills: [
@@ -1031,53 +1010,45 @@ export const AX_FDE_RESUME = makeBase({
     },
     {
       label: "Cloud / Delivery",
-      stack: "Azure · Terraform · Docker · GitHub Actions",
-      via: "제품별 배포·운영 경계와 사람이 승인하는 변경 gate",
-      claimIds: ["infra.company-azure-ownership", "infra.ai-assisted-change-harness"],
+      stack: "Docker · GitHub Actions · Azure · Terraform",
+      via: "서비스 배포·환경 설정·기본 로그 확인 경험",
+      claimIds: ["infra.company-azure-ownership"],
     },
   ],
 });
 
 export const PLATFORM_RESUME = makeBase({
   ...ROLE_CATALOG["backend-platform"],
-  description: "IaC 변경 안전성·관측·공통 backend 기반을 전면에 둔 지원본",
-  position: "Backend Platform · Cloud Operations",
+  description: "공통 backend 기반·data migration·async recovery를 전면에 둔 지원본",
+  position: "Backend Platform Engineer",
   summary: [
     {
       text: [
         {
-          text: "회사 여러 제품의 backend와 Azure 운영을 함께 맡아, 한 번의 변경이 다른 환경과 서비스로 번지지 않게 만드는 Tech Lead이자 Backend Engineer",
+          text: "여러 제품에서 반복되는 backend 구조를 공통 기반으로 만들고, 서비스와 데이터의 책임·비동기 작업의 복구 상태를 명시하는 Tech Lead이자 Backend Engineer",
           tone: "strong",
         },
-        { text: "입니다. Terraform state·plan·live inventory를 교차 검증하고 application·DB migration과 worker retry까지 배포 전후의 실패 경계를 설계합니다." },
+        { text: "입니다. application·DB migration과 Outbox 전달, worker retry부터 수동 재처리까지 운영 중 실패할 수 있는 경계를 설계합니다." },
       ],
       claimIds: [
         "career.medisolve-role-evolution",
-        "infra.company-azure-ownership",
-        "infra.terraform-state-safety",
+        "be-template.backend-standard",
         "thready.ai-service-migration",
         "centurion.bay-async-backend",
       ],
     },
     {
-      text: [
-        { text: "AI는 resource inventory와 Terraform 구현에 쓰되 apply 판단은 사람이 확인할 수 있는 gate로 남깁니다. 현재 workload에 맞는 managed runtime을 사용하면서 " },
-        { text: "6개 독립 state·400개 이상의 object", tone: "metric" },
-        { text: ", 10대 VM log와 Production alert 8개를 소수 인원이 운영할 수 있는 구조로 관리해 왔습니다." },
-      ],
+      text: "layered architecture·DI·ADR·runbook과 agent context를 갖춘 조직 표준 FastAPI template을 직접 구축했습니다. 배포 환경은 제품을 운영하는 데 필요한 수준으로 구성하고, 핵심 전문성은 application과 data boundary에 둡니다.",
       claimIds: [
-        "infra.ai-assisted-change-harness",
-        "infra.terraform-state-safety",
-        "infra.azure-observability",
+        "be-template.backend-standard",
+        "be-template.team-leverage",
+        "be-template.agent-context",
+        "infra.company-azure-ownership",
       ],
     },
   ],
   careers: makeCareers({
     currentClaimIds: [
-      "infra.company-azure-ownership",
-      "infra.ai-assisted-change-harness",
-      "infra.terraform-state-safety",
-      "infra.azure-observability",
       "be-template.backend-standard",
       "be-template.team-leverage",
       "be-template.agent-context",
@@ -1085,13 +1056,12 @@ export const PLATFORM_RESUME = makeBase({
       "thready.ai-service-migration",
       "thready.ai-replica-outbox",
       "centurion.bay-async-backend",
+      "infra.company-azure-ownership",
     ],
     currentDetails: [
-      "회사 전체 Azure/Terraform 인프라의 설계·구축·운영을 맡고 6개 독립 root·remote state와 400개 이상의 state object를 관리했습니다.",
-      "state snapshot·Terraform plan·Azure live inventory를 교차 검증해 destroy·replace와 환경 간 변경 전파를 apply 전에 차단했습니다.",
-      "Azure Monitor·Log Analytics와 AMA/DCR로 10대 VM container log를 중앙화하고 API·DB·host 영역의 Production alert 8개를 Terraform으로 운영했습니다.",
       "layered architecture·DI·ADR·convention·runbook 기반 조직 FastAPI template과 agent context를 구축했습니다.",
       "AI application·DB migration과 Outbox·version fence, 주문·재고 worker의 retry·terminal failure·수동 재처리 경계를 구현했습니다.",
+      "여러 사내 서비스의 Azure·Vercel 배포 환경을 서비스가 동작하도록 구성하고 기본 운영을 맡았습니다.",
     ],
     studioDetails: [
       "Vision AI Engineer에서 Product Manager로 역할을 넓혀 생성형 AI 커머스 제품의 prototype→v1.0 제품화와 기업 PoC를 진행했습니다.",
@@ -1100,46 +1070,11 @@ export const PLATFORM_RESUME = makeBase({
   outcomes: [
     {
       no: "01",
-      title: "6개 Terraform state로 변경 범위를 격리하고 destructive apply 사전 차단",
-      description: [
-        "Shared·B2B·B2C의 환경별 state를 분리하고 운영 리소스와 선언 코드의 차이를 apply 여부를 결정하는 gate로 사용했습니다.",
-        { text: "6개 독립 Terraform root·remote state", source: "회사 Azure" },
-        { text: "400개 이상의 state object 운영", source: "IaC inventory" },
-        { text: "state snapshot·plan·live inventory 교차 검증", source: "apply gate" },
-        { text: "의도하지 않은 destroy·replace와 환경 간 전파를 apply 전에 차단", source: "change safety" },
-      ],
-      claimIds: ["infra.company-azure-ownership", "infra.terraform-state-safety"],
-    },
-    {
-      no: "02",
-      title: "10대 VM container log와 Production alert 8개 중앙 운영",
-      description: [
-        "여러 VM과 서비스에 흩어진 운영 신호를 Azure Monitor·Log Analytics로 모으고 API·DB·host 문제를 같은 방식으로 관찰하게 했습니다.",
-        { text: "AMA/DCR 기반 10대 VM container log 중앙화", source: "observability" },
-        { text: "CPU·memory·disk·API health/5xx·DB availability/storage/failed connection", source: "coverage" },
-        { text: "Production alert 8개를 Terraform으로 구축·운영", source: "alerting" },
-      ],
-      claimIds: ["infra.azure-observability"],
-    },
-    {
-      no: "03",
-      title: "AI로 구현을 가속하고 사람이 apply를 통제하는 운영 harness",
-      description: [
-        "한 사람이 여러 제품의 인프라를 관리할 수 있도록 AI가 맡는 일과 실제 변경 승인 책임을 분리했습니다.",
-        { text: "AI를 resource inventory와 Terraform 구현에 활용", source: "implementation" },
-        { text: "state·plan·live inventory 확인 뒤 사람이 apply 판단", source: "control" },
-        { text: "post-apply 확인과 runbook 유지", source: "operation" },
-      ],
-      claimIds: ["infra.ai-assisted-change-harness"],
-    },
-    {
-      no: "04",
       title: "소수 인원이 여러 제품을 운영하는 FastAPI platform 표준",
       description: [
         "제품마다 다른 구조와 운영 규칙을 다시 학습하는 비용을 줄이기 위해 backend architecture와 실행 맥락을 공통 기반으로 만들었습니다.",
         { text: "layered architecture·DI·ADR·convention·runbook", source: "FastAPI template" },
-        { text: "logging·monitoring 횡단 적용", source: "platform concern" },
-        { text: "2~3명 backend engineer의 다제품 지원", source: "team context" },
+        { text: "logging·monitoring 등 횡단 관심사의 공통 적용", source: "platform concern" },
         { text: "agent-readable context와 반복 작업 automation", source: "AI-assisted delivery" },
       ],
       claimIds: [
@@ -1149,12 +1084,11 @@ export const PLATFORM_RESUME = makeBase({
       ],
     },
     {
-      no: "05",
+      no: "02",
       title: "서비스·DB 분리 뒤 원장 상태가 수렴하는 migration·Outbox 설계",
       description: [
         "application과 DB를 분리하는 변경에서 기존 데이터 이전뿐 아니라 이후의 지연·중복·역순 전달까지 함께 다뤘습니다.",
-        { text: "STG 2,616·795·7,111건 migration", source: "data move" },
-        { text: "MD5·FK orphan·API E2E verification", source: "gate" },
+        { text: "STG migration과 MD5·FK orphan·API E2E verification", source: "data move" },
         { text: "owner mutation과 Outbox의 동일 transaction", source: "durability" },
         { text: "relay retry·delivery version fence", source: "convergence" },
       ],
@@ -1164,19 +1098,34 @@ export const PLATFORM_RESUME = makeBase({
         "thready.ai-replica-outbox",
       ],
     },
+    {
+      no: "03",
+      title: "재시도 이후에도 운영자가 복구할 수 있는 주문·재고 worker",
+      description: [
+        "실패 가능한 후속 작업을 API 요청에서 분리하고, 자동 재시도가 끝난 뒤에도 원인과 상태를 남겨 다시 처리할 수 있게 했습니다.",
+        { text: "RabbitMQ·TaskIQ worker와 API 실행 경계 분리", source: "Centurion · 주문·재고" },
+        { text: "상태·retry·terminal failure·manual reprocess", source: "worker lifecycle" },
+        { text: "API test·Docker CI·onboarding 기반", source: "delivery" },
+      ],
+      claimIds: [
+        "centurion.bay-async-backend",
+        "centurion.async-migration",
+        "centurion.test-ci-foundation",
+      ],
+    },
   ],
   workStyles: [
     {
       no: "01",
-      title: "blast radius를 state와 service 경계로 제한합니다",
-      body: "변경이 다른 환경·제품·데이터 소유권으로 전파되지 않도록 remote state와 application·DB·worker 경계를 먼저 나눕니다.",
-      claimIds: ["infra.terraform-state-safety", "thready.ai-service-boundary"],
+      title: "서비스와 데이터의 소유자를 먼저 나눕니다",
+      body: "변경이 다른 제품 원장과 실행 상태로 번지지 않도록 application·DB·worker 경계를 먼저 나눕니다.",
+      claimIds: ["thready.ai-service-boundary"],
     },
     {
       no: "02",
-      title: "apply와 release 전에 live 상태를 대조합니다",
-      body: "선언 코드만 믿지 않고 state·plan·cloud inventory와 migration rehearsal·API E2E를 함께 확인합니다.",
-      claimIds: ["infra.terraform-state-safety", "thready.ai-service-migration"],
+      title: "migration은 데이터와 기능을 따로 검증합니다",
+      body: "rehearsal·count·fingerprint·FK를 확인한 뒤 post-deploy API 동작을 별도 gate로 검증합니다.",
+      claimIds: ["thready.ai-service-migration"],
     },
     {
       no: "03",
@@ -1187,16 +1136,10 @@ export const PLATFORM_RESUME = makeBase({
   ],
   skills: [
     {
-      label: "Cloud / IaC",
-      stack: "Azure · Terraform · remote state · Docker · GitHub Actions",
-      via: "environment boundary·state migration·drift/apply gate",
-      claimIds: ["infra.company-azure-ownership", "infra.terraform-state-safety"],
-    },
-    {
-      label: "Observability / Operations",
-      stack: "Azure Monitor · Log Analytics · AMA/DCR · health/API/DB/host alert",
-      via: "VM log 중앙화와 Production alert의 IaC 운영",
-      claimIds: ["infra.azure-observability"],
+      label: "Backend Platform",
+      stack: "Python · FastAPI · DI · ADR · runbook · CI",
+      via: "다제품 공통 architecture·개발 규칙·agent-readable context",
+      claimIds: ["be-template.backend-standard", "be-template.agent-context"],
     },
     {
       label: "Distributed State / Async",
@@ -1205,10 +1148,10 @@ export const PLATFORM_RESUME = makeBase({
       claimIds: ["thready.ai-replica-outbox", "centurion.bay-async-backend"],
     },
     {
-      label: "Backend Platform",
-      stack: "Python · FastAPI · DI · ADR · runbook · CI",
-      via: "다제품 공통 architecture·개발 규칙·agent-readable context",
-      claimIds: ["be-template.backend-standard", "be-template.agent-context"],
+      label: "Cloud / Delivery",
+      stack: "Docker · GitHub Actions · Azure · Terraform",
+      via: "서비스 배포·환경 설정·기본 로그 확인 경험",
+      claimIds: ["infra.company-azure-ownership"],
     },
   ],
 });

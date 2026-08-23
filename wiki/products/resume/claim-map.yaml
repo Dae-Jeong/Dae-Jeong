@@ -27,8 +27,6 @@ sections:
     - be-template.team-leverage
     - be-template.agent-context
     - infra.company-azure-ownership
-    - infra.terraform-state-safety
-    - infra.azure-observability
     - career.memento-happycall-survey
     - career.memento-stripe-prepayment
     - career.memento-payment
@@ -56,10 +54,6 @@ sections:
     - be-template.backend-standard
     - be-template.team-leverage
     - be-template.agent-context
-    - infra.company-azure-ownership
-    - infra.ai-assisted-change-harness
-    - infra.terraform-state-safety
-    - infra.azure-observability
   skills:
     - career.tellingme-backend-infra
     - career.memento-stripe-prepayment
@@ -67,8 +61,6 @@ sections:
     - centurion.say-realtime-ai
     - nexus.backend-architecture
     - infra.company-azure-ownership
-    - infra.terraform-state-safety
-    - infra.azure-observability
     - thready.backend-rebuild
     - thready.ai-service-boundary
     - thready.ai-replica-outbox

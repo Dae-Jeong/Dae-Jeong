@@ -82,7 +82,8 @@ AI Engineer 2021.12~2022.09 → PM 2022.10~2023.09 → Backend Engineer 2023.10~
 3. Centurion BAY에서 주문·재고 API와 실패 가능한 후속 작업을 분리하고, Celery→TaskIQ·RabbitMQ 전환, 상태·retry·terminal failure·수동 재처리 경계와 재현 가능한 test/CI 기반 구축 (`centurion.bay-async-backend`, `centurion.async-migration`, `centurion.test-ci-foundation`)
 4. AI application·DB 분리, STG 실데이터 migration 검증, Transactional Outbox의 lease·attempt token·retry·delivery version fence·멱등 consumer·terminal failure 보존 기반 복구 경계 구축 (`thready.ai-service-boundary`, `thready.ai-service-migration`, `thready.ai-replica-outbox`)
 5. 백엔드 2~3명이 여러 제품을 맡는 환경에서 FastAPI architecture·contract와 agent context를 조직 표준 template로 구축 (`be-template.backend-standard`, `be-template.team-leverage`, `be-template.agent-context`)
-6. 회사 Azure 변경 범위를 6개 Terraform state로 분리하고 plan·live inventory·human apply gate로 파괴적 변경을 사전 차단 (`infra.company-azure-ownership`, `infra.ai-assisted-change-harness`, `infra.terraform-state-safety`)
+
+Cloud/Delivery는 대표 성과가 아니다. 여러 사내 서비스의 Azure·Vercel 배포 환경 구성과 기본 운영 경험만 경력·기술의 보조 신호로 사용한다 (`infra.company-azure-ownership`).
 
 ## 5. 서술 비중 (recency weighting)
 

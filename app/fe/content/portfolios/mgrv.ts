@@ -29,14 +29,14 @@ export const MGRV_PORTFOLIO = {
         claimIds: ["career.ai-pm-backend-continuity", "thready.backend-rebuild"],
       },
       {
-        label: "운영 환경",
-        text: "백엔드 코드에서 멈추지 않고 제품·환경별 Azure·Terraform 인프라와 배포·runbook까지 관리합니다.",
-        layers: ["Backend", "Operations", "Infrastructure"],
+        label: "배포 경험",
+        text: "백엔드 코드가 실제로 동작하도록 Azure·Vercel 배포 환경을 구성하고 기본 운영까지 확인합니다.",
+        layers: ["Backend", "Operations"],
         claimIds: ["infra.company-azure-ownership"],
       },
     ],
     caption:
-      "각 단계는 서로 다른 시기와 프로젝트의 근거입니다. 하나의 제품을 기획부터 인프라까지 단독 구축한 사례로 합성하지 않습니다.",
+      "각 단계는 서로 다른 시기와 프로젝트의 근거입니다. 하나의 제품을 전부 단독 구축한 사례로 합성하지 않습니다.",
     claimIds: [
       "career.sellercanvas-product-system",
       "career.ai-pm-backend-continuity",
@@ -618,26 +618,26 @@ export const MGRV_PORTFOLIO = {
     },
     {
       no: "04",
-      title: "제품 코드를 배포·운영 환경까지 연결하다",
+      title: "제품 코드가 실제 환경에서 동작할 때까지 확인하다",
       caseMode: "primary-with-prior-lesson",
-      layers: ["Backend", "Operations", "Infrastructure"],
+      layers: ["Backend", "Operations"],
       outcomeLine:
-        "Azure·Terraform 인프라를 제품·환경별로 관리하며 backend 변경을 배포·관측·runbook까지 연결했습니다.",
+        "여러 서비스의 Azure·Vercel 배포 환경을 구성하고 backend 변경이 실제로 동작하는지 기본 운영까지 확인했습니다.",
       compositionCaption:
-        "회사 Azure·Terraform 운영이 중심 근거이고, 이전 cloud 경험은 별도 사례의 선행 경험으로만 사용합니다.",
+        "서비스 배포 경험이 중심 근거이며 infrastructure architecture 전문성을 주장하지 않습니다.",
       narrative: {
         context:
-          "여러 제품의 backend와 Azure·Terraform 인프라를 함께 운영하며 delivery 책임을 맡고 있습니다.",
+          "여러 제품의 backend를 개발하면서 Azure·Vercel 배포 환경 구성과 기본 운영도 맡았습니다.",
         problem:
           "Backend 변경이 코드 배포에서 끝나면 환경 차이와 운영 절차가 별도 지식으로 남아 재현성과 대응 속도가 떨어질 수 있습니다.",
         actions: [
-          "제품과 환경별 IaC 경계를 유지하고 변경 이력과 검토 기준을 코드에 남겼습니다.",
+          "제품별 배포 설정과 변경 이력을 코드와 runbook에 남겼습니다.",
           "Backend 변경을 배포 경로와 검증, 관측 가능한 운영 상태까지 연결했습니다.",
           "반복되는 배포·대응 절차를 runbook으로 관리해 코드와 운영 절차가 함께 바뀌게 했습니다.",
         ],
         resultLabel: "현재 책임 범위",
         result:
-          "제품별 변경 범위를 분리하면서도 backend 변경이 IaC·배포·관측·runbook에서 끊기지 않는 delivery 경계를 유지하고 있습니다.",
+          "backend 변경이 배포·기본 확인·runbook에서 끊기지 않도록 운영하고 있습니다.",
         visualLead:
           "아래 그림은 개별 resource topology가 아니라, 제품·환경별 변경을 운영 상태까지 닫는 책임 범위를 보여줍니다.",
       },
@@ -710,7 +710,7 @@ export const MGRV_PORTFOLIO = {
       ],
       visual: {
         kind: "infra-ownership",
-        title: "제품 변경을 운영 상태까지 연결하는 infrastructure ownership",
+        title: "서비스 배포 흐름과 기본 운영 범위",
         productBoundaries: ["제품별", "환경별"],
         layers: [
           {
@@ -730,24 +730,24 @@ export const MGRV_PORTFOLIO = {
           },
         ],
         caption:
-          "개별 resource topology가 아니라, Azure·Terraform으로 제품·환경별 변경을 배포와 운영까지 연결한 책임 범위입니다.",
+          "Azure·Vercel 배포 환경을 구성하고, 변경 시 확인 절차와 runbook을 함께 유지한 경험입니다.",
       },
       operation: [
-        "제품·환경별 Azure·Terraform 변경과 실제 운영 환경을 관리합니다.",
-        "배포·관측·runbook을 backend 변경과 함께 갱신합니다.",
+        "서비스별 Azure·Vercel 배포 환경을 구성하고 기본 운영을 맡았습니다.",
+        "배포 확인 절차와 runbook을 backend 변경과 함께 갱신했습니다.",
       ],
       limits: [
-        "구체적인 resource topology와 security detail을 공개하지 않습니다.",
-        "비용·배포 시간의 정량 개선을 주장하지 않습니다.",
+        "회사 인프라 전체 설계나 전문적인 platform engineering 성과로 확장하지 않습니다.",
+        "비용·배포 시간의 정량 개선은 측정하지 않았습니다.",
       ],
       evidence: [
         {
-          project: "회사 Cloud Infrastructure",
-          scope: "Azure·Terraform 운영",
+          project: "회사 서비스 배포 환경",
+          scope: "Azure·Vercel 배포·기본 운영",
           ownership: "owned",
           status: "verified",
           relation: "primary",
-          text: "회사 Azure·Terraform 인프라의 설계·구축·운영과 제품·환경별 delivery를 담당합니다.",
+          text: "여러 사내 서비스의 Azure·Vercel 배포 환경 구성과 기본 운영을 담당합니다.",
           claimIds: ["infra.company-azure-ownership"],
         },
         {
@@ -766,7 +766,7 @@ export const MGRV_PORTFOLIO = {
       ],
       claimCeiling: {
         allowed: [
-          "회사 Azure·Terraform 인프라 설계·구축·운영 담당",
+          "여러 서비스의 Azure·Vercel 배포 환경 구성·기본 운영",
           "제품·환경별 IaC·배포·runbook 연결",
         ],
         forbidden: [
@@ -778,10 +778,10 @@ export const MGRV_PORTFOLIO = {
       jdFit: {
         matches: [
           "Docker·CI/CD·cloud 기반 배포와 운영",
-          "Backend 변경을 인프라·배포·관측까지 연결",
+          "Backend 변경을 배포·기본 운영까지 연결",
           "운영 안정화와 장애 대응 절차",
         ],
-        boundary: "Infra Engineer 포지셔닝이 아니라 backend delivery를 운영 상태까지 닫는 역량으로 설명합니다.",
+        boundary: "Infrastructure 전문성이 아니라 backend delivery를 실제 환경까지 확인한 보조 경험으로 설명합니다.",
       },
       claimIds: [
         "infra.company-azure-ownership",

@@ -1,22 +1,23 @@
 ---
 type: project-evidence
-title: Company Azure Infrastructure Evidence
-description: Company-wide Azure/Terraform infrastructure ownership, current operating scope, and public claim boundaries.
-timestamp: 2026-08-20
+title: Company Deployment And Azure Operations Evidence
+description: Service deployment environment, basic Azure operations, and internal technical evidence boundaries.
+timestamp: 2026-08-23
 source_roots: [workspace]
 tags: [azure, terraform, infrastructure, operations, evidence]
 ---
 
-# Company Azure Infrastructure Evidence
+# Company Deployment And Azure Operations Evidence
 
 Source locators: `workspace:MEDISOLVEAI-INFRA`, `workspace:MEDISOLVEAI-B2C-INFRA`, `workspace:NEXUS-infra`, `workspace:thedaylabs-infra`
 
 ## Company Azure Ownership
 
-- User-confirmed: 회사 infra repository 전체와 Azure infra 운영·관리를 김대정이 담당한다.
+- User-confirmed correction (2026-08-23): 여러 사내 서비스가 동작하도록 Azure·Vercel 배포 환경을 구성하고 기본 운영을 맡았지만, 회사 infrastructure architecture를 깊이 이해해 처음부터 설계한 전문 영역으로 포지셔닝하지 않는다.
 - Code-backed: B2B/B2C/NEXUS Terraform roots, remote state, App Service/ACR deployment, environment/resource separation, runbook 변경이 repo와 Git history에서 확인됐다.
 - Tool-backed: 2026-07-11 Azure CLI read-only snapshot에서 product/environment resource group, App Service, VM, PostgreSQL, Cognitive Services, monitoring alert가 실제 운영 중임을 확인했다.
-- Contribution boundary: 회사 Azure/Terraform infra 전반의 담당·운영은 `owned`로 표현할 수 있다. 개별 resource의 최초 생성 주체까지 일괄 단독으로 표현하지 않는다.
+- Contribution boundary: 서비스 배포 환경 구성과 기본 운영은 `owned`로 표현할 수 있다. 현재 topology·state·monitoring 수치는 내부 검증 근거이며, 회사 전체 infrastructure architecture의 단독 설계·전문성이나 개별 resource의 최초 생성 주체로 확대하지 않는다.
+- Selection boundary: 공통 이력서·포트폴리오의 대표 성과로 사용하지 않는다. 기술 스택 또는 경력의 보조 경험으로만 짧게 표현한다.
 
 ## Current Operating Snapshot
 
@@ -36,7 +37,7 @@ Source locators: `workspace:MEDISOLVEAI-INFRA`, `workspace:MEDISOLVEAI-B2C-INFRA
 - Code-backed: B2C에서 Thready API·AI runtime은 managed App Service로 분리하고, 다른 B2C workload는 App Service 또는 VM runtime으로 운영하며 managed PostgreSQL·media storage를 연결한다 (`workspace:MEDISOLVEAI-INFRA/azure/b2c/stg`, `workspace:MEDISOLVEAI-INFRA/azure/b2c/prod`). 공개 문안에서는 Thready 외 내부 제품명과 정확한 network·resource 설정을 노출하지 않는다.
 - Code-backed: App Service diagnostics와 VM container log·metric은 제품군·환경별 Azure Monitor·Log Analytics workspace에서 같은 방식으로 수집·운영한다. 회사 전체가 하나의 workspace를 공유한다는 뜻은 아니다. 10대 VM log와 8개 Production alert의 정확한 공개 범위는 [Production Observability](#production-observability)가 소유한다.
 - Design boundary: 현재 구조는 workload와 운영 인력에 맞춘 App Service+VM hybrid topology다. Hub-Spoke, Azure Container Apps, Tailscale, Key Vault consolidation, GitHub OIDC, VM-zero는 제안/검토 중인 target이며 현재 구조로 표현하지 않는다.
-- Contribution boundary: 김대정은 기존 Shared·B2B·B2C resource의 monorepo/root/state 통합, B2C 편입·reconciliation과 현재 runtime topology·변경 체계 운영을 담당한다. 모든 network·resource component를 최초부터 단독 설계·생성했다고 확대하지 않는다. 별도 project IaC는 core 6-root monorepo와 분리해 관리한다.
+- Contribution boundary: 김대정의 Git 이력은 기존 Shared·B2B·B2C resource의 monorepo/root/state 통합, B2C 편입·reconciliation과 운영 참여를 증명한다. 현재 topology 전체의 설계 ownership이나 infrastructure 전문성으로 확대하지 않는다. 별도 project IaC는 core 6-root monorepo와 분리해 관리한다.
 
 ## Terraform State And Drift Safety
 
@@ -51,8 +52,8 @@ Source locators: `workspace:MEDISOLVEAI-INFRA`, `workspace:MEDISOLVEAI-B2C-INFRA
 - User-confirmed (2026-08-19): 회사 전체 서비스의 Azure infrastructure를 전담하면서 resource inventory 파악과 Terraform 구현에 AI를 적극 활용했다.
 - Process-backed: 사람이 직접 작성했는지 AI가 보조했는지와 무관하게 모든 변경은 대상 제품·환경 식별, state snapshot, fmt/validate, Terraform plan, Azure CLI live inventory 대조, destructive change 판정, apply 후 health·log·alert 확인 순서를 통과한다.
 - User-confirmed design rationale: 현재 workload와 기술 복잡도에 맞춰 Azure managed application runtime을 우선 활용하고, 불필요한 platform 운영 복잡도를 먼저 만들지 않는 방향을 선택했다.
-- Contribution boundary: company infrastructure architecture와 위 change/operation harness의 설계·운영은 `owned`. AI가 독립적으로 infrastructure architecture나 apply 결정을 수행했다는 뜻이 아니며, 특정 orchestration technology와의 우열 주장으로 확대하지 않는다.
-- Public wording: `AI를 inventory·Terraform 구현에 활용하고 state·plan·live inventory 검증으로 변경을 통제하는 회사 infrastructure harness 구축`까지 허용한다.
+- Contribution boundary: AI-assisted inventory·Terraform 초안과 change checklist에는 참여했지만, 이를 company infrastructure architecture의 단독 설계나 전문 영역으로 공개하지 않는다. AI가 독립적으로 architecture나 apply 결정을 수행했다는 뜻도 아니다.
+- Public wording: 공통 이력서·포트폴리오에는 사용하지 않는다. 필요할 때만 `서비스 배포 환경 구성과 기본 운영 경험`의 내부 근거로 소비한다.
 
 ## Production Observability
 
@@ -69,6 +70,7 @@ Source locators: `workspace:MEDISOLVEAI-INFRA`, `workspace:MEDISOLVEAI-B2C-INFRA
 
 ## Public Disclosure
 
-- 공개 가능: 회사 Azure/Terraform infra 전반 담당, B2B/B2C·제품·환경 boundary, shared ACR·workload별 App Service/VM·managed data·환경별 공통 observability 방식의 high-level topology, AI-assisted Terraform change harness, deploy/runbook 운영, 6개 독립 root·400+ state object, 10대 VM log 중앙화·8개 Production alert.
+- 기본 공개: 여러 사내 서비스의 Azure·Vercel 배포 환경 구성과 기본 운영 경험, Docker·GitHub Actions·Azure·Terraform 사용 경험.
+- 기본 비선택: 회사 topology, 6개 root·400+ state object, 10대 VM log·8개 alert, AI-assisted Terraform harness. 사실 근거는 보존하지만 지원 직군과 사용자의 별도 확인 없이는 대표 성과로 쓰지 않는다.
 - Source-backed (2026-07-17): 회사가 한국마이크로소프트 협약과 Azure 기반 인프라를 공개 보도함 (매일신문 2026-04-22) — 이력서에서 Azure 기반 언급은 회사 기밀이 아님이 확인됨.
-- 기본 비공개: subscription/resource/customer 이름, 정확한 resource 수, traffic, cost, security configuration.
+- 비공개: subscription/resource/customer 이름, 정확한 resource 수, traffic, cost, security configuration.

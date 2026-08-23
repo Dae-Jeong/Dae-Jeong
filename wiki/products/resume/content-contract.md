@@ -2,7 +2,7 @@
 type: product-contract
 title: Resume Content Contract
 description: Active web resume의 구조, claim, public safety, derived-output 계약.
-timestamp: 2026-08-22
+timestamp: 2026-08-23
 tags: [resume, contract, content]
 ---
 
@@ -51,8 +51,8 @@ Canonical positioning은 [profile/identity.md](../../profile/identity.md)를, �
 | - | Header | 이름·category·현재/이전 주요 경력·연락처. 회사·직함·기간이 즉시 보여야 함 |
 | 01 | 소개 | 공통 Maker 문장 한 문장만 둔다. 역할·기술 전문성은 헤더·경력·대표 성과가 증명하며 소개에서 다시 요약하지 않음 |
 | 02 | 경력 | 최신순. 좌측 metadata column에 조직명과 기간을 세로로 쌓고, 우측에 직함·제품 성격·담당 범위를 배치. MediSolve AI row는 Thready 제품 운영·매출을 먼저 보여주고 합류 경로는 마지막에 짧게 둔다. |
-| 03 | 대표 성과 | 여섯 사례를 한 섹션에서 연결: `Thready 유료 제품 운영·직접 구현 → 인계받은 backend 병렬 재구축·QA reopen 관측 → Centurion 주문·재고 비동기 복구 → Thready 제품 원장/AI 실행 분리·STG migration·Outbox → 직접 구축한 Backend Template·agent 기준 → Azure 변경 gate`. 회사 AX는 경력·기술과 AX/FDE 등 직군별 지원본에서 contribution strength를 분리해 사용한다. |
-| 04 | 기술 | `Backend Core → Data/Async → AI Runtime → Product Execution/AX → Cloud/Delivery`의 5개 capability lane으로 구성. 스택보다 다룬 mechanism과 적용 맥락을 먼저 찾는 index 역할 |
+| 03 | 대표 성과 | 다섯 사례를 한 섹션에서 연결: `Thready 유료 제품 운영·직접 구현 → 인계받은 backend 병렬 재구축·QA reopen 관측 → Centurion 주문·재고 비동기 복구 → Thready 제품 원장/AI 실행 분리·STG migration·Outbox → 직접 구축한 Backend Template·agent 기준`. 회사 AX는 경력·기술과 AX/FDE 등 직군별 지원본에서 contribution strength를 분리해 사용한다. |
+| 04 | 기술 | `Backend Core → Data/Async → AI Runtime → Product Execution/AX → Cloud/Delivery`의 5개 capability lane으로 구성. Cloud/Delivery는 Docker·GitHub Actions·Azure·Terraform을 활용한 서비스 배포·환경 설정·기본 운영 경험만 표시한다. |
 | 05 | 외부 활동 | 제품·UX 외부 활동을 경력·기술·자격과 분리하고 `UX 컨설팅`과 `UX 스터디` 두 행으로 구성. 각 행은 활동명 뒤에 문제·판단·산출물을 한 문장으로 설명하며 상세 근거는 evidence 문서가 소유 |
 | 06 | Credentials | 특허·수상·외부 인증·자격·학력을 배치하고 검증된 고정 사실만 사용 |
 

@@ -45,7 +45,7 @@ tags: [resume, positioning, role, backend]
 | 주 역할 | `Tech Lead` | 제품 범위·품질 기준·실행 정렬 책임을 먼저 전달 |
 | 기술 기반 | `Backend Engineer` | API·data·transaction·async/realtime·infra 전문성을 증명 |
 | 전문 영역 | `AI Product Systems` | AI runtime·quality·서비스 경계와 운영 범위 |
-| 차별화되는 작동 방식 | 고객 문제를 유료 제품 운영으로 연결하고, 그 제품을 버틸 backend 경계를 직접 설계 | 제품 운영·재구축·비동기 복구·AI 데이터 경계·Backend Template·인프라 사례가 반복해서 증명 |
+| 차별화되는 작동 방식 | 고객 문제를 유료 제품 운영으로 연결하고, 그 제품을 버틸 backend 경계를 직접 설계 | 제품 운영·재구축·비동기 복구·AI 데이터 경계·Backend Template 사례가 반복해서 증명 |
 
 금지:
 
@@ -102,7 +102,7 @@ contract·state·gate를 세팅하고 실제 운영을 책임했다면 이력으
 | 제품 정책을 여러 실행 주체의 계약으로 번역 | 예약 정책의 BE·FE·QA·release 연결, 제품 운영 gate | 기획을 구현으로 넘기는 사람이 아니라 실행 기준까지 닫는 engineer |
 | 해결을 팀의 반복 가능한 기반으로 확장 | FastAPI template·runbook·agent context | 개인 생산성에 머물지 않고 team leverage를 만드는 engineer |
 | 제품과 회사 업무를 AX 관점에서 다시 설계 | 제품별 Decision·SPEC·Work Package·owner lane·release gate 적용·운영, 의사결정·회의·업무 배정·승인·후속 작업의 human gate 설계 참여 | AI 기능만 붙이는 사람이 아니라 조직이 일하는 흐름과 사람·agent의 책임 경계를 설계하는 engineer |
-| application과 운영 환경을 함께 책임 | Azure·Terraform infra, product backend 운영 | 배포 이후를 다른 역할에 넘기지 않는 infra-aware backend engineer |
+| application의 출시와 기본 운영까지 책임 | product backend 운영, Azure·Vercel 배포 환경 구성 | 배포 목적지까지 다뤄본 backend engineer; infrastructure specialist로 포지셔닝하지 않음 |
 
 ## 섹션별 역할
 
