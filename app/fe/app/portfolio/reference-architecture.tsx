@@ -32,12 +32,12 @@ export function ArchitectureFrame({
     >
       <header className="flex flex-wrap items-center justify-between gap-3 border-b border-[#b7d7f0] bg-[#0078d4] px-5 py-3 text-white print:px-3 print:py-2">
         <span>
-          <span className="block font-mono text-xs tracking-[0.06em] text-white/80">
+          <span className="block font-mono text-xs font-semibold tracking-[0.06em] text-white">
             {product}
           </span>
-          <strong className="mt-1 block text-sm">{title}</strong>
+          <strong className="mt-1 block text-sm font-semibold">{title}</strong>
         </span>
-        <span className="border border-white/55 px-2 py-1 font-mono text-xs">{status}</span>
+        <span className="whitespace-nowrap border border-white/55 px-2 py-1 font-mono text-xs tracking-[0.04em]">{status}</span>
       </header>
       {children}
     </div>
@@ -58,19 +58,19 @@ export function ArchitectureNode({
 }) {
   return (
     <div className={cn("min-w-0 border p-3", toneClasses[tone], className)}>
-      <div className="flex min-w-0 items-start gap-3">
+      <div className="flex min-w-0 items-start gap-2.5">
         {code ? (
           <span
             aria-hidden
-            className="grid size-8 shrink-0 place-items-center border border-current font-mono text-xs font-semibold"
+            className="grid size-8 shrink-0 place-items-center border border-current font-mono text-xs font-semibold leading-none"
           >
             {code}
           </span>
         ) : null}
         <span className="min-w-0">
-          <strong className="block text-xs leading-[1.35]">{title}</strong>
+          <strong className="block text-pretty text-sm font-semibold leading-[1.35]">{title}</strong>
           {detail ? (
-            <span className="mt-1 block text-xs leading-[1.45] opacity-75">{detail}</span>
+            <span className="mt-1 block text-pretty text-xs leading-[1.45] opacity-75">{detail}</span>
           ) : null}
         </span>
       </div>
@@ -149,7 +149,7 @@ export function ArchitectureBoundary({
     <section className={cn("min-w-0 border-2", boundaryClasses[tone], className)}>
       <header
         className={cn(
-          "flex items-start justify-between gap-4 border-b px-4 py-3 print:px-3 print:py-2",
+          "flex flex-wrap items-start justify-between gap-4 border-b px-4 py-3 print:px-3 print:py-2",
           headerClasses[tone],
         )}
       >
@@ -157,10 +157,10 @@ export function ArchitectureBoundary({
           <span className="block font-mono text-xs font-semibold tracking-[0.04em] opacity-75">
             {eyebrow}
           </span>
-          <strong className="mt-1 block text-sm">{title}</strong>
+          <strong className="mt-1 block text-pretty text-base font-semibold">{title}</strong>
         </span>
         {meta ? (
-          <span className="shrink-0 border border-current bg-white px-2 py-1 font-mono text-xs font-normal opacity-75">
+          <span className="shrink-0 whitespace-nowrap border border-current bg-white px-2 py-1 font-mono text-xs font-normal tracking-[0.04em] opacity-75">
             {meta}
           </span>
         ) : null}

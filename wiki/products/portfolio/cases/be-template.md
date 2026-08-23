@@ -37,15 +37,19 @@ Agent가 이 맥락을 읽는다고 해서 제품 판단과 사람의 책임까�
 
 ```text
 현재 제품 운영 — 실선
-요청·기획·디자인 → Decision·SPEC → Work Package → BE·FE·QA
-                 → Release Gate → Git·CI/CD → Azure·Vercel
-
+요청·기획·디자인 → Decision·SPEC → Work Package → Release Gate
+                                    ↓
+             결정 배경·담당·상태·QA 근거·버전·후속 작업
+                                    ↓
 회사 업무 AX 확장 설계 — 점선
-회의·요청 ⇢ 의사결정 ⇢ 업무 배정 ⇢ 승인 ⇢ 후속 작업
+회의·요청 ⇢ Agent의 맥락 탐색·초안·검증 근거
+          ⇢ Human Gate의 우선순위·아키텍처·담당·QA/release 승인
+          ⇢ 배정·후속 작업
 ```
 
 - 제품의 Decision→release 흐름은 현재 실제 적용·운영 범위다.
-- 회사 업무의 의사결정→후속 작업 흐름은 AX 확장 설계 범위다.
+- 제품 운영에서 남긴 결정·담당·검증·버전 기록은 사람과 agent가 함께 읽는 실행 맥락이다.
+- 회사 업무에서 agent가 실행안을 준비하고 사람이 판단·승인하는 흐름은 AX 확장 설계 범위다.
 - 전사 AX 완료, 모든 회사 업무 통합, agent의 자율 의사결정·업무 배정·승인은 주장하지 않는다.
 
 ## Responsibility Boundary

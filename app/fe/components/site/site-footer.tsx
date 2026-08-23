@@ -16,7 +16,7 @@ export function SiteFooter({ className = "" }: { className?: string }) {
         variant="hub"
         className="flex flex-wrap items-center justify-between gap-4"
       >
-        <span className="inline-flex items-center gap-2 font-mono text-sm font-semibold">
+        <span className="inline-flex min-h-11 items-center gap-2 font-mono text-sm font-semibold">
           <span aria-hidden className="size-[9px] bg-fg" />
           김대정{" "}
           <span className="font-normal text-muted">/ Tech Lead · Backend Engineer</span>
@@ -28,7 +28,7 @@ export function SiteFooter({ className = "" }: { className?: string }) {
               href={l.href}
               aria-disabled={l.disabled}
               {...(l.external ? { target: "_blank", rel: "noopener" } : {})}
-              className="focus-ring font-mono text-xs tracking-[0.03em] text-muted transition-colors duration-100 hover:text-fg"
+              className="focus-ring inline-flex min-h-11 items-center font-mono text-xs tracking-[0.03em] text-muted transition-colors duration-100 hover:text-fg"
             >
               {l.label}
             </a>

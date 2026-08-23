@@ -17,28 +17,28 @@ tags: [portfolio, content, tech-lead, company-ax, backend, implemented]
 
 ## 1. 한 줄 결정
 
-`/portfolio` 한 route에서 세 대표 사례와 Memento Payment supporting case를 모두 펼친다. 같은 dossier 문법을 반복하지 않고, 사례마다 독자가 확인해야 할 판단과 책임 경계를 다른 시각화로 보여준다.
+`/portfolio` 한 route에서 세 대표 사례와 Memento Payment supporting case를 60초 요약본으로 펼친다. 각 대표 사례는 결과·핵심 판단·담당 범위와 대표 시각화 한 개만 남기며, 상세 기술 판단·failure handling·검증 근거는 기존 상세 route와 직군별 full dossier에서 이어서 읽는다. 같은 dossier 문법을 반복하지 않고 사례마다 다른 시각화를 사용한다.
 
 ```text
 10초  Maker 정체성 · Tech Lead/Backend 역할 · 세 대표 범위
 30초  제품 0→1 · 회사 AX · MSA의 기여와 결과
-정독  선택 이유 · ownership · failure/human gate · 검증 방식
+정독  상세 route에서 선택 이유 · failure/human gate · 검증 방식
 ```
 
 ## 2. 공개 정보 구조
 
 ### Hero
 
-- Eyeline: `Tech Lead · Backend Engineer · 실무 4년차`
+- Eyeline: `Maker · Tech Lead · Backend Engineer`
 - Headline: `아이디어를 새로운 가치로 실현하는 메이커, 김대정입니다.`
-- Introduction: 고객 문제를 제품으로 만들고 backend·AI·핵심 frontend·배포·운영까지 맡아온 범위, 그리고 결정·작업·검증을 회사 업무까지 잇는 AX 구조 설계 참여를 연결한다.
+- First proof: Thready를 팀과 함께 실제 유료 운영까지 이끈 사실과 2026년 8월 기준 월 약 800만~1,000만원 구독료 매출을 먼저 제시한다.
+- Introduction: 고객 문제를 제품으로 만들고 backend·AI·핵심 frontend·배포·운영까지 맡아온 범위, 비동기 작업·실시간 session의 failure boundary, 회사 AX 구조 설계 참여를 평문으로 연결한다.
 
-### First proof lines
+### First proof composition
 
 ```text
-제품          기획·QA·마케팅과 제품 운영 리드 · backend/AI/핵심 frontend 직접 구현
-백엔드·AI    병렬 재구축 · migration · Outbox · worker · realtime failure boundary
-회사 AX      제품 흐름 운영 · 의사결정/회의/업무 배정/승인/후속 작업 확장 설계 참여
+강한 한 문장  팀과 함께 Thready 유료 운영 · 제품의 월 구독료 매출
+설명 한 문단  제품 요구·직접 구현·운영 · 비동기/실시간 실패 경계 · 회사 AX 설계 참여
 ```
 
 ### Primary order
@@ -70,13 +70,13 @@ tags: [portfolio, content, tech-lead, company-ax, backend, implemented]
 | 협업 | 기획, QA, 마케팅, design |
 | 결과 | 2026년 8월 기준 제품의 월 약 800만~1,000만원 구독료 매출 |
 
-### 본문 순서와 고유 시각화
+### 공통 요약과 상세 검증
 
-- 고객 문제 → 기획·QA·마케팅과 유료 제품 운영 → 실제 product/runtime/delivery architecture
-- 빠른 기능 검증 중심의 초기 backend 인계 → validation harness → FastAPI 병렬 재구축·cutover
-- product backend·AI application/DB·Transactional Outbox의 ownership과 전달 경계는 4단계 ruled flow로 확대 → STG 데이터 이전 검증
+- 공통 page: 고객 문제 → 팀의 유료 제품 운영 → 실제 product/runtime/delivery architecture → 결과·핵심 판단·직접 담당 proof strip
+- 모바일·공통 A4: 제품 화면 → 제품 backend → Outbox 전달 → AI application → 검증·배포의 5-node synopsis
+- 상세 route: 초기 backend 인계·validation harness·FastAPI 병렬 재구축·cutover와 product/AI ownership·STG migration 검증
 
-사례는 기술적으로 가장 깊은 BE–AI 경계와 STG migration 검증으로 끝낸다. AI는 코드 분석·반복 구현에 활용하고, 아키텍처·검증 기준·작업 범위·cutover 시점은 직접 판단한 범위로 쓴다.
+AI는 코드 분석·반복 구현에 활용하고, 아키텍처·검증 기준·작업 범위·cutover 시점은 직접 판단한 범위로 쓴다.
 
 ### 표현 상한
 
@@ -106,7 +106,7 @@ Route compatibility를 위해 slug는 `be-template`을 유지하지만, 공개 c
 - Agent: 필요한 맥락 탐색, 회의·요청의 작업안 초안, 반복 실행, 검증 근거 준비.
 - Human gate: 제품 우선순위, architecture, assignment, QA, release 승인.
 
-### Responsibility map
+### 공통 proof strip과 상세 responsibility
 
 | 영역 | 역할 | 표현 상한 |
 | --- | --- | --- |
@@ -117,7 +117,7 @@ Route compatibility를 위해 slug는 `be-template`을 유지하지만, 공개 c
 | MEDINESS 앱·데이터·도구 | 담당 개발팀 | 직접 구현으로 표현하지 않음 |
 | Azure·Terraform operation | 직접 담당 | 상세 topology·change proof는 Infrastructure case가 소유 |
 
-### Engineering execution plane
+### 상세 Engineering execution plane
 
 ```text
 Stable Core
@@ -143,7 +143,7 @@ Backend Template은 조직 표준을 주장하기 위한 장식이 아니라, �
 
 > 실패한 작업은 다시 돌리고, 실시간 상담은 빠르게 반응하면서도 엉뚱한 발화를 덮지 않게 만들었습니다.
 
-### Contribution map
+### 공통 contribution summary와 상세 map
 
 | Service context | 기여 | 대표 판단 |
 | --- | --- | --- |
@@ -214,14 +214,14 @@ Stripe Checkout·manual capture·provider-side cancel/refund 영역 구축 주�
 
 | Case | 주 시각화 | 피할 표현 |
 | --- | --- | --- |
-| Thready | product/runtime/delivery reference architecture + compact Outbox/version-fence flow | 제품 운영과 기술 구조를 서로 다른 두 장에 반복 |
-| Company AX | current product flow 실선 + company extension 점선 + responsibility map | 전사 AX 완료나 agent 자율 판단 |
-| Centurion | service map + async recovery + SAY runtime reference architecture와 event inset | 전체 MSA 단독 ownership 또는 event-only 도식 |
+| Thready | 공통 product/runtime reference architecture · 모바일 5-node synopsis | 공통 page에서 재구축·Outbox 상세를 다시 모두 펼침 |
+| Company AX | 공통 current product flow 실선 + company extension 점선 · 상세 responsibility map | 전사 AX 완료나 agent 자율 판단 |
+| Centurion | 공통 service contribution map · 상세 async recovery와 SAY runtime | 전체 MSA 단독 ownership 또는 공통 page의 시각화 중복 |
 
 - 기존 ruled document 문법을 유지하고 card grid를 늘리지 않는다.
 - 실선은 현재 운영, 점선은 확장 설계라는 의미를 모든 화면·인쇄에서 유지한다.
 - visual은 decoration이 아니라 ownership·state transition·failure/human gate 중 하나를 설명한다.
-- 웹은 한 route에서 전부 읽고, 인쇄할 때 case boundary·diagram 내부 분할을 피한다.
+- 웹 공통 route는 모든 대표 사례의 자족적인 기술 요약을 읽고, 상세 route는 선택한 사례의 근거를 이어서 검증한다. 인쇄할 때 case boundary·diagram 내부 분할을 피한다.
 - 내부 claim ID·forbidden copy·limits는 공개 DOM에 노출하지 않는다.
 
 ## 9. 구현 mapping
@@ -229,8 +229,9 @@ Stripe Checkout·manual capture·provider-side cancel/refund 영역 구축 주�
 | 구현 지점 | 현재 역할 |
 | --- | --- |
 | `app/fe/lib/cases.ts` | 01 Thready → 02 Company AX → 03 Centurion 순서와 archive Infrastructure metadata |
-| `app/fe/app/portfolio/case-dossier.tsx` | case별 차등 composition, Company AX current/extension·responsibility visual |
-| `app/fe/app/portfolio/page.tsx` | 공통 hero·primary 순서·Memento supporting 조립 |
+| `app/fe/app/portfolio/case-summary.tsx` | 공통 case의 결과·판단·기여·대표 visual과 모바일·A4 synopsis |
+| `app/fe/app/portfolio/case-dossier.tsx` | 직군별 full dossier와 상세 composition |
+| `app/fe/app/portfolio/page.tsx` | 공통 hero·primary 요약·Memento supporting·closing CTA 조립 |
 | `app/fe/content/portfolios/role-variants.ts` | 같은 Company AX case를 직군별 focus와 순서로 재사용 |
 | print style | heading·diagram 내부 분할을 피하면서 A4 document flow 유지 |
 
@@ -243,5 +244,5 @@ Stripe Checkout·manual capture·provider-side cancel/refund 영역 구축 주�
 - Agent가 준비할 일과 사람이 판단·승인할 일이 분리됨
 - Infrastructure가 대표 전문성으로 오독되지 않고 Cloud/Delivery 보조 경험으로만 남음
 - Product Operations가 별도 supporting case로 중복되지 않음
-- single route와 A4 PDF 변환 가능성을 유지함
+- 공통 single route의 60초 검토와 A4 PDF 변환 가능성을 유지하고, 기술 정독은 상세 route로 이어짐
 - public copy가 stable claim과 ownership boundary를 넘지 않음

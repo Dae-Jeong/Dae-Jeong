@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import type { CaseMeta } from "@/lib/cases";
 import { AzureArchitectureDiagram } from "./azure-architecture-diagram";
 import { CenturionContributionDiagram } from "./centurion-contribution-diagram";
+import { CompanyAxOperatingModel } from "./company-ax-operating-model";
 import { SayRealtimeDiagram } from "./say-realtime-diagram";
 import { ThreadyRuntimeDiagram } from "./thready-runtime-diagram";
 
@@ -378,21 +379,6 @@ function CompanyAxCase({
   displayNo?: string;
   focus?: string;
 }) {
-  const productFlow = [
-    "요청 · 기획 · 디자인",
-    "Decision · SPEC",
-    "Work Package",
-    "BE · FE · QA",
-    "Release Gate",
-    "Git · CI/CD · Azure/Vercel",
-  ];
-  const companyFlow = [
-    "회의 · 요청",
-    "의사결정",
-    "업무 배정",
-    "승인",
-    "후속 작업",
-  ];
   const engineeringLayers = [
     {
       label: "Stable Core",
@@ -432,89 +418,22 @@ function CompanyAxCase({
         focus={focus}
         summary={
           <>
-            제품 개발에서는 요구를 Decision·SPEC·Work Package로 나누고
-            BE·FE·QA·release까지 이어지는 흐름을 실제 제품에 적용해 운영했습니다.
+            제품 개발에서는 요구를 <span className="whitespace-nowrap">Decision·SPEC·Work Package</span>로 나누고{" "}
+            <span className="whitespace-nowrap">BE·FE·QA·release</span>까지 이어지는 흐름을 실제 제품에 적용해 운영했습니다.
             여기서 쌓이는 결정·작업·검증 기록을 바탕으로, <strong>의사결정·회의·업무
-            배정·승인·후속 작업까지 사람과 agent가 같은 맥락을 읽는 회사 AX 전환
+            배정·승인·후속 작업까지 사람과 agent가 같은 맥락을 읽는 <span className="whitespace-nowrap">회사 AX</span> 전환
             구조 설계</strong>에 참여했습니다. MEDINESS 앱·데이터·도구는 담당 개발팀이
             구현했고, 저는 제품 요구·운영 구조 설계에 참여하면서 제품별 적용과 운영을
-            리드했습니다. Backend Template과 agent context는 직접 설계·구축했습니다.
+            리드했습니다. <span className="whitespace-nowrap">Backend Template</span>과 <span className="whitespace-nowrap">agent context</span>는 직접 설계·구축했습니다.
           </>
         }
       />
 
       <section className="pt-10">
-        <Subhead note="CURRENT · NEXT">
-          지금 운영하는 제품 흐름과 회사 업무로 넓힐 범위를 나눴습니다.
+        <Subhead note="OPERATING MODEL">
+          제품 운영 기록을 회사 업무 AX의 입력으로 확장했습니다.
         </Subhead>
-        <div className="mt-5 flex flex-wrap gap-x-8 gap-y-2 text-xs text-fg-2">
-          <span className="inline-flex items-center gap-3">
-            <span aria-hidden className="w-10 border-t-2 border-fg" />
-            현재 제품 운영
-          </span>
-          <span className="inline-flex items-center gap-3">
-            <span aria-hidden className="w-10 border-t border-dashed border-fg" />
-            회사 업무 AX 확장 설계
-          </span>
-        </div>
-        <div className="portfolio-keep mt-5 border-y-2 border-fg">
-          <div className="grid grid-cols-[150px_minmax(0,1fr)] max-md:grid-cols-1">
-            <div className="border-r border-border px-4 py-5 max-md:border-b max-md:border-r-0">
-              <span className="font-mono text-xs text-muted">제품 개발</span>
-              <strong className="mt-2 block text-sm">현재 운영</strong>
-            </div>
-            <div className="grid grid-cols-6 max-md:grid-cols-2 print:grid-cols-6">
-              {productFlow.map((step, index) => (
-                <div
-                  key={step}
-                  className={`${index > 0 ? "border-l border-border" : ""} px-3 py-5 text-center text-xs font-medium leading-[1.5] max-md:border-b print:border-b-0`}
-                >
-                  {step}
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="grid grid-cols-[150px_minmax(0,1fr)] border-t border-dashed border-fg max-md:grid-cols-1">
-            <div className="border-r border-dashed border-border px-4 py-5 max-md:border-b max-md:border-r-0">
-              <span className="font-mono text-xs text-muted">회사 업무</span>
-              <strong className="mt-2 block text-sm">확장 설계</strong>
-            </div>
-            <div className="grid grid-cols-5 max-md:grid-cols-1 print:grid-cols-5">
-              {companyFlow.map((step, index) => (
-                <div
-                  key={step}
-                  className={`${index > 0 ? "border-l border-dashed border-border max-md:border-l-0 max-md:border-t print:border-l print:border-t-0" : ""} px-3 py-5 text-center text-xs font-medium leading-[1.5] max-md:text-left print:text-center`}
-                >
-                  {step}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="portfolio-keep pt-10">
-        <Subhead note="AGENT · HUMAN GATE">
-          Agent가 준비하고, 사람이 판단합니다.
-        </Subhead>
-        <div className="mt-6 grid grid-cols-2 border-y border-border max-md:grid-cols-1 print:grid-cols-2">
-          <div className="p-6 print:p-4">
-            <span className="font-mono text-xs text-muted">Agent</span>
-            <h4 className="m-0 mt-3 text-lg font-semibold">탐색하고 초안을 준비</h4>
-            <p className="m-0 mt-3 text-sm leading-[1.65] text-fg-2">
-              필요한 맥락을 찾고, 회의·요청을 작업안으로 정리하고, 반복 실행과 검증
-              근거를 준비합니다.
-            </p>
-          </div>
-          <div className="border-l border-border bg-fg p-6 text-bg max-md:border-l-0 max-md:border-t print:border-l print:border-t-0 print:bg-transparent print:p-4 print:text-fg">
-            <span className="font-mono text-xs text-bg/70 print:text-muted">Human Gate</span>
-            <h4 className="m-0 mt-3 text-lg font-semibold">판단과 승인을 소유</h4>
-            <p className="m-0 mt-3 text-sm leading-[1.65] text-bg/80 print:text-fg-2">
-              제품 우선순위·아키텍처·업무 담당을 정하고, QA와 release의 최종 승인을
-              맡습니다.
-            </p>
-          </div>
-        </div>
+        <CompanyAxOperatingModel />
       </section>
 
       <section className="pt-10">

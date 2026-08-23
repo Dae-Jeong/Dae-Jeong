@@ -18,8 +18,11 @@ tags: [portfolio, decisions, pipeline]
 - Thready의 generic 6-step process는 product/engineering 2-lane 도식으로 대체한다. 공개 콘텐츠는 `최근 1년 내 게시물 중심`으로만 표현하고, 정확 건수는 evidence에 남긴다. 운영 feedback은 자동 학습이 아니라 human-reviewed next decision으로, 매출은 기술 node와 직접 연결하지 않은 제품·팀 outcome으로 표시한다.
 - Thready의 초기 backend는 기존 구현 방식이나 작성자를 평가하지 않고 `빠른 기능 검증 중심의 초기 backend를 인계받았다`고 쓴다. AI는 코드 분석·반복 구현에 활용한 수단이며 아키텍처·검증 기준·cutover 판단은 직접 책임진 범위로 분리한다.
 - Product Operations는 Company AX primary case의 현재 운영 근거로 합친다. MEDINESS 플랫폼 구현은 담당 개발팀, 요구·운영 구조와 회사 AX 설계는 `contributed`, 제품별 적용·운영은 `led`, Backend Template·agent context는 `owned`로 분리한다. daily briefing 직접 구축은 사용하지 않는다.
+- Company AX 첫 시각화는 현재 제품 workflow와 확장 설계를 나란히 나열하지 않는다. 제품 운영에서 축적되는 결정·담당·QA·버전 기록을 공유 실행 맥락으로 두고, 회사 업무 확장에서는 `회의·요청 → agent 준비 → human authority → 배정·후속 작업`의 승인 경계를 보여준다. 실선은 현재 운영, 점선은 확장 설계라는 상태 구분을 유지한다.
 - Memento Payment는 이전 경력의 결제 상태 전이를 보완하는 supporting case다. 외부 UX 활동은 common resume에서만 독립 노출하고 public portfolio의 supporting case와 섞지 않는다.
-- 공개 portfolio는 `/portfolio` 한 페이지에 세 대표 dossier와 Memento Payment supporting case를 모두 펼친다. 기본 읽기·인쇄·PDF 변환은 단일 페이지를 기준으로 하며, Infrastructure route는 공개하지 않는다.
+- 공개 portfolio는 `/portfolio` 한 페이지에 세 대표 case의 `결과·핵심 판단·담당 범위`와 대표 시각화 한 개, Memento Payment supporting case를 펼친다. 60초 채용 검토는 공통 page가, 20분 기술 검증은 연결된 상세 route와 직군별 full dossier가 담당한다. 기본 인쇄·PDF 변환은 공통 단일 페이지를 기준으로 하며, Infrastructure route는 공개하지 않는다.
+- 모바일과 공통 A4 PDF에서는 desktop용 architecture figure를 그대로 축소하지 않고 5개 안팎의 핵심 node synopsis로 바꾼다. 상세 도식과 작은 system label은 상세 route 또는 tablet 이상에서 제공한다.
+- 공통 hero는 Maker 문장을 두 줄 composition으로 유지하고, 바로 아래에 Thready의 유료 운영 결과와 직접 개발 범위를 평문으로 제시한다. 페이지 마지막은 맡고 싶은 문제와 resume·contact CTA로 닫는다.
 - claim 상한과 forbidden copy는 내부 case library에 보존하고, 공개 화면에는 `Limits`, `claim`, `Archived`, `준비 중` 같은 검증·제작 상태 문구를 노출하지 않는다.
 - resume에 선택된 case만 같은 순서로 조립한다.
 - 동일 claim을 resume와 portfolio에서 서로 다른 강도로 표현하지 않는다.

@@ -46,7 +46,7 @@
   --color-success: var(--success);
   --color-warn: var(--warn);
   --color-danger: var(--danger);
-  --font-mono: var(--font-plex-mono);
+  --font-mono: var(--font-plex-mono), var(--font-ko);
   --font-sans: var(--font-ko);
 }
 
