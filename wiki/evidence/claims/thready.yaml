@@ -76,24 +76,48 @@ claims:
       current release branch의 frontend author history와 current-source blame, 대표 feature commit을 교차 검증했다.
       commit·line 비율은 ownership의 내부 보조 근거이며 public copy에는 사용하지 않는다.
   - id: thready.subscription-revenue-band
-    statement: 2026년 8월 기준 Thready에서 월 약 800만~1,000만원의 구독료 매출이 발생
+    statement: 2026년 8월 기준 Thready에서 월 약 1,000만~1,200만원의 구독료 매출이 발생
     strength: contributed
     confidence: medium
     public: true
     evidence: [evidence/projects/thready.md#subscription-revenue]
     allowed_copy:
-      - 2026년 8월 기준, 월 약 800만~1,000만원의 구독료 매출이 발생하는 AI 콘텐츠 제품
-      - 월 1천만원 내외의 구독료 매출이 발생하는 유료 운영 제품 (2026.08 기준)
+      - 실제 고객이 결제하는 AI 콘텐츠 제품
+      - 팀과 함께 고객 문제를 유료 제품으로 만들고 운영
+      - 구독료 매출이 발생하는 제품·팀 outcome
     forbidden_copy:
-      - MRR 800만~1,000만원
+      - 정확한 월 매출액 또는 매출 구간을 공개 문구에 노출
+      - 월 1천만원대 매출
+      - MRR 1,000만~1,200만원
       - ARR 1억 이상
       - 월평균·매달 안정적·N개월 연속·지속 성장
       - 순매출·영업이익·고객 수·ARPU
-      - 내가 월 매출 800만~1,000만원을 만들었다
+      - 내가 월 매출 1,000만~1,200만원을 만들었다
       - backend 재구축 또는 품질 기준 수립으로 해당 매출을 만들었다
       - Thready를 0부터 혼자 구축
       - 제품 전체 0→1을 단독 주도
-    verified_at: 2026-08-18
+      - 광고 매출을 포함한 수치
+    verified_at: 2026-08-24
+    note: >-
+      정확한 매출 band는 internal evidence로만 보존한다. 공개 surface에서는 고객 결제가 발생하는
+      유료 제품이라는 사실과 제품·팀 outcome 경계만 사용한다.
+  - id: thready.ad-revenue-experiment
+    statement: 구독 외 수익원 검증을 위해 Thready 공개 화면에 광고 적용을 시작하고 운영 데이터를 수집 중
+    strength: led
+    confidence: medium
+    public: true
+    evidence: [evidence/projects/thready.md#advertising-revenue-experiment]
+    allowed_copy:
+      - 광고 기반 수익 모델 검증을 시작하고 운영 데이터를 수집 중
+      - 구독 외 수익원으로 확장할 수 있는지 검증하기 위해 광고 적용을 시작
+    forbidden_copy:
+      - 광고 매출 발생
+      - 광고 수익화 성공
+      - 광고로 매출 성장
+      - ROAS·CTR·전환율 개선
+      - 1인 사업가로 제품 전체 수익화를 단독 주도
+    verified_at: 2026-08-24
+    note: 적용 초기 상태에 대한 user-confirmed claim이다. 성과 수치가 생기기 전에는 portfolio의 NEXT 영역에서만 사용한다.
   - id: thready.generation-quality-system
     statement: typed prompt builder, LLM judge, 평가 루프, 관측 로깅 기반 생성 품질 시스템 구축
     strength: owned

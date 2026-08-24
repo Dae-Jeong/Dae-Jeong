@@ -118,7 +118,7 @@ Claims: `thready.backend-rebuild` (`owned/high`), `thready.frontend-product-deli
 - backend cutover 이후 Next.js의 콘텐츠 생성·가져오기·예약·발행·dashboard·관리·labeling workflow도 직접 구현·운영해 backend·AI 기능을 실제 사용자·관리 흐름으로 닫았다.
 - 작은 서비스 단계에서 AI 모듈 확장 비용을 근거로 부분 수정 대신 backend 재구축을 선택하고, contract·component·operational-flow validation harness를 먼저 세운 뒤 auth/account와 frontend 호출 전환까지 실행했다.
 - `v1.3.0`부터 실제 사용자가 쓰는 AI 콘텐츠 제품의 backend version cycle과 생성 품질 blocker의 판단·수정·배포를 운영했다.
-- 제품은 2026년 8월 기준 월 약 800만~1,000만원의 구독료 매출이 발생한다. 이 수치는 제품·팀 outcome이며, 개인 기여는 초기 prototype 이후 backend 전환·release·QA·operation을 실제 사용자 운영까지 이끈 범위로 분리한다.
+- 팀과 함께 Thready를 실제 고객이 결제하는 유료 제품으로 만들고 운영했다. 이는 제품·팀 outcome이며, 개인 기여는 초기 prototype 이후 제품 판단·backend 전환·release·QA·operation을 실제 사용자 운영까지 이끈 범위로 분리한다. 정확한 매출 band는 public copy에 쓰지 않는다.
 - contract·component·operational-flow validation harness를 먼저 세운 backend cutover 전후, 해결된 QA issue의 reopen 비율이 26%p 낮아졌다. 이는 QA 총건수가 아니라 반복 결함 signal이다.
 
 깊이를 만드는 설명:

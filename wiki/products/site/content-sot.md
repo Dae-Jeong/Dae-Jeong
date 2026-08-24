@@ -48,7 +48,7 @@ tags: [sot, content, site, platform]
 
 ## 현재 SoT 스냅샷 (2026-08-22)
 
-- 공통 소개: `아이디어를 새로운 가치로 실현하는 메이커, 김대정입니다.`
+- 공통 소개: `아이디어를 고객이 돈을 내는 제품으로 만드는 메이커, 김대정입니다.`
 - 채용 역할: `Tech Lead · Backend Engineer`; 전문 영역: `AI Product Systems`
 - resume 순서: `소개 → 경력 → 대표 성과 → 기술 → 외부 활동 → credentials`
 - portfolio 순서: `Thready → Company AX → Centurion`, supporting `Memento Payment`; Infrastructure는 archive evidence

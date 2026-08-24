@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: "김대정 — Tech Lead · Backend Engineer",
   description:
-    "아이디어를 새로운 가치로 실현하는 메이커, 김대정입니다. Tech Lead · Backend Engineer · AI Product Systems",
+    "아이디어를 고객이 돈을 내는 제품으로 만드는 메이커, 김대정입니다. Tech Lead · Backend Engineer · AI Product Systems",
 };
 
 export default function RootLayout({

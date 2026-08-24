@@ -2,7 +2,7 @@
 type: product-spec
 title: Portfolio V3 Content Specification
 description: 제품 0→1, 회사 AX 전환 설계, MSA failure boundary를 한 문서에서 검증하는 구현 명세.
-timestamp: 2026-08-23
+timestamp: 2026-08-24
 status: implemented
 depends_on:
   - products/portfolio/README.md
@@ -30,15 +30,15 @@ tags: [portfolio, content, tech-lead, company-ax, backend, implemented]
 ### Hero
 
 - Eyeline: `Maker · Tech Lead · Backend Engineer`
-- Headline: `아이디어를 새로운 가치로 실현하는 메이커, 김대정입니다.`
-- First proof: Thready를 팀과 함께 실제 유료 운영까지 이끈 사실과 2026년 8월 기준 월 약 800만~1,000만원 구독료 매출을 먼저 제시한다.
-- Introduction: 고객 문제를 제품으로 만들고 backend·AI·핵심 frontend·배포·운영까지 맡아온 범위, 비동기 작업·실시간 session의 failure boundary, 회사 AX 구조 설계 참여를 평문으로 연결한다.
+- Headline: `아이디어를 고객이 돈을 내는 제품으로 만드는 메이커, 김대정입니다.`
+- First proof: 고객이 돈을 내는 이유를 찾고 Thready를 팀과 실제 고객이 결제하는 유료 제품으로 만든 사실을 먼저 제시한다. 정확한 매출 band는 internal evidence로만 보존한다.
+- Introduction: 제품 판단·구현·출시·운영을 연결한 범위를 먼저 쓰고, backend·AI·핵심 frontend는 제품을 완성한 직접 구현 근거로 제시한다. 비동기 작업·실시간 session의 failure boundary와 회사 AX 구조 설계 참여는 다음 사례에서 확장한다.
 
 ### First proof composition
 
 ```text
-강한 한 문장  팀과 함께 Thready 유료 운영 · 제품의 월 구독료 매출
-설명 한 문단  제품 요구·직접 구현·운영 · 비동기/실시간 실패 경계 · 회사 AX 설계 참여
+강한 한 문장  고객 문제를 팀과 매출이 발생하는 제품으로 운영 · 제품의 월 구독료 매출
+설명 한 문단  제품 판단·구현·출시·운영 · 직접 구축한 backend/AI/핵심 frontend
 ```
 
 ### Primary order
@@ -59,7 +59,7 @@ tags: [portfolio, content, tech-lead, company-ax, backend, implemented]
 
 ### 공개 제목
 
-> 고객 문제를 팀과 함께 유료 제품으로 만들고, 계속 운영할 백엔드는 직접 다시 설계했습니다.
+> 고객 문제를 팀과 실제 매출이 발생하는 제품으로 만들고, 운영에 필요한 시스템을 직접 구축했습니다.
 
 ### 책임과 결과
 
@@ -68,11 +68,12 @@ tags: [portfolio, content, tech-lead, company-ax, backend, implemented]
 | 리드 | cross-functional 제품 운영·관리, 기능·실험 우선순위, 품질·QA·release 기준 |
 | 직접 담당 | FastAPI backend, Next.js 핵심 workflow, data·AI boundary, 배포·운영 |
 | 협업 | 기획, QA, 마케팅, design |
-| 결과 | 2026년 8월 기준 제품의 월 약 800만~1,000만원 구독료 매출 |
+| 결과 | 실제 고객이 결제하는 유료 제품 운영 · 제품·팀 outcome |
 
 ### 공통 요약과 상세 검증
 
 - 공통 page: 고객 문제 → 팀의 유료 제품 운영 → 실제 product/runtime/delivery architecture → 결과·핵심 판단·직접 담당 proof strip
+- 수익 모델 strip: `CURRENT · 유료 제품 운영`과 `NEXT · 광고 수익 모델 검증 / 운영 데이터 수집 중`을 분리
 - 모바일·공통 A4: 제품 화면 → 제품 backend → Outbox 전달 → AI application → 검증·배포의 5-node synopsis
 - 상세 route: 초기 backend 인계·validation harness·FastAPI 병렬 재구축·cutover와 product/AI ownership·STG migration 검증
 

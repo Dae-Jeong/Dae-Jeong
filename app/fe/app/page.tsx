@@ -35,14 +35,23 @@ const SUMMARY: { no: string; accent?: boolean; text: React.ReactNode }[] = [
     accent: true,
     text: (
       <>
-        기존 frontend를 유지한 채 FastAPI backend를 병렬 재구축하고 validation
-        harness로 전환을 검증했다 — 같은 기준에서 해결된 QA 이슈의{" "}
-        <strong>재오픈 비율이 26%p 낮아졌다</strong>
+        고객이 돈을 내는 이유를 찾고, 기획·QA·마케팅과 문제 정의부터 출시·운영까지
+        이끌었다 — 팀과 함께 <strong>실제 고객이 결제하는 제품</strong>으로 만들었다
       </>
     ),
   },
   {
     no: "02",
+    text: (
+      <>
+        제품 운영에 필요한 FastAPI backend·AI 생성/평가·Next.js 핵심 흐름을 직접
+        구현했고, 인계받은 backend는 validation harness와 함께 병렬 재구축했다 — 같은
+        기준에서 해결된 QA 이슈의 <strong>재오픈 비율이 26%p 낮아졌다</strong>
+      </>
+    ),
+  },
+  {
+    no: "03",
     text: (
       <>
         측정값으로 믿고 쓰던 품질 기준이{" "}
@@ -52,22 +61,12 @@ const SUMMARY: { no: string; accent?: boolean; text: React.ReactNode }[] = [
     ),
   },
   {
-    no: "03",
+    no: "04",
     text: (
       <>
         유형 분기 판정을 writer에 뒀더니{" "}
         <strong>18건 전부 발동하지 않았다</strong> — 판단을 어느 역할에 둘 것인가가
         agent 설계의 핵심이었다
-      </>
-    ),
-  },
-  {
-    no: "04",
-    text: (
-      <>
-        고객 문제에서 출발해 기획·QA·마케팅과 제품 운영을 리드하고 backend·AI·핵심
-        화면을 직접 구현했다 — 제품은 2026.08 기준{" "}
-        <strong>월 약 800만~1,000만원의 구독료 매출</strong>이 발생하고 있다
       </>
     ),
   },
@@ -119,7 +118,7 @@ export default function Home() {
                 MediSolve AI · Tech Lead · Backend Engineer · 재직 중
               </span>
               <h1 className="max-w-[18ch] text-balance font-mono text-4xl font-semibold leading-[1.18] tracking-[-0.025em] max-md:max-w-none max-md:text-[34px]">
-                아이디어를 새로운 가치로 실현하는 메이커, 김대정입니다.
+                아이디어를 고객이 돈을 내는 제품으로 만드는 메이커, 김대정입니다.
               </h1>
               <p className="mt-4 font-mono text-base uppercase tracking-[0.06em] text-fg-2">
                 <b className="font-semibold text-fg">Tech Lead · Backend Engineer</b> · AI Product Systems

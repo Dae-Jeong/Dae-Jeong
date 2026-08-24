@@ -9,6 +9,7 @@ claim_ids:
   - thready.frontend-product-delivery
   - thready.prototype-to-user-operation
   - thready.subscription-revenue-band
+  - thready.ad-revenue-experiment
   - thready.backend-rebuild
   - thready.rebuild-decision-execution
   - thready.qa-reopen-reduction
@@ -26,7 +27,7 @@ claim_strength: mixed (product/frontend led · backend/rebuild/system owned · r
 
 ## Executive Summary
 
-고객이 Threads 콘텐츠를 만들고 성과를 판단할 때 겪는 문제를 기능·품질 기준으로 바꾸고, 기획·QA·마케팅과 실제 유료 운영 단계까지 제품을 이끌었습니다. Next.js 핵심 workflow를 직접 구현하고, 빠른 기능 검증 중심의 초기 backend를 인계받아 팀이 운영할 수 있는 FastAPI 구조로 재구축한 뒤 제품 원장과 AI 실행 상태의 소유권을 분리했습니다. 제품은 2026년 8월 기준 월 약 800만~1,000만원의 구독료 매출이 발생하고 있으며, 매출은 팀·제품의 결과입니다.
+고객이 Threads 콘텐츠를 만들고 성과를 판단할 때 겪는 문제를 기능·품질 기준으로 바꾸고, 기획·QA·마케팅과 실제 고객이 결제하는 유료 제품으로 만들었습니다. 제품 판단부터 구현·출시·운영까지 연결하기 위해 Next.js 핵심 workflow를 직접 만들고, 빠른 기능 검증 중심의 초기 backend를 인계받아 팀이 운영할 수 있는 FastAPI 구조로 재구축한 뒤 제품 원장과 AI 실행 상태의 소유권을 분리했습니다. 고객 결제는 팀·제품의 결과이며 정확한 매출 band는 공개하지 않습니다.
 
 public_visuals:
   - `app/fe/app/portfolio/thready-runtime-diagram.tsx`
@@ -77,12 +78,14 @@ diagram: GitHub -> GitHub Actions -> Vercel / Container Registry -> Azure App Se
 - AI application 전달은 exactly-once가 아니라 retry·version fence·멱등 consumer로 수렴시키며, 최대 재시도 뒤 실패를 보존합니다.
 - corpus 전체를 LLM으로 분석하거나 모델을 학습했다는 주장은 하지 않습니다. corpus productization과 rubric 실험은 별도 근거이며, 운영 지표가 production prompt로 자동 환류된다고 표현하지 않습니다.
 - 월 구독료 매출은 제품·팀 outcome이며 backend 재구축이나 특정 기능 하나의 직접 성과로 귀속하지 않습니다.
+- 광고 적용은 구독 외 수익원을 검증하는 다음 실험입니다. 아직 광고 매출·전환 성과가 없어 현재 결과와 분리해 `NEXT · 운영 데이터 수집 중`으로만 표현합니다.
 
 ## Evidence, Result, And Limits
 
 - 초기 prototype 이후 실제 사용자 운영까지 backend 전환·release·QA·운영 주도
 - Next.js 핵심 사용자·관리 workflow 직접 구현·운영
-- 2026.08 기준 월 약 800만~1,000만원 구독료 매출이 발생하는 유료 제품
+- 실제 고객이 결제하는 유료 제품 운영 · 제품·팀 outcome
+- 광고 기반 수익 모델 검증 시작 · 운영 데이터 수집 중 (성과 미집계)
 - backend rebuild 작업 36시간, QA reopen 비율 26%p 감소
 - STG data migration 2,616 / 795 / 7,111건과 count·MD5·FK·API E2E 검증
 - 최근 1년 내 게시된 공개 콘텐츠 중심의 분석과 독립 labeling workflow, rubric 기반 생성·평가 실험

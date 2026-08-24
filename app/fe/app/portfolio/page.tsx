@@ -10,7 +10,7 @@ import { CaseSummary } from "./case-summary";
 export const metadata: Metadata = {
   title: "Portfolio — 김대정 · Tech Lead · Backend Engineer",
   description:
-    "아이디어를 새로운 가치로 실현하는 메이커, 김대정의 제품·백엔드·회사 AX 포트폴리오",
+    "아이디어를 고객이 돈을 내는 제품으로 만드는 메이커, 김대정의 제품·백엔드·회사 AX 포트폴리오",
 };
 
 export default function PortfolioPage() {
@@ -22,19 +22,19 @@ export default function PortfolioPage() {
           <header className="border-b-2 border-fg pb-10 pt-14 print:pt-0">
             <p className="m-0 text-sm font-medium text-muted">Maker · Tech Lead · Backend Engineer</p>
             <h1 className="mt-4 text-[clamp(2.15rem,4.6vw,3.35rem)] font-semibold leading-[1.04] tracking-[-0.035em] text-balance">
-              <span className="block md:whitespace-nowrap">아이디어를 새로운 가치로 실현하는</span>
-              <span className="block">메이커, 김대정입니다.</span>
+              <span className="block md:whitespace-nowrap">아이디어를 고객이 돈을 내는</span>
+              <span className="block">제품으로 만드는 메이커, 김대정입니다.</span>
             </h1>
             <div className="mt-8 grid grid-cols-[minmax(0,0.9fr)_minmax(320px,1.1fr)] gap-10 border-y border-border py-6 max-lg:grid-cols-1 max-lg:gap-5">
               <p className="m-0 text-xl font-semibold leading-[1.55] text-pretty">
-                기획·QA·마케팅과 함께 Thready를 실제 유료 운영까지 이끌었고, 제품은
-                2026년 8월 기준 월 약 800만~1,000만원의 구독료 매출이 발생합니다.
+                고객이 돈을 내는 이유를 찾고, 기획·QA·마케팅과 제품 판단부터 출시·운영까지
+                이끌었습니다. 팀과 함께 Thready를 실제 고객이 결제하는 제품으로 만들었습니다.
               </p>
               <p className="m-0 text-base leading-[1.75] text-fg-2 text-pretty">
-                고객의 문제를 제품 범위와 품질 기준으로 좁히고, 필요한 backend·AI·핵심
-                frontend를 직접 개발합니다. 제품을 출시하는 데서 끝내지 않고 비동기 작업과
-                실시간 세션의 실패 경계를 설계하며 운영까지 맡아왔습니다. 제품에서 쌓인
-                결정과 검증 기록을 회사 업무로 확장하는 AX 구조 설계에도 참여했습니다.
+                제품 판단부터 구현·출시·운영까지 연결하고, 그 과정에 필요한 backend·AI·핵심
+                frontend를 직접 구축했습니다. 다른 제품에서는 비동기 작업과 실시간 세션의
+                실패 경계를 다뤘고, 제품에서 쌓인 결정과 검증 기록을 회사 업무로 확장하는 AX
+                구조 설계에도 참여했습니다.
               </p>
             </div>
           </header>
@@ -95,7 +95,7 @@ export default function PortfolioPage() {
           <section className="portfolio-keep my-14 bg-fg px-7 py-9 text-bg print:my-8 print:border print:border-fg print:bg-transparent print:text-fg">
             <p className="m-0 text-sm font-medium text-bg/65 print:text-muted">다음 제품에서 맡고 싶은 일</p>
             <h2 className="m-0 mt-3 max-w-[900px] text-[clamp(1.7rem,3vw,2.7rem)] font-semibold leading-[1.2] tracking-[-0.03em] text-balance">
-              고객 문제를 제품으로 만들고, 첫 매출 뒤에도 버틸 수 있는 시스템까지 책임집니다.
+              고객 문제를 실제 매출이 발생하는 제품으로 만들고, 그 제품을 계속 운영할 시스템까지 책임집니다.
             </h2>
             <p className="m-0 mt-5 max-w-[760px] text-base leading-[1.7] text-bg/75 print:text-fg-2">
               제품 판단과 직접 구현을 함께 맡을 Tech Lead·Backend Engineer 역할이라면 이야기 나누고 싶습니다.

@@ -14,18 +14,18 @@ export type SystemCaseDetail = {
 
 export const SYSTEM_DETAILS: Record<string, SystemCaseDetail> = {
   thready: {
-    eyebrow: "AI Content Product · Product / Full-stack",
+    eyebrow: "AI Content Product · Zero-to-One / Operation",
     summary: (
       <>
-        기획·QA·마케팅과 함께 제품 운영을 이끌며 고객 문제를
-        기능·실험 우선순위와 품질 기준으로 바꾸고,
-        <strong> 초기 prototype 이후 실제 사용자·구독료 매출이 발생하는 제품까지</strong>
-        frontend·backend·data·QA·release를 연결했습니다.
+        고객이 돈을 내는 이유를 기획·QA·마케팅과 함께 구체화하고,
+        기능·실험 우선순위부터 구현·출시·운영까지 연결했습니다.
+        <strong> 초기 prototype 이후 실제 사용자·구독료 매출이 발생하는 제품으로</strong>
+        운영하는 데 필요한 frontend·backend·data·AI를 직접 구축했습니다.
       </>
     ),
     kv: [
-      { k: "Role", v: "제품 운영 리드 · Backend 중심 Full-stack" },
-      { k: "Responsibility", v: "제품 운영 리드 · BE/AI/핵심 FE 직접 개발" },
+      { k: "Role", v: "제품 운영 리드 · 핵심 제품 시스템 직접 구현" },
+      { k: "Responsibility", v: "문제 정의·우선순위·출시·운영 · Backend/AI/핵심 FE" },
       { k: "Stack", v: "Next.js · FastAPI · PostgreSQL · LLM" },
       { k: "Status", v: "Production" },
     ],
@@ -53,7 +53,8 @@ export const SYSTEM_DETAILS: Record<string, SystemCaseDetail> = {
       { label: "04", title: "QA·release·operation", desc: "migration rehearsal, API E2E, release gate를 거쳐 실제 사용자 운영" },
     ],
     evidence: [
-      { label: "Product outcome", value: "월 약 800만~1,000만원", note: "2026.08 기준 제품 구독료 매출", claimIds: ["thready.subscription-revenue-band"] },
+      { label: "Product outcome", value: "실제 고객 결제", note: "유료 제품 운영 · 제품·팀 outcome", claimIds: ["thready.subscription-revenue-band"] },
+      { label: "Next revenue model", value: "광고 적용 시작", note: "운영 데이터 수집 중 · 성과 미집계", claimIds: ["thready.ad-revenue-experiment"] },
       { label: "Data basis", value: "최근 1년 중심", note: "공개 게시글 / 반응 추이", claimIds: ["thready.threads-market-outcome-design"] },
       { label: "Migration", value: "2,616 / 795 / 7,111", note: "생성 이력 / 품질 snapshot / 실행 추적 · STG", claimIds: ["thready.ai-service-migration"] },
       { label: "QA signal", value: "26%p 감소", note: "같은 집계 기준으로 확인한 cutover 전후 QA reopen 비율", claimIds: ["thready.qa-reopen-reduction"] },

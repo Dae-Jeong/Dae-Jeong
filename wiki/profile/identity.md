@@ -2,7 +2,7 @@
 type: profile
 title: Identity
 description: Canonical personal category, positioning, bio, and branding guardrails.
-timestamp: 2026-08-21
+timestamp: 2026-08-24
 tags: [identity, positioning, branding]
 ---
 
@@ -17,12 +17,12 @@ tags: [identity, positioning, branding]
 | Supporting role | Backend Engineer |
 | **Dual role** | **Product Owner** (2026-08-10 user-confirmed — 병기하되 primary를 대체하지 않는다) |
 | Specialty | AI Product Systems |
-| Differentiator | **만들면서 무엇을 만들지도 함께 정한다** + 제품·회사 업무를 잇는 Agent-readable Workflow |
+| Differentiator | **고객이 돈을 내는 이유를 찾고, 제품 판단부터 구현·운영까지 연결한다** + 제품·회사 업무를 잇는 Agent-readable Workflow |
 | Supporting narrative | Vision AI -> PM -> Backend -> AI Product/Agent Workflow |
 
 ## Canonical One-Line
 
-> 아이디어를 새로운 가치로 실현하는 메이커, 김대정입니다.
+> 아이디어를 고객이 돈을 내는 제품으로 만드는 메이커, 김대정입니다.
 
 ## Brand Line Application
 
@@ -68,16 +68,16 @@ user-confirmed(2026-08-10): "백엔드 엔지니어 / PO 혼용해도 좋을 것
 
 ## Short Bio
 
-FastAPI/NestJS 기반 product backend, AI generation quality, async/realtime processing, Azure/Terraform deployment를 다뤄왔다. 최근에는 제품별 Decision→release 운영을 리드하고, 의사결정·회의·업무 배정·승인·후속 작업을 agent가 읽는 맥락·도구·사람의 승인 경계로 연결하는 회사 AX 구조 설계에 참여하고 있다. 그 실행 기반인 Backend Template과 agent context는 직접 구축했다.
+고객 문제를 실제 매출이 발생하는 제품으로 만들고 운영해 왔다. 제품 판단과 실행을 잇기 위해 backend·AI·핵심 frontend를 직접 구축하며, 최근에는 제품별 Decision→release 운영과 회사 업무의 맥락을 agent와 사람이 함께 읽는 AX 구조 설계에도 참여하고 있다. 그 실행 기반인 Backend Template과 agent context는 직접 구축했다.
 
 ## Positioning Logic
 
-1. `Maker`는 아이디어를 실제 가치로 만드는 사람이라는 브랜드 프레임이다.
+1. `Maker`는 고객 문제를 실제 매출이 발생하는 제품으로 만들고 운영하는 사람이라는 브랜드 프레임이다.
 2. 채용 시장에서는 Tech Lead의 판단·실행 책임과 Backend Engineer의 기술 기반을 분리해 명확히 표기한다.
 3. Backend credibility와 AI product runtime·quality system 경험으로 전문 영역을 증명한다.
 4. Agent workflow는 별도 직군이 아니라 제품 개발과 회사 업무의 맥락을 실행·검증·사람의 판단으로 잇는 차별점으로 제시한다.
 5. PM/Vision AI 경험은 product-system 관점의 배경으로만 사용한다.
-6. 리드 경험은 "무엇을 왜 만들고 어떤 기준으로 운영할지 결정한 뒤, 사람·agent·시스템의 실행을 정렬한다"는 작동 방식으로 서술한다. Director 등 직함으로 표현하지 않는다.
+6. 리드 경험은 "고객이 돈을 내는 이유를 찾고, 무엇을 만들지 정한 뒤 제품 판단·구현·출시·운영을 정렬한다"는 작동 방식으로 서술한다. Director 등 직함으로 표현하지 않는다.
 
 ## Guardrails
 

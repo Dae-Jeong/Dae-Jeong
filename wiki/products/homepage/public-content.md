@@ -2,7 +2,7 @@
 type: product-content
 title: Homepage Public Content
 description: Homepage hero, bio, and section-level public-safe canonical copy.
-timestamp: 2026-08-21
+timestamp: 2026-08-24
 tags: [homepage, public, branding]
 claim_ids: [thready.product-zero-to-one-contribution, thready.frontend-product-delivery, thready.subscription-revenue-band, thready.backend-rebuild, thready.qa-reopen-reduction, thready.generation-quality-system, centurion.bay-async-backend, centurion.say-realtime-ai, be-template.backend-standard, be-template.agent-context, mediness.company-work-ax-design, mediness.product-operations]
 ---
@@ -13,9 +13,9 @@ claim_ids: [thready.product-zero-to-one-contribution, thready.frontend-product-d
 
 Tech Lead · Backend Engineer · AI Product Systems
 
-> 아이디어를 새로운 가치로 실현하는 메이커, 김대정입니다.
+> 아이디어를 고객이 돈을 내는 제품으로 만드는 메이커, 김대정입니다.
 
-`Maker`는 브랜드 정체성이고, 검색·채용 역할은 `Tech Lead · Backend Engineer`다. 실제 전문성은 FastAPI 기반 product backend, AI generation quality, async/realtime processing, Azure/Terraform 운영 사례로 증명한다.
+`Maker`는 브랜드 정체성이고, 검색·채용 역할은 `Tech Lead · Backend Engineer`다. 첫 근거는 고객 문제를 실제 매출이 발생하는 제품으로 만들고 운영한 경험이며, backend·AI·핵심 frontend는 그 제품을 직접 완성한 실행 범위로 증명한다.
 
 ## Navigation Order
 
@@ -31,14 +31,14 @@ Agent Workflow는 별도 nav가 아니라 Home/case 서술의 differentiator로 
 
 ## Proof Order
 
-1. Backend systems ownership
-2. AI product runtime and quality system
-3. Product·company AX work design
-4. Async/realtime and infra-aware execution
+1. 고객 문제를 실제 매출이 발생하는 제품으로 만든 경험
+2. 제품 운영과 backend·AI·핵심 frontend 직접 구현
+3. Backend 재구축과 AI product runtime·quality system
+4. Product·company AX work design과 async/realtime 실행
 
 ## Selected Proof
 
-- Thready: 제품 운영 리드와 backend·AI·핵심 frontend 직접 구현 — 제품은 2026.08 기준 월 약 800만~1,000만원의 구독료 매출 발생
+- Thready: 고객 문제 정의부터 기능 우선순위·출시·운영까지 리드하고, 제품에 필요한 backend·AI·핵심 frontend 직접 구현 — 팀과 함께 실제 고객이 결제하는 유료 제품으로 운영
 - Thready backend: 기존 frontend를 유지한 병렬 재구축·validation harness·cutover — 같은 기준의 QA 이슈 재오픈 비율 26%p 감소
 - Centurion(피부과 운영 AI 메디컬 플랫폼): 제품 시작 시점부터 구축 — 주문·재고 async backend 구축 주도와 realtime AI backend 공동 주 기여
 - BE Template: 조직 표준 FastAPI template 설계·구축 전담과 agent context system

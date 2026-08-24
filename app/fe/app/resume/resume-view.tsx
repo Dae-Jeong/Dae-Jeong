@@ -374,7 +374,7 @@ function DocKo() {
       <OrderedSections order={SECTIONS_KO.map((section) => section.id)}>
       <Sec id="s1" no="01" title="소개" meta="Profile">
         <p className="m-0 text-xl font-medium leading-relaxed tracking-[-0.015em]">
-          아이디어를 새로운 가치로 실현하는 메이커, 김대정입니다.
+          아이디어를 고객이 돈을 내는 제품으로 만드는 메이커, 김대정입니다.
         </p>
       </Sec>
 
@@ -384,7 +384,7 @@ function DocKo() {
             <span className="mb-1.5 block text-base font-medium text-fg">Tech Lead · Backend Engineer <span className="font-normal text-fg-2">— 제품 운영 리드</span></span>
             <PlainList
               items={[
-                <span key="thready-business" data-claim="thready.product-zero-to-one-contribution thready.frontend-product-delivery thready.prototype-to-user-operation thready.generation-quality-system thready.subscription-revenue-band">Thready에서 <strong>기획·QA·마케팅과 제품 운영을 리드</strong>하고, FastAPI 백엔드·AI 생성/평가 시스템과 Next.js 핵심 사용자·관리 흐름을 직접 구현·운영했습니다. 제품은 2026년 8월 기준 <strong>월 약 800만~1,000만원의 구독료 매출</strong>이 발생하고 있습니다.</span>,
+                <span key="thready-business" data-claim="thready.product-zero-to-one-contribution thready.frontend-product-delivery thready.prototype-to-user-operation thready.generation-quality-system thready.subscription-revenue-band">Thready에서 고객 문제를 기능 우선순위와 품질 기준으로 구체화하고, <strong>기획·QA·마케팅과 제품 운영을 리드</strong>했습니다. 팀과 함께 실제 고객이 결제하는 유료 제품으로 만들었고, 이를 위해 FastAPI 백엔드·AI 생성/평가 시스템과 Next.js 핵심 사용자·관리 흐름을 직접 구현·운영했습니다.</span>,
                 <span key="centurion" data-claim="career.thedaylabs-freelance centurion.msa-platform-context centurion.bay-async-backend centurion.day-product-integration centurion.say-realtime-ai centurion.ray-backend centurion.sso-session">Centurion에서는 법인 설립 전 <strong>초기 백엔드와 개발 기준</strong>을 세웠습니다. 이후 주문·재고 워커와 DAY 예약 정책의 백엔드·프런트엔드·QA·릴리스 연결을 주도했고, 실시간 AI 상담은 공동 주 기여, 시설·재고 연동과 SSO 정책은 일부 기능을 맡았습니다.</span>,
                 <span key="hospital-operations" data-claim="nexus.backend-architecture nexus.admin-backend-ownership">별도의 여러 피부과 운영·예약 시스템에서는 <strong>백엔드 architecture와 migration flow, Admin·Homepage API 구축을 주도</strong>하고 있습니다.</span>,
                 <span key="company-ax" data-claim="mediness.company-work-ax-design mediness.product-system-design-participation mediness.product-operations">MEDINESS의 제품 요구·운영 흐름 설계에 참여하고, Decision·SPEC·Work Package·QA·릴리스는 제품별로 적용·운영했습니다. 회사 AX 구조는 회의·의사결정·업무 배정·승인·후속 작업에서 agent가 맥락·실행안을 준비하고 판단은 사람이 확정하도록 설계하는 데 참여했습니다.</span>,
@@ -427,13 +427,13 @@ function DocKo() {
           <Axis
             first
             no="01"
-            title="고객 문제에서 시작해 팀과 함께 Thready를 유료 제품으로 만들고 운영"
+            title="아이디어를 팀과 실제 고객이 결제하는 Thready 제품으로 만들고 운영"
             data-claim="thready.product-zero-to-one-contribution thready.frontend-product-delivery thready.prototype-to-user-operation thready.subscription-revenue-band thready.release-operation thready.generation-quality-system"
-            description="잘되는 콘텐츠의 기준을 알기 어렵다는 고객 문제를 기능·실험·품질 기준으로 나눴습니다. 기획·QA·마케팅과 제품 운영을 리드하고, 백엔드·AI·핵심 프런트엔드를 직접 구현했습니다."
+            description="고객이 돈을 내는 이유를 찾고, 콘텐츠 제작과 성과 판단의 불편을 기능·실험·품질 기준으로 나눴습니다. 기획·QA·마케팅과 제품 판단부터 출시·운영까지 리드했습니다."
             evidence={[
               <>기능·실험 우선순위와 생성 품질·QA·릴리스 기준을 조율했습니다.<Src>Thready · 제품 운영</Src></>,
+              <>팀과 함께 Thready를 <Metric>실제 고객이 결제하는 유료 제품</Metric>으로 만들고 운영하고 있습니다.<Src>Thready · 제품·팀 성과</Src></>,
               <>FastAPI 백엔드와 AI 생성·평가 시스템, Next.js의 생성·가져오기·예약·발행·관리 흐름을 직접 개발했습니다.<Src>Thready</Src></>,
-              <>제품은 2026년 8월 기준 <Metric>월 약 800만~1,000만원의 구독료 매출</Metric>이 발생하고 있습니다.<Src>Thready · 제품 성과</Src></>,
             ]}
           />
           <Axis
@@ -566,7 +566,7 @@ function DocEn() {
       <OrderedSections order={SECTIONS_EN.map((section) => section.id)}>
       <Sec id="s1" no="01" title="Profile">
         <p className="m-0 text-xl font-medium leading-relaxed tracking-[-0.015em]">
-          I&apos;m Daejeong Kim, a maker who turns ideas into new value.
+          I&apos;m Daejeong Kim, a maker who turns ideas into products customers pay for.
         </p>
       </Sec>
 
@@ -576,7 +576,7 @@ function DocEn() {
             <span className="mb-1.5 block text-base font-medium text-fg">Tech Lead · Backend Engineer <span className="font-normal text-fg-2">— product operations lead</span></span>
             <PlainList
               items={[
-                <span key="thready-business" data-claim="thready.product-zero-to-one-contribution thready.frontend-product-delivery thready.prototype-to-user-operation thready.generation-quality-system thready.subscription-revenue-band">At Thready, I lead <strong>product operations with planning, QA, and marketing</strong> and directly build and operate the FastAPI backend, AI generation/evaluation system, and core Next.js user and admin flows. As of August 2026, the product generates <strong>approximately KRW 8&ndash;10M in monthly subscription revenue</strong></span>,
+                <span key="thready-business" data-claim="thready.product-zero-to-one-contribution thready.frontend-product-delivery thready.prototype-to-user-operation thready.generation-quality-system thready.subscription-revenue-band">At Thready, I turn customer problems into product priorities and quality criteria, then lead <strong>product operations with planning, QA, and marketing</strong>. Together, we turned it into a paid product with real customer payments. I directly build and operate the FastAPI backend, AI generation/evaluation system, and core Next.js user and admin flows needed to run it.</span>,
                 <span key="centurion" data-claim="career.thedaylabs-freelance centurion.msa-platform-context centurion.bay-async-backend centurion.day-product-integration centurion.say-realtime-ai centurion.ray-backend centurion.sso-session">For Centurion, I established the <strong>initial backend and engineering standards</strong> before incorporation. I later led order/inventory workers and the backend&ndash;frontend&ndash;QA&ndash;release integration of DAY reservation policy, co-led realtime AI consultation work, and contributed to facility/inventory integration and SSO policy</span>,
                 <span key="hospital-operations" data-claim="nexus.backend-architecture nexus.admin-backend-ownership">Separately, I am leading <strong>backend architecture, migration flows, and the Admin/Homepage API build</strong> for a multi-clinic dermatology operations and booking system</span>,
                 <span key="company-ax" data-claim="mediness.company-work-ax-design mediness.product-system-design-participation mediness.product-operations">I contributed to the product-requirement and operating-flow design of MEDINESS, then led the product-level application of Decision, SPEC, Work Package, QA, and release criteria. Building on that work, I contributed to a <strong>company AX structure</strong> that separates the tasks agents can prepare from the decisions people retain across meetings, assignments, approvals, and follow-up actions</span>,
@@ -619,13 +619,13 @@ function DocEn() {
           <Axis
             first
             no="01"
-            title="Took Thready from a customer problem to paid operation with the team"
+            title="Turned an idea into a Thready product customers pay for with the team"
             data-claim="thready.product-zero-to-one-contribution thready.frontend-product-delivery thready.prototype-to-user-operation thready.subscription-revenue-band thready.release-operation thready.generation-quality-system"
-            description="I broke down the customer problem of not knowing what content performs into product, experiment, and quality criteria, then led cross-functional operations while implementing the core product flows."
+            description="I identified why customers would pay, broke their content creation and performance problem into product, experiment, and quality criteria, and led the path from product decisions to launch and operations."
             evidence={[
               <>Coordinated feature and experiment priorities, generation-quality criteria, QA, and releases with planning, QA, and marketing<Src>Thready · product operations</Src></>,
+              <>Together, we turned Thready into <Metric>a paid product with real customer payments</Metric><Src>Thready · product/team outcome</Src></>,
               <>Directly implemented the FastAPI backend, AI generation/evaluation, and Next.js flows for creation, import, scheduling, publishing, and administration<Src>Thready</Src></>,
-              <>As of August 2026, the product generates <Metric>approximately KRW 8–10M in monthly subscription revenue</Metric><Src>Thready · product outcome</Src></>,
             ]}
           />
           <Axis

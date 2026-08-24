@@ -22,7 +22,7 @@ tags: [profile, baseline, derived, index]
 | --- | --- | --- |
 | 이름 | 김대정 | [identity.md](identity.md) |
 | 브랜드 정체성 | **Maker** | [identity.md](identity.md) |
-| 공통 소개 문장 | **아이디어를 새로운 가치로 실현하는 메이커, 김대정입니다.** | [identity.md](identity.md) |
+| 공통 소개 문장 | **아이디어를 고객이 돈을 내는 제품으로 만드는 메이커, 김대정입니다.** | [identity.md](identity.md) |
 | 1순위 직무 | **Tech Lead** | [identity.md](identity.md) |
 | 지원 역할 | **Backend Engineer** | [identity.md](identity.md) |
 | 전문 영역 | AI Product Systems | [identity.md](identity.md) |
@@ -77,7 +77,7 @@ AI Engineer 2021.12~2022.09 → PM 2022.10~2023.09 → Backend Engineer 2023.10~
 
 ## 4. Common Resume 대표 성과
 
-1. Thready의 제품 운영을 리드하고 backend·AI·핵심 frontend와 typed prompt builder·LLM judge·평가 루프를 직접 구축. 제품·팀 outcome으로 **월 약 800만~1,000만원 구독료 매출**이 발생 (`thready.product-zero-to-one-contribution`, `thready.frontend-product-delivery`, `thready.generation-quality-system`, `thready.subscription-revenue-band`)
+1. 아이디어를 팀과 **실제 고객이 결제하는 Thready 제품**으로 만들고 운영을 리드. 제품에 필요한 backend·AI·핵심 frontend와 typed prompt builder·LLM judge·평가 루프를 직접 구축 (`thready.product-zero-to-one-contribution`, `thready.frontend-product-delivery`, `thready.generation-quality-system`, `thready.subscription-revenue-band`)
 2. 기존 frontend contract를 유지한 채 FastAPI backend를 병렬 재구축하고 validation harness와 cutover를 운영. 동일 기준의 QA reopen 비율 **26%p 감소** (`thready.rebuild-decision-execution`, `thready.backend-rebuild`, `thready.qa-reopen-reduction`)
 3. Centurion BAY에서 주문·재고 API와 실패 가능한 후속 작업을 분리하고, Celery→TaskIQ·RabbitMQ 전환, 상태·retry·terminal failure·수동 재처리 경계와 재현 가능한 test/CI 기반 구축 (`centurion.bay-async-backend`, `centurion.async-migration`, `centurion.test-ci-foundation`)
 4. AI application·DB 분리, STG 실데이터 migration 검증, Transactional Outbox의 lease·attempt token·retry·delivery version fence·멱등 consumer·terminal failure 보존 기반 복구 경계 구축 (`thready.ai-service-boundary`, `thready.ai-service-migration`, `thready.ai-replica-outbox`)

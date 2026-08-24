@@ -2,7 +2,7 @@
 type: decision-log
 title: Resume Decisions
 description: General A4 resume의 positioning, scope, and version decisions.
-timestamp: 2026-08-23
+timestamp: 2026-08-24
 tags: [resume, decisions, positioning]
 ---
 
@@ -12,7 +12,7 @@ tags: [resume, decisions, positioning]
 
 | Decision | Rationale |
 | --- | --- |
-| `Maker`는 브랜드 정체성, `Tech Lead · Backend Engineer`는 채용 역할 label | 소개에서는 `아이디어를 새로운 가치로 실현하는 메이커, 김대정입니다.`를 사용하되 경력·metadata·검색 직군은 시장에서 인식 가능한 역할로 유지한다. |
+| `Maker`는 브랜드 정체성, `Tech Lead · Backend Engineer`는 채용 역할 label | 소개에서는 `아이디어를 고객이 돈을 내는 제품으로 만드는 메이커, 김대정입니다.`를 사용하되 경력·metadata·검색 직군은 시장에서 인식 가능한 역할로 유지한다. |
 | Primary headline은 `Tech Lead`, supporting role은 `Backend Engineer` | 현재 맡은 판단·실행 책임을 먼저 제시하고, backend 사례와 메커니즘으로 전문성을 증명한다. |
 | Specialty는 `AI Product Systems` | prompt 사용이 아니라 runtime, quality, async/realtime 운영 경험을 묶는다. |
 | Agent workflow는 differentiator | 별도 직군 주장보다 engineering execution 방식으로 제시할 때 신뢰도가 높다. |
@@ -25,7 +25,8 @@ tags: [resume, decisions, positioning]
 | 소개 다음에는 경력을, 그 뒤에 대표 기술 사례를 둔다 | 회사·직함·기간·담당 범위라는 사실을 먼저 보여준 뒤 기술적 주장을 검증한다. |
 | 별도 `일하는 방식` 섹션을 사용하지 않는다 | 재구축·품질 판정·표준화 사례와 같은 claim을 반복해 밀도만 낮췄다. 성향은 사례의 반복된 모양으로 전달한다. |
 | Product Owner 성격은 별도 직함이 아니라 제품 판단→backend contract 연결로 증명 | `Backend Engineer / PO` 병렬 표기를 피하고 domain·API·transaction·QA·release에 반영된 실제 판단을 쓴다. |
-| 공통 이력서는 유료 제품 운영에서 반복 가능한 backend 전문성으로 전개 | Thready 제품·팀 outcome을 먼저 보여준 뒤, 인계받은 backend 재구축, Centurion 비동기 복구, Thready AI 데이터 경계, 조직 표준 순으로 재현 가능한 기술 판단을 증명한다. |
+| 공통 이력서는 실제 매출이 발생하는 제품을 만든 경험에서 반복 가능한 backend 전문성으로 전개 | 고객 문제를 제품 판단·구현·출시·운영으로 연결한 Thready 경험과 제품·팀 outcome을 먼저 보여준다. 이어 인계받은 backend 재구축, Centurion 비동기 복구, Thready AI 데이터 경계, 조직 표준 순으로 그 실행력을 기술적으로 증명한다. |
+| 광고 수익 모델은 성과가 아니라 다음 제품 실험으로만 표현 | 광고 적용 초기라 수익·전환 성과가 없다. 포트폴리오의 `NEXT`에서 운영 데이터 수집 중인 검증 상태만 보여주고, 이력서와 채용 플랫폼에는 성과가 확인되기 전까지 넣지 않는다. |
 | `AX`는 primary title이 아니라 회사 업무 설계 경험을 보여주는 전문 사례 축으로 둔다 | 제품 개발뿐 아니라 의사결정·회의·업무 배정·승인·후속 작업을 사람·agent의 실행 맥락과 human gate로 연결한 범위를 구체적으로 쓴다. |
 | 인프라는 대표 전문성이 아니라 보조적인 delivery 경험으로 둔다 | 여러 서비스가 동작하도록 Azure·Vercel 배포 환경을 구성하고 기본 운영을 맡은 사실은 경력·기술에 짧게 남긴다. 회사 topology·state·monitoring 수치를 대표 성과나 독립 포트폴리오 사례로 사용하거나 infrastructure architecture 전문성으로 확대하지 않는다. |
 | 직접 application code가 없는 설계·운영 기여도 검증되면 포함한다 | code commit만 경력의 기준으로 삼지 않는다. 대신 `참여`·`적용/운영 리드`·`구축`을 contribution strength에 맞게 분리한다. |

@@ -1,9 +1,9 @@
 ---
 type: handoff
-title: Platform Profile Paste Package — Maker v1
+title: Platform Profile Paste Package — Maker v2
 description: 홈페이지와 공통 이력서 1차 확정본에서 파생한 채용 플랫폼별 붙여넣기 문안과 적용 체크리스트.
 status: ready
-timestamp: 2026-08-22
+timestamp: 2026-08-24
 derived_from:
   - profile/identity.md
   - app/fe/app/page.tsx
@@ -17,9 +17,9 @@ supersedes:
 tags: [platform, profile, maker, distribution, paste, ready]
 ---
 
-# Platform Profile Paste Package — Maker v1
+# Platform Profile Paste Package — Maker v2
 
-이 문서는 Wanted·LinkedIn·Remember·Groupby·RocketPunch·Saramin에 넣을 **현재 문안의 단일 패키지**다.
+이 문서는 Wanted·LinkedIn·Remember·Groupby·RocketPunch에 넣을 **현재 문안의 단일 패키지**다.
 새 사실을 만드는 문서가 아니라 홈페이지와 공통 이력서를 플랫폼 제약에 맞춰 줄인 파생본이다.
 
 문안 승인과 실제 게시 승인은 분리한다. 이 문서는 붙여넣기 준비까지만 완료했으며, 플랫폼 저장·공개·구직 상태 변경은 별도 실행 요청 뒤 진행한다.
@@ -29,7 +29,7 @@ tags: [platform, profile, maker, distribution, paste, ready]
 
 | 항목 | 기준값 |
 | --- | --- |
-| 브랜드 문장 | `아이디어를 새로운 가치로 실현하는 메이커, 김대정입니다.` |
+| 브랜드 문장 | `아이디어를 고객이 돈을 내는 제품으로 만드는 메이커, 김대정입니다.` |
 | 채용 역할 | `Tech Lead · Backend Engineer` |
 | 공식 경력 직무 필드 | `Backend Engineer` |
 | 검색 직군 | `Backend Engineer` / `백엔드 개발자` |
@@ -41,7 +41,7 @@ tags: [platform, profile, maker, distribution, paste, ready]
 - `Maker`는 브랜드 정체성이다. 직무 태그나 공식 직책으로 등록하지 않는다.
 - `Tech Lead`는 primary positioning이자 실제 수행 역할이지만 법적 고용 직함이라고 단정하지 않는다. canonical 경력 직무는 `Backend Engineer`로 보존하고, 플랫폼의 표시 직책은 UI 용도에 따라 `Tech Lead`를 사용할 수 있다.
 - `기업부설연구소장`은 evidence에만 보존하고 공개 headline·About·소개에는 넣지 않는다.
-- 제품 매출은 개인 단독 성과가 아니라 제품·팀 outcome으로 표현한다.
+- 고객 결제는 개인 단독 성과가 아니라 제품·팀 outcome으로 표현한다. 정확한 매출액·구간은 public copy에서 제외한다.
 
 ### 0.1 경력 메타데이터
 
@@ -62,41 +62,41 @@ tags: [platform, profile, maker, distribution, paste, ready]
 ### 1.1 브랜드 한 문장
 
 ```text
-아이디어를 새로운 가치로 실현하는 메이커, 김대정입니다.
+아이디어를 고객이 돈을 내는 제품으로 만드는 메이커, 김대정입니다.
 ```
 
 ### 1.2 짧은 소개 — 300자 제한 플랫폼
 
 ```text
-아이디어를 새로운 가치로 실현하는 메이커, 김대정입니다. 현재 MediSolve AI에서 Tech Lead 역할을 맡아 사내 제품을 직접 개발·운영하고 있습니다. 기획·QA·마케팅과 제품의 우선순위를 정하고, Backend Engineer로 백엔드·AI·핵심 화면을 구현합니다. 포트폴리오: https://marinkim.xyz
+아이디어를 고객이 돈을 내는 제품으로 만드는 메이커, 김대정입니다. 기획·QA·마케팅과 고객 문제를 제품으로 만들고 출시·운영을 리드합니다. Thready를 팀과 실제 고객이 결제하는 유료 제품으로 만들었고, 필요한 FastAPI 백엔드·AI·Next.js 핵심 흐름을 직접 구현했습니다. https://marinkim.xyz
 ```
 
 ### 1.3 Wanted — 기본 소개
 
 ```text
-아이디어를 새로운 가치로 실현하는 메이커, 김대정입니다.
+아이디어를 고객이 돈을 내는 제품으로 만드는 메이커, 김대정입니다.
 
-고객이 어디서 막히는지 찾고, 기획·QA·마케팅과 다음에 만들 기능과 실험을 정합니다. 필요한 FastAPI 백엔드와 AI 생성·평가 시스템, Next.js 화면은 직접 만들고 실제 사용자가 쓰는 서비스가 될 때까지 운영합니다.
+고객이 돈을 내는 이유를 찾고, 기획·QA·마케팅과 문제 정의부터 출시·운영까지 이끕니다. Thready를 팀과 실제 고객이 결제하는 유료 제품으로 만들었습니다.
 
-현재 MediSolve AI에서 제품팀의 일정·이슈·릴리스 운영을 리드하고, 맡은 제품의 백엔드·AI·핵심 화면을 직접 개발·운영합니다.
+제품에 필요한 FastAPI 백엔드·AI 생성/평가 시스템·Next.js 핵심 흐름을 직접 구현하며, 현재 MediSolve AI에서 Tech Lead 역할과 제품 운영을 맡고 있습니다.
 ```
 
 ### 1.3.1 Remember — 커넥트용 소개
 
 ```text
-아이디어를 새로운 가치로 실현하는 메이커, 김대정입니다.
+아이디어를 고객이 돈을 내는 제품으로 만드는 메이커, 김대정입니다.
 
-고객이 어디서 막히는지 찾고, 기획·QA·마케팅과 무엇을 먼저 만들지 정합니다. 필요한 백엔드·AI·핵심 화면을 직접 만들고, 실제 사용자가 쓰는 서비스가 될 때까지 운영합니다.
+고객이 돈을 내는 이유를 찾고, 기획·QA·마케팅과 무엇을 먼저 만들지 정합니다. Thready를 팀과 실제 고객이 결제하는 유료 제품으로 만들었습니다.
 
-현재 MediSolve AI에서 Tech Lead 역할을 맡고 있으며, Backend Engineer로 여러 사내 제품을 직접 개발·운영하고 있습니다.
+제품 판단부터 출시·운영까지 연결하고 필요한 백엔드·AI·핵심 화면을 직접 만듭니다. 현재 MediSolve AI에서 Tech Lead 역할과 제품 운영을 맡고 있습니다.
 ```
 
 ### 1.3.2 Remember — 채용 서비스용 소개
 
 ```text
-아이디어를 새로운 가치로 실현하는 메이커, 김대정입니다.
+아이디어를 고객이 돈을 내는 제품으로 만드는 메이커, 김대정입니다.
 
-MediSolve AI에서 Tech Lead 역할을 맡고, Backend Engineer로 여러 사내 제품을 직접 개발·운영합니다. Thready에서는 기획·QA·마케팅과 제품 운영을 리드하며 FastAPI 백엔드·AI 생성/평가 시스템·Next.js 핵심 흐름을 직접 구현했습니다.
+MediSolve AI에서 Tech Lead 역할을 맡고, Backend Engineer로 여러 사내 제품을 직접 개발·운영합니다. Thready에서는 고객 문제를 제품 우선순위와 품질 기준으로 구체화하고 기획·QA·마케팅과 출시·운영을 리드했습니다. 팀과 실제 고객이 결제하는 유료 제품으로 만들었고, 필요한 FastAPI 백엔드·AI 생성/평가 시스템·Next.js 핵심 흐름을 직접 구현했습니다.
 
 Python·FastAPI를 중심으로 운영 백엔드 재구축, 주문·재고 비동기 처리, AI 실행부·데이터 분리와 조직 표준 backend 기반을 다뤄왔습니다. Azure·Vercel 배포 환경은 서비스가 동작하도록 구성하고 기본 운영을 맡았습니다.
 ```
@@ -104,21 +104,21 @@ Python·FastAPI를 중심으로 운영 백엔드 재구축, 주문·재고 비�
 ### 1.3.3 Groupby — 소개
 
 ```text
-아이디어를 새로운 가치로 실현하는 메이커, 김대정입니다.
+아이디어를 고객이 돈을 내는 제품으로 만드는 메이커, 김대정입니다.
 
-고객이 어디서 막히는지 찾고, 기획·QA·마케팅과 다음에 만들 기능과 실험을 정합니다. 필요한 FastAPI 백엔드와 AI 생성·평가 시스템, Next.js 핵심 화면은 직접 만들고 실제 사용자가 쓰는 서비스가 될 때까지 운영합니다.
+고객이 돈을 내는 이유를 찾고, 기획·QA·마케팅과 문제 정의부터 출시·운영까지 이끕니다. Thready를 팀과 실제 고객이 결제하는 유료 제품으로 만들었습니다.
 
-현재 MediSolve AI에서 제품팀의 일정·이슈·릴리스 운영을 리드하고, Backend Engineer로 맡은 제품을 직접 개발·운영하고 있습니다.
+제품에 필요한 FastAPI 백엔드·AI 생성/평가 시스템·Next.js 핵심 흐름을 직접 구현하며, 현재 MediSolve AI에서 Tech Lead 역할과 제품 운영을 맡고 있습니다.
 ```
 
 ### 1.4 LinkedIn About — KO
 
 ```text
-아이디어를 새로운 가치로 실현하는 메이커, 김대정입니다.
+아이디어를 고객이 돈을 내는 제품으로 만드는 메이커, 김대정입니다.
 
-고객이 어디서 막히는지 찾고, 기획·QA·마케팅과 무엇을 먼저 만들지 정한 뒤 필요한 백엔드·AI·핵심 화면을 직접 만듭니다. Thready에서는 이 방식으로 제품 운영을 리드해 실제 사용자와 구독료 매출이 발생하는 유료 제품을 팀과 함께 운영하고 있습니다.
+고객이 돈을 내는 이유를 찾고, 기획·QA·마케팅과 문제 정의부터 출시·운영까지 이끕니다. Thready를 팀과 실제 고객이 결제하는 유료 제품으로 만들었습니다.
 
-출시 뒤 운영도 직접 맡습니다. 다른 구성원이 빠른 검증을 위해 만든 초기 백엔드를 인계받았을 때는 운영 가능한 FastAPI 구조로 다시 만들고, 검증 하네스와 병렬 전환으로 안정성을 확인했습니다. 의료 플랫폼의 주문·재고 worker와 실시간 AI 상담, 조직 표준 FastAPI 기반도 직접 다뤄 왔습니다.
+제품 판단만 한 것이 아닙니다. 제품에 필요한 FastAPI 백엔드·AI 생성/평가 시스템·Next.js 핵심 흐름을 직접 구현했습니다. 다른 구성원이 빠른 검증을 위해 만든 초기 백엔드는 운영 가능한 FastAPI 구조로 병렬 재구축하고 검증 하네스로 전환을 확인했습니다. 의료 플랫폼의 주문·재고 worker와 실시간 AI 상담, 조직 표준 FastAPI 기반도 직접 다뤄 왔습니다.
 
 현재 MediSolve AI에서 Backend Engineer로 일하며 Tech Lead 역할과 제품 운영을 맡고 있습니다.
 
@@ -128,9 +128,9 @@ Resume · Portfolio → https://marinkim.xyz
 ### 1.5 LinkedIn About — EN draft
 
 ```text
-I’m Daejeong Kim, a maker who turns ideas into new value.
+I’m Daejeong Kim, a maker who turns ideas into products customers pay for.
 
-I turn customer pain into product decisions, align priorities with product, QA, and marketing, and directly build the backend, AI systems, and core workflows needed to ship. At Thready, I lead product operations and helped take the product to paid operation with real users and subscription revenue.
+I turn customer pain into product decisions, align priorities with product, QA, and marketing, and directly build the backend, AI systems, and core workflows needed to ship. At Thready, I lead product operations and helped turn it into a paid product with real customer payments.
 
 I also rebuild systems for continued operation. I inherited an early backend and rebuilt it into an operable FastAPI system using validation harnesses and a parallel cutover. My work also spans asynchronous order and inventory workers, realtime AI consultation, and shared FastAPI foundations.
 
@@ -154,7 +154,7 @@ Resume · Portfolio → https://marinkim.xyz
 ```text
 Tech Lead 역할 · Backend Engineer — 제품 운영 리드
 
-- [제품 운영·직접 구현] 기획·QA·마케팅과 Thready 제품 운영을 리드하고 FastAPI 백엔드·AI 생성/평가 시스템·Next.js 핵심 흐름을 직접 개발·운영했습니다. 제품은 2026.08 기준 월 약 800만~1,000만원의 구독료 매출이 발생합니다.
+- [제품 0→1·유료 운영] 고객 문제를 기능 우선순위와 품질 기준으로 구체화하고, 기획·QA·마케팅과 Thready의 제품 판단·출시·운영을 리드했습니다. 팀과 실제 고객이 결제하는 유료 제품으로 만들었고, 제품에 필요한 FastAPI 백엔드·AI 생성/평가 시스템·Next.js 핵심 흐름도 직접 개발·운영했습니다.
 - [병렬 재구축·검증] 다른 구성원이 빠른 기능 검증을 위해 만든 초기 백엔드를 인계받아 기존 프런트엔드와 출시 흐름을 유지한 채 FastAPI로 병렬 재구축·전환했습니다. 같은 기준의 Jira 집계에서 해결된 QA 이슈의 재오픈 비율이 전환 전보다 26%p 낮게 관측됐습니다.
 - [주문·재고 비동기 처리] Centurion BAY의 주문·재고 API와 TaskIQ·RabbitMQ worker 구축을 주도하고, 작업 상태·retry·terminal failure·수동 재처리 경계를 설계했습니다.
 - [AI 실행부·데이터 경계] 제품 정책·원장은 product backend가, 생성 lifecycle·실행 상태는 독립 FastAPI application·DB가 소유하도록 분리했습니다. STG 이관을 행 수·MD5·FK·API E2E로 검증하고 Outbox·delivery version fence로 지연·중복·역순 전달이 최신 상태를 덮지 않도록 했습니다.
@@ -164,7 +164,7 @@ Tech Lead 역할 · Backend Engineer — 제품 운영 리드
 ### 2.2 MediSolve AI — 3문장 축약형
 
 ```text
-- 기획·QA·마케팅과 Thready 제품 운영을 리드하고 백엔드·AI·핵심 프런트엔드를 직접 개발·운영. 제품은 2026.08 기준 월 약 800만~1,000만원의 구독료 매출 발생
+- 고객 문제를 제품 기능·품질 기준으로 구체화하고 기획·QA·마케팅과 Thready의 출시·운영을 리드. 팀과 실제 고객이 결제하는 유료 제품으로 만들고 운영. 필요한 백엔드·AI·핵심 프런트엔드 직접 개발·운영
 - 다른 구성원이 빠른 기능 검증을 위해 만든 초기 백엔드를 인계받아 FastAPI로 병렬 재구축·전환하고 검증 하네스를 선행 구축. 같은 기준의 Jira 집계에서 해결 이슈 재오픈 비율이 26%p 낮게 관측
 - 주문·재고 비동기 worker, 제품 원장–AI 실행 분리, 조직 표준 FastAPI template 구축·운영
 ```
@@ -246,7 +246,7 @@ AI로 분석·구현을 가속하고 테스트·평가 하네스로 결과를 �
 **Headline**
 
 ```text
-Tech Lead · Backend Engineer | AI Product Systems · Python · FastAPI | 아이디어를 새로운 가치로 실현하는 메이커
+Tech Lead · Backend Engineer | AI Product Systems · Python · FastAPI | 아이디어를 고객이 돈을 내는 제품으로 만드는 메이커
 ```
 
 **About**: §1.4 사용
@@ -275,7 +275,7 @@ Tech Lead · Backend Engineer | AI Product Systems · Python · FastAPI | 아이
 
 **English secondary profile**
 
-- Headline: `Tech Lead · Backend Engineer | AI Product Systems · Python · FastAPI | Maker turning ideas into new value`
+- Headline: `Tech Lead · Backend Engineer | AI Product Systems · Python · FastAPI | Maker turning ideas into products customers pay for`
 - About: §1.5
 - Experience는 한국어 게시본을 먼저 확정한 뒤 같은 claim 강도로 별도 번역한다.
 
@@ -314,9 +314,9 @@ Tech Lead · Backend Engineer | AI Product Systems · Python · FastAPI | 아이
 
 **후속 실무 프로젝트 3건 — 이번 1차 적용에서는 미반영**
 
-1. `Thready — 고객 문제에서 유료 운영까지`
-   - 기획·QA·마케팅과 제품 운영 리드, 백엔드·AI·핵심 프런트엔드 직접 구현
-   - 2026.08 기준 월 약 800만~1,000만원의 구독료 매출이 발생하는 제품·팀 성과
+1. `Thready — 아이디어에서 실제 고객이 결제하는 제품까지`
+   - 기획·QA·마케팅과 제품 판단·출시·운영 리드, 백엔드·AI·핵심 프런트엔드 직접 구현
+   - 실제 고객이 결제하는 유료 제품 운영 · 제품·팀 성과
    - 인계받은 초기 백엔드를 FastAPI로 재구축하고 제품 원장과 AI 실행 경계 분리
 2. `Centurion — 의료 제품군의 주문·재고와 실시간 상담 backend`
    - 주문·재고 API·TaskIQ·RabbitMQ worker 구축 주도
@@ -362,7 +362,8 @@ Tech Lead · Backend Engineer | AI 제품 개발·운영
 
 | 분류 | 플랫폼 | 처리 |
 | --- | --- | --- |
-| 동기화 | Wanted, LinkedIn, Remember, Groupby, RocketPunch, Saramin | 이 패키지 기준으로 갱신 |
+| 동기화 | Wanted, LinkedIn, Remember, Groupby, RocketPunch | 이 패키지 기준으로 갱신 |
+| 제외 | Saramin | 사용하지 않기로 확정했으며 쓰기·동기화하지 않음 |
 | 정리 | Oopy | 새 문안을 넣지 않고 다른 플랫폼 링크를 marinkim.xyz로 교체한 뒤 공개 종료 여부 확인 |
 | 보류 | Jumpit | 현재 관리 대상이 아님. live 이력서 존재 여부 확인 뒤 신규 생성 여부 결정 |
 
@@ -377,7 +378,6 @@ Tech Lead · Backend Engineer | AI 제품 개발·운영
 | Remember | 소개 두 탭, MediSolve·STUDIO LAB·아이즈솔 설명, skill, 링크 | 두 소개 탭을 용도별 문안으로 분리, C# 없음, STUDIO LAB `2024.01`, 15 skill | 각 탭 저장 → reload → field value 재확인 |
 | Groupby | 소개와 credentials 목록, 경력 종료일, skill, 링크 | Maker 소개 + credentials 유지, STUDIO LAB `2024.01`, marinkim.xyz | 저장 → reload → 목록 누락과 링크 확인 |
 | RocketPunch | 300자 소개, 경력, 프로젝트 순서, C#, 링크, 구직 상태 | 1차는 §1.2와 경력 5건 최신화·C# 제거, 실무 프로젝트 3건은 후속 | 저장 → reload → field value 재확인; 구직 상태는 보존 |
-| Saramin | 인증 경력 총계, 자기소개·경력기술서 구조, skill, 문서·링크 | 필드 제한 확인 뒤 §1.3·§2 반영, credentials·portfolio 등록 | reload → 이력서 미리보기·공개 범위 확인 |
 
 ## 7. 사용 금지 문구
 
@@ -409,12 +409,14 @@ Tech Lead · Backend Engineer | AI 제품 개발·운영
 
 이번 1차 적용의 완료 기준은 `붙여넣었다`가 아니라 **저장 뒤 reload한 field value와 SoT 문안이 일치하는 상태**다. 비로그인 공개값은 별도 세션에서 검증했을 때 완료로 기록한다.
 
-## 9. Live 적용 결과 — 2026-08-23
+## 9. Live 적용 결과 — 2026-08-24
 
-- Wanted·LinkedIn·Remember·Groupby·RocketPunch: 저장 후 reload 검증 완료
+- Wanted·LinkedIn·Remember·Groupby·RocketPunch: Maker v2 소개와 MediSolve AI 경력을 저장하고 reload 검증 완료
+- 공개 문안: 실제 고객이 결제하는 유료 제품과 직접 구현 범위를 사용하고 정확한 매출 band·광고 실험은 제외
+- RocketPunch: 저장 후 자동 AI 커리어 요약도 새 경력 기반으로 재생성됨
 - LinkedIn Featured: `marinkim.xyz` URL 검증 실패로 미등록, 상단 웹사이트 버튼으로 대체
 - Saramin: 사용하지 않기로 확정해 동기화 대상에서 제외, 쓰기 0건
 - Oopy: 레거시 링크 교체와 공개 종료 판단 pending
-- Wanted의 더데이랩스 row·credentials, RocketPunch의 자동 생성 요약·HTML title은 플랫폼 UI 제약에 따른 잔여값으로 보존
+- Wanted의 더데이랩스 row·credentials는 플랫폼 UI 제약에 따른 잔여값으로 보존
 
 필드별 결과와 보존한 설정은 [2026-08-22 Live 적용 검증](2026-08-22-live-verification.md)이 소유한다.

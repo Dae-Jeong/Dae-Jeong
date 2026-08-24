@@ -1,7 +1,7 @@
 export const ROLE_CATALOG = {
   "tech-lead-product": {
     slug: "tech-lead-product",
-    label: "Backend-first Tech Lead · Product Engineer",
+    label: "Product-led Tech Lead · Product Engineer",
     shortLabel: "Tech Lead",
   },
   backend: {

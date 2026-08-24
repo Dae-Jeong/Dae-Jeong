@@ -147,7 +147,7 @@ export function ChatView() {
             <VisitorMsg>김대정은 어떤 엔지니어인가요?</VisitorMsg>
             <AgentMsg>
               <p>
-                아이디어를 새로운 가치로 실현하는 메이커, 김대정입니다. 현재는 Tech
+                아이디어를 고객이 돈을 내는 제품으로 만드는 메이커, 김대정입니다. 현재는 Tech
                 Lead · Backend Engineer로 여러 제품을 직접 개발하고 운영하고 있습니다.
               </p>
               <Evidence ids={["profile.identity", "career.medisolve-role-evolution"]} />

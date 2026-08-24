@@ -2,7 +2,7 @@
 type: index
 title: TODO — 통합 작업 목록
 description: 여러 문서에 흩어진 남은 작업의 단일 진입점. 상세는 각 owner 문서가 소유한다.
-timestamp: 2026-08-23
+timestamp: 2026-08-24
 canonical: false
 derived_from: [context/current-state.md, products/site/content-sot.md, products/resume/content-contract.md, backlog/platform-profile-consolidation/2026-08-22-live-verification.md, backlog/platform-profile-consolidation/2026-08-22-platform-paste-package.md, backlog/README.md]
 tags: [context, todo, routing]
@@ -23,9 +23,8 @@ tags: [context, todo, routing]
 owner: [Live 적용 검증](../backlog/platform-profile-consolidation/2026-08-22-live-verification.md) · 목표 문안: [Platform Paste Package](../backlog/platform-profile-consolidation/2026-08-22-platform-paste-package.md)
 
 - [ ] **LinkedIn EN secondary** — 영문 resume의 `allowed_copy_en` 검수가 끝난 뒤에만 선택적으로 입력
-- [ ] **플랫폼 infra 문구 재동기화** — 홈페이지·resume에서 infra를 supporting delivery 경험으로 낮춘 기준에 맞춰 LinkedIn·Wanted·Remember·Groupby·RocketPunch의 회사 Azure topology·6 state·400+ object·monitoring 강조를 제거하고 reload/public 값을 검증
 - [ ] **Oopy** — 다른 플랫폼 링크를 marinkim.xyz로 교체하고 공개 종료 여부 판단
-- [ ] **플랫폼 UI 잔여값** — Wanted의 더데이랩스 row·credentials, RocketPunch 자동 생성 AI 요약·HTML title, LinkedIn Featured URL 검증의 안전한 수정 경로 확인
+- [ ] **플랫폼 UI 잔여값** — Wanted의 더데이랩스 row·credentials와 LinkedIn Featured URL 검증의 안전한 수정 경로 확인
 
 ### A2. claim 근거 보강
 

@@ -79,15 +79,27 @@ function ThreadyCase({
         focus={focus}
         summary={
           <>
-            콘텐츠 제작 고객의 문제를 기능·품질 기준으로 바꾸고, 기획·QA·마케팅과 함께
-            실제 유료 운영 단계까지 제품을 이끌었습니다. Next.js 핵심 흐름을 직접 구현하고,
+            고객이 돈을 내는 이유를 기획·QA·마케팅과 함께 구체화하고, 제품 판단부터
+            출시·운영까지 이끌었습니다. 제품에 필요한 Next.js 핵심 흐름을 직접 구현하고,
             빠른 기능 검증 중심의 초기 백엔드를 인계받아 팀이 운영할 수 있는 FastAPI
             구조로 재구축했습니다. 이어 제품 원장과 AI 실행 상태의 소유권을 분리했습니다.
-            제품의
-            <strong> 월 구독료 매출은 2026년 8월 기준 약 800만~1,000만원</strong>입니다.
+            팀과 함께 <strong>실제 고객이 결제하는 유료 제품</strong>으로 만들었습니다.
           </>
         }
       />
+
+      <section className="portfolio-keep mt-7 grid grid-cols-2 border-y border-fg max-md:grid-cols-1 print:grid-cols-2">
+        <div className="px-5 py-5 max-md:border-b max-md:border-border print:border-b-0">
+          <p className="m-0 font-mono text-xs font-semibold text-success">CURRENT · SUBSCRIPTION</p>
+          <strong className="mt-3 block text-lg">유료 제품 운영</strong>
+          <span className="mt-2 block text-sm text-fg-2">실제 고객 결제 · 제품·팀 outcome</span>
+        </div>
+        <div className="border-l border-border px-5 py-5 max-md:border-l-0 print:border-l">
+          <p className="m-0 font-mono text-xs font-semibold text-muted">NEXT · ADVERTISING</p>
+          <strong className="mt-3 block text-lg">광고 수익 모델 검증</strong>
+          <span className="mt-2 block text-sm text-fg-2">적용 시작 · 운영 데이터 수집 중</span>
+        </div>
+      </section>
 
       <section className="pt-10">
         <Subhead note="PRODUCT · RUNTIME ARCHITECTURE">제품 운영과 실제 실행 환경을 한 구조로 연결했습니다.</Subhead>
@@ -95,7 +107,7 @@ function ThreadyCase({
         <dl className="portfolio-keep m-0 mt-5 grid grid-cols-3 border-y border-border max-md:grid-cols-1 print:grid-cols-3">
           {[
             ["리드", "제품 운영 · 우선순위 · 품질 · QA · 릴리스"],
-            ["직접 구현", "Next.js · FastAPI · 데이터 · AI"],
+            ["직접 구현", "제품 핵심 흐름 · Next.js · FastAPI · 데이터 · AI"],
             ["팀 협업", "기획 · QA · 마케팅 · 디자인"],
           ].map(([label, value], index) => (
             <div

@@ -2,7 +2,7 @@
 type: project-evidence
 title: Thready Evidence
 description: AI content product operation, full-stack delivery, backend rebuild, generation quality, and operation evidence.
-timestamp: 2026-08-18
+timestamp: 2026-08-24
 source_roots: [workspace]
 tags: [thready, ai-product, full-stack, backend, frontend, evidence]
 ---
@@ -42,7 +42,7 @@ Source locator: `workspace:thready`
 - User-confirmed (2026-08-20): Thready에서는 PO 역할을 병행하며 기획·QA·마케팅 담당자와 함께 제품 운영·관리를 리드했다. 고객 문제 정의, 기능·실험 우선순위, 생성 품질 기준, QA·release·production operation을 하나의 제품 실행 흐름으로 조율했다.
 - User-confirmed: 초기 prototype 이후 제품 요구 구체화, backend·frontend·AI 품질 system 구축, QA·release·production operation을 실제 사용자 운영까지 연결하는 0→1 실행을 주도했다.
 - Evidence-backed support: 아래 market data·labeling·quality evidence와 backend rebuild·release evidence가 각 실행 영역을 독립적으로 뒷받침한다.
-- Business boundary: 2026년 8월 기준 월 약 800만~1,000만원 구독료 매출이 발생하는 제품에 문제 정의부터 기술 구현·운영까지 상당 부분 기여했다. 매출은 제품·팀 outcome이며 특정 기능 또는 개인의 단독 인과가 아니다.
+- Business boundary: 2026년 8월 기준 월 약 1,000만~1,200만원 구독료 매출이 발생하는 제품에 문제 정의부터 기술 구현·운영까지 상당 부분 기여했다. 매출은 제품·팀 outcome이며 특정 기능 또는 개인의 단독 인과가 아니다.
 - Contribution boundary: cross-functional team과 함께한 PO 역할의 제품 운영과 제품 0→1 실행은 `led`; PO가 공식 등재 직함이라고 단정하거나 기획·QA·마케팅·design·acquisition의 실행까지 혼자 담당한 것으로 표현하지 않는다. frontend는 별도 code-backed claim 범위에서 직접 개발로 표현하되, 제품 전체 frontend를 단독 구축한 것으로 확대하지 않는다. 공개 문구는 responsibility map과 함께 사용한다.
 
 ## Threads Market Data And Outcome Design
@@ -83,11 +83,18 @@ Source locator: `workspace:thready`
 
 ## Subscription Revenue
 
-- User-confirmed (2026-08-18): Thready에서 현재 월 약 800만~1,000만원의 구독료 매출이 발생한다.
-- Verification boundary: billing/accounting 자료, gross/net·VAT·refund 처리, `MRR` 정의, 지속 기간과 월평균은 확인되지 않았다. 따라서 날짜가 고정된 월 구독료 매출 band만 공개한다.
+- User-confirmed (2026-08-24): Thready에서 현재 월 약 1,000만~1,200만원의 구독료 매출이 발생한다. 이 band에는 이제 적용을 시작한 광고의 미집계 수익을 포함하지 않는다.
+- Verification boundary: billing/accounting 자료, gross/net·VAT·refund 처리, `MRR` 정의, 지속 기간과 월평균은 확인되지 않았다. 날짜가 고정된 월 구독료 매출 band도 internal evidence에만 보존하고 공개하지 않는다.
 - Attribution boundary: 제품·팀의 business outcome이며 개인 단독 성과가 아니다. 김대정의 검증된 기여는 초기 prototype 이후 backend 전환·release·QA·operation을 실제 사용자 운영까지 이끈 범위다.
 - Causality boundary: Threads 마케팅 기준이나 backend 재구축이 매출을 직접 만들었다는 인과는 검증되지 않았다. 기술·제품 기여와 매출 결과는 병렬 성과로만 제시한다.
-- Public wording: `2026년 8월 기준 월 약 800만~1,000만원의 구독료 매출이 발생하는 AI 콘텐츠 제품` 또는 더 약한 표현만 허용한다.
+- Public wording: `실제 고객이 결제하는 AI 콘텐츠 제품`, `팀과 함께 고객 문제를 유료 제품으로 만들고 운영`처럼 정확한 매출액을 드러내지 않는 표현만 허용한다.
+
+## Advertising Revenue Experiment
+
+- User-confirmed (2026-08-24): 구독 외 수익원을 검증하기 위해 Thready 공개 화면에 광고 적용을 시작했다.
+- Status boundary: 적용 초기라 광고 매출·노출·클릭·전환·ROAS는 아직 집계되지 않았다. 현재 확인 가능한 사실은 광고 기반 수익 모델의 검증을 시작했고 운영 데이터를 수집하는 단계라는 점뿐이다.
+- Attribution boundary: 광고 실험은 제품 운영 범위에서 진행하는 다음 수익화 시도다. 개인 단독 사업 성과나 이미 검증된 성장 성과로 표현하지 않는다.
+- Public wording: portfolio의 현재 성과와 분리된 `NEXT` 영역에서 `광고 기반 수익 모델 검증을 시작했고 운영 데이터를 수집 중`이라고만 표현한다.
 
 ## Generation Quality System
 
@@ -153,7 +160,7 @@ Source locator: `workspace:thready`
 
 - 제품명 Thready와 AI 콘텐츠 생성 제품 설명은 공개 가능하다.
 - Threads corpus의 범위화된 표본 규모와 기준 수립·실험 반영 사실은 공개 가능하다.
-- 2026년 8월 기준 월 구독료 매출은 claim registry의 banded copy만 공개 가능하다.
+- 2026년 8월 기준 월 구독료 매출 band는 internal evidence로만 보존하며, public copy에는 정확한 액수나 범위를 노출하지 않는다.
 - provider 실명, private repository path, internal metric은 공개하지 않는다.
 
 ## Rejected Or Unverified Claims

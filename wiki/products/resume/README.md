@@ -2,7 +2,7 @@
 type: index
 title: Resume Product
 description: Active web resume expression, evidence mapping, and JD-tailored resume contract.
-timestamp: 2026-08-23
+timestamp: 2026-08-24
 tags: [resume, product, master]
 ---
 
@@ -13,7 +13,7 @@ tags: [resume, product, master]
 ## Product Contract
 
 - 목적: 첫 장에서 `Tech Lead · Backend Engineer`와 `AI Product Systems` 적합성 판정을 시작하고, 전체 문서만으로 제품 판단·기술 구현·production 운영 역량을 검증하게 한다.
-- 차별점: 고객 문제를 팀과 실제 유료 제품으로 운영한 경험과, 인계받은 초기 backend를 production 운영 단계에 맞게 재구축한 경험을 한 흐름으로 보여준다. 비동기 복구·AI 데이터 경계·조직 표준은 이 역량이 다른 시스템에서도 반복됐음을 증명한다. Cloud/Delivery는 대표 전문성이 아니라 서비스 배포·기본 운영을 해본 보조 경험으로만 둔다.
+- 차별점: 고객이 돈을 내는 이유를 찾고 팀과 실제 매출이 발생하는 제품으로 만든 경험을 먼저 보여준다. Backend·AI·핵심 frontend는 이 제품을 직접 완성한 실행 범위이며, 인계받은 backend 재구축·비동기 복구·AI 데이터 경계·조직 표준은 같은 역량이 다른 시스템에서도 반복됐음을 증명한다. Cloud/Delivery는 대표 전문성이 아니라 서비스 배포·기본 운영을 해본 보조 경험으로만 둔다.
 - 입력: [profile](../../profile/README.md), [claim registry](../../evidence/claims/README.md)
 - 상세 설명: [portfolio](../portfolio/README.md)
 - 섹션·문체·분량: [content-contract.md](content-contract.md)

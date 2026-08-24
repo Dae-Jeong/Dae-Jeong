@@ -61,6 +61,30 @@ function ProofStrip({ items }: { items: Proof[] }) {
   );
 }
 
+function RevenueTrack() {
+  return (
+    <section
+      aria-label="Thready 수익 모델의 현재와 다음 실험"
+      className="portfolio-keep mt-7 grid grid-cols-2 border-y border-fg max-md:grid-cols-1 print:grid-cols-2"
+    >
+      <div className="px-5 py-5 max-md:border-b max-md:border-border print:border-b-0">
+        <p className="m-0 font-mono text-xs font-semibold text-success">CURRENT · SUBSCRIPTION</p>
+        <strong className="mt-3 block text-xl leading-[1.3]">유료 제품 운영</strong>
+        <span className="mt-2 block text-sm leading-[1.6] text-fg-2">
+          실제 고객 결제 · 제품·팀 outcome
+        </span>
+      </div>
+      <div className="border-l border-border px-5 py-5 max-md:border-l-0 print:border-l">
+        <p className="m-0 font-mono text-xs font-semibold text-muted">NEXT · ADVERTISING</p>
+        <strong className="mt-3 block text-xl leading-[1.3]">광고 수익 모델 검증</strong>
+        <span className="mt-2 block text-sm leading-[1.6] text-fg-2">
+          적용 시작 · 운영 데이터 수집 중 · 성과 미집계
+        </span>
+      </div>
+    </section>
+  );
+}
+
 function MobileFlow({
   title,
   nodes,
@@ -116,18 +140,20 @@ function ThreadySummary({ meta }: { meta: CaseMeta }) {
         meta={meta}
         lead={
           <>
-            콘텐츠 제작 고객의 문제를 기획·QA·마케팅과 함께 제품 요구와 품질 기준으로
-            좁혔습니다. Next.js 핵심 흐름과 FastAPI·AI backend를 직접 구현하고, 초기
-            backend를 운영 가능한 구조로 다시 설계했습니다.
+            고객이 돈을 내는 이유를 기획·QA·마케팅과 함께 구체화하고, 기능 우선순위부터
+            출시·운영까지 이끌었습니다. 제품에 필요한 Next.js 핵심 흐름과 FastAPI·AI
+            backend를 직접 구축하고, 초기 backend를 운영 가능한 구조로 다시 설계했습니다.
           </>
         }
         outcome={
           <>
-            팀과 함께 실제 유료 운영까지 이끌었고, 제품은 2026년 8월 기준 월 약
-            800만~1,000만원의 구독료 매출이 발생합니다.
+            팀과 실제 고객이 결제하는 유료 제품으로 만들고, 출시 이후에도 계속 운영하고
+            있습니다.
           </>
         }
       />
+
+      <RevenueTrack />
 
       <section className="mt-8">
         <div className="max-md:hidden print:hidden">
@@ -147,9 +173,9 @@ function ThreadySummary({ meta }: { meta: CaseMeta }) {
 
       <ProofStrip
         items={[
-          { label: "제품 결과", value: "실제 사용자 운영 · 월 구독료 매출 발생" },
-          { label: "핵심 판단", value: "제품 원장과 AI 실행 상태의 소유권 분리" },
-          { label: "직접 맡은 범위", value: "제품 운영 · 핵심 frontend · FastAPI · AI · release" },
+          { label: "제품 리딩", value: "고객 문제 · 우선순위 · 품질 · QA · release" },
+          { label: "직접 구현", value: "Next.js 핵심 흐름 · FastAPI · data · AI" },
+          { label: "운영 경계", value: "제품 원장과 AI 실행 상태의 소유권 분리" },
         ]}
       />
       <DetailLink slug={meta.slug} label="Thready의 기술 판단과 검증 근거 보기" />

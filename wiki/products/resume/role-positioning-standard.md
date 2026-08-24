@@ -2,7 +2,7 @@
 type: product-contract
 title: Resume Role Positioning Standard
 description: 김대정의 역할을 직함이 아니라 반복된 판단·기술 경계·운영 결과로 전달하는 이력서 기준.
-timestamp: 2026-08-22
+timestamp: 2026-08-24
 derived_from:
   - profile/identity.md
   - evidence/claims/
@@ -14,7 +14,7 @@ tags: [resume, positioning, role, backend]
 
 ## 브랜드 소개와 채용 역할
 
-> 아이디어를 새로운 가치로 실현하는 메이커, 김대정입니다.
+> 아이디어를 고객이 돈을 내는 제품으로 만드는 메이커, 김대정입니다.
 
 이 문장은 브랜드 소개다. 채용 역할 label은 `Tech Lead · Backend Engineer`, specialty는 `AI Product Systems`다. `Maker`를 직함처럼 사용하지 않고, 아이디어를 실제 제품과 가치로 만든 범위는 경력과 대표 사례가 증명한다. `Product Owner` 역시 슬래시로 병기할 별도 정체성이 아니라 무엇을 만들지 판단하고 그 판단을 실행 가능한 backend contract로 바꾼 경험으로 증명한다.
 
@@ -45,7 +45,7 @@ tags: [resume, positioning, role, backend]
 | 주 역할 | `Tech Lead` | 제품 범위·품질 기준·실행 정렬 책임을 먼저 전달 |
 | 기술 기반 | `Backend Engineer` | API·data·transaction·async/realtime·infra 전문성을 증명 |
 | 전문 영역 | `AI Product Systems` | AI runtime·quality·서비스 경계와 운영 범위 |
-| 차별화되는 작동 방식 | 고객 문제를 유료 제품 운영으로 연결하고, 그 제품을 버틸 backend 경계를 직접 설계 | 제품 운영·재구축·비동기 복구·AI 데이터 경계·Backend Template 사례가 반복해서 증명 |
+| 차별화되는 작동 방식 | 고객이 돈을 내는 이유를 찾고 실제 매출이 발생하는 제품으로 만든 뒤, 운영에 필요한 backend 경계를 직접 설계 | 제품 운영·직접 구현·재구축·비동기 복구·AI 데이터 경계·Backend Template 사례가 반복해서 증명 |
 
 금지:
 

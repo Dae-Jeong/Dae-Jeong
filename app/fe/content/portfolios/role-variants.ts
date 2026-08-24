@@ -5,20 +5,20 @@ import {
 } from "@/content/role-catalog";
 import type { RolePortfolio } from "./types";
 
-const UPDATED_AT = "2026-08-22";
-const MAKER_HOOK = "아이디어를 새로운 가치로 실현하는 메이커, 김대정입니다.";
+const UPDATED_AT = "2026-08-24";
+const MAKER_HOOK = "아이디어를 고객이 돈을 내는 제품으로 만드는 메이커, 김대정입니다.";
 
 const ROLE_PORTFOLIOS_BY_SLUG = {
   "tech-lead-product": {
     ...ROLE_CATALOG["tech-lead-product"],
-    description: "제품 판단·직접 구현·회사 AX 실행 체계를 전면에 둔 포트폴리오",
+    description: "고객 문제·매출 outcome·직접 구현·회사 AX 실행 체계를 함께 보여주는 포트폴리오",
     status: "draft",
     visibility: "local",
     updatedAt: UPDATED_AT,
     brandLine: MAKER_HOOK,
-    headline: "제품을 만들고, 회사가 반복해서 실행할 방식도 함께 설계했습니다.",
+    headline: "고객 문제를 실제 매출이 발생하는 제품으로 만들고, 회사가 반복해서 실행할 방식도 설계했습니다.",
     introduction:
-      "Thready에서는 고객 문제를 기능·품질 기준으로 바꾸고 기획·QA·마케팅과 실제 유료 운영 단계까지 제품을 이끌었습니다. Next.js 핵심 흐름과 FastAPI 백엔드·AI 생성·평가 영역을 직접 구현하고, 빠른 기능 검증 중심으로 만들어진 초기 백엔드를 팀이 운영할 수 있는 구조로 재구축했습니다. 이후 제품 개발에서 쌓인 결정·작업·검증을 회사 업무까지 이어갈 수 있도록 AX 전환 구조 설계에 참여했습니다.",
+      "Thready에서는 고객이 돈을 내는 이유를 기능·품질 기준으로 바꾸고 기획·QA·마케팅과 실제 매출이 발생하는 제품으로 운영했습니다. 제품에 필요한 Next.js 핵심 흐름과 FastAPI 백엔드·AI 생성·평가 영역을 직접 구현하고, 초기 백엔드를 팀이 운영할 수 있는 구조로 재구축했습니다. 이후 제품 개발에서 쌓인 결정·작업·검증을 회사 업무까지 이어갈 수 있도록 AX 전환 구조 설계에 참여했습니다.",
     proofAxes: [
       {
         title: "문제에서 제품까지",
@@ -38,7 +38,7 @@ const ROLE_PORTFOLIOS_BY_SLUG = {
         kind: "dossier",
         slug: "thready",
         focus:
-          "기획·QA·마케팅과 유료 제품 운영을 이끌고, Next.js 핵심 흐름과 FastAPI·AI를 직접 구현한 뒤 BE–AI 경계를 나눈 과정을 봅니다.",
+          "고객이 돈을 내는 이유를 찾고 팀과 매출이 발생하는 제품으로 운영한 뒤, Next.js 핵심 흐름과 FastAPI·AI를 직접 구현하고 BE–AI 경계를 나눈 과정을 봅니다.",
       },
       {
         kind: "dossier",
@@ -160,9 +160,9 @@ const ROLE_PORTFOLIOS_BY_SLUG = {
     updatedAt: UPDATED_AT,
     brandLine: MAKER_HOOK,
     headline:
-      "고객의 문제를 제품으로 만들고, 회사 업무를 잇는 구조도 함께 설계했습니다.",
+      "고객의 문제를 실제 매출이 발생하는 제품으로 만들고, 회사 업무를 잇는 구조도 함께 설계했습니다.",
     introduction:
-      "Thready에서는 고객이 막히는 지점을 기능·품질 기준으로 바꾸고 기획·QA·마케팅과 실제 유료 운영 단계까지 제품을 이끌었습니다. 백엔드·AI·핵심 프런트엔드를 직접 구현한 뒤 제품의 Decision·SPEC·Work Package·QA·release 흐름을 운영했고, 의사결정·회의·업무 배정·승인·후속 작업까지 같은 맥락으로 연결하는 회사 AX 구조 설계에 참여했습니다.",
+      "Thready에서는 고객이 돈을 내는 이유를 기능·품질 기준으로 바꾸고 기획·QA·마케팅과 실제 매출이 발생하는 제품으로 운영했습니다. 필요한 백엔드·AI·핵심 프런트엔드를 직접 구현한 뒤 제품의 Decision·SPEC·Work Package·QA·release 흐름을 운영했고, 의사결정·회의·업무 배정·승인·후속 작업까지 같은 맥락으로 연결하는 회사 AX 구조 설계에 참여했습니다.",
     proofAxes: [
       {
         title: "문제 정의와 제품화",

@@ -10,7 +10,7 @@ import { ROLE_CATALOG, ROLE_VARIANT_SLUGS } from "../role-catalog";
 import type { RoleVariantSlug } from "../role-catalog";
 
 const UPDATED_AT = "2026-08-22";
-const MAKER_HOOK = "아이디어를 새로운 가치로 실현하는 메이커, 김대정입니다.";
+const MAKER_HOOK = "아이디어를 고객이 돈을 내는 제품으로 만드는 메이커, 김대정입니다.";
 
 const CONTACTS = [
   { label: "marin.backend@gmail.com", href: "mailto:marin.backend@gmail.com" },
@@ -297,18 +297,18 @@ const TECH_LEAD_SKILLS: readonly ResumeSkill[] = [
 
 export const TECH_LEAD_PRODUCT_RESUME = makeBase({
   ...ROLE_CATALOG["tech-lead-product"],
-  description: "제품 판단과 backend 실행, 운영 결과를 함께 보여주는 기본 지원본",
-  position: "Backend-first Tech Lead · Product Engineer",
+  description: "고객 문제를 매출이 발생하는 제품으로 만든 경험과 직접 구현 범위를 함께 보여주는 기본 지원본",
+  position: "Product-led Tech Lead · Product Engineer",
   summary: [
     {
       text: [
         {
-          text: "고객이 어디에서 막히는지 찾고, 그 문제를 제품 범위로 정한 뒤 백엔드·AI·핵심 화면까지 직접 만들어 운영하는 Tech Lead이자 Backend Engineer",
+          text: "고객이 돈을 내는 이유를 찾고, 제품 판단부터 구현·출시·운영까지 연결하는 Tech Lead이자 Backend Engineer",
           tone: "strong",
         },
-        { text: "입니다. 기획·QA·마케팅과 Thready 제품 운영을 이끌었고, 제품은 " },
-        { text: "2026년 8월 기준 월 약 800만~1,000만원", tone: "metric" },
-        { text: "의 구독료 매출이 발생하고 있습니다." },
+        { text: "입니다. 기획·QA·마케팅과 Thready의 제품 운영을 리드했고, 팀과 함께 " },
+        { text: "실제 고객이 결제하는 유료 제품", tone: "metric" },
+        { text: "으로 만들었습니다. 제품에 필요한 backend·AI·핵심 frontend도 직접 구축했습니다." },
       ],
       claimIds: [
         "career.medisolve-role-evolution",
@@ -351,9 +351,9 @@ export const TECH_LEAD_PRODUCT_RESUME = makeBase({
     ],
     currentDetails: [
       [
-        { text: "Thready 제품 운영", tone: "strong" },
+        { text: "Thready의 제품 판단·출시·운영", tone: "strong" },
         {
-          text: "을 기획·QA·마케팅과 함께 리드하고 FastAPI backend·AI 생성/평가 system과 Next.js 핵심 흐름을 직접 구현했습니다. 제품은 2026년 8월 기준 월 약 800만~1,000만원의 구독료 매출이 발생하고 있습니다.",
+          text: "을 기획·QA·마케팅과 함께 리드했습니다. 팀과 실제 고객이 결제하는 유료 제품으로 만들었고, FastAPI backend·AI 생성/평가 system과 Next.js 핵심 흐름을 직접 구현했습니다.",
         },
       ],
       "빠른 기능 검증 중심으로 만들어진 초기 prototype backend를 인계받아 validation harness를 먼저 구축하고 FastAPI backend를 병렬 재구축·전환했습니다. 전환 전후 같은 기준의 Jira 집계에서 해결된 QA issue의 reopen 비율은 26%p 낮게 관측됐습니다.",
@@ -367,13 +367,13 @@ export const TECH_LEAD_PRODUCT_RESUME = makeBase({
   outcomes: [
     {
       no: "01",
-      title: "고객 문제에서 시작해 팀과 함께 Thready를 유료 제품으로 만들고 운영",
+      title: "고객 문제를 팀과 실제 매출이 발생하는 Thready 제품으로 만들고 운영",
       description: [
-        "잘되는 콘텐츠의 기준을 알기 어렵다는 고객 문제를 데이터·기능·생성 품질 문제로 나누고, 팀과 제품 운영을 이끄는 동시에 핵심 제품 흐름을 직접 구현했습니다.",
+        "고객이 돈을 내는 이유를 찾고 콘텐츠 제작·성과 판단 문제를 데이터·기능·생성 품질 기준으로 나눴습니다. 팀과 제품 판단부터 출시·운영까지 이끌었습니다.",
         { text: "기능·실험 우선순위, 생성 품질 기준, QA·release 운영 리드", source: "제품 운영" },
+        { text: "제품 성과: 실제 고객이 결제하는 유료 제품 운영", source: "팀 outcome" },
         { text: "FastAPI backend·AI 생성/평가와 Next.js 생성·예약·발행·관리 흐름 구현", source: "제품 개발" },
         { text: "최근 1년 내 게시된 공개 콘텐츠와 반응 추이를 바탕으로 콘텐츠 outcome 후보 설계", source: "시장 데이터" },
-        { text: "제품 성과: 월 약 800만~1,000만원 구독료 매출(2026.08 기준)", source: "팀 outcome" },
       ],
       claimIds: [
         "thready.product-zero-to-one-contribution",
@@ -669,9 +669,9 @@ export const AI_PRODUCT_BACKEND_RESUME = makeBase({
     },
     {
       text: [
-        { text: "Vision AI와 PM 경험으로 고객 문제를 생성 기능과 품질 기준으로 구체화합니다. Thready에서는 제품 운영과 backend·AI·핵심 frontend 구현을 맡았고, 제품은 " },
-        { text: "2026년 8월 기준 월 약 800만~1,000만원", tone: "metric" },
-        { text: "의 구독료 매출이 발생하고 있습니다." },
+        { text: "Vision AI와 PM 경험으로 고객 문제를 생성 기능과 품질 기준으로 구체화합니다. Thready에서는 제품 판단부터 출시·운영까지 리드했고, 팀과 " },
+        { text: "실제 고객이 결제하는 유료 제품", tone: "metric" },
+        { text: "으로 만들었습니다. 필요한 backend·AI·핵심 frontend도 직접 구현했습니다." },
       ],
       claimIds: [
         "career.ai-pm-backend-continuity",
@@ -697,7 +697,7 @@ export const AI_PRODUCT_BACKEND_RESUME = makeBase({
       "centurion.bay-async-backend",
     ],
     currentDetails: [
-      "기획·QA·마케팅과 Thready 제품 운영을 리드하며 FastAPI backend·AI 생성/평가 system과 Next.js의 핵심 사용자·관리 흐름을 직접 구현했습니다. 제품 성과: 월 약 800만~1,000만원 구독료 매출(2026.08 기준)",
+      "고객 문제를 제품 기능·품질 기준으로 구체화하고 기획·QA·마케팅과 Thready의 출시·운영을 리드했습니다. 팀과 실제 고객이 결제하는 유료 제품으로 만들었고, FastAPI backend·AI 생성/평가 system과 Next.js 핵심 사용자·관리 흐름을 직접 구현했습니다.",
       "AI application과 DB를 product backend에서 분리하고 STG 생성 이력 2,616건·품질 snapshot 795건·trace 7,111건을 이관했습니다. MD5·FK·API E2E와 Outbox·version fence로 정합성을 검증했습니다.",
       "최근 1년 내 게시된 Threads 공개 콘텐츠와 반응 추이를 중심으로 outcome 후보를 설계하고, 본문·이어쓰기 labeling workflow와 3단계 생성 품질 기준을 구축했습니다.",
       "실시간 AI 상담 backend의 session lifecycle과 provider 경계 안정화에 공동 주 기여하고, 주문·재고 worker의 상태·retry·재처리 경계를 구축했습니다.",
@@ -706,13 +706,13 @@ export const AI_PRODUCT_BACKEND_RESUME = makeBase({
   outcomes: [
     {
       no: "01",
-      title: "유료 AI 콘텐츠 제품의 운영·개발 리드",
+      title: "고객 문제를 실제 매출이 발생하는 AI 콘텐츠 제품으로 운영",
       description: [
-        "고객 문제를 기능·실험 우선순위와 생성 품질 기준으로 바꾸고, backend·AI·핵심 frontend를 실제 사용자 흐름까지 구현했습니다.",
+        "고객이 돈을 내는 이유를 기능·실험 우선순위와 생성 품질 기준으로 바꾸고, 팀과 제품 판단부터 출시·운영까지 이끌었습니다.",
         { text: "기획·QA·마케팅과 제품 운영 리드", source: "Thready" },
+        { text: "제품 성과: 실제 고객이 결제하는 유료 제품 운영", source: "팀 outcome" },
         { text: "FastAPI backend와 AI 생성·평가 system 직접 개발·운영", source: "AI product" },
         { text: "Next.js 콘텐츠 생성·가져오기·예약·발행·관리 workflow 구현", source: "product flow" },
-        { text: "제품 성과: 월 약 800만~1,000만원 구독료 매출(2026.08 기준)", source: "팀 outcome" },
       ],
       claimIds: [
         "thready.product-zero-to-one-contribution",
@@ -873,7 +873,7 @@ export const AX_FDE_RESUME = makeBase({
       "infra.company-azure-ownership",
     ],
     currentDetails: [
-      "고객의 콘텐츠 제작 문제를 기능·실험·품질 기준으로 구체화하고 기획·QA·마케팅과 Thready 제품 운영을 리드했습니다. backend·AI·핵심 frontend도 직접 구현했으며 제품은 월 약 800만~1,000만원의 구독료 매출이 발생합니다(2026.08 기준).",
+      "고객이 돈을 내는 이유를 기능·실험·품질 기준으로 구체화하고 기획·QA·마케팅과 Thready의 제품 판단·출시·운영을 리드했습니다. 팀과 실제 고객이 결제하는 유료 제품으로 만들었고, 필요한 backend·AI·핵심 frontend도 직접 구현했습니다.",
       "MEDINESS의 제품 요구·운영 흐름 설계에 참여하고, 제품별 Decision·SPEC·Work Package와 BE·FE·QA owner lane, QA approval·release gate 적용과 운영을 리드했습니다. 회사 AX 구조는 회의·의사결정·업무 배정·승인·후속 작업에서 agent가 맥락·실행안을 준비하고 판단은 사람이 확정하도록 설계하는 데 참여했습니다.",
       "layered architecture·DI·ADR·runbook 기반 FastAPI template과 agent-readable context를 직접 구축했습니다.",
       "DAY 예약 정책을 backend 판단·frontend 표시·QA·release로 연결하고, 별도 피부과 운영·예약 backend 구축을 주도해 제품의 예약률·고객사 매출 성과에 기여했습니다.",
@@ -883,12 +883,12 @@ export const AX_FDE_RESUME = makeBase({
   outcomes: [
     {
       no: "01",
-      title: "고객의 콘텐츠 제작 문제를 유료 AI 제품으로 구체화",
+      title: "고객의 콘텐츠 제작 문제를 실제 매출이 발생하는 AI 제품으로 구체화",
       description: [
         "무엇을 써야 반응을 얻을지 알기 어렵다는 문제를 기능·실험·품질 기준으로 나누고, 팀과 제품 운영을 리드하며 실제 제품 흐름을 구현했습니다.",
         { text: "고객 문제→기능·실험 우선순위→품질·release 기준 연결", source: "Thready" },
+        { text: "제품 성과: 실제 고객이 결제하는 유료 제품 운영", source: "팀 outcome" },
         { text: "backend·AI·핵심 frontend 직접 구현", source: "product delivery" },
-        { text: "제품 성과: 월 약 800만~1,000만원 구독료 매출(2026.08 기준)", source: "팀 outcome" },
       ],
       claimIds: [
         "thready.product-zero-to-one-contribution",
