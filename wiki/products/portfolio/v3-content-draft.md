@@ -30,7 +30,7 @@ tags: [portfolio, content, tech-lead, company-ax, backend, implemented]
 ### Hero
 
 - Eyeline: `Maker · Tech Lead · Backend Engineer`
-- Headline: `아이디어를 고객이 돈을 내는 제품으로 만드는 메이커, 김대정입니다.`
+- Headline: `아이디어를 새로운 가치로 실현하는 메이커, 김대정입니다.`
 - First proof: 고객이 돈을 내는 이유를 찾고 Thready를 팀과 실제 고객이 결제하는 유료 제품으로 만든 사실을 먼저 제시한다. 정확한 매출 band는 internal evidence로만 보존한다.
 - Introduction: 제품 판단·구현·출시·운영을 연결한 범위를 먼저 쓰고, backend·AI·핵심 frontend는 제품을 완성한 직접 구현 근거로 제시한다. 비동기 작업·실시간 session의 failure boundary와 회사 AX 구조 설계 참여는 다음 사례에서 확장한다.
 

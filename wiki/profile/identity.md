@@ -22,11 +22,11 @@ tags: [identity, positioning, branding]
 
 ## Canonical One-Line
 
-> 아이디어를 고객이 돈을 내는 제품으로 만드는 메이커, 김대정입니다.
+> 아이디어를 새로운 가치로 실현하는 메이커, 김대정입니다.
 
 ## Brand Line Application
 
-- 위 `Canonical One-Line`을 public brand line으로 사용한다 (2026-08-21 user-confirmed).
+- 위 `Canonical One-Line`을 public brand line으로 사용한다 (2026-08-24 user-confirmed).
 - `Maker`는 브랜드 정체성이며 채용 직함이 아니다. 채용 역할 표기는 `Tech Lead · Backend Engineer`를 유지한다.
 - 이 문장은 홈 hero와 이력서·포트폴리오의 소개에 사용하되 경력 행·역할 label을 대체하지 않는다.
 - Vision AI Engineer → PM → Backend Engineer 전환을 직무 나열이 아니라, 제품에 더 크게 기여하기 위해 필요한 역할과 역량을 확장해온 서사로 표현한다.

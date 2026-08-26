@@ -39,12 +39,14 @@ function CareerRow({
   org,
   period,
   currentLabel,
+  allowBreak = false,
   "data-claim": dataClaim,
   children,
 }: {
   org: string;
   period: string;
   currentLabel?: string;
+  allowBreak?: boolean;
   "data-claim"?: string;
   children: React.ReactNode;
 }) {
@@ -61,7 +63,11 @@ function CareerRow({
       labelWidth="lg"
       labelClassName="font-semibold text-fg"
       data-claim={dataClaim}
-      className={cn(resumeType.careerRow, "resume-career-row")}
+      className={cn(
+        resumeType.careerRow,
+        "resume-career-row",
+        !allowBreak && "resume-career-row-keep",
+      )}
     >
       <span className="text-sm text-fg-2">{children}</span>
     </NumberedRow>
@@ -122,6 +128,28 @@ function Metric({ children }: { children: React.ReactNode }) {
     <span data-metric className={resumeType.metric}>
       {children}
     </span>
+  );
+}
+
+function PortfolioCaseLink({
+  href,
+  label,
+  children,
+}: {
+  href: string;
+  label: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener"
+      aria-label={label}
+      className="focus-ring font-medium text-fg underline decoration-border underline-offset-[3px] transition-colors hover:text-accent hover:decoration-accent"
+    >
+      {children}
+    </a>
   );
 }
 
@@ -365,7 +393,9 @@ function DocKo() {
             <Chip variant="contact" href="https://github.com/Dae-Jeong" external>
               github.com/Dae-Jeong
             </Chip>
-            <Chip variant="contact">경기 안양시</Chip>
+            <Chip variant="contact" href="https://marinkim.xyz" external>
+              marinkim.xyz
+            </Chip>
           </div>
         </div>
         <ProfilePhoto />
@@ -373,18 +403,26 @@ function DocKo() {
 
       <OrderedSections order={SECTIONS_KO.map((section) => section.id)}>
       <Sec id="s1" no="01" title="소개" meta="Profile">
-        <p className="m-0 text-xl font-medium leading-relaxed tracking-[-0.015em]">
-          아이디어를 고객이 돈을 내는 제품으로 만드는 메이커, 김대정입니다.
-        </p>
+        <div className={resumeType.summaryStack}>
+          <p className={resumeType.profileTitle}>
+            아이디어를 새로운 가치로 실현하는 메이커, 김대정입니다.
+          </p>
+          <p
+            className={resumeType.profileDescription}
+            data-claim="career.medisolve-role-evolution thready.product-zero-to-one-contribution thready.frontend-product-delivery thready.subscription-revenue-band"
+          >
+            기획자 출신 Tech Lead로, 고객의 문제를 제품 우선순위와 구현 범위로 구체화합니다. 필요한 백엔드·AI·핵심 화면은 직접 만들고, 기획·QA·마케팅과 함께 출시와 유료 운영까지 이끌어 왔습니다.
+          </p>
+        </div>
       </Sec>
 
       <Sec id="s3" no="02" title="경력" meta="Career">
         <NumberedList className="border-t border-border-soft">
-          <CareerRow org="MediSolve AI" period="2025.04 —" currentLabel="재직 중" data-claim="career.medisolve-role-evolution career.thedaylabs-freelance career.memento-to-medisolve-early-member">
+          <CareerRow org="MediSolve AI" period="2025.04 —" currentLabel="재직 중" allowBreak data-claim="career.medisolve-role-evolution career.thedaylabs-freelance career.memento-to-medisolve-early-member">
             <span className="mb-1.5 block text-base font-medium text-fg">Tech Lead · Backend Engineer <span className="font-normal text-fg-2">— 제품 운영 리드</span></span>
             <PlainList
               items={[
-                <span key="thready-business" data-claim="thready.product-zero-to-one-contribution thready.frontend-product-delivery thready.prototype-to-user-operation thready.generation-quality-system thready.subscription-revenue-band">Thready에서 고객 문제를 기능 우선순위와 품질 기준으로 구체화하고, <strong>기획·QA·마케팅과 제품 운영을 리드</strong>했습니다. 팀과 함께 실제 고객이 결제하는 유료 제품으로 만들었고, 이를 위해 FastAPI 백엔드·AI 생성/평가 시스템과 Next.js 핵심 사용자·관리 흐름을 직접 구현·운영했습니다.</span>,
+                <span key="thready-business" data-claim="thready.product-zero-to-one-contribution thready.frontend-product-delivery thready.prototype-to-user-operation thready.generation-quality-system thready.subscription-revenue-band"><PortfolioCaseLink href="https://marinkim.xyz/portfolio/thready" label="Thready 포트폴리오 사례 보기">Thready</PortfolioCaseLink>에서 고객 문제를 기능 우선순위와 품질 기준으로 구체화하고, <strong>기획·QA·마케팅과 제품 운영을 리드</strong>했습니다. 팀과 함께 실제 고객이 결제하는 유료 제품으로 만들었고, 이를 위해 FastAPI 백엔드·AI 생성/평가 시스템과 Next.js 핵심 사용자·관리 흐름을 직접 구현·운영했습니다.</span>,
                 <span key="centurion" data-claim="career.thedaylabs-freelance centurion.msa-platform-context centurion.bay-async-backend centurion.day-product-integration centurion.say-realtime-ai centurion.ray-backend centurion.sso-session">Centurion에서는 법인 설립 전 <strong>초기 백엔드와 개발 기준</strong>을 세웠습니다. 이후 주문·재고 워커와 DAY 예약 정책의 백엔드·프런트엔드·QA·릴리스 연결을 주도했고, 실시간 AI 상담은 공동 주 기여, 시설·재고 연동과 SSO 정책은 일부 기능을 맡았습니다.</span>,
                 <span key="hospital-operations" data-claim="nexus.backend-architecture nexus.admin-backend-ownership">별도의 여러 피부과 운영·예약 시스템에서는 <strong>백엔드 architecture와 migration flow, Admin·Homepage API 구축을 주도</strong>하고 있습니다.</span>,
                 <span key="company-ax" data-claim="mediness.company-work-ax-design mediness.product-system-design-participation mediness.product-operations">MEDINESS의 제품 요구·운영 흐름 설계에 참여하고, Decision·SPEC·Work Package·QA·릴리스는 제품별로 적용·운영했습니다. 회사 AX 구조는 회의·의사결정·업무 배정·승인·후속 작업에서 agent가 맥락·실행안을 준비하고 판단은 사람이 확정하도록 설계하는 데 참여했습니다.</span>,
@@ -557,7 +595,9 @@ function DocEn() {
             <Chip variant="contact" href="https://github.com/Dae-Jeong" external>
               github.com/Dae-Jeong
             </Chip>
-            <Chip variant="contact">Anyang-si, Gyeonggi-do, KR</Chip>
+            <Chip variant="contact" href="https://marinkim.xyz" external>
+              marinkim.xyz
+            </Chip>
           </div>
         </div>
         <ProfilePhoto />
@@ -565,18 +605,26 @@ function DocEn() {
 
       <OrderedSections order={SECTIONS_EN.map((section) => section.id)}>
       <Sec id="s1" no="01" title="Profile">
-        <p className="m-0 text-xl font-medium leading-relaxed tracking-[-0.015em]">
-          I&apos;m Daejeong Kim, a maker who turns ideas into products customers pay for.
-        </p>
+        <div className={resumeType.summaryStack}>
+          <p className={resumeType.profileTitle}>
+            I&apos;m Daejeong Kim, a maker who turns ideas into new value.
+          </p>
+          <p
+            className={resumeType.profileDescription}
+            data-claim="career.medisolve-role-evolution thready.product-zero-to-one-contribution thready.frontend-product-delivery thready.subscription-revenue-band"
+          >
+            As a former product planner and current Tech Lead, I turn customer problems into product priorities and implementation scope. I build the backend, AI systems, and core product flows needed to bring products from launch into paid operation with planning, QA, and marketing.
+          </p>
+        </div>
       </Sec>
 
       <Sec id="s3" no="02" title="Career">
         <NumberedList className="border-t border-border-soft">
-          <CareerRow org="MediSolve AI" period="Apr 2025 —" currentLabel="Present" data-claim="career.medisolve-role-evolution career.thedaylabs-freelance career.memento-to-medisolve-early-member">
+          <CareerRow org="MediSolve AI" period="Apr 2025 —" currentLabel="Present" allowBreak data-claim="career.medisolve-role-evolution career.thedaylabs-freelance career.memento-to-medisolve-early-member">
             <span className="mb-1.5 block text-base font-medium text-fg">Tech Lead · Backend Engineer <span className="font-normal text-fg-2">— product operations lead</span></span>
             <PlainList
               items={[
-                <span key="thready-business" data-claim="thready.product-zero-to-one-contribution thready.frontend-product-delivery thready.prototype-to-user-operation thready.generation-quality-system thready.subscription-revenue-band">At Thready, I turn customer problems into product priorities and quality criteria, then lead <strong>product operations with planning, QA, and marketing</strong>. Together, we turned it into a paid product with real customer payments. I directly build and operate the FastAPI backend, AI generation/evaluation system, and core Next.js user and admin flows needed to run it.</span>,
+                <span key="thready-business" data-claim="thready.product-zero-to-one-contribution thready.frontend-product-delivery thready.prototype-to-user-operation thready.generation-quality-system thready.subscription-revenue-band">At <PortfolioCaseLink href="https://marinkim.xyz/portfolio/thready" label="View the Thready portfolio case">Thready</PortfolioCaseLink>, I turn customer problems into product priorities and quality criteria, then lead <strong>product operations with planning, QA, and marketing</strong>. Together, we turned it into a paid product with real customer payments. I directly build and operate the FastAPI backend, AI generation/evaluation system, and core Next.js user and admin flows needed to run it.</span>,
                 <span key="centurion" data-claim="career.thedaylabs-freelance centurion.msa-platform-context centurion.bay-async-backend centurion.day-product-integration centurion.say-realtime-ai centurion.ray-backend centurion.sso-session">For Centurion, I established the <strong>initial backend and engineering standards</strong> before incorporation. I later led order/inventory workers and the backend&ndash;frontend&ndash;QA&ndash;release integration of DAY reservation policy, co-led realtime AI consultation work, and contributed to facility/inventory integration and SSO policy</span>,
                 <span key="hospital-operations" data-claim="nexus.backend-architecture nexus.admin-backend-ownership">Separately, I am leading <strong>backend architecture, migration flows, and the Admin/Homepage API build</strong> for a multi-clinic dermatology operations and booking system</span>,
                 <span key="company-ax" data-claim="mediness.company-work-ax-design mediness.product-system-design-participation mediness.product-operations">I contributed to the product-requirement and operating-flow design of MEDINESS, then led the product-level application of Decision, SPEC, Work Package, QA, and release criteria. Building on that work, I contributed to a <strong>company AX structure</strong> that separates the tasks agents can prepare from the decisions people retain across meetings, assignments, approvals, and follow-up actions</span>,

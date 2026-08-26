@@ -29,6 +29,7 @@ const verdictLabel: Record<NonNullable<PortfolioDetailItem["verdict"]>, string> 
   selected: "선택",
   rejected: "채택하지 않음",
   "not-claimed": "주장 범위 밖",
+  proposed: "후속 설계안",
 };
 
 export function CareerBridgeSection({ bridge }: { bridge: PortfolioCareerBridge }) {
@@ -124,21 +125,21 @@ export function CaseNarrative({
     <section data-layer="narrative" aria-label="사례 설명" className="mt-8">
       <p className="m-0 border-y border-border py-4 text-sm font-medium leading-[1.65] text-fg-2">
         <strong className="mr-2 font-mono text-xs uppercase tracking-[0.06em] text-muted">
-          맥락 ·
+          상황 ·
         </strong>
         {narrative.context}
       </p>
 
       <div className="mt-8 grid w-full gap-8">
         <section>
-          <h3 className="m-0 text-base font-semibold">어떤 문제가 있었나</h3>
+          <h3 className="m-0 text-base font-semibold">문제</h3>
           <p className="m-0 mt-3 text-base leading-[1.75] text-fg-2">
             {narrative.problem}
           </p>
         </section>
 
         <section>
-          <h3 className="m-0 text-base font-semibold">내가 판단하고 한 일</h3>
+          <h3 className="m-0 text-base font-semibold">대처 방법</h3>
           <ul className="m-0 mt-3 grid list-none gap-3 p-0">
             {narrative.actions.map((action) => (
               <li
@@ -187,10 +188,10 @@ export function CaseNarrative({
 
 export function CaseDetails({ details }: Pick<PortfolioOutcome, "details">) {
   return (
-    <section data-layer="technical-proof" aria-label="기술 상세" className="mt-12">
-      <h3 className="m-0 text-lg font-semibold">기술 상세</h3>
+    <section data-layer="technical-proof" aria-label="기여 내용" className="mt-12">
+      <h3 className="m-0 text-lg font-semibold">기여 내용</h3>
       <p className="m-0 mt-2 text-sm leading-[1.65] text-fg-2">
-        위에서 설명한 판단을 구현 단위와 선택 근거로 확인합니다.
+        해결 과정에서 맡은 기술 판단과 구현 범위입니다.
       </p>
       <div className="mt-5 flex w-full flex-wrap border-y border-border">
         {details.map((detail, index) => {
@@ -199,7 +200,7 @@ export function CaseDetails({ details }: Pick<PortfolioOutcome, "details">) {
 
           return (
           <section
-            key={detail.kind}
+            key={`${detail.kind}-${detail.label}`}
             className={`w-full border-t border-border-soft py-5 first:border-t-0 ${
               isLastOddItem
                 ? "lg:w-full"
@@ -267,13 +268,19 @@ export function EvidenceRows({ evidence }: { evidence: PortfolioEvidence[] }) {
   );
 }
 
-export function JdFitSection({ jdFit }: { jdFit: PortfolioJdFit }) {
+export function JdFitSection({
+  jdFit,
+  companyName = "MGRV",
+}: {
+  jdFit: PortfolioJdFit;
+  companyName?: string;
+}) {
   return (
-    <section className="mt-10 grid grid-cols-[176px_minmax(0,1fr)] border-y-2 border-fg max-lg:grid-cols-1">
-      <h3 className="m-0 bg-fg px-5 py-6 font-mono text-xs font-semibold uppercase tracking-[0.06em] text-bg max-lg:border-b max-lg:border-fg print:bg-transparent print:text-fg">
-        MGRV JD fit
+    <section className="mt-10 grid grid-cols-[176px_minmax(0,1fr)] border-y-2 border-fg max-lg:grid-cols-1 print:mt-6">
+      <h3 className="m-0 bg-fg px-5 py-6 font-mono text-xs font-semibold uppercase tracking-[0.06em] text-bg max-lg:border-b max-lg:border-fg print:bg-transparent print:px-4 print:py-4 print:text-fg">
+        {companyName} JD fit
       </h3>
-      <div className="px-6 py-6">
+      <div className="px-6 py-6 print:px-4 print:py-4">
         <ul className="m-0 grid list-none grid-cols-2 gap-x-8 gap-y-3 p-0 max-lg:grid-cols-1">
           {jdFit.matches.map((match) => (
             <li key={match} className="text-sm font-semibold leading-[1.55]">
@@ -282,7 +289,7 @@ export function JdFitSection({ jdFit }: { jdFit: PortfolioJdFit }) {
           ))}
         </ul>
         {jdFit.boundary && (
-          <p className="m-0 mt-5 border-t border-border-soft pt-4 text-sm leading-[1.65] text-fg-2">
+          <p className="m-0 mt-5 border-t border-border-soft pt-4 text-sm leading-[1.65] text-fg-2 print:mt-3 print:pt-3">
             {jdFit.boundary}
           </p>
         )}

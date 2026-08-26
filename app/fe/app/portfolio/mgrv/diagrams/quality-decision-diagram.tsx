@@ -23,18 +23,18 @@ export function QualityDecisionDiagram({
         </p>
       </div>
 
- <div className="grid grid-cols-3 items-stretch max-lg:grid-cols-1">
+ <div className="grid grid-cols-3 items-stretch max-lg:grid-cols-1 print:grid-cols-3">
         {stages.map((stage, index) => (
           <section key={stage.key} className="relative min-w-0">
             {index > 0 && (
               <span
                 aria-hidden="true"
- className="absolute -left-3 top-1/2 z-10 flex h-6 w-6 -translate-y-1/2 items-center justify-center bg-bg font-mono text-muted max-lg:-top-3 max-lg:left-1/2 max-lg:-translate-x-1/2 max-lg:translate-y-0 max-lg:rotate-90"
+ className="absolute -left-3 top-1/2 z-10 flex h-6 w-6 -translate-y-1/2 items-center justify-center bg-bg font-mono text-muted max-lg:-top-3 max-lg:left-1/2 max-lg:-translate-x-1/2 max-lg:translate-y-0 max-lg:rotate-90 print:-left-3 print:top-1/2 print:translate-x-0 print:-translate-y-1/2 print:rotate-0"
               >
                 →
               </span>
             )}
- <div className="h-full border-y border-r border-border px-5 py-5 first:border-l max-lg:border-x max-lg:border-b-0 max-lg:last:border-b">
+ <div className="h-full border-y border-r border-border px-5 py-5 first:border-l max-lg:border-x max-lg:border-b-0 max-lg:last:border-b print:border-y print:border-r print:px-3 print:py-3 print:first:border-l">
               <div className="flex items-baseline justify-between gap-3 border-b border-border-soft pb-3">
                 <h5 className="m-0 text-base font-semibold">{stage.label}</h5>
                 <span className="font-mono text-xs text-muted">
@@ -57,7 +57,7 @@ export function QualityDecisionDiagram({
       </div>
 
       <figcaption className="mt-4 grid grid-cols-[148px_minmax(0,1fr)] border-y border-border-soft py-4 text-sm leading-[1.65] max-sm:grid-cols-1 max-sm:gap-2">
-        <strong className="font-mono text-xs text-muted">AUTOMATION LIMIT</strong>
+        <strong className="font-mono text-xs text-muted">HUMAN GATE</strong>
         <span className="text-fg-2">{qualityLab.boundary}</span>
       </figcaption>
     </figure>

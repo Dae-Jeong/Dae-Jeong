@@ -23,7 +23,6 @@ export const MGRV_RESUME = {
         external: true,
       },
       { label: "marinkim.xyz", href: "https://marinkim.xyz", external: true },
-      { label: "경기 안양시" },
     ],
   },
   summary: [

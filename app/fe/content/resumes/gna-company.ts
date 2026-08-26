@@ -24,7 +24,7 @@ export const GNA_COMPANY_RESUME = {
         href: "https://github.com/Dae-Jeong",
         external: true,
       },
-      { label: "경기 안양시" },
+      { label: "marinkim.xyz", href: "https://marinkim.xyz", external: true },
     ],
   },
   summary: [

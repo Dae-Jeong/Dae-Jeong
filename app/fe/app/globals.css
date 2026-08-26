@@ -184,7 +184,7 @@ body {
   }
 
   [data-resume-canvas] section > div:first-child {
-    break-after: avoid;
+    break-after: avoid-page;
   }
 
   [data-resume-canvas] section li {
@@ -194,6 +194,16 @@ body {
   /* 회사 행은 여러 bullet을 포함하므로 페이지를 넘길 수 있고, 내부 bullet은 위 규칙으로 유지한다. */
   [data-resume-canvas] .resume-career-row {
     break-inside: auto;
+  }
+
+  /* 짧은 경력 행은 회사·기간·첫 설명이 서로 다른 페이지로 갈라지지 않게 유지한다. */
+  [data-resume-canvas] .resume-career-row-keep {
+    break-inside: avoid;
+  }
+
+  /* 맞춤 이력서는 핵심 성과 뒤에서 경력 섹션을 새 페이지로 시작해 제목이 홀로 남지 않게 한다. */
+  [data-resume-canvas] [data-tailored-resume] #s3 {
+    break-before: page;
   }
 
   [data-resume-canvas] #s5 {

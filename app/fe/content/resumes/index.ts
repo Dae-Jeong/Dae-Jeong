@@ -1,11 +1,13 @@
 import { GNA_COMPANY_RESUME } from "./gna-company";
 import { MGRV_RESUME } from "./mgrv";
 import { ROLE_RESUMES } from "./role-variants";
+import { WHATSSUB_RESUME } from "./whatssub";
 import type { TailoredResume } from "./types";
 
 const TAILORED_RESUMES: Readonly<Record<string, TailoredResume>> = {
   [GNA_COMPANY_RESUME.slug]: GNA_COMPANY_RESUME,
   [MGRV_RESUME.slug]: MGRV_RESUME,
+  [WHATSSUB_RESUME.slug]: WHATSSUB_RESUME,
   ...Object.fromEntries(ROLE_RESUMES.map((resume) => [resume.slug, resume])),
 };
 

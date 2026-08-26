@@ -10,7 +10,7 @@ import { ROLE_CATALOG, ROLE_VARIANT_SLUGS } from "../role-catalog";
 import type { RoleVariantSlug } from "../role-catalog";
 
 const UPDATED_AT = "2026-08-22";
-const MAKER_HOOK = "아이디어를 고객이 돈을 내는 제품으로 만드는 메이커, 김대정입니다.";
+const MAKER_HOOK = "아이디어를 새로운 가치로 실현하는 메이커, 김대정입니다.";
 
 const CONTACTS = [
   { label: "marin.backend@gmail.com", href: "mailto:marin.backend@gmail.com" },
@@ -20,7 +20,6 @@ const CONTACTS = [
     external: true,
   },
   { label: "marinkim.xyz", href: "https://marinkim.xyz", external: true },
-  { label: "경기 안양시" },
 ] as const;
 
 const JOINING_PATH: ResumeText = [

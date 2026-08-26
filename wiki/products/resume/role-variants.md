@@ -24,7 +24,7 @@ tags: [resume, role, draft, backend, ai, ax, platform]
 
 ## Shared Contract
 
-- 모든 variant는 `아이디어를 고객이 돈을 내는 제품으로 만드는 메이커, 김대정입니다.`를 같은 소개 문장으로 사용한다. 지원 직군에 따라 바꾸는 것은 뒤의 기술 근거와 사례 순서다.
+- 모든 variant는 `아이디어를 새로운 가치로 실현하는 메이커, 김대정입니다.`를 같은 소개 문장으로 사용한다. 지원 직군에 따라 바꾸는 것은 뒤의 기술 근거와 사례 순서다.
 - 공개 정체성은 `Tech Lead · Backend Engineer` 순서를 유지한다. 지원 관점은 실제 과거 직함으로 표현하지 않는다.
 - 회사 AX 구조는 설계 참여, 제품별 Decision→release 적용·운영은 리드, Backend Template은 직접 구축한 범위로 나눈다. Cloud/Delivery는 서비스 배포·환경 설정·기본 운영 경험으로만 둔다.
 - AX/FDE는 회사 업무까지 전면에 두고, Tech Lead는 제품 운영 뒤의 두 번째 전문 축으로 둔다. Backend·AI Backend·Platform은 각 직군의 핵심 기술 근거 뒤에서 supporting signal로만 사용한다.

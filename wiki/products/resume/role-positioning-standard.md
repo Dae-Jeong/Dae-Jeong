@@ -14,7 +14,7 @@ tags: [resume, positioning, role, backend]
 
 ## 브랜드 소개와 채용 역할
 
-> 아이디어를 고객이 돈을 내는 제품으로 만드는 메이커, 김대정입니다.
+> 아이디어를 새로운 가치로 실현하는 메이커, 김대정입니다.
 
 이 문장은 브랜드 소개다. 채용 역할 label은 `Tech Lead · Backend Engineer`, specialty는 `AI Product Systems`다. `Maker`를 직함처럼 사용하지 않고, 아이디어를 실제 제품과 가치로 만든 범위는 경력과 대표 사례가 증명한다. `Product Owner` 역시 슬래시로 병기할 별도 정체성이 아니라 무엇을 만들지 판단하고 그 판단을 실행 가능한 backend contract로 바꾼 경험으로 증명한다.
 

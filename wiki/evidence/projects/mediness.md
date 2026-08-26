@@ -2,7 +2,7 @@
 type: project-evidence
 title: Mediness Product Operations And Company AX Evidence
 description: Product operations, company-work AX design, and role boundary evidence.
-timestamp: 2026-08-21
+timestamp: 2026-08-26
 source_roots: [agentspace]
 tags: [mediness, agent-workflow, product-operations, company-ax, evidence]
 ---
@@ -27,6 +27,16 @@ Source locator: `agentspace:mediness`
 - Contribution boundary: 제품팀 일정·이슈·릴리스 운영 리드와 기획 결정 참여. 제품 기획 전담은 아니다.
 - Contribution boundary: 전사 문서 pipeline 규칙 정의는 다른 저자가 주도했고, 김대정은 제품 단위 SPEC·Work Package·Decision·release gate 적용·운영을 리드했다 (git 저자 기록 확인, 2026-07-14).
 - User-confirmed (2026-07-19 인터뷰): release gate의 실효과 — 매 릴리스 버전의 릴리스 노트 작성을 자동화해 버전 관리를 용이하게 함. 표현 가드레일: "gate가 사고를 막았다"류 과장 금지 — 실효과(릴리스 노트 자동화·버전 관리·추적)대로만 서술.
+
+## Product Development Coordination Leverage
+
+- User-confirmed (2026-08-26): 기획·디자인·개발·QA·릴리즈에서 나온 결정과 진행 상태를 Decision·SPEC·Work Package·ADR·release evidence·agent context로 계속 축적해, 사람과 agent가 같은 제품·architecture 맥락을 읽고 작업하는 제품 개발 체계를 운영했다.
+- User-confirmed outcome (2026-08-26): 현재 요구·진행 상태·과거 판단을 다시 설명하고 확인하는 반복 커뮤니케이션을 줄였고, 유사 기능과 후속 변경에서 기존 판단·구현 기준을 재사용해 초기 설계와 맥락 복원에 드는 비용을 낮추고 개발 lead time 단축에 기여했다.
+- User-confirmed handoff outcome (2026-08-26): 담당자가 바뀌어도 구두 인수인계만으로 제품 맥락을 다시 구성하지 않고, 누적된 Decision·SPEC·ADR·runbook·agent context에서 업무를 이어갈 수 있어 인수인계와 후속 관리에 드는 리소스를 낮췄다.
+- Source-backed mechanism: product pipeline registry, Decision·SPEC·Work Package, Backend/Frontend/QA/Ops owner lane, release gate·version cut·release note trace가 위 결과를 만드는 실행 구조로 확인된다. Backend Template의 architecture·agent context 직접 구축은 별도 claim이 소유한다.
+- Measurement boundary: feature lead time·커뮤니케이션 시간·인수인계 기간의 before/after 수치는 아직 없다. `단축에 기여`와 `비용을 낮춤`의 정성 표현까지만 사용한다.
+- Causality boundary: QA 총건수 감소와 매출 개선을 이 체계의 단독 효과로 귀속하지 않는다. Thready의 QA reopen 관측과 구독료 매출은 각각 별도 claim이 소유하며, 이 체계가 해당 제품의 개발·검증·릴리즈·운영에 적용됐다는 연결만 허용한다.
+- Language boundary: `인원을 대체`하거나 `인력을 감축`한 것으로 표현하지 않는다. 공개 문안은 `담당자가 바뀌어도 이어지는 개발 체계`, `인수인계·맥락 복원 비용 감소`를 사용한다.
 
 ## Company Work AX Design
 
@@ -67,4 +77,7 @@ Source locator: `agentspace:mediness`
 - 회사 AX 전환 완료 또는 전사 업무 완전 통합
 - AI의 자율 의사결정·업무 배정·승인·release
 - company-work AX 도입에 따른 생산성·속도 개선 수치
+- 정확한 feature lead time·커뮤니케이션 시간·인수인계 기간 감소 수치
+- AI 또는 AX를 통한 인원 대체·인력 감축
+- 제품 개발 체계가 QA 총건수 감소나 매출을 직접 만들었다는 단독 인과
 - internal product count와 운영 metric

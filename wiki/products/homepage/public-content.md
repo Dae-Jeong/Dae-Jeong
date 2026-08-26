@@ -13,7 +13,7 @@ claim_ids: [thready.product-zero-to-one-contribution, thready.frontend-product-d
 
 Tech Lead · Backend Engineer · AI Product Systems
 
-> 아이디어를 고객이 돈을 내는 제품으로 만드는 메이커, 김대정입니다.
+> 아이디어를 새로운 가치로 실현하는 메이커, 김대정입니다.
 
 `Maker`는 브랜드 정체성이고, 검색·채용 역할은 `Tech Lead · Backend Engineer`다. 첫 근거는 고객 문제를 실제 매출이 발생하는 제품으로 만들고 운영한 경험이며, backend·AI·핵심 frontend는 그 제품을 직접 완성한 실행 범위로 증명한다.
 

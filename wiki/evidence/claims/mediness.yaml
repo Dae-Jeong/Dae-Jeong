@@ -35,6 +35,30 @@ claims:
       - 전사 문서 pipeline 규칙 단독 설계
     verified_at: 2026-08-18
 
+  - id: mediness.product-development-coordination-leverage
+    statement: 기획·디자인·개발·QA·릴리즈의 decision·spec·work·release evidence와 agent context를 하나의 실행 맥락으로 축적해 반복 조율과 담당자 변경 시 맥락 복원 비용을 낮추고 유사 기능·후속 변경의 lead time 단축에 기여
+    strength: led
+    confidence: medium
+    public: true
+    evidence: [evidence/projects/mediness.md#product-development-coordination-leverage]
+    allowed_copy:
+      - 기획·디자인·개발·QA·릴리즈의 결정과 진행 상태를 하나의 실행 맥락으로 연결
+      - 사람과 AI가 같은 제품·architecture 맥락을 읽도록 해 상태 확인·맥락 재설명·결정 재확인의 반복 조율 비용을 낮춤
+      - 기존 decision·spec·구현 기준을 재사용해 유사 기능과 후속 변경의 lead time 단축에 기여
+      - 담당자가 바뀌어도 누적된 decision·spec·ADR·runbook·agent context에서 업무를 이어갈 수 있어 인수인계·맥락 복원 비용을 낮춤
+      - 기획부터 릴리즈까지의 맥락을 쌓아 사람이 바뀌어도 이어지는 제품 개발 체계를 운영
+    forbidden_copy:
+      - feature lead time·커뮤니케이션 시간·인수인계 기간의 정확한 감소 수치
+      - 인원 N명 대체·인력 감축·headcount 절감
+      - 회사 전체 개발 프로세스를 단독 설계·구축
+      - AI가 제품 판단·디자인·architecture·QA·release를 자율 수행
+      - 이 체계가 QA 총건수 감소나 구독 매출을 직접 만들었다는 단독 인과
+      - 검증되지 않은 생산성 배수
+    verified_at: 2026-08-26
+    note: >-
+      반복 조율·인수인계·lead time 결과는 2026-08-26 user-confirmed 정성 outcome이다.
+      QA reopen 관측과 Thready 구독료 매출은 별도 claim이 소유하며 이 claim의 직접 결과로 합치지 않는다.
+
   - id: mediness.company-work-ax-design
     statement: 제품 개발 흐름과 의사결정·회의·업무 배정·승인·후속 작업을 agent-readable context·tool·human gate로 연결하는 회사 AX 전환 업무 구조 설계에 참여
     strength: contributed

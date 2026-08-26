@@ -38,7 +38,6 @@ owner: [Live 적용 검증](../backlog/platform-profile-consolidation/2026-08-22
 
 ### B1. 산출물 파이프라인
 
-- [ ] active KO expression 기준 PDF 재생성 및 첫 장 scanability·페이지별 technical signal·A4 visual [Acceptance Gate 6](../products/resume/content-contract.md#acceptance-gates) 검증
 - [ ] sitemap 갱신
 
 ### B2. 콘텐츠

@@ -57,11 +57,17 @@ export type PortfolioFrame = {
 export type PortfolioDetailItem = {
   title?: string;
   text: string;
-  verdict?: "selected" | "rejected" | "not-claimed";
+  verdict?: "selected" | "rejected" | "not-claimed" | "proposed";
 };
 
 export type PortfolioDetailSection = {
-  kind: "problem" | "constraints" | "decision" | "alternatives" | "implementation";
+  kind:
+    | "problem"
+    | "constraints"
+    | "decision"
+    | "alternatives"
+    | "implementation"
+    | "proposal";
   label: string;
   items: PortfolioDetailItem[];
 };
@@ -90,7 +96,7 @@ export type PortfolioNarrative = {
   context: string;
   problem: string;
   actions: string[];
-  resultLabel: "남은 상태" | "현재 책임 범위" | "검증 상태";
+  resultLabel: "남은 상태" | "현재 책임 범위" | "검증 상태" | "결과";
   result: string;
   visualLead: string;
   axExtension?: {
@@ -205,6 +211,32 @@ export type AiSystemVisual = {
   caption: string;
 };
 
+export type CompactFlowVisual = {
+  kind: "compact-flow";
+  title: string;
+  chart?: string;
+  lanes: {
+    label: string;
+    note?: string;
+    tone: "context" | "decision" | "delivery" | "failure" | "proposed";
+    stages: {
+      label: string;
+      detail?: string;
+      emphasis?: "strong" | "outcome";
+    }[];
+  }[];
+  loadBehavior?: {
+    title: string;
+    description: string;
+    rows: {
+      situation: string;
+      behavior: string;
+      watch: string;
+    }[];
+  };
+  caption: string;
+};
+
 export type PortfolioQualityLab = {
   title: string;
   description: string;
@@ -221,7 +253,8 @@ export type PortfolioVisual =
   | RuntimeRecoveryVisual
   | CutoverMapVisual
   | InfraOwnershipVisual
-  | AiSystemVisual;
+  | AiSystemVisual
+  | CompactFlowVisual;
 
 export type PortfolioOutcome = {
   no: string;

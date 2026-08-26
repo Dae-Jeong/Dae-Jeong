@@ -227,7 +227,11 @@ function ResumeDocument({ resume }: { resume: TailoredResume }) {
         <Section key={section.key} {...sectionProps}>
           <div className={resumeType.summaryStack}>
             {resume.summary.map((paragraph, index) => (
-              <p key={index} className="m-0" data-claim={claim(paragraph.claimIds)}>
+              <p
+                key={index}
+                className={index === 0 ? resumeType.profileTitle : resumeType.profileDescription}
+                data-claim={claim(paragraph.claimIds)}
+              >
                 <RichText value={paragraph.text} />
               </p>
             ))}
@@ -264,7 +268,7 @@ function ResumeDocument({ resume }: { resume: TailoredResume }) {
       return (
         <Section key={section.key} {...sectionProps}>
           <NumberedList className="border-t border-border-soft">
-            {resume.careers.map((career) => (
+            {resume.careers.map((career, index) => (
               <NumberedRow
                 key={`${career.org}-${career.period}`}
                 label={
@@ -279,7 +283,11 @@ function ResumeDocument({ resume }: { resume: TailoredResume }) {
                 labelWidth="lg"
                 labelClassName="font-semibold text-fg"
                 data-claim={claim(career.claimIds)}
-                className={resumeType.careerRow}
+                className={cn(
+                  resumeType.careerRow,
+                  "resume-career-row",
+                  index === 0 && "resume-career-row-keep",
+                )}
               >
                 <span className="text-sm text-fg-2">
                   <span className="mb-1.5 block text-base font-medium text-fg">
@@ -377,7 +385,7 @@ function ResumeDocument({ resume }: { resume: TailoredResume }) {
   }
 
   return (
-    <div>
+    <div data-tailored-resume>
       <header className={resumeType.documentHeader}>
         <div className={resumeType.identityBlock}>
           <h1 className={resumeType.identity}>{resume.header.name}</h1>
@@ -399,6 +407,11 @@ function ResumeDocument({ resume }: { resume: TailoredResume }) {
               </Chip>
             ))}
           </div>
+          {resume.header.submissionMeta && (
+            <p className="m-0 mt-3 w-fit border border-border px-2.5 py-1.5 font-mono text-xs font-medium text-fg">
+              {resume.header.submissionMeta}
+            </p>
+          )}
         </div>
         {resume.header.photoSrc && (
           <div className={resumeType.profilePhoto}>

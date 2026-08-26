@@ -118,7 +118,7 @@ export default function Home() {
                 MediSolve AI · Tech Lead · Backend Engineer · 재직 중
               </span>
               <h1 className="max-w-[18ch] text-balance font-mono text-4xl font-semibold leading-[1.18] tracking-[-0.025em] max-md:max-w-none max-md:text-[34px]">
-                아이디어를 고객이 돈을 내는 제품으로 만드는 메이커, 김대정입니다.
+                아이디어를 새로운 가치로 실현하는 메이커, 김대정입니다.
               </h1>
               <p className="mt-4 font-mono text-base uppercase tracking-[0.06em] text-fg-2">
                 <b className="font-semibold text-fg">Tech Lead · Backend Engineer</b> · AI Product Systems

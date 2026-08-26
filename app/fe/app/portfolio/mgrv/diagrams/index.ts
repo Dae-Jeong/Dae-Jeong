@@ -1,5 +1,7 @@
 export { AiSystemDiagram } from "./ai-system-diagram";
 export { AxWorkflowDiagram } from "./ax-workflow-diagram";
+export { CompactFlowDiagram } from "./compact-flow-diagram";
+export { MermaidDiagram } from "./mermaid-diagram";
 export { CutoverMapDiagram } from "./cutover-map-diagram";
 export { IndependentLanesDiagram } from "./independent-lanes-diagram";
 export { InfraOwnershipDiagram } from "./infra-ownership-diagram";

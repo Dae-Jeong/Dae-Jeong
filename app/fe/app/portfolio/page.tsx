@@ -10,7 +10,7 @@ import { CaseSummary } from "./case-summary";
 export const metadata: Metadata = {
   title: "Portfolio — 김대정 · Tech Lead · Backend Engineer",
   description:
-    "아이디어를 고객이 돈을 내는 제품으로 만드는 메이커, 김대정의 제품·백엔드·회사 AX 포트폴리오",
+    "아이디어를 새로운 가치로 실현하는 메이커, 김대정의 제품·백엔드·회사 AX 포트폴리오",
 };
 
 export default function PortfolioPage() {
@@ -22,8 +22,8 @@ export default function PortfolioPage() {
           <header className="border-b-2 border-fg pb-10 pt-14 print:pt-0">
             <p className="m-0 text-sm font-medium text-muted">Maker · Tech Lead · Backend Engineer</p>
             <h1 className="mt-4 text-[clamp(2.15rem,4.6vw,3.35rem)] font-semibold leading-[1.04] tracking-[-0.035em] text-balance">
-              <span className="block md:whitespace-nowrap">아이디어를 고객이 돈을 내는</span>
-              <span className="block">제품으로 만드는 메이커, 김대정입니다.</span>
+              <span className="block md:whitespace-nowrap">아이디어를 새로운 가치로 실현하는</span>
+              <span className="block">메이커, 김대정입니다.</span>
             </h1>
             <div className="mt-8 grid grid-cols-[minmax(0,0.9fr)_minmax(320px,1.1fr)] gap-10 border-y border-border py-6 max-lg:grid-cols-1 max-lg:gap-5">
               <p className="m-0 text-xl font-semibold leading-[1.55] text-pretty">

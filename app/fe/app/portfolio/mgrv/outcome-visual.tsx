@@ -3,6 +3,7 @@ import type { PortfolioVisual } from "@/content/portfolios/types";
 import {
   AiSystemDiagram,
   AxWorkflowDiagram,
+  CompactFlowDiagram,
   CutoverMapDiagram,
   IndependentLanesDiagram,
   InfraOwnershipDiagram,
@@ -20,13 +21,13 @@ export function OutcomeVisual({
     <section
       data-layer="visual-reference"
       aria-label={`${visual.title} 시각 참고 자료`}
-      className="mt-12 min-w-0 border-t border-border pt-8"
+      className="mt-12 min-w-0 break-inside-avoid border-t border-border pt-8"
     >
       <header className="mb-5">
         <div className="flex flex-wrap items-baseline justify-between gap-3">
           <h3 className="m-0 text-lg font-semibold leading-[1.4]">{visual.title}</h3>
           <span className="font-mono text-xs uppercase tracking-[0.08em] text-muted">
-            흐름 참고
+            설계 흐름
           </span>
         </div>
         <p className="m-0 mt-3 text-sm leading-[1.7] text-fg-2">
@@ -46,6 +47,9 @@ export function OutcomeVisual({
       )}
       {visual.kind === "ai-system" && <AiSystemDiagram visual={visual} />}
       {visual.kind === "ax-workflow" && <AxWorkflowDiagram visual={visual} />}
+      {visual.kind === "compact-flow" && (
+        <CompactFlowDiagram visual={visual} />
+      )}
     </section>
   );
 }

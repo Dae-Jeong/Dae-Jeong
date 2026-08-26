@@ -22,7 +22,10 @@ export const resumeType = {
     "relative col-start-2 row-start-1 row-span-2 aspect-[4/5] w-28 overflow-hidden border border-border bg-surface max-sm:row-span-1 max-sm:w-20 print:w-28",
   careerMeta: "m-0 font-mono text-sm leading-relaxed text-fg-2",
   contactRow: "mt-3 flex flex-wrap gap-2",
-  summaryStack: "grid gap-4 text-fg-2",
+  summaryStack: "grid gap-3 text-fg-2",
+  profileTitle:
+    "m-0 text-balance text-xl font-semibold leading-snug tracking-[-0.015em] text-fg",
+  profileDescription: "m-0 text-pretty text-base font-normal leading-relaxed text-fg-2",
   careerRow: "border-border-soft py-4",
   achievementRow: "py-5",
   workStyleRow: "py-4",

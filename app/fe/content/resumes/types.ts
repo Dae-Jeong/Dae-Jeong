@@ -94,6 +94,7 @@ export type TailoredResume = {
     photoSrc?: string;
     careerLine: ResumeText;
     contacts: readonly ResumeContact[];
+    submissionMeta?: string;
   };
   summary: readonly {
     text: ResumeText;

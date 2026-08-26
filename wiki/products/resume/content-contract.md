@@ -41,6 +41,7 @@ Canonical positioning은 [profile/identity.md](../../profile/identity.md)를, �
 - Resume 전체는 portfolio를 열지 않아도 인터뷰 여부와 기술 역량을 판단할 수 있는 self-contained proof여야 한다.
 - 대표 기술 사례는 문제·규모, 제약·failure mode, 실제 대안과 선택, 구현 경계, 검증·배포·운영, 결과를 claim 근거가 허용하는 만큼 연결한다.
 - Portfolio는 architecture diagram, 상세 evidence, 추가 failure analysis로 검증 깊이를 확장하며 resume의 필수 전제 지면으로 사용하지 않는다.
+- 대표 제품명에는 관련 portfolio case를 한 번만 연결해 더 깊은 검증 경로를 제공한다. 긴 raw URL과 회사·제품 링크의 반복 노출은 피한다.
 - 프로젝트명은 주어가 아니라 career·capability claim의 근거로 둔다.
 - 직무와 강점을 자기 설명으로 반복하지 않는다. 독자가 경력·성과에 반복해서 나타나는 행동과 결과만으로 맡길 수 있는 일을 판정하게 한다.
 
@@ -48,8 +49,8 @@ Canonical positioning은 [profile/identity.md](../../profile/identity.md)를, �
 
 | # | Section | Contract |
 | --- | --- | --- |
-| - | Header | 이름·category·현재/이전 주요 경력·연락처. 회사·직함·기간이 즉시 보여야 함 |
-| 01 | 소개 | 공통 Maker 문장 한 문장만 둔다. 역할·기술 전문성은 헤더·경력·대표 성과가 증명하며 소개에서 다시 요약하지 않음 |
+| - | Header | 이름·category·현재/이전 주요 경력·연락처. 연락처는 이메일·GitHub·`marinkim.xyz`만 두고, 회사·직함·기간이 즉시 보여야 함 |
+| 01 | 소개 | `Maker title 1문장 + description 2문장`으로 구성한다. title은 브랜드 정체성, description은 `제품 판단 → 직접 구현 → cross-functional 출시·유료 운영` 범위만 설명하고 세부 기술·수치는 아래 경력과 대표 성과가 증명한다. |
 | 02 | 경력 | 최신순. 좌측 metadata column에 조직명과 기간을 세로로 쌓고, 우측에 직함·제품 성격·담당 범위를 배치. MediSolve AI row는 고객 문제를 실제 매출이 발생하는 Thready 제품으로 만든 과정과 제품·팀 outcome을 먼저 보여주고, 직접 구현 범위와 합류 경로는 그 뒤에 둔다. |
 | 03 | 대표 성과 | 다섯 사례를 한 섹션에서 연결: `Thready 제품화·매출·운영 → 인계받은 backend 병렬 재구축·QA reopen 관측 → Centurion 주문·재고 비동기 복구 → Thready 제품 원장/AI 실행 분리·STG migration·Outbox → 직접 구축한 Backend Template·agent 기준`. 회사 AX는 경력·기술과 AX/FDE 등 직군별 지원본에서 contribution strength를 분리해 사용한다. |
 | 04 | 기술 | `Backend Core → Data/Async → AI Runtime → Product Execution/AX → Cloud/Delivery`의 5개 capability lane으로 구성. Cloud/Delivery는 Docker·GitHub Actions·Azure·Terraform을 활용한 서비스 배포·환경 설정·기본 운영 경험만 표시한다. |
@@ -72,6 +73,7 @@ Daejeong Design의 Profile 프로젝트와 `app/design/resume-page-prototype.htm
 | Body / Item | 16px | 400 / 600 | Pretendard | 본문 / 행 제목 |
 
 - 헤더는 `이름 → 직무 → 경력 → 연락처`만 둔다. Maker 문장은 별도 `소개` 섹션에만 두고 헤더에는 반복하지 않는다.
+- 소개 title은 20px/600, description은 16px/400으로 분리해 headline과 설명의 위계를 만든다. description은 A4 기준 약 2줄을 목표로 하되 임의 폭이나 강제 줄바꿈으로 고정하지 않는다.
 - 간격은 이름–직무 6px, 직무–경력 16px, 경력–연락처 12px, 헤더 하단 24px, 다음 섹션 시작 40px(모바일 32px), 섹션 제목–본문 28px을 기준으로 한다.
 - 섹션 내부는 정보 밀도에 따라 `경력 16px / 대표 기술 사례 20px / Credentials 8px`의 세로 여백을 사용한다. 대표 기술 사례는 title과 description 사이에 6px을 두고, description 내부의 문장과 bullet은 본문 흐름에 따라 배치한다.
 - 이력서의 제목·설명·본문에는 `ch`나 임의의 `px` 기반 `max-width`로 줄 길이를 제한하지 않는다. 문서 컨테이너의 가용 폭을 사용하고 화면 폭에 따라 자연스럽게 줄바꿈한다.

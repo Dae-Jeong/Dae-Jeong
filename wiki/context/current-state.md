@@ -33,7 +33,7 @@ tags: [current-state, migration, resume]
 - **디자인 시스템 구현됨** (2026-07-18): 토큰 계약 전체를 `globals.css` @theme으로 이식(type scale 11~56px 포함), `components/site·ui` 11개 컴포넌트 + `cn()` 병합 계약(tailwind-merge), `/design` living specimen 라우트 — 빌드·렌더·computed style 검증 완료. Storybook 패키지는 도입하지 않음(라우트가 겸함 — 업계 레퍼런스 조사로 검증, 로컬 위키 design-systems 항목).
 - **공개 배포 완료** (2026-08-08): **marinkim.xyz 라이브**. Vercel(개인 계정 `marinbackend-1819`, Root Directory `app/fe`) + 가비아 DNS + Let's Encrypt(apex·www). 전 라우트 200, `git push origin main` -> 자동 배포. repo 는 **PRIVATE 전환**(evidence·연락처 보호), 사이트만 공개. 비용 최적화로 `commandForIgnoringBuildStep` 설정 — wiki 만 바뀐 커밋은 빌드 스킵.
 - **플랫폼 프로필 Maker v2 동기화 완료** (2026-08-24): 홈페이지·공통 resume에서 파생한 [붙여넣기 패키지](../backlog/platform-profile-consolidation/2026-08-22-platform-paste-package.md)를 Wanted·LinkedIn·Remember·Groupby·RocketPunch에 반영하고 저장 후 reload 검증을 마쳤다. 다섯 플랫폼 모두 `아이디어를 고객이 돈을 내는 제품으로 만드는 메이커`와 실제 고객이 결제하는 유료 제품 운영·직접 구현 범위를 사용하며, 정확한 매출 band와 광고 실험은 공개하지 않는다. RocketPunch 자동 AI 커리어 요약도 새 경력을 바탕으로 재생성됐다. LinkedIn Featured는 도메인 링크 검증 실패로 상단 웹사이트 버튼이 역할을 대신하고, Saramin은 사용하지 않기로 확정해 대상에서 제외했다. Oopy 정리와 Wanted·LinkedIn의 UI 잔여값은 남아 있다. 현재 플랫폼별 상태는 [Live 적용 검증](../backlog/platform-profile-consolidation/2026-08-22-live-verification.md)이 소유한다.
-- **Maker 브랜드 문장 확정** (2026-08-24): 공통 소개는 `아이디어를 고객이 돈을 내는 제품으로 만드는 메이커, 김대정입니다.`로 고정한다. `Maker`는 브랜드 정체성이고 채용 역할 표기는 `Tech Lead · Backend Engineer`를 유지한다. 홈 hero와 공통 resume·portfolio 소개가 같은 문장을 쓰며, 직군별 초안은 뒤의 기술 근거와 사례 순서만 바꾼다.
+- **Maker 브랜드 문장 복원** (2026-08-24): 공통 소개는 `아이디어를 새로운 가치로 실현하는 메이커, 김대정입니다.`로 복원했다. `Maker`는 브랜드 정체성이고 채용 역할 표기는 `Tech Lead · Backend Engineer`를 유지한다. 홈 hero와 공통 resume·portfolio·직군별 초안은 같은 문장을 쓰며, 실제 고객이 결제하는 제품을 만든 근거는 소개 문장에 넣지 않고 바로 아래 Thready 경력과 사례가 증명한다. 채용 플랫폼은 마지막 적용값을 보존하며 다음 동기화 때 이 문장으로 맞춘다.
 - **포트폴리오 V3 단일 문서 반영** (2026-08-23): `/portfolio`는 세 primary case를 `Thready 제품 0→1·매출` → `Company AX 전환 설계` → `Centurion service별 failure boundary` 순으로 보여준다. Company AX 사례는 MEDINESS의 제품·회사 업무 control plane과 직접 구축한 Backend Template·agent context를 contribution strength별로 분리한다. Infrastructure dossier는 archive evidence로 이동했고, Memento payment는 supporting case로 유지한다.
 - **직군별 포트폴리오 초안 구현** (2026-08-20): `/portfolio/role/*` local-only route에서 Tech Lead·Backend·AI Backend·AX/FDE·Platform 다섯 관점으로 같은 case library의 순서와 focus를 바꿔 읽을 수 있게 했다. resume와 role slug를 공유하고, 프로젝트 사실·수치·ownership은 복제하지 않으며 기본 `/portfolio`와 production 공개면은 유지한다.
 - **회사 Azure topology 시각화 기록** (2026-08-20, 2026-08-23 archive): Microsoft 공식 Azure icon 기반 current topology는 기술 audit·내부 evidence로 보존한다. 사용자의 전문성 positioning correction에 따라 public portfolio와 role variant에서는 선택하지 않는다.
@@ -65,7 +65,7 @@ tags: [current-state, migration, resume]
 - `uv sync --locked`: pass
 - workspace metadata/link/path/claim validation: pass
 - tracked symlink and local-only path check: pass
-- superseded v1 PDF smoke render: A4, 2 pages. active expression의 PDF 파생본은 미생성
+- active KO PDF: A4, 5 pages. 첫 장 scanability·페이지별 technical signal·100% scale 잘림/겹침·클릭 가능한 contact/Thready case 링크 검증 완료 (2026-08-24)
 - `git clone --no-local` temporary clone verifier: pass
 
 ## Next
@@ -76,6 +76,6 @@ tags: [current-state, migration, resume]
 
 1. **플랫폼 프로필 sync 마무리** — Oopy 링크 정리·공개 종료 판단과 플랫폼 UI 잔여값 확인. LinkedIn EN secondary는 영문 claim 검수 후 선택 적용
 2. **근거 확보로 claim 상향** — KCL 인증서, NEXUS pool 안정화 지표
-3. **active 이력서 파생 산출물 정리** — PDF 재생성 및 sitemap 갱신
+3. **active 이력서 파생 산출물 정리** — sitemap 갱신
 
 세부 작업과 판단 대기는 [todo.md](todo.md)만 갱신한다.

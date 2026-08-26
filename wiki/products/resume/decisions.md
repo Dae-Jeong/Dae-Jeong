@@ -12,10 +12,12 @@ tags: [resume, decisions, positioning]
 
 | Decision | Rationale |
 | --- | --- |
-| `Maker`는 브랜드 정체성, `Tech Lead · Backend Engineer`는 채용 역할 label | 소개에서는 `아이디어를 고객이 돈을 내는 제품으로 만드는 메이커, 김대정입니다.`를 사용하되 경력·metadata·검색 직군은 시장에서 인식 가능한 역할로 유지한다. |
+| `Maker`는 브랜드 정체성, `Tech Lead · Backend Engineer`는 채용 역할 label | 소개에서는 `아이디어를 새로운 가치로 실현하는 메이커, 김대정입니다.`를 사용하되 경력·metadata·검색 직군은 시장에서 인식 가능한 역할로 유지한다. |
+| 소개는 Maker title과 2문장 description으로 분리 | title은 기억할 정체성만 말하고, description은 기획자 출신 Tech Lead가 고객 문제를 제품 우선순위·구현 범위로 좁혀 직접 구현하고 cross-functional 팀과 유료 운영까지 이끈 범위를 설명한다. 세부 사례·수치는 경력과 대표 성과에 남긴다. |
 | Primary headline은 `Tech Lead`, supporting role은 `Backend Engineer` | 현재 맡은 판단·실행 책임을 먼저 제시하고, backend 사례와 메커니즘으로 전문성을 증명한다. |
 | Specialty는 `AI Product Systems` | prompt 사용이 아니라 runtime, quality, async/realtime 운영 경험을 묶는다. |
 | Agent workflow는 differentiator | 별도 직군 주장보다 engineering execution 방식으로 제시할 때 신뢰도가 높다. |
+| 헤더의 위치 정보 대신 개인 사이트를 연결하고, 대표 제품명은 portfolio case로 연결 | 연락처는 `이메일 · GitHub · marinkim.xyz` 세 경로로 압축한다. 제품 상세는 외부 마케팅 페이지보다 기여와 기술 판단이 보이는 portfolio case를 우선하며, 같은 링크를 본문에 반복하지 않는다. |
 | 첫 장은 scan layer, resume 전체는 self-contained technical proof | 첫 장에서 category·경력·최강 근거를 빠르게 판정하게 하되, portfolio를 열지 않아도 기술적 판단·구현·운영 역량을 검증할 수 있어야 한다. |
 | General master 먼저, JD tailoring은 선별 | 회사별 문서를 새로 쓰지 않고 검증된 master에서 재배열한다. |
 | 기존 `14-resume-draft-v1`은 v0로 재분류 | 구조 inventory는 유효하지만 evidence mapping과 공개 검증이 완료되지 않았다. |

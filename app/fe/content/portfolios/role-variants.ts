@@ -6,7 +6,7 @@ import {
 import type { RolePortfolio } from "./types";
 
 const UPDATED_AT = "2026-08-24";
-const MAKER_HOOK = "아이디어를 고객이 돈을 내는 제품으로 만드는 메이커, 김대정입니다.";
+const MAKER_HOOK = "아이디어를 새로운 가치로 실현하는 메이커, 김대정입니다.";
 
 const ROLE_PORTFOLIOS_BY_SLUG = {
   "tech-lead-product": {
