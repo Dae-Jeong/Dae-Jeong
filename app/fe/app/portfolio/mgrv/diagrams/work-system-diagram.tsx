@@ -5,26 +5,35 @@ import { QualityDecisionDiagram } from "./quality-decision-diagram";
 type WorkSystem = TailoredPortfolio["workSystem"];
 type WorkLane = WorkSystem["lanes"][number];
 
-const laneTone = {
+const laneMeta = {
   human: {
-    label: "border-fg bg-fg text-bg print:bg-transparent print:text-fg",
-    item: "border-fg bg-bg text-fg",
+    role: "판단",
+    owner: "사람이 결정",
+    description: "문제·architecture·release",
+    surface: "bg-white",
   },
   ai: {
-    label: "border-border bg-surface text-fg",
-    item: "border-border bg-surface text-fg",
+    role: "실행",
+    owner: "Agent가 수행",
+    description: "탐색·비교·반복 구현",
+    surface: "bg-[#f8fafc]",
   },
   automated: {
-    label: "border-success bg-bg text-success",
-    item: "border-success bg-bg text-fg",
+    role: "검증",
+    owner: "시스템이 확인",
+    description: "contract·test·evidence",
+    surface: "bg-white",
   },
-} satisfies Record<WorkLane["kind"], { label: string; item: string }>;
+} satisfies Record<
+  WorkLane["kind"],
+  { role: string; owner: string; description: string; surface: string }
+>;
 
 export function WorkSystemDiagram({ workSystem }: { workSystem: WorkSystem }) {
   return (
     <figure
       aria-label={workSystem.title}
-      className="m-0 border-y-2 border-fg py-8"
+      className="m-0 border-y border-[#cbd5e1] bg-[#f7f8fa] px-8 py-10 max-sm:px-5"
     >
       <h3 className="m-0 text-2xl font-semibold leading-[1.25] tracking-[-0.02em] text-balance">
         {workSystem.title}
@@ -38,8 +47,11 @@ export function WorkSystemDiagram({ workSystem }: { workSystem: WorkSystem }) {
       </div>
 
       <section className="mt-7 grid break-inside-avoid grid-cols-[180px_minmax(0,1fr)] border-y border-border max-lg:grid-cols-1 print:grid-cols-[140px_minmax(0,1fr)]">
-        <h4 className="m-0 border-r border-border bg-fg px-5 py-4 font-mono text-xs font-semibold text-bg max-lg:border-b max-lg:border-r-0 print:border-b-0 print:border-r print:bg-transparent print:px-3 print:py-3 print:text-fg">
-          SHARED CONTEXT
+        <h4 className="m-0 flex flex-col justify-center border-r border-[#cbd5e1] bg-white px-5 py-4 max-lg:border-b max-lg:border-r-0 print:border-b-0 print:border-r print:px-3 print:py-3">
+          <span className="font-mono text-xs font-semibold text-[#102044]">공유 기준</span>
+          <span className="mt-1 text-[11px] font-normal leading-[1.4] text-muted">
+            모두가 읽는 맥락
+          </span>
         </h4>
         <ol className="m-0 grid list-none grid-cols-4 p-0 max-md:grid-cols-2 print:grid-cols-4">
           {workSystem.foundation.map((item, index) => (
@@ -50,7 +62,7 @@ export function WorkSystemDiagram({ workSystem }: { workSystem: WorkSystem }) {
               {index > 0 && (
                 <span
                   aria-hidden="true"
-                  className="absolute -left-2.5 top-1/2 z-10 flex h-5 w-5 -translate-y-1/2 items-center justify-center bg-bg font-mono text-xs text-muted max-md:hidden"
+                  className="absolute -left-2.5 top-1/2 z-10 flex h-5 w-5 -translate-y-1/2 items-center justify-center bg-bg font-mono text-xs text-[#2854d7] max-md:hidden"
                 >
                   →
                 </span>
@@ -67,12 +79,20 @@ export function WorkSystemDiagram({ workSystem }: { workSystem: WorkSystem }) {
         {workSystem.lanes.map((lane) => (
           <section
             key={lane.kind}
- className="grid break-inside-avoid grid-cols-[180px_minmax(0,1fr)] border-t border-border-soft first:border-t-0 max-lg:grid-cols-1 print:grid-cols-[140px_minmax(0,1fr)]"
+ className={`grid break-inside-avoid grid-cols-[180px_minmax(0,1fr)] border-t border-border-soft first:border-t-0 max-lg:grid-cols-1 print:grid-cols-[140px_minmax(0,1fr)] ${laneMeta[lane.kind].surface}`}
           >
             <h4
- className={`m-0 flex items-center border-r px-5 py-5 text-sm font-semibold leading-[1.4] max-lg:border-b max-lg:border-r-0 print:border-b-0 print:border-r print:px-3 print:py-3 print:text-xs ${laneTone[lane.kind].label}`}
+ className="m-0 flex flex-col justify-center border-r border-[#cbd5e1] px-5 py-5 leading-[1.4] max-lg:border-b max-lg:border-r-0 print:border-b-0 print:border-r print:px-3 print:py-3"
             >
-              {lane.label}
+              <span className="font-mono text-[11px] text-muted">
+                {laneMeta[lane.kind].role}
+              </span>
+              <strong className="mt-1 text-sm font-semibold text-[#102044]">
+                {laneMeta[lane.kind].owner}
+              </strong>
+              <span className="mt-1 text-[11px] font-normal text-muted">
+                {laneMeta[lane.kind].description}
+              </span>
             </h4>
           <ol className="m-0 flex list-none items-stretch overflow-visible p-0 max-lg:grid print:flex">
               {lane.items.map((item, index) => (
@@ -83,13 +103,13 @@ export function WorkSystemDiagram({ workSystem }: { workSystem: WorkSystem }) {
                   {index > 0 && (
                     <span
                       aria-hidden="true"
- className="absolute -left-3 top-1/2 z-10 flex h-6 w-6 -translate-y-1/2 items-center justify-center bg-bg font-mono text-xs text-muted max-lg:-top-3 max-lg:left-5 max-lg:translate-y-0 max-lg:rotate-90 print:-left-3 print:top-1/2 print:-translate-y-1/2 print:rotate-0"
+ className="absolute -left-3 top-1/2 z-10 flex h-6 w-6 -translate-y-1/2 items-center justify-center bg-bg font-mono text-xs text-[#2854d7] max-lg:-top-3 max-lg:left-5 max-lg:translate-y-0 max-lg:rotate-90 print:-left-3 print:top-1/2 print:-translate-y-1/2 print:rotate-0"
                     >
                       →
                     </span>
                   )}
                   <span
-                    className={`w-full border px-3 py-3 text-sm font-semibold leading-[1.5] print:px-2 print:py-2 print:text-[10px] ${laneTone[lane.kind].item}`}
+                    className="w-full border border-[#cbd5e1] bg-white px-3 py-3 text-sm font-semibold leading-[1.5] text-[#102044] print:px-2 print:py-2 print:text-[10px]"
                   >
                     {item}
                   </span>
@@ -104,12 +124,13 @@ export function WorkSystemDiagram({ workSystem }: { workSystem: WorkSystem }) {
 
       <section
         aria-label="작업 방식 근거"
- className="mt-5 grid grid-cols-[180px_minmax(0,1fr)] border-y border-success max-lg:grid-cols-1 print:grid-cols-[140px_minmax(0,1fr)]"
+ className="mt-5 grid grid-cols-[180px_minmax(0,1fr)] border-y border-[#cbd5e1] bg-white max-lg:grid-cols-1 print:grid-cols-[140px_minmax(0,1fr)]"
       >
-        <h4 className="m-0 px-5 py-5 font-mono text-xs font-semibold text-success max-lg:border-b max-lg:border-success print:border-b-0 print:px-3 print:py-3">
+        <h4 className="m-0 flex items-center gap-2 px-5 py-5 font-mono text-xs font-semibold text-[#087f5b] max-lg:border-b max-lg:border-[#e3e8f0] print:border-b-0 print:px-3 print:py-3">
+          <span aria-hidden="true" className="h-2 w-2 bg-[#087f5b]" />
           실제 적용 범위
         </h4>
-        <div className="grid border-l border-success max-lg:border-l-0 print:border-l">
+        <div className="grid border-l border-[#e3e8f0] max-lg:border-l-0 print:border-l">
           {workSystem.evidence.map((evidence) => (
             <article
               key={`${evidence.project}-${evidence.scope}`}

@@ -2,14 +2,14 @@ import type { PortfolioVisual } from "@/content/portfolios/types";
 
 type AxWorkflowVisual = Extract<PortfolioVisual, { kind: "ax-workflow" }>;
 
-const stageTone: Record<
+const stageMeta: Record<
   AxWorkflowVisual["stages"][number]["role"],
-  string
+  { owner: string; surface: string }
 > = {
-  human: "border-border bg-bg",
-  contract: "border-fg bg-surface print:bg-transparent",
-  ai: "border-border bg-bg",
-  system: "border-border bg-bg",
+  human: { owner: "사람이 결정", surface: "bg-white" },
+  contract: { owner: "공유 계약", surface: "bg-[#f8fafc]" },
+  ai: { owner: "Agent가 수행", surface: "bg-white" },
+  system: { owner: "시스템이 검증", surface: "bg-[#f8fafc]" },
 };
 
 export function AxWorkflowDiagram({
@@ -20,11 +20,10 @@ export function AxWorkflowDiagram({
   return (
     <figure
       aria-label={visual.title}
-      className="m-0 break-inside-avoid border-y border-border py-6"
+      className="m-0 break-inside-avoid border-0 p-0"
     >
       <ol className="m-0 flex list-none items-stretch p-0 max-lg:flex-col">
         {visual.stages.map((stage, index) => {
-          const isContract = stage.role === "contract";
           const hasNext = index < visual.stages.length - 1;
 
           return (
@@ -34,9 +33,12 @@ export function AxWorkflowDiagram({
             >
               <div
                 data-role={stage.role}
-                className={`flex min-h-[86px] w-full min-w-0 flex-col justify-center border-y px-3 py-3 ${stageTone[stage.role]} ${isContract ? "border-y-2" : ""}`}
+                className={`flex min-h-[96px] w-full min-w-0 flex-col justify-center border-y border-[#cbd5e1] px-3 py-3 text-[#102044] ${stageMeta[stage.role].surface}`}
               >
-                <strong className="whitespace-nowrap text-sm font-semibold leading-[1.4]">
+                <span className="font-mono text-[10px] leading-[1.4] text-muted">
+                  {stageMeta[stage.role].owner}
+                </span>
+                <strong className="mt-1 break-words text-sm font-semibold leading-[1.4] [overflow-wrap:anywhere]">
                   {stage.label}
                 </strong>
                 {stage.items.length > 0 && (
@@ -51,7 +53,7 @@ export function AxWorkflowDiagram({
               {hasNext && (
                 <span
                   aria-hidden="true"
-                  className="flex shrink-0 items-center justify-center px-1.5 font-mono text-sm text-muted max-lg:h-8 max-lg:rotate-90 max-lg:px-0"
+                  className="flex shrink-0 items-center justify-center px-1.5 font-mono text-sm text-[#2854d7] max-lg:h-8 max-lg:rotate-90 max-lg:px-0"
                 >
                   →
                 </span>
@@ -65,9 +67,10 @@ export function AxWorkflowDiagram({
         {visual.evidenceBands.map((band) => (
           <section
             key={band.label}
-            className="grid grid-cols-[196px_minmax(0,1fr)] border-y border-border max-lg:grid-cols-1"
+            className="grid grid-cols-[196px_minmax(0,1fr)] border-y border-[#cbd5e1] max-lg:grid-cols-1"
           >
-            <h5 className="m-0 bg-surface px-5 py-4 text-sm font-semibold leading-[1.45] max-lg:border-b max-lg:border-border-soft print:bg-transparent">
+            <h5 className="m-0 flex items-center gap-2 bg-white px-5 py-4 text-sm font-semibold leading-[1.45] text-[#102044] max-lg:border-b max-lg:border-border-soft">
+              <span aria-hidden="true" className="h-2 w-2 bg-[#2854d7]" />
               {band.label}
             </h5>
             <p className="m-0 border-l border-border px-5 py-4 text-sm leading-[1.65] text-fg-2 max-lg:border-l-0">

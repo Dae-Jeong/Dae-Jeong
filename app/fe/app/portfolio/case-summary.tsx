@@ -20,7 +20,7 @@ function SummaryHeader({
   outcome: ReactNode;
 }) {
   return (
-    <header className="grid grid-cols-[150px_minmax(0,1fr)] gap-10 max-md:grid-cols-1 max-md:gap-5">
+    <header className="portfolio-case-header grid grid-cols-[150px_minmax(0,1fr)] gap-10 max-md:grid-cols-1 max-md:gap-5">
       <div className="flex items-start justify-between gap-4 font-mono text-sm text-muted md:grid md:content-start md:justify-normal md:gap-3">
         <span className="text-base font-semibold text-fg">{meta.no}</span>
         <span>{meta.tag}</span>

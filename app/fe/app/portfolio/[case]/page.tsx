@@ -55,7 +55,7 @@ export default async function CasePage({ params }: { params: Promise<{ case: str
       <TopBar variant="subpage" crumb={<><Link href="/portfolio" className="focus-ring hover:text-fg">Portfolio</Link> / {meta.no}</>} />
       <Container variant="doc" className="flex-1">
         <div className="grid grid-cols-[minmax(0,1fr)_220px] gap-12 max-lg:grid-cols-1">
-          <main className="min-w-0 pb-24 pt-12">
+          <main data-portfolio-document className="min-w-0 pb-24 pt-12">
             <header className="border-b-2 border-fg pb-9">
               <p className="m-0 font-mono text-xs text-muted">{eyebrow}</p>
               <h1 className="m-0 mt-4 max-w-[820px] text-[clamp(2rem,4vw,3.5rem)] font-semibold leading-[1.08] tracking-[-0.04em]">{meta.name}</h1>

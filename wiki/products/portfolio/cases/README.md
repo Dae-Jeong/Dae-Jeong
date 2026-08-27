@@ -24,6 +24,8 @@ tags: [portfolio, cases, library]
 | [say-realtime.md](say-realtime.md) | SAY | realtime AI backend | cluster 단위 주도 |
 | [thready-ai-system.md](thready-ai-system.md) | THREADY AI SYSTEM | AI service boundary·durable delivery | 설계·구현 전담 |
 | [operating-policy-delivery.md](operating-policy-delivery.md) | OPERATING POLICY DELIVERY | 운영 요청을 규칙·실행으로 연결한 cross-project pattern | 프로젝트별 `led` 상한 |
+| [nexus-operations.md](nexus-operations.md) | NEXUS OPERATIONS | 외부 운영·예약 요구를 backend·권한 경계로 구현한 FDE supporting case | backend `led` · product outcome `contributed` |
+| [sellercanvas-poc.md](sellercanvas-poc.md) | SELLERCANVAS POC | 생성형 AI 제품과 외부 기업 PoC의 product·technical delivery | product/PoC `led` · outcome `contributed` |
 
 ## Common Resume Selected Impact Coverage
 
@@ -41,6 +43,8 @@ tags: [portfolio, cases, library]
 | --- | --- |
 | Primary | [Thready](thready-rebuild.md) → [Company AX](be-template.md) → [Centurion](centurion-platform.md) |
 | Supporting | [Memento Payment](memento-payment.md) |
+
+직군별 local draft에서는 supporting tier를 추가로 선택할 수 있다. AX/FDE는 [NEXUS Operations](nexus-operations.md)와 [SellerCanvas PoC](sellercanvas-poc.md)를 field delivery 근거로 먼저 읽고, [Company AX](be-template.md)를 그 방식을 반복 가능한 실행 체계로 확장한 후속 사례로 읽는다.
 
 `Company AX`는 서로 다른 contribution strength를 하나로 뭉개지 않는다. MEDINESS의 제품·회사 업무 구조는 설계 참여와 제품별 적용·운영 근거를, Backend Template은 직접 설계·구축한 engineering execution 근거를 유지한다. Azure/Vercel은 배포 목적지 이상으로 확대하지 않는다.
 

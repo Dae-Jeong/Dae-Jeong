@@ -67,6 +67,7 @@ export type ResumeRoleVariant = {
   label: string;
   shortLabel: string;
   description: string;
+  signals: readonly string[];
 };
 
 export type ResumeSectionKey =

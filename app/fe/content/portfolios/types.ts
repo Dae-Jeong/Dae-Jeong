@@ -17,6 +17,7 @@ export type RolePortfolio = {
   slug: RoleVariantSlug;
   label: string;
   shortLabel: string;
+  signals: readonly string[];
   description: string;
   status: "draft";
   visibility: "local";

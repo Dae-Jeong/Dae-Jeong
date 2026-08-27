@@ -17,6 +17,14 @@ Source locator: `workspace:MEDISOLVEAI-BE-TEMPLATE`
 - Code-backed: repository 대부분의 설계·구축 변경이 직접 기여 범위로 확인됐다.
 - Contribution boundary: template 설계·구축 전담. 조직의 모든 backend 결정을 단독 소유했다는 의미는 아니다.
 
+## FastAPI SQLAlchemy Standard
+
+- Code-backed: FastAPI와 SQLAlchemy 2.0 async를 baseline으로 사용하고 Router → Service → Validator → Repository → Model 계층을 조직 표준 template에 구현했다.
+- Code-backed: PEP 695 generic `BaseRepository`로 공통 CRUD 경계를 만들고, Repository는 SQL·flush만 담당하며 commit·rollback은 Service의 transaction decorator가 소유하도록 책임을 분리했다.
+- Code-backed: `AsyncSession` lifecycle과 propagation(required·requires-new·nested), isolation, read-only, rollback safety를 integration test로 고정했다.
+- Code-backed: ORM entity와 raw query 결과의 경계를 typed DTO로 분리하고, SQLAlchemy model·naming convention·timezone·soft delete·cursor pagination 규칙을 ADR와 database convention으로 문서화했다.
+- Contribution boundary: FastAPI·SQLAlchemy 조직 template의 설계·구축을 소유한다. 모든 사내 service가 동일 version·구조로 전환됐거나 조직의 모든 backend 결정을 단독 소유했다는 의미는 아니다.
+
 ## Agent Context
 
 - Code-backed: 계층형 agent context, Hub-and-Spoke document routing, domain/setup automation skills가 template에 포함됐다.

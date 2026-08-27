@@ -19,7 +19,7 @@ export default function PortfolioPage() {
       <div className="print:hidden"><TopBar variant="subpage" crumb="Portfolio" /></div>
       <Container variant="doc" className="flex-1 pb-24 print:pb-0">
         <main id="top" data-portfolio-document>
-          <header className="border-b-2 border-fg pb-10 pt-14 print:pt-0">
+          <header className="portfolio-hero border-b-2 border-fg pb-10 pt-14 print:pt-0">
             <p className="m-0 text-sm font-medium text-muted">Maker · Tech Lead · Backend Engineer</p>
             <h1 className="mt-4 text-[clamp(2.15rem,4.6vw,3.35rem)] font-semibold leading-[1.04] tracking-[-0.035em] text-balance">
               <span className="block md:whitespace-nowrap">아이디어를 새로운 가치로 실현하는</span>
@@ -44,7 +44,7 @@ export default function PortfolioPage() {
               <h2 className="m-0 text-2xl font-semibold tracking-[-0.025em]">세 가지 대표 사례</h2>
               <p className="m-0 text-right text-sm text-muted max-sm:hidden">60초 요약 · 상세 기술 근거 연결</p>
             </div>
-            <ol className="m-0 grid list-none p-0">
+            <ol className="portfolio-case-index m-0 grid list-none p-0">
               {PRIMARY_CASES.map((item) => (
                 <li key={item.slug} className="border-b border-border">
                   <a href={`#case-${item.slug}`} className="focus-ring grid grid-cols-[52px_minmax(0,1fr)_minmax(220px,0.45fr)] gap-5 py-5 hover:bg-surface max-md:grid-cols-[42px_minmax(0,1fr)] print:grid-cols-[42px_minmax(0,1fr)_minmax(180px,0.45fr)] print:gap-3 print:py-2.5">

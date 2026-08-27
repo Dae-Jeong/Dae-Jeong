@@ -21,13 +21,13 @@ export function OutcomeVisual({
     <section
       data-layer="visual-reference"
       aria-label={`${visual.title} 시각 참고 자료`}
-      className="mt-12 min-w-0 break-inside-avoid border-t border-border pt-8"
+      className="portfolio-visual-band mt-12 min-w-0 break-inside-avoid"
     >
       <header className="mb-5">
         <div className="flex flex-wrap items-baseline justify-between gap-3">
           <h3 className="m-0 text-lg font-semibold leading-[1.4]">{visual.title}</h3>
-          <span className="font-mono text-xs uppercase tracking-[0.08em] text-muted">
-            설계 흐름
+          <span className="font-mono text-xs font-semibold text-muted">
+            System view
           </span>
         </div>
         <p className="m-0 mt-3 text-sm leading-[1.7] text-fg-2">

@@ -118,6 +118,7 @@ tags: [career, credentials, product, ux, tellingme, evidence]
 
 ## Memento Payment
 
+- Code-backed: `workspace:feynman_api`는 Python·FastAPI·SQLAlchemy 2.0·MySQL 기반이며, 김대정 authored main branch 변경에서 예약·결제·알림 bounded slice 구현이 확인된다.
 - Git identity (2026-08-18 재확인): `workspace:feynman_api`의 `main == origin/main`이며 `marin@mement.ai` 명의(`MementoAI-Daejeong`, `김대정`) non-merge commit은 **28건**(2024-11-13~2025-01-07)이다. 전체 ref의 48개 object 중 20개는 branch-only·PR/cherry-pick 계열이므로 shipped 근거에서 제외한다.
 - Code-backed: `fedfdd6a`에서 Stripe Checkout·Webhook과 독립 `PaymentHistory`·`PaymentMethod`를 도입했고, local transaction UUID와 payment type을 provider metadata에 실어 결제 이력과 event를 연결했다. 현재 `main`의 Stripe package 6개 파일 594/594 lines가 김대정 작성으로 확인된다.
 - Code-backed: `f26b4782`에서 manual capture와 예약 전 PaymentIntent 상태 검증을 적용하고, 예약 처리 실패 시 provider 상태가 `requires_capture`이면 cancel, `succeeded`이면 refund하는 **provider-side 보상 처리**를 추가했다. `558e80b5`에서는 0원·전액 마일리지 경로가 불필요한 provider 조회를 거치지 않도록 분기했다.

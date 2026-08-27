@@ -12,6 +12,22 @@ claims:
     forbidden_copy:
       - 조직의 모든 backend 표준 단독 결정
     verified_at: 2026-07-04
+  - id: be-template.fastapi-sqlalchemy-standard
+    statement: FastAPI·SQLAlchemy 2.0 async 기반 계층 구조와 repository·transaction·session 경계를 조직 표준 backend template으로 설계·구축
+    strength: owned
+    confidence: high
+    public: true
+    evidence: [evidence/projects/be-template.md#fastapi-sqlalchemy-standard]
+    allowed_copy:
+      - FastAPI·SQLAlchemy 2.0 async 기반 조직 표준 backend template 설계·구축
+      - Router·Service·Validator·Repository·Model 계층과 DI를 조직 backend 기준으로 구현
+      - Repository의 SQL 실행과 Service transaction 경계를 분리하고 async session lifecycle을 integration test로 검증
+      - generic Repository와 typed query DTO로 ORM·raw query 데이터 접근 경계를 표준화
+    forbidden_copy:
+      - 조직의 모든 backend 표준 단독 결정
+      - 모든 사내 service가 같은 template으로 전환 완료
+      - 성능·결함·개발 시간의 정량 개선
+    verified_at: 2026-08-27
   - id: be-template.team-leverage
     statement: 소수 백엔드 인원이 다수 제품을 담당하는 체제에서 표준 template로 컨텍스트 전환 비용을 낮추고, 횡단 관심사 일괄 반영과 FE 엔지니어의 BE 구현을 가능하게 함
     strength: owned

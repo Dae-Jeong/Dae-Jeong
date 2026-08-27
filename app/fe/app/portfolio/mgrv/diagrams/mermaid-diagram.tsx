@@ -1,25 +1,26 @@
 "use client";
 
-import { useEffect, useId, useState } from "react";
-import mermaid from "mermaid";
+import { useEffect, useRef, useState } from "react";
 
-mermaid.initialize({
+const mermaidConfig = {
   startOnLoad: false,
   securityLevel: "strict",
   theme: "base",
   fontFamily: "Pretendard, Arial, sans-serif",
   themeVariables: {
     background: "#ffffff",
-    primaryColor: "#ffffff",
-    primaryBorderColor: "#1f2937",
-    primaryTextColor: "#111827",
+    primaryColor: "#edf3ff",
+    primaryBorderColor: "#2854d7",
+    primaryTextColor: "#102044",
     secondaryColor: "#f8fafc",
-    tertiaryColor: "#f0fdf4",
-    lineColor: "#64748b",
-    clusterBkg: "#f8fafc",
-    clusterBorder: "#cbd5e1",
+    secondaryBorderColor: "#536176",
+    tertiaryColor: "#eaf8f2",
+    tertiaryBorderColor: "#087f5b",
+    lineColor: "#536176",
+    clusterBkg: "#f1f4f8",
+    clusterBorder: "#a9b5c6",
     edgeLabelBackground: "#ffffff",
-    fontSize: "14px",
+    fontSize: "15px",
   },
   flowchart: {
     curve: "linear",
@@ -28,51 +29,69 @@ mermaid.initialize({
     rankSpacing: 42,
     useMaxWidth: true,
   },
-});
+} as const;
 
-let renderQueue = Promise.resolve();
-
-function renderDiagram(id: string, chart: string) {
-  const render = renderQueue.then(() => mermaid.render(id, chart));
-  renderQueue = render.then(
-    () => undefined,
-    () => undefined,
-  );
-  return render;
-}
+let mermaidConfigured = false;
 
 export function MermaidDiagram({ chart, title }: { chart: string; title: string }) {
-  const diagramId = `mermaid-${useId().replace(/[^a-zA-Z0-9]/g, "")}`;
-  const [svg, setSvg] = useState("");
-  const [error, setError] = useState(false);
+  const diagramRef = useRef<HTMLDivElement>(null);
+  const [state, setState] = useState<"loading" | "ready" | "error">("loading");
 
   useEffect(() => {
-    let active = true;
+    const diagram = diagramRef.current;
+    if (!diagram) return;
 
-    void renderDiagram(diagramId, chart)
-      .then(({ svg: renderedSvg }) => {
-        if (active) setSvg(renderedSvg);
+    let active = true;
+    const timeout = window.setTimeout(() => {
+      if (active) setState("error");
+    }, 8_000);
+
+    setState("loading");
+
+    void import("mermaid")
+      .then(({ default: mermaid }) => {
+        if (!mermaidConfigured) {
+          mermaid.initialize(mermaidConfig);
+          mermaidConfigured = true;
+        }
+
+        diagram.removeAttribute("data-processed");
+        diagram.textContent = chart;
+        return mermaid.run({ nodes: [diagram] });
+      })
+      .then(() => {
+        if (active) setState("ready");
       })
       .catch(() => {
-        if (active) setError(true);
+        if (active) setState("error");
+      })
+      .finally(() => {
+        window.clearTimeout(timeout);
       });
 
     return () => {
       active = false;
+      window.clearTimeout(timeout);
     };
-  }, [chart, diagramId]);
+  }, [chart]);
 
   return (
-    <div
-      role="img"
-      aria-label={title}
-      data-mermaid-state={svg ? "ready" : error ? "error" : "loading"}
-      className="min-h-40 [&_svg]:mx-auto [&_svg]:h-auto [&_svg]:w-full [&_svg]:max-w-full"
-      {...(svg ? { dangerouslySetInnerHTML: { __html: svg } } : {})}
-    >
-      {!svg && error ? (
-        <p className="m-0 text-sm text-danger">다이어그램을 불러오지 못했습니다.</p>
-      ) : !svg ? (
+    <div className="relative min-h-40">
+      <div
+        ref={diagramRef}
+        role="img"
+        aria-label={title}
+        data-mermaid-state={state}
+        className={`[&_svg]:mx-auto [&_svg]:h-auto [&_svg]:w-full [&_svg]:max-w-full ${
+          state === "ready" ? "opacity-100" : "pointer-events-none absolute inset-0 opacity-0"
+        }`}
+      />
+
+      {state === "error" ? (
+        <p className="m-0 border border-[#b45309] bg-[#fff3e4] px-4 py-8 text-center text-sm text-[#7c2d12]">
+          다이어그램을 불러오지 못했습니다.
+        </p>
+      ) : state === "loading" ? (
         <p className="m-0 py-12 text-center font-mono text-xs text-muted">
           Mermaid rendering…
         </p>

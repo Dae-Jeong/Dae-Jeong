@@ -22,6 +22,7 @@ export function listRolePortfolios() {
     label: portfolio.label,
     shortLabel: portfolio.shortLabel,
     description: portfolio.description,
+    signals: portfolio.signals,
   }));
 }
 

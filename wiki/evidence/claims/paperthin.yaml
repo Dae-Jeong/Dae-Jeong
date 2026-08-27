@@ -1,0 +1,21 @@
+schema_version: 1
+project: paperthin
+claims:
+  - id: paperthin.evidence-first-agent-cycle
+    statement: 기존 codebase 자체를 다음 판단의 권위로 삼지 않고 real-surface evidence에서 lesson·anti-pattern·quality gate를 추출해 다음 v0의 입력으로 쓰는 agent cycle을 설계·공개
+    strength: owned
+    confidence: high
+    public: true
+    evidence: [evidence/projects/paperthin.md#evidence-first-decision-cycle]
+    allowed_copy:
+      - 기존 코드량이 아니라 실제 검증과 품질 게이트가 다음 구현을 결정하도록 agentic 개발 cycle 설계
+      - 실패한 code를 그대로 이월하지 않고 검증된 contract·lesson·quality gate만 다음 v0로 넘기는 open-source agent workflow 구축
+      - 개인 open-source Paperthin에서 real-surface QA와 evidence-first restart 구조를 설계·공개
+    forbidden_copy:
+      - AI model의 가중치·추론 algorithm 자체 개선
+      - coding agent 의사결정 정확도 향상
+      - autonomous engineering team 구축
+      - AI가 개발팀 또는 개발자를 대체
+      - 검증되지 않은 생산성·비용·품질 개선 수치
+      - 회사 AX 성과로 귀속
+    verified_at: 2026-08-27

@@ -22,6 +22,7 @@ tags: [claims, evidence, registry]
 | `infrastructure.yaml` | company-wide Azure/Terraform infrastructure ownership |
 | `be-template.yaml` | organization backend standard |
 | `mediness.yaml` | agent-readable product operations |
+| `paperthin.yaml` | evidence-first open-source agent decision cycle |
 
 ## Consumer Rule
 

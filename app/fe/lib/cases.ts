@@ -12,7 +12,9 @@ export type DossierCaseSlug =
 
 export type SupportingCaseSlug =
   | "memento-payment"
-  | "mediness-ops";
+  | "mediness-ops"
+  | "nexus-operations"
+  | "sellercanvas-poc";
 
 export type ArchiveCaseSlug =
   | "bay-async"
@@ -192,6 +194,54 @@ export const CASES: CaseMeta[] = [
       "mediness.company-work-ax-design",
       "mediness.product-system-design-participation",
       "mediness.product-operations",
+    ],
+    tier: "supporting",
+    available: false,
+  },
+  {
+    slug: "nexus-operations",
+    no: "S3",
+    name: "여러 피부과의 운영·예약 요구를 backend와 권한 경계로 구현했습니다.",
+    shortName: "피부과 운영·예약 시스템",
+    tag: "현장 운영 제품 · NEXUS",
+    blurb:
+      "여러 피부과의 홈페이지·관리·예약 흐름을 지원하는 multi-brand backend의 service boundary와 migration을 주도하고, 운영자의 소속 지점과 현재 작업 지점을 분리한 접근 경계를 설계했습니다.",
+    role: "Backend Architecture · Admin Backend Lead",
+    scope: "Customer Operations · FastAPI · Authorization · Migration",
+    proof: [
+      "Homepage/Admin API를 분리한 Clean Architecture monorepo",
+      "운영자의 소속 지점과 현재 작업 지점을 나눈 server-owned 권한 상태",
+      "제품의 예약률 개선과 고객사 매출 성과에 기여",
+    ],
+    claimIds: [
+      "nexus.hospital-operations-revenue-contribution",
+      "nexus.backend-architecture",
+      "nexus.admin-backend-ownership",
+      "nexus.branch-access-boundary",
+    ],
+    tier: "supporting",
+    available: false,
+  },
+  {
+    slug: "sellercanvas-poc",
+    no: "S4",
+    name: "생성형 AI 커머스 제품을 prototype에서 v1.0·외부 기업 PoC까지 구체화했습니다.",
+    shortName: "생성형 AI 제품·기업 PoC",
+    tag: "Enterprise PoC · SellerCanvas",
+    blurb:
+      "PM을 주 역할로 고객 흐름·기능 범위·출시 우선순위를 정해 prototype을 첫 제품으로 구체화하고, 외부 패션 브랜드의 요구를 기술 검증 범위로 바꿔 PoC를 진행했습니다.",
+    role: "Product Manager · Technical Delivery",
+    scope: "Product Scoping · AI Product · Enterprise PoC",
+    proof: [
+      "prototype에서 v1.0까지 제품 흐름·기능 범위 구체화",
+      "외부 패션 브랜드의 비즈니스 요구를 기술 검증 범위로 전환",
+      "상세 페이지 제작 흐름 특허 등록 · CES 2024 Best of Innovation",
+    ],
+    claimIds: [
+      "career.sellercanvas-product-system",
+      "career.sellercanvas-enterprise-poc",
+      "credentials.page-output-patent",
+      "credentials.ces-2024",
     ],
     tier: "supporting",
     available: false,

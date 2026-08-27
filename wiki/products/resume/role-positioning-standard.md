@@ -2,7 +2,7 @@
 type: product-contract
 title: Resume Role Positioning Standard
 description: 김대정의 역할을 직함이 아니라 반복된 판단·기술 경계·운영 결과로 전달하는 이력서 기준.
-timestamp: 2026-08-24
+timestamp: 2026-08-26
 derived_from:
   - profile/identity.md
   - evidence/claims/
@@ -118,7 +118,7 @@ contract·state·gate를 세팅하고 실제 운영을 책임했다면 이력으
 
 ### 경력
 
-- 소개 다음에 둔다. 사실이 주장보다 먼저다.
+- 대표 성과 다음에 둔다. 첫 화면에서 맡길 수 있는 결과를 판정한 뒤 회사별 사실과 범위로 검증한다.
 - 각 회사의 첫 문장은 `제품·도메인 + 맡은 범위`다.
 - 이어지는 bullet은 판단, 기술 구현, 운영 결과를 구분한다.
 - 과거 PM 성과는 `요구 발견 → 범위·우선순위 결정 → 기술 실행·외부 검증`으로 연결한다.

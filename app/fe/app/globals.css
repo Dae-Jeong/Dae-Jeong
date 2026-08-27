@@ -135,6 +135,259 @@ body {
   transform: none;
 }
 
+/* ── Portfolio visual system ────────────────────────────────────────────────
+   Resume는 monochrome print contract를 유지하고, portfolio만 화면용 위계와
+   의미 기반 색상을 사용한다. 색은 decoration이 아니라 system role을 표시한다. */
+[data-portfolio-document] {
+  --portfolio-ink: #102044;
+  --portfolio-ink-2: #1b315f;
+  --portfolio-blue: #2854d7;
+  --portfolio-blue-soft: #edf3ff;
+  --portfolio-violet: #6d42c7;
+  --portfolio-violet-soft: #f4efff;
+  --portfolio-green: #087f5b;
+  --portfolio-green-soft: #eaf8f2;
+  --portfolio-amber: #b45309;
+  --portfolio-amber-soft: #fff3e4;
+  --portfolio-slate: #536176;
+  --portfolio-slate-soft: #f1f4f8;
+  --case-accent: var(--portfolio-blue);
+  --case-soft: var(--portfolio-blue-soft);
+}
+
+[data-portfolio-document] .portfolio-hero {
+  position: relative;
+  overflow: hidden;
+  border: 0;
+  background: var(--portfolio-ink);
+  color: #fff;
+  padding: clamp(28px, 5vw, 56px);
+}
+
+[data-portfolio-document] .portfolio-hero::after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: min(34%, 360px);
+  height: 6px;
+  background: var(--portfolio-blue);
+  content: "";
+}
+
+[data-portfolio-document] .portfolio-hero .text-muted {
+  color: #aebbd5;
+}
+
+[data-portfolio-document] .portfolio-hero .text-fg-2 {
+  color: #dce4f4;
+}
+
+[data-portfolio-document] .portfolio-hero .text-fg,
+[data-portfolio-document] .portfolio-hero a {
+  color: #fff;
+}
+
+[data-portfolio-document] .portfolio-case-index {
+  border-color: #cbd5e1;
+}
+
+[data-portfolio-document] .portfolio-case-index > li {
+  border-color: #e3e8f0;
+}
+
+[data-portfolio-document] .portfolio-case-index > li > a {
+  transition:
+    background-color 140ms var(--ease-standard),
+    color 140ms var(--ease-standard);
+}
+
+[data-portfolio-document] .portfolio-case-index > li > a:hover {
+  background: #f8fafc;
+}
+
+[data-portfolio-document] .portfolio-case-index > li strong {
+  color: var(--portfolio-ink);
+  transition: color 140ms var(--ease-standard);
+}
+
+[data-portfolio-document] .portfolio-case-index > li > a:hover strong,
+[data-portfolio-document] .portfolio-case-index > li > a:focus-visible strong {
+  color: var(--portfolio-blue);
+}
+
+[data-portfolio-document] .portfolio-case {
+  --case-accent: var(--portfolio-blue);
+  --case-soft: var(--portfolio-blue-soft);
+}
+
+[data-portfolio-document] .portfolio-case > .portfolio-case-header {
+  border-top: 4px solid var(--case-accent);
+  background: #f8fafc;
+  padding: clamp(24px, 4vw, 40px);
+}
+
+[data-portfolio-document] .portfolio-case > .portfolio-case-header h2 {
+  color: var(--portfolio-ink);
+}
+
+[data-portfolio-document] .portfolio-chip {
+  border-color: #b9c5d8;
+  background: #fff;
+  color: var(--portfolio-ink);
+}
+
+[data-portfolio-document] .portfolio-context-bar {
+  border: 0;
+  background: var(--portfolio-slate-soft);
+  color: var(--portfolio-slate);
+  padding: 16px 20px;
+}
+
+[data-portfolio-document] .portfolio-context-bar strong {
+  color: var(--case-accent);
+}
+
+[data-portfolio-document] .portfolio-narrative-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 1px;
+  background: #cbd5e1;
+  border-block: 1px solid #cbd5e1;
+}
+
+[data-portfolio-document] .portfolio-narrative-panel {
+  min-width: 0;
+  background: #fff;
+  padding: clamp(22px, 3vw, 32px);
+}
+
+[data-portfolio-document] .portfolio-narrative-panel[data-panel="action"] {
+  background: #f6f8fc;
+}
+
+[data-portfolio-document] .portfolio-narrative-panel[data-panel="result"] {
+  grid-column: 1 / -1;
+  border-top: 1px solid #cbd5e1;
+  background: #f8fafc;
+  color: var(--portfolio-ink);
+}
+
+[data-portfolio-document] .portfolio-narrative-panel[data-panel="result"] p {
+  color: var(--portfolio-ink);
+}
+
+[data-portfolio-document] .portfolio-narrative-panel h3 {
+  color: var(--portfolio-ink);
+}
+
+[data-portfolio-document] .portfolio-narrative-panel[data-panel="result"] h3 {
+  color: var(--portfolio-blue);
+}
+
+[data-portfolio-document] .portfolio-visual-band {
+  border: 0;
+  background: #f7f8fa;
+  padding: clamp(24px, 4vw, 40px);
+}
+
+[data-portfolio-document] .portfolio-visual-band > header h3 {
+  color: var(--portfolio-ink);
+}
+
+[data-portfolio-document] .portfolio-visual-band > header span {
+  color: var(--case-accent);
+}
+
+[data-portfolio-document] .portfolio-visual-band figure {
+  background: #fff;
+  border: 1px solid #d6deea;
+  padding: clamp(18px, 3vw, 28px);
+}
+
+[data-portfolio-document] .portfolio-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  border-block: 1px solid #cbd5e1;
+  background: #cbd5e1;
+}
+
+[data-portfolio-document] .portfolio-detail-section {
+  min-width: 0;
+  background: #fff;
+  padding: 24px;
+}
+
+[data-portfolio-document] .portfolio-detail-section[data-detail-kind="decision"] {
+  background: #fff;
+}
+
+[data-portfolio-document] .portfolio-detail-section[data-detail-kind="implementation"] {
+  background: #fff;
+}
+
+[data-portfolio-document] .portfolio-detail-section[data-detail-kind="constraints"],
+[data-portfolio-document] .portfolio-detail-section[data-detail-kind="alternatives"] {
+  background: #f8fafc;
+}
+
+[data-portfolio-document] .portfolio-detail-section[data-detail-kind="proposal"] {
+  background: #f8fafc;
+}
+
+[data-portfolio-document] .portfolio-detail-section h4 {
+  color: var(--portfolio-slate);
+}
+
+[data-portfolio-document] .portfolio-evidence-band {
+  border-block: 1px solid #cbd5e1;
+  background: #f8fafc;
+  color: var(--portfolio-ink);
+  padding: clamp(24px, 4vw, 36px);
+}
+
+[data-portfolio-document] .portfolio-evidence-band h3,
+[data-portfolio-document] .portfolio-evidence-band h4,
+[data-portfolio-document] .portfolio-evidence-band p {
+  color: var(--portfolio-ink);
+}
+
+[data-portfolio-document] .portfolio-evidence-band article {
+  border-color: #d6deea;
+}
+
+[data-portfolio-document] .portfolio-evidence-band article > div > span {
+  color: var(--portfolio-blue);
+}
+
+[data-portfolio-document] .portfolio-jd-fit {
+  border-color: var(--portfolio-blue);
+  background: #fff;
+}
+
+[data-portfolio-document] .portfolio-jd-fit > h3 {
+  border-color: var(--portfolio-blue);
+  background: #f8fafc;
+  color: var(--portfolio-blue);
+}
+
+@media (max-width: 768px) {
+  [data-portfolio-document] .portfolio-narrative-grid,
+  [data-portfolio-document] .portfolio-detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  [data-portfolio-document] .portfolio-narrative-panel[data-panel="result"] {
+    grid-column: 1;
+  }
+
+  [data-portfolio-document] .portfolio-case > .portfolio-case-header,
+  [data-portfolio-document] .portfolio-visual-band,
+  [data-portfolio-document] .portfolio-evidence-band {
+    margin-inline: -16px;
+  }
+}
+
 /* Toast 자동 소멸 진행 바 — duration 은 ui/toast.tsx AUTO_DISMISS_MS 와 동기 */
 @keyframes toast-bar {
   from {
@@ -175,6 +428,56 @@ body {
   body {
     min-height: auto;
     background: #fff;
+  }
+
+  [data-portfolio-document] .portfolio-hero {
+    border-block: 3px solid #111;
+    background: #fff;
+    color: #111;
+    padding: 18px 0;
+  }
+
+  [data-portfolio-document] .portfolio-hero::after {
+    display: none;
+  }
+
+  [data-portfolio-document] .portfolio-hero .text-muted,
+  [data-portfolio-document] .portfolio-hero .text-fg-2,
+  [data-portfolio-document] .portfolio-hero .text-fg,
+  [data-portfolio-document] .portfolio-hero a {
+    color: #111;
+  }
+
+  [data-portfolio-document] .portfolio-case > .portfolio-case-header {
+    border-top-color: #111;
+    background: #fff;
+    margin-inline: 0;
+    padding: 16px 0;
+  }
+
+  [data-portfolio-document] .portfolio-narrative-panel,
+  [data-portfolio-document] .portfolio-narrative-panel[data-panel="action"],
+  [data-portfolio-document] .portfolio-narrative-panel[data-panel="result"],
+  [data-portfolio-document] .portfolio-visual-band,
+  [data-portfolio-document] .portfolio-detail-section,
+  [data-portfolio-document] .portfolio-evidence-band,
+  [data-portfolio-document] .portfolio-jd-fit {
+    background: #fff;
+    color: #111;
+  }
+
+  [data-portfolio-document] .portfolio-narrative-panel[data-panel="result"] h3,
+  [data-portfolio-document] .portfolio-narrative-panel[data-panel="result"] p,
+  [data-portfolio-document] .portfolio-evidence-band h3,
+  [data-portfolio-document] .portfolio-evidence-band h4,
+  [data-portfolio-document] .portfolio-evidence-band p {
+    color: #111;
+  }
+
+  [data-portfolio-document] .portfolio-visual-band,
+  [data-portfolio-document] .portfolio-evidence-band {
+    margin-inline: 0;
+    padding: 18px 0;
   }
 
   .resume-print-page-one,

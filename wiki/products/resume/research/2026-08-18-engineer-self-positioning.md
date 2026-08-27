@@ -84,6 +84,32 @@ tags: [resume, positioning, backend, research]
 Header의 primary category는 계속 `Backend Engineer · AI Product Systems`다. `AX`는 별도 전문 사례와
 기술 index에서 검색 가능한 분류로 사용하고, `AX Engineer`라는 새 직함으로 만들지 않는다.
 
+## 2026 FDE 표현 기준
+
+`Forward Deployed Engineer`는 설명을 위해 만든 임의 명칭이 아니라, 고객의 문제 발견부터 기술 범위
+설정·시스템 구축·production rollout·현장 적용까지 맡는 시장 직군이다.
+
+- OpenAI는 FDE를 고객과 함께 research breakthrough를 production system으로 바꾸는 역할로 두고,
+  discovery·technical scoping·system design·build·production rollout을 end-to-end 책임으로 명시한다.
+  [OpenAI Forward Deployed Engineer](https://openai.com/careers/forward-deployed-engineer-%28fde%29-sf-san-francisco/)
+- Palantir는 FDE를 고객의 실제 운영 환경에 들어가 첫 대화부터 업무 방식을 바꾸는 제품 출시까지
+  책임지는 engineer로 정의한다. custom application·LLM workflow·production solution을 고객 현실에
+  맞춰 구축하는 것이 핵심이다.
+  [Palantir Forward Deployed Software Engineer](https://jobs.lever.co/palantir/5168e8fd-fec1-4fea-b7a1-81bdaea65850)
+
+따라서 local AX/FDE 지원본은 회사 내부 AX부터 시작하지 않는다. 다음 순서로 증명한다.
+
+1. 고객·현장 workflow에서 실제 문제와 제약을 찾음
+2. 문제를 technical scope·제품 규칙·검증 조건으로 바꿈
+3. backend·AI·필요한 product surface를 직접 구축함
+4. 실제 사용·운영·business outcome까지 연결함
+5. 반복된 판단과 검증 방식을 agent context·runbook·human gate로 재사용 가능하게 남김
+
+김대정의 근거는 Thready 유료 제품 운영, NEXUS 외부 피부과 운영·예약 backend, SellerCanvas 외부 기업
+PoC가 field delivery를 증명하고, MEDINESS Company AX와 Backend Template은 그 경험을 조직의 반복 실행
+방식으로 확장한 후속 근거다. 기본 공개 이력서의 primary category는 계속 `Backend Engineer`로 유지하고,
+`FDE`는 해당 직군 지원본에서만 전면에 둔다.
+
 ## 김대정에게 적용할 해석
 
 Primary category는 `Backend Engineer`, specialty는 `AI Product Systems`로 유지한다. Product Owner 경험은 별도 직함 경쟁이 아니라 다음 행동으로 보여준다.

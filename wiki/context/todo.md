@@ -18,6 +18,15 @@ tags: [context, todo, routing]
 
 ## A. 지금 할 것
 
+### A0. 직군별 이력서·포트폴리오 기술 신호 강화
+
+owner: [수정 계획](../docs/superpowers/plans/2026-08-26-role-variant-technical-signal-rewrite.md)
+
+- [~] **사실 안전 정리** — Backend local draft와 Centurion dossier의 과장 표현을 먼저 정리함. 나머지 role variant 검수 대기
+- [~] **Backend 기준본** — 안전한 FastAPI 전환·durable delivery·비동기 복구·외부 결제 상태를 local 이력서에 반영. 사용자 문안 검토 대기
+- [ ] **직군별 확장** — Backend 문안 승인 뒤 AI Product Backend·Product Ownership·FDE의 서로 다른 proof hierarchy로 확장
+- [ ] **검증** — validator·typecheck·lint·build·browser A4와 15초·60초 역할 판정 확인
+
 ### A1. 플랫폼 프로필 sync
 
 owner: [Live 적용 검증](../backlog/platform-profile-consolidation/2026-08-22-live-verification.md) · 목표 문안: [Platform Paste Package](../backlog/platform-profile-consolidation/2026-08-22-platform-paste-package.md)

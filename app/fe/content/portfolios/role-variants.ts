@@ -5,7 +5,7 @@ import {
 } from "@/content/role-catalog";
 import type { RolePortfolio } from "./types";
 
-const UPDATED_AT = "2026-08-24";
+const UPDATED_AT = "2026-08-26";
 const MAKER_HOOK = "아이디어를 새로운 가치로 실현하는 메이커, 김대정입니다.";
 
 const ROLE_PORTFOLIOS_BY_SLUG = {
@@ -54,9 +54,54 @@ const ROLE_PORTFOLIOS_BY_SLUG = {
       },
     ],
   },
+  "product-owner": {
+    ...ROLE_CATALOG["product-owner"],
+    description: "고객 문제·우선순위·유료 운영과 이를 직접 닫은 기술 실행을 보여주는 포트폴리오",
+    status: "draft",
+    visibility: "local",
+    updatedAt: UPDATED_AT,
+    brandLine: MAKER_HOOK,
+    headline: "고객의 불편을 제품 우선순위로 바꾸고, 실제 고객이 결제하는 제품까지 운영했습니다.",
+    introduction:
+      "Thready에서는 고객이 돈을 내는 이유를 찾아 기능·실험·생성 품질 기준으로 구체화하고, 기획·QA·마케팅과 제품 운영을 리드했습니다. 판단을 문서로 넘기는 데서 끝내지 않고 FastAPI backend·AI 생성/평가·Next.js 핵심 흐름을 직접 구현했습니다. 이 경험을 바탕으로 제품 결정이 담당·QA·release까지 같은 기준으로 이어지는 운영 체계도 적용했습니다.",
+    proofAxes: [
+      {
+        title: "고객 문제·우선순위",
+        description: "요청이 아니라 사용자가 막히는 지점과 돈을 내는 이유에서 제품 범위를 정합니다.",
+      },
+      {
+        title: "직접 구현·출시",
+        description: "기술 제약을 직접 확인하고 backend·AI·핵심 화면을 출시 가능한 흐름으로 연결합니다.",
+      },
+      {
+        title: "운영·제품 결과",
+        description: "기획·QA·마케팅과 판단부터 release·유료 운영까지 하나의 제품 흐름으로 책임집니다.",
+      },
+    ],
+    cases: [
+      {
+        kind: "dossier",
+        slug: "thready",
+        focus:
+          "고객 문제를 기능·실험·품질 기준으로 바꾸고 팀과 유료 제품을 운영한 뒤, backend·AI·핵심 frontend를 직접 구현한 범위를 봅니다.",
+      },
+      {
+        kind: "dossier",
+        slug: "centurion-platform",
+        focus:
+          "예약 정책을 backend contract에서 화면·QA·release까지 연결하고 실시간 상담 제품의 구조 설계·통합에 기여한 방식을 봅니다.",
+      },
+      {
+        kind: "dossier",
+        slug: "be-template",
+        focus:
+          "제품 판단과 작업 상태를 Decision·SPEC·Work Package·owner·QA approval·release gate로 이어 실제 운영한 방식을 봅니다.",
+      },
+    ],
+  },
   backend: {
     ...ROLE_CATALOG.backend,
-    description: "운영 중인 제품의 백엔드를 재구축하고 안정화한 사례를 다룹니다.",
+    description: "기술 범위와 전환 기준을 리드하고 직접 재구축·안정화한 backend 사례",
     status: "draft",
     visibility: "local",
     updatedAt: UPDATED_AT,
@@ -64,7 +109,7 @@ const ROLE_PORTFOLIOS_BY_SLUG = {
     headline:
       "운영 중인 백엔드를 재구축하고, 어긋난 데이터와 실패한 작업을 복구할 수 있게 만들었습니다.",
     introduction:
-      "Thready에서는 빠른 기능 검증 중심으로 만들어진 초기 백엔드를 기존 프런트엔드와 출시 흐름을 유지한 채 FastAPI로 병렬 재구축했습니다. AI는 코드 분석과 반복 구현에 활용하고 아키텍처·검증 기준·전환 시점은 직접 판단했습니다. 이어 STG 데이터 이전과 Outbox 전달 경계를 검증했으며, Centurion과 Memento에서는 비동기 작업과 외부 결제의 실패 상태와 보상 흐름을 설계했습니다.",
+      "Tech Lead 역할로 제품 운영과 기술 위험을 함께 보고 변화 범위·검증 기준·전환 시점을 정했습니다. Thready에서는 빠른 기능 검증 중심으로 만들어진 초기 백엔드를 기존 프런트엔드와 출시 흐름을 유지한 채 FastAPI로 병렬 재구축했습니다. AI는 코드 분석과 반복 구현에 활용했습니다. 이어 STG 데이터 이전과 Outbox 전달 경계를 검증했으며, Centurion과 Memento에서는 비동기 작업과 외부 결제의 실패 상태와 보상 흐름을 설계했습니다.",
     proofAxes: [
       {
         title: "재구축과 전환",
@@ -154,27 +199,27 @@ const ROLE_PORTFOLIOS_BY_SLUG = {
   },
   "ax-fde": {
     ...ROLE_CATALOG["ax-fde"],
-    description: "고객 문제 정의·제품 실행·회사 AX 전환 설계를 전면에 둔 포트폴리오",
+    description: "고객·현장 문제를 production system으로 바꾸고 적용·운영까지 이어간 포트폴리오",
     status: "draft",
     visibility: "local",
     updatedAt: UPDATED_AT,
     brandLine: MAKER_HOOK,
     headline:
-      "고객의 문제를 실제 매출이 발생하는 제품으로 만들고, 회사 업무를 잇는 구조도 함께 설계했습니다.",
+      "현장의 문제를 제품으로 만들고, 실제 사용과 운영까지 이어갔습니다.",
     introduction:
-      "Thready에서는 고객이 돈을 내는 이유를 기능·품질 기준으로 바꾸고 기획·QA·마케팅과 실제 매출이 발생하는 제품으로 운영했습니다. 필요한 백엔드·AI·핵심 프런트엔드를 직접 구현한 뒤 제품의 Decision·SPEC·Work Package·QA·release 흐름을 운영했고, 의사결정·회의·업무 배정·승인·후속 작업까지 같은 맥락으로 연결하는 회사 AX 구조 설계에 참여했습니다.",
+      "Thready에서는 고객의 콘텐츠 제작 문제를 기능·품질 기준으로 바꾸고, 기획·QA·마케팅과 실제 고객이 결제하는 제품으로 운영했습니다. 여러 피부과의 운영·예약 요구는 multi-brand backend와 권한 경계로 구현했고, 이전에는 생성형 AI 커머스 제품을 prototype에서 외부 기업 PoC까지 구체화했습니다. 이렇게 현장에서 반복해 온 판단과 검증 방식을 제품 운영 체계와 회사 AX 구조로 확장했습니다.",
     proofAxes: [
       {
-        title: "문제 정의와 제품화",
-        description: "요청을 그대로 구현하지 않고 고객의 막힘을 기능과 검증 기준으로 바꿉니다.",
+        title: "고객과 현장 이해",
+        description: "요청 목록보다 실제 업무 흐름과 사용자가 막히는 지점에서 문제를 정의합니다.",
       },
       {
-        title: "결정에서 출시까지",
-        description: "제품 결정을 담당자·작업 상태·QA 승인·release gate와 연결합니다.",
+        title: "끝까지 직접 닫는 실행",
+        description: "기술 범위를 정하고 backend·AI·핵심 화면을 구현해 출시와 운영까지 연결합니다.",
       },
       {
-        title: "사람과 AI의 책임 분리",
-        description: "Agent는 탐색·초안·반복·근거 준비를 맡고 제품·아키텍처·배정·승인은 사람이 소유합니다.",
+        title: "반복 가능한 운영 방식",
+        description: "현장에서 확인한 판단과 검증 기준을 사람·agent가 다시 사용할 수 있는 실행 구조로 남깁니다.",
       },
     ],
     cases: [
@@ -182,19 +227,25 @@ const ROLE_PORTFOLIOS_BY_SLUG = {
         kind: "dossier",
         slug: "thready",
         focus:
-          "고객의 콘텐츠 제작 문제를 기능·품질 기준으로 바꾸고, 팀의 유료 제품 운영과 직접 구현을 함께 수행한 범위를 봅니다.",
+          "고객의 콘텐츠 제작 문제를 기능·품질 기준으로 바꾸고, 직접 구현과 팀의 유료 제품 운영까지 이어간 과정을 봅니다.",
+      },
+      {
+        kind: "supporting",
+        slug: "nexus-operations",
+        focus:
+          "여러 피부과의 운영·예약 요구를 service boundary·migration·지점 권한 상태로 구현하고 현장 성과에 기여한 범위를 봅니다.",
+      },
+      {
+        kind: "supporting",
+        slug: "sellercanvas-poc",
+        focus:
+          "외부 기업의 비즈니스 요구를 제품 범위와 기술 검증 항목으로 바꿔 prototype에서 PoC까지 전달한 경험을 봅니다.",
       },
       {
         kind: "dossier",
         slug: "be-template",
         focus:
-          "제품 요구·운영 구조 설계 참여, 제품별 실행 운영 리드, Backend Template 직접 구축을 구분한 회사 AX 전환 구조를 봅니다.",
-      },
-      {
-        kind: "dossier",
-        slug: "centurion-platform",
-        focus:
-          "DAY 예약 정책을 백엔드 판단에서 프런트엔드 표시·QA·릴리스까지 같은 기준으로 전달한 경험에 초점을 둡니다.",
+          "제품 운영에서 반복된 판단·작업·검증 방식을 회사 AX 구조와 agent-readable FastAPI 기반으로 확장한 과정을 봅니다.",
       },
     ],
   },

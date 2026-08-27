@@ -2,7 +2,7 @@
 type: index
 title: Portfolio Product
 description: Resume-selected claims의 문제, 접근, 구현, 운영 깊이를 제공한다.
-timestamp: 2026-08-24
+timestamp: 2026-08-27
 tags: [portfolio, cases, product]
 ---
 
@@ -13,7 +13,7 @@ Portfolio는 resume가 선택한 claim의 깊이를 검증하는 제품이다.
 ## Active Architecture
 
 - [Portfolio V3 Content Specification](v3-content-draft.md) — `/portfolio`는 60초 안에 `결과·핵심 판단·담당 범위`를 읽을 수 있는 공통 요약본이다. Thready·Company AX·Centurion은 사례별 대표 시각화 한 개와 proof strip만 남기고, 기술 판단·failure handling·검증 근거는 기존 상세 route와 직군별 dossier에서 이어서 읽는다. Memento 결제는 supporting case로 배치한다. Infrastructure dossier는 근거 라이브러리에 보존하되 public master에서 제외한다.
-- [Role Portfolio Variants](role-variants.md) — 같은 case library를 5개 직군별로 선택·정렬하고 읽을 초점을 바꾸는 local-only 단일 문서 초안.
+- [Role Portfolio Variants](role-variants.md) — 같은 case library를 Product Ownership·Backend·AI Backend·AX/FDE 네 관점으로 선택·정렬하고 읽을 초점을 바꾸는 local-only 단일 문서 초안.
 
 ## Historical Revision
 
@@ -37,5 +37,13 @@ Portfolio는 resume가 선택한 claim의 깊이를 검증하는 제품이다.
 - Canonical library: [cases/README.md](cases/README.md)
 - Product decisions: [decisions.md](decisions.md)
 - Historical visual baseline: [prototypes/v0.1.0/README.md](prototypes/v0.1.0/README.md)
+
+## Visual System
+
+- resume의 monochrome·scanability 계약과 portfolio의 기술 설명 화면을 분리한다. portfolio web은 navy 기반 hero와 의미 기반 accent를 사용한다.
+- 화면의 대부분은 navy·white·gray로 유지하고 blue 하나만 주 accent로 사용한다. green은 verified outcome·data, amber는 risk·failure·proposal처럼 판정이 필요한 작은 지점에만 제한한다. case마다 다른 대표색을 배정하지 않는다.
+- 각 case는 `case header → 상황 → 문제·대처 → 결과 → system view → 기술 판단 → 담당 범위 → JD fit`의 시각 위계를 공유하지만, 모든 영역을 같은 회색 선·동일한 panel로 평탄화하지 않는다.
+- `compact-flow`는 runtime Mermaid 의존 없이 React/CSS code-native diagram으로 렌더한다. 화면·모바일·A4에서 같은 구조를 유지하고, 작은 화면에서는 수직 흐름으로 전환한다.
+- A4 print에서는 hero와 dark evidence band를 흰 배경으로 바꾸되 semantic accent와 soft diagram background는 유지해 구분 근거가 사라지지 않게 한다.
 
 회사별·직군별 페이지는 canonical case를 새로 쓰지 않고, 같은 JD·직군 분석 결과로 resume와 동일한 case를 선별·조립한다. 표현 강도는 연결된 claim registry를 넘지 않는다.

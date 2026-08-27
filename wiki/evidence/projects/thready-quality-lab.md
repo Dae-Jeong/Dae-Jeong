@@ -1,10 +1,10 @@
 ---
 type: project-evidence
 title: Thready Quality Lab Evidence
-description: AI 글 생성 품질을 판정 가능한 대상으로 만든 실험 하네스 — 3층 판정 체계, 6축 계량, 실측 코퍼스, 반증 관리.
-timestamp: 2026-08-08
+description: AI 글 생성 품질 하네스와 대화형 편집 에이전트를 검증한 독립 prototype evidence.
+timestamp: 2026-08-27
 source_roots: [workspace]
-tags: [thready, ai-quality, measurement, evidence]
+tags: [thready, ai-quality, agentic-application, measurement, evidence]
 ---
 
 # Thready Quality Lab Evidence
@@ -89,3 +89,41 @@ Source locator: `workspace:thready-lab` (브랜치 `lab/prompt-node-experiments`
 
 - User-confirmed (2026-08-11): **하네스 구축과 agent 구조 설계·구현은 병행된 한 작업이다** — 평가 하네스를 만들면서 그 하네스로 검증할 planner-writer 파이프라인 구조 자체를 설계하고, 이해하면서 구현했다. **대표 영역은 writer**다. 원문: "harness를 구축함과 동시에 실제 agent 구조를 설계하고 이해하면서 구현하는 작업도 하는거지, 그게 대표적으로 writer 영역이고".
 - 표현 허용: "agent 구조(planner-writer 파이프라인) 설계·구현" — 종전 "운영·확인" 수준에서 상향. 분기 판정 재배치 사례(writer 18건 미발동 → planner 이동)는 이 설계 과정의 실측 학습으로 서술한다.
+
+## Conversational Editorial Agent Prototype
+
+2026-08-26~27에 `workspace:thready-lab`의 독립 `prototype/thready_ai`에서 진행한 대화형 Threads 편집 에이전트 근거다. 아래 범위는 prototype으로 검증됐으며, 운영 Thready surface에 연결된 기능이나 production agent로 확대하지 않는다.
+
+### Architecture And Execution Boundary
+
+- Code-backed: 현재 구조는 multi-agent가 아니라 하나의 `ThreadyConversationAgent`가 요청을 분류하고 capability를 선택해 실행하는 **single-agent planner-executor**다.
+- Code-backed: planner는 typed plan만 만들고 실행 권한을 갖지 않는다. `ToolCapability` registry가 action 등록 여부와 일치를 확인한 뒤 domain tool을 dispatch한다.
+- Code-backed: 편집 action은 `find_materials`, `develop_ideas`, `plan_post`, `write_post`, `review_post`, `revise_post`, `threads_coach` 7개다. 글 생성·수정은 별도 Writer를 새로 만들지 않고 기존 `SimpleThreadsWriter` 품질 경계를 재사용한다.
+- Code-backed: 명확한 읽기 요청·typed command·좁은 social turn은 deterministic fast lane에서 처리하고, 쓰기 action이 확정된 뒤에만 writing insight를 지연 로드한다. 모호한 mutation 요청은 planner fallback으로 실행하지 않는다.
+
+### Conversation, Context, And Artifact State
+
+- Code-backed: conversation, message, turn, tool result, versioned artifact를 분리한 SQLite 원장을 구성했다. 방당 active turn은 하나이며, 실행 중 들어온 발화는 queue에 남겨 앞 turn 종료 뒤 다음 turn으로 승격한다.
+- Code-backed: 글 생성과 수정은 parent chain을 가진 artifact version으로 남고, 브라우저 새로고침 뒤에도 message·turn·최신 artifact가 복원된다.
+- Code-backed: turn 실행 관측은 message와 분리된 append-only activity event로 기록한다. API는 `after_seq` 이후 event만 증분 반환하고 prompt·tool argument·provider response·내부 오류는 public projection에서 제거한다.
+- Code-backed: 최근 message 개수 절단 대신 token-aware context selection과 append-only compaction snapshot을 도입했다. 완료 action·선택 소재·artifact reference·미해결 요청은 typed memory로 보존하고 원문 message와 artifact는 source of truth로 유지한다.
+
+### Product Operation Safety Boundary
+
+- Code-backed: 계정·글 조회, 임시저장, 예약·발행·삭제, 성과 조회는 `ThreadyOperationsGateway` 뒤에 두었다. 현재 기본 구현은 외부 side effect가 없는 Mock adapter다.
+- Code-backed: 예약·발행·삭제 같은 mutation은 첫 turn에 `confirmation_required`를 만들고, 다음 turn의 typed confirmation이 profile·conversation·confirmation ID를 통과할 때만 Mock 상태를 전이한다. receipt 기반 idempotency로 같은 confirmation 재실행을 막는다.
+- Code-backed: profile ownership, 대화에서 제안된 material ID allowlist, source post 사용 권한을 실행 전에 함께 검증한다.
+- Scope boundary: 실제 Threads adapter, 운영용 durable worker, process restart recovery, fresh web material capability의 완료는 아직 공개 claim 범위가 아니다. fresh material task는 2026-08-27 현재 `in_progress`다.
+
+### Verification
+
+- Tool-backed: 초기 대화·queue·artifact 계약 12개 target test, 편집 action 확장 16개 test, activity 29개 test, insight/capability 39개 test, Mock operation 88개 test가 각 task 종료 시점에 통과했다.
+- Tool-backed: intent fast lane 종료 시 전체 prototype test `679 passed`, targeted Ruff `All checks passed`로 기록됐다.
+- Browser/Network/DB-backed: POST turn `202`, incremental activity polling, queue 승격, compaction 복원, typed operation, confirmation 전 무변경·확인 뒤 Mock mutation, 새로고침 뒤 activity·artifact 복원을 각각 확인했다.
+- Known debt: 운영 승격 전에는 process-local `BackgroundTasks`를 lease·heartbeat·retry·crash recovery가 있는 durable execution으로 바꿔야 한다. tool message→artifact→turn 완료 전체도 아직 하나의 transaction이 아니다.
+
+### Public Wording
+
+- 공개 가능: `대화형 AI 편집 prototype`, `single-agent planner-executor`, `typed capability registry`, `대화·turn·tool result·versioned artifact 원장`, `append-only activity`, `token-aware compaction`, `typed confirmation·idempotency가 있는 Mock operation gate`.
+- 공개 금지: `production agent`, `운영 Thready에 배포`, `multi-agent orchestration`, `실제 Threads 예약·발행·삭제`, `durable worker`, `재시작 복구 완료`, 진행 중인 fresh material capability의 완료 표현.
+- 강도: prototype architecture·ledger·activity·context·Mock operation gate의 설계·구현·검증은 `owned`. 운영 제품 승격과 실제 side effect는 미구현 범위다.

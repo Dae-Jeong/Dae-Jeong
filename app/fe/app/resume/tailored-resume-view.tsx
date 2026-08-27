@@ -186,15 +186,20 @@ function Section({
   title,
   meta,
   children,
+  className,
 }: {
   id: string;
   no: string;
   title: string;
   meta: string;
   children: React.ReactNode;
+  className?: string;
 }) {
   return (
-    <section id={id} className={cn(resumeType.documentSection, "scroll-mt-6")}>
+    <section
+      id={id}
+      className={cn(resumeType.documentSection, "scroll-mt-6", className)}
+    >
       <SectionHead no={no} title={title} meta={meta} size="doc" />
       {children}
     </section>
@@ -338,7 +343,11 @@ function ResumeDocument({ resume }: { resume: TailoredResume }) {
 
     if (section.key === "externalActivities") {
       return (
-        <Section key={section.key} {...sectionProps}>
+        <Section
+          key={section.key}
+          {...sectionProps}
+          className="print:break-before-page print:break-inside-avoid"
+        >
           <NumberedList className="border-t border-border-soft">
             {(resume.externalActivities ?? []).map((activity) => (
               <NumberedRow
@@ -436,6 +445,7 @@ export type RoleResumeOption = {
   label: string;
   shortLabel: string;
   description: string;
+  signals: readonly string[];
 };
 
 function ResumeVariantNav({
@@ -481,6 +491,18 @@ function ResumeVariantNav({
           );
         })}
       </div>
+      {active?.signals.length ? (
+        <ul className="m-0 mt-3 flex list-none flex-wrap gap-x-5 gap-y-1 p-0 text-xs text-fg-2">
+          {active.signals.map((signal) => (
+            <li
+              key={signal}
+              className="before:mr-2 before:text-accent before:content-['—']"
+            >
+              {signal}
+            </li>
+          ))}
+        </ul>
+      ) : null}
     </nav>
   );
 }

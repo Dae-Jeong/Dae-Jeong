@@ -38,8 +38,8 @@ export function CareerBridgeSection({ bridge }: { bridge: PortfolioCareerBridge 
       id="career-bridge"
       className="scroll-mt-6 pt-14"
     >
- <header className="grid grid-cols-[152px_minmax(0,1fr)] border-t-2 border-fg py-6 max-lg:grid-cols-1 max-lg:gap-3">
-        <span className="font-mono text-xs uppercase tracking-[0.08em] text-muted">
+      <header className="grid grid-cols-[152px_minmax(0,1fr)] border-t-4 border-[var(--portfolio-blue)] bg-[var(--portfolio-blue-soft)] px-7 py-7 max-lg:grid-cols-1 max-lg:gap-3 max-sm:px-5">
+        <span className="font-mono text-xs font-semibold text-[var(--portfolio-blue)]">
           Career bridge
         </span>
         <div>
@@ -50,11 +50,11 @@ export function CareerBridgeSection({ bridge }: { bridge: PortfolioCareerBridge 
         </div>
       </header>
 
- <ol className="m-0 grid list-none grid-cols-3 border-y border-border p-0 max-lg:grid-cols-1">
+      <ol className="m-0 grid list-none grid-cols-3 border-b border-border p-0 max-lg:grid-cols-1">
         {bridge.stages.map((stage, index) => (
           <li
             key={stage.label}
- className="min-w-0 border-l border-border-soft px-6 py-6 first:border-l-0 max-lg:border-l-0 max-lg:border-t max-lg:first:border-t-0"
+            className="min-w-0 border-l border-border-soft px-6 py-7 first:border-l-0 max-lg:border-l-0 max-lg:border-t max-lg:first:border-t-0"
           >
             <div className="flex items-baseline justify-between gap-4">
               <strong className="text-base font-semibold">{stage.label}</strong>
@@ -67,7 +67,7 @@ export function CareerBridgeSection({ bridge }: { bridge: PortfolioCareerBridge 
               {stage.layers.map((layer) => (
                 <li
                   key={layer}
-                  className="border border-border px-2 py-1 font-mono text-[11px] uppercase tracking-[0.04em] text-muted"
+                  className="border border-[#a9bceb] bg-[var(--portfolio-blue-soft)] px-2 py-1 font-mono text-xs text-[var(--portfolio-blue)]"
                 >
                   {layer}
                 </li>
@@ -85,20 +85,20 @@ export function CareerBridgeSection({ bridge }: { bridge: PortfolioCareerBridge 
 export function CaseMeta({ outcome }: { outcome: PortfolioOutcome }) {
   return (
     <div className="mt-5 flex flex-wrap items-center gap-2">
-      <span className="border border-border px-2.5 py-1 font-mono text-xs text-fg-2">
+      <span className="portfolio-chip border px-2.5 py-1 font-mono text-xs font-medium">
         {caseModeLabel[outcome.caseMode]}
       </span>
       {outcome.layers.map((layer) => (
         <span
           key={layer}
-          className="border border-border px-2.5 py-1 font-mono text-xs uppercase text-muted"
+          className="portfolio-chip border px-2.5 py-1 font-mono text-xs font-medium uppercase"
         >
           {layer}
         </span>
       ))}
       {outcome.status && (
         <span
-          className={`border px-2.5 py-1 font-mono text-xs ${statusTone[outcome.status.tone]}`}
+          className={`border bg-bg px-2.5 py-1 font-mono text-xs font-medium ${statusTone[outcome.status.tone]}`}
         >
           {outcome.status.label}
         </span>
@@ -123,22 +123,22 @@ export function CaseNarrative({
 }: Pick<PortfolioOutcome, "narrative">) {
   return (
     <section data-layer="narrative" aria-label="사례 설명" className="mt-8">
-      <p className="m-0 border-y border-border py-4 text-sm font-medium leading-[1.65] text-fg-2">
-        <strong className="mr-2 font-mono text-xs uppercase tracking-[0.06em] text-muted">
+      <p className="portfolio-context-bar m-0 text-sm font-medium leading-[1.65]">
+        <strong className="mr-2 font-mono text-xs font-semibold">
           상황 ·
         </strong>
         {narrative.context}
       </p>
 
-      <div className="mt-8 grid w-full gap-8">
-        <section>
+      <div className="portfolio-narrative-grid mt-7 w-full">
+        <section className="portfolio-narrative-panel" data-panel="problem">
           <h3 className="m-0 text-base font-semibold">문제</h3>
           <p className="m-0 mt-3 text-base leading-[1.75] text-fg-2">
             {narrative.problem}
           </p>
         </section>
 
-        <section>
+        <section className="portfolio-narrative-panel" data-panel="action">
           <h3 className="m-0 text-base font-semibold">대처 방법</h3>
           <ul className="m-0 mt-3 grid list-none gap-3 p-0">
             {narrative.actions.map((action) => (
@@ -155,7 +155,7 @@ export function CaseNarrative({
           </ul>
         </section>
 
-        <section className="border-t border-border pt-7">
+        <section className="portfolio-narrative-panel" data-panel="result">
           <h3 className="m-0 text-base font-semibold">{narrative.resultLabel}</h3>
           <p className="m-0 mt-3 text-lg font-medium leading-[1.7] text-fg">
             {narrative.result}
@@ -163,9 +163,7 @@ export function CaseNarrative({
         </section>
 
         {narrative.axExtension && (
-          <section
-            className="border-t border-border pt-7"
-          >
+          <section className="portfolio-narrative-panel" data-panel="extension">
             <h3 className="m-0 text-base font-semibold">
               {narrative.axExtension.title}
             </h3>
@@ -193,19 +191,15 @@ export function CaseDetails({ details }: Pick<PortfolioOutcome, "details">) {
       <p className="m-0 mt-2 text-sm leading-[1.65] text-fg-2">
         해결 과정에서 맡은 기술 판단과 구현 범위입니다.
       </p>
-      <div className="mt-5 flex w-full flex-wrap border-y border-border">
+      <div className="portfolio-detail-grid mt-5 w-full">
         {details.map((detail, index) => {
           const isLastOddItem = details.length % 2 === 1 && index === details.length - 1;
-          const isFirstDesktopRow = index < 2;
 
           return (
           <section
             key={`${detail.kind}-${detail.label}`}
-            className={`w-full border-t border-border-soft py-5 first:border-t-0 ${
-              isLastOddItem
-                ? "lg:w-full"
-                : "lg:w-1/2 lg:odd:border-r lg:odd:pr-6 lg:even:pl-6"
-            } ${isFirstDesktopRow ? "lg:border-t-0" : ""}`}
+            data-detail-kind={detail.kind}
+            className={`portfolio-detail-section ${isLastOddItem ? "lg:col-span-2" : ""}`}
           >
             <h4 className="m-0 font-mono text-xs font-semibold uppercase tracking-[0.06em] text-muted">
               {detail.label}
@@ -242,13 +236,17 @@ export function CaseDetails({ details }: Pick<PortfolioOutcome, "details">) {
 
 export function EvidenceRows({ evidence }: { evidence: PortfolioEvidence[] }) {
   return (
-    <section data-layer="evidence" aria-label="담당 범위" className="mt-10">
+    <section
+      data-layer="evidence"
+      aria-label="담당 범위"
+      className="portfolio-evidence-band mt-10"
+    >
       <h3 className="m-0 mb-4 text-lg font-semibold">담당 범위</h3>
-      <div className="border-y border-border">
+      <div className="border-y border-[#34466d]">
         {evidence.map((item) => (
           <article
             key={`${item.project}-${item.scope}`}
-            className="break-inside-avoid border-t border-border-soft py-5 first:border-t-0"
+            className="break-inside-avoid border-t py-5 first:border-t-0"
           >
             <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
               <span className="font-mono text-xs text-muted">
@@ -276,8 +274,8 @@ export function JdFitSection({
   companyName?: string;
 }) {
   return (
-    <section className="mt-10 grid grid-cols-[176px_minmax(0,1fr)] border-y-2 border-fg max-lg:grid-cols-1 print:mt-6">
-      <h3 className="m-0 bg-fg px-5 py-6 font-mono text-xs font-semibold uppercase tracking-[0.06em] text-bg max-lg:border-b max-lg:border-fg print:bg-transparent print:px-4 print:py-4 print:text-fg">
+    <section className="portfolio-jd-fit mt-10 grid grid-cols-[176px_minmax(0,1fr)] border-y-2 max-lg:grid-cols-1 print:mt-6">
+      <h3 className="m-0 px-5 py-6 font-mono text-xs font-semibold uppercase tracking-[0.06em] max-lg:border-b print:bg-transparent print:px-4 print:py-4 print:text-fg">
         {companyName} JD fit
       </h3>
       <div className="px-6 py-6 print:px-4 print:py-4">

@@ -324,6 +324,29 @@ claims:
       - 전체 agent 파이프라인 단독 설계로 단정 (writer가 대표 영역이다)
       - 18건을 벤치마크·평가셋 규모로 확대 해석
     verified_at: 2026-08-12
+  - id: thready.conversational-editorial-agent-prototype
+    statement: 독립 Thready AI prototype에서 single-agent planner-executor, typed capability registry, 대화·turn·tool result·versioned artifact 원장, append-only activity, token-aware compaction과 Mock operation confirmation gate를 설계·구현·검증
+    strength: owned
+    confidence: high
+    public: true
+    evidence: [evidence/projects/thready-quality-lab.md#conversational-editorial-agent-prototype]
+    allowed_copy:
+      - 대화형 Threads 편집 AI prototype의 planner·capability·tool 실행 경계와 대화·turn·artifact 원장 설계·구현
+      - 자연어 요청을 7개 편집 capability로 분류하고 기존 Writer를 재사용하는 single-agent planner-executor prototype 구축
+      - append-only turn activity와 token-aware context compaction, versioned artifact로 대화 실행 상태와 결과를 복원
+      - 운영 command를 typed gateway 뒤에 두고 명시적 confirmation·idempotency 경계를 Mock에서 검증
+      - deterministic route와 lazy insight loading으로 단순 요청과 편집 작업의 실행 경로를 분리
+    forbidden_copy:
+      - production Thready에 배포된 agent
+      - multi-agent orchestration system
+      - 실제 Threads 계정에서 예약·발행·삭제를 수행
+      - durable worker·process restart recovery 구현 완료
+      - 실제 사용자·매출·운영 지표 개선
+      - 진행 중인 fresh web material capability 완료
+    verified_at: 2026-08-27
+    note: >-
+      독립 prototype의 완료된 대화·편집·activity·context·Mock operation·fast lane 범위만 소유한다.
+      실제 Thready adapter와 durable execution은 별도 제품 승격 범위이며, fresh material capability는 진행 중이다.
   - id: thready.quality-criteria-system
     statement: AI 글 생성 품질 판정을 3층(자동 게이트·실측 분포 대조·사람 판정)으로 분리하고 6축으로 계량화, 자동화가 닿는 층과 닿지 않는 층을 갈라 설계
     strength: owned

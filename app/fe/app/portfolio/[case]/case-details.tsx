@@ -54,8 +54,8 @@ export const DETAILS: Record<string, CaseDetail> = {
       <>
         재구축의 가장 큰 위험은 새 결함이므로, 결정보다 <strong>통제 장치를 먼저</strong>{" "}
         놓았다 — 범위를 <strong>backend로 한정</strong>(FE는 Next.js 유지)하고, 하네스를
-        세운 뒤에 작업을 시작했다. 위험이 현실화되지 않았는지는 아래 근거 chip의 reopen
-        지표로 확인할 수 있다.
+        세운 뒤에 작업을 시작했다. 전환 전후의 반복 결함 신호는 같은 Jira 집계 기준으로
+        추적하되, 제품 전체의 변화가 함께 반영된 지표로 해석했다.
       </>,
     ],
     review: {
@@ -166,30 +166,21 @@ export const DETAILS: Record<string, CaseDetail> = {
     ],
     opsIntro: (
       <>
-        재구축 이후 이 backend는 <strong>월 수만 건 규모의 요청</strong>을 처리하는
-        production으로 운영되고 있다. 아래 근거 chip을 눌러 claim 요약을 확인할 수
-        있다.
+        재구축 이후 이 backend는 production에서 운영되고 있다. 아래 근거 chip을 눌러
+        검증 범위와 품질 기준을 확인할 수 있다.
       </>
     ),
     evidence: [
       {
         index: "근거 1",
         label: "QA reopen 37% → 11%",
-      claim:
-        "재구축 cutover 전후로 QA 티켓 reopen 비율(해결 대비 reopen)이 37%에서 11%로 감소",
-      source: "Jira 집계 · cutover 전후 비교",
-      claimIds: ["thready.qa-reopen-reduction"],
+        claim:
+          "재구축 cutover 전후 같은 기준에서 QA 티켓 reopen 비율이 37%에서 11%로 낮게 관측됨. backend 단독 효과가 아닌 제품 전체 변화가 포함된 지표",
+        source: "Jira 집계 · cutover 전후 비교",
+        claimIds: ["thready.qa-reopen-reduction"],
       },
       {
         index: "근거 2",
-        label: "HTTP 5xx 0.3% 수준 운영",
-      claim:
-        "월 수만 건 규모 요청을 처리하는 production backend를 HTTP 5xx 0.3% 수준으로 운영 (30일 기준)",
-      source: "Thready 운영 지표 · 운영 시점 기준",
-      claimIds: ["thready.production-operation-quality"],
-      },
-      {
-        index: "근거 3",
         label: "품질 기준값의 자기 되먹임 발견",
       claim:
         "측정값으로 신뢰하던 품질 기준값이 자사 출력을 되먹이고 있었음을 발견 — 순환을 끊고 기준을 다시 세우는 과정에서 문제 정의 자체의 오류도 드러남",

@@ -10,6 +10,7 @@ export type RolePortfolioOption = {
   label: string;
   shortLabel: string;
   description: string;
+  signals: readonly string[];
 };
 
 function RolePortfolioNav({
@@ -56,6 +57,18 @@ function RolePortfolioNav({
           );
         })}
       </div>
+      {active?.signals.length ? (
+        <ul className="m-0 mt-3 flex list-none flex-wrap gap-x-5 gap-y-1 p-0 text-xs text-fg-2">
+          {active.signals.map((signal) => (
+            <li
+              key={signal}
+              className="before:mr-2 before:text-accent before:content-['—']"
+            >
+              {signal}
+            </li>
+          ))}
+        </ul>
+      ) : null}
     </nav>
   );
 }
@@ -124,10 +137,11 @@ export function RolePortfolioView({
     <>
       <RolePortfolioNav activeSlug={portfolio.slug} options={options} />
       <main data-portfolio-document>
-        <header className="border-b-2 border-fg pb-10 pt-6 print:pt-0">
+        <header className="portfolio-hero pb-10 pt-6 print:pt-0">
           <div className="flex flex-wrap items-baseline justify-between gap-3">
             <p className="m-0 font-mono text-xs text-muted">
-              Tech Lead · Backend Engineer · {portfolio.label}
+              Tech Lead · Backend Engineer
+              {portfolio.slug === "backend" ? "" : ` · ${portfolio.label}`}
             </p>
             <Link
               href={`/resume/${portfolio.slug}`}
@@ -174,7 +188,7 @@ export function RolePortfolioView({
               {selectedCases.length} CASES
             </span>
           </div>
-          <ol className="m-0 grid list-none p-0">
+          <ol className="portfolio-case-index m-0 grid list-none p-0">
             {selectedCases.map(({ selection, meta }, index) => (
               <li key={meta.slug} className="border-b border-border">
                 <a

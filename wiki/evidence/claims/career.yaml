@@ -136,6 +136,20 @@ claims:
       - DB와 provider 결제의 atomic rollback 보장
       - webhook idempotency·exactly-once
     verified_at: 2026-08-18
+  - id: career.memento-fastapi-backend
+    statement: Memento AI에서 FastAPI·SQLAlchemy 2.0·MySQL 기반 예약·결제 backend의 bounded slice를 개발
+    strength: contributed
+    confidence: high
+    public: true
+    evidence: [evidence/projects/previous-career.md#memento-payment]
+    allowed_copy:
+      - FastAPI·SQLAlchemy·MySQL 기반 예약·결제 backend 개발
+      - Python·FastAPI 기반 병원 예약·결제 API 개발
+    forbidden_copy:
+      - Memento backend 전체 단독 구축
+      - 예약·결제 system 전체 ownership
+      - 전체 production 운영 전담
+    verified_at: 2026-08-27
   - id: career.memento-stripe-prepayment
     statement: Stripe Checkout 기반 manual-capture 선결제 영역을 구축하고 local transaction ID로 PaymentHistory·PaymentMethod와 Checkout·Webhook event를 연결
     strength: led
@@ -227,11 +241,29 @@ claims:
     allowed_copy:
       - 4년차
       - 실무 4년차
+      - Backend Engineer 3년차
     forbidden_copy:
       - 5년차 이상 (인턴 포함 수치)
       - 6년째 (재직 시작 연도 기준 표현)
-      - Backend Engineer 기준 N년차 (BE 구간만은 28개월이다)
+      - Backend 경력 3년 이상 보유
+      - Backend Engineer 4년차
     verified_at: 2026-08-13
     note: >-
       산정 근거는 profile/career.md#tenure 표다. 시간 경과로 값이 변하므로 분기마다 재산정한다.
-      직군 합산 기준이며, Backend 단일 직군 기준으로 표기하면 부풀리기로 읽힌다.
+      직군 합산 기준이다. User-confirmed(2026-08-27)으로 28개월의 현재 Backend 구간은
+      한국식 연차인 `Backend Engineer 3년차` 표기를 허용하되, 완료 경력 3년이나 4년차로 확대하지 않는다.
+  - id: career.coding-agent-usage
+    statement: Claude Code와 Codex를 codebase 분석·기능 inventory·반복 구현·검증에 사용하고 architecture·test·release 판단은 직접 소유
+    strength: owned
+    confidence: high
+    public: true
+    evidence: [evidence/agent-workflow.md#coding-agent-use]
+    allowed_copy:
+      - Claude Code·Codex를 codebase 분석·기능 inventory·반복 구현·검증에 활용
+      - coding agent를 source of truth·task·tool·verification gate와 연결한 engineering workflow로 활용
+      - architecture·test acceptance·release 판단은 사람이 소유하도록 coding agent 실행 경계를 설계
+    forbidden_copy:
+      - coding agent가 제품 판단·architecture·QA·release를 자율 수행
+      - AI가 개발팀을 대체
+      - 검증되지 않은 개발 속도·생산성 배수
+    verified_at: 2026-08-27

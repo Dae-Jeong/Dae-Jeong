@@ -6,9 +6,9 @@ type IndependentLanesVisual = Extract<
 >;
 
 const laneTone = {
-  context: "border-border bg-surface text-fg",
-  contract: "border-fg bg-fg text-bg print:bg-transparent print:text-fg",
-  delivery: "border-border bg-bg text-fg",
+  context: "border-[#2854d7] bg-[#edf3ff] text-[#102044]",
+  contract: "border-[#6d42c7] bg-[#6d42c7] text-white print:bg-transparent print:text-fg",
+  delivery: "border-[#087f5b] bg-[#eaf8f2] text-[#102044]",
 } satisfies Record<IndependentLanesVisual["lanes"][number]["tone"], string>;
 
 export function IndependentLanesDiagram({
@@ -19,7 +19,7 @@ export function IndependentLanesDiagram({
   return (
     <figure
       aria-label={visual.title}
-      className="m-0 break-inside-avoid border-y border-border py-6"
+      className="m-0 break-inside-avoid border-0 p-0"
     >
       <div className="mb-4 flex items-baseline justify-between gap-5 border-b border-border-soft pb-3 max-sm:block">
         <strong className="font-mono text-xs uppercase tracking-[0.06em] text-muted">

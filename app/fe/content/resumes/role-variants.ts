@@ -9,7 +9,7 @@ import type {
 import { ROLE_CATALOG, ROLE_VARIANT_SLUGS } from "../role-catalog";
 import type { RoleVariantSlug } from "../role-catalog";
 
-const UPDATED_AT = "2026-08-22";
+const UPDATED_AT = "2026-08-26";
 const MAKER_HOOK = "아이디어를 새로운 가치로 실현하는 메이커, 김대정입니다.";
 
 const CONTACTS = [
@@ -45,7 +45,7 @@ const STUDIO_DETAILS: readonly ResumeText[] = [
       text: "생성형 AI 커머스 제품의 prototype부터 v1.0까지 제품 흐름·기능 범위·출시 우선순위를 정하는 PM",
       tone: "strong",
     },
-    { text: "으로 0→1 구간을 이끌고 외부 패션 브랜드 PoC를 진행했습니다." },
+    { text: "으로 첫 제품을 구체화하고 외부 패션 브랜드 PoC까지 확장했습니다." },
   ],
   "상세 페이지 제작 흐름은 특허 「페이지 출력 방법」으로 출원·등록됐고, 제품은 CES 2024 Best of Innovation을 수상했습니다.",
 ];
@@ -86,7 +86,7 @@ const CREDENTIALS: readonly ResumeCredential[] = [
   },
   {
     period: "2022.10 출원\n2025.12경 등록",
-    text: "특허 「페이지 출력 방법」 · 출원 10-2022-0130234 · 등록 10-2898273",
+    text: "특허 「페이지 출력 방법」 · 등록 10-2898273",
     claimIds: ["credentials.page-output-patent"],
   },
   {
@@ -178,7 +178,9 @@ function makeBase({
   slug,
   label,
   shortLabel,
+  signals,
   description,
+  includeMakerHook = true,
   position,
   summary,
   careers,
@@ -191,19 +193,21 @@ function makeBase({
 > & {
   label: string;
   shortLabel: string;
+  signals: readonly string[];
   description: string;
+  includeMakerHook?: boolean;
 }): TailoredResume {
   return {
     slug,
     companyName: "Role Draft",
     position,
-    roleVariant: { label, shortLabel, description },
+    roleVariant: { label, shortLabel, signals, description },
     sectionOrder: [
       "profile",
-      "career",
       "outcomes",
-      "workStyles",
+      "career",
       "skills",
+      "workStyles",
       "externalActivities",
       "credentials",
     ],
@@ -220,12 +224,14 @@ function makeBase({
       ],
       contacts: CONTACTS,
     },
-    summary: [
-      {
-        text: [{ text: MAKER_HOOK, tone: "strong" }],
-      },
-      ...summary,
-    ],
+    summary: includeMakerHook
+      ? [
+          {
+            text: [{ text: MAKER_HOOK, tone: "strong" }],
+          },
+          ...summary,
+        ]
+      : summary,
     careers,
     outcomes,
     workStyles,
@@ -466,37 +472,206 @@ export const TECH_LEAD_PRODUCT_RESUME = makeBase({
   skills: TECH_LEAD_SKILLS,
 });
 
+export const PRODUCT_OWNER_RESUME = makeBase({
+  ...ROLE_CATALOG["product-owner"],
+  description: "고객 문제·우선순위·유료 운영과 이를 직접 닫은 기술 실행을 전면에 둔 지원본",
+  position: "Product Ownership · Product Engineer",
+  summary: [
+    {
+      text: [
+        {
+          text: "고객의 불편을 제품 우선순위로 바꾸고, 실제 고객이 결제하는 제품까지 운영해 본 Tech Lead · Backend Engineer",
+          tone: "strong",
+        },
+        { text: "입니다. 기획·QA·마케팅과 Thready의 제품 운영을 리드하고, 필요한 backend·AI·핵심 frontend를 직접 구현했습니다." },
+      ],
+      claimIds: [
+        "career.medisolve-role-evolution",
+        "thready.product-zero-to-one-contribution",
+        "thready.subscription-revenue-band",
+        "thready.frontend-product-delivery",
+      ],
+    },
+    {
+      text: "요청을 그대로 구현하기보다 고객이 막히는 지점과 돈을 내는 이유를 먼저 찾습니다. 그 판단을 기능·품질·QA·release 기준으로 구체화하고, 기술 제약을 직접 확인해 출시 가능한 범위로 닫습니다.",
+      claimIds: [
+        "thready.generation-quality-system",
+        "mediness.product-operations",
+        "centurion.day-product-integration",
+      ],
+    },
+  ],
+  careers: makeCareers({
+    currentClaimIds: [
+      "thready.product-zero-to-one-contribution",
+      "thready.subscription-revenue-band",
+      "thready.frontend-product-delivery",
+      "thready.generation-quality-system",
+      "thready.release-operation",
+      "centurion.day-product-integration",
+      "centurion.say-realtime-ai",
+      "mediness.product-system-design-participation",
+      "mediness.product-operations",
+      "mediness.product-development-coordination-leverage",
+      "be-template.backend-standard",
+      "be-template.agent-context",
+    ],
+    currentDetails: [
+      [
+        { text: "Thready의 고객 문제·기능 우선순위·생성 품질·출시 판단", tone: "strong" },
+        { text: "을 기획·QA·마케팅과 함께 운영했습니다. 팀과 실제 고객이 결제하는 제품으로 만들었고 backend·AI·핵심 frontend를 직접 구현했습니다." },
+      ],
+      "시장 데이터와 사용자 반응을 제품 판단의 근거로 사용하고, 콘텐츠 생성·가져오기·예약·발행·관리 흐름과 writer prompt·평가 체계를 제품 안에 연결했습니다.",
+      "Centurion에서는 초기 backend 기준을 세우고, DAY 예약 정책을 backend 판단·frontend 표시·QA·release가 같은 기준으로 움직이도록 연결했습니다. 실시간 AI 상담은 공동 주 기여로 구조 설계와 통합을 수행했습니다.",
+      "MEDINESS의 제품 요구·운영 흐름 설계에 참여하고, 제품별 Decision·SPEC·Work Package·owner·QA approval·release gate 적용과 운영을 리드했습니다.",
+      "FastAPI template과 agent context를 직접 구축해 다음 담당자와 AI agent가 같은 architecture·작업·검증 기준을 읽을 수 있게 했습니다.",
+    ],
+    studioDetails: [
+      [
+        { text: "생성형 AI 커머스 제품의 prototype부터 v1.0까지 고객 흐름·기능 범위·출시 우선순위", tone: "strong" },
+        { text: "를 정하고 첫 제품을 구체화해 외부 패션 브랜드 PoC까지 확장했습니다." },
+      ],
+      "상세 페이지 제작 흐름은 특허 「페이지 출력 방법」으로 등록됐고, 제품은 CES 2024 Best of Innovation을 수상했습니다.",
+    ],
+  }),
+  outcomes: [
+    {
+      no: "01",
+      title: "고객의 불편을 팀과 실제 고객이 결제하는 Thready 제품으로 전환",
+      description: [
+        "콘텐츠 제작과 성과 판단의 막힘을 기능·실험·생성 품질 문제로 나누고, 기획·QA·마케팅과 우선순위부터 출시·운영까지 리드했습니다.",
+        { text: "제품 성과: 실제 고객이 결제하는 유료 제품 운영", source: "팀 outcome" },
+        { text: "기능·실험 우선순위와 생성 품질·QA·release 기준 운영", source: "제품 판단" },
+        { text: "FastAPI backend·AI 생성/평가·Next.js 핵심 workflow 직접 구현", source: "기술 실행" },
+      ],
+      claimIds: [
+        "thready.product-zero-to-one-contribution",
+        "thready.subscription-revenue-band",
+        "thready.frontend-product-delivery",
+        "thready.generation-quality-system",
+      ],
+    },
+    {
+      no: "02",
+      title: "제품 판단이 QA와 release까지 같은 기준으로 이어지는 운영 체계",
+      description: [
+        "기획 문서에서 끝나지 않도록 Decision·SPEC·Work Package에 판단과 작업 상태를 남기고 담당·검증·release gate로 연결했습니다.",
+        { text: "제품 요구·운영 흐름 설계 참여", source: "MEDINESS" },
+        { text: "제품별 owner·QA approval·release gate 적용·운영 리드", source: "제품 운영" },
+        { text: "설명과 재동기화 비용을 줄이는 agent-readable context", source: "실행 기반" },
+      ],
+      claimIds: [
+        "mediness.product-system-design-participation",
+        "mediness.product-operations",
+        "mediness.product-development-coordination-leverage",
+        "be-template.agent-context",
+      ],
+    },
+    {
+      no: "03",
+      title: "예약 정책을 backend 판단에서 화면·QA·출시까지 연결",
+      description: [
+        "운영 정책이 API와 화면에서 다르게 해석되지 않도록 예약 상태와 예외 조건을 backend contract로 정하고, frontend 표시·QA 시나리오·release까지 같은 기준으로 맞췄습니다.",
+        { text: "예약 정책의 backend·frontend·QA·release 연결 주도", source: "Centurion · DAY" },
+        { text: "실시간 AI 상담 구조 설계·통합 공동 주 기여", source: "AI 상담" },
+      ],
+      claimIds: ["centurion.day-product-integration", "centurion.say-realtime-ai"],
+    },
+    {
+      no: "04",
+      title: "첫 제품의 범위와 출시 순위를 정해 외부 PoC까지 확장",
+      description: [
+        "생성형 AI 커머스 제품의 고객 흐름과 기능 범위를 정하고 prototype에서 v1.0까지 제품화를 이끌었습니다.",
+        { text: "외부 패션 브랜드 PoC 진행", source: "제품 확장" },
+        { text: "특허 등록·CES 2024 Best of Innovation", source: "외부 검증" },
+      ],
+      claimIds: [
+        "career.sellercanvas-product-system",
+        "career.sellercanvas-enterprise-poc",
+        "credentials.page-output-patent",
+        "credentials.ces-2024",
+      ],
+    },
+  ],
+  workStyles: [
+    {
+      no: "01",
+      title: "고객의 막힘부터 정의합니다",
+      body: "요청보다 사용자가 멈추는 지점과 돈을 내는 이유를 먼저 보고, 관측 근거를 기능·실험 우선순위로 바꿉니다.",
+      claimIds: ["thready.product-zero-to-one-contribution"],
+    },
+    {
+      no: "02",
+      title: "판단을 실행 계약으로 남깁니다",
+      body: "제품 판단을 API·상태·담당·QA 승인·release gate로 구체화해 직군마다 다르게 해석되는 일을 줄입니다.",
+      claimIds: ["mediness.product-operations", "centurion.day-product-integration"],
+    },
+    {
+      no: "03",
+      title: "기술 제약은 직접 확인합니다",
+      body: "backend·AI·핵심 화면을 직접 구현해 아이디어의 가능성과 비용을 확인하고, 운영 가능한 범위까지 제품을 닫습니다.",
+      claimIds: ["thready.frontend-product-delivery", "thready.generation-quality-system"],
+    },
+  ],
+  skills: [
+    {
+      label: "제품 운영",
+      stack: "Problem framing · prioritization · quality criteria · QA · release",
+      via: "고객 문제를 기능·실험·품질 기준으로 바꾸고 cross-functional 운영을 리드",
+      claimIds: ["thready.product-zero-to-one-contribution", "mediness.product-operations"],
+    },
+    {
+      label: "제품 개발",
+      stack: "Python · FastAPI · PostgreSQL · TypeScript · Next.js",
+      via: "제품 판단을 backend·AI·핵심 사용자 workflow로 직접 구현",
+      claimIds: ["thready.frontend-product-delivery", "thready.backend-rebuild"],
+    },
+    {
+      label: "AI 제품",
+      stack: "LLM integration/evaluation · typed prompt · structured output · STT",
+      via: "생성 품질과 실시간 상담을 제품 운영 흐름에 연결",
+      claimIds: ["thready.generation-quality-system", "centurion.say-realtime-ai"],
+    },
+    {
+      label: "실행 체계",
+      stack: "Decision · SPEC · Work Package · human gate · agent context",
+      via: "기획·디자인·개발·QA의 판단과 상태를 담당·검증·release 기준으로 연결",
+      claimIds: ["mediness.product-operations", "be-template.agent-context"],
+    },
+  ],
+});
+
 export const BACKEND_RESUME = makeBase({
   ...ROLE_CATALOG.backend,
-  description: "transaction·migration·async failure·authorization을 전면에 둔 지원본",
+  description: "안전한 전환·서비스 간 상태 전달·비동기 복구·외부 결제를 먼저 보여주는 지원본",
+  includeMakerHook: false,
   position: "Backend Engineer",
   summary: [
     {
       text: [
         {
-          text: "데이터나 후속 작업이 어긋날 수 있는 지점을 transaction·service·worker·권한 경계로 나누고, 구현부터 migration·배포·운영까지 책임지는 Backend Engineer",
+          text: "운영 중인 Python·FastAPI 서비스를 안전하게 바꾸고, 하나의 DB transaction으로 끝나지 않는 상태를 복구 가능하게 설계해 온 Backend Engineer",
           tone: "strong",
         },
-        { text: "입니다. FastAPI 제품 backend를 재구축·전환해 실제 사용자 운영까지 이어왔으며, Vision AI·PM 경력을 포함한 " },
-        { text: "실무 4년차", tone: "metric" },
         { text: "입니다." },
       ],
+      claimIds: [
+        "thready.backend-rebuild",
+        "thready.ai-replica-outbox",
+        "centurion.bay-async-backend",
+        "career.memento-stripe-prepayment",
+      ],
+    },
+    {
+      text: "기존 제품 흐름을 유지한 backend cutover, 원장 변경을 AI 실행부로 전달하는 Outbox·lease·version fence, 재시도 소진 뒤에도 실패 상태를 남기는 worker, 외부 결제 보상 흐름을 구현했습니다. Vision AI와 PM을 거쳐 제품과 운영을 함께 보는 실무 4년차입니다.",
       claimIds: [
         "career.tenure",
         "career.ai-pm-backend-continuity",
         "thready.backend-rebuild",
-        "thready.prototype-to-user-operation",
-      ],
-    },
-    {
-      text: "정상 동작보다 실패한 뒤의 상태를 먼저 봅니다. 서비스 분리 뒤의 데이터 이관과 역순 전달, 재시도 소진 뒤의 작업 보존, 클라이언트 입력에 의존한 지점 권한, 외부 결제사와 로컬 DB의 상태 차이를 각각 Outbox·version fence·수동 재처리·server auth state·보상 처리로 다뤘습니다.",
-      claimIds: [
         "thready.ai-service-migration",
         "thready.ai-replica-outbox",
         "centurion.bay-async-backend",
-        "nexus.branch-access-boundary",
         "career.memento-stripe-prepayment",
-        "career.memento-payment",
       ],
     },
   ],
@@ -513,25 +688,26 @@ export const BACKEND_RESUME = makeBase({
       "nexus.backend-architecture",
       "nexus.branch-access-boundary",
       "be-template.backend-standard",
+      "be-template.team-leverage",
+      "be-template.agent-context",
     ],
     currentDetails: [
-      "빠른 기능 검증 중심으로 만들어진 초기 prototype backend를 인계받아 validation harness를 먼저 세우고 FastAPI backend를 병렬 재구축·cutover했습니다. 전환 전후 같은 기준의 Jira 집계에서 해결된 QA issue의 reopen 비율은 26%p 낮게 관측됐습니다.",
-      "AI 실행부와 DB를 제품 backend에서 분리하고 STG 이력 migration, MD5·FK·E2E 검증, Outbox·retry·version fence 기반 원장 전달 경계를 구현했습니다.",
-      "Centurion의 주문·재고 API와 RabbitMQ·TaskIQ worker에서 상태·retry·terminal failure·수동 재처리 경계를 구축했습니다.",
-      "여러 피부과 운영·예약 backend의 service boundary와 migration을 주도하고, client header 대신 server auth state가 작업 지점을 결정하는 접근 경계를 구현 중입니다.",
-      "여러 사내 서비스의 Azure·Vercel 배포 환경을 구성하고 기본 운영을 맡았습니다.",
-      "layered architecture·DI·ADR·runbook을 갖춘 조직 표준 FastAPI template과 agent context를 구축했습니다.",
+      "Thready 초기 prototype backend를 인계받아 기존 Next.js와 release 흐름을 유지한 채 FastAPI로 병렬 재구축·cutover했습니다. contract·component·운영 흐름을 확인하는 validation harness를 전환 전에 세웠습니다.",
+      "제품 원장과 AI 실행을 독립 application·DB로 분리하고, 원장 변경과 Outbox를 같은 transaction에 기록했습니다. lease 재점유·attempt token·delivery version fence·멱등 consumer로 worker 중단과 중복·역순 전달을 제어했습니다.",
+      "Centurion 주문·재고 backend의 Celery 작업을 TaskIQ·RabbitMQ로 전환하고, PENDING→SENDING→SUCCESS/FAILED 상태·retry 상한·최종 실패 기록·수동 재처리 경계를 구축했습니다.",
+      "외부 병원 운영·예약 backend의 service boundary와 migration을 주도하고, client header 대신 검증된 server auth state가 작업 지점을 결정하는 접근 경계를 구현 중입니다.",
+      "2~3명의 백엔드 엔지니어가 다수 제품을 담당하는 환경에서 layered architecture·DI·ADR·runbook·agent context를 갖춘 조직 표준 FastAPI template을 구축했습니다.",
     ],
   }),
   outcomes: [
     {
       no: "01",
-      title: "인계받은 초기 backend를 production 운영 단계에 맞게 FastAPI로 재구축",
+      title: "기존 제품 흐름을 유지한 채 backend를 FastAPI로 교체",
       description: [
-        "빠른 기능 검증 중심의 초기 prototype backend를 인계받아 부분 수정과 재구축 범위를 비교하고, 검증 기준을 먼저 세운 뒤 backend만 병렬 전환했습니다.",
-        { text: "contract·component·operational-flow validation harness 선행", source: "Thready" },
-        { text: "기존 Next.js와 release 흐름을 유지한 backend-only cutover", source: "v1.1.0" },
-        { text: "전환 전후 같은 기준에서 QA issue reopen 비율 26%p 낮게 관측", source: "Jira 전후 관측" },
+        "초기 prototype을 부분 수정할지 재구축할지 비교한 뒤, frontend와 release 흐름은 그대로 두고 backend만 병렬 구축해 전환했습니다.",
+        { text: "contract·component·운영 흐름을 확인하는 validation harness", source: "검증 기준" },
+        { text: "기존 Next.js와 release 흐름을 유지한 backend-only cutover", source: "Thready v1.1.0" },
+        { text: "전후 Jira 비교에서 해결된 issue의 reopen 비율 26%p 감소 관측", source: "제품 전체 변화 포함" },
       ],
       claimIds: [
         "thready.rebuild-decision-execution",
@@ -543,12 +719,12 @@ export const BACKEND_RESUME = makeBase({
     },
     {
       no: "02",
-      title: "AI application·DB 분리와 migration·Outbox 정합성 검증",
+      title: "원장 변경이 AI 실행부에 안전하게 도달하도록 전달 경계 설계",
       description: [
-        "product ledger와 generation lifecycle의 소유권을 나누고, 기존 데이터 이관과 이후 원장 변경 전달을 함께 설계했습니다.",
-        { text: "STG 생성 2,616건·품질 snapshot 795건·trace 7,111건 이관", source: "STG migration" },
-        { text: "row count·MD5 fingerprint·FK orphan·생성 API E2E gate", source: "verification" },
-        { text: "transactional Outbox·retry·delivery version fence", source: "delivery" },
+        "제품 원장과 AI 실행 상태를 독립 application·DB로 나누면서, commit 뒤 event 유실과 worker 중단·중복·역순 전달까지 함께 다뤘습니다.",
+        { text: "STG migration rehearsal과 row count·MD5·FK·생성 API E2E", source: "데이터 이전 검증" },
+        { text: "원장 변경과 Outbox를 같은 transaction에 기록하고 lease로 전달 row 재점유", source: "durable delivery" },
+        { text: "attempt·delivery version fence, 멱등 consumer, 최대 재시도 뒤 실패 상태 보존", source: "수렴·복구" },
       ],
       claimIds: [
         "thready.ai-service-boundary",
@@ -558,12 +734,12 @@ export const BACKEND_RESUME = makeBase({
     },
     {
       no: "03",
-      title: "재시도 소진 뒤에도 복구 가능한 worker 상태 설계",
+      title: "재시도가 끝난 작업도 운영자가 다시 처리할 수 있게 설계",
       description: [
-        "API와 후속 작업의 실행·배포 경계를 나누고 자동 재시도 뒤에도 원인과 상태를 확인해 다시 처리할 수 있게 했습니다.",
-        { text: "Celery에서 TaskIQ·RabbitMQ로 전환", source: "Centurion · 주문·재고" },
-        { text: "상태·retry·terminal failure·manual reprocess", source: "worker lifecycle" },
-        { text: "API test·Docker CI·onboarding 기반", source: "delivery" },
+        "실패 가능한 주문·재고 후속 작업을 API 요청에서 분리하고, 자동 재시도가 끝나도 원인과 상태를 확인해 실패 건만 다시 처리할 수 있게 했습니다.",
+        { text: "async FastAPI 실행 모델에 맞춰 Celery에서 TaskIQ·RabbitMQ로 전환", source: "worker 선택" },
+        { text: "PENDING→SENDING→SUCCESS/FAILED와 retry 상한", source: "상태 전이" },
+        { text: "최종 실패 기록·수동 재처리·worker 별도 배포", source: "운영 복구" },
       ],
       claimIds: [
         "centurion.bay-async-backend",
@@ -573,51 +749,35 @@ export const BACKEND_RESUME = makeBase({
     },
     {
       no: "04",
-      title: "tenant 범위를 client header에서 server auth state로 이동",
+      title: "외부 결제와 로컬 예약이 어긋날 때 취소·환불로 보상",
       description: [
-        "운영자의 소속 지점과 현재 작업 지점을 분리하고, 권한 검증을 통과한 API만 작업 지점을 바꾸게 설계했습니다. 이 영역은 현재 구축 중입니다.",
-        { text: "Homepage/Admin API 분리와 gateway 단일 진입점", source: "병원 운영 backend" },
-        { text: "multi-tenancy·Soft Delete 자동 filtering", source: "data boundary" },
-        { text: "본사 미선택 409·권한 밖 지점 접근 403 구분", source: "authorization" },
+        "예약보다 먼저 시작되는 외부 결제와 로컬 결제 이력을 연결하고, 예약 처리 실패와 비동기 환불 완료를 서로 다른 상태로 처리했습니다.",
+        { text: "manual-capture Checkout과 local transaction ID metadata 연결", source: "결제 추적" },
+        { text: "Checkout·Webhook event를 PaymentHistory·PaymentMethod와 매핑", source: "상태 연결" },
+        { text: "예약 실패 시 PaymentIntent 상태에 따라 cancel·refund", source: "provider 보상" },
       ],
       claimIds: [
-        "nexus.backend-architecture",
-        "nexus.admin-backend-ownership",
-        "nexus.branch-access-boundary",
+        "career.memento-stripe-prepayment",
+        "career.memento-payment",
       ],
     },
     {
       no: "05",
-      title: "Stripe 선결제부터 Webhook·취소·환불까지 결제 상태 흐름 구축",
+      title: "다수 제품을 같은 기준으로 관리할 FastAPI 기반 구축",
       description: [
-        "예약보다 먼저 시작되는 외부 결제와 로컬 결제 이력을 연결하고, 예약 실패와 비동기 환불 완료 시점을 각각 처리했습니다.",
-        { text: "manual-capture Checkout과 local transaction ID metadata 연결", source: "Memento" },
-        { text: "PaymentIntent 상태별 cancel/refund provider-side 보상", source: "booking failure" },
-        { text: "환불 완료 transition 뒤 mileage 복원·ticket 삭제", source: "refund state" },
+        "2~3명의 백엔드 엔지니어가 여러 제품을 오가도 제품 정책만 파악하면 같은 구조에서 작업할 수 있도록 공통 기반을 만들었습니다.",
+        { text: "layered architecture·DI·response/error convention·type safety", source: "application base" },
+        { text: "ADR·runbook으로 선택 이유와 운영 절차 보존", source: "decision context" },
+        { text: "횡단 관심사 일괄 반영과 agent context·반복 작업 automation", source: "team leverage" },
       ],
-      claimIds: ["career.memento-stripe-prepayment", "career.memento-payment"],
+      claimIds: [
+        "be-template.backend-standard",
+        "be-template.team-leverage",
+        "be-template.agent-context",
+      ],
     },
   ],
-  workStyles: [
-    {
-      no: "01",
-      title: "happy path보다 실패 상태를 먼저 정의합니다",
-      body: "재시도·최종 실패·수동 재처리와 외부 provider의 불확실한 결과까지 상태 전이 안에 넣습니다.",
-      claimIds: ["centurion.bay-async-backend", "career.memento-payment"],
-    },
-    {
-      no: "02",
-      title: "migration은 배포와 기능 검증을 분리합니다",
-      body: "rehearsal·count·fingerprint·FK를 확인한 뒤 배포 성공과 post-deploy API 정상 동작을 별도 gate로 검증합니다.",
-      claimIds: ["thready.ai-service-migration"],
-    },
-    {
-      no: "03",
-      title: "변경 범위와 되돌릴 경계를 먼저 정합니다",
-      body: "서비스·DB·worker의 책임을 분리하고, 의도하지 않은 변경이 다른 영역으로 전파되기 전에 확인합니다.",
-      claimIds: ["thready.ai-service-boundary"],
-    },
-  ],
+  workStyles: [],
   skills: [
     {
       label: "백엔드 코어",
@@ -626,22 +786,28 @@ export const BACKEND_RESUME = makeBase({
       claimIds: ["thready.backend-rebuild", "nexus.backend-architecture", "career.memento-stripe-prepayment"],
     },
     {
-      label: "메시징 / 비동기 처리",
-      stack: "RabbitMQ · TaskIQ · Transactional Outbox",
-      via: "retry·failure record·manual reprocessing·delivery version fence",
-      claimIds: ["centurion.bay-async-backend", "thready.ai-replica-outbox"],
+      label: "서비스 간 상태",
+      stack: "PostgreSQL · Transactional Outbox · HTTP",
+      via: "same-transaction event·lease·attempt/version fence·멱등 consumer",
+      claimIds: ["thready.ai-service-migration", "thready.ai-replica-outbox"],
     },
     {
-      label: "Cloud / 배포",
-      stack: "Docker · GitHub Actions · Azure · Terraform",
-      via: "서비스 배포·환경 설정·기본 로그 확인",
-      claimIds: ["infra.company-azure-ownership"],
+      label: "비동기 작업",
+      stack: "RabbitMQ · TaskIQ",
+      via: "상태 전이·retry 상한·최종 실패 기록·수동 재처리",
+      claimIds: ["centurion.bay-async-backend", "centurion.async-migration"],
     },
     {
-      label: "AI 런타임",
+      label: "실시간 / AI 통합",
       stack: "LLM integration/evaluation · structured output · WebSocket · SSE · STT",
-      via: "독립 AI application과 realtime session lifecycle",
+      via: "독립 AI application·generation lifecycle·realtime session 경계",
       claimIds: ["thready.ai-service-boundary", "centurion.say-realtime-ai"],
+    },
+    {
+      label: "개발 기반",
+      stack: "FastAPI Template · DI · ADR · runbook · agent context",
+      via: "다수 제품의 공통 구조·횡단 관심사·결정 배경을 재사용",
+      claimIds: ["be-template.backend-standard", "be-template.team-leverage", "be-template.agent-context"],
     },
   ],
 });
@@ -828,13 +994,13 @@ export const AI_PRODUCT_BACKEND_RESUME = makeBase({
 
 export const AX_FDE_RESUME = makeBase({
   ...ROLE_CATALOG["ax-fde"],
-  description: "제품과 회사 업무를 사람·agent가 함께 실행하는 구조를 전면에 둔 지원본",
-  position: "Product Delivery · AI Transformation",
+  description: "고객·현장 문제를 production system으로 바꾸고 적용·운영까지 책임진 경험",
+  position: "Forward Deployed Engineer · Product Systems",
   summary: [
     {
       text: [
         {
-          text: "요구사항을 받아 구현하는 데서 멈추지 않고, 고객이 어디에서 막히는지 찾은 뒤 만들 기능과 품질 기준을 정해 backend·frontend·QA·release까지 연결하는 Tech Lead이자 Backend Engineer",
+          text: "고객과 운영 조직의 모호한 문제를 제품 요구와 실행 가능한 시스템으로 바꾸고, 설계·구현·출시·운영까지 이어가는 Forward Deployed Engineer",
           tone: "strong",
         },
         { text: "입니다." },
@@ -843,15 +1009,19 @@ export const AX_FDE_RESUME = makeBase({
         "career.medisolve-role-evolution",
         "career.product-ux-practice",
         "thready.product-zero-to-one-contribution",
+        "nexus.backend-architecture",
+        "career.sellercanvas-enterprise-poc",
       ],
     },
     {
-      text: "Vision AI 개발과 PM·UX 경험을 바탕으로 모호한 요구를 domain model·API·transaction·작업 상태로 바꿉니다. 최근에는 제품 개발뿐 아니라 의사결정·회의·업무 배정·승인·후속 작업까지 이어지는 회사 AX 구조 설계에 참여했고, 제품별 Decision·SPEC·Work Package·release gate 적용과 운영을 리드했습니다.",
+      text: "Thready에서는 고객의 콘텐츠 제작 문제를 실제 고객이 결제하는 AI 제품으로 만들었고, 여러 피부과의 운영·예약 요구는 multi-brand backend와 권한 경계로 구현했습니다. 외부 기업 PoC와 제품 운영에서 반복해 온 방식을 제품별 Decision·SPEC·Work Package·QA·release와 회사 AX 구조로 확장했습니다.",
       claimIds: [
-        "career.ai-pm-backend-continuity",
-        "career.product-ux-practice",
+        "thready.subscription-revenue-band",
+        "nexus.hospital-operations-revenue-contribution",
+        "nexus.branch-access-boundary",
+        "career.sellercanvas-product-system",
+        "career.sellercanvas-enterprise-poc",
         "mediness.company-work-ax-design",
-        "mediness.product-system-design-participation",
         "mediness.product-operations",
       ],
     },
@@ -869,22 +1039,25 @@ export const AX_FDE_RESUME = makeBase({
       "centurion.day-product-integration",
       "nexus.hospital-operations-revenue-contribution",
       "nexus.backend-architecture",
-      "infra.company-azure-ownership",
+      "nexus.admin-backend-ownership",
+      "nexus.branch-access-boundary",
+      "centurion.day-product-integration",
+      "centurion.say-realtime-ai",
     ],
     currentDetails: [
       "고객이 돈을 내는 이유를 기능·실험·품질 기준으로 구체화하고 기획·QA·마케팅과 Thready의 제품 판단·출시·운영을 리드했습니다. 팀과 실제 고객이 결제하는 유료 제품으로 만들었고, 필요한 backend·AI·핵심 frontend도 직접 구현했습니다.",
-      "MEDINESS의 제품 요구·운영 흐름 설계에 참여하고, 제품별 Decision·SPEC·Work Package와 BE·FE·QA owner lane, QA approval·release gate 적용과 운영을 리드했습니다. 회사 AX 구조는 회의·의사결정·업무 배정·승인·후속 작업에서 agent가 맥락·실행안을 준비하고 판단은 사람이 확정하도록 설계하는 데 참여했습니다.",
+      "여러 피부과의 홈페이지·관리·예약 흐름을 지원하는 backend의 service boundary와 migration을 주도하고, 운영자의 소속 지점과 현재 작업 지점을 나눈 권한 경계를 설계했습니다. 제품은 예약률 개선을 통해 고객사 매출 성과에 기여했습니다.",
+      "Centurion에서는 예약 정책을 backend 판단·frontend 표시·QA·release까지 연결했고, 실시간 AI 상담은 공동 주 기여로 세션과 외부 AI 연동 구조를 설계·통합했습니다.",
+      "MEDINESS의 제품 요구·운영 흐름 설계에 참여하고 Decision·SPEC·Work Package·owner·QA approval·release gate 적용과 운영을 리드했습니다. 이 경험을 의사결정·회의·업무 배정·승인·후속 작업까지 잇는 회사 AX 구조 설계로 확장했습니다.",
       "layered architecture·DI·ADR·runbook 기반 FastAPI template과 agent-readable context를 직접 구축했습니다.",
-      "DAY 예약 정책을 backend 판단·frontend 표시·QA·release로 연결하고, 별도 피부과 운영·예약 backend 구축을 주도해 제품의 예약률·고객사 매출 성과에 기여했습니다.",
-      "여러 사내 서비스의 Azure·Vercel 배포 환경을 구성하고 기본 운영을 맡았습니다.",
     ],
   }),
   outcomes: [
     {
       no: "01",
-      title: "고객의 콘텐츠 제작 문제를 실제 매출이 발생하는 AI 제품으로 구체화",
+      title: "고객의 콘텐츠 제작 문제를 실제 고객이 결제하는 AI 제품으로 만들었습니다",
       description: [
-        "무엇을 써야 반응을 얻을지 알기 어렵다는 문제를 기능·실험·품질 기준으로 나누고, 팀과 제품 운영을 리드하며 실제 제품 흐름을 구현했습니다.",
+        "무엇을 써야 반응을 얻을지 알기 어렵다는 문제를 기능·실험·품질 기준으로 나누고, 기획·QA·마케팅과 제품 운영을 리드하며 필요한 시스템을 직접 구현했습니다.",
         { text: "고객 문제→기능·실험 우선순위→품질·release 기준 연결", source: "Thready" },
         { text: "제품 성과: 실제 고객이 결제하는 유료 제품 운영", source: "팀 outcome" },
         { text: "backend·AI·핵심 frontend 직접 구현", source: "product delivery" },
@@ -897,12 +1070,44 @@ export const AX_FDE_RESUME = makeBase({
     },
     {
       no: "02",
-      title: "회사 AX 구조 설계에 참여하고 제품 적용·운영을 리드",
+      title: "여러 피부과의 운영·예약 요구를 backend와 권한 경계로 구현했습니다",
       description: [
-        "제품 개발과 의사결정·회의·업무 배정·승인·후속 작업을 연결하되, agent가 준비할 일과 사람이 판단할 일을 분리했습니다.",
-        { text: "MEDINESS 제품 요구·운영 흐름과 회사 업무 구조 설계 참여", source: "회사 AX 설계" },
-        { text: "Decision·SPEC·Work Package와 BE·FE·QA owner lane·QA approval 상태 운영", source: "제품 적용" },
-        { text: "실제 완료 시점의 version cut·release note·변경 이력 운영", source: "제품 운영" },
+        "여러 현장의 홈페이지·관리·예약 흐름을 하나의 제품에서 지원하도록 service boundary와 migration을 주도하고, 지점 단위 접근 규칙을 서버가 소유하는 상태로 만들었습니다.",
+        { text: "Homepage/Admin API를 분리한 Clean Architecture monorepo", source: "system design" },
+        { text: "소속 지점과 현재 작업 지점을 나눈 server-owned 권한 상태", source: "authorization" },
+        { text: "제품의 예약률 개선과 고객사 매출 성과에 기여", source: "팀 outcome" },
+      ],
+      claimIds: [
+        "nexus.hospital-operations-revenue-contribution",
+        "nexus.backend-architecture",
+        "nexus.admin-backend-ownership",
+        "nexus.branch-access-boundary",
+      ],
+    },
+    {
+      no: "03",
+      title: "생성형 AI 제품을 prototype에서 v1.0·외부 기업 PoC까지 구체화했습니다",
+      description: [
+        "PM을 주 역할로 고객 흐름·기능 범위·출시 우선순위를 정해 prototype을 첫 제품으로 구체화하고, 외부 패션 브랜드의 요구를 기술 검증 범위로 바꿔 PoC를 진행했습니다.",
+        { text: "prototype에서 v1.0까지 제품 흐름·기능 범위 구체화", source: "SellerCanvas" },
+        { text: "외부 패션 브랜드의 비즈니스 요구를 기술 검증 범위로 전환", source: "enterprise delivery" },
+        { text: "상세 페이지 제작 흐름 특허 등록·CES 2024 Best of Innovation", source: "외부 검증" },
+      ],
+      claimIds: [
+        "career.sellercanvas-product-system",
+        "career.sellercanvas-enterprise-poc",
+        "credentials.page-output-patent",
+        "credentials.ces-2024",
+      ],
+    },
+    {
+      no: "04",
+      title: "제품 개발에서 검증한 실행 방식을 회사 AX 구조로 확장했습니다",
+      description: [
+        "제품의 요구·판단·작업·검증을 같은 맥락에서 운영한 경험을 바탕으로, 의사결정·회의·업무 배정·승인·후속 작업까지 이어지는 구조 설계에 참여했습니다.",
+        { text: "Decision·SPEC·Work Package와 owner·QA approval·release gate 운영", source: "제품 적용" },
+        { text: "회의·요청에서 agent가 맥락·초안·근거를 준비", source: "agent execution" },
+        { text: "우선순위·배정·승인·release 판단은 사람이 소유", source: "human gate" },
       ],
       claimIds: [
         "mediness.company-work-ax-design",
@@ -911,8 +1116,8 @@ export const AX_FDE_RESUME = makeBase({
       ],
     },
     {
-      no: "03",
-      title: "사람과 AI agent가 같은 규칙을 읽는 FastAPI 표준 구축",
+      no: "05",
+      title: "여러 제품을 함께 만드는 팀의 FastAPI 시작점을 표준화했습니다",
       description: [
         "2~3명의 backend engineer가 여러 제품을 맡는 환경에서 architecture와 작업 규칙을 매번 다시 설명하지 않도록 공통 기반을 만들었습니다.",
         { text: "layered architecture·DI·ADR·convention·runbook", source: "FastAPI template" },
@@ -925,75 +1130,43 @@ export const AX_FDE_RESUME = makeBase({
         "be-template.agent-context",
       ],
     },
-    {
-      no: "04",
-      title: "피부과 운영·예약 요구를 backend와 권한 경계로 구현",
-      description: [
-        "현장 운영과 예약을 지원하는 backend 구축을 주도하고, 운영자의 소속 지점과 현재 작업 지점을 서버가 소유하는 권한 상태로 분리했습니다.",
-        { text: "Homepage/Admin API가 분리된 Clean Architecture monorepo", source: "병원 운영 system" },
-        { text: "working branch를 권한 검증 API로만 전환", source: "authorization" },
-        { text: "제품의 예약률 개선과 고객사 매출 성과에 기여", source: "팀 outcome" },
-      ],
-      claimIds: [
-        "nexus.hospital-operations-revenue-contribution",
-        "nexus.backend-architecture",
-        "nexus.admin-backend-ownership",
-        "nexus.branch-access-boundary",
-      ],
-    },
-    {
-      no: "05",
-      title: "생성형 AI 제품을 prototype에서 v1.0·기업 PoC까지 연결",
-      description: [
-        "PM 메인 역할로 제품 흐름·기능 범위·출시 우선순위를 정하며 생성형 AI 커머스 제품의 0→1 구간을 통과했습니다.",
-        { text: "prototype에서 v1.0 제품화", source: "SellerCanvas" },
-        { text: "외부 패션 브랜드 PoC 진행", source: "enterprise delivery" },
-        { text: "상세 페이지 제작 방식 특허·CES 2024 Best of Innovation", source: "product outcome" },
-      ],
-      claimIds: [
-        "career.sellercanvas-product-system",
-        "career.sellercanvas-enterprise-poc",
-        "credentials.page-output-patent",
-        "credentials.ces-2024",
-      ],
-    },
   ],
   workStyles: [
     {
       no: "01",
-      title: "요청보다 막히는 지점을 먼저 확인합니다",
-      body: "고객·운영자의 현재 흐름을 보고 문제와 제약을 분리한 뒤 기능 범위와 검증 조건을 정합니다.",
-      claimIds: ["career.product-ux-practice", "thready.product-zero-to-one-contribution"],
+      title: "요청보다 실제 업무 흐름부터 봅니다",
+      body: "고객과 운영자가 어디에서 멈추는지 확인한 뒤 문제·제약·성공 조건을 나눠 기술 범위를 정합니다.",
+      claimIds: ["career.product-ux-practice", "thready.product-zero-to-one-contribution", "nexus.backend-architecture"],
     },
     {
       no: "02",
-      title: "문장을 실행 가능한 계약으로 바꿉니다",
-      body: "제품 요구와 회사 업무를 domain model·API·transaction·owner lane·human gate로 나눠 담당자와 상태를 드러냅니다.",
-      claimIds: ["mediness.company-work-ax-design", "mediness.product-operations", "centurion.day-product-integration"],
+      title: "업무 규칙을 시스템 경계로 바꿉니다",
+      body: "모호한 요구를 domain model·API·transaction·authorization·작업 상태로 나눠 구현과 검증이 가능한 계약으로 만듭니다.",
+      claimIds: ["nexus.backend-architecture", "nexus.branch-access-boundary", "centurion.day-product-integration"],
     },
     {
       no: "03",
-      title: "AI에게 맡길 일과 사람이 확인할 일을 분리합니다",
-      body: "탐색·구현·반복 작업은 AI로 가속하고, 제품 판단·검증 결과·release 책임은 사람이 확인 가능한 gate에 둡니다.",
-      claimIds: ["be-template.agent-context"],
+      title: "한 번의 구축을 다음 실행 방식으로 남깁니다",
+      body: "현장에서 확인한 판단과 검증 기준을 Decision·SPEC·runbook·agent context로 남겨 다음 제품과 담당자가 다시 사용할 수 있게 합니다.",
+      claimIds: ["mediness.product-operations", "be-template.agent-context"],
     },
   ],
   skills: [
     {
-      label: "Product Delivery / AX",
-      stack: "Decision · SPEC · Work Package · QA/release gate · agent context",
-      via: "제품 개발과 회사 업무를 담당자·상태·human gate가 있는 실행 흐름으로 연결",
+      label: "Forward Deployment",
+      stack: "Problem discovery · technical scoping · build · rollout · operation",
+      via: "고객·현장 문제를 제품 범위로 정하고 구현·출시·운영까지 연결",
       claimIds: [
-        "mediness.company-work-ax-design",
-        "mediness.product-system-design-participation",
-        "mediness.product-operations",
+        "thready.product-zero-to-one-contribution",
+        "nexus.backend-architecture",
+        "career.sellercanvas-enterprise-poc",
       ],
     },
     {
       label: "Backend Core",
       stack: "Python · FastAPI · PostgreSQL · Redis",
-      via: "요구를 domain·API·transaction·authorization으로 구현",
-      claimIds: ["thready.backend-rebuild", "nexus.backend-architecture"],
+      via: "업무 규칙을 domain·API·transaction·authorization·migration 경계로 구현",
+      claimIds: ["thready.backend-rebuild", "nexus.backend-architecture", "nexus.branch-access-boundary"],
     },
     {
       label: "AI Product",
@@ -1004,14 +1177,14 @@ export const AX_FDE_RESUME = makeBase({
     {
       label: "Product Implementation",
       stack: "TypeScript · Next.js · API contract",
-      via: "콘텐츠 생성·예약·발행·관리의 핵심 사용자 흐름 구현",
-      claimIds: ["thready.frontend-product-delivery"],
+      via: "콘텐츠 생성·예약·발행·관리의 핵심 사용자 흐름을 backend와 연결",
+      claimIds: ["thready.frontend-product-delivery", "centurion.day-product-integration"],
     },
     {
-      label: "Cloud / Delivery",
-      stack: "Docker · GitHub Actions · Azure · Terraform",
-      via: "서비스 배포·환경 설정·기본 로그 확인 경험",
-      claimIds: ["infra.company-azure-ownership"],
+      label: "AX Delivery System",
+      stack: "Decision · SPEC · Work Package · QA/release gate · agent context",
+      via: "현장에서 반복된 판단과 검증 기준을 사람·agent가 함께 읽는 실행 방식으로 남김",
+      claimIds: ["mediness.company-work-ax-design", "mediness.product-operations", "be-template.agent-context"],
     },
   ],
 });
@@ -1157,6 +1330,7 @@ export const PLATFORM_RESUME = makeBase({
 
 const ROLE_RESUMES_BY_SLUG = {
   "tech-lead-product": TECH_LEAD_PRODUCT_RESUME,
+  "product-owner": PRODUCT_OWNER_RESUME,
   backend: BACKEND_RESUME,
   "ai-product-backend": AI_PRODUCT_BACKEND_RESUME,
   "ax-fde": AX_FDE_RESUME,

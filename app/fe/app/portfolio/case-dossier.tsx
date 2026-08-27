@@ -18,7 +18,7 @@ function CaseHeader({
   focus?: string;
 }) {
   return (
-    <header>
+    <header className="portfolio-case-header">
       <div className="flex items-baseline justify-between gap-6 font-mono text-xs text-muted max-sm:grid max-sm:gap-1">
         <span>{displayNo ?? meta.no} · {meta.tag}</span>
         <span>{meta.role}</span>
@@ -229,7 +229,7 @@ function CenturionCase({
 
       <section className="pt-10">
         <Subhead note="CONTRIBUTION MAP">
-          예약은 끝까지 연결하고, 실패한 작업은 다시 실행되게, 상담은 끊김 없이 이어지게 했습니다.
+          예약 정책은 출시 기준까지 연결하고, 실패한 작업은 다시 처리할 수 있게, 실시간 상담은 재연결·종료 경계를 검증했습니다.
         </Subhead>
         <CenturionContributionDiagram />
       </section>

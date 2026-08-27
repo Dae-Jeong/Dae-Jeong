@@ -70,8 +70,8 @@ export default function MgrvPortfolioPage() {
       />
 
       <Container variant="doc" className="flex-1">
-        <main className="w-full pb-24 pt-12">
-          <header className="border-b-2 border-fg pb-10">
+        <main data-portfolio-document className="w-full pb-24 pt-12">
+          <header className="portfolio-hero pb-10">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <p className="m-0 font-mono text-xs uppercase tracking-[0.08em] text-muted">
                 {MGRV_PORTFOLIO.companyName} · {MGRV_PORTFOLIO.position}
@@ -96,7 +96,7 @@ export default function MgrvPortfolioPage() {
             <p className="m-0 mb-3 font-mono text-xs uppercase tracking-[0.08em] text-muted">
               Cases · {MGRV_PORTFOLIO.outcomes.length}
             </p>
-            <ol className="m-0 grid list-none border-y border-border p-0">
+            <ol className="portfolio-case-index m-0 grid list-none border-y border-border p-0">
               {MGRV_PORTFOLIO.outcomes.map((outcome) => (
                 <li
                   key={outcome.no}
@@ -126,9 +126,9 @@ export default function MgrvPortfolioPage() {
               <section
                 key={outcome.no}
                 id={`outcome-${outcome.no}`}
-                className="scroll-mt-6 border-t-2 border-fg pt-16 first:border-t-0 first:pt-14"
+                className="portfolio-case scroll-mt-6 border-t-2 border-fg pt-16 first:border-t-0 first:pt-14"
               >
-                <header className="break-inside-avoid">
+                <header className="portfolio-case-header break-inside-avoid">
                   <div className="[&>div>h2]:font-sans [&>div>h2]:tracking-normal">
                     <SectionHead no={outcome.no} title={outcome.title} size="doc" />
                   </div>

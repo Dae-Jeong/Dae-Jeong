@@ -170,8 +170,8 @@ function ProfilePhoto() {
 
 const SECTIONS_KO = [
   { id: "s1", label: "소개" },
-  { id: "s3", label: "경력" },
   { id: "s2", label: "대표 성과" },
+  { id: "s3", label: "경력" },
   { id: "s5", label: "기술" },
   { id: "s6", label: "외부 활동" },
   { id: "s7", label: "수상·특허·자격" },
@@ -179,8 +179,8 @@ const SECTIONS_KO = [
 
 const SECTIONS_EN = [
   { id: "s1", label: "Profile" },
-  { id: "s3", label: "Career" },
   { id: "s2", label: "Selected Impact" },
+  { id: "s3", label: "Career" },
   { id: "s5", label: "Skills" },
   { id: "s6", label: "External Activities" },
   { id: "s7", label: "Credentials · Education" },
@@ -416,7 +416,7 @@ function DocKo() {
         </div>
       </Sec>
 
-      <Sec id="s3" no="02" title="경력" meta="Career">
+      <Sec id="s3" no="03" title="경력" meta="Career">
         <NumberedList className="border-t border-border-soft">
           <CareerRow org="MediSolve AI" period="2025.04 —" currentLabel="재직 중" allowBreak data-claim="career.medisolve-role-evolution career.thedaylabs-freelance career.memento-to-medisolve-early-member">
             <span className="mb-1.5 block text-base font-medium text-fg">Tech Lead · Backend Engineer <span className="font-normal text-fg-2">— 제품 운영 리드</span></span>
@@ -444,7 +444,7 @@ function DocKo() {
             <span className="mb-1.5 block text-base font-medium text-fg">Product Manager <span className="font-normal text-fg-2">— AI Engineer → PM(주 역할) → Backend Engineer</span></span>
             <PlainList
               items={[
-                <>커머스 AI 제품의 <strong>프로토타입부터 v1.0까지 제품 흐름·기능 범위·출시 우선순위를 정하는 PM</strong>으로 0→1 구간을 이끌고 외부 패션 브랜드 PoC로 확장했습니다.</>,
+                <>커머스 AI 제품의 <strong>프로토타입부터 v1.0까지 제품 흐름·기능 범위·출시 우선순위를 정하는 PM</strong>으로 첫 제품을 구체화하고 외부 패션 브랜드 PoC까지 확장했습니다.</>,
                 <>해당 상세 페이지 제작 방식은 <strong>특허 「페이지 출력 방법」으로 출원·등록</strong>됐고, 제품은 <strong>CES 2024 Best of Innovation</strong>을 수상했습니다.</>,
               ]}
             />
@@ -460,7 +460,7 @@ function DocKo() {
         </NumberedList>
       </Sec>
 
-      <Sec id="s2" no="03" title="대표 성과" meta="Selected Impact">
+      <Sec id="s2" no="02" title="대표 성과" meta="Selected Impact">
         <NumberedList>
           <Axis
             first
@@ -618,7 +618,7 @@ function DocEn() {
         </div>
       </Sec>
 
-      <Sec id="s3" no="02" title="Career">
+      <Sec id="s3" no="03" title="Career">
         <NumberedList className="border-t border-border-soft">
           <CareerRow org="MediSolve AI" period="Apr 2025 —" currentLabel="Present" allowBreak data-claim="career.medisolve-role-evolution career.thedaylabs-freelance career.memento-to-medisolve-early-member">
             <span className="mb-1.5 block text-base font-medium text-fg">Tech Lead · Backend Engineer <span className="font-normal text-fg-2">— product operations lead</span></span>
@@ -662,7 +662,7 @@ function DocEn() {
         </NumberedList>
       </Sec>
 
-      <Sec id="s2" no="03" title="Selected Impact">
+      <Sec id="s2" no="02" title="Selected Impact">
         <NumberedList>
           <Axis
             first
