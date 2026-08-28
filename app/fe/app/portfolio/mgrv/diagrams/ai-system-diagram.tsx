@@ -56,14 +56,14 @@ function DeliveryBoundary({ visual }: { visual: AiSystemVisual }) {
   return (
     <section className="flex min-w-0 flex-col justify-center border-y border-[#102044] bg-[#f8fafc] px-4 py-5 text-center">
       <p className="m-0 font-mono text-xs font-semibold text-[#102044]">
-        DELIVERY BOUNDARY
+        비동기 전달 경계
       </p>
       <div className="mt-3 border-y border-[#d6deea] py-2">
         <span className="block font-mono text-[10px] font-semibold tracking-[0.08em] text-[#2854d7]">
-          INPUT
+          입력
         </span>
         <strong className="mt-0.5 block break-words text-xs text-[#102044] [overflow-wrap:anywhere]">
-          pending delivery
+          전달 대기
         </strong>
       </div>
       <h5 className="m-0 mt-3 break-words text-base font-semibold text-[#102044] [overflow-wrap:anywhere]">
@@ -79,10 +79,10 @@ function DeliveryBoundary({ visual }: { visual: AiSystemVisual }) {
       </p>
       <div className="mt-3 border-t border-[#d6deea] pt-2">
         <span className="block font-mono text-[10px] font-semibold tracking-[0.08em] text-[#2854d7]">
-          OUTPUT
+          출력
         </span>
         <strong className="mt-0.5 block break-words text-xs text-[#102044] [overflow-wrap:anywhere]">
-          authenticated event
+          인증된 이벤트
         </strong>
       </div>
     </section>
@@ -101,7 +101,7 @@ export function AiSystemDiagram({ visual }: { visual: AiSystemVisual }) {
         aria-label={`${visual.title} 구조`}
       >
         <OwnershipBlock
-          eyebrow="PRODUCT OWNERSHIP"
+          eyebrow="제품 백엔드 관리 범위"
           title={product.label}
           database={product.database}
           items={product.owns}
@@ -126,7 +126,7 @@ export function AiSystemDiagram({ visual }: { visual: AiSystemVisual }) {
         <FlowConnector />
 
         <OwnershipBlock
-          eyebrow="AI OWNERSHIP"
+          eyebrow="AI 서비스 관리 범위"
           title={runtime.label}
           database={runtime.database}
           items={runtime.owns}
@@ -148,7 +148,7 @@ export function AiSystemDiagram({ visual }: { visual: AiSystemVisual }) {
       >
         <h5 className="m-0 flex items-center gap-2 px-4 py-4 font-mono text-xs font-semibold text-[#087f5b] max-sm:border-b max-sm:border-[#e3e8f0]">
           <span aria-hidden="true" className="h-2 w-2 bg-[#087f5b]" />
-          VERIFIED BY
+          검증 항목
         </h5>
         <ul className="m-0 flex list-none flex-wrap items-center gap-x-5 gap-y-2 border-l border-[#e3e8f0] px-4 py-4 max-sm:border-l-0">
           {visual.verificationRail.map((item) => (

@@ -7,9 +7,17 @@ import type {
 } from "@/content/portfolios/types";
 
 const caseModeLabel: Record<PortfolioOutcome["caseMode"], string> = {
-  "single-system": "단일 시스템 사례",
-  "cross-project-pattern": "여러 제품에서 반복된 설계 패턴",
-  "primary-with-prior-lesson": "주 사례 + 이전 사례의 교훈",
+  "single-system": "제품 사례",
+  "cross-project-pattern": "반복 적용한 방식",
+  "primary-with-prior-lesson": "현재 제품과 이전 경험",
+};
+
+const layerLabel: Record<PortfolioOutcome["layers"][number], string> = {
+  Product: "제품",
+  Backend: "백엔드",
+  Operations: "운영",
+  Infrastructure: "인프라",
+  AI: "AI",
 };
 
 const statusTone = {
@@ -18,11 +26,11 @@ const statusTone = {
   "pre-production": "border-border text-muted",
 } satisfies Record<NonNullable<PortfolioOutcome["status"]>["tone"], string>;
 
-const ownershipLabel: Record<PortfolioEvidence["ownership"], string> = {
-  owned: "직접 소유",
+const ownershipLabel: Record<PortfolioEvidence["ownership"], string | null> = {
+  owned: null,
   led: "리드",
-  contributed: "기여",
-  supporting: "보조 근거",
+  contributed: "함께 수행",
+  supporting: "관련 경험",
 };
 
 const verdictLabel: Record<NonNullable<PortfolioDetailItem["verdict"]>, string> = {
@@ -40,7 +48,7 @@ export function CareerBridgeSection({ bridge }: { bridge: PortfolioCareerBridge 
     >
       <header className="grid grid-cols-[152px_minmax(0,1fr)] border-t-4 border-[var(--portfolio-blue)] bg-[var(--portfolio-blue-soft)] px-7 py-7 max-lg:grid-cols-1 max-lg:gap-3 max-sm:px-5">
         <span className="font-mono text-xs font-semibold text-[var(--portfolio-blue)]">
-          Career bridge
+          {bridge.eyebrow ?? "경력의 연결"}
         </span>
         <div>
           <h2 className="m-0 text-2xl font-semibold leading-[1.3] tracking-[-0.02em]">
@@ -50,17 +58,23 @@ export function CareerBridgeSection({ bridge }: { bridge: PortfolioCareerBridge 
         </div>
       </header>
 
-      <ol className="m-0 grid list-none grid-cols-3 border-b border-border p-0 max-lg:grid-cols-1">
+      <ol
+        className={`m-0 grid list-none border-b border-border p-0 max-lg:grid-cols-1 ${
+          bridge.stages.length === 4 ? "grid-cols-2 xl:grid-cols-4" : "grid-cols-3"
+        }`}
+      >
         {bridge.stages.map((stage, index) => (
           <li
             key={stage.label}
-            className="min-w-0 border-l border-border-soft px-6 py-7 first:border-l-0 max-lg:border-l-0 max-lg:border-t max-lg:first:border-t-0"
+            className="min-w-0 break-inside-avoid border-l border-border-soft px-6 py-7 first:border-l-0 max-lg:border-l-0 max-lg:border-t max-lg:first:border-t-0"
           >
             <div className="flex items-baseline justify-between gap-4">
               <strong className="text-base font-semibold">{stage.label}</strong>
-              <span className="font-mono text-xs text-muted">
-                {String(index + 1).padStart(2, "0")}
-              </span>
+              {bridge.numbered !== false && (
+                <span className="font-mono text-xs text-muted">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+              )}
             </div>
             <p className="m-0 mt-3 text-sm leading-[1.65] text-fg-2">{stage.text}</p>
             <ul className="m-0 mt-4 flex list-none flex-wrap gap-2 p-0">
@@ -69,7 +83,7 @@ export function CareerBridgeSection({ bridge }: { bridge: PortfolioCareerBridge 
                   key={layer}
                   className="border border-[#a9bceb] bg-[var(--portfolio-blue-soft)] px-2 py-1 font-mono text-xs text-[var(--portfolio-blue)]"
                 >
-                  {layer}
+                  {layerLabel[layer]}
                 </li>
               ))}
             </ul>
@@ -91,9 +105,9 @@ export function CaseMeta({ outcome }: { outcome: PortfolioOutcome }) {
       {outcome.layers.map((layer) => (
         <span
           key={layer}
-          className="portfolio-chip border px-2.5 py-1 font-mono text-xs font-medium uppercase"
+          className="portfolio-chip border px-2.5 py-1 font-mono text-xs font-medium"
         >
-          {layer}
+          {layerLabel[layer]}
         </span>
       ))}
       {outcome.status && (
@@ -111,7 +125,7 @@ export function CaseScope({ caption }: { caption: string }) {
   return (
     <div className="mt-5 grid grid-cols-[152px_minmax(0,1fr)] border-y border-border-soft py-4 max-lg:grid-cols-1 max-lg:gap-2">
       <strong className="font-mono text-xs uppercase tracking-[0.06em] text-muted">
-        Case scope
+        사례 범위
       </strong>
       <p className="m-0 text-sm leading-[1.65] text-fg-2">{caption}</p>
     </div>
@@ -249,9 +263,11 @@ export function EvidenceRows({ evidence }: { evidence: PortfolioEvidence[] }) {
             className="break-inside-avoid border-t py-5 first:border-t-0"
           >
             <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-              <span className="font-mono text-xs text-muted">
-                {ownershipLabel[item.ownership]}
-              </span>
+              {ownershipLabel[item.ownership] && (
+                <span className="font-mono text-xs text-muted">
+                  {ownershipLabel[item.ownership]}
+                </span>
+              )}
               <h4 className="m-0 text-base font-semibold leading-[1.45]">
                 {item.scope}
               </h4>
@@ -269,14 +285,16 @@ export function EvidenceRows({ evidence }: { evidence: PortfolioEvidence[] }) {
 export function JdFitSection({
   jdFit,
   companyName = "MGRV",
+  showBoundary = true,
 }: {
   jdFit: PortfolioJdFit;
   companyName?: string;
+  showBoundary?: boolean;
 }) {
   return (
     <section className="portfolio-jd-fit mt-10 grid grid-cols-[176px_minmax(0,1fr)] border-y-2 max-lg:grid-cols-1 print:mt-6">
       <h3 className="m-0 px-5 py-6 font-mono text-xs font-semibold uppercase tracking-[0.06em] max-lg:border-b print:bg-transparent print:px-4 print:py-4 print:text-fg">
-        {companyName} JD fit
+        {companyName} 지원 직무와의 연결
       </h3>
       <div className="px-6 py-6 print:px-4 print:py-4">
         <ul className="m-0 grid list-none grid-cols-2 gap-x-8 gap-y-3 p-0 max-lg:grid-cols-1">
@@ -286,7 +304,7 @@ export function JdFitSection({
             </li>
           ))}
         </ul>
-        {jdFit.boundary && (
+        {showBoundary && jdFit.boundary && (
           <p className="m-0 mt-5 border-t border-border-soft pt-4 text-sm leading-[1.65] text-fg-2 print:mt-3 print:pt-3">
             {jdFit.boundary}
           </p>

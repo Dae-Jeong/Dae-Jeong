@@ -4,7 +4,7 @@ title: Platform Profile Consolidation
 description: 5개 채용 플랫폼 프로필을 홈페이지 표현 SoT와 claim registry에 맞춰 동기화하고 marinkim.xyz를 허브로 세운다.
 status: wip
 registered: 2026-08-08
-timestamp: 2026-08-23
+timestamp: 2026-08-28
 tags: [backlog, profile, platform, distribution]
 ---
 
@@ -22,6 +22,8 @@ tags: [backlog, profile, platform, distribution]
 - **보류 대상**: Jumpit. live 이력서 존재 여부를 확인하기 전에는 관리 대상에 넣지 않는다.
 - 사실·강도는 `profile/`과 `evidence/claims/`, 현재 문장·순서는 `app/fe`가 소유한다. 플랫폼 문안은 그 둘에서 파생한다.
 - 플랫폼에는 검색에 필요한 역할·기술·짧은 근거와 허브 링크만 둔다. 상세 사례는 resume·portfolio가 맡는다.
+- 홈페이지와 직군별 프로필에는 `어떤 문제를 맡길 수 있는가`가 드러나도록 FastAPI 트랜잭션·비동기 전달·권한 같은 전문성 축을 요약한다.
+- LinkedIn은 실제 수행 범위를 한 문장으로 압축한다. 후보 문안: `FastAPI 기반 제품 백엔드와 AI 실행 서비스를 설계·운영했습니다.` 상세 기술 사례는 marinkim.xyz의 이력서·포트폴리오로 연결한다.
 - 플랫폼 필드·글자 수·공개 범위는 바뀔 수 있으므로 실제 반영 직전에 로그인한 화면에서 다시 확인한다.
 
 ## 연결

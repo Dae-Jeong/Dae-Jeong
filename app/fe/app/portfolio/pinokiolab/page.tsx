@@ -37,19 +37,19 @@ export const metadata: Metadata = {
 };
 
 const navigationItems: PortfolioNavItem[] = [
+  {
+    id: "career-bridge",
+    no: "00",
+    title: PINOKIOLAB_PORTFOLIO.careerBridge.title,
+  },
   ...PINOKIOLAB_PORTFOLIO.outcomes.map((outcome) => ({
     id: `outcome-${outcome.no}`,
     no: outcome.no,
     title: outcome.title,
   })),
   {
-    id: "career-bridge",
-    no: String(PINOKIOLAB_PORTFOLIO.outcomes.length + 1).padStart(2, "0"),
-    title: PINOKIOLAB_PORTFOLIO.careerBridge.title,
-  },
-  {
     id: "work-system",
-    no: String(PINOKIOLAB_PORTFOLIO.outcomes.length + 2).padStart(2, "0"),
+    no: String(PINOKIOLAB_PORTFOLIO.outcomes.length + 1).padStart(2, "0"),
     title: PINOKIOLAB_PORTFOLIO.workSystem.title,
   },
 ];
@@ -92,7 +92,7 @@ export default function PinokiolabPortfolioPage() {
               </p>
               <div className="flex flex-wrap items-center gap-4 font-mono text-xs text-muted">
                 <span>
-                  {portfolio.status === "draft" ? "DRAFT" : "Updated"} · {portfolio.updatedAt}
+                  {portfolio.status === "draft" ? "초안" : "업데이트"} · {portfolio.updatedAt}
                 </span>
                 <Link
                   href="/resume/pinokiolab"
@@ -103,7 +103,7 @@ export default function PinokiolabPortfolioPage() {
               </div>
             </div>
             <h1 className="mt-4 text-4xl font-semibold leading-[1.08] tracking-[-0.03em] max-sm:text-3xl">
-              AI 결과를 실제 업무로 연결하는 Backend
+              고객이 사용하는 AI 제품을 만들고 운영했습니다
             </h1>
             <div className="mt-6 grid max-w-[920px] gap-2 text-lg font-medium leading-[1.65]">
               {portfolio.introduction.map((paragraph) => (
@@ -114,9 +114,11 @@ export default function PinokiolabPortfolioPage() {
             </div>
           </header>
 
+          <CareerBridgeSection bridge={portfolio.careerBridge} />
+
           <nav aria-label="사례 빠른 보기" className="pt-14">
             <p className="m-0 mb-3 font-mono text-xs font-medium text-muted">
-              Technical Cases · {portfolio.outcomes.length}
+              제품과 백엔드 사례 · {portfolio.outcomes.length}
             </p>
             <ol className="portfolio-case-index m-0 grid list-none border-y border-border p-0">
               {portfolio.outcomes.map((outcome) => (
@@ -174,12 +176,11 @@ export default function PinokiolabPortfolioPage() {
                 <JdFitSection
                   jdFit={outcome.jdFit}
                   companyName={portfolio.companyName}
+                  showBoundary={false}
                 />
               </section>
             ))}
           </div>
-
-          <CareerBridgeSection bridge={portfolio.careerBridge} />
 
           <section id="work-system" className="scroll-mt-6 pt-20">
             <WorkSystemDiagram workSystem={portfolio.workSystem} />

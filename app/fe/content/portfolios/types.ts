@@ -97,7 +97,12 @@ export type PortfolioNarrative = {
   context: string;
   problem: string;
   actions: string[];
-  resultLabel: "남은 상태" | "현재 책임 범위" | "검증 상태" | "결과";
+  resultLabel:
+    | "남은 상태"
+    | "현재 진행"
+    | "현재 책임 범위"
+    | "검증 상태"
+    | "결과";
   result: string;
   visualLead: string;
   axExtension?: {
@@ -283,6 +288,8 @@ export type PortfolioOutcome = {
 };
 
 export type PortfolioCareerBridge = {
+  eyebrow?: string;
+  numbered?: boolean;
   title: string;
   summary: string;
   stages: {

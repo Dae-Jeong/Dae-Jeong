@@ -9,19 +9,19 @@ const laneMeta = {
   human: {
     role: "판단",
     owner: "사람이 결정",
-    description: "문제·architecture·release",
+    description: "문제·아키텍처·배포",
     surface: "bg-white",
   },
   ai: {
     role: "실행",
-    owner: "Agent가 수행",
+    owner: "에이전트가 수행",
     description: "탐색·비교·반복 구현",
     surface: "bg-[#f8fafc]",
   },
   automated: {
     role: "검증",
     owner: "시스템이 확인",
-    description: "contract·test·evidence",
+    description: "규격·테스트·근거",
     surface: "bg-white",
   },
 } satisfies Record<
@@ -152,7 +152,7 @@ export function WorkSystemDiagram({ workSystem }: { workSystem: WorkSystem }) {
 
       <figcaption className="mt-5 text-sm leading-[1.65] text-fg-2">
         {workSystem.caption ??
-          "제품 판단이 실행 중 유실되지 않도록 결정→작업→검증→release 근거를 연결하고, AI는 그 경계 안에서 탐색과 반복 구현을 맡습니다."}
+          "제품 판단이 실행 중 유실되지 않도록 결정→작업→검증→배포 근거를 연결하고, AI는 그 범위 안에서 탐색과 반복 구현을 맡습니다."}
       </figcaption>
     </figure>
   );

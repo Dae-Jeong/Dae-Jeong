@@ -291,7 +291,9 @@ function ResumeDocument({ resume }: { resume: TailoredResume }) {
                 className={cn(
                   resumeType.careerRow,
                   "resume-career-row",
-                  index === 0 && "resume-career-row-keep",
+                  index === 0 &&
+                    career.details.length <= 3 &&
+                    "resume-career-row-keep",
                 )}
               >
                 <span className="text-sm text-fg-2">

@@ -466,6 +466,18 @@ body {
     color: #111;
   }
 
+  [data-portfolio-document] .portfolio-narrative-panel[data-panel="result"] {
+    break-inside: avoid-page;
+  }
+
+  [data-portfolio-document] .portfolio-narrative-grid {
+    background: #fff;
+  }
+
+  [data-portfolio-document] .portfolio-narrative-panel[data-panel="action"] {
+    border-left: 1px solid #cbd5e1;
+  }
+
   [data-portfolio-document] .portfolio-narrative-panel[data-panel="result"] h3,
   [data-portfolio-document] .portfolio-narrative-panel[data-panel="result"] p,
   [data-portfolio-document] .portfolio-evidence-band h3,
@@ -502,11 +514,6 @@ body {
   /* 짧은 경력 행은 회사·기간·첫 설명이 서로 다른 페이지로 갈라지지 않게 유지한다. */
   [data-resume-canvas] .resume-career-row-keep {
     break-inside: avoid;
-  }
-
-  /* 맞춤 이력서는 핵심 성과 뒤에서 경력 섹션을 새 페이지로 시작해 제목이 홀로 남지 않게 한다. */
-  [data-resume-canvas] [data-tailored-resume] #s3 {
-    break-before: page;
   }
 
   /* 기술 사례가 많은 피노키오랩 지원본은 A4에서 4쪽 흐름을 유지한다. */

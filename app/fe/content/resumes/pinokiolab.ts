@@ -7,10 +7,10 @@ export const PINOKIOLAB_RESUME = {
   status: "approved",
   visibility: "public",
   updatedAt: "2026-08-28",
-  sectionOrder: ["profile", "outcomes", "career", "skills", "credentials"],
+  sectionOrder: ["profile", "career", "outcomes", "skills", "credentials"],
   header: {
     name: "김대정",
-    role: "제품 개발 실무 4년 · Backend Engineer 3년차 · Python / FastAPI",
+    role: "제품 개발 실무 4년 · Product Engineer · Backend / FastAPI",
     photoSrc: "/profile/daejeong-profile-v2.png",
     careerLine: [
       { text: "MediSolve AI", tone: "strong" },
@@ -28,135 +28,21 @@ export const PINOKIOLAB_RESUME = {
   },
   summary: [
     {
-      text: "AI 결과를 실제 업무로 연결하는 백엔드를 설계합니다.",
-      claimIds: ["career.ai-pm-backend-continuity", "thready.ai-service-boundary"],
+      text: "고객이 사용하는 AI 제품을 만들고 운영합니다.",
+      claimIds: [
+        "thready.product-zero-to-one-contribution",
+        "career.ai-pm-backend-continuity",
+      ],
     },
     {
-      text: "Vision AI 모델과 데이터 pipeline을 제품 기능으로 연결하는 일에서 시작해, 현재는 FastAPI·SQLAlchemy로 AI 서비스와 업무 backend의 책임을 나누고 있습니다. 결제·권한·알림처럼 외부 상태가 얽힌 흐름은 transaction 책임, 변경 이력, 재처리 기준을 명확히 해 추적할 수 있게 만듭니다.",
+      text: "제품이 해결할 문제를 정하고 FastAPI 백엔드·AI 서비스·핵심 사용자 흐름을 직접 구현해, 실제 고객이 결제하는 서비스로 출시하고 운영했습니다. 실시간 상담, 주문·재고, 예약·결제처럼 상태가 복잡한 제품도 출시 후 추적하고 복구할 수 있는 구조로 만듭니다.",
       claimIds: [
-        "be-template.fastapi-sqlalchemy-standard",
-        "thready.ai-service-boundary",
+        "thready.product-zero-to-one-contribution",
+        "thready.subscription-revenue-band",
+        "centurion.say-realtime-ai",
+        "centurion.bay-async-backend",
         "career.memento-payment",
       ],
-    },
-  ],
-  outcomes: [
-    {
-      no: "01",
-      title: "FastAPI async 환경에서 transaction과 AsyncSession의 소유권을 명확히 했습니다",
-      description: [
-        "여러 직군이 coding agent로 backend 구현에 참여하는 환경에서, Service method를 transaction boundary로 삼고 하나의 transaction은 하나의 asyncio task와 AsyncSession이 소유하도록 조직 표준 FastAPI template을 직접 설계·구축했습니다.",
-        {
-          text: "Layered Architecture에 Service Layer·Repository Pattern·DI를 적용해 명시적인 구현 경로를 제공",
-          source: "Backend Template · architecture defaults",
-        },
-        {
-          text: "@transactional이 REQUIRED 참여·REQUIRES_NEW 독립 실행·NESTED SAVEPOINT와 commit·rollback·cleanup을 관리",
-          source: "Backend Template · propagation",
-        },
-        {
-          text: "ContextVar·SessionProxy로 transaction boundary의 AsyncSession을 bind해 반복적인 session 인자를 제거",
-          source: "Backend Template · resource binding",
-        },
-        {
-          text: "owner-task guard로 child task의 동일 session 접근을 fail-fast하고, CancelledError rollback·connection cleanup을 integration test로 검증",
-          source: "Backend Template · transaction safety",
-        },
-        {
-          text: "병렬 DB 작업은 task별 transaction·데이터 가시성·실패 복구·connection 비용을 먼저 정하도록 ADR·runbook에 규칙화",
-          source: "Backend Template · concurrency trade-off",
-        },
-      ],
-      claimIds: [
-        "be-template.fastapi-sqlalchemy-standard",
-        "be-template.backend-standard",
-        "be-template.team-leverage",
-        "be-template.agent-context",
-      ],
-    },
-    {
-      no: "02",
-      title: "원장 변경이 늦거나 중복 전달돼도 AI application이 최신 상태로 수렴하게 했습니다",
-      description: [
-        "제품 정책·원장은 product backend가, AI application은 생성 lifecycle·실행 상태와 필요한 local replica를 소유하도록 나눴습니다. 서비스 간 전달 실패를 예외가 아닌 운영 조건으로 다뤘습니다.",
-        {
-          text: "원장 변경과 Outbox row를 같은 transaction에 기록하고 AI 실행은 worker로 분리",
-          source: "Thready · delivery boundary",
-        },
-        {
-          text: "relay lease·attempt_count·version fence·멱등 consumer로 중단·중복·지연·역순 원장 event 통제",
-          source: "Thready · worker recovery",
-        },
-        {
-          text: "STG migration을 row count·MD5 fingerprint·FK orphan·생성 API E2E로 검증",
-          source: "Thready · migration rehearsal",
-        },
-      ],
-      claimIds: [
-        "thready.ai-service-boundary",
-        "thready.ai-service-migration",
-        "thready.ai-replica-outbox",
-      ],
-    },
-    {
-      no: "03",
-      title: "AI 생성 품질을 자동 점수로 확정하지 않고, 검증 근거와 사람 판단을 분리했습니다",
-      description: [
-        "고객에게 제공할 AI 글의 품질 기준을 정의하기 위한 독립 실험 하네스에서 자동 게이트·실측 분포·사람 판정의 책임을 나눴습니다.",
-        {
-          text: "결정적 게이트 12종으로 형식 오류를 자동 차단",
-          source: "Thready · quality gate",
-        },
-        {
-          text: "자사 출력이 기준값으로 되먹임되던 문제를 재실측으로 발견하고 판정 기준을 교정",
-          source: "Thready · measurement correction",
-        },
-        {
-          text: "최종 품질 판단은 사람이 소유하고, 6개 축으로 개선 순서를 관리",
-          source: "Thready · human judgment",
-        },
-      ],
-      claimIds: ["thready.quality-criteria-system", "thready.measurement-correction"],
-    },
-    {
-      no: "04",
-      title: "결제·알림처럼 외부 완료 시점이 다른 작업을 상태와 이력으로 추적했습니다",
-      description: [
-        "외부 provider와 내부 DB를 하나의 transaction으로 가정하지 않고, 요청·완료·보상 상태를 나눠 추적했습니다.",
-        {
-          text: "Stripe Checkout manual capture 선결제와 local transaction ID 기반 event 연결",
-          source: "Memento AI · payment",
-        },
-        {
-          text: "예약 실패 시 PaymentIntent 상태별 cancel/refund와 환불 완료 뒤 내부 자산 변경",
-          source: "Memento AI · compensation",
-        },
-        {
-          text: "다국어 알림톡·이메일 즉시/예약 발송과 Celery task 취소·재등록·발송 이력",
-          source: "Memento AI · notification lifecycle",
-        },
-      ],
-      claimIds: [
-        "career.memento-stripe-prepayment",
-        "career.memento-payment",
-        "career.memento-happycall-survey",
-      ],
-    },
-    {
-      no: "05",
-      title: "서버 인증 상태가 데이터 접근 범위를 결정하도록 권한 경계를 재구성하고 있습니다",
-      description: [
-        "multi-service SSO session 정책과 duplicate login E2E를 담당하고, 병원 운영 backend에서는 사용자의 소속 지점과 현재 작업 지점을 분리하고 있습니다.",
-        {
-          text: "작업 지점은 권한 검증 API를 통해서만 전환하고 server auth state에서 query scope 결정",
-          source: "NEXUS · authorization boundary",
-        },
-        {
-          text: "작업 범위 미선택과 권한 밖 접근을 409·403으로 구분",
-          source: "NEXUS · error contract",
-        },
-      ],
-      claimIds: ["centurion.sso-session", "nexus.branch-access-boundary"],
     },
   ],
   careers: [
@@ -166,38 +52,43 @@ export const PINOKIOLAB_RESUME = {
       now: true,
       role: [
         { text: "Backend Engineer", tone: "strong" },
-        { text: " · Tech Lead·제품 운영 역할 병행" },
+        { text: " · Tech Lead · 제품 운영 역할 병행" },
       ],
       details: [
         [
-          { text: "제품 backend와 AI application", tone: "strong" },
-          { text: " — FastAPI backend·AI application·Next.js 핵심 workflow를 직접 구축하고, 기획·QA·마케팅과 실제 고객이 결제하는 AI 콘텐츠 제품 운영을 리드" },
+          { text: "유료 AI 콘텐츠 제품", tone: "strong" },
+          { text: " — 기획·QA·마케팅 담당자와 고객 문제·기능 우선순위를 정하고 제품 운영을 리드. FastAPI 백엔드·독립 AI 서비스·Next.js 핵심 사용자 및 관리 흐름을 직접 구현해 실제 고객이 결제하는 제품으로 운영" },
         ],
         [
-          { text: "FastAPI·SQLAlchemy 조직 표준", tone: "strong" },
-          { text: " — 계층·DI·transaction·session·error·test 기준을 template·ADR·runbook·agent context로 구현" },
+          { text: "실시간 AI 상담·주문·재고", tone: "strong" },
+          { text: " — WebSocket 상담 세션과 STT 이벤트 흐름의 주요 영역을 함께 맡고, 주문·재고 API와 RabbitMQ·TaskIQ 워커의 상태·재시도·실패 기록·재처리 기준을 설계·구현" },
         ],
         [
-          { text: "비동기·실시간 backend", tone: "strong" },
-          { text: " — 주문·재고 worker, AI 작업 delivery, WebSocket 상담 session·STT event의 상태·retry·복구 경계를 설계·구현" },
+          { text: "병원 운영·예약 제품", tone: "strong" },
+          { text: " — 여러 병원의 운영·예약을 지원하는 백엔드 구조와 관리·홈페이지 API 구축을 주도. 제품은 예약률 개선을 통해 고객사 매출 성과에 기여" },
         ],
         [
-          { text: "제품 개발 체계", tone: "strong" },
-          { text: " — 제품별 Decision·SPEC·Work Package·QA·release gate 적용·운영을 리드하고 회사 업무 AX 구조 설계에 참여" },
+          { text: "FastAPI 개발 기준", tone: "strong" },
+          { text: " — 여러 직군이 코딩 에이전트로 구현에 참여해도 같은 방식으로 개발하도록 계층·DI·트랜잭션·비동기 세션·테스트 기준을 조직 표준 템플릿과 문서로 구축" },
         ],
         [
-          { text: "Agent 활용 주간 회고", tone: "strong" },
-          { text: " — 1인 1제품 개발 환경에서 주 1회, 코드 단위 리뷰보다 무엇을 만들어야 하는지 정확히 정의하고 더 효율적으로 구현할 방향·방법을 팀과 검토" },
+          { text: "제품 개발 회고", tone: "strong" },
+          { text: " — 주 1회 에이전트 활용 경험과 작업 병목을 공유하고, 코드 단위보다 무엇을 만들어야 하는지와 더 정확하고 효율적인 구현 방법을 팀과 검토" },
         ],
       ],
       claimIds: [
         "career.medisolve-role-evolution",
         "thready.product-zero-to-one-contribution",
-        "be-template.fastapi-sqlalchemy-standard",
+        "thready.subscription-revenue-band",
+        "thready.frontend-product-delivery",
         "thready.ai-service-boundary",
-        "centurion.bay-async-backend",
         "centurion.say-realtime-ai",
-        "mediness.company-work-ax-design",
+        "centurion.bay-async-backend",
+        "nexus.backend-architecture",
+        "nexus.admin-backend-ownership",
+        "nexus.hospital-operations-revenue-contribution",
+        "be-template.fastapi-sqlalchemy-standard",
+        "be-template.team-leverage",
         "career.weekly-role-based-agent-retrospective",
       ],
     },
@@ -210,8 +101,8 @@ export const PINOKIOLAB_RESUME = {
       ],
       details: [
         [
-          { text: "초기 backend 구축", tone: "strong" },
-          { text: " — 법인 설립 전 피부과 CRM을 제품 시작 시점부터 구축하고 backend·개발 기준을 선행 정리" },
+          { text: "제품 초기 백엔드", tone: "strong" },
+          { text: " — MediSolve AI 법인 설립 전 피부과 CRM 제품 개발을 선행하고, 초기 백엔드와 개발 기준을 구축" },
         ],
       ],
       claimIds: [
@@ -228,12 +119,12 @@ export const PINOKIOLAB_RESUME = {
       ],
       details: [
         [
-          { text: "예약·결제 backend", tone: "strong" },
-          { text: " — FastAPI·SQLAlchemy·MySQL 기반 예약 API와 Stripe Checkout 선결제 구현, 취소·환불 상태 흐름 보완" },
+          { text: "예약·결제", tone: "strong" },
+          { text: " — FastAPI·SQLAlchemy·MySQL 기반 예약 API와 Stripe Checkout 선결제를 구현하고, 취소·환불과 내부 자산 변경 순서를 보완" },
         ],
         [
-          { text: "알림 lifecycle", tone: "strong" },
-          { text: " — 다국어 알림톡·email 즉시/예약 발송과 Celery task 취소·재등록·발송 이력 구현" },
+          { text: "고객 알림", tone: "strong" },
+          { text: " — 다국어 알림톡·이메일 즉시/예약 발송과 Celery 작업 취소·재등록·발송 이력을 구현" },
         ],
       ],
       claimIds: [
@@ -252,8 +143,8 @@ export const PINOKIOLAB_RESUME = {
       ],
       details: [
         [
-          { text: "생성형 AI 제품화", tone: "strong" },
-          { text: " — 커머스 콘텐츠 제품의 prototype부터 v1.0까지 흐름·범위·출시 우선순위를 정하고 외부 기업 PoC로 확장" },
+          { text: "AI 커머스 콘텐츠 제품", tone: "strong" },
+          { text: " — PM 메인 역할로 프로토타입에서 v1.0까지 제품 흐름·기능 범위·출시 우선순위를 정하고 기업 PoC로 연결" },
         ],
       ],
       claimIds: [
@@ -269,72 +160,128 @@ export const PINOKIOLAB_RESUME = {
         { text: "Vision AI Engineer", tone: "strong" },
         { text: " · 인턴" },
       ],
-      details: ["Vision AI 모델과 데이터 pipeline을 제품 기능으로 연결하는 개발·검증에 참여"],
+      details: ["Vision AI 모델과 데이터 파이프라인을 제품 기능으로 연결하는 개발·검증에 참여"],
       claimIds: ["career.ai-pm-backend-continuity"],
+    },
+  ],
+  outcomes: [
+    {
+      no: "01",
+      title: "고객의 콘텐츠 제작 문제를 고객이 결제하는 AI 제품으로 만들었습니다",
+      description: [
+        "기획·QA·마케팅과 고객 문제·기능 우선순위·생성 품질 기준을 정하고, 출시와 운영까지 제품 흐름을 리드했습니다.",
+        { text: "FastAPI 제품 백엔드와 독립 AI 서비스·DB를 구축하고 인증된 HTTP 계약으로 연결", source: "Thready · 백엔드/AI" },
+        { text: "콘텐츠 생성·가져오기·예약·발행·성과 확인·관리 화면 등 Next.js 핵심 흐름을 직접 구현", source: "Thready · 사용자/관리 화면" },
+        { text: "실제 사용자가 이용하고 구독료 매출이 발생하는 제품으로 운영", source: "Thready · 제품 운영" },
+      ],
+      claimIds: [
+        "thready.product-zero-to-one-contribution",
+        "thready.subscription-revenue-band",
+        "thready.frontend-product-delivery",
+        "thready.ai-service-boundary",
+      ],
+    },
+    {
+      no: "02",
+      title: "실시간 AI 상담과 주문·재고 업무를 각각 운영 가능한 서비스로 구축했습니다",
+      description: [
+        "같은 의료 플랫폼 안의 서로 다른 서비스에서, 실시간 이벤트의 순서와 비동기 작업의 실패를 운영자가 추적하고 복구할 수 있게 했습니다.",
+        { text: "WebSocket 상담 세션에서 VAD·DELTA·COMPLETE·CORRECTED 전사를 같은 순서로 연결하고 종료·재연결 경계를 보강", source: "Centurion · 실시간 상담" },
+        { text: "주문·재고 API와 RabbitMQ·TaskIQ 워커를 분리하고 상태·재시도·최종 실패·수동 재처리 경계를 구축", source: "Centurion · 주문/재고" },
+      ],
+      claimIds: [
+        "centurion.say-realtime-ai",
+        "centurion.bay-async-backend",
+        "centurion.async-migration",
+      ],
+    },
+    {
+      no: "03",
+      title: "여러 병원의 운영·예약을 지원하는 제품 백엔드를 구축하고 있습니다",
+      description: [
+        "관리자와 홈페이지 사용자의 흐름을 분리한 백엔드 구조를 만들고, 데이터 접근 범위는 서버의 인증 상태가 결정하도록 보강하고 있습니다.",
+        { text: "관리·홈페이지 API를 독립 모듈로 두고 게이트웨이를 통해 하나의 진입점으로 제공", source: "NEXUS · 제품 백엔드" },
+        { text: "운영자의 소속 지점과 현재 작업 지점을 분리하고 409·403으로 복구 가능한 오류를 구분", source: "NEXUS · 접근 범위" },
+        { text: "제품은 예약률 개선을 통해 고객사 매출 성과에 기여", source: "NEXUS · 제품/팀 성과" },
+      ],
+      claimIds: [
+        "nexus.backend-architecture",
+        "nexus.admin-backend-ownership",
+        "nexus.branch-access-boundary",
+        "nexus.hospital-operations-revenue-contribution",
+      ],
+    },
+    {
+      no: "04",
+      title: "예약·선결제·환불·알림이 이어지는 고객 흐름을 구현했습니다",
+      description: [
+        "외부 결제와 내부 DB를 하나의 트랜잭션으로 가정하지 않고 요청·완료·보상 시점을 나눠 추적했습니다.",
+        { text: "Stripe Checkout 선결제와 내부 거래 ID를 연결하고 예약 실패 시 결제 상태에 따라 취소·환불", source: "Memento AI · 결제" },
+        { text: "환불 완료 뒤 마일리지·이용권을 변경하도록 처리 순서를 보완", source: "Memento AI · 상태 정합성" },
+        { text: "다국어 알림톡·이메일 즉시/예약 발송과 Celery 작업 취소·재등록·발송 이력을 구현", source: "Memento AI · 알림" },
+      ],
+      claimIds: [
+        "career.memento-fastapi-backend",
+        "career.memento-stripe-prepayment",
+        "career.memento-payment",
+        "career.memento-happycall-survey",
+      ],
+    },
+    {
+      no: "05",
+      title: "여러 제품을 같은 기준으로 개발할 수 있는 FastAPI 기반을 만들었습니다",
+      description: [
+        "여러 직군이 코딩 에이전트로 백엔드 구현에 참여해도 책임과 호출 순서를 해석하기 쉽도록 조직 표준 템플릿을 직접 설계·구축했습니다.",
+        { text: "Layered Architecture·Service Layer·Repository Pattern·DI로 책임과 의존 방향을 고정", source: "백엔드 템플릿 · 구조" },
+        { text: "@transactional로 REQUIRED·REQUIRES_NEW·NESTED를 구현하고 ContextVar·SessionProxy로 현재 AsyncSession을 연결", source: "백엔드 템플릿 · 트랜잭션" },
+        { text: "하위 태스크의 동일 세션 접근을 차단하고 취소 시 롤백·연결 정리를 통합 테스트로 검증", source: "백엔드 템플릿 · 비동기 세션" },
+      ],
+      claimIds: [
+        "be-template.backend-standard",
+        "be-template.fastapi-sqlalchemy-standard",
+        "be-template.team-leverage",
+        "be-template.agent-context",
+      ],
     },
   ],
   workStyles: [],
   skills: [
     {
-      label: "FastAPI / ORM",
-      stack: "Python · FastAPI · SQLAlchemy 2.0 async · Pydantic · Alembic",
-      via: "Layered API·DI·Repository·transaction·session lifecycle·migration",
-      claimIds: ["be-template.fastapi-sqlalchemy-standard"],
+      label: "제품 백엔드",
+      stack: "Python · FastAPI · SQLAlchemy 2.0 · PostgreSQL · MySQL",
+      via: "제품 API·도메인 모델·트랜잭션·데이터 이전·관리 기능을 설계하고 운영",
+      claimIds: ["thready.ai-service-boundary", "nexus.backend-architecture", "career.memento-fastapi-backend"],
     },
     {
-      label: "Data / Async",
-      stack: "PostgreSQL · MySQL · Redis · RabbitMQ · TaskIQ · Celery",
-      via: "Outbox·retry·lease·version fence·terminal failure·scheduled task",
-      claimIds: ["thready.ai-replica-outbox", "centurion.bay-async-backend"],
+      label: "비동기 / 실시간",
+      stack: "RabbitMQ · TaskIQ · Celery · WebSocket · SSE",
+      via: "주문·재고 워커의 재시도·실패 복구와 실시간 상담 세션·이벤트 순서를 처리",
+      claimIds: ["centurion.bay-async-backend", "centurion.say-realtime-ai"],
     },
     {
-      label: "AI Application",
-      stack: "FastAPI AI application · LLM/STT integration · structured output",
-      via: "실행 lifecycle·제품 원장 경계·authenticated HTTP·실시간 session",
+      label: "AI 제품",
+      stack: "독립 FastAPI AI 서비스 · LLM/STT 연동 · 구조화 출력",
+      via: "제품 기준 데이터와 AI 실행 상태를 분리하고 생성·평가·실시간 상담 흐름을 제품에 연결",
       claimIds: ["thready.ai-service-boundary", "centurion.say-realtime-ai"],
     },
     {
-      label: "Auth / External API",
-      stack: "SSO session · Stripe Checkout/Webhook · Notification",
-      via: "Role scope·duplicate login·cancel/refund·예약 발송·이력",
-      claimIds: ["centurion.sso-session", "career.memento-payment"],
+      label: "외부 상태",
+      stack: "Stripe Checkout/Webhook · SSO 세션 · 알림 작업",
+      via: "결제·환불·권한·예약 발송의 요청과 완료 시점, 변경 이력, 복구 경로를 분리",
+      claimIds: ["career.memento-stripe-prepayment", "career.memento-payment", "centurion.sso-session"],
     },
     {
-      label: "Quality / Agent",
-      stack: "pytest · Ruff · Pyright · Docker CI · ADR · runbook · Claude Code · Codex",
-      via: "Transaction·API·migration 검증과 작업 목표·구현 방향·효율을 점검하는 주간 Agent 활용 회고",
-      claimIds: [
-        "be-template.agent-context",
-        "career.coding-agent-usage",
-        "career.weekly-role-based-agent-retrospective",
-      ],
+      label: "개발 기준",
+      stack: "pytest · Ruff · Pyright · Docker CI · ADR · 운영 절차서",
+      via: "계층·의존성·트랜잭션·비동기 세션 규칙과 검증 명령을 템플릿과 문서로 제공",
+      claimIds: ["be-template.backend-standard", "be-template.fastapi-sqlalchemy-standard", "be-template.agent-context"],
     },
   ],
   credentials: [
-    {
-      period: "2016.03\n- 2021.08",
-      text: "우송대학교 게임멀티미디어 전공 · 졸업",
-      claimIds: ["credentials.education"],
-    },
-    {
-      period: "2024.01",
-      text: "CES 2024 Best of Innovation · AI 부문 대상 제품 참여",
-      claimIds: ["credentials.ces-2024"],
-    },
-    {
-      period: "2022.11",
-      text: "KCL AI 정확도 부문 인증 통과 제품 참여",
-      claimIds: ["credentials.ai-accuracy-certification"],
-    },
-    {
-      period: "2025.12",
-      text: "특허 등록 「페이지 출력 방법」 · 등록 10-2898273",
-      claimIds: ["credentials.page-output-patent"],
-    },
-    {
-      period: "2021.09",
-      text: "ADsP · 데이터분석 준전문가",
-      claimIds: ["credentials.adsp"],
-    },
+    { period: "2016.03\n- 2021.08", text: "우송대학교 게임멀티미디어 전공 · 졸업", claimIds: ["credentials.education"] },
+    { period: "2024.01", text: "CES 2024 Best of Innovation · AI 부문 대상 제품 참여", claimIds: ["credentials.ces-2024"] },
+    { period: "2022.11", text: "KCL AI 정확도 부문 인증 통과 제품 참여", claimIds: ["credentials.ai-accuracy-certification"] },
+    { period: "2025.12", text: "특허 등록 「페이지 출력 방법」 · 등록 10-2898273", claimIds: ["credentials.page-output-patent"] },
+    { period: "2021.09", text: "ADsP · 데이터분석 준전문가", claimIds: ["credentials.adsp"] },
   ],
 } satisfies TailoredResume;

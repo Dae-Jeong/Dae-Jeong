@@ -2,7 +2,7 @@
 type: current-state
 title: Current State
 description: Current source-of-truth routing and deployed site state; this file is a derived snapshot.
-timestamp: 2026-08-24
+timestamp: 2026-08-28
 canonical: false
 derived_from: [profile/, evidence/claims/, products/, app/fe/, backlog/platform-profile-consolidation/2026-08-22-live-verification.md]
 tags: [current-state, migration, resume]
@@ -36,7 +36,7 @@ tags: [current-state, migration, resume]
 - **Maker 브랜드 문장 복원** (2026-08-24): 공통 소개는 `아이디어를 새로운 가치로 실현하는 메이커, 김대정입니다.`로 복원했다. `Maker`는 브랜드 정체성이고 채용 역할 표기는 `Tech Lead · Backend Engineer`를 유지한다. 홈 hero와 공통 resume·portfolio·직군별 초안은 같은 문장을 쓰며, 실제 고객이 결제하는 제품을 만든 근거는 소개 문장에 넣지 않고 바로 아래 Thready 경력과 사례가 증명한다. 채용 플랫폼은 마지막 적용값을 보존하며 다음 동기화 때 이 문장으로 맞춘다.
 - **포트폴리오 V3 단일 문서 반영** (2026-08-23): `/portfolio`는 세 primary case를 `Thready 유료 제품 운영·직접 구현` → `Company AX 전환 설계` → `Centurion service별 failure boundary` 순으로 보여준다. Company AX 사례는 MEDINESS의 제품·회사 업무 control plane과 직접 구축한 Backend Template·agent context를 contribution strength별로 분리한다. Infrastructure dossier는 archive evidence로 이동했고, Memento payment는 supporting case로 유지한다.
 - **직군별 이력서·포트폴리오 초안 확장** (2026-08-26): local-only route에서 Product Ownership·Backend·AI Backend·AX/FDE 네 관점으로 같은 claim과 case library의 순서·기술 깊이·focus를 바꿔 읽을 수 있게 했다. Tech Lead는 별도 지원본으로 나누지 않고 Backend 관점 안에서 기술 범위·검증 기준·전환을 정한 책임으로 증명한다. Product Ownership은 공식 직함이 아닌 지원 관점으로 둔다. AX/FDE는 Thready 유료 제품 운영 → NEXUS 외부 운영·예약 backend → SellerCanvas 기업 PoC로 field delivery를 먼저 증명하고, Company AX·Backend Template은 반복 가능한 실행 방식으로 확장한 후속 근거로 배치한다. 프로젝트 사실·수치·ownership은 복제하지 않고 기본 public surface는 유지한다.
-- **피노키오랩 맞춤 지원본 local preview** (2026-08-27): `/resume/pinokiolab`, `/portfolio/pinokiolab`를 local-only draft로 구성했다. FastAPI·SQLAlchemy transaction/session 기준, AI application delivery protocol, 결제 상태 흐름, server-owned authorization, Paperthin evidence-first agent cycle의 다섯 사례를 선택했으며 공개 배포·PDF 제출은 아직 하지 않았다.
+- **피노키오랩 맞춤 지원본 1차 확정** (2026-08-28): `/resume/pinokiolab`, `/portfolio/pinokiolab`를 승인된 public direct-link·noindex 지원본으로 전환했다. `고객이 사용하는 AI 제품을 만들고 운영한 Product Engineer`를 먼저 보여주고, AI 콘텐츠·실시간 상담/주문·재고·병원 운영/예약·예약/결제 사례 뒤에 FastAPI·SQLAlchemy transaction/session 기준을 기술 증거로 배치했다. 웹·모바일·A4를 검수했으며 이력서와 포트폴리오 PDF를 `output/pdf/`에 생성한다.
 - **Portfolio semantic visual system local preview** (2026-08-27): 공통·직군별·회사 맞춤 portfolio에 navy·white·gray 기반과 단일 blue accent를 적용했다. green·amber는 verified outcome·risk 같은 작은 판정 지점에만 제한한다. 동일한 회색 panel 반복은 `문제·대처·결과·system view·기술 판단·담당 범위`의 서로 다른 시각 위계로 교체하고, `compact-flow`는 mobile·A4에서 안정적으로 읽히는 code-native diagram으로 전환했다. 현재 local 검증 상태이며 공개 배포는 아직 하지 않았다.
 - **회사 Azure topology 시각화 기록** (2026-08-20, 2026-08-23 archive): Microsoft 공식 Azure icon 기반 current topology는 기술 audit·내부 evidence로 보존한다. 사용자의 전문성 positioning correction에 따라 public portfolio와 role variant에서는 선택하지 않는다.
 - **NEXUS·DAY 제품 경계 정정** (2026-08-20): 기존 `NEXUS ≡ Centurion` 판정을 supersede했다. DAY는 Centurion을 구성하는 범용 피부과 CRM 영역이고, NEXUS는 Centurion과 별개의 외부 피부과 홈페이지·관리·예약 운영 시스템이다. NEXUS backend 구축과 server-owned 지점 권한은 별도 사례로 분리했으며, 예약률 개선을 통한 고객사 매출 기여는 제품·팀 outcome의 `contributed/medium`으로만 공개한다. 정확한 예약률·매출 증분·개인 단독 인과는 금지한다.

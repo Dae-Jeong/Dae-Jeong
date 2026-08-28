@@ -109,7 +109,7 @@ export function CompactFlowDiagram({ visual }: { visual: CompactFlowVisual }) {
           <div className="grid grid-cols-[minmax(0,1fr)_auto] items-end gap-5 max-lg:grid-cols-1">
             <div>
               <span className="font-mono text-xs font-semibold text-[#2854d7]">
-                RUNTIME BEHAVIOR
+                실행 방식
               </span>
               <h4 className="m-0 mt-2 text-lg font-semibold text-[#102044]">
                 {visual.loadBehavior.title}

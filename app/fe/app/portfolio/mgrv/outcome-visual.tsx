@@ -27,7 +27,7 @@ export function OutcomeVisual({
         <div className="flex flex-wrap items-baseline justify-between gap-3">
           <h3 className="m-0 text-lg font-semibold leading-[1.4]">{visual.title}</h3>
           <span className="font-mono text-xs font-semibold text-muted">
-            System view
+            구조
           </span>
         </div>
         <p className="m-0 mt-3 text-sm leading-[1.7] text-fg-2">
