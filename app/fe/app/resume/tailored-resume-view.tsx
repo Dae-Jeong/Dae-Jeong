@@ -394,7 +394,7 @@ function ResumeDocument({ resume }: { resume: TailoredResume }) {
   }
 
   return (
-    <div data-tailored-resume>
+    <div data-tailored-resume data-resume-slug={resume.slug}>
       <header className={resumeType.documentHeader}>
         <div className={resumeType.identityBlock}>
           <h1 className={resumeType.identity}>{resume.header.name}</h1>

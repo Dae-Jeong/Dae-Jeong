@@ -13,7 +13,7 @@ claims:
       - 조직의 모든 backend 표준 단독 결정
     verified_at: 2026-07-04
   - id: be-template.fastapi-sqlalchemy-standard
-    statement: FastAPI·SQLAlchemy 2.0 async 기반 계층 구조와 repository·transaction·session 경계를 조직 표준 backend template으로 설계·구축
+    statement: FastAPI·SQLAlchemy 2.0 async 기반 계층 구조와 @transactional·ContextVar·SessionProxy 기반 transaction/session 경계를 조직 표준 backend template으로 설계·구축
     strength: owned
     confidence: high
     public: true
@@ -22,14 +22,24 @@ claims:
       - FastAPI·SQLAlchemy 2.0 async 기반 조직 표준 backend template 설계·구축
       - Router·Service·Validator·Repository·Model 계층과 DI를 조직 backend 기준으로 구현
       - Repository의 SQL 실행과 Service transaction 경계를 분리하고 async session lifecycle을 integration test로 검증
+      - "@transactional로 REQUIRED의 기존 transaction 참여, REQUIRES_NEW의 새 connection·AsyncSession, NESTED의 SAVEPOINT를 구현"
+      - ContextVar에 AsyncSession·TxState를 bind하고 SessionProxy로 현재 session을 resolve해 반복적인 session 인자를 제거
+      - owner-task guard로 child task의 session 상속 접근을 차단하고 CancelledError rollback·connection cleanup을 integration test로 검증
+      - 하나의 transaction은 하나의 asyncio task와 AsyncSession이 소유하도록 동일 session의 child-task 접근을 fail-fast
+      - 병렬 DB 작업은 task별 transaction·데이터 가시성·실패 복구·connection 비용을 먼저 결정하도록 ADR·runbook에 규칙화
       - generic Repository와 typed query DTO로 ORM·raw query 데이터 접근 경계를 표준화
     forbidden_copy:
       - 조직의 모든 backend 표준 단독 결정
       - 모든 사내 service가 같은 template으로 전환 완료
       - 성능·결함·개발 시간의 정량 개선
-    verified_at: 2026-08-27
+      - Depends(get_session)이 잘못된 방식이거나 FastAPI의 한계라는 주장
+      - ContextVar에 raw DB connection을 저장했다는 주장
+      - NESTED를 독립 transaction으로 표현
+      - child task가 같은 AsyncSession을 안전하게 공유한다는 주장
+      - 요청 간 동시성이나 transaction 밖의 외부 I/O까지 직렬화했다는 주장
+    verified_at: 2026-08-28
   - id: be-template.team-leverage
-    statement: 소수 백엔드 인원이 다수 제품을 담당하는 체제에서 표준 template로 컨텍스트 전환 비용을 낮추고, 횡단 관심사 일괄 반영과 FE 엔지니어의 BE 구현을 가능하게 함
+    statement: 여러 직군이 coding agent로 구현에 참여하고 소수 백엔드 인원이 다수 제품을 담당하는 체제에서, 명시적 계층·의존성·transaction 규칙을 표준 template의 기본값으로 제공
     strength: owned
     confidence: high
     public: true
@@ -39,10 +49,13 @@ claims:
       - 10명 안팎의 엔지니어 조직에서 2~3명의 백엔드 엔지니어가 다수 제품을 담당하는 환경
       - logging·모니터링 등 횡단 관심사를 전 제품에 일괄 반영
       - FE 엔지니어도 패턴·규약 아래에서 BE 로직 구현이 가능해짐
+      - 여러 직군이 coding agent로 구현에 참여해도 Layered Architecture·Service Layer·Repository Pattern·DI와 transaction 규칙을 공통 기본값으로 사용
+      - Python의 자유도를 프로젝트마다 다시 해석하지 않도록 Java/Spring에서 익숙한 명시적 책임·호출 규칙을 FastAPI template에 적용
     forbidden_copy:
       - 정확한 내부 제품 수와 인원 구성
       - 새 프로젝트 비용의 정량 감소 주장
-    verified_at: 2026-08-13
+      - Java/Spring으로 해당 backend를 구현했다는 주장
+    verified_at: 2026-08-28
   - id: be-template.agent-context
     statement: 계층적 agent context와 반복 작업 automation skill을 backend template에 내장
     strength: owned

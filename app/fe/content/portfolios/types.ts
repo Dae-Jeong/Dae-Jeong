@@ -229,6 +229,11 @@ export type CompactFlowVisual = {
   loadBehavior?: {
     title: string;
     description: string;
+    headers?: {
+      situation: string;
+      behavior: string;
+      watch: string;
+    };
     rows: {
       situation: string;
       behavior: string;
@@ -293,13 +298,19 @@ export type PortfolioCareerBridge = {
 export type PortfolioWorkSystem = {
   title: string;
   summary: string[];
+  caption?: string;
   foundation: string[];
   lanes: {
     kind: "human" | "ai" | "automated";
-    label: "Human Judgment" | "AI Execution" | "Automated Verification";
+    label: "Human Judgment" | "AI Execution" | "Agent Usage" | "Automated Verification";
+    meta?: {
+      role: string;
+      owner: string;
+      description: string;
+    };
     items: string[];
   }[];
-  qualityLab: PortfolioQualityLab;
+  qualityLab?: PortfolioQualityLab;
   evidence: PortfolioEvidence[];
   limits: string[];
   claimIds: string[];

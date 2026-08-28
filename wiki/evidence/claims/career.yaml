@@ -267,3 +267,25 @@ claims:
       - AI가 개발팀을 대체
       - 검증되지 않은 개발 속도·생산성 배수
     verified_at: 2026-08-27
+  - id: career.weekly-role-based-agent-retrospective
+    statement: 1인 1제품 개발 체계에서 주 1회 Agent 활용 개발 회고에 참여해 무엇을 만들어야 하는지 정확히 정의하고 더 효율적으로 구현할 방향·방법을 팀과 논의
+    strength: contributed
+    confidence: medium
+    public: true
+    evidence: [evidence/agent-workflow.md#weekly-role-based-agent-engineering-retrospective]
+    allowed_copy:
+      - 1인 1제품 개발 체계에서 주 1회 Agent 활용 개발 회고에 참여
+      - 코드 단위 리뷰보다 무엇을 만들어야 하는지 정확히 정의하고 더 효율적으로 구현할 방향과 방법을 팀과 논의
+      - Agent 활용이 실제 개발에 도움이 된 지점, 작업 중 어려움, 새롭게 발견한 방법의 적용 여부를 주간 회고에서 논의
+      - 프로젝트별 Agent 활용 결과와 작업 병목을 공유하고 다른 작업에도 재사용할 방법을 검토
+    forbidden_copy:
+      - 역할별 Agent가 사람의 code review를 대체
+      - PR·code review 자동화 체계 구축
+      - 주간 회고 전체 단독 설계·운영 또는 리드
+      - 회고로 개발 속도·생산성·QA 건수를 정량 개선
+      - 검토한 모든 방법을 전 제품에 적용
+    verified_at: 2026-08-27
+    note: >-
+      회고 주기와 검토 범위는 2026-08-27 user-confirmed다. 공개 문구는 요일·시간보다
+      `주 1회` cadence와 검토 목적을 사용하며, 과거 사람 중심 code review 경험은 별도
+      evidence를 확보하기 전 이 claim에 합치지 않는다.

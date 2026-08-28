@@ -4,13 +4,13 @@ export const PINOKIOLAB_RESUME = {
   slug: "pinokiolab",
   companyName: "피노키오랩",
   position: "Backend Engineer (FastAPI)",
-  status: "draft",
-  visibility: "local",
-  updatedAt: "2026-08-27",
+  status: "approved",
+  visibility: "public",
+  updatedAt: "2026-08-28",
   sectionOrder: ["profile", "outcomes", "career", "skills", "credentials"],
   header: {
     name: "김대정",
-    role: "Backend Engineer 3년차 · Python / FastAPI / SQLAlchemy",
+    role: "제품 개발 실무 4년 · Backend Engineer 3년차 · Python / FastAPI",
     photoSrc: "/profile/daejeong-profile-v2.png",
     careerLine: [
       { text: "MediSolve AI", tone: "strong" },
@@ -28,11 +28,11 @@ export const PINOKIOLAB_RESUME = {
   },
   summary: [
     {
-      text: "아이디어를 새로운 가치로 실현하는 메이커, 김대정입니다.",
-      claimIds: ["career.ai-pm-backend-continuity"],
+      text: "AI 결과를 실제 업무로 연결하는 백엔드를 설계합니다.",
+      claimIds: ["career.ai-pm-backend-continuity", "thready.ai-service-boundary"],
     },
     {
-      text: "FastAPI·SQLAlchemy로 제품 backend와 조직의 개발 기준을 설계하고 운영해 왔습니다. AI 분석·결제·권한처럼 서로 다른 시스템의 상태가 얽힌 업무를 명시적인 transaction·delivery·history 경계로 바꿉니다.",
+      text: "Vision AI 모델과 데이터 pipeline을 제품 기능으로 연결하는 일에서 시작해, 현재는 FastAPI·SQLAlchemy로 AI 서비스와 업무 backend의 책임을 나누고 있습니다. 결제·권한·알림처럼 외부 상태가 얽힌 흐름은 transaction 책임, 변경 이력, 재처리 기준을 명확히 해 추적할 수 있게 만듭니다.",
       claimIds: [
         "be-template.fastapi-sqlalchemy-standard",
         "thready.ai-service-boundary",
@@ -43,20 +43,28 @@ export const PINOKIOLAB_RESUME = {
   outcomes: [
     {
       no: "01",
-      title: "FastAPI·SQLAlchemy를 팀의 반복 가능한 backend 기준으로 만들었습니다",
+      title: "FastAPI async 환경에서 transaction과 AsyncSession의 소유권을 명확히 했습니다",
       description: [
-        "FastAPI·SQLAlchemy 2.0 async를 baseline으로 Router → Service → Validator → Repository → Model 계층과 DI를 갖춘 조직 표준 template을 직접 설계·구축했습니다.",
+        "여러 직군이 coding agent로 backend 구현에 참여하는 환경에서, Service method를 transaction boundary로 삼고 하나의 transaction은 하나의 asyncio task와 AsyncSession이 소유하도록 조직 표준 FastAPI template을 직접 설계·구축했습니다.",
         {
-          text: "Repository는 SQL·flush, Service transaction decorator는 commit·rollback을 소유하도록 경계 고정",
-          source: "Backend Template · transaction boundary",
+          text: "Layered Architecture에 Service Layer·Repository Pattern·DI를 적용해 명시적인 구현 경로를 제공",
+          source: "Backend Template · architecture defaults",
         },
         {
-          text: "AsyncSession propagation·isolation·read-only·rollback safety를 integration test로 검증",
-          source: "Backend Template · session lifecycle",
+          text: "@transactional이 REQUIRED 참여·REQUIRES_NEW 독립 실행·NESTED SAVEPOINT와 commit·rollback·cleanup을 관리",
+          source: "Backend Template · propagation",
         },
         {
-          text: "ADR·runbook·agent context를 함께 제공해 사람과 coding agent가 같은 구조·검증 기준을 사용",
-          source: "Backend Template · engineering context",
+          text: "ContextVar·SessionProxy로 transaction boundary의 AsyncSession을 bind해 반복적인 session 인자를 제거",
+          source: "Backend Template · resource binding",
+        },
+        {
+          text: "owner-task guard로 child task의 동일 session 접근을 fail-fast하고, CancelledError rollback·connection cleanup을 integration test로 검증",
+          source: "Backend Template · transaction safety",
+        },
+        {
+          text: "병렬 DB 작업은 task별 transaction·데이터 가시성·실패 복구·connection 비용을 먼저 정하도록 ADR·runbook에 규칙화",
+          source: "Backend Template · concurrency trade-off",
         },
       ],
       claimIds: [
@@ -68,15 +76,15 @@ export const PINOKIOLAB_RESUME = {
     },
     {
       no: "02",
-      title: "AI 결과가 늦거나 중복돼도 최신 업무 상태를 지키는 전달 경계를 만들었습니다",
+      title: "원장 변경이 늦거나 중복 전달돼도 AI application이 최신 상태로 수렴하게 했습니다",
       description: [
-        "제품 원장은 product backend가, 생성 lifecycle과 실행 상태는 독립 FastAPI AI application·DB가 소유하도록 나눴습니다. application 사이의 부분 실패를 예외가 아닌 정상적인 failure mode로 다뤘습니다.",
+        "제품 정책·원장은 product backend가, AI application은 생성 lifecycle·실행 상태와 필요한 local replica를 소유하도록 나눴습니다. 서비스 간 전달 실패를 예외가 아닌 운영 조건으로 다뤘습니다.",
         {
           text: "원장 변경과 Outbox row를 같은 transaction에 기록하고 AI 실행은 worker로 분리",
           source: "Thready · delivery boundary",
         },
         {
-          text: "lease·attempt token·version fence·멱등 consumer로 중단·중복·지연·역순 전달 통제",
+          text: "relay lease·attempt_count·version fence·멱등 consumer로 중단·중복·지연·역순 원장 event 통제",
           source: "Thready · worker recovery",
         },
         {
@@ -92,28 +100,53 @@ export const PINOKIOLAB_RESUME = {
     },
     {
       no: "03",
-      title: "Stripe 선결제부터 취소·환불까지 추적 가능한 상태 흐름을 만들었습니다",
+      title: "AI 생성 품질을 자동 점수로 확정하지 않고, 검증 근거와 사람 판단을 분리했습니다",
       description: [
-        "외부 결제와 내부 예약을 하나의 transaction으로 가정하지 않고, local transaction ID로 내부 이력과 provider event를 연결했습니다.",
+        "고객에게 제공할 AI 글의 품질 기준을 정의하기 위한 독립 실험 하네스에서 자동 게이트·실측 분포·사람 판정의 책임을 나눴습니다.",
         {
-          text: "Stripe Checkout manual capture 선결제와 Checkout·Webhook event 연결",
+          text: "결정적 게이트 12종으로 형식 오류를 자동 차단",
+          source: "Thready · quality gate",
+        },
+        {
+          text: "자사 출력이 기준값으로 되먹임되던 문제를 재실측으로 발견하고 판정 기준을 교정",
+          source: "Thready · measurement correction",
+        },
+        {
+          text: "최종 품질 판단은 사람이 소유하고, 6개 축으로 개선 순서를 관리",
+          source: "Thready · human judgment",
+        },
+      ],
+      claimIds: ["thready.quality-criteria-system", "thready.measurement-correction"],
+    },
+    {
+      no: "04",
+      title: "결제·알림처럼 외부 완료 시점이 다른 작업을 상태와 이력으로 추적했습니다",
+      description: [
+        "외부 provider와 내부 DB를 하나의 transaction으로 가정하지 않고, 요청·완료·보상 상태를 나눠 추적했습니다.",
+        {
+          text: "Stripe Checkout manual capture 선결제와 local transaction ID 기반 event 연결",
           source: "Memento AI · payment",
         },
         {
-          text: "예약 실패 시 PaymentIntent 상태별 cancel/refund, 환불 완료 뒤 마일리지·이용권 상태 변경",
+          text: "예약 실패 시 PaymentIntent 상태별 cancel/refund와 환불 완료 뒤 내부 자산 변경",
           source: "Memento AI · compensation",
+        },
+        {
+          text: "다국어 알림톡·이메일 즉시/예약 발송과 Celery task 취소·재등록·발송 이력",
+          source: "Memento AI · notification lifecycle",
         },
       ],
       claimIds: [
         "career.memento-stripe-prepayment",
         "career.memento-payment",
+        "career.memento-happycall-survey",
       ],
     },
     {
-      no: "04",
-      title: "데이터 접근 범위를 client 입력이 아니라 server 인증 상태가 결정하게 했습니다",
+      no: "05",
+      title: "서버 인증 상태가 데이터 접근 범위를 결정하도록 권한 경계를 재구성하고 있습니다",
       description: [
-        "multi-service SSO session 정책과 duplicate login E2E를 담당하고, 병원 운영 backend에서는 사용자의 소속 지점과 현재 작업 지점을 분리했습니다.",
+        "multi-service SSO session 정책과 duplicate login E2E를 담당하고, 병원 운영 backend에서는 사용자의 소속 지점과 현재 작업 지점을 분리하고 있습니다.",
         {
           text: "작업 지점은 권한 검증 API를 통해서만 전환하고 server auth state에서 query scope 결정",
           source: "NEXUS · authorization boundary",
@@ -124,26 +157,6 @@ export const PINOKIOLAB_RESUME = {
         },
       ],
       claimIds: ["centurion.sso-session", "nexus.branch-access-boundary"],
-    },
-    {
-      no: "05",
-      title: "코드가 아니라 검증된 근거가 다음 개발 사이클을 결정하게 했습니다",
-      description: [
-        "제품 개발의 결정·구현·검증을 Decision·SPEC·Work Package·ADR·release evidence로 연결하고, 개인 open-source Paperthin에서는 실제 surface 검증을 통과한 lesson·anti-pattern·quality gate만 다음 v0에 남기는 agent cycle을 설계했습니다.",
-        {
-          text: "기존 codebase의 크기나 구현량을 진척도의 대리값으로 사용하지 않음",
-          source: "Paperthin · evidence-first cycle",
-        },
-        {
-          text: "keep·restart·release는 사람이 결정하고 coding agent는 탐색·반복 구현·근거 정리를 수행",
-          source: "Human gate · agent execution",
-        },
-      ],
-      claimIds: [
-        "mediness.product-operations",
-        "be-template.agent-context",
-        "paperthin.evidence-first-agent-cycle",
-      ],
     },
   ],
   careers: [
@@ -172,6 +185,10 @@ export const PINOKIOLAB_RESUME = {
           { text: "제품 개발 체계", tone: "strong" },
           { text: " — 제품별 Decision·SPEC·Work Package·QA·release gate 적용·운영을 리드하고 회사 업무 AX 구조 설계에 참여" },
         ],
+        [
+          { text: "Agent 활용 주간 회고", tone: "strong" },
+          { text: " — 1인 1제품 개발 환경에서 주 1회, 코드 단위 리뷰보다 무엇을 만들어야 하는지 정확히 정의하고 더 효율적으로 구현할 방향·방법을 팀과 검토" },
+        ],
       ],
       claimIds: [
         "career.medisolve-role-evolution",
@@ -181,6 +198,7 @@ export const PINOKIOLAB_RESUME = {
         "centurion.bay-async-backend",
         "centurion.say-realtime-ai",
         "mediness.company-work-ax-design",
+        "career.weekly-role-based-agent-retrospective",
       ],
     },
     {
@@ -211,7 +229,7 @@ export const PINOKIOLAB_RESUME = {
       details: [
         [
           { text: "예약·결제 backend", tone: "strong" },
-          { text: " — FastAPI·SQLAlchemy·MySQL 기반 예약 API와 Stripe Checkout·Webhook·취소·환불 상태 흐름 구현" },
+          { text: " — FastAPI·SQLAlchemy·MySQL 기반 예약 API와 Stripe Checkout 선결제 구현, 취소·환불 상태 흐름 보완" },
         ],
         [
           { text: "알림 lifecycle", tone: "strong" },
@@ -284,8 +302,12 @@ export const PINOKIOLAB_RESUME = {
     {
       label: "Quality / Agent",
       stack: "pytest · Ruff · Pyright · Docker CI · ADR · runbook · Claude Code · Codex",
-      via: "Transaction·API·migration·release 검증과 evidence-first iteration",
-      claimIds: ["be-template.agent-context", "paperthin.evidence-first-agent-cycle"],
+      via: "Transaction·API·migration 검증과 작업 목표·구현 방향·효율을 점검하는 주간 Agent 활용 회고",
+      claimIds: [
+        "be-template.agent-context",
+        "career.coding-agent-usage",
+        "career.weekly-role-based-agent-retrospective",
+      ],
     },
   ],
   credentials: [

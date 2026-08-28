@@ -509,6 +509,11 @@ body {
     break-before: page;
   }
 
+  /* 기술 사례가 많은 피노키오랩 지원본은 A4에서 4쪽 흐름을 유지한다. */
+  [data-resume-canvas] [data-resume-slug="pinokiolab"] {
+    zoom: 0.9;
+  }
+
   [data-resume-canvas] #s5 {
     break-inside: avoid;
   }

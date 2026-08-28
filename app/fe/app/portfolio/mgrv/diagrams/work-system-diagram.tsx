@@ -85,13 +85,13 @@ export function WorkSystemDiagram({ workSystem }: { workSystem: WorkSystem }) {
  className="m-0 flex flex-col justify-center border-r border-[#cbd5e1] px-5 py-5 leading-[1.4] max-lg:border-b max-lg:border-r-0 print:border-b-0 print:border-r print:px-3 print:py-3"
             >
               <span className="font-mono text-[11px] text-muted">
-                {laneMeta[lane.kind].role}
+                {lane.meta?.role ?? laneMeta[lane.kind].role}
               </span>
               <strong className="mt-1 text-sm font-semibold text-[#102044]">
-                {laneMeta[lane.kind].owner}
+                {lane.meta?.owner ?? laneMeta[lane.kind].owner}
               </strong>
               <span className="mt-1 text-[11px] font-normal text-muted">
-                {laneMeta[lane.kind].description}
+                {lane.meta?.description ?? laneMeta[lane.kind].description}
               </span>
             </h4>
           <ol className="m-0 flex list-none items-stretch overflow-visible p-0 max-lg:grid print:flex">
@@ -120,7 +120,9 @@ export function WorkSystemDiagram({ workSystem }: { workSystem: WorkSystem }) {
         ))}
       </div>
 
-      <QualityDecisionDiagram qualityLab={workSystem.qualityLab} />
+      {workSystem.qualityLab && (
+        <QualityDecisionDiagram qualityLab={workSystem.qualityLab} />
+      )}
 
       <section
         aria-label="작업 방식 근거"
@@ -149,8 +151,8 @@ export function WorkSystemDiagram({ workSystem }: { workSystem: WorkSystem }) {
       </section>
 
       <figcaption className="mt-5 text-sm leading-[1.65] text-fg-2">
-        제품 판단이 실행 중 유실되지 않도록 결정→작업→검증→release 근거를 연결하고,
-        AI는 그 경계 안에서 탐색과 반복 구현을 맡습니다.
+        {workSystem.caption ??
+          "제품 판단이 실행 중 유실되지 않도록 결정→작업→검증→release 근거를 연결하고, AI는 그 경계 안에서 탐색과 반복 구현을 맡습니다."}
       </figcaption>
     </figure>
   );

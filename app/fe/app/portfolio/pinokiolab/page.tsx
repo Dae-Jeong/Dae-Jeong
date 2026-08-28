@@ -37,19 +37,19 @@ export const metadata: Metadata = {
 };
 
 const navigationItems: PortfolioNavItem[] = [
-  {
-    id: "career-bridge",
-    no: "00",
-    title: PINOKIOLAB_PORTFOLIO.careerBridge.title,
-  },
   ...PINOKIOLAB_PORTFOLIO.outcomes.map((outcome) => ({
     id: `outcome-${outcome.no}`,
     no: outcome.no,
     title: outcome.title,
   })),
   {
-    id: "work-system",
+    id: "career-bridge",
     no: String(PINOKIOLAB_PORTFOLIO.outcomes.length + 1).padStart(2, "0"),
+    title: PINOKIOLAB_PORTFOLIO.careerBridge.title,
+  },
+  {
+    id: "work-system",
+    no: String(PINOKIOLAB_PORTFOLIO.outcomes.length + 2).padStart(2, "0"),
     title: PINOKIOLAB_PORTFOLIO.workSystem.title,
   },
 ];
@@ -91,7 +91,9 @@ export default function PinokiolabPortfolioPage() {
                 {portfolio.companyName} · {portfolio.position}
               </p>
               <div className="flex flex-wrap items-center gap-4 font-mono text-xs text-muted">
-                <span>DRAFT · {portfolio.updatedAt}</span>
+                <span>
+                  {portfolio.status === "draft" ? "DRAFT" : "Updated"} · {portfolio.updatedAt}
+                </span>
                 <Link
                   href="/resume/pinokiolab"
                   className="focus-ring border-b border-fg pb-0.5 font-medium text-fg hover:border-transparent"
@@ -101,7 +103,7 @@ export default function PinokiolabPortfolioPage() {
               </div>
             </div>
             <h1 className="mt-4 text-4xl font-semibold leading-[1.08] tracking-[-0.03em] max-sm:text-3xl">
-              Backend Engineering Portfolio
+              AI 결과를 실제 업무로 연결하는 Backend
             </h1>
             <div className="mt-6 grid max-w-[920px] gap-2 text-lg font-medium leading-[1.65]">
               {portfolio.introduction.map((paragraph) => (
@@ -141,8 +143,6 @@ export default function PinokiolabPortfolioPage() {
             </ol>
           </nav>
 
-          <CareerBridgeSection bridge={portfolio.careerBridge} />
-
           <div className="pt-6">
             {portfolio.outcomes.map((outcome) => (
               <section
@@ -178,6 +178,8 @@ export default function PinokiolabPortfolioPage() {
               </section>
             ))}
           </div>
+
+          <CareerBridgeSection bridge={portfolio.careerBridge} />
 
           <section id="work-system" className="scroll-mt-6 pt-20">
             <WorkSystemDiagram workSystem={portfolio.workSystem} />
