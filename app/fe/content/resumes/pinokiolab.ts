@@ -66,7 +66,7 @@ export const PINOKIOLAB_RESUME = {
         ],
         [
           { text: "실시간 AI 상담·주문·재고", tone: "strong" },
-          { text: " — 늦게 도착한 STT 보정이 정확한 발화만 바꾸도록 sequence 계약을 구현. 자동 발주 뒤 병원·공급사 알림을 RabbitMQ·TaskIQ 워커로 분리하고 발송 결과를 주문 상태·재시도·수동 재발송과 연결" },
+          { text: " — 늦게 도착한 STT 보정도 발화별 sequence로 정확한 문장에 반영. 자동 발주 알림은 RabbitMQ·TaskIQ 워커로 분리해 주문 상태·재시도·수동 재발송과 연결" },
         ],
         [
           { text: "병원 운영·예약 제품", tone: "strong" },
@@ -74,7 +74,7 @@ export const PINOKIOLAB_RESUME = {
         ],
         [
           { text: "FastAPI 개발 기준", tone: "strong" },
-          { text: " — 기획·QA·디자인 담당자도 코딩 에이전트로 사내 프로그램을 구현할 수 있도록 계층·DI·트랜잭션·비동기 세션·테스트 기준을 조직 표준 템플릿과 문서로 구축" },
+          { text: " — 기획·QA·디자인 담당자의 코딩 에이전트 개발에도 같은 계층·트랜잭션·세션·테스트 기준을 적용하도록 조직 표준 템플릿 구축" },
         ],
         [
           { text: "제품 개발 회고", tone: "strong" },
@@ -174,7 +174,7 @@ export const PINOKIOLAB_RESUME = {
   outcomes: [
     {
       no: "01",
-      title: "고객의 콘텐츠 제작 문제를 고객이 결제하는 AI 제품으로 만들었습니다",
+      title: "콘텐츠 제작 문제를 실제 결제로 이어지는 AI 제품으로 풀었습니다",
       description: [
         "기획·QA·마케팅과 고객 문제·기능 우선순위·생성 품질 기준을 정하고, 출시와 운영까지 제품 흐름을 리드했습니다.",
         { text: "FastAPI 제품 백엔드와 독립 AI 서비스·DB를 구축하고 인증된 HTTP 계약으로 연결", source: "Thready · 백엔드/AI" },
@@ -241,7 +241,7 @@ export const PINOKIOLAB_RESUME = {
       no: "05",
       title: "여러 제품을 같은 기준으로 개발할 수 있는 FastAPI 기반을 만들었습니다",
       description: [
-        "기획·QA·디자인 담당자도 코딩 에이전트로 사내 프로그램을 구현하는 환경에서, 책임과 호출 순서를 해석하기 쉬운 조직 표준 템플릿을 직접 설계·구축했습니다.",
+        "기획·QA·디자인 담당자가 코딩 에이전트로 만들 때도 같은 책임과 호출 규칙을 적용하도록 조직 표준 템플릿을 설계·구축했습니다.",
         { text: "Layered Architecture·Service Layer·Repository Pattern·DI로 책임과 의존 방향을 고정", source: "백엔드 템플릿 · 구조" },
         { text: "모든 계층에 session을 전달하는 반복을 없애고 @transactional·ContextVar·SessionProxy로 트랜잭션 정책과 현재 AsyncSession을 연결", source: "백엔드 템플릿 · 트랜잭션" },
         { text: "하위 태스크의 동일 세션 접근을 차단하고 취소 시 롤백·연결 정리를 통합 테스트로 검증", source: "백엔드 템플릿 · 비동기 세션" },

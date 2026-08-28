@@ -67,7 +67,7 @@ export const PINOKIOLAB_PORTFOLIO = {
   outcomes: [
     {
       no: "01",
-      title: "고객의 콘텐츠 제작 문제를 고객이 결제하는 AI 제품으로 만들었습니다",
+      title: "콘텐츠 제작 문제를 실제 결제로 이어지는 AI 제품으로 풀었습니다",
       caseMode: "single-system",
       layers: ["Product", "Backend", "AI", "Operations"],
       status: { label: "출시·운영", tone: "verified" },
@@ -84,7 +84,7 @@ export const PINOKIOLAB_PORTFOLIO = {
           "기획·QA·마케팅과 고객 문제, 기능 우선순위, 생성 품질 기준을 정하고 출시·운영 흐름을 조율했습니다.",
           "FastAPI 제품 백엔드와 독립 AI 서비스·DB를 구축하고 인증된 HTTP로 연결했습니다.",
           "콘텐츠 생성·가져오기·상태 확인·예약·발행·성과 확인·관리 화면 등 Next.js 핵심 흐름을 직접 구현했습니다.",
-          "LLM 검수 결과는 1차 판단 이력으로 저장하고, 별도 관리자 라벨링 화면에서 사람이 점수와 사유를 축적하도록 품질 평가 흐름을 나눴습니다.",
+          "LLM 검수 결과는 1차 판단 이력으로 저장하고, 별도 관리자 라벨링 화면에서는 사람이 점수와 사유를 남기도록 자동 검수와 사람 평가의 역할을 분리했습니다.",
           "제품 기준 데이터 변경과 Outbox를 같은 트랜잭션에 기록하고 AI 전달은 재시도와 버전 비교가 가능한 워커로 분리했습니다.",
         ],
         resultLabel: "결과",
@@ -266,7 +266,7 @@ export const PINOKIOLAB_PORTFOLIO = {
         ],
         resultLabel: "결과",
         result:
-          "상담 보정은 정확한 발화에 반영되고, 자동 발주 알림은 주문 상태로 수렴해 최종 실패 뒤에도 운영자가 다시 처리할 수 있는 흐름을 만들었습니다.",
+          "상담 보정은 정확한 발화에 반영되고, 자동 발주 알림은 발송 결과에 따라 주문 상태가 확정돼 최종 실패 뒤에도 운영자가 다시 처리할 수 있는 흐름을 만들었습니다.",
         visualLead:
           "실시간 이벤트의 순서 제어와 비동기 작업의 실패 복구를 한 화면에서 비교하되 서로 다른 서비스임을 분리했습니다.",
       },
@@ -324,7 +324,7 @@ export const PINOKIOLAB_PORTFOLIO = {
           },
         ],
         caption:
-          "실시간 상담은 sequence로 보정 대상을 찾고, 자동 발주는 알림 결과를 주문 상태로 수렴시켜 실패를 추적합니다.",
+          "실시간 상담은 sequence로 보정 대상을 찾고, 자동 발주는 발송 결과를 주문 상태에 반영해 실패를 추적합니다.",
       },
       operation: [
         "상담 세션 종료 시 예약된 타이머와 비동기 작업을 정리합니다.",
@@ -673,23 +673,23 @@ export const PINOKIOLAB_PORTFOLIO = {
         "실제 제품에서 반복된 문제를 조직 표준 FastAPI 템플릿으로 정리한 기술 증명 사례입니다.",
       narrative: {
         context:
-          "소수의 백엔드 인원이 여러 제품을 맡고, 기획·QA·디자인 담당자도 코딩 에이전트로 사내 프로그램을 구현하는 환경이었습니다.",
+          "소수의 백엔드 인원이 여러 제품을 맡는 가운데, 기획·QA·디자인 담당자는 코딩 에이전트로 사내 프로그램을 만들고 있었습니다.",
         problem:
-          "Router에서 받은 session을 모든 계층의 메서드에 전달하는 반복이 업무 signature를 흐렸고, transaction을 짧게 끊거나 중첩할 위치도 호출부마다 다시 정해야 했습니다. AsyncSession을 하위 태스크가 함께 쓰면 동시 접근과 롤백 범위도 불명확해질 수 있었습니다.",
+          "Router의 session을 모든 계층에 전달하며 업무와 무관한 인자가 반복됐고, transaction을 끊거나 중첩할 위치도 호출부마다 정해야 했습니다. 하위 태스크의 AsyncSession 공유는 동시 접근과 롤백 범위도 흐렸습니다.",
         actions: [
-          "Layered Architecture·Service Layer·Repository Pattern·DI로 책임과 호출 방향을 고정했습니다.",
-          "Service method가 transaction policy를 선언하도록 @transactional로 REQUIRED·REQUIRES_NEW·NESTED 동작을 구현했습니다.",
-          "ContextVar·SessionProxy로 현재 AsyncSession을 연결하고, 하나의 트랜잭션은 하나의 asyncio 태스크가 사용하도록 하위 태스크 접근을 즉시 차단했습니다.",
-          "취소 시 롤백과 연결 정리, 트랜잭션 전파, 세션 생명주기를 통합 테스트로 검증하고 ADR·운영 절차서에 선택 기준을 남겼습니다.",
+          "Layered Architecture·Service Layer·Repository Pattern과 DI로 계층별 책임을 고정했습니다.",
+          "@transactional이 메서드의 선언에 따라 REQUIRED·REQUIRES_NEW·NESTED를 처리하게 했습니다.",
+          "ContextVar·SessionProxy로 현재 AsyncSession을 찾고, 트랜잭션당 asyncio 태스크 하나만 허용했습니다.",
+          "롤백·연결 정리·전파·세션 생명주기를 통합 테스트로 검증하고 ADR에 선택 기준을 남겼습니다.",
         ],
         resultLabel: "결과",
         result:
-          "기획·QA·디자인 담당자가 코딩 에이전트로 구현한 사내 프로그램에도 같은 책임·트랜잭션·검증 기준을 적용할 수 있는 FastAPI 템플릿과 작업 지침을 만들었습니다.",
+          "기획·QA·디자인 담당자가 코딩 에이전트로 사내 프로그램을 만들 때도 같은 계층·트랜잭션·검증 기준을 쓰도록 FastAPI 템플릿과 작업 지침을 제공했습니다.",
         visualLead:
           "요청이 서비스 계층의 트랜잭션 경계를 지나 현재 세션을 찾는 흐름과, 중첩 호출에서 선택할 세 가지 전파 방식을 분리했습니다.",
       },
       frame: [
-        { label: "상황", text: "여러 제품과 기획·QA·디자인 직군이 같은 FastAPI 기반을 사용", tone: "context" },
+        { label: "상황", text: "여러 제품과 직군이 함께 쓰는 FastAPI 기반", tone: "context" },
         { label: "대처", text: "계층·트랜잭션·비동기 세션 규칙을 기본값으로 제공", tone: "decision" },
         { label: "기여", text: "조직 표준 템플릿·ADR·운영 절차서 직접 구축", tone: "outcome" },
       ],

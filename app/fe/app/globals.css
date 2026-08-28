@@ -490,6 +490,13 @@ body {
 
   [data-portfolio-document] .portfolio-narrative-panel[data-panel="result"] {
     break-inside: avoid-page;
+    padding: 12px 16px;
+  }
+
+  [data-portfolio-document] .portfolio-narrative-panel[data-panel="result"] p {
+    margin-top: 6px;
+    font-size: var(--text-base);
+    line-height: 1.55;
   }
 
   [data-portfolio-document] .portfolio-narrative-track {
@@ -559,7 +566,7 @@ body {
     break-inside: avoid;
   }
 
-  /* 기술 사례가 많은 피노키오랩 지원본은 A4에서 4쪽 흐름을 유지한다. */
+  /* 기술 사례가 많은 피노키오랩 지원본은 A4에서 3쪽 흐름을 유지한다. */
   [data-resume-canvas] [data-resume-slug="pinokiolab"] {
     zoom: 0.9;
   }
