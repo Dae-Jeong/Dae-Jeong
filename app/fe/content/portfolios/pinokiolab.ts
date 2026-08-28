@@ -84,6 +84,7 @@ export const PINOKIOLAB_PORTFOLIO = {
           "기획·QA·마케팅과 고객 문제, 기능 우선순위, 생성 품질 기준을 정하고 출시·운영 흐름을 조율했습니다.",
           "FastAPI 제품 백엔드와 독립 AI 서비스·DB를 구축하고 인증된 HTTP로 연결했습니다.",
           "콘텐츠 생성·가져오기·상태 확인·예약·발행·성과 확인·관리 화면 등 Next.js 핵심 흐름을 직접 구현했습니다.",
+          "LLM 검수 결과는 1차 판단 이력으로 저장하고, 별도 관리자 라벨링 화면에서 사람이 점수와 사유를 축적하도록 품질 평가 흐름을 나눴습니다.",
           "제품 기준 데이터 변경과 Outbox를 같은 트랜잭션에 기록하고 AI 전달은 재시도와 버전 비교가 가능한 워커로 분리했습니다.",
         ],
         resultLabel: "결과",
@@ -103,7 +104,7 @@ export const PINOKIOLAB_PORTFOLIO = {
           label: "제품 판단",
           items: [
             { title: "제품 범위", text: "생성 결과가 아니라 예약·발행과 성과 확인까지 사용자가 마칠 수 있는 흐름을 제품 범위로 잡았습니다." },
-            { title: "품질 기준", text: "형식 오류는 자동으로 차단하고, 맥락과 자연스러움은 사람이 검토하도록 역할을 나눴습니다." },
+            { title: "품질 기준", text: "자동 검수는 점수·통과 여부·사유·개선안을 이력으로 남기고, 맥락과 자연스러움은 사람이 글마다 점수와 판단 사유를 남기도록 역할을 나눴습니다." },
           ],
         },
         {
@@ -214,63 +215,74 @@ export const PINOKIOLAB_PORTFOLIO = {
         "thready.frontend-product-delivery",
         "thready.ai-service-boundary",
         "thready.ai-replica-outbox",
+        "thready.generation-quality-system",
+        "thready.labeling-corpus-workbench",
       ],
     },
     {
       no: "02",
-      title: "실시간 AI 상담과 주문·재고 업무를 각각 운영 가능한 서비스로 구축했습니다",
+      title: "실시간 상담과 주문·재고 업무가 실패 뒤에도 이어지도록 만들었습니다",
       caseMode: "cross-project-pattern",
       layers: ["Product", "Backend", "AI", "Operations"],
       status: { label: "별도 서비스 운영", tone: "verified" },
       outcomeLine:
-        "실시간 상담에서는 이벤트 순서를, 주문·재고에서는 비동기 작업의 상태와 실패를 명시해 운영자가 추적하고 복구할 수 있게 했습니다.",
+        "실시간 상담에서는 늦은 보정 결과의 대상을, 자동 발주에서는 알림 작업의 상태와 실패를 명시해 운영자가 추적하고 복구할 수 있게 했습니다.",
       compositionCaption:
         "같은 의료 플랫폼 안의 별도 서비스입니다. 실시간 상담의 주요 영역을 함께 맡았고, 주문·재고 백엔드는 구축을 주도했습니다.",
       narrative: {
         context:
-          "의료 현장에서는 상담 음성이 끊임없이 들어오고, 주문·재고 후속 작업은 외부 연동이나 워커 중단으로 늦거나 실패할 수 있습니다.",
+          "실시간 상담과 주문·재고는 같은 의료 플랫폼에 속하지만, 전자는 발화와 보정 결과의 대응을, 후자는 주문 생성 뒤 알림 작업의 상태를 다뤄야 하는 별도 서비스였습니다.",
         problem:
-          "실시간 이벤트가 늦게 도착하면 다른 발화의 문맥을 덮을 수 있고, 비동기 작업이 API 성공 뒤 실패하면 운영자는 업무가 어디까지 진행됐는지 알기 어렵습니다.",
+          "실시간 상담은 COMPLETE 뒤 비동기로 도착하는 CORRECTED가 정확한 발화만 바꿔야 했고, 자동 발주는 주문 생성 뒤 병원·공급사 알림이 실패해도 주문 상태와 복구 경로가 남아야 했습니다.",
         actions: [
-          "상담 세션에서 VAD·DELTA·COMPLETE·CORRECTED를 같은 순서 번호로 연결했습니다.",
-          "중복 이벤트와 종료 뒤 재연결을 취소·재시도·발화 상태 확인·타이머 정리로 제어했습니다.",
-          "주문·재고 API와 RabbitMQ·TaskIQ 워커를 분리하고 상태·재시도·최종 실패·수동 재처리 기준을 구현했습니다.",
-          "비동기 FastAPI 코드베이스와 실행 모델을 맞추기 위해 Celery 작업을 TaskIQ로 전환했습니다.",
+          "실시간 상담은 DELTA·COMPLETE·CORRECTED에 같은 sequence를 부여해 비동기 보정 결과가 같은 발화만 교체하도록 만들었습니다.",
+          "자동 발주는 주문 생성 transaction과 알림 worker를 분리하고, 발송 성공·자동 재시도·최종 실패·수동 재발송을 주문 상태와 연결했습니다.",
+        ],
+        tracks: [
+          {
+            title: "실시간 상담",
+            problem:
+              "COMPLETE 뒤 보정 결과가 비동기로 도착하고 같은 문장이 반복될 수 있어, 텍스트나 도착 순서만으로는 어떤 발화를 바꿔야 하는지 보장할 수 없었습니다.",
+            actions: [
+              "DELTA·COMPLETE·CORRECTED를 같은 sequence로 연결",
+              "sequence Map에서 해당 발화만 교체하고 세션 시작 시 Map 초기화",
+              "종료 시 타이머·세션·예약 작업을 함께 정리",
+            ],
+            result:
+              "늦게 도착한 보정도 정확한 발화에 반영하고, 종료된 상담이 다시 연결되는 경로를 차단했습니다.",
+          },
+          {
+            title: "주문·재고",
+            problem:
+              "자동 발주로 주문이 생성된 뒤 병원·공급사 알림은 별도로 실패할 수 있어, 발송 결과를 주문 처리 상태와 함께 관리해야 했습니다.",
+            actions: [
+              "병원 묶음 알림과 공급사별 알림을 TaskIQ worker로 분리",
+              "공급사 알림 결과를 주문의 PENDING·FAILED 상태로 수렴",
+              "자동 재시도 뒤에도 실패한 주문의 수동 재발송 API 구현",
+            ],
+            result:
+              "운영자가 알림 진행 상태와 실패 주문을 확인하고 조건을 검증한 뒤 다시 발송할 수 있게 했습니다.",
+          },
         ],
         resultLabel: "결과",
         result:
-          "상담 이벤트와 주문·재고 작업이 각각 어떤 상태인지 확인할 수 있고, 실패한 작업은 원인을 남긴 채 다시 처리할 수 있는 운영 흐름을 만들었습니다.",
+          "상담 보정은 정확한 발화에 반영되고, 자동 발주 알림은 주문 상태로 수렴해 최종 실패 뒤에도 운영자가 다시 처리할 수 있는 흐름을 만들었습니다.",
         visualLead:
           "실시간 이벤트의 순서 제어와 비동기 작업의 실패 복구를 한 화면에서 비교하되 서로 다른 서비스임을 분리했습니다.",
       },
       frame: [
-        { label: "상황", text: "순서가 바뀌는 실시간 이벤트와 실패 가능한 후속 작업", tone: "context" },
-        { label: "대처", text: "발화 순서와 작업 상태를 명시적으로 기록", tone: "decision" },
+        { label: "상황", text: "늦게 도착하는 보정 결과와 실패 가능한 발주 알림", tone: "context" },
+        { label: "대처", text: "발화 sequence와 알림·주문 상태를 명시적으로 기록", tone: "decision" },
         { label: "기여", text: "상담 주요 영역 공동 담당 · 주문/재고 구축 주도", tone: "outcome" },
       ],
       details: [
         {
-          kind: "implementation",
-          label: "실시간 상담",
-          items: [
-            { title: "전사 이벤트", text: "DELTA는 빠른 키워드 판정에, COMPLETE는 문맥 판단과 저장에 사용하고 CORRECTED는 같은 발화 순서에 연결했습니다." },
-            { title: "세션 종료", text: "타이머·GC·종료 정리를 보강해 상담 종료 뒤 재연결되는 경로를 차단했습니다." },
-          ],
-        },
-        {
-          kind: "implementation",
-          label: "주문·재고",
-          items: [
-            { title: "작업 분리", text: "API 요청과 실패 가능한 후속 작업을 RabbitMQ·TaskIQ 워커 경계로 나눴습니다." },
-            { title: "복구 상태", text: "재시도 횟수·실패 기록·최종 실패·수동 재처리를 운영 흐름으로 연결했습니다." },
-          ],
-        },
-        {
           kind: "decision",
           label: "기술 선택",
           items: [
-            { text: "비동기 FastAPI의 실행 모델과 워커 코드를 맞추기 위해 기존 Celery 작업을 TaskIQ로 전환했습니다." },
-            { text: "실시간 처리 속도뿐 아니라 늦게 온 이벤트가 어떤 발화에 속하는지 확인하는 경계를 우선했습니다." },
+            { title: "비동기 작업", text: "외부 API·DB I/O 비중이 높고 여러 작업을 동시에 처리해야 해, FastAPI와 같은 asyncio 실행 모델을 유지하기로 했습니다." },
+            { title: "Celery의 제약", text: "당시 사용하던 Celery에서는 async def 작업을 워커가 그대로 실행하는 공식 경로가 없어 별도의 이벤트 루프 관리가 필요했습니다." },
+            { title: "TaskIQ 선택", text: "TaskIQ는 coroutine 작업과 RabbitMQ 연동을 공식 지원해 애플리케이션과 워커 사이의 동기·비동기 변환을 줄일 수 있다고 판단했습니다." },
           ],
         },
         {
@@ -292,31 +304,31 @@ export const PINOKIOLAB_PORTFOLIO = {
             tone: "decision",
             stages: [
               { label: "음성 입력", detail: "WebSocket" },
-              { label: "VAD·DELTA", detail: "조기 판정" },
-              { label: "COMPLETE", detail: "문맥·저장", emphasis: "strong" },
-              { label: "CORRECTED", detail: "같은 발화 순서" },
-              { label: "조언 제공", detail: "현재 상담", emphasis: "outcome" },
+              { label: "DELTA", detail: "진행 중 발화" },
+              { label: "COMPLETE", detail: "sequence 확정", emphasis: "strong" },
+              { label: "CORRECTED", detail: "비동기 보정" },
+              { label: "해당 발화 교체", detail: "sequence Map", emphasis: "outcome" },
             ],
           },
           {
-            label: "주문·재고",
+            label: "자동 발주 알림",
             note: "실패 복구",
             tone: "delivery",
             stages: [
-              { label: "업무 요청", detail: "FastAPI" },
-              { label: "메시지 큐", detail: "RabbitMQ" },
+              { label: "주문 생성", detail: "transaction" },
+              { label: "알림 분리", detail: "병원·공급사" },
               { label: "작업 실행", detail: "TaskIQ", emphasis: "strong" },
-              { label: "상태·재시도", detail: "실패 기록" },
-              { label: "수동 재처리", detail: "운영 복구", emphasis: "outcome" },
+              { label: "주문 상태 수렴", detail: "PENDING·FAILED" },
+              { label: "수동 재발송", detail: "운영 복구", emphasis: "outcome" },
             ],
           },
         ],
         caption:
-          "실시간 서비스는 발화의 순서를, 비동기 업무는 작업의 상태를 기준으로 실패를 추적합니다.",
+          "실시간 상담은 sequence로 보정 대상을 찾고, 자동 발주는 알림 결과를 주문 상태로 수렴시켜 실패를 추적합니다.",
       },
       operation: [
         "상담 세션 종료 시 예약된 타이머와 비동기 작업을 정리합니다.",
-        "주문·재고 작업은 최종 실패를 보존하고 운영자가 다시 실행할 수 있게 합니다.",
+        "자동 발주 알림은 최종 실패를 주문 상태로 보존하고 운영자가 조건을 확인한 뒤 다시 발송할 수 있게 합니다.",
       ],
       limits: [
         "두 사례는 같은 플랫폼 안의 별도 서비스이며 하나의 통합 구축 성과로 합치지 않습니다.",
@@ -338,7 +350,7 @@ export const PINOKIOLAB_PORTFOLIO = {
           ownership: "led",
           status: "verified",
           relation: "pattern-instance",
-          text: "주문·재고 API와 RabbitMQ·TaskIQ 워커, 상태·재시도·실패 기록·재처리 경계 구축을 주도했습니다.",
+          text: "자동 발주 뒤 병원·공급사 알림을 RabbitMQ·TaskIQ 워커로 분리하고, 발송 결과를 주문 상태·재시도·수동 재발송과 연결했습니다.",
           claimIds: ["centurion.bay-async-backend", "centurion.async-migration"],
         },
       ],
@@ -661,23 +673,23 @@ export const PINOKIOLAB_PORTFOLIO = {
         "실제 제품에서 반복된 문제를 조직 표준 FastAPI 템플릿으로 정리한 기술 증명 사례입니다.",
       narrative: {
         context:
-          "소수의 백엔드 인원이 여러 제품을 맡고, 다른 직군도 코딩 에이전트로 백엔드 구현에 참여하는 환경이었습니다.",
+          "소수의 백엔드 인원이 여러 제품을 맡고, 기획·QA·디자인 담당자도 코딩 에이전트로 사내 프로그램을 구현하는 환경이었습니다.",
         problem:
-          "FastAPI와 Python의 유연한 구조는 팀원이 프로젝트마다 책임·의존성·트랜잭션 범위를 다시 판단하게 했습니다. AsyncSession을 하위 태스크가 함께 쓰면 동시 접근과 롤백 범위도 불명확해질 수 있었습니다.",
+          "Router에서 받은 session을 모든 계층의 메서드에 전달하는 반복이 업무 signature를 흐렸고, transaction을 짧게 끊거나 중첩할 위치도 호출부마다 다시 정해야 했습니다. AsyncSession을 하위 태스크가 함께 쓰면 동시 접근과 롤백 범위도 불명확해질 수 있었습니다.",
         actions: [
           "Layered Architecture·Service Layer·Repository Pattern·DI로 책임과 호출 방향을 고정했습니다.",
-          "서비스 메서드를 트랜잭션 경계로 삼고 @transactional로 REQUIRED·REQUIRES_NEW·NESTED 동작을 구현했습니다.",
+          "Service method가 transaction policy를 선언하도록 @transactional로 REQUIRED·REQUIRES_NEW·NESTED 동작을 구현했습니다.",
           "ContextVar·SessionProxy로 현재 AsyncSession을 연결하고, 하나의 트랜잭션은 하나의 asyncio 태스크가 사용하도록 하위 태스크 접근을 즉시 차단했습니다.",
           "취소 시 롤백과 연결 정리, 트랜잭션 전파, 세션 생명주기를 통합 테스트로 검증하고 ADR·운영 절차서에 선택 기준을 남겼습니다.",
         ],
         resultLabel: "결과",
         result:
-          "여러 직군이 구현에 참여해도 같은 책임·트랜잭션·검증 기준을 먼저 적용할 수 있는 FastAPI 템플릿과 에이전트 작업 지침을 만들었습니다.",
+          "기획·QA·디자인 담당자가 코딩 에이전트로 구현한 사내 프로그램에도 같은 책임·트랜잭션·검증 기준을 적용할 수 있는 FastAPI 템플릿과 작업 지침을 만들었습니다.",
         visualLead:
           "요청이 서비스 계층의 트랜잭션 경계를 지나 현재 세션을 찾는 흐름과, 중첩 호출에서 선택할 세 가지 전파 방식을 분리했습니다.",
       },
       frame: [
-        { label: "상황", text: "여러 제품과 직군이 같은 FastAPI 기반을 사용", tone: "context" },
+        { label: "상황", text: "여러 제품과 기획·QA·디자인 직군이 같은 FastAPI 기반을 사용", tone: "context" },
         { label: "대처", text: "계층·트랜잭션·비동기 세션 규칙을 기본값으로 제공", tone: "decision" },
         { label: "기여", text: "조직 표준 템플릿·ADR·운영 절차서 직접 구축", tone: "outcome" },
       ],
@@ -704,6 +716,7 @@ export const PINOKIOLAB_PORTFOLIO = {
           label: "비동기 세션",
           items: [
             { title: "현재 세션", text: "ContextVar에 AsyncSession과 트랜잭션 상태를 연결하고 SessionProxy가 현재 세션을 찾도록 했습니다." },
+            { title: "반복 제거", text: "Router에서 받은 session을 Service·Validator·Repository의 모든 메서드에 계속 전달하지 않아도 되게 했습니다." },
             { title: "하위 태스크 차단", text: "같은 AsyncSession을 하위 asyncio 태스크가 사용하면 즉시 실패시켜 트랜잭션 경계를 분명히 했습니다." },
           ],
         },
@@ -798,7 +811,7 @@ export const PINOKIOLAB_PORTFOLIO = {
           ownership: "owned",
           status: "verified",
           relation: "corroborating",
-          text: "여러 직군이 코딩 에이전트로 구현해도 같은 기본값과 검증 명령을 읽도록 ADR·운영 절차서·에이전트 작업 지침을 함께 제공했습니다.",
+          text: "기획·QA·디자인 담당자가 코딩 에이전트로 사내 프로그램을 구현할 때도 같은 기본값과 검증 명령을 읽도록 ADR·운영 절차서·작업 지침을 함께 제공했습니다.",
           claimIds: ["be-template.team-leverage", "be-template.agent-context"],
         },
       ],
@@ -853,6 +866,30 @@ export const PINOKIOLAB_PORTFOLIO = {
         items: ["만들어야 할 것 확정", "구현 방향 비교", "적용·배포 결정"],
       },
     ],
+    qualityLab: {
+      title: "생성 품질은 자동 검수와 사람 라벨링을 나눠 운영했습니다",
+      description:
+        "자동 검수는 빠른 1차 판단과 이력을 맡고, 사람이 글의 맥락과 자연스러움을 평가해 다음 기준을 보완했습니다.",
+      automated: [
+        "형식·계약 위반 확인",
+        "LLM 점수·통과 여부·사유·개선안 저장",
+      ],
+      measurement: [
+        "Threads corpus를 독립 labeling schema로 적재",
+        "평가 진행률과 미평가 대상을 조회",
+      ],
+      human: [
+        "관리자 화면에서 글별 1~10점 기록",
+        "판단 사유를 남기고 다음 글로 이동",
+      ],
+      boundary:
+        "LLM 검수와 사람 라벨은 서로 다른 경계입니다. 자동 판정이 사람의 품질 라벨을 대신한다고 표현하지 않습니다.",
+      claimIds: [
+        "thready.generation-quality-system",
+        "thready.labeling-corpus-workbench",
+        "thready.quality-criteria-system",
+      ],
+    },
     evidence: [
       {
         project: "주간 제품 개발 회고",
@@ -882,6 +919,9 @@ export const PINOKIOLAB_PORTFOLIO = {
       "career.coding-agent-usage",
       "be-template.backend-standard",
       "be-template.agent-context",
+      "thready.generation-quality-system",
+      "thready.labeling-corpus-workbench",
+      "thready.quality-criteria-system",
     ],
   },
 } satisfies TailoredPortfolio;

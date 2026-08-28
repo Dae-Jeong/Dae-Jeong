@@ -97,6 +97,12 @@ export type PortfolioNarrative = {
   context: string;
   problem: string;
   actions: string[];
+  tracks?: {
+    title: string;
+    problem: string;
+    actions: string[];
+    result: string;
+  }[];
   resultLabel:
     | "남은 상태"
     | "현재 진행"

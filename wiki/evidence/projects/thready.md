@@ -58,6 +58,7 @@ Source locator: `workspace:thready`
 
 - Data-backed (`external-snapshot:trend-crawler-backfill-20260807`): 메인 131,736 URL 행에서 한국어 본문 108,341건을 정제하고 backfill 신규 2,750건을 병합해 **111,091건**의 labeling corpus를 만들었다. 작성자 이어쓰기는 **185,475건**이며 제3자 답글은 평가 단위에서 제외했다.
 - Code-backed (`workspace:thready@5144d998…`, KimMarin): 기존 Thready projection과 FK를 공유하지 않는 `labeling_source_posts`·`labeling_source_continuations`·`post_quality_labels` bounded context, migration, repository, service, importer CLI, API와 UI workbench를 구현했다.
+- Code-backed (2026-08-28 재검증): super-admin 전용 workbench에서 작성자·기간·라벨 유무로 corpus를 조회하고, 사람 평가자가 글마다 1~10점과 판단 사유를 저장하며, 진행률과 다음 미평가 글을 이어서 볼 수 있다. `(source_post_id, labeler_id)` unique key와 upsert로 라벨러별 최신 평가를 보존한다.
 - Contract-backed: JSONL을 typed batch로 검증하고 post는 `(source, source_key)` upsert, continuation은 source post별 replace로 처리해 재적재를 멱등하게 만들었다. malformed line·batch rollback·기존 label 보존·chain 변경 replace를 test로 고정했다.
 - Verification-backed: 로컬 격리 DB에서 메인 corpus 108,341건·이어쓰기 185,475건을 두 차례 적재해 count 불변을 확인했고, backfill 병합 corpus 111,091건을 재적재해 기존 label 보존과 2,750건 증분 반영을 확인했다. API·UI·DB도 교차 대조했다.
 - Deployment boundary: code와 local 전체 corpus 검증은 완료됐지만 전체 111,091건의 STG·Production 적재 완료는 확인되지 않았다. corpus 행은 source key 단위 평가 대상이며 semantic unique 게시물이나 완료된 사람 label 수가 아니다.
@@ -99,6 +100,8 @@ Source locator: `workspace:thready`
 ## Generation Quality System
 
 - Code-backed: typed prompt builder와 `source_context` 계약, generation pipeline, LLM judge, local evaluation sweep, observability logging이 확인됐다.
+- Code-backed (2026-08-28 재검증): production backend의 prompt check는 AI application에 LLM 검수를 요청하고 score·통과 여부·사유·개선안을 `prompt_check_sessions`에 저장한다. 이 자동 검수 이력과 super-admin 사람 라벨링은 서로 다른 평가 경계이며, 사람이 남긴 `post_quality_labels`를 LLM이 자동 작성한다고 표현하지 않는다.
+- User-confirmed (2026-08-28): LLM judge는 운영에서 생성·prompt 데이터를 1차로 가공하고 검수 근거를 남기는 데 사용했다.
 - Tool-backed/operation-backed: 생성 품질 이슈를 evaluation과 release/QA task로 연결한 운영 기록이 있다.
 - Contribution boundary: 품질 system 구축은 말할 수 있으나 품질 배수나 business outcome과의 직접 인과는 검증되지 않았다.
 

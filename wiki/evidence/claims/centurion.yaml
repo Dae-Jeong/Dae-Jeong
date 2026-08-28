@@ -26,6 +26,7 @@ claims:
     allowed_copy:
       - 주문·재고 API와 RabbitMQ·TaskIQ 비동기 worker, 상태·retry·실패 기록·재처리 경계 구축 주도
       - 실패 가능한 작업을 API 요청과 분리된 worker 경계에서 처리
+      - 자동 발주로 주문을 만든 뒤 공급사·병원 알림을 worker로 분리하고, 발송 결과를 주문 상태·자동 retry·최종 실패·수동 재발송과 연결
     forbidden_copy:
       - Centurion backend 전체 단독 구축
       - 장애를 겪은 뒤의 사후 대응이라는 서술 (예방 설계다)
@@ -94,6 +95,7 @@ claims:
       - WebSocket session의 중복 event를 task cancellation·debounce·retry·turn-state guard로 제어
       - realtime STT가 내보내는 VAD speech event·DELTA·COMPLETE를 분기하고, DELTA는 domain keyword 우선 판정에, COMPLETE는 context 판단·저장에 사용
       - DELTA·COMPLETE·optional CORRECTED를 같은 sequence로 연결해 늦게 도착한 보정 결과가 다른 turn을 덮어쓰지 않도록 구성
+      - COMPLETE 뒤 비동기로 도착하는 CORRECTED를 sequence 기반 Map에 반영해 같은 문장이 반복돼도 정확한 발화만 교체
       - provider 후보에 383개 domain keyword hint를 적용하고 WER·CER·keyword retention·latency benchmark 구축
       - VAD silence 200·350·500ms E2E에서 주 병목이 모델 추론임을 확인해 DELTA 조기 trigger와 provider 경계 분리에 집중
       - 4분 37초 상담 E2E에서 DELTA 586건·COMPLETE 25건·ADVICE 14건과 sequence 1–25의 누락·중복 없음을 확인

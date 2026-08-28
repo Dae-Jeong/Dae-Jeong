@@ -24,6 +24,11 @@ export const PINOKIOLAB_RESUME = {
         external: true,
       },
       { label: "marinkim.xyz", href: "https://marinkim.xyz", external: true },
+      {
+        label: "thready.medisolveai.com",
+        href: "https://thready.medisolveai.com",
+        external: true,
+      },
     ],
   },
   summary: [
@@ -61,7 +66,7 @@ export const PINOKIOLAB_RESUME = {
         ],
         [
           { text: "실시간 AI 상담·주문·재고", tone: "strong" },
-          { text: " — WebSocket 상담 세션과 STT 이벤트 흐름의 주요 영역을 함께 맡고, 주문·재고 API와 RabbitMQ·TaskIQ 워커의 상태·재시도·실패 기록·재처리 기준을 설계·구현" },
+          { text: " — 늦게 도착한 STT 보정이 정확한 발화만 바꾸도록 sequence 계약을 구현. 자동 발주 뒤 병원·공급사 알림을 RabbitMQ·TaskIQ 워커로 분리하고 발송 결과를 주문 상태·재시도·수동 재발송과 연결" },
         ],
         [
           { text: "병원 운영·예약 제품", tone: "strong" },
@@ -69,7 +74,7 @@ export const PINOKIOLAB_RESUME = {
         ],
         [
           { text: "FastAPI 개발 기준", tone: "strong" },
-          { text: " — 여러 직군이 코딩 에이전트로 구현에 참여해도 같은 방식으로 개발하도록 계층·DI·트랜잭션·비동기 세션·테스트 기준을 조직 표준 템플릿과 문서로 구축" },
+          { text: " — 기획·QA·디자인 담당자도 코딩 에이전트로 사내 프로그램을 구현할 수 있도록 계층·DI·트랜잭션·비동기 세션·테스트 기준을 조직 표준 템플릿과 문서로 구축" },
         ],
         [
           { text: "제품 개발 회고", tone: "strong" },
@@ -82,6 +87,8 @@ export const PINOKIOLAB_RESUME = {
         "thready.subscription-revenue-band",
         "thready.frontend-product-delivery",
         "thready.ai-service-boundary",
+        "thready.generation-quality-system",
+        "thready.labeling-corpus-workbench",
         "centurion.say-realtime-ai",
         "centurion.bay-async-backend",
         "nexus.backend-architecture",
@@ -172,6 +179,7 @@ export const PINOKIOLAB_RESUME = {
         "기획·QA·마케팅과 고객 문제·기능 우선순위·생성 품질 기준을 정하고, 출시와 운영까지 제품 흐름을 리드했습니다.",
         { text: "FastAPI 제품 백엔드와 독립 AI 서비스·DB를 구축하고 인증된 HTTP 계약으로 연결", source: "Thready · 백엔드/AI" },
         { text: "콘텐츠 생성·가져오기·예약·발행·성과 확인·관리 화면 등 Next.js 핵심 흐름을 직접 구현", source: "Thready · 사용자/관리 화면" },
+        { text: "LLM 검수 결과를 1차 판단 이력으로 남기고, 관리자 화면에서 사람이 글의 점수·판단 사유를 축적하는 품질 평가 흐름을 구축", source: "Thready · 품질 운영" },
         { text: "실제 사용자가 이용하고 구독료 매출이 발생하는 제품으로 운영", source: "Thready · 제품 운영" },
       ],
       claimIds: [
@@ -179,15 +187,17 @@ export const PINOKIOLAB_RESUME = {
         "thready.subscription-revenue-band",
         "thready.frontend-product-delivery",
         "thready.ai-service-boundary",
+        "thready.generation-quality-system",
+        "thready.labeling-corpus-workbench",
       ],
     },
     {
       no: "02",
       title: "실시간 AI 상담과 주문·재고 업무를 각각 운영 가능한 서비스로 구축했습니다",
       description: [
-        "같은 의료 플랫폼 안의 서로 다른 서비스에서, 실시간 이벤트의 순서와 비동기 작업의 실패를 운영자가 추적하고 복구할 수 있게 했습니다.",
-        { text: "WebSocket 상담 세션에서 VAD·DELTA·COMPLETE·CORRECTED 전사를 같은 순서로 연결하고 종료·재연결 경계를 보강", source: "Centurion · 실시간 상담" },
-        { text: "주문·재고 API와 RabbitMQ·TaskIQ 워커를 분리하고 상태·재시도·최종 실패·수동 재처리 경계를 구축", source: "Centurion · 주문/재고" },
+        "같은 의료 플랫폼의 별도 서비스에서, 실시간 보정 결과가 정확한 발화에 반영되고 자동 발주 뒤 알림 실패는 주문 상태로 확인·복구되게 했습니다.",
+        { text: "DELTA·COMPLETE·CORRECTED에 같은 sequence를 부여해 비동기 보정이 늦게 도착해도 다른 발화를 덮지 않도록 구현", source: "Centurion · 실시간 상담" },
+        { text: "자동 발주 뒤 병원·공급사 알림을 TaskIQ 워커로 분리하고 성공·최종 실패·자동 재시도·수동 재발송을 주문 상태와 연결", source: "Centurion · 주문/재고" },
       ],
       claimIds: [
         "centurion.say-realtime-ai",
@@ -231,9 +241,9 @@ export const PINOKIOLAB_RESUME = {
       no: "05",
       title: "여러 제품을 같은 기준으로 개발할 수 있는 FastAPI 기반을 만들었습니다",
       description: [
-        "여러 직군이 코딩 에이전트로 백엔드 구현에 참여해도 책임과 호출 순서를 해석하기 쉽도록 조직 표준 템플릿을 직접 설계·구축했습니다.",
+        "기획·QA·디자인 담당자도 코딩 에이전트로 사내 프로그램을 구현하는 환경에서, 책임과 호출 순서를 해석하기 쉬운 조직 표준 템플릿을 직접 설계·구축했습니다.",
         { text: "Layered Architecture·Service Layer·Repository Pattern·DI로 책임과 의존 방향을 고정", source: "백엔드 템플릿 · 구조" },
-        { text: "@transactional로 REQUIRED·REQUIRES_NEW·NESTED를 구현하고 ContextVar·SessionProxy로 현재 AsyncSession을 연결", source: "백엔드 템플릿 · 트랜잭션" },
+        { text: "모든 계층에 session을 전달하는 반복을 없애고 @transactional·ContextVar·SessionProxy로 트랜잭션 정책과 현재 AsyncSession을 연결", source: "백엔드 템플릿 · 트랜잭션" },
         { text: "하위 태스크의 동일 세션 접근을 차단하고 취소 시 롤백·연결 정리를 통합 테스트로 검증", source: "백엔드 템플릿 · 비동기 세션" },
       ],
       claimIds: [
@@ -255,7 +265,7 @@ export const PINOKIOLAB_RESUME = {
     {
       label: "비동기 / 실시간",
       stack: "RabbitMQ · TaskIQ · Celery · WebSocket · SSE",
-      via: "주문·재고 워커의 재시도·실패 복구와 실시간 상담 세션·이벤트 순서를 처리",
+      via: "자동 발주 알림의 상태·재시도·재발송과 실시간 상담의 sequence 기반 보정 반영을 처리",
       claimIds: ["centurion.bay-async-backend", "centurion.say-realtime-ai"],
     },
     {

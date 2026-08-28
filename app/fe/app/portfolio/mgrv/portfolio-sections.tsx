@@ -144,56 +144,103 @@ export function CaseNarrative({
         {narrative.context}
       </p>
 
-      <div className="portfolio-narrative-grid mt-7 w-full">
-        <section className="portfolio-narrative-panel" data-panel="problem">
-          <h3 className="m-0 text-base font-semibold">문제</h3>
-          <p className="m-0 mt-3 text-base leading-[1.75] text-fg-2">
-            {narrative.problem}
-          </p>
-        </section>
+      {narrative.tracks ? (
+        <div className="portfolio-narrative-tracks mt-7 w-full">
+          {narrative.tracks.map((track) => (
+            <article key={track.title} className="portfolio-narrative-track">
+              <h3 className="m-0 text-xl font-semibold leading-[1.4]">
+                {track.title}
+              </h3>
 
-        <section className="portfolio-narrative-panel" data-panel="action">
-          <h3 className="m-0 text-base font-semibold">대처 방법</h3>
-          <ul className="m-0 mt-3 grid list-none gap-3 p-0">
-            {narrative.actions.map((action) => (
-              <li
-                key={action}
-                className="grid grid-cols-[16px_minmax(0,1fr)] gap-3 text-base leading-[1.75] text-fg-2"
-              >
-                <span aria-hidden className="text-muted">
-                  —
-                </span>
-                <span>{action}</span>
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        <section className="portfolio-narrative-panel" data-panel="result">
-          <h3 className="m-0 text-base font-semibold">{narrative.resultLabel}</h3>
-          <p className="m-0 mt-3 text-lg font-medium leading-[1.7] text-fg">
-            {narrative.result}
-          </p>
-        </section>
-
-        {narrative.axExtension && (
-          <section className="portfolio-narrative-panel" data-panel="extension">
-            <h3 className="m-0 text-base font-semibold">
-              {narrative.axExtension.title}
-            </h3>
-            <div className="mt-3 grid gap-3">
-              {narrative.axExtension.paragraphs.map((paragraph) => (
-                <p
-                  key={paragraph}
-                  className="m-0 text-base leading-[1.75] text-fg-2"
-                >
-                  {paragraph}
+              <div className="portfolio-narrative-track-section">
+                <h4 className="m-0 font-mono text-xs font-semibold text-muted">
+                  문제
+                </h4>
+                <p className="m-0 mt-2 text-base leading-[1.75] text-fg-2">
+                  {track.problem}
                 </p>
-              ))}
-            </div>
+              </div>
+
+              <div className="portfolio-narrative-track-section">
+                <h4 className="m-0 font-mono text-xs font-semibold text-muted">
+                  대처 방법
+                </h4>
+                <ul className="m-0 mt-2 grid list-none gap-2 p-0">
+                  {track.actions.map((action) => (
+                    <li
+                      key={action}
+                      className="grid grid-cols-[16px_minmax(0,1fr)] gap-3 text-base leading-[1.75] text-fg-2"
+                    >
+                      <span aria-hidden className="text-muted">—</span>
+                      <span>{action}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="portfolio-narrative-track-section" data-track-result>
+                <h4 className="m-0 font-mono text-xs font-semibold text-[var(--portfolio-blue)]">
+                  결과
+                </h4>
+                <p className="m-0 mt-2 text-base font-medium leading-[1.7] text-fg">
+                  {track.result}
+                </p>
+              </div>
+            </article>
+          ))}
+        </div>
+      ) : (
+        <div className="portfolio-narrative-grid mt-7 w-full">
+          <section className="portfolio-narrative-panel" data-panel="problem">
+            <h3 className="m-0 text-base font-semibold">문제</h3>
+            <p className="m-0 mt-3 text-base leading-[1.75] text-fg-2">
+              {narrative.problem}
+            </p>
           </section>
-        )}
-      </div>
+
+          <section className="portfolio-narrative-panel" data-panel="action">
+            <h3 className="m-0 text-base font-semibold">대처 방법</h3>
+            <ul className="m-0 mt-3 grid list-none gap-3 p-0">
+              {narrative.actions.map((action) => (
+                <li
+                  key={action}
+                  className="grid grid-cols-[16px_minmax(0,1fr)] gap-3 text-base leading-[1.75] text-fg-2"
+                >
+                  <span aria-hidden className="text-muted">
+                    —
+                  </span>
+                  <span>{action}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          <section className="portfolio-narrative-panel" data-panel="result">
+            <h3 className="m-0 text-base font-semibold">{narrative.resultLabel}</h3>
+            <p className="m-0 mt-3 text-lg font-medium leading-[1.7] text-fg">
+              {narrative.result}
+            </p>
+          </section>
+
+          {narrative.axExtension && (
+            <section className="portfolio-narrative-panel" data-panel="extension">
+              <h3 className="m-0 text-base font-semibold">
+                {narrative.axExtension.title}
+              </h3>
+              <div className="mt-3 grid gap-3">
+                {narrative.axExtension.paragraphs.map((paragraph) => (
+                  <p
+                    key={paragraph}
+                    className="m-0 text-base leading-[1.75] text-fg-2"
+                  >
+                    {paragraph}
+                  </p>
+                ))}
+              </div>
+            </section>
+          )}
+        </div>
+      )}
     </section>
   );
 }

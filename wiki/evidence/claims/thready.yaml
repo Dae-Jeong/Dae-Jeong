@@ -126,6 +126,7 @@ claims:
     evidence: [evidence/projects/thready.md#generation-quality-system]
     allowed_copy:
       - typed prompt builder, LLM judge, 평가 루프, 관측 로깅 기반 생성 품질 시스템 구축
+      - LLM 검수의 점수·통과 여부·사유·개선안을 운영 이력으로 저장해 생성·prompt 품질의 1차 판단 근거로 사용
     forbidden_copy:
       - 생성 품질 완전 해결
       - 품질 N배 개선
@@ -158,11 +159,13 @@ claims:
       - 한국어 본문 11.1만 건과 작성자 이어쓰기 18.5만 건을 정제해 독립 labeling schema로 이관
       - typed batch validation과 source key upsert·continuation replace 기반 멱등 importer 구축
       - 대규모 corpus를 API와 UI에서 평가할 수 있는 labeling workbench 구축
+      - super-admin workbench에서 사람 평가자가 글마다 1~10점과 판단 사유를 남기고 진행률·다음 미평가 글을 이어서 확인
       - 로컬 전체 corpus 적재와 증분 재적재에서 기존 label 보존과 count 정합성 검증
     forbidden_copy:
       - 고유 게시물 11.1만 건
       - 11.1만 건을 사람이 모두 labeling 완료
       - 11.1만 건을 LLM으로 모두 분석
+      - LLM judge가 사람의 post quality label을 자동 작성
       - STG 또는 Production에 전체 corpus 적재 완료
       - source key upsert가 semantic duplicate를 제거
     verified_at: 2026-08-18
