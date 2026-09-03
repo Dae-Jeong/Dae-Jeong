@@ -192,10 +192,9 @@ claims:
     evidence: [evidence/projects/previous-career.md#career-gaps-and-freelance]
     allowed_copy:
       - 더데이랩스 프리랜서 (2025.02-2025.04)
-      - MediSolve AI 법인 설립 전 더데이랩스 프리랜서로 Centurion 초기 backend와 개발팀 system·backend 기준을 선행 구축
+      - MediSolve AI 법인 설립 전 더데이랩스 프리랜서로 피부과 운영 제품군 초기 backend와 개발팀 system·backend 기준을 선행 구축
       - 더데이랩스 프리랜서로 법인 설립 전 제품 개발을 선행하고 MediSolve AI 설립과 함께 정규 합류
-      - 피부과 CRM Centurion을 제품 시작 시점부터 구축
-      - 피부과 운영 AI 메디컬 플랫폼 centurion을 제품 시작 시점부터 구축
+      - 피부과 운영 제품군을 제품 시작 시점부터 구축
     forbidden_copy:
       - 해당 기간의 성과 수치
       - 2025.10 repo 활동의 공개 표기

@@ -219,10 +219,7 @@ function Section({
 }
 
 function ResumeDocument({ resume }: { resume: TailoredResume }) {
-  const isA = (resume.uiRevision ?? 1) >= 3;
-  const sections = getResumeSections(resume).filter(
-    (section) => !(isA && section.key === "profile"),
-  );
+  const sections = getResumeSections(resume);
   const skillRows = resume.skills.map((skill) => ({
     k: skill.label,
     "data-claim": claim(skill.claimIds),
@@ -240,7 +237,6 @@ function ResumeDocument({ resume }: { resume: TailoredResume }) {
       no: section.no,
       title: section.title,
       meta: section.meta,
-      plain: isA,
     };
 
     if (section.key === "profile") {
@@ -408,53 +404,6 @@ function ResumeDocument({ resume }: { resume: TailoredResume }) {
           ))}
         </NumberedList>
       </Section>
-    );
-  }
-
-  if (isA) {
-    return (
-      <div data-tailored-resume data-resume-slug={resume.slug} data-ui-revision={resume.uiRevision}>
-        <header className={resumeType.commonDocumentHeader}>
-          <div id="s1" className={resumeType.commonIdentityBlock}>
-            <h1 className={resumeType.commonIdentity}>{resume.header.name}</h1>
-            <p className={resumeType.commonRoleMeta}>{resume.header.role}</p>
-          </div>
-          <div className={resumeType.commonMetaBlock}>
-            <p className={resumeType.careerMeta}>
-              <RichText value={resume.header.careerLine} />
-            </p>
-            <div className={resumeType.commonContactRow}>
-              {resume.header.contacts.map((contact) => (
-                <Chip
-                  key={contact.label}
-                  variant="contact"
-                  href={contact.href}
-                  external={contact.external}
-                >
-                  {contact.label}
-                </Chip>
-              ))}
-            </div>
-          </div>
-          {resume.header.submissionMeta && (
-            <p className="m-0 mt-3 w-fit border border-border px-2.5 py-1.5 font-mono text-xs font-medium text-fg">
-              {resume.header.submissionMeta}
-            </p>
-          )}
-          <div className={resumeType.summaryStack}>
-            {resume.summary.map((paragraph, index) => (
-              <p
-                key={index}
-                className={index === 0 ? resumeType.profileTitle : resumeType.profileDescription}
-                data-claim={claim(paragraph.claimIds)}
-              >
-                <RichText value={paragraph.text} />
-              </p>
-            ))}
-          </div>
-        </header>
-        {sections.map(renderSection)}
-      </div>
     );
   }
 

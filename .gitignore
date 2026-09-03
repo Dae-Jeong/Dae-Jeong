@@ -59,3 +59,6 @@ kubeconfig
 # ── Knowledge local-only (raw corpus·지원 산출물은 로컬 갱신) ─
 wiki/products/jd/corpus/
 wiki/products/resume/tailored/
+
+# harness run logs (tools/verify.py)
+output/harness/

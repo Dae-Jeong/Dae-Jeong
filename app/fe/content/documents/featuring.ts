@@ -47,14 +47,14 @@ const REBUILD: CareerProject = {
   decision:
     "부분 수정을 누적하는 안과 backend만 병렬 재구축하는 안을 비교해, 서비스가 작고 AI 모듈 확장이 예정된 시점이라 재구축을 택하되 기존 frontend와 릴리스 흐름은 유지하는 범위로 한정했습니다. \"돌아가는 기능을 왜 다시 만드나\"에는 문제 누적 속도·AI 확장성·하네스 기반 이관 속도로 답했습니다.",
   implementation: [
-    "디자인 패턴·컴포넌트 설계·검증 하네스를 먼저 세우고, 그 규칙 위에서 API·기능 inventory를 만든 뒤 새 FastAPI backend를 나란히 구현했습니다.",
+    "패턴·계층·검증 하네스를 먼저 세우고, 그 규칙 위에서 API·기능 inventory를 만든 뒤 새 FastAPI backend를 나란히 구현했습니다.",
     "domain·repository·transaction 책임을 분리하고 전환 단위를 release로 관리해 frontend 호출을 단계적으로 옮겼습니다.",
-    "재구축 범위·architecture·검증·전환 판단은 직접 소유하고, Claude Code·Codex는 codebase 파악·기능 inventory·반복 구현에 썼습니다.",
+    "재구축 범위·architecture·검증·전환 판단은 직접 소유하고, coding agent는 codebase 파악·기능 inventory·반복 구현에 썼습니다.",
   ],
   verification: [
     "동일 기능의 응답 비교와 QA acceptance를 통과한 범위만 전환했고, 전환 뒤에도 같은 Jira 정의로 재발을 계속 측정했습니다.",
   ],
-  result: "같은 기준의 Jira 집계에서 해결된 QA 이슈 재오픈 비율이 37%에서 11%로, 재발 발생이 하루 4.5건에서 0.3건으로 낮아졌습니다. 전환 이후 실제 사용자가 쓰는 backend의 배포·QA·운영을 계속 전담하고 있습니다.",
+  result: "같은 기준의 Jira 집계에서 해결된 QA 이슈 재오픈 비율이 37%에서 11%로, 재발 발생 일평균이 약 94% 줄었습니다(하루 4.5건에서 0.3건). 전환 이후 실제 사용자가 쓰는 backend의 배포·QA·운영을 계속 전담하고 있습니다.",
   boundary: "티켓에 BE/FE 라벨이 없어 제품 전체 품질 지표로 서술합니다. 초기 prototype은 다른 engineer가 만들었습니다.",
   claimIds: [
     "thready.rebuild-decision-execution",
@@ -81,8 +81,8 @@ const WORKER_REALTIME: CareerProject = {
     "DELTA·COMPLETE·CORRECTED를 같은 sequence로 묶어 늦게 도착한 보정이 다른 turn을 덮지 않게 했고, 종료 뒤 재연결되던 경합 경로의 정리 책임과 stop guard를 보강했습니다.",
   ],
   verification: [
-    "VAD silence 200·350·500ms E2E에서 P50 차이가 작고 모델 추론이 약 80%임을 실측해 VAD tuning이 병목이 아님을 확인하고 DELTA 조기 trigger에 집중했습니다.",
-    "재연결 경합 8개·GC TTL 5개를 합친 13개 focused regression으로 회귀를 고정했고, 상담 길이 E2E에서 sequence 누락·중복 없음을 확인했습니다.",
+    "VAD 파라미터별 E2E 실측에서 P50 차이가 작고 주 병목이 모델 추론임을 실측해, VAD tuning 대신 DELTA 조기 trigger에 집중했습니다.",
+    "13개 focused regression으로 회귀를 고정했고, 상담 길이 E2E에서 sequence 누락·중복 없음을 확인했습니다.",
   ],
   result: "API 성공 뒤 실패를 숨기지 않고 운영자가 복구 지점을 확인할 수 있는 흐름과, 외부 모델이 끊겨도 순서가 유지되는 실시간 전사 경계를 확보했습니다.",
   boundary: "주문 worker는 주도, 실시간 상담은 공동 주 기여입니다. 전환에 따른 성능·지연 개선 수치는 측정하지 않았습니다.",
@@ -126,20 +126,20 @@ const AI_RUNTIME: CareerProject = {
 const TEMPLATE_QA: CareerProject = {
   id: "backend-template",
   title: "조직 표준 · 팀이 같은 기준으로 만드는 FastAPI template과 evidence로 닫는 QA 판정 규칙",
-  context: "AI 활용이 본격화되면서 모두가 메이커로 제품을 만들고 운영하는 팀의 공통 기준",
+  context: "팀 공통 Backend 기준과 QA 판정 규칙",
   role: "Template 설계·구축 · QA 판정 규칙 설계 · 도입 지원",
   problem:
-    "팀이 Claude Code·Codex로 기능을 만들기 시작하면서 백엔드 경험이 적은 담당자도 구현에 참여했습니다. QA와 운영 준비 단계에서 사용량이나 동시 요청 조건에 따라 구조적인 문제가 자주 드러나 백엔드 엔지니어의 리소스가 원인 파악과 보완에 쓰였고, QA는 실행이 성공하면 통과로 보는 경우가 있어 AI 기능의 품질 판정이 흐려졌습니다.",
+    "팀이 coding agent로 기능을 만들기 시작하면서 백엔드 경험이 적은 담당자도 구현에 참여했습니다. QA와 운영 준비 단계에서 사용량이나 동시 요청 조건에 따라 구조적인 문제가 자주 드러나 백엔드 엔지니어의 리소스가 원인 파악과 보완에 쓰였고, QA는 실행이 성공하면 통과로 보는 경우가 있어 AI 기능의 품질 판정이 흐려졌습니다.",
   decision:
     "기능마다 완벽한 구조를 요구하는 대신 자주 틀리는 경계를 기본값으로 제공했습니다. Service가 transaction 정책을 선언하고 Repository는 현재 session만 resolve하게 했고, tool이 늘어나는 Agent 기능만 Hexagonal, 나머지는 MVC를 기본 구조로 두었습니다. QA는 요구사항을 REQ로 쪼개 evidence로 닫는 판정 규칙을 세워 실행 성공과 품질 통과를 분리했습니다.",
   implementation: [
     "@transactional(REQUIRED·REQUIRES_NEW·NESTED)·ContextVar 기반 AsyncSession resolve·owner-task guard, typed DTO 경계, naming·timezone·soft delete·cursor pagination convention, ADR·runbook·agent 작업 맥락을 template에 넣었습니다.",
-    "전 제품 공통 Quality Evidence Harness를 작성했습니다. REQ별 evidence plan(FE·DB·Log·Network·AI quality), PASS/FAIL/UNKNOWN 판정, 반복 이슈의 자동화 승격, LLM judge 단독 승인 금지가 규칙이며, QA 팀이 운영하는 AI QA 에이전트 파이프라인의 판정 layer로 연결했습니다.",
+    "전 제품 공통 Quality Evidence Harness를 QA 팀원의 서포트를 받아 작성했습니다. REQ별 evidence plan(FE·DB·Log·Network·AI quality), PASS/FAIL/UNKNOWN 판정, 반복 이슈의 자동화 승격, LLM judge 단독 승인 금지가 규칙이며, QA 팀이 운영하는 AI QA 에이전트 파이프라인의 판정 layer로 연결했습니다.",
   ],
   verification: [
     "propagation·isolation·read-only·CancelledError rollback·connection cleanup을 integration test로 고정했고, 정기 개발 회의에서 패턴 선택 기준과 구조화 비용을 검토해 반영했습니다.",
   ],
-  result: "full template으로 시작한 신규 프로그램의 STG QA에서 같은 session·pool 문제가 재관측되지 않았고, 기획·QA·디자인 담당자가 직접 구현하는 동안 백엔드는 결과 피드백과 배포 지원으로 개입을 줄였습니다.",
+  result: "full template으로 시작한 신규 프로그램의 STG QA에서 같은 유형의 session·connection 문제가 재관측되지 않았고, 기획·QA·디자인 담당자가 직접 구현하는 동안 백엔드는 결과 피드백과 배포 지원으로 개입을 줄였습니다.",
   boundary: "Template과 판정 규칙의 설계는 직접 했고 각 기능 구현과 QA 에이전트 플러그인 구현은 담당자의 몫입니다. 개발 속도·결함 수의 수치는 측정하지 않았습니다.",
   claimIds: [
     "be-template.backend-standard",
@@ -154,7 +154,7 @@ const TEMPLATE_QA: CareerProject = {
 
 const MULTI_TENANT: CareerProject = {
   id: "nexus-external-product",
-  title: "여러 피부과의 운영·예약 Backend · 접근 범위는 client 입력이 아니라 서버 상태가 정한다",
+  title: "여러 피부과의 운영·예약 Backend · server 상태가 정하는 tenant 접근 경계",
   context: "외부 피부과 여러 곳의 홈페이지·관리·예약을 지원하는 multi-tenant backend monorepo (진행 중)",
   role: "Backend architecture·Admin/Homepage API 구축 주도 · IaC 전담",
   problem:
@@ -185,8 +185,8 @@ export const FEATURING_CAREER_DESCRIPTION: CareerDescriptionDocument = {
   companyName: "피처링",
   targetRole: "백엔드 개발 엔지니어",
   title: "피처링 지원 경력기술서",
-  subtitle: "가능성을 제품으로 만들고, 끝까지 책임지는 Product Engineer. SNS 데이터를 제품 기준으로, prototype을 운영 가능한 FastAPI Backend로.",
-  role: "Backend Engineer · Tech Lead 역할 병행",
+  subtitle: "SNS 데이터를 제품 기준으로, prototype을 운영 가능한 FastAPI Backend로.",
+  role: "Tech Lead · Backend Engineer",
   updatedAt: "2026-09-03",
   summary: [
     "가능성을 제품으로 만들고, 끝까지 책임지는 Product Engineer 김대정입니다. 기획자로 시작해 백엔드로 왔고, 지금은 고객이 구독하는 AI 제품의 FastAPI 백엔드와 AI 실행부를 직접 만들고 운영합니다.",
@@ -195,7 +195,7 @@ export const FEATURING_CAREER_DESCRIPTION: CareerDescriptionDocument = {
   companies: [
     {
       ...MEDISOLVE_COMPANY,
-      role: "Backend Engineer · Tech Lead 역할 병행",
+      role: "Tech Lead · Backend Engineer",
       summary:
         "AI 활용이 본격화되면서 모두가 메이커로 제품을 만들고 운영하는 팀에서, 제품별 결정·QA·릴리스 운영을 리드하고 Backend·AI application을 직접 구현했습니다. 팀이 같은 기준으로 만들 수 있는 Backend Template과 QA 판정 규칙은 직접 설계했습니다.",
       projects: [SNS_DATA, REBUILD, WORKER_REALTIME, AI_RUNTIME, TEMPLATE_QA, MULTI_TENANT],

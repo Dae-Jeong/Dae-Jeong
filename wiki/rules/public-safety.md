@@ -11,8 +11,8 @@ tags: [public-safety, privacy, resume]
 ## Allowed
 
 - 회사명 MediSolve AI
-- 제품명 Thready, Centurion
-- Centurion feature명 DAY, BAY, RAY, SAY와 일반화된 기능 설명
+- 제품명 Thready (공개 서비스)
+- 내부 제품의 **일반화된 기능 설명** — 예: `피부과 운영 제품군`, `주문·재고 비동기 backend`, `실시간 상담 session`, `여러 피부과 운영·예약 backend`
 - 공개 GitHub 계정 `github.com/Dae-Jeong`
 - 시 단위 거주지
 - claim registry에서 `public: true`인 표현
@@ -28,8 +28,23 @@ tags: [public-safety, privacy, resume]
 - 마스킹 코드는 산출물 간에 일관되게 유지한다 — 같은 고객사가 문서마다 다른 코드로 불리면 안 된다.
 - 규모·업종 등 식별로 이어지지 않는 속성은 마스킹 코드와 함께 서술해도 된다 (예: `C 피부과 · 강남 소재 3개 지점`).
 
+## Internal Product Names (2026-09-03)
+
+내부 제품·기능 코드네임은 공개 산출물에 쓰지 않는다. evidence·claim statement·profile에는 그대로 쓴다.
+
+| 내부 명칭 | 공개 문안 대체 표현 |
+|---|---|
+| Centurion | 피부과 운영 제품군 (또는 `피부과 운영 제품군 backend`) |
+| BAY | 주문·재고 비동기 backend / 주문 후속 작업 |
+| SAY | 실시간 상담 session / 실시간 상담 runtime |
+| DAY, RAY | 기능 설명으로 풀어쓴다 |
+| NEXUS | 여러 피부과 운영·예약 backend / multi-tenant backend |
+
+claim `allowed_copy`도 이 표를 따른다. source 라벨·tag·highlight 같은 짧은 필드도 예외가 아니다.
+
 ## Forbidden
 
+- 내부 제품·기능 코드네임 (위 Internal Product Names 참조)
 - 고객사와 브랜드 실명 (public output 한정 — 위 Client Masking 참조)
 - STT/LLM provider 실명
 - 팀원 실명

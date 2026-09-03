@@ -48,16 +48,16 @@ export const CASES: CaseMeta[] = [
   {
     slug: "thready",
     no: "01",
-    name: "아이디어를 팀과 실제 고객이 결제하는 제품으로 만들고, 운영에 필요한 시스템을 직접 구축했습니다.",
+    name: "아이디어를 팀과 실제 고객이 구독하는 제품으로 만들고, 운영에 필요한 시스템을 직접 구축했습니다.",
     shortName: "AI 콘텐츠 유료 제품화·운영",
     tag: "AI 콘텐츠 제품 · Thready",
     blurb:
-      "고객이 돈을 내는 이유를 기획·QA·마케팅과 함께 구체화하고, 기능 우선순위부터 출시·운영까지 이끌었습니다. 제품에 필요한 FastAPI backend·AI 생성/평가 system을 직접 구축하고 핵심 화면은 coding agent로 완성했으며, 제품 원장과 AI 실행부의 경계를 분리했습니다.",
+      "고객이 구독하는 이유를 기획·QA·마케팅과 함께 구체화하고, 기능 우선순위부터 출시·운영까지 이끌었습니다. 제품에 필요한 FastAPI backend·AI 생성/평가 system을 직접 구축하고 핵심 화면은 coding agent로 완성했으며, 제품 원장과 AI 실행부의 경계를 분리했습니다.",
     role: "제품 운영 리드 · 핵심 제품 시스템 직접 구현",
     scope: "제품화·운영 · Backend · AI · 핵심 Frontend",
     proof: [
       "고객 문제 정의 · 기능 우선순위 · 출시·운영 리드",
-      "실제 고객이 결제하는 유료 제품 운영",
+      "실제 고객이 구독하는 유료 제품 운영",
       "FastAPI·AI 직접 구현 · 핵심 화면은 coding agent로 완성",
     ],
     claimIds: [
@@ -113,7 +113,7 @@ export const CASES: CaseMeta[] = [
     no: "03",
     name: "실패한 작업은 다시 돌리고, 실시간 상담은 빠르게 반응하면서도 엉뚱한 발화를 덮지 않게 만들었습니다.",
     shortName: "의료 MSA · 작업 복구와 실시간 상담",
-    tag: "의료 통합 플랫폼 · Centurion",
+    tag: "피부과 운영 제품군 · 주문·재고 / 실시간 상담 backend",
     blurb:
       "주문·재고 backend는 요청 처리와 외부 연동의 실패 경계를 나누고, 명시적인 작업 상태·재시도·수동 복구 흐름을 구축했습니다. 실시간 AI 상담은 공동 개발하며 VAD 발화 감지, DELTA·COMPLETE 전사 흐름, session lifecycle을 분리했습니다.",
     role: "주문·재고 주도 · 실시간 상담 공동 기여",
@@ -148,8 +148,8 @@ export const CASES: CaseMeta[] = [
     scope: "Azure · Runtime topology · Terraform · Observability",
     proof: [
       "B2B App Service Gateway·VM runtime과 B2C App Service·VM workload 분리",
-      "6개 root · 400개 이상 state object로 제품·환경 변경 범위 격리",
-      "10대 VM 로그 중앙화 · 운영 알림 8개",
+      "제품군·환경별 root/state로 변경 범위 격리",
+      "VM 로그 중앙화 · 운영 알림 체계",
     ],
     claimIds: [
       "infra.company-azure-ownership",
@@ -236,7 +236,7 @@ export const CASES: CaseMeta[] = [
     no: "S5",
     name: "여러 화면에 흩어진 Thready 기능을 대화 하나로 제어하는 방식을 검증했습니다.",
     shortName: "Thready 대화형 Agent",
-    tag: "제품 기능 제어 · Thready Quality Lab",
+    tag: "Thready · Agent Prototype",
     blurb:
       "사용자가 기능의 위치와 실행 순서를 외우는 대신, 원하는 작업을 말하면 Agent가 필요한 Thready 기능을 선택하고 결과를 대화로 이어서 보여주는 독립 프로토타입을 만들었습니다.",
     role: "대화형 제품 인터페이스 · Agent 프로토타입 설계·구현",
@@ -308,8 +308,8 @@ export const CASES: CaseMeta[] = [
     no: "A1",
     name: "주문·재고 백엔드의 비동기 운영 경계",
     shortName: "주문·재고 비동기 Backend",
-    tag: "Centurion · 주문·재고 백엔드",
-    blurb: "Centurion 대표 사례에 포함된 주문·재고 워커 상세 기록입니다.",
+    tag: "피부과 운영 제품군 · 주문·재고 백엔드",
+    blurb: "피부과 운영 제품군 대표 사례에 포함된 주문·재고 워커 상세 기록입니다.",
     role: "Lead",
     scope: "Async · CI",
     proof: ["Celery → TaskIQ·RabbitMQ", "상태·재시도·실패 기록·수동 재처리"],
@@ -326,8 +326,8 @@ export const CASES: CaseMeta[] = [
     no: "A2",
     name: "실시간 AI 상담의 세션 흐름",
     shortName: "실시간 상담 Session",
-    tag: "Centurion · 실시간 상담 백엔드",
-    blurb: "Centurion 대표 사례에 포함된 실시간 상담 세션 상세 기록입니다.",
+    tag: "피부과 운영 제품군 · 실시간 상담 백엔드",
+    blurb: "피부과 운영 제품군 대표 사례에 포함된 실시간 상담 세션 상세 기록입니다.",
     role: "Co-Lead Contributor",
     scope: "Realtime · Session",
     proof: ["WebSocket 세션 흐름", "외부 AI 경계·대화 순서 검증"],

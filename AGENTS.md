@@ -51,14 +51,31 @@ tool-agnostic skill의 canonical 위치는 `skills/`다. tool-specific 폴더는
 | --- | --- | --- |
 | analyze-jd-fit | [skills/analyze-jd-fit/SKILL.md](skills/analyze-jd-fit/SKILL.md) | JD 링크·본문을 검증된 profile/evidence와 대조해 지원 판단·강점·공백 분석 |
 | tailor-resume | [skills/tailor-resume/SKILL.md](skills/tailor-resume/SKILL.md) | 검증된 claim 기반 회사/JD 맞춤 이력서 생성 |
+| review-application-copy | [skills/review-application-copy/SKILL.md](skills/review-application-copy/SKILL.md) | active 회사·공통 표면의 공개 문안을 규칙 대비 전수 검토 (파일 수정 없음) |
+| propagate-copy-decision | [skills/propagate-copy-decision/SKILL.md](skills/propagate-copy-decision/SKILL.md) | 사용자 결정 한 문장을 evidence → claim → 규칙 → 게이트 → 표면 순으로 전파하고 verify |
 
 ## 검증
 
 ```bash
-uv run --project tools python tools/validate_workspace.py
+make verify          # scope 자동: wiki 변경이면 validator, app/fe 변경이면 validator + tsc + active route 200
+make verify-all
 ```
 
+`tools/verify.py`는 실행 순서와 기록(`output/harness/runs/*.json`)만 맡는다. 검사 항목은 `tools/validate_workspace.py`와 `wiki/rules/copy-gates.yaml`이 소유한다. 문안 작업의 완료 정의는 **verify PASS + active route 200 + 보고(바뀐 곳·검증·남은 결정)** 세 가지다.
+
 PDF나 HTML을 변경하면 renderer와 시각 검증까지 수행한다.
+
+## 래칫
+
+흐름 전체와 owner 표는 [wiki/rules/application-copy-harness.md](wiki/rules/application-copy-harness.md)에 있다.
+
+실패나 사용자 피드백 1건은 개인 학습으로 끝내지 않고 통제로 적립한다. **같은 작업 안에서** 다음을 한다.
+
+1. `wiki/rules/application-copy-standard.md` §1-6에 규칙 행(규칙 + 고친 예)을 추가하거나 모순되는 기존 행을 고친다.
+2. 기계로 잡히면 `wiki/rules/copy-gates.yaml`(문자열) 또는 validator 함수 + §4 게이트 행(구조)을 짝으로 추가한다. 잡을 수 없으면 §4에 "사람 검사"로 둔다.
+3. 게이트 하나는 규칙 행 하나와 짝이다. 행이 지워지면 게이트도 지운다.
+
+같은 게이트가 수정 2회로 안 닫히면 규칙이 모호하거나 사실이 부족한 것이다. "무엇을 / 선택지 / 권장" 세 줄로 사용자에게 올린다. registry `artifact_state: frozen` 패키지는 어떤 규칙 변경도 소급하지 않는다.
 
 ## Project Tooling
 

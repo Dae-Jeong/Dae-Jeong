@@ -22,6 +22,7 @@ tags: [profile, evidence, resume, portfolio, knowledge-harness]
 | 홈페이지 | [wiki/products/homepage/README.md](wiki/products/homepage/README.md) |
 | JD 분석 | [wiki/products/jd/README.md](wiki/products/jd/README.md) |
 | agent 작업 규칙 | [AGENTS.md](AGENTS.md) |
+| 지원 문안 운영 흐름 (SoT → 표면 → verify → 래칫) | [wiki/rules/application-copy-harness.md](wiki/rules/application-copy-harness.md) |
 | 문서 위치 결정 | [wiki/rules/document-routing.md](wiki/rules/document-routing.md) |
 
 ## 지식 흐름

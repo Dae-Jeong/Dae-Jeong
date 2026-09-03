@@ -54,8 +54,11 @@ sections:
     - be-template.backend-standard
     - be-template.team-leverage
     - be-template.agent-context
+    - mediness.quality-evidence-harness
   skills:
     - career.tellingme-backend-infra
+    - infra.k8s-cluster-design-review
+    - infra.k8s-lab-rebuild
     - career.memento-stripe-prepayment
     - centurion.bay-async-backend
     - centurion.say-realtime-ai

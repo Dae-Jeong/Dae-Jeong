@@ -1,0 +1,36 @@
+# 자동 게이트의 데이터. 코드(tools/validate_workspace.py)는 이 파일을 읽어 검사만 한다.
+# 각 항목은 wiki/rules/application-copy-standard.md §4 게이트 표의 행과 짝이다. 행이 지워지면 여기도 지운다.
+schema_version: 1
+
+# 게이트 11 — 대표 성과 제목 4개 안에 축 단어가 min_distinct 개 이상 드러난다 (§1-5)
+axes:
+  words: ["성능", "보장", "신뢰", "멱등", "정합", "설계"]
+  min_distinct: 4
+
+# 게이트 12 — 공개 금지어 (public-safety Internal Product Names · §1-6)
+banned_terms:
+  - { label: "Centurion", pattern: "Centurion" }
+  - { label: "BAY", pattern: "\\bBAY\\b" }
+  - { label: "SAY", pattern: "\\bSAY\\b" }
+  - { label: "NEXUS", pattern: "\\bNEXUS\\b" }
+  - { label: "돈을 내는", pattern: "돈을 내는" }
+  - { label: "95%", pattern: "95%" }
+  - { label: "2~3명", pattern: "2~3명" }
+  - { label: "스쿼드 리더", pattern: "스쿼드 리더" }
+  - { label: "3분의 1", pattern: "3분의 1" }
+  - { label: "local draft", pattern: "local draft" }
+  - { label: "대체된다", pattern: "대체된다" }
+# 검사에서 건너뛰는 줄 (식별자·claim 참조·import·주석)
+skip_line_pattern: "claimIds|data-claim|\\bslug\\b|\\bid:|^\\s*(import|//)"
+
+# 게이트 13 — frozen 패키지 표면 불변. 해제는 환경변수 COPY_ALLOW_FROZEN=1 (verify --allow-frozen)
+frozen:
+  enforce: fail
+
+# 게이트 14 — 헤더 직함은 registry attempt 의 header_role 로 시작한다 (§1-6 역할 표기)
+header_role:
+  require_for_active: true
+
+# 게이트 16 — hero 소개는 두 문장까지 (§2 hero 규칙)
+hero:
+  max_sentences: 2

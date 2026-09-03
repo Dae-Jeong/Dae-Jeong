@@ -157,8 +157,9 @@ claims:
     public: true
     evidence: [evidence/projects/centurion.md#shared-infra]
     allowed_copy:
-      - Centurion Azure/Terraform infra 구축·운영과 runbook·문서화 담당
+      - 피부과 운영 제품군 Azure/Terraform infra 구축·운영과 runbook·문서화 담당
     forbidden_copy:
+      - 공개 문안에 Centurion 명칭 노출
       - 모든 Azure resource를 최초부터 단독 생성
       - 정확한 resource·cost·security detail
     verified_at: 2026-07-11

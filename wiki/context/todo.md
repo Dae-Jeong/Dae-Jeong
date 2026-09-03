@@ -116,3 +116,18 @@ owner: [Live 적용 검증](../backlog/platform-profile-consolidation/2026-08-22
 - 완료 항목은 이 문서에서 제거하고 owner 문서에 결과를 반영한다.
 - 새 작업은 owner 문서에 먼저 등록하고 여기에 링크만 둔다.
 - [current-state.md](current-state.md)는 현재 상태를, 이 문서는 남은 작업만 담당한다.
+
+## 2026-09-03 문안 전수 검토 후
+
+- [x] 회사별(피처링·JYP)·공통(`/resume`·`/career/common`·`/cv/common`·cases) 문안을 1-6 표현 규칙으로 정리. Centurion 내부화, 구독 표현, 도구명 스택 줄 한정, 약 94%, 공통 v2 동기화, 헤더 단일화(`/resume/jyp` 전용 페이지 삭제), `/_map` 로컬 지도 추가
+- [x] **탈락 패키지 처리 (2026-09-03 결정)**: 왓섭=in-progress(frozen), JYP·피처링=pre-apply, 나머지 7곳=rejected + `artifact_state: frozen`(legacy-import snapshot). 탈락 패키지는 스냅샷처럼 그대로 둔다 — 문안·visibility 모두 소급 수정하지 않음. 게이트 12는 frozen·rejected를 건너뜀
+- [ ] JYP PDF 재생성 — 헤더 단일화로 쪽수가 바뀔 수 있음 (인쇄는 후순위)
+
+## 2026-09-03 Application Copy Harness P0
+
+- [x] `wiki/products/site/copy-surfaces.yaml`(표면 인벤토리), `wiki/rules/copy-gates.yaml`(게이트 데이터), validator 게이트 11(축 단어)·12(금지어, YAML 구동)·13(frozen 불변)·14(헤더 직함 = registry `header_role`)·16(hero 2문장)
+- [x] `make verify` / `tools/verify.py` — scope 자동, tsc, active route 200, `output/harness/runs/*.json`(gitignore)
+- [x] skill `review-application-copy`, `propagate-copy-decision`; AGENTS.md 래칫 절; registry jyp·featuring `header_role`
+- [ ] P1: 게이트 15 `shared-facts.yaml`, `--render` 스크린샷, 3회 연속 FAIL tripwire, archive retrieval 경계
+- [ ] P2: 새 JD 1건을 이 하네스로 처음부터 돌려 tailor-resume 6~9단계를 verify·skill 호출로 교체
+

@@ -12,7 +12,7 @@ const TEMPLATE: CareerProject = {
   context: "AI 활용이 본격화되면서 모두가 메이커로 제품을 만들고 운영하는 팀의 공통 기준",
   role: "Template 설계·구축 · 정기 개발 회의 피드백 반영 · 도입 지원",
   problem:
-    "팀이 Claude Code·Codex로 기능을 만들기 시작하면서 백엔드 경험이 적은 담당자도 구현에 참여했습니다. QA와 운영 준비 단계에서 사용량이나 동시 요청 조건에 따라 구조적인 문제가 자주 드러났고, 그때마다 백엔드 엔지니어의 리소스가 원인 파악과 보완에 쓰였습니다.",
+    "팀이 coding agent로 기능을 만들기 시작하면서 백엔드 경험이 적은 담당자도 구현에 참여했습니다. QA와 운영 준비 단계에서 사용량이나 동시 요청 조건에 따라 구조적인 문제가 자주 드러났고, 그때마다 백엔드 엔지니어의 리소스가 원인 파악과 보완에 쓰였습니다.",
   decision:
     "기능마다 완벽한 구조를 요구하는 대신 자주 틀리는 경계를 기본값으로 제공했습니다. Router가 받은 session을 모든 계층에 넘기는 반복을 없애고 Service가 transaction 정책을 선언하게 했고, tool이 늘어나는 Agent 기능만 port·adapter로 나누는 Hexagonal을, 나머지는 MVC를 기본 구조로 두었습니다.",
   implementation: [
@@ -25,7 +25,7 @@ const TEMPLATE: CareerProject = {
     "정기 개발 회의에서 패턴 선택 기준과 구조화 비용을 검토해 반영했고, 신규 사내 프로그램은 full template으로, 기존 제품은 session 관리부터 순차 도입했습니다.",
   ],
   result:
-    "full template으로 시작한 신규 프로그램의 STG QA에서 같은 session·pool 문제가 재관측되지 않았고, 기획·QA·디자인 담당자가 직접 구현하는 동안 백엔드는 결과 피드백과 배포 지원으로 개입을 줄였습니다.",
+    "full template으로 시작한 신규 프로그램의 STG QA에서 같은 유형의 session·connection 문제가 재관측되지 않았고, 기획·QA·디자인 담당자가 직접 구현하는 동안 백엔드는 결과 피드백과 배포 지원으로 개입을 줄였습니다.",
   boundary: "Template의 설계·구축은 직접 했고 각 기능 구현은 담당자의 몫입니다. 개발 속도·결함 수의 정확한 수치는 측정하지 않았습니다.",
   claimIds: [
     "be-template.backend-standard",
@@ -46,7 +46,7 @@ const THREADY_PRODUCT: CareerProject = {
   decision:
     "글쓰기만 AI에 맡기지 않고 자료 수집·정체성·작성·검수 역할을 나눠 AI는 초안과 1차 검수를, 사람은 최종 수정과 발행 판단을 맡게 했습니다. 좋은 글의 기준은 판정기가 아니라 판단 데이터를 쌓는 장치로 LLM judge를 두고, 기준 자체는 직접 수집한 실측 corpus로 다시 쟀습니다.",
   implementation: [
-    "FastAPI 제품 API와 별도 AI application·DB를 인증된 HTTP 경계로 분리하고, 콘텐츠 가져오기·URL preview·source 검증과 생성·예약·발행·대시보드·관리 화면을 coding agent로 구현해 직접 검수·배포했습니다.",
+    "FastAPI 제품 API와 별도 AI application·DB를 인증된 HTTP 경계로 분리했습니다. 콘텐츠 가져오기·URL preview·source 검증과 생성·예약·발행·대시보드·관리 화면은 coding agent로 구현해 직접 검수·배포했습니다.",
     "typed prompt builder·planner/writer 생성·LLM judge·사람 라벨링을 분리해 평가 이력을 남기고, 대량 corpus importer는 (source, source_key) upsert와 batch rollback으로 재적재를 멱등하게 만들었습니다.",
     "품질 기준값이 자사 출력을 되먹이던 순환을 재실측으로 발견해 교정하고, 반증된 접근은 '다시 시도하지 말 것' 로그로 남겨 실험 범위를 좁혔습니다.",
   ],
@@ -82,7 +82,7 @@ const PRODUCT_SYSTEM: CareerProject = {
     "결정·명세·작업·릴리스 근거를 실행 원장으로 축적해 사람과 AI가 같은 맥락을 읽게 하되, 우선순위·승인·릴리스처럼 판단이 필요한 단계는 사람이 확정하는 경계를 지켰습니다. QA는 요구사항을 REQ로 쪼개 evidence로 닫는 판정 규칙을 세우고, 실행 성공과 품질 통과를 분리했습니다.",
   implementation: [
     "제품별 pipeline registry에 결정·명세·작업 기록을 실행 원장으로 적용하고, BE·FE·QA 담당 lane과 QA 승인을 release gate에 연결해 release note 생성을 자동화했습니다.",
-    "전 제품 공통 Quality Evidence Harness를 작성했습니다. REQ별 evidence plan(FE·DB·Log·Network·AI quality), PASS/FAIL/UNKNOWN 판정, 반복 이슈의 자동화 승격, LLM judge 단독 승인 금지가 규칙입니다.",
+    "전 제품 공통 Quality Evidence Harness를 QA 팀원의 서포트를 받아 작성했습니다. REQ별 evidence plan(FE·DB·Log·Network·AI quality), PASS/FAIL/UNKNOWN 판정, 반복 이슈의 자동화 승격, LLM judge 단독 승인 금지가 규칙입니다.",
     "이 판정 layer를 QA 팀이 운영하는 AI QA 에이전트 파이프라인(시나리오→TC→자동화→버그 등록)에 연결하고, 백그라운드 작업의 고장 모드 카탈로그와 fault-injection QA를 설계로 제안했습니다.",
   ],
   verification: [
@@ -170,7 +170,7 @@ export const JYP_CAREER_DESCRIPTION: CareerDescriptionDocument = {
   companies: [
     {
       ...MEDISOLVE_COMPANY,
-      role: "Backend Engineer · Tech Lead 역할 병행",
+      role: "Tech Lead · Backend Engineer",
       summary:
         "AI 활용이 본격화되면서 모두가 메이커로 제품을 만들고 운영하는 팀에서, 제품별 결정·QA·릴리스 운영을 리드하고 Backend·AI application을 직접 구현했습니다. 팀이 같은 기준으로 만들 수 있는 Backend Template과 QA 판정 규칙은 직접 설계했습니다.",
       projects: [TEMPLATE, THREADY_PRODUCT, PRODUCT_SYSTEM, AGENT_PROTOTYPE, AI_RUNTIME],

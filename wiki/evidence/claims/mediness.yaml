@@ -109,7 +109,7 @@ claims:
       - 사람의 운영 업무 완전 자동화
     verified_at: 2026-08-18
   - id: mediness.quality-evidence-harness
-    statement: 기획·정책 요구사항을 REQ로 쪼개고 evidence로 닫는 전 제품 공통 QA 판정 규칙(PASS/FAIL/UNKNOWN, 실행 성공과 품질 판정 분리)을 설계·문서화하고 QA 팀의 AI QA 에이전트 파이프라인의 판정 layer로 연결
+    statement: 기획·정책 요구사항을 REQ로 쪼개고 evidence로 닫는 전 제품 공통 QA 판정 규칙(PASS/FAIL/UNKNOWN, 실행 성공과 품질 판정 분리)을 QA 팀원 한 명의 서포트를 받아 설계·문서화하고 QA 팀의 AI QA 에이전트 파이프라인의 판정 layer로 연결
     strength: led
     confidence: high
     public: true
@@ -119,8 +119,10 @@ claims:
       - 실행 성공만으로 PASS 처리하지 않고, AI 기능은 응답 생성과 품질 기준 만족을 분리해 판정
       - QA 팀의 AI QA 에이전트 파이프라인(시나리오→TC→자동화→버그 등록)의 판정 layer로 연결
       - 백그라운드 작업 고장 모드 카탈로그와 fault-injection QA 설계 제안
+      - QA 팀원의 서포트를 받아 QA 판정 규칙을 구축
     forbidden_copy:
       - QA AI 에이전트 플러그인 직접 구현·유지
+      - 혼자 구축 / QA 팀원 이름·직급 노출
       - QA 조직 총괄
       - Thready adoption·fault-injection 적용 완료 표현 (backlog/proposed)
       - 결함 감소·QA 시간 단축 수치

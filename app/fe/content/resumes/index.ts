@@ -37,3 +37,11 @@ export function listRoleResumes() {
     signals: resume.roleVariant?.signals ?? [],
   }));
 }
+
+export function listTailoredResumes() {
+  return Object.values(TAILORED_RESUMES).map((resume) => ({
+    slug: resume.slug,
+    label: resume.roleVariant?.label ?? `${resume.companyName} · ${resume.position}`,
+    visibility: resume.visibility,
+  }));
+}

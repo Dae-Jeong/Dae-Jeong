@@ -264,11 +264,11 @@ const SKILLS = [
   },
   {
     k: "클라우드 / 배포",
-    "data-claim": "infra.company-azure-ownership career.tellingme-backend-infra",
+    "data-claim": "infra.company-azure-ownership career.tellingme-backend-infra infra.k8s-cluster-design-review infra.k8s-lab-rebuild",
     v: (
       <Skill
-        stack="Docker · GitHub Actions · Azure · Terraform · AWS"
-        via="서비스 배포·환경 설정·기본 로그 확인 경험"
+        stack="Docker · GitHub Actions · Azure · Terraform · AWS · Kubernetes(kubeadm · Calico · MetalLB · ArgoCD)"
+        via="서비스 배포·환경 설정·기본 운영 경험. 회사 k8s 클러스터(kubeadm·GitOps) 설계 검토에 참여하고 같은 설계를 개인 Mac에 Lima+kubeadm 3노드로 직접 재구축"
       />
     ),
   },
@@ -317,11 +317,11 @@ const SKILLS_EN = [
   },
   {
     k: "Cloud / Delivery",
-    "data-claim": "infra.company-azure-ownership career.tellingme-backend-infra",
+    "data-claim": "infra.company-azure-ownership career.tellingme-backend-infra infra.k8s-cluster-design-review infra.k8s-lab-rebuild",
     v: (
       <Skill
-        stack="Docker · GitHub Actions · Azure · Terraform · AWS"
-        via="Hands-on experience with service deployment, environment configuration, and basic log checks"
+        stack="Docker · GitHub Actions · Azure · Terraform · AWS · Kubernetes(kubeadm · Calico · MetalLB · ArgoCD)"
+        via="Hands-on service deployment, environment configuration, and basic operations. Took part in the design review of the company Kubernetes cluster (kubeadm, GitOps) and rebuilt the same design on a personal Mac as a 3-node Lima+kubeadm cluster"
       />
     ),
   },
@@ -390,7 +390,7 @@ function DocKo() {
             className={resumeType.profileDescription}
             data-claim="career.medisolve-role-evolution thready.product-zero-to-one-contribution thready.frontend-product-delivery thready.subscription-revenue-band"
           >
-            기획자 출신 Tech Lead로, 고객의 문제를 제품 우선순위와 구현 범위로 구체화합니다. 필요한 백엔드·AI·핵심 화면은 직접 만들고, 기획·QA·마케팅과 함께 출시와 유료 운영까지 이끌어 왔습니다.
+            기획자로 시작해 백엔드로 왔고, 지금은 고객이 구독하는 AI 제품을 만들고 운영합니다. AI 활용이 본격화되면서 모두가 메이커로 제품을 만들고 운영하는 팀에서, 제품별 결정·QA·릴리스 운영을 리드하고 Backend·AI application을 직접 구현합니다.
           </p>
         </div>
       </header>
@@ -402,8 +402,8 @@ function DocKo() {
             <span className="mb-1.5 block text-base font-medium text-fg">Tech Lead · Backend Engineer <span className="font-normal text-fg-2">— 제품 운영 리드</span></span>
             <PlainList
               items={[
-                <span key="thready-business" data-claim="thready.product-zero-to-one-contribution thready.frontend-product-delivery thready.prototype-to-user-operation thready.generation-quality-system thready.subscription-revenue-band"><PortfolioCaseLink href="https://marinkim.xyz/portfolio/thready" label="Thready 포트폴리오 사례 보기">Thready</PortfolioCaseLink>에서 고객 문제를 기능 우선순위와 품질 기준으로 구체화하고, <strong>기획·QA·마케팅과 제품 운영을 리드</strong>했습니다. 팀과 함께 실제 고객이 결제하는 유료 제품으로 만들었고, 이를 위해 FastAPI 백엔드·AI 생성/평가 시스템과 Next.js 핵심 사용자·관리 흐름을 직접 구현·운영했습니다.</span>,
-                <span key="centurion" data-claim="career.thedaylabs-freelance centurion.msa-platform-context centurion.bay-async-backend centurion.day-product-integration centurion.say-realtime-ai centurion.ray-backend centurion.sso-session">Centurion에서는 법인 설립 전 <strong>초기 백엔드와 개발 기준</strong>을 세웠습니다. 이후 주문·재고 워커와 DAY 예약 정책의 백엔드·프런트엔드·QA·릴리스 연결을 주도했고, 실시간 AI 상담은 공동 주 기여, 시설·재고 연동과 SSO 정책은 일부 기능을 맡았습니다.</span>,
+                <span key="thready-business" data-claim="thready.product-zero-to-one-contribution thready.frontend-product-delivery thready.prototype-to-user-operation thready.generation-quality-system thready.subscription-revenue-band"><PortfolioCaseLink href="https://marinkim.xyz/portfolio/thready" label="Thready 포트폴리오 사례 보기">Thready</PortfolioCaseLink>에서 고객 문제를 기능 우선순위와 품질 기준으로 구체화하고, <strong>기획·QA·마케팅과 제품 운영을 리드</strong>했습니다. 팀과 함께 실제 고객이 구독하는 유료 제품으로 만들었고, 이를 위해 FastAPI 백엔드·AI 생성/평가 시스템을 직접 구현·운영했으며 핵심 사용자·관리 화면은 coding agent로 완성했습니다.</span>,
+                <span key="centurion" data-claim="career.thedaylabs-freelance centurion.msa-platform-context centurion.bay-async-backend centurion.day-product-integration centurion.say-realtime-ai centurion.ray-backend centurion.sso-session">피부과 운영 제품군에서는 법인 설립 전 <strong>초기 백엔드와 개발 기준</strong>을 세웠습니다. 이후 주문·재고 워커와 예약 정책의 백엔드·프런트엔드·QA·릴리스 연결을 주도했고, 실시간 AI 상담은 공동 주 기여, 시설·재고 연동과 SSO 정책은 일부 기능을 맡았습니다.</span>,
                 <span key="hospital-operations" data-claim="nexus.backend-architecture nexus.admin-backend-ownership">별도의 여러 피부과 운영·예약 시스템에서는 <strong>백엔드 architecture와 migration flow, Admin·Homepage API 구축을 주도</strong>하고 있습니다.</span>,
                 <span key="company-ax" data-claim="mediness.company-work-ax-design mediness.product-system-design-participation mediness.product-operations">MEDINESS의 제품 요구·운영 흐름 설계에 참여하고, Decision·SPEC·Work Package·QA·릴리스는 제품별로 적용·운영했습니다. 회사 AX 구조는 회의·의사결정·업무 배정·승인·후속 작업에서 agent가 맥락·실행안을 준비하고 판단은 사람이 확정하도록 설계하는 데 참여했습니다.</span>,
                 <span key="engineering-system" data-claim="be-template.backend-standard be-template.team-leverage be-template.agent-context infra.company-azure-ownership">조직 표준 FastAPI 템플릿과 agent 작업 맥락을 직접 구축했습니다. 여러 사내 서비스의 Azure·Vercel 배포 환경도 서비스가 동작하도록 구성하고 기본 운영을 맡았습니다.</span>,
@@ -445,13 +445,13 @@ function DocKo() {
           <Axis
             first
             no="01"
-            title="아이디어를 제안하고 초기 프로토타입 이후 제품화를 주도해, 실제 고객이 결제하는 서비스로 발전시켰습니다."
+            title="아이디어를 제안하고 초기 프로토타입 이후 제품화를 주도해, 실제 고객이 구독하는 서비스로 발전시켰습니다."
             data-claim="thready.product-zero-to-one-contribution thready.frontend-product-delivery thready.prototype-to-user-operation thready.subscription-revenue-band thready.release-operation thready.generation-quality-system"
-            description="고객이 돈을 내는 이유를 찾고, 콘텐츠 제작과 성과 판단의 불편을 기능·실험·품질 기준으로 나눴습니다. 기획·QA·마케팅과 제품 판단부터 출시·운영까지 리드했습니다."
+            description="고객이 구독하는 이유를 찾고, 콘텐츠 제작과 성과 판단의 불편을 기능·실험·품질 기준으로 나눴습니다. 기획·QA·마케팅과 제품 판단부터 출시·운영까지 리드했습니다."
             evidence={[
               <>기능·실험 우선순위와 생성 품질·QA·릴리스 기준을 조율했습니다.<Src>Thready · 제품 운영</Src></>,
-              <>팀과 함께 Thready를 <Metric>실제 고객이 결제하는 유료 제품</Metric>으로 만들고 운영하고 있습니다.<Src>Thready · 제품·팀 성과</Src></>,
-              <>FastAPI 백엔드와 AI 생성·평가 시스템, Next.js의 생성·가져오기·예약·발행·관리 흐름을 직접 개발했습니다.<Src>Thready</Src></>,
+              <>팀과 함께 Thready를 <Metric>실제 고객이 구독하는 유료 제품</Metric>으로 만들고 운영하고 있습니다.<Src>Thready · 제품·팀 성과</Src></>,
+              <>FastAPI 백엔드와 AI 생성·평가 시스템을 직접 개발했고, 생성·가져오기·예약·발행·관리의 핵심 화면은 coding agent로 완성했습니다.<Src>Thready</Src></>,
             ]}
           />
           <Axis
@@ -462,18 +462,18 @@ function DocKo() {
             evidence={[
               <>기존 API 동작을 고정할 계약·컴포넌트·운영 흐름 <strong>검증 하네스를 먼저 구축</strong>했습니다.<Src>Thready</Src></>,
               <>기존 프런트엔드와 릴리스 흐름은 유지하고 새 FastAPI 백엔드를 나란히 만들어 응답을 비교한 뒤 전환했습니다.<Src>Thready</Src></>,
-              <>전환 전후 같은 기준의 Jira 집계에서 해결된 QA 이슈의 <strong>재오픈 비율이 26%p 낮게 관측</strong>됐고, 이후 배포·QA·운영을 계속 맡았습니다.<Src>Thready · Jira</Src></>,
+              <>같은 기준의 Jira 집계에서 해결된 QA 이슈 재오픈 비율 <Metric>37% → 11%</Metric>, 재발 발생 일평균 <Metric>약 94% 감소</Metric>(하루 4.5건 → 0.3건). 이후 배포·QA·운영을 계속 맡았습니다.<Src>Thready · Jira</Src></>,
             ]}
           />
           <Axis
             no="03"
             title="주문·재고 후속 작업을 API와 분리하고, 실패 상태를 다시 처리할 수 있게 설계"
             data-claim="centurion.bay-async-backend centurion.async-migration centurion.test-ci-foundation"
-            description="Centurion BAY의 주문·재고 API와 실패 가능한 후속 작업을 나누고, 자동 재시도가 끝난 뒤에도 원인과 상태를 남겨 운영자가 다시 처리할 수 있게 했습니다."
+            description="피부과 운영 제품군의 주문·재고 API와 실패 가능한 후속 작업을 나누고, 자동 재시도가 끝난 뒤에도 원인과 상태를 남겨 운영자가 다시 처리할 수 있게 했습니다."
             evidence={[
-              <>async FastAPI 실행 모델과의 정합성을 기준으로 Celery에서 TaskIQ·RabbitMQ로 전환하고, 워커 이미지를 API와 분리했습니다.<Src>Centurion · BAY</Src></>,
-              <>작업 상태·retry·terminal failure를 기록하고 수동 재처리 경계를 뒀습니다.<Src>Centurion · BAY</Src></>,
-              <>API test infrastructure·Docker CI·onboarding 문서로 API·broker·worker 흐름을 재현할 수 있는 개발 환경을 만들었습니다.<Src>Centurion · BAY</Src></>,
+              <>async FastAPI 실행 모델과의 정합성을 기준으로 Celery에서 TaskIQ·RabbitMQ로 전환하고, 워커 이미지를 API와 분리했습니다.<Src>피부과 운영 제품군 · 주문·재고</Src></>,
+              <>작업 상태·retry·terminal failure를 기록하고 수동 재처리 경계를 뒀습니다.<Src>피부과 운영 제품군 · 주문·재고</Src></>,
+              <>API test infrastructure·Docker CI·onboarding 문서로 API·broker·worker 흐름을 재현할 수 있는 개발 환경을 만들었습니다.<Src>피부과 운영 제품군 · 주문·재고</Src></>,
             ]}
           />
           <Axis
@@ -483,19 +483,20 @@ function DocKo() {
             description="제품 정책·원장과 AI 생성 lifecycle·실행 상태의 책임을 나눴습니다. 기존 데이터 이전과 이후의 지연·중복·역순 전달을 하나의 정합성 문제로 다뤘습니다."
             evidence={[
               <>제품 정책·원장은 제품 백엔드가, 생성 이력·실행 상태는 독립 FastAPI 애플리케이션과 DB가 맡도록 분리했습니다.<Src>Thready</Src></>,
-              <>STG 생성 이력 <Metric>2,616건</Metric>·품질 기록 <Metric>795건</Metric>·실행 추적 <Metric>7,111건</Metric>을 옮기고 행 수·MD5 fingerprint·참조 누락·생성 API를 검증했습니다.<Src>Thready · STG 데이터 이전</Src></>,
+              <>STG 생성 이력·품질 기록·실행 추적을 옮기고 행 수·MD5 fingerprint·참조 누락·생성 API를 검증했습니다.<Src>Thready · STG 데이터 이전</Src></>,
               <>원장 변경과 Outbox 기록을 한 트랜잭션으로 처리하고, 전달이 지연·중복되거나 순서가 뒤바뀌어도 최신 상태를 덮지 않도록 retry·delivery version fence를 뒀습니다.<Src>Thready</Src></>,
             ]}
           />
           <Axis
             no="05"
             title="FastAPI·AI 에이전트 실행 기준을 조직 표준으로 구축"
-            data-claim="be-template.backend-standard be-template.team-leverage be-template.agent-context"
+            data-claim="be-template.backend-standard be-template.team-leverage be-template.agent-context mediness.quality-evidence-harness"
             description="프로젝트마다 반복되던 구조와 작업 규칙을 실행 가능한 템플릿으로 만들고, 사람과 AI 에이전트가 같은 기준을 읽도록 했습니다."
             evidence={[
               <>계층형 아키텍처·DI·트랜잭션·오류 계약·ADR·운영 문서를 갖춘 조직 표준 FastAPI 템플릿을 설계·구축했습니다.<Src>조직 표준</Src></>,
               <>제품별 차이는 명시적인 선택지로 남기고, 로깅·모니터링 같은 공통 기능은 같은 기준으로 적용했습니다.<Src>조직 표준</Src></>,
               <>계층형 AI 에이전트 맥락과 반복 작업 자동화 스킬을 내장해 작업 전 아키텍처 결정과 규칙을 읽도록 했습니다.<Src>조직 표준</Src></>,
+              <span key="qa-harness" data-claim="mediness.quality-evidence-harness">요구사항별 evidence로 닫는 QA 판정 규칙(PASS/FAIL/UNKNOWN)을 QA 팀원의 서포트를 받아 설계해 QA 팀의 AI QA 에이전트 파이프라인과 연결했습니다.<Src>조직 표준 · QA</Src></span>,
             ]}
           />
         </NumberedList>
@@ -588,7 +589,7 @@ function DocEn() {
             className={resumeType.profileDescription}
             data-claim="career.medisolve-role-evolution thready.product-zero-to-one-contribution thready.frontend-product-delivery thready.subscription-revenue-band"
           >
-            As a former product planner and current Tech Lead, I turn customer problems into product priorities and implementation scope. I build the backend, AI systems, and core product flows needed to bring products from launch into paid operation with planning, QA, and marketing.
+            I started as a product planner and moved to backend; today I build and operate AI products that customers subscribe to. On a team where AI adoption has made everyone a maker who builds and operates products, I lead decisions, QA, and release operations per product and implement the backend and AI applications myself.
           </p>
         </div>
       </header>
@@ -600,8 +601,8 @@ function DocEn() {
             <span className="mb-1.5 block text-base font-medium text-fg">Tech Lead · Backend Engineer <span className="font-normal text-fg-2">— product operations lead</span></span>
             <PlainList
               items={[
-                <span key="thready-business" data-claim="thready.product-zero-to-one-contribution thready.frontend-product-delivery thready.prototype-to-user-operation thready.generation-quality-system thready.subscription-revenue-band">At <PortfolioCaseLink href="https://marinkim.xyz/portfolio/thready" label="View the Thready portfolio case">Thready</PortfolioCaseLink>, I turn customer problems into product priorities and quality criteria, then lead <strong>product operations with planning, QA, and marketing</strong>. Together, we turned it into a paid product with real customer payments. I directly build and operate the FastAPI backend, AI generation/evaluation system, and core Next.js user and admin flows needed to run it.</span>,
-                <span key="centurion" data-claim="career.thedaylabs-freelance centurion.msa-platform-context centurion.bay-async-backend centurion.day-product-integration centurion.say-realtime-ai centurion.ray-backend centurion.sso-session">For Centurion, I established the <strong>initial backend and engineering standards</strong> before incorporation. I later led order/inventory workers and the backend&ndash;frontend&ndash;QA&ndash;release integration of DAY reservation policy, co-led realtime AI consultation work, and contributed to facility/inventory integration and SSO policy</span>,
+                <span key="thready-business" data-claim="thready.product-zero-to-one-contribution thready.frontend-product-delivery thready.prototype-to-user-operation thready.generation-quality-system thready.subscription-revenue-band">At <PortfolioCaseLink href="https://marinkim.xyz/portfolio/thready" label="View the Thready portfolio case">Thready</PortfolioCaseLink>, I turn customer problems into product priorities and quality criteria, then lead <strong>product operations with planning, QA, and marketing</strong>. Together, we turned it into a paid product with real subscribing customers. I directly build and operate the FastAPI backend and AI generation/evaluation system needed to run it; the core user and admin screens were completed with a coding agent.</span>,
+                <span key="centurion" data-claim="career.thedaylabs-freelance centurion.msa-platform-context centurion.bay-async-backend centurion.day-product-integration centurion.say-realtime-ai centurion.ray-backend centurion.sso-session">For the dermatology clinic operations product line, I established the <strong>initial backend and engineering standards</strong> before incorporation. I later led order/inventory workers and the backend&ndash;frontend&ndash;QA&ndash;release integration of reservation policy, co-led realtime AI consultation work, and contributed to facility/inventory integration and SSO policy</span>,
                 <span key="hospital-operations" data-claim="nexus.backend-architecture nexus.admin-backend-ownership">Separately, I am leading <strong>backend architecture, migration flows, and the Admin/Homepage API build</strong> for a multi-clinic dermatology operations and booking system</span>,
                 <span key="company-ax" data-claim="mediness.company-work-ax-design mediness.product-system-design-participation mediness.product-operations">I contributed to the product-requirement and operating-flow design of MEDINESS, then led the product-level application of Decision, SPEC, Work Package, QA, and release criteria. Building on that work, I contributed to a <strong>company AX structure</strong> that separates the tasks agents can prepare from the decisions people retain across meetings, assignments, approvals, and follow-up actions</span>,
                 <span key="engineering-system" data-claim="be-template.backend-standard be-template.team-leverage be-template.agent-context infra.company-azure-ownership">I directly built the organization-wide FastAPI template and agent context. I also configured Azure and Vercel deployment environments for several internal services and handled their basic operation</span>,
@@ -643,13 +644,13 @@ function DocEn() {
           <Axis
             first
             no="01"
-            title="Proposed the idea and led productization after the initial prototype into a service with paying customers"
+            title="Proposed the idea and led productization after the initial prototype into a service with subscribing customers"
             data-claim="thready.product-zero-to-one-contribution thready.frontend-product-delivery thready.prototype-to-user-operation thready.subscription-revenue-band thready.release-operation thready.generation-quality-system"
-            description="I identified why customers would pay, broke their content creation and performance problem into product, experiment, and quality criteria, and led the path from product decisions to launch and operations."
+            description="I identified why customers would subscribe, broke their content creation and performance problem into product, experiment, and quality criteria, and led the path from product decisions to launch and operations."
             evidence={[
               <>Coordinated feature and experiment priorities, generation-quality criteria, QA, and releases with planning, QA, and marketing<Src>Thready · product operations</Src></>,
-              <>Together, we turned Thready into <Metric>a paid product with real customer payments</Metric><Src>Thready · product/team outcome</Src></>,
-              <>Directly implemented the FastAPI backend, AI generation/evaluation, and Next.js flows for creation, import, scheduling, publishing, and administration<Src>Thready</Src></>,
+              <>Together, we turned Thready into <Metric>a paid product with real subscribing customers</Metric><Src>Thready · product/team outcome</Src></>,
+              <>Directly implemented the FastAPI backend and AI generation/evaluation; the core screens for creation, import, scheduling, publishing, and administration were completed with a coding agent<Src>Thready</Src></>,
             ]}
           />
           <Axis
@@ -660,18 +661,18 @@ function DocEn() {
             evidence={[
               <>Built contract, component, and operational-flow <strong>validation harnesses before the rebuild</strong><Src>Thready</Src></>,
               <>Kept the frontend and release flow intact, ran the new FastAPI backend in parallel, compared responses, then cut over<Src>Thready</Src></>,
-              <>In like-for-like Jira measurements across the cutover, the reopen rate of resolved QA issues was <strong>26 percentage points lower</strong>; I continued owning release, QA, and operations<Src>Thready · Jira</Src></>,
+              <>In like-for-like Jira measurements, the reopen rate of resolved QA issues went <Metric>37% → 11%</Metric> and daily recurrence fell <Metric>about 94%</Metric> (4.5 → 0.3 per day); I continued owning release, QA, and operations<Src>Thready · Jira</Src></>,
             ]}
           />
           <Axis
             no="03"
             title="Separated order and inventory follow-up work from the API and kept failures recoverable"
             data-claim="centurion.bay-async-backend centurion.async-migration centurion.test-ci-foundation"
-            description="For Centurion BAY, I separated failure-prone follow-up work from order and inventory APIs, retaining the cause and state after retries are exhausted so operators can reprocess it."
+            description="For the dermatology clinic operations product line, I separated failure-prone follow-up work from order and inventory APIs, retaining the cause and state after retries are exhausted so operators can reprocess it."
             evidence={[
-              <>Migrated from Celery to TaskIQ and RabbitMQ to align with the async FastAPI runtime, then separated the worker image from the API<Src>Centurion · BAY</Src></>,
-              <>Recorded explicit task state, retries, and terminal failures with a manual-reprocessing boundary<Src>Centurion · BAY</Src></>,
-              <>Built API test infrastructure, Docker CI, and onboarding documentation to make the API&ndash;broker&ndash;worker flow reproducible<Src>Centurion · BAY</Src></>,
+              <>Migrated from Celery to TaskIQ and RabbitMQ to align with the async FastAPI runtime, then separated the worker image from the API<Src>clinic operations product line · order/inventory</Src></>,
+              <>Recorded explicit task state, retries, and terminal failures with a manual-reprocessing boundary<Src>clinic operations product line · order/inventory</Src></>,
+              <>Built API test infrastructure, Docker CI, and onboarding documentation to make the API&ndash;broker&ndash;worker flow reproducible<Src>clinic operations product line · order/inventory</Src></>,
             ]}
           />
           <Axis
@@ -681,19 +682,20 @@ function DocEn() {
             description="I separated ownership of product policy and source-of-truth data from the AI generation lifecycle and execution state, treating historical migration plus delayed, duplicate, and out-of-order delivery as one consistency problem."
             evidence={[
               <>Assigned product policy and source-of-truth data to the product backend, while an independent FastAPI application and database own generation lifecycle and execution state<Src>Thready</Src></>,
-              <>Migrated <Metric>2,616 generation records</Metric>, <Metric>795 quality records</Metric>, and <Metric>7,111 traces</Metric> on STG, verifying row counts, MD5 fingerprints, reference integrity, and the generation API<Src>Thready · STG migration</Src></>,
+              <>Migrated generation records, quality records, and traces on STG, verifying row counts, MD5 fingerprints, reference integrity, and the generation API<Src>Thready · STG migration</Src></>,
               <>Committed source-of-truth changes and Outbox records together, with retry and delivery-version fencing so delayed, duplicate, or out-of-order delivery cannot overwrite newer state<Src>Thready</Src></>,
             ]}
           />
           <Axis
             no="05"
             title="Built an organization-wide FastAPI and AI-agent execution standard"
-            data-claim="be-template.backend-standard be-template.team-leverage be-template.agent-context"
+            data-claim="be-template.backend-standard be-template.team-leverage be-template.agent-context mediness.quality-evidence-harness"
             description="I converted recurring architecture and work rules into an executable template so people and AI agents could begin from the same context."
             evidence={[
               <>Designed and built an organization-wide FastAPI template with layered architecture, DI, transaction/error contracts, ADRs, and runbooks<Src>Engineering standard</Src></>,
               <>Kept product-specific differences explicit while applying cross-cutting concerns such as logging and monitoring through the shared baseline<Src>Engineering standard</Src></>,
               <>Embedded hierarchical AI-agent context and recurring-task automation so architecture decisions and work rules are read before implementation<Src>Engineering standard</Src></>,
+              <span key="qa-harness" data-claim="mediness.quality-evidence-harness">Designed, with support from a QA team member, a requirement-level evidence-based QA verdict rule (PASS/FAIL/UNKNOWN) and connected it to the QA team&rsquo;s AI QA agent pipeline<Src>Engineering standard · QA</Src></span>,
             ]}
           />
         </NumberedList>

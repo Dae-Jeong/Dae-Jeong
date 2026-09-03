@@ -45,19 +45,17 @@ export const FEATURING_CASE_DETAILS: readonly FeaturingCaseDetail[] = [
         text: "반응이 좋은 콘텐츠를 단일 threshold로 고정하지 않고, 최신 상태·시계열 관측·원문 corpus·사람 평가를 서로 다른 책임으로 분리했습니다.",
         items: [
           "Threads 게시물 4,039건을 직접 수집·분석해 생성 기준 수립",
-          "별도 시장 data의 latest 13.1만 행·observation 318만 행을 기반으로 5개 outcome 후보를 병렬 설계",
-          "절대·저자 상대·domain 상대·참여 품질·합의 기준의 5개 outcome 후보를 병렬 설계",
+          "별도 시장 data의 latest 13.1만 행·observation 318만 행을 기반으로 절대·저자 상대·domain 상대·참여 품질·합의 기준의 5개 outcome 후보를 병렬 설계",
         ],
       },
       {
         label: "운영 범위",
-        title: "분석 규모와 실제 운영 범위를 같은 숫자로 보이지 않게 했습니다",
-        text: "큰 dataset을 다뤘다는 사실과 production crawler를 운영했다는 주장은 다릅니다. 검증된 분석·적재 범위와 운영 범위를 분리했습니다.",
+        title: "정제·적재·평가 구간을 재적재 가능한 workflow로 만들었습니다",
+        text: "수집기는 별도 파이프라인이고, 정제·적재·평가 구간을 설계·구현했습니다.",
         items: [
           "한국어 본문 11.1만 건·작성자 이어쓰기 18.5만 건을 독립 labeling schema로 이관",
           "typed validation·source key upsert·continuation replace 기반 멱등 importer와 API/UI workbench 구축",
           "malformed batch rollback·기존 label 보존·count 정합성을 local 전체 적재와 증분 재적재로 검증",
-          "수집기는 별도 파이프라인, 정제·적재·평가 구간을 담당",
         ],
       },
     ],
@@ -93,11 +91,11 @@ export const FEATURING_CASE_DETAILS: readonly FeaturingCaseDetail[] = [
       },
       {
         label: "검증·결과",
-        title: "재구축 뒤 결함 재발이 하루 4.5건에서 0.3건으로 줄었습니다",
+        title: "재구축 뒤 결함 재발이 약 94% 줄었습니다",
         text: "기존 동작과 새 backend 응답을 비교하고 test acceptance를 통과한 범위부터 전환했습니다. 같은 기준의 Jira 집계에서 해결된 QA 이슈 재오픈 비율이 37%에서 11%로 낮아졌습니다.",
         items: [
-          "계약·컴포넌트·운영 흐름 검증 하네스를 먼저 구성한 뒤 v1.1.0에서 backend cutover",
-          "재오픈 비율 37% → 11%, 재발 발생 일평균 4.5건 → 0.3건 (Jira 236건 전수 집계)",
+          "패턴·계층·검증 하네스를 먼저 구성한 뒤 v1.1.0에서 backend cutover",
+          "재오픈 비율 37% → 11%, 재발 발생 일평균 약 94% 감소(4.5건 → 0.3건, Jira 236건 전수 집계)",
           "v1.3.0부터 실제 사용자가 쓰는 backend를 계속 개발·운영",
         ],
       },
@@ -209,10 +207,10 @@ export const FEATURING_PORTFOLIO = {
     "transaction 기준",
   ],
   description:
-    "SNS data의 생명주기와 backend cutover, MSA·transaction 복구 경계를 피처링 JD 순서로 검토하는 local draft",
+    "SNS data 생명주기, backend cutover, MSA·transaction 복구 경계를 피처링 JD 순서로",
   status: "draft",
   visibility: "local",
-  updatedAt: "2026-09-02",
+  updatedAt: "2026-09-03",
   heroVariant: "light",
   // hero: Product Engineer 한 줄이 메인. 보조 줄·상태 라벨·중복 목차는 두지 않는다 (2026-09-03).
   brandLine: "",
@@ -229,7 +227,7 @@ export const FEATURING_PORTFOLIO = {
     {
       title: "검증용 prototype을 실제 운영 backend로",
       description:
-        "돌아가는 prototype을 멈추지 않고 새 backend로 옮겨 실제 사용자 운영까지 이어갔습니다. 결함 재발이 3분의 1로 줄었습니다.",
+        "돌아가는 prototype을 멈추지 않고 새 backend로 옮겨 실제 사용자 운영까지 이어갔습니다. 결함 재발이 약 94% 줄었습니다.",
     },
     {
       title: "실패를 상태와 복구 흐름으로",

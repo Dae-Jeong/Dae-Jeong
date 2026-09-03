@@ -465,6 +465,249 @@ def _validate_application_projection_drift(root: Path) -> list[str]:
     return []
 
 
+COPY_GATES_PATH = "wiki/rules/copy-gates.yaml"
+COPY_SURFACES_PATH = "wiki/products/site/copy-surfaces.yaml"
+REGISTRY_PATH = "wiki/products/resume/application-registry.yaml"
+
+
+def _load_yaml_file(root: Path, rel: str) -> dict[str, Any]:
+    path = root / rel
+    if not path.exists():
+        return {}
+    data = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+    return data if isinstance(data, dict) else {}
+
+
+def _registry_attempts(root: Path) -> list[dict[str, Any]]:
+    data = _load_yaml_file(root, REGISTRY_PATH)
+    return [a for a in (data.get("attempts") or []) if isinstance(a, dict)]
+
+
+def _surface_files(root: Path, surfaces_cfg: dict[str, Any], attempt: dict[str, Any]) -> dict[str, Path]:
+    """Map surface id -> file for one registry attempt, via its artifact routes."""
+    found: dict[str, Path] = {}
+    surfaces = [s for s in (surfaces_cfg.get("surfaces") or []) if s.get("per_company")]
+    for artifact in (attempt.get("artifacts") or {}).values():
+        route = artifact.get("route") if isinstance(artifact, dict) else None
+        if not isinstance(route, str):
+            continue
+        for surface in surfaces:
+            template = str(surface.get("route", ""))
+            prefix = template.split("{company}")[0]
+            if not route.startswith(prefix) or "{company}" not in template:
+                continue
+            company = route[len(prefix):].strip("/")
+            if not company or "/" in company:
+                continue
+            path = root / str(surface["path"]).format(company=company)
+            if path.exists():
+                found[str(surface["id"])] = path
+    return found
+
+
+def _common_surface_files(root: Path, surfaces_cfg: dict[str, Any]) -> list[Path]:
+    paths = [root / str(s["path"]) for s in (surfaces_cfg.get("surfaces") or []) if not s.get("per_company")]
+    return [p for p in paths if p.exists()]
+
+
+def _is_active(attempt: dict[str, Any], surfaces_cfg: dict[str, Any]) -> bool:
+    active = surfaces_cfg.get("active") or {}
+    statuses = set(active.get("statuses") or [])
+    excluded = set(active.get("exclude_artifact_states") or [])
+    return attempt.get("status") in statuses and attempt.get("artifact_state") not in excluded
+
+
+def _active_attempts(root: Path, surfaces_cfg: dict[str, Any]) -> list[dict[str, Any]]:
+    return [a for a in _registry_attempts(root) if _is_active(a, surfaces_cfg)]
+
+
+def _bracket_block(source: str, key: str) -> str:
+    """Return the text of `key: [ ... ]` (first occurrence), or '' if absent."""
+    match = re.search(rf"\b{re.escape(key)}:\s*\[", source)
+    if not match:
+        return ""
+    depth, i = 0, match.end() - 1
+    for j in range(i, len(source)):
+        if source[j] == "[":
+            depth += 1
+        elif source[j] == "]":
+            depth -= 1
+            if depth == 0:
+                return source[i : j + 1]
+    return source[i:]
+
+
+def _brace_block(source: str, start: int) -> str:
+    depth = 0
+    for j in range(start, len(source)):
+        if source[j] == "{":
+            depth += 1
+        elif source[j] == "}":
+            depth -= 1
+            if depth == 0:
+                return source[start : j + 1]
+    return source[start:]
+
+
+def _sentence_count(text: str) -> int:
+    count = len(re.findall(r"[.!?。](?=\s|$)", text.strip()))
+    return count or (1 if text.strip() else 0)
+
+
+def _validate_public_copy_terms(root: Path) -> list[str]:
+    """Gate 12 (application-copy-standard §4): banned public terms on active + common surfaces."""
+    gates = _load_yaml_file(root, COPY_GATES_PATH)
+    surfaces_cfg = _load_yaml_file(root, COPY_SURFACES_PATH)
+    if not gates or not surfaces_cfg:
+        return []
+    banned = []
+    for item in gates.get("banned_terms") or []:
+        try:
+            banned.append((str(item["label"]), re.compile(str(item["pattern"]))))
+        except (KeyError, re.error) as exc:
+            return [f"copy gates: banned_terms entry {item!r} invalid: {exc}"]
+    skip = re.compile(str(gates.get("skip_line_pattern") or "$^"))
+
+    files: list[Path] = list(_common_surface_files(root, surfaces_cfg))
+    for attempt in _active_attempts(root, surfaces_cfg):
+        files.extend(_surface_files(root, surfaces_cfg, attempt).values())
+    seen: set[Path] = set()
+    errors: list[str] = []
+    for path in files:
+        if path in seen:
+            continue
+        seen.add(path)
+        for number, line in enumerate(path.read_text(encoding="utf-8").splitlines(), start=1):
+            if skip.search(line):
+                continue
+            for label, pattern in banned:
+                if pattern.search(line):
+                    errors.append(f"public copy: {path.relative_to(root)}:{number} contains banned term '{label}'")
+    return errors
+
+
+def _validate_outcome_axes(root: Path) -> list[str]:
+    """Gate 11: resume outcome titles carry >= N distinct axis words."""
+    gates = _load_yaml_file(root, COPY_GATES_PATH)
+    surfaces_cfg = _load_yaml_file(root, COPY_SURFACES_PATH)
+    axes = gates.get("axes") or {}
+    words = [str(w) for w in (axes.get("words") or [])]
+    minimum = int(axes.get("min_distinct") or 0)
+    if not words or not minimum:
+        return []
+    errors: list[str] = []
+    for attempt in _active_attempts(root, surfaces_cfg):
+        resume = _surface_files(root, surfaces_cfg, attempt).get("resume.tailored")
+        if resume is None:
+            continue
+        block = _bracket_block(resume.read_text(encoding="utf-8"), "outcomes")
+        titles = re.findall(r'\btitle:\s*"([^"]*)"', block)
+        if not titles:
+            continue
+        joined = " ".join(titles)
+        present = [w for w in words if w in joined]
+        if len(present) < minimum:
+            errors.append(
+                f"outcome axes: {resume.relative_to(root)} titles carry {len(present)}/{minimum} axis words "
+                f"({'·'.join(present) or 'none'})"
+            )
+    return errors
+
+
+def _git_changed(root: Path, path: Path) -> bool:
+    import subprocess
+
+    rel = str(path.relative_to(root))
+    try:
+        diff = subprocess.run(["git", "diff", "--quiet", "HEAD", "--", rel], cwd=root, capture_output=True)
+        status = subprocess.run(["git", "status", "--porcelain", "--", rel], cwd=root, capture_output=True, text=True)
+    except (OSError, FileNotFoundError):
+        return False
+    return diff.returncode == 1 or bool(status.stdout.strip())
+
+
+def _validate_frozen_surfaces(root: Path) -> list[str]:
+    """Gate 13: surfaces of frozen attempts must not change (override: COPY_ALLOW_FROZEN=1)."""
+    import os
+
+    gates = _load_yaml_file(root, COPY_GATES_PATH)
+    surfaces_cfg = _load_yaml_file(root, COPY_SURFACES_PATH)
+    if (gates.get("frozen") or {}).get("enforce") != "fail":
+        return []
+    if os.environ.get("COPY_ALLOW_FROZEN") == "1" or not (root / ".git").exists():
+        return []
+    errors: list[str] = []
+    for attempt in _registry_attempts(root):
+        if attempt.get("artifact_state") != "frozen":
+            continue
+        for path in _surface_files(root, surfaces_cfg, attempt).values():
+            if _git_changed(root, path):
+                errors.append(
+                    f"frozen surface: {path.relative_to(root)} changed but attempt {attempt.get('id')} is frozen "
+                    f"(set COPY_ALLOW_FROZEN=1 only with the user's explicit decision)"
+                )
+    return errors
+
+
+def _validate_header_role(root: Path) -> list[str]:
+    """Gate 14: resume header.role starts with the registry attempt's header_role."""
+    gates = _load_yaml_file(root, COPY_GATES_PATH)
+    surfaces_cfg = _load_yaml_file(root, COPY_SURFACES_PATH)
+    require = bool((gates.get("header_role") or {}).get("require_for_active"))
+    errors: list[str] = []
+    for attempt in _active_attempts(root, surfaces_cfg):
+        resume = _surface_files(root, surfaces_cfg, attempt).get("resume.tailored")
+        if resume is None:
+            continue
+        expected = attempt.get("header_role")
+        if not isinstance(expected, str) or not expected.strip():
+            if require:
+                errors.append(f"header role: attempt {attempt.get('id')} has no header_role (registry owns the header title)")
+            continue
+        source = resume.read_text(encoding="utf-8")
+        header = re.search(r"\bheader:\s*\{", source)
+        block = _brace_block(source, header.end() - 1) if header else ""
+        role = re.search(r'\brole:\s*"([^"]*)"', block)
+        actual = role.group(1) if role else ""
+        if not actual.startswith(expected.strip()):
+            errors.append(
+                f"header role: {resume.relative_to(root)} header.role '{actual}' must start with '{expected}' (registry)"
+            )
+    return errors
+
+
+def _validate_hero_sentences(root: Path) -> list[str]:
+    """Gate 16: portfolio introduction and resume summary[0] are at most N sentences."""
+    gates = _load_yaml_file(root, COPY_GATES_PATH)
+    surfaces_cfg = _load_yaml_file(root, COPY_SURFACES_PATH)
+    limit = int((gates.get("hero") or {}).get("max_sentences") or 0)
+    if not limit:
+        return []
+    errors: list[str] = []
+    for attempt in _active_attempts(root, surfaces_cfg):
+        files = _surface_files(root, surfaces_cfg, attempt)
+        portfolio = files.get("portfolio.tailored")
+        if portfolio is not None:
+            source = portfolio.read_text(encoding="utf-8")
+            intro = re.search(r'\bintroduction:\s*"((?:[^"\\]|\\.)*)"', source)
+            if intro:
+                n = _sentence_count(intro.group(1))
+                if n > limit:
+                    errors.append(f"hero sentences: {portfolio.relative_to(root)} introduction has {n} sentences (max {limit})")
+        resume = files.get("resume.tailored")
+        if resume is not None:
+            source = resume.read_text(encoding="utf-8")
+            block = _bracket_block(source, "summary")
+            first = block.find("{")
+            if first != -1:
+                obj = _brace_block(block, first)
+                text = " ".join(re.findall(r'\btext:\s*"((?:[^"\\]|\\.)*)"', obj))
+                n = _sentence_count(text)
+                if n > limit:
+                    errors.append(f"hero sentences: {resume.relative_to(root)} summary[0] has {n} sentences (max {limit})")
+    return errors
+
+
 def validate(root: Path) -> list[str]:
     """Return stable validation failures; an empty list means pass."""
     root = root.resolve()
@@ -482,6 +725,11 @@ def validate(root: Path) -> list[str]:
         + _validate_portfolio_artifact_claims(root)
         + _validate_application_registry(root)
         + _validate_application_projection_drift(root)
+        + _validate_public_copy_terms(root)
+        + _validate_outcome_axes(root)
+        + _validate_frozen_surfaces(root)
+        + _validate_header_role(root)
+        + _validate_hero_sentences(root)
     )
 
 

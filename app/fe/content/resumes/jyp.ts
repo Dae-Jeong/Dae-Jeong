@@ -10,7 +10,6 @@ export const JYP_RESUME = {
   status: "draft",
   visibility: "local",
   updatedAt: "2026-09-03",
-  uiRevision: 3,
   printFlow: "compact",
   sectionOrder: ["profile", "outcomes", "career", "skills", "credentials"],
   header: {
@@ -35,7 +34,8 @@ export const JYP_RESUME = {
     {
       text: "가능성을 제품으로 만들고, 끝까지 책임지는 Product Engineer 김대정입니다. 기획자로 시작해 백엔드로 왔고, 지금은 고객이 구독하는 AI 제품을 만들고 운영합니다.",
       claimIds: ["career.medisolve-role-evolution", "thready.product-zero-to-one-contribution", "career.ai-pm-backend-continuity", "career.sellercanvas-product-system"],
-    },    {
+    },
+    {
       text: "커머스·피부과 운영·SNS 콘텐츠 세 도메인에서 현업의 반복 업무를 제품으로 만들었습니다. AI 활용이 본격화되면서 모두가 메이커로 제품을 만들고 운영하는 팀에서, 백엔드 경험이 적은 팀원도 같은 기준으로 만들 수 있게 FastAPI 조직 표준과 agent 작업 맥락을 직접 구축했습니다.",
       claimIds: [
         "nexus.backend-architecture",
@@ -54,13 +54,13 @@ export const JYP_RESUME = {
       period: "2025.04 —",
       now: true,
       role: [
-        { text: "Backend Engineer", tone: "strong" },
-        { text: " · Tech Lead 역할 병행" },
+        { text: "Tech Lead", tone: "strong" },
+        { text: " · Backend Engineer" },
       ],
       details: [
         "합류 경로 — 초기 멤버로 영입. 법인 설립 전 더데이랩스 프리랜서 기간(2025.02–04)에 피부과 CRM 초기 backend를 선행 구축한 뒤 2025.04 정규 합류",
-        [{ text: "유료 AI 콘텐츠 제품", tone: "strong" }, { text: " — Thready 아이디어 제안, FastAPI 백엔드·별도 AI 실행부·주요 화면(coding agent로 구현) 완성, 생성 품질·외부 AI 장애 운영, 고객이 구독하는 제품으로 출시·운영" }],
-        [{ text: "팀이 함께 쓰는 Backend 기준", tone: "strong" }, { text: " — 백엔드를 모르는 기획·QA·디자인 담당자가 Claude Code·Codex로 운영 제품을 만들 수 있게 FastAPI 조직 표준 template·agent 작업 맥락 직접 구축" }],
+        [{ text: "유료 AI 콘텐츠 제품", tone: "strong" }, { text: " — Thready 아이디어 제안, FastAPI 백엔드·별도 AI 실행부 직접 구현·핵심 화면은 coding agent로 완성, 생성 품질·외부 AI 장애 운영, 고객이 구독하는 제품으로 출시·운영" }],
+        [{ text: "팀이 함께 쓰는 Backend 기준", tone: "strong" }, { text: " — 백엔드를 모르는 기획·QA·디자인 담당자가 coding agent로 운영 제품을 만들 수 있게 FastAPI 조직 표준 template·agent 작업 맥락 직접 구축" }],
         [{ text: "제품 개발 체계·회사 AX", tone: "strong" }, { text: " — 결정·명세·작업·릴리스 기록을 사람과 AI가 같은 맥락으로 읽는 체계 운영, release note 자동화, 요구사항별 evidence로 닫는 QA 판정 규칙과 AI QA 에이전트 파이프라인 연결, 회사 AX 설계 참여" }],
         [{ text: "피부과 운영 제품군 backend", tone: "strong" }, { text: " — 주문·재고 후속 작업의 worker 복구 경계, 여러 지점 운영·예약 backend 구축 주도, 실시간 상담 runtime 안정화 공동 수행" }],
       ],
@@ -158,7 +158,7 @@ export const JYP_RESUME = {
       no: "01",
       title: "백엔드를 모르는 기획자가 coding agent로 운영 제품을 만들 수 있게 FastAPI 기준을 template으로 설계했습니다",
       description: [
-        "팀이 Claude Code·Codex로 기능을 만들기 시작하면서 백엔드 경험이 적은 담당자도 구현에 참여하게 됐습니다. 그러자 QA와 운영 준비 단계에서 사용량이나 동시 요청 조건에 따라 구조적인 문제가 자주 드러났고, 그때마다 백엔드 엔지니어의 리소스가 원인 파악과 보완에 쓰였습니다.",
+        "팀이 coding agent로 기능을 만들기 시작하면서 백엔드 경험이 적은 담당자도 구현에 참여하게 됐습니다. 그러자 QA와 운영 준비 단계에서 사용량이나 동시 요청 조건에 따라 구조적인 문제가 자주 드러났고, 그때마다 백엔드 엔지니어의 리소스가 원인 파악과 보완에 쓰였습니다.",
         {
           text: "기능마다 완벽한 구조를 요구하는 대신 자주 틀리는 경계(session·transaction·계층)를 template 기본값으로 제공하고, Service가 transaction 정책을 선언하게 했습니다.",
           source: "조직 표준 Template",
@@ -166,7 +166,7 @@ export const JYP_RESUME = {
         {
           text: [
             { text: "full template으로 시작한 신규 프로그램의 STG QA에서 " },
-            { text: "같은 session·pool 문제가 재관측되지 않았고", tone: "metric" },
+            { text: "같은 유형의 session·connection 문제가 재관측되지 않았고", tone: "metric" },
             { text: ", 기획·QA·디자인 담당자가 직접 구현하는 동안 백엔드는 피드백·배포 지원으로 개입을 줄였습니다." },
           ],
           source: "조직 표준 Template",
@@ -182,7 +182,7 @@ export const JYP_RESUME = {
     },
     {
       no: "02",
-      title: "사람이 반복하던 Threads 글 제작을 제품 흐름으로 바꿔 고객이 결제하는 서비스로 운영하고, 글의 기준은 실측으로 신뢰를 쌓았습니다",
+      title: "사람이 반복하던 Threads 글 제작을 제품 흐름으로 바꿔 고객이 구독하는 서비스로 운영하고, 글의 기준은 실측으로 신뢰를 쌓았습니다",
       description: [
         "여러 채널을 운영하는 고객은 자료 수집·작성·검수·예약을 매번 반복했고, 좋은 글의 기준은 감에 의존했습니다.",
         {
@@ -214,11 +214,11 @@ export const JYP_RESUME = {
     },
     {
       no: "03",
-      title: "결정·명세·작업·릴리스 기록을 사람과 AI가 같은 맥락으로 읽게 해, 담당자가 바뀌어도 판단의 정합이 유지되는 개발 체계를 운영했습니다",
+      title: "결정·명세·릴리스 기록을 사람과 AI가 같은 맥락으로 읽게 해, 담당자가 바뀌어도 판단의 정합이 유지되는 체계를 운영했습니다",
       description: [
         "제품 간 맥락 공유가 사람에 의존해 요구·판단을 재확인하는 비용이 컸고, 담당 교체·병행 시 실행이 지연되는 병목이 잦았습니다.",
         {
-          text: "결정·명세·작업·릴리스 근거를 실행 원장으로 축적해 사람과 AI가 같은 맥락을 읽게 하되, 우선순위·승인·릴리스 같은 판단은 사람이 확정하는 경계를 지켰습니다. QA는 요구사항별 evidence로 닫는 판정 규칙을 세워 QA 팀의 AI QA 에이전트 파이프라인과 연결했습니다.",
+          text: "결정·명세·작업·릴리스 근거를 실행 원장으로 축적해 사람과 AI가 같은 맥락을 읽게 하되, 우선순위·승인·릴리스 같은 판단은 사람이 확정하는 경계를 지켰습니다. QA는 QA 팀원의 서포트를 받아 요구사항별 evidence로 닫는 판정 규칙을 세우고 QA 팀의 AI QA 에이전트 파이프라인과 연결했습니다.",
           source: "제품 개발 체계",
         },
         {

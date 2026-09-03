@@ -65,6 +65,7 @@ Source locator: `agentspace:mediness`
 - Doc-/Git-backed (2026-09-03, `agentspace:mediness/rules/qa/quality-evidence-harness.md`, author KimMarin, 2026-06-11 신설·06-24 갱신): 기획·정책 요구사항을 `REQ-*`로 쪼개고 각 REQ를 어떤 evidence(FE/DB/Log/Network/AI quality)로 닫을지 정한 뒤 `PASS / FAIL / UNKNOWN`으로 판정하는 전 제품 공통 QA 운영 규칙을 작성했다. 원칙: 실행 성공만으로 PASS 처리하지 않는다, evidence 부족은 UNKNOWN, 반복·release risk 이슈는 자동화 승격, AI 기능은 "응답 생성"과 "품질 기준 만족"을 분리, LLM judge 단독 품질 승인 금지.
 - Doc-backed: 이 하네스는 판정 layer이고 QA 팀의 AI QA 에이전트 파이프라인(QA-MEDI: 시나리오 → TC → 자동화 → 버그 등록, QA 팀장 승인 포인트)은 실행 파이프라인으로 두어 둘을 연결했다. Thready를 첫 제품 adapter로 잡은 WP-038(backlog, author KimMarin)과 백그라운드 작업 fault-injection QA WP-039(proposed, author KimMarin)가 이어진다.
 - User-confirmed (2026-09-03): QA 팀과 함께 QA 과정을 하네스화했고, 그 위에서 AI QA 팀을 운영했다.
+- User-confirmed (2026-09-03): 하네스 구축은 김대정이 설계·문서화를 리드했고, QA 팀원 한 분의 서포트(QA 실무 관점 검토·시나리오 입력)를 받아 완성했다. 공개 문안에서는 "QA 팀원의 서포트를 받아"로 쓰고, 그 팀원의 이름·직급은 쓰지 않는다.
 - Git boundary: QA AI 에이전트 플러그인 `agentspace:QA-MEDI-PLUGIN`의 코드·스킬은 QA 담당(다른 author)이 구현·유지한다. 김대정의 범위는 공통 판정 규칙 설계·문서화(led)와 AI QA 팀 운영 참여(contributed — 운영 주체·기간은 추가 확인 전)다. 플러그인 구현이나 QA 조직 총괄로 확대하지 않는다.
 - Measurement boundary: WP-038·039는 backlog/proposed 상태라 "적용 완료"로 쓰지 않는다. 결함 감소·QA 시간 수치는 없다.
 

@@ -61,7 +61,7 @@ tags: [policy, resume, tailored, packaging, gate]
 
 | ID | 성과 | 결과 문장의 핵심 |
 | --- | --- | --- |
-| A | Thready 제품화·유료 운영 | 결제 고객이 있는 제품, backend·AI·핵심 frontend 직접 구현 |
+| A | Thready 제품화·유료 운영 | 구독 고객이 있는 제품, backend·AI·핵심 frontend 직접 구현 |
 | B | 인계 backend 병렬 재구축 | 대안 비교 → 검증 하네스 → cutover, reopen 37%→11% |
 | C | BAY 비동기 실패 복구 | Celery→TaskIQ 판단, 상태·retry·수동 재처리 경계 |
 | D | AI 서비스 분리·Outbox | 원장/실행 분리, STG 이관 검증, delivery fence |
@@ -77,16 +77,38 @@ tags: [policy, resume, tailored, packaging, gate]
 | 구분 | 항목 | 규칙 |
 | --- | --- | --- |
 | 쓴다 | QA reopen `37% → 11%` (또는 `26%p`) | 재구축 판단·검증 하네스와 **같은 자리**에 둔다. 단독으로 두면 "원래 37%였나"로 읽힌다 |
-| 쓴다 | STG 이관 `2,616 · 795 · 7,111` | 규모가 아니라 **검증 절차**의 근거다. 강조(bold·metric)하지 않는다 |
+| 쓰지 않는다 | STG 이관 `2,616 · 795 · 7,111` | 2026-09-03부터 수치 대신 절차(parent→child 순서 streaming copy, 영구 cross-DB link 없음)로 서술한다. 내부 규모 수치는 도식 공개 수준(2-1)과 같은 이유로 뺀다 |
 | 쓴다 | 팀 성격 `AI 활용이 본격화되며 모두가 메이커로 제품 개발·운영에 참여` | Template 효과의 맥락으로만. 인원 수(`백엔드 2~3명`)로 표준의 이유를 설명하지 않는다 (2026-09-03) |
 | 쓴다 | 특허 등록 `10-2898273`, CES 2024, KCL 통과 | Credentials 섹션. 출원번호는 쓰지 않는다 |
 | 조건부 | corpus `13.1만 행 · 318만 관측` | 데이터 JD일 때 **두 개까지**. 11.1만·18.5만·4,039·20,256을 같이 나열하지 않는다 |
 | 조건부 | 작업 시간 `36시간` | 검증 하네스와 병기할 때만. 단독 사용 금지. AI 시대에 속도 자체는 신호가 약하다 |
 | 쓰지 않는다 | HTTP 5xx 0.3%, 월 수만 건 | baseline이 없고 규모가 작게 읽힌다. 재측정 전 제외 |
-| 쓰지 않는다 | 매출액·band·MRR | 마스킹. `실제 고객이 결제하는`까지 |
+| 쓰지 않는다 | 매출액·band·MRR | 마스킹. 표현은 `실제 고객이 구독하는`까지 (2026-09-03: `결제하는`·`돈을 내는`은 쓰지 않는다, 1-6) |
 | 쓰지 않는다 | UX 컨설팅 DAU 200%·순위 9→5 | confidence medium, 공유받은 수치. `순위·DAU 상승에 기여`까지 |
 | 쓰지 않는다 | 커밋 수·blame 비율 | 내부 근거. 공개 문안에서는 강도 동사로만 |
 | 쓰지 않는다 | 6축 점수, Yolo 정확도, TellingMe 규모 | 기존 금지 유지 |
+| 쓰지 않는다 | 내부 토폴로지 수치 (`6개 root · 400개 state`, `10대 VM · 알림 8개`, VAD ms 파라미터, `모델 추론 약 80%`) | 2-1과 같은 기준. `제품군·환경별 root/state로 변경 범위 격리`처럼 구조로 쓴다 |
+| 쓴다 | 결함 재발 `약 94% 감소(하루 4.5건 → 0.3건)` | 감소율 표기 규칙(1-6). `95%`는 실측(94.1%)을 넘으므로 금지, 재오픈 비율 `37% → 11%`와 같은 자리에 둔다 |
+
+### 1-6. 표현 고정 (2026-09-03)
+
+회사별 지원본을 전수 검토하며 확정한 표현 규칙. 위반 예는 그날 실제로 고친 문장이다.
+
+| 항목 | 규칙 | 고친 예 |
+| --- | --- | --- |
+| 고객 표현 | Thready 고객은 `구독하는`으로 쓴다. `결제하는`·`돈을 내는`·`기회를 결제하는`은 쓰지 않는다 | `고객이 돈을 내는 이유` → `고객이 구독하는 이유` |
+| 내부 제품명 | [public-safety Internal Product Names](public-safety.md#internal-product-names-2026-09-03) 표를 따른다. source 라벨·tag·highlight도 예외 없음 | `Centurion · 주문·재고` → `피부과 운영 제품군 · 주문·재고` |
+| 도구명 위치 | `Claude Code · Codex`·`Next.js` 같은 도구·프레임워크명은 **기술 스택 줄에만** 쓴다. 본문 서술은 `coding agent`, `핵심 화면은 coding agent로 완성` | `팀이 Claude Code·Codex로 기능을 만들기 시작하면서` → `팀이 coding agent로 …` |
+| 역할 표기 | 헤더 직함은 공고 직무명이 앞 (`Backend Engineer · Tech Lead`, `Software Engineer / AI · Backend Engineer`). 회사 행 직함은 공식 명칭 `Tech Lead · Backend Engineer`. `역할 병행`·`스쿼드 리더`는 쓰지 않는다 | `Backend Engineer · Tech Lead 역할 병행` → 위 두 형태 |
+| 감소율 표기 | 감소는 `약 N% 감소(전 → 후)`. N은 실측을 넘지 않게 내림(94.1 → 약 94). 비율 지표(재오픈 37% → 11%)는 감소율로 다시 감싸지 않는다. `3분의 1`류 어림 표현 금지 | `결함 재발이 3분의 1로` → `약 94% 줄었습니다` |
+| 결과 문장의 지시 대상 | 문제 문장을 일반화했으면 결과 문장도 같은 수준으로 (`같은 유형의 session·connection 문제`). 앞에서 소개하지 않은 것을 `같은 …`으로 가리키지 않는다 | `같은 session·pool 문제가 재관측되지 않았습니다` |
+| 문서 방어 문장 | 일이 아니라 문서를 방어하는 문장(`…같은 숫자로 보이지 않게 했습니다`, `…주장은 다릅니다`)은 쓰지 않는다. boundary 필드 한 곳에서만 경계를 말한다 | 포폴 SNS data 블록 제목·본문 교체 |
+| 상태 라벨 | `local draft`·`local 적재 검증` 같은 작업 상태는 description·tag에도 쓰지 않는다 | 피처링 포폴 description |
+| 협업 표기 | QA 판정 규칙은 `QA 팀원의 서포트를 받아` (이름·직급 없음, `한 분의` 같은 구어 없음). `혼자`로 쓰지 않는다 | claim `mediness.quality-evidence-harness` |
+| 하네스 표현 | 재구축 검증 하네스는 `패턴·계층·검증 하네스` 한 가지로 | 세 문서에 세 가지 목록이 있었음 |
+| 공통 문서 동기화 | 회사별 문안 규칙이 바뀌면 `/resume`(resume-view.tsx)·`/career/common`·`/cv/common`(documents/common.ts)·`lib/cases.ts`도 **같은 작업에서** 맞춘다. 공통은 fallback이 아니라 같은 기준의 문서다 | 2026-09-03 공통 v2 동기화 |
+| 헤더 레이아웃 | tailored 이력서는 하나의 헤더(사진 포함)·번호 섹션을 쓴다. 회사별 CSS override·`uiRevision` 분기는 만들지 않는다 | JYP 전용 CSS 모듈·uiRevision 3 삭제 |
+| 제출 완료·종료 패키지 | registry `artifact_state: frozen`인 패키지(진행 중인 왓섭, 탈락한 MGRV·GNA·피노키오랩 등)는 **스냅샷이다**. 문안도 `visibility`도 소급 수정하지 않는다. 게이트 12도 frozen·rejected는 건너뛴다 (2026-09-03 결정) | 왓섭 이력서·포폴 무변경, 탈락 7곳 legacy snapshot으로 동결 |
 
 ---
 
@@ -145,18 +167,24 @@ tags: [policy, resume, tailored, packaging, gate]
 
 | # | 게이트 | 위반 예 (2026-09-02 JYP·피처링 초안) |
 | --- | --- | --- |
-| 1 | 헤더 직함이 공고 직무명과 같다 | 피처링(백엔드 공고) 헤더 `Tech Lead · Backend Engineer` |
+| 1 | 헤더 직함은 공고 직무명이 앞이다 (회사 행 직함은 공식 명칭, 1-6) | 피처링(백엔드 공고) 헤더 `Tech Lead · Backend Engineer` |
 | 2 | 소개에 15초 문장 세 사실이 다 있다 | JYP 소개에 `기획자 출신` 누락 |
 | 3 | 회사 행마다 제목줄에 재직 사유가 있다 (폐업 · 초기 멤버 영입 · 설립 전 프리랜서) | JYP Memento 행에 `회사 폐업으로 종료` 누락 |
 | 4 | `범위 밖·미측정·참여·일부`로 **끝나는** 문장이 0건이다 | 피처링 01 `production crawler 운영은 범위 밖`, JYP 02 `정확한 수치는 미측정` |
 | 5 | 내부 용어와 영문 조합 번역투가 0건이다 | 공통 기술 섹션 `Decision · SPEC · Work Package · human gate` |
-| 6 | 도구명이 명시돼 있다 (Claude Code · Codex · SQLAlchemy 2.0 async · Sentry · Jira) | JYP `Coding Agent`로만 표기 |
+| 6 | 도구명이 **기술 스택 줄**에 명시돼 있다 (Claude Code · Codex · SQLAlchemy 2.0 async · Sentry · Jira). 본문은 `coding agent` (1-6) | JYP 스택 줄에 도구명 없음 / 본문에 `Claude Code·Codex` 반복 |
 | 7 | 1-4 금지 수치가 0건이고, 선택한 블록의 허용 수치가 빠지지 않았다 | 피처링 02에서 reopen 37→11 누락, corpus 수치 5개 나열 |
 | 8 | 특허는 등록번호만, KCL은 통과 사실만이다 | 피처링 credentials에 출원번호 병기 |
 | 9 | 성과마다 `문제 → 판단 → 구현 경계 → 결과` 네 칸이 다 있다 | JYP 01 evidence 첫 줄 "우선순위·기준을 조율" (판단·결과 없음) |
 | 10 | 이력서의 모든 기술 문장을 30초 안에 구두로 설명할 수 있다 | `async 실행 모델 정합성으로 TaskIQ 선택` ← 이벤트 루프를 설명할 수 있어야 낸다 |
 
 | 11 | 대표 성과 제목 4개 안에 성능·보장·신뢰·멱등·정합·설계 중 **4개 이상**의 단어가 드러난다 (1-5) | 2026-09-03 이전 피처링·JYP: 기전은 있으나 `보장·신뢰·성능` 단어 0회 |
+| 13 | frozen 패키지(registry `artifact_state: frozen`)의 표면 파일이 변경되지 않았다. `tools/validate_workspace.py` 자동. 해제는 사용자 결정 + `make verify ARGS=--allow-frozen` | 2026-09-03 탈락 7곳·왓섭 스냅샷 동결 |
+| 14 | 이력서 헤더 `header.role`이 registry `header_role`로 시작한다 (registry가 헤더 직함의 owner). 자동 | 2026-09-03 피처링 헤더를 `Tech Lead · Backend Engineer`로 바꿔 게이트 1을 깨뜨림 |
+| 16 | 포폴 `introduction`·이력서 `summary[0]`이 두 문장 이하다. 자동 | 2026-09-03 JYP 포폴 소개 3문장 |
+| 12 | 공개 금지어가 0건이다 — `Centurion`·`BAY`·`SAY`·`NEXUS`·`돈을 내는`·`95%`·`2~3명`·`스쿼드 리더`·`3분의 1`·`local draft`·`대체된다`. `tools/validate_workspace.py`가 registry의 진행 중(pre-apply·in-progress, frozen 아님) 패키지 표면과 공통 표면(`/resume`·common.ts·cases.ts)에서 자동 검사한다 | 2026-09-03 이전 공통 경력기술서 `BAY 비동기 Backend · SAY 실시간 상담`, cases `고객이 돈을 내는 이유` |
+
+게이트 11~16 중 자동 항목은 `make verify`가 돌리고, 검사 데이터는 [copy-gates.yaml](copy-gates.yaml)이, 검사 대상 표면은 [copy-surfaces.yaml](../products/site/copy-surfaces.yaml)이 소유한다. 게이트 15(공유 사실 문자열)는 P1이다.
 
 게이트 10은 학습 갭에 대한 규칙이다. 설명할 수 없는 문장은 **빼지 않고** 면접 전까지 학습 진도를 맞춘다.
 문장을 빼면 근거 있는 성과를 버리는 것이고, 설명 없이 내면 면접에서 무너진다.
@@ -181,6 +209,7 @@ tags: [policy, resume, tailored, packaging, gate]
 
 - [Persuasive Writing Policy](persuasive-writing.md) — 문장 규칙
 - [Evidence Policy](evidence-policy.md) — 강도·confidence
+- [Application Copy Harness](application-copy-harness.md) — 이렇게 관리한다: SoT → 표면 → verify → 래칫 흐름과 owner 표
 - [Public Safety](public-safety.md) — 공개 범위
 - [Resume Role Positioning Standard](../products/resume/role-positioning-standard.md) — 역할 전달
 - [Resume Block Library](../products/resume/resume-block-library.md) — 블록 문안 SoT

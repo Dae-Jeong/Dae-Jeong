@@ -2,7 +2,7 @@
 type: index
 title: Idea Backlog
 description: 떠오른 기획·아이디어를 폴더 단위로 적재하는 단일 inbox. 착수 확정 시 spec/task로 승격한다.
-timestamp: 2026-09-01
+timestamp: 2026-09-03
 tags: [backlog, ideas, planning]
 ---
 
@@ -33,3 +33,4 @@ Status: `idea`(등록) → `spec`(설계 확정) → `wip`(착수) → `done` ·
 | [english-resume](english-resume/README.md) | 영문 이력서 마스터 트랙 — claim 기반 재작성, 영문 표현 상한 정의 선행 | idea | 2026-07-16 |
 | [application-package-archive](application-package-archive/README.md) | 회사별 application lifecycle registry로 승격 · backlog는 historical design record | done | 2026-08-15 |
 | [resume-assembly-kit](resume-assembly-kit/README.md) | 검증된 이력서·포트폴리오 문안을 block과 직군 preset으로 조립 | idea | 2026-08-31 |
+| [agent-harness-operationalization](agent-harness-operationalization/README.md) | 기존 knowledge harness에 실행 루프·센서·권한·관측·래칫을 최소 구성으로 보강 — [design-v1](agent-harness-operationalization/design-v1.md) 작성, P0 착수 대기 | idea | 2026-09-03 |

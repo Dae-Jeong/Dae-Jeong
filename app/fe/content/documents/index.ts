@@ -25,6 +25,22 @@ export function canViewDocument(document: CareerDescriptionDocument | CvDocument
   return process.env.NODE_ENV !== "production" || document.visibility === "public";
 }
 
+export function listCareerDescriptions() {
+  return Object.entries(CAREER_DOCUMENTS).map(([slug, document]) => ({
+    slug,
+    label: document.title,
+    visibility: document.visibility,
+  }));
+}
+
+export function listCvs() {
+  return Object.entries(CV_DOCUMENTS).map(([slug, document]) => ({
+    slug,
+    label: document.title,
+    visibility: document.visibility,
+  }));
+}
+
 export type {
   CareerCompany,
   CareerDescriptionDocument,

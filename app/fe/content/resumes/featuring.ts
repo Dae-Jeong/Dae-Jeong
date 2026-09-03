@@ -10,7 +10,6 @@ export const FEATURING_RESUME = {
   status: "draft",
   visibility: "local",
   updatedAt: "2026-09-03",
-  uiRevision: 3,
   printFlow: "compact",
   sectionOrder: [
     "profile",
@@ -22,7 +21,7 @@ export const FEATURING_RESUME = {
   ],
   header: {
     name: "김대정",
-    role: "Backend Engineer · Tech Lead 역할 병행",
+    role: "Backend Engineer · Tech Lead",
     photoSrc: "/profile/daejeong-profile-v2.png",
     careerLine: [
       { text: "실무 4년차", tone: "strong" },
@@ -42,8 +41,9 @@ export const FEATURING_RESUME = {
     {
       text: "가능성을 제품으로 만들고, 끝까지 책임지는 Product Engineer 김대정입니다. 기획자로 시작해 백엔드로 왔고, 지금은 고객이 구독하는 AI 제품을 만들고 운영합니다.",
       claimIds: ["career.medisolve-role-evolution", "thready.product-zero-to-one-contribution", "career.ai-pm-backend-continuity", "career.sellercanvas-product-system"],
-    },    {
-      text: "아이디어를 제안한 AI 콘텐츠 제품의 FastAPI 백엔드와 AI 실행부를 직접 만들어 고객이 구독하는 서비스로 운영하고 있습니다. AI 활용이 본격화되면서 모두가 메이커로 제품을 만들고 운영하는 팀에서, 백엔드 경험이 적은 팀원도 같은 기준으로 만들 수 있게 FastAPI 표준 template과 transaction·session 경계를 직접 구축했습니다.",
+    },
+    {
+      text: "아이디어를 제안한 AI 콘텐츠 제품의 FastAPI 백엔드와 AI 실행부를 직접 만들었습니다. AI 활용이 본격화되면서 모두가 메이커로 제품을 만들고 운영하는 팀에서, 백엔드 경험이 적은 팀원도 같은 기준으로 만들 수 있게 FastAPI 표준 template과 transaction·session 경계를 직접 구축했습니다.",
       claimIds: [
         "thready.product-zero-to-one-contribution",
         "thready.subscription-revenue-band",
@@ -61,12 +61,12 @@ export const FEATURING_RESUME = {
       period: "2025.04 —",
       now: true,
       role: [
-        { text: "Backend Engineer", tone: "strong" },
-        { text: " · Tech Lead 역할 병행" },
+        { text: "Tech Lead", tone: "strong" },
+        { text: " · Backend Engineer" },
       ],
       details: [
         "합류 경로 — 초기 멤버로 영입. 법인 설립 전 더데이랩스 프리랜서 기간(2025.02–04)에 피부과 CRM 초기 backend·개발 기준을 선행 구축한 뒤 2025.04 정규 합류",
-        [{ text: "Thready", tone: "strong" }, { text: " — 아이디어 제안 · 제품 운영 리드 · FastAPI backend·AI 생성/평가 직접 구현 · 핵심 화면은 coding agent로 완성 · 고객이 결제하는 제품으로 출시" }],
+        [{ text: "Thready", tone: "strong" }, { text: " — 아이디어 제안 · 제품 운영 리드 · FastAPI backend·AI 생성/평가 직접 구현 · 핵심 화면은 coding agent로 완성 · 고객이 구독하는 제품으로 출시" }],
         [{ text: "backend 재구축·AI 실행부 분리", tone: "strong" }, { text: " — prototype backend를 FastAPI로 병렬 재구축해 전환, 독립 AI application·DB 분리와 Transactional Outbox 전달 경계, 실사용 backend 운영 전담" }],
         [{ text: "SNS 데이터", tone: "strong" }, { text: " — Threads 관측 데이터의 outcome 기준 설계, corpus 멱등 importer·사람 평가 workbench 구축" }],
         [{ text: "피부과 운영 제품군 backend", tone: "strong" }, { text: " — 주문·재고 worker 복구 경계, 여러 지점 운영·예약 backend 구축 주도, 실시간 상담 runtime 안정화 공동 수행" }],
@@ -188,7 +188,7 @@ export const FEATURING_RESUME = {
     },
     {
       no: "02",
-      title: "규칙을 먼저 설계한 뒤 돌아가는 제품을 멈추지 않고 backend를 교체했고, 결함 재발이 하루 4.5건에서 0.3건으로 줄었습니다",
+      title: "규칙을 먼저 설계한 뒤 돌아가는 제품을 멈추지 않고 backend를 교체했고, 결함 재발이 약 94% 줄었습니다",
       description: [
         "빠른 검증 중심으로 만들어진 초기 backend는 도메인 의존성이 얽혀 회원 로직 변경이 AI 생성 중단으로 이어졌고, 해결된 QA 이슈가 같은 영역에서 다른 형태로 재발했습니다.",
         {
@@ -199,9 +199,9 @@ export const FEATURING_RESUME = {
           text: [
             { text: "같은 기준의 Jira 집계에서 해결된 QA 이슈 재오픈 비율 " },
             { text: "37% → 11%", tone: "metric" },
-            { text: ", 재발 발생 " },
-            { text: "하루 4.5건 → 0.3건", tone: "metric" },
-            { text: ". 전환 뒤 실제 사용자가 쓰는 제품의 backend 배포·QA·운영을 계속 전담하고 있습니다." },
+            { text: ", 재발 발생 일평균 " },
+            { text: "약 94% 감소", tone: "metric" },
+            { text: "(하루 4.5건 → 0.3건). 전환 뒤 실제 사용자가 쓰는 제품의 backend 배포·QA·운영을 계속 전담하고 있습니다." },
           ],
           source: "Thready · Jira",
         },
@@ -222,15 +222,15 @@ export const FEATURING_RESUME = {
         "주문 생성 뒤 외부 알림이 따로 실패할 수 있었고, service마다 계층·session 규칙이 달라 복구와 review 기준도 달랐습니다. 팀이 coding agent로 만들기 시작하면서 QA와 운영 준비 단계에서 사용량·동시 요청 조건에 따른 구조적 문제가 자주 드러나 백엔드 리소스가 보완에 쓰였습니다.",
         {
           text: "실패 가능한 작업은 API 요청 밖 worker 경계에서 처리하고 실패를 주문 상태로 승격했습니다. session을 모든 계층에 넘기는 대신 Service가 transaction 정책을 선언하는 template을 세웠고, 실시간 상담(공동 주 기여)에서는 외부 모델 세션이 끊겨도 겹치는 세션 풀과 sequence 병합으로 순서를 보장했습니다.",
-          source: "Centurion · 주문·재고 / 실시간 상담 / 조직 표준",
+          source: "피부과 운영 제품군 · 주문·재고 / 실시간 상담 / 조직 표준",
         },
         {
           text: [
             { text: "재시도가 끝나도 원인과 상태가 남아 운영자가 다시 처리할 수 있고, " },
-            { text: "full template으로 시작한 신규 프로그램의 STG QA에서 같은 session·pool 문제가 재관측되지 않았습니다", tone: "metric" },
-            { text: ". 실시간 지연은 VAD가 아니라 모델 추론이 병목임을 실측해 조기 trigger에 집중했고, 재연결 경합은 13개 회귀로 고정했습니다." },
+            { text: "full template으로 시작한 신규 프로그램의 STG QA에서 같은 유형의 session·connection 문제가 재관측되지 않았습니다", tone: "metric" },
+            { text: ". 실시간 상담은 외부 모델 세션이 끊겨도 발화 순서가 유지되는 경계를 확보했습니다." },
           ],
-          source: "Centurion · 조직 표준",
+          source: "피부과 운영 제품군 · 조직 표준",
         },
       ],
       claimIds: [
@@ -299,7 +299,7 @@ export const FEATURING_RESUME = {
     {
       label: "Architecture / Test",
       stack: "Layered Architecture · DI · Repository Pattern · pytest · Ruff · Pyright · Docker CI · ADR · runbook",
-      via: "service·repository·transaction 책임과 integration test 기준 운영. 요구사항별 evidence로 닫는 QA 판정 규칙(PASS/FAIL/UNKNOWN)을 설계해 QA 팀의 AI QA 에이전트 파이프라인과 연결",
+      via: "service·repository·transaction 책임과 integration test 기준 운영. QA 팀원의 서포트를 받아 요구사항별 evidence로 닫는 QA 판정 규칙(PASS/FAIL/UNKNOWN)을 설계해 QA 팀의 AI QA 에이전트 파이프라인과 연결",
       claimIds: [
         "mediness.quality-evidence-harness",
         "be-template.backend-standard",
