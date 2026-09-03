@@ -31,7 +31,7 @@ export const MIRIDIH_RESUME = {
   },
   summary: [
     {
-      text: "가능성을 제품으로 만들고, 끝까지 책임지는 Product Engineer 김대정입니다. 기획자로 시작해 백엔드로 왔고, 지금은 고객이 구독하는 AI 제품을 만들고 운영합니다.",
+      text: "가능성을 기회로 바꾸고, 제품으로 가치를 전하는 메이커 김대정입니다.",
       claimIds: [
         "career.tenure",
         "career.medisolve-role-evolution",
@@ -41,7 +41,7 @@ export const MIRIDIH_RESUME = {
       ],
     },
     {
-      text: "아이디어를 제안한 AI 콘텐츠 제품의 FastAPI 백엔드와 AI 생성·평가 시스템을 직접 만들고, 핵심 화면은 coding agent로 완성해 운영합니다. 커머스(생성형 AI 상세페이지)·피부과 운영·SNS 콘텐츠 세 도메인에서 현업의 반복 업무를 실제로 쓰이는 제품으로 만들었고, 대규모 콘텐츠 데이터를 검수 가능한 구조와 사람 평가 워크벤치로 바꿨습니다.",
+      text: "기획자로 시작해 백엔드로 왔고, 아이디어를 제안한 AI 콘텐츠 제품의 FastAPI 백엔드와 AI 생성·평가 시스템을 직접 만들고 핵심 화면은 coding agent로 완성해 고객이 구독하는 서비스로 운영합니다. 커머스(생성형 AI 상세페이지)·피부과 운영·SNS 콘텐츠 세 도메인에서 현업의 반복 업무를 실제로 쓰이는 제품으로 만들었고, 대규모 콘텐츠 데이터를 검수 가능한 구조와 사람 평가 워크벤치로 바꿨습니다.",
       claimIds: [
         "thready.product-zero-to-one-contribution",
         "thready.frontend-product-delivery",

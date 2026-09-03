@@ -1,10 +1,10 @@
 ---
 type: platform-copy
 title: Wanted 프로필 문안
-description: 원티드 프로필의 canonical 문안 (Product Engineer v3).
+description: 원티드 프로필의 canonical 문안 (Maker v4).
 platform: wanted
 url: https://social.wanted.co.kr/my/profile
-version: product-engineer-v3
+version: maker-v4
 timestamp: 2026-09-03
 tags: [platform, profile, canonical, product-engineer]
 ---
@@ -34,15 +34,15 @@ tags: [platform, profile, canonical, product-engineer]
 ### 프로필 소개 · 150자
 
 ```text
-가능성을 제품으로 만들고, 끝까지 책임지는 Product Engineer 김대정입니다. 기획자로 시작해 백엔드로 왔고, 지금은 고객이 구독하는 AI 제품을 만들고 운영합니다.
+가능성을 기회로 바꾸고, 제품으로 가치를 전하는 메이커 김대정입니다. 기획자로 시작해 백엔드로 왔고, 아이디어를 제안한 AI 콘텐츠 제품을 고객이 구독하는 서비스로 만들어 운영합니다.
 ```
 
 ### 이력서 간단 소개 · 제한 없음
 
 ```text
-가능성을 제품으로 만들고, 끝까지 책임지는 Product Engineer 김대정입니다. 기획자로 시작해 백엔드로 왔고, 지금은 고객이 구독하는 AI 제품을 만들고 운영합니다.
+가능성을 기회로 바꾸고, 제품으로 가치를 전하는 메이커 김대정입니다.
 
-아이디어를 제안한 AI 콘텐츠 제품의 FastAPI 백엔드와 AI 생성·평가 시스템을 직접 만들고, 핵심 화면은 coding agent로 완성해 운영합니다. 커머스·피부과 운영·SNS 콘텐츠 세 도메인에서 현업의 반복 업무를 실제로 쓰이는 제품으로 만들었고, 백엔드 경험이 적은 팀원도 같은 기준으로 만들 수 있게 FastAPI 조직 표준을 직접 구축했습니다.
+기획자로 시작해 백엔드로 왔고, 아이디어를 제안한 AI 콘텐츠 제품의 FastAPI 백엔드와 AI 생성·평가 시스템을 직접 만들고 핵심 화면은 coding agent로 완성해 고객이 구독하는 서비스로 운영합니다. 커머스·피부과 운영·SNS 콘텐츠 세 도메인에서 현업의 반복 업무를 실제로 쓰이는 제품으로 만들었고, 백엔드 경험이 적은 팀원도 같은 기준으로 만들 수 있게 FastAPI 조직 표준을 직접 구축했습니다.
 
 대규모 콘텐츠 데이터를 검수 가능한 구조와 사람 평가 워크벤치로 바꿨고, 시술 정보 지식 플랫폼의 hybrid retrieval API와 평가 게이트를 설계·구현하고 있습니다.
 ```

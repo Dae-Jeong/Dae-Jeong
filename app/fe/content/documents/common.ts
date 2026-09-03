@@ -231,7 +231,7 @@ export const COMMON_CAREER_DESCRIPTION: CareerDescriptionDocument = {
   role: "Tech Lead · Backend Engineer · 실무 4년차",
   contacts: CONTACTS,
   summary: [
-    "가능성을 제품으로 만들고, 끝까지 책임지는 Product Engineer 김대정입니다. 기획자로 시작해 백엔드로 왔고, 지금은 고객이 구독하는 AI 제품을 만들고 운영합니다.",
+    "기획자로 시작해 백엔드로 왔고, 아이디어를 제안한 AI 콘텐츠 제품의 FastAPI 백엔드와 AI 생성·평가 시스템을 직접 만들고 핵심 화면은 coding agent로 완성해 고객이 구독하는 서비스로 운영합니다.",
     "Python·FastAPI를 중심으로 API·transaction·비동기 worker·AI runtime을 구축하며, 실패를 확인하고 복구할 수 있는 운영 경계를 함께 만듭니다.",
   ],
   companies: [
@@ -347,7 +347,7 @@ export const COMMON_CV: CvDocument = {
   role: "Tech Lead · Backend Engineer · 실무 4년차",
   contacts: CONTACTS,
   summary:
-    "가능성을 제품으로 만들고, 끝까지 책임지는 Product Engineer 김대정입니다. Vision AI Engineer와 Product Manager를 거쳐 Backend Engineer로 역할을 넓혔고, 현재는 고객이 구독하는 AI 제품의 제품 운영과 FastAPI Backend·AI application을 함께 맡고 있습니다.",
+    "가능성을 기회로 바꾸고, 제품으로 가치를 전하는 메이커 김대정입니다. Vision AI Engineer와 Product Manager를 거쳐 Backend Engineer로 역할을 넓혔고, 현재는 고객이 구독하는 AI 제품의 제품 운영과 FastAPI Backend·AI application을 함께 맡고 있습니다.",
   employment: [
     {
       organization: "MediSolve AI",

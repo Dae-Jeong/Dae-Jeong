@@ -6,6 +6,8 @@ timestamp: 2026-09-03
 tags: [identity, branding, product-engineer]
 ---
 
+> **2026-09-03 폐기**: 확장형 문장은 폐기됐다. 브랜딩 문장은 canonical Maker 한 문장뿐이며 문서별로 바꾸지 않는다([identity](identity.md)). 이 문서는 Product Engineer를 헤더 직함으로 쓰는 근거와 검토 기록으로만 남는다.
+
 # Product Engineer 관점 브랜딩 (2026-09-03, user-confirmed)
 
 [identity.md](identity.md)의 브랜드 정체성(Maker)은 그대로다. 이 문서는 그 아래 층, 채용 리뷰어에게 "무엇을 하는 사람인가"를 답하는 자기 정의를 소유한다.

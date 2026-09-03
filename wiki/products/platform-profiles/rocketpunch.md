@@ -1,10 +1,10 @@
 ---
 type: platform-copy
 title: RocketPunch 프로필 문안
-description: 로켓펀치 프로필의 canonical 문안 (Product Engineer v3). 300자 소개.
+description: 로켓펀치 프로필의 canonical 문안 (Maker v4). 300자 소개.
 platform: rocketpunch
 url: https://www.rocketpunch.com/@marinkim
-version: product-engineer-v3
+version: maker-v4
 timestamp: 2026-09-03
 tags: [platform, profile, canonical, product-engineer]
 ---
@@ -28,7 +28,7 @@ tags: [platform, profile, canonical, product-engineer]
 ### 소개 · 300자
 
 ```text
-가능성을 제품으로 만들고, 끝까지 책임지는 Product Engineer 김대정입니다. 기획자로 시작해 백엔드로 왔고, 지금은 고객이 구독하는 AI 제품을 만들고 운영합니다. FastAPI 백엔드·AI 생성/평가 시스템을 직접 만들고 핵심 화면은 coding agent로 완성했으며, 대규모 콘텐츠 데이터를 검수 가능한 구조와 평가 워크벤치로 바꿨습니다. https://marinkim.xyz
+가능성을 기회로 바꾸고, 제품으로 가치를 전하는 메이커 김대정입니다. 기획자로 시작해 백엔드로 왔고, FastAPI 백엔드·AI 생성/평가 시스템을 직접 만들고 핵심 화면은 coding agent로 완성했으며, 대규모 콘텐츠 데이터를 검수 가능한 구조와 평가 워크벤치로 바꿨습니다. https://marinkim.xyz
 ```
 
 ### MediSolve AI 경력 · 제한 없음

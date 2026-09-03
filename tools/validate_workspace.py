@@ -704,6 +704,12 @@ def _validate_hero_sentences(root: Path) -> list[str]:
             m = re.search(r'^  subtitle:\s*"((?:[^"\\]|\\.)*)"', csrc, re.M)
             if m and m.group(1).strip() != str(subtitle_expected).strip():
                 errors.append(f"career subtitle: {career.relative_to(root)} subtitle must be the brand line (§1-1), got '{m.group(1)[:40]}…'")
+        brand = (gates.get("hero") or {}).get("brand_line")
+        if portfolio is not None and brand:
+            hsrc = portfolio.read_text(encoding="utf-8")
+            hm = re.search(r'\bheadline:\s*"((?:[^"\\]|\\.)*)"', hsrc)
+            if hm and hm.group(1).strip() != str(brand).strip():
+                errors.append(f"brand line: {portfolio.relative_to(root)} headline must be the brand line, got '{hm.group(1)[:40]}…'")
         resume = files.get("resume.tailored")
         if resume is not None:
             source = resume.read_text(encoding="utf-8")
@@ -715,6 +721,8 @@ def _validate_hero_sentences(root: Path) -> list[str]:
                 n = _sentence_count(text)
                 if n > limit:
                     errors.append(f"hero sentences: {resume.relative_to(root)} summary[0] has {n} sentences (max {limit})")
+                if brand and text.strip() != str(brand).strip():
+                    errors.append(f"brand line: {resume.relative_to(root)} summary[0] must be the brand line, got '{text[:40]}…'")
     return errors
 
 

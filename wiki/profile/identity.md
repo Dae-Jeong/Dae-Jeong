@@ -34,14 +34,14 @@ tags: [identity, positioning, branding]
 - Vision AI Engineer → PM → Backend Engineer 전환을 직무 나열이 아니라, 제품에 더 크게 기여하기 위해 필요한 역할과 역량을 확장해온 서사로 표현한다.
 - 공개 이력서에서는 `Tech Lead`를 primary, `Backend Engineer`를 supporting role로 사용한다.
 
-## 확장형 한 문장 (2026-09-03 신설, user-confirmed)
+## 확장형 한 문장 — 폐기 (2026-09-03 같은 날)
 
-> 가능성을 제품으로 만들고, 끝까지 책임지는 Product Engineer 김대정입니다.
+같은 날 오전에 회사별 소개 첫 줄용으로 `가능성을 제품으로 만들고, 끝까지 책임지는 Product Engineer 김대정입니다.`를 만들었으나, **브랜딩 문장은 하나여야 하고 문서별로 바꾸지 않는다**는 user-confirmed 원칙(2026-09-01 "내 한문장은 변경되면 안될것 같아", 2026-09-03 "문서별로 브랜딩 문장을 자꾸 바꿔… 바꾸면 안된다")에 따라 폐기했다.
 
-- `Canonical One-Line`은 바꾸지 않는다. 이 문장은 회사별 지원본(포트폴리오 hero·이력서 소개 첫 줄)에서만 쓰는 확장형이다. 홈 hero와 공통 소개는 canonical 그대로다. Product Engineer 관점의 브랜딩 전체는 [branding-product-engineer.md](branding-product-engineer.md)가 소유한다.
-- 구조: 메이커 문장의 움직임(가능성 → 제품 → 가치)을 뼈대로, Product Engineer의 닻(결과·책임)을 술어로. "고객이 돈을 내는"은 Differentiator 줄의 표현을 그대로 가져온 사실 후킹이다.
-- 버린 표현: `기회를 결제하는 제품으로`(명사 3단 반복·주어 불명확, AI 번역투), `백엔드로 책임지는`(헤더의 공고 직무명이 이미 백엔드를 말하므로 중복), `고객이 돈을 내는 제품으로`(자기소개 첫 줄에서는 날것으로 읽히고 목적어 안에 관형절이 겹침 → 결제 사실은 둘째 문장 `고객이 구독하는 AI 제품`으로).
-- 15초 문장의 첫 사실(기획자 출신)은 바로 뒤 문장 `기획자로 시작해 백엔드로 왔고, 지금은 고객이 구독하는 AI 제품을 만들고 운영합니다.`가 잇는다. Product Engineer 뒤에 슬래시로 다른 직함을 붙이지 않는다(Dual Track 규칙과 동일).
+- 모든 소개의 첫 줄은 `Canonical One-Line` 그대로다. 회사별·플랫폼별 예외 없음. 게이트 16이 이력서 summary[0]·경력기술서 부제·포폴 headline을 검사한다.
+- `Product Engineer`는 자기 정의(Self-definition)로 남아 **헤더 직함·역할 표기**에만 쓴다. 문장으로 만들지 않는다.
+- 둘째 문단은 15초 문장의 첫 사실로 시작한다: `기획자로 시작해 백엔드로 왔고, …`. `지금은 고객이 구독하는 AI 제품을 만들고 운영합니다` 같은 추상 문장은 쓰지 않고, 무엇을 만들어 운영하는지 구체 문장으로 잇는다.
+- 검토 기록은 [branding-product-engineer.md](branding-product-engineer.md)에 남긴다 (폐기 사유 포함).
 
 ## 기술 주장의 축
 

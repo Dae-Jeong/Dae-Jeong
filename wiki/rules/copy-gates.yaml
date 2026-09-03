@@ -37,8 +37,9 @@ header_role:
 hero:
   max_sentences: 2
   introduction_prefix: "기획자로 시작해"
-  # 회사별 경력기술서 부제(문서 첫 줄)는 브랜딩 확장형 한 문장 그대로 (§1-1). 공통은 canonical Maker 문장
-  career_subtitle: "가능성을 제품으로 만들고, 끝까지 책임지는 Product Engineer 김대정입니다."
+  brand_line: "가능성을 기회로 바꾸고, 제품으로 가치를 전하는 메이커 김대정입니다."
+  # 브랜딩 문장은 하나다(2026-09-03 user-confirmed: 문서별로 바꾸지 않는다). 이력서 summary[0]·경력기술서 부제·포폴 headline 모두 이 문장과 같아야 한다
+  career_subtitle: "가능성을 기회로 바꾸고, 제품으로 가치를 전하는 메이커 김대정입니다."
 
 # 게이트 17 — 플랫폼 필드 글자 수. `### 이름 · N자` 제목 바로 아래 ```text 블록의 길이(줄바꿈 제외) ≤ N
 platform_fields:

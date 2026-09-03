@@ -32,11 +32,11 @@ export const JYP_RESUME = {
   },
   summary: [
     {
-      text: "가능성을 제품으로 만들고, 끝까지 책임지는 Product Engineer 김대정입니다. 기획자로 시작해 백엔드로 왔고, 지금은 고객이 구독하는 AI 제품을 만들고 운영합니다.",
+      text: "가능성을 기회로 바꾸고, 제품으로 가치를 전하는 메이커 김대정입니다.",
       claimIds: ["career.medisolve-role-evolution", "thready.product-zero-to-one-contribution", "career.ai-pm-backend-continuity", "career.sellercanvas-product-system"],
     },
     {
-      text: "커머스·피부과 운영·SNS 콘텐츠 세 도메인에서 현업의 반복 업무를 제품으로 만들었습니다. AI 활용이 본격화되면서 모두가 메이커로 제품을 만들고 운영하는 팀에서, 백엔드 경험이 적은 팀원도 같은 기준으로 만들 수 있게 FastAPI 조직 표준과 agent 작업 맥락을 직접 구축했습니다.",
+      text: "기획자로 시작해 백엔드로 왔고, 커머스·피부과 운영·SNS 콘텐츠 세 도메인에서 현업의 반복 업무를 제품으로 만들었습니다. AI 활용이 본격화되면서 모두가 메이커로 제품을 만들고 운영하는 팀에서, 백엔드 경험이 적은 팀원도 같은 기준으로 만들 수 있게 FastAPI 조직 표준과 agent 작업 맥락을 직접 구축했습니다.",
       claimIds: [
         "nexus.backend-architecture",
         "thready.product-zero-to-one-contribution",

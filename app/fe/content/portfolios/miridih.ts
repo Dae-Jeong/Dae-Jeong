@@ -23,7 +23,7 @@ export const MIRIDIH_PORTFOLIO = {
   heroVariant: "light",
   // hero: Product Engineer 한 줄이 메인. 보조 줄·상태 라벨·중복 목차는 두지 않는다 (2026-09-03).
   brandLine: "",
-  headline: "가능성을 제품으로 만들고, 끝까지 책임지는 Product Engineer 김대정입니다.",
+  headline: "가능성을 기회로 바꾸고, 제품으로 가치를 전하는 메이커 김대정입니다.",
   // hero 문단은 두 문장까지 (게이트 16).
   introduction:
     "기획자로 시작해 백엔드로 왔고, 지금은 아이디어를 제안한 AI 콘텐츠 제품의 백엔드·AI 실행부를 직접 만들고 핵심 화면은 coding agent로 완성해 고객이 구독하는 서비스로 운영합니다. 대규모 콘텐츠 데이터를 검수 가능한 구조와 평가 워크벤치로 바꿨고, 시술 지식의 hybrid retrieval API와 제품 기능을 대화로 제어하는 Agent PoC를 설계·검증했습니다.",

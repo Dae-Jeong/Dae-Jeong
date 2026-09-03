@@ -69,13 +69,14 @@ tags: [resume, blocks, assembly, sot, tailored]
 
 회사별 소개 첫 줄은 이 셋을 JD 순서로 조합한다. 브랜드 문장은 공통에만 둔다.
 
-### intro.product-engineer · 확장형 한 문장 (회사별 소개 첫 줄, 2026-09-03)
-강도 `led` · claim `career.medisolve-role-evolution`, `thready.product-zero-to-one-contribution`, `thready.subscription-revenue-band` · owner [identity.md](../../profile/identity.md#확장형-한-문장-2026-09-03-신설-user-confirmed)
+### intro.brand · 브랜딩 한 문장 (모든 소개의 첫 줄, 2026-09-03 재확정)
+강도 — · owner [identity.md](../../profile/identity.md#canonical-one-line)
 
-> 가능성을 제품으로 만들고, 끝까지 책임지는 Product Engineer 김대정입니다. 기획자로 시작해 백엔드로 왔고, 지금은 고객이 구독하는 AI 제품을 만들고 운영합니다.
+> 가능성을 기회로 바꾸고, 제품으로 가치를 전하는 메이커 김대정입니다.
 
-- 브랜드 문장(메이커)은 그대로 두고 회사별 첫 줄에서만 쓴다. 뒤에 `intro.paid-product`·`intro.team-standard`가 이어진다.
-- 백엔드 공고에서는 헤더의 공고 직무명이 백엔드를 말하므로 문장 안에 `백엔드로`를 넣지 않는다.
+- **브랜딩 문장은 하나다. 문서·회사·플랫폼별로 바꾸지 않는다** (2026-09-03 user-confirmed). 이력서 summary[0]·경력기술서 부제·포폴 headline이 이 문장과 다르면 게이트 16 FAIL.
+- 2026-09-03 오전에 만든 확장형(`가능성을 제품으로 만들고, 끝까지 책임지는 Product Engineer 김대정입니다.`)은 같은 날 폐기했다. Product Engineer는 헤더 직함·역할 표기로만 쓴다.
+- 둘째 문단은 `intro.planner-backend`의 첫 사실로 시작한다: `기획자로 시작해 백엔드로 왔고, 아이디어를 제안한 AI 콘텐츠 제품의 …을 직접 만들고 핵심 화면은 coding agent로 완성해 고객이 구독하는 서비스로 운영합니다.` 추상적인 `지금은 고객이 구독하는 AI 제품을 만들고 운영합니다`는 쓰지 않는다(2026-09-03: 어색함).
 
 ### intro.planner-backend · 기획자 출신 백엔드 엔지니어
 강도 `led` · claim `career.ai-pm-backend-continuity`, `career.sellercanvas-product-system`

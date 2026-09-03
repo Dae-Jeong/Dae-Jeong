@@ -1,16 +1,16 @@
 {
-  "generated_at": "2026-09-03T08:38:34+00:00",
-  "canonical_version": "product-engineer-v3",
+  "generated_at": "2026-09-03T12:22:03+00:00",
+  "canonical_version": "maker-v4",
   "platforms": [
     {
       "id": "wanted",
       "name": "원티드",
       "url": "https://social.wanted.co.kr/my/profile",
       "status": "active",
-      "live_version": "product-engineer-v3",
-      "live_verified_at": "2026-09-03",
+      "live_version": "mixed",
+      "live_verified_at": "\\\"2026-09-03\\\"",
       "live_checked_at": null,
-      "drift": false,
+      "drift": true,
       "automation": {
         "text_input": "partial",
         "click_fields": "auto"
@@ -23,8 +23,8 @@
           "before_banned": [
             "돈을 내는"
           ],
-          "after": "가능성을 제품으로 만들고, 끝까지 책임지는 Product Engineer 김대정입니다. 기획자로 시작해 백엔드로 왔고, 지금은 고객이 구독하는 AI 제품을 만들고 운영합니다.",
-          "after_len": 97,
+          "after": "가능성을 기회로 바꾸고, 제품으로 가치를 전하는 메이커 김대정입니다. 기획자로 시작해 백엔드로 왔고, 아이디어를 제안한 AI 콘텐츠 제품을 고객이 구독하는 서비스로 만들어 운영합니다.",
+          "after_len": 102,
           "after_banned": [],
           "over_limit": false,
           "changed": true
@@ -36,8 +36,8 @@
           "before_banned": [
             "돈을 내는"
           ],
-          "after": "가능성을 제품으로 만들고, 끝까지 책임지는 Product Engineer 김대정입니다. 기획자로 시작해 백엔드로 왔고, 지금은 고객이 구독하는 AI 제품을 만들고 운영합니다.\n\n아이디어를 제안한 AI 콘텐츠 제품의 FastAPI 백엔드와 AI 생성·평가 시스템을 직접 만들고, 핵심 화면은 coding agent로 완성해 운영합니다. 커머스·피부과 운영·SNS 콘텐츠 세 도메인에서 현업의 반복 업무를 실제로 쓰이는 제품으로 만들었고, 백엔드 경험이 적은 팀원도 같은 기준으로 만들 수 있게 FastAPI 조직 표준을 직접 구축했습니다.\n\n대규모 콘텐츠 데이터를 검수 가능한 구조와 사람 평가 워크벤치로 바꿨고, 시술 정보 지식 플랫폼의 hybrid retrieval API와 평가 게이트를 설계·구현하고 있습니다.",
-          "after_len": 396,
+          "after": "가능성을 기회로 바꾸고, 제품으로 가치를 전하는 메이커 김대정입니다.\n\n기획자로 시작해 백엔드로 왔고, 아이디어를 제안한 AI 콘텐츠 제품의 FastAPI 백엔드와 AI 생성·평가 시스템을 직접 만들고 핵심 화면은 coding agent로 완성해 고객이 구독하는 서비스로 운영합니다. 커머스·피부과 운영·SNS 콘텐츠 세 도메인에서 현업의 반복 업무를 실제로 쓰이는 제품으로 만들었고, 백엔드 경험이 적은 팀원도 같은 기준으로 만들 수 있게 FastAPI 조직 표준을 직접 구축했습니다.\n\n대규모 콘텐츠 데이터를 검수 가능한 구조와 사람 평가 워크벤치로 바꿨고, 시술 정보 지식 플랫폼의 hybrid retrieval API와 평가 게이트를 설계·구현하고 있습니다.",
+          "after_len": 368,
           "after_banned": [],
           "over_limit": false,
           "changed": true
@@ -139,8 +139,8 @@
       "name": "LinkedIn",
       "url": "https://www.linkedin.com/in/marinkim-dev",
       "status": "active",
-      "live_version": "product-engineer-v3",
-      "live_verified_at": "2026-09-03",
+      "live_version": "maker-v4",
+      "live_verified_at": "\\\"2026-09-03\\\"",
       "live_checked_at": null,
       "drift": false,
       "automation": {
@@ -155,8 +155,8 @@
           "before_banned": [
             "돈을 내는"
           ],
-          "after": "Product Engineer · Backend / FastAPI · AI Product Systems | 가능성을 제품으로 만들고, 끝까지 책임집니다",
-          "after_len": 84,
+          "after": "Product Engineer · Backend / FastAPI · AI Product Systems | 가능성을 기회로 바꾸고, 제품으로 가치를 전하는 메이커",
+          "after_len": 90,
           "after_banned": [],
           "over_limit": false,
           "changed": true
@@ -168,8 +168,8 @@
           "before_banned": [
             "돈을 내는"
           ],
-          "after": "가능성을 제품으로 만들고, 끝까지 책임지는 Product Engineer 김대정입니다. 기획자로 시작해 백엔드로 왔고, 지금은 고객이 구독하는 AI 제품을 만들고 운영합니다.\n\n아이디어를 제안한 AI 콘텐츠 제품의 FastAPI 백엔드와 AI 생성·평가 시스템을 직접 만들고, 핵심 화면은 coding agent로 완성해 운영합니다. 커머스·피부과 운영·SNS 콘텐츠 세 도메인에서 현업의 반복 업무를 실제로 쓰이는 제품으로 만들었고, 백엔드 경험이 적은 팀원도 같은 기준으로 만들 수 있게 FastAPI 조직 표준을 직접 구축했습니다.\n\n대규모 콘텐츠 데이터를 검수 가능한 구조와 사람 평가 워크벤치로 바꿨고, 시술 정보 지식 플랫폼의 hybrid retrieval API와 평가 게이트를 설계·구현하고 있습니다.\n\n상세 이력과 기술 사례는 marinkim.xyz에서 확인할 수 있습니다.",
-          "after_len": 436,
+          "after": "가능성을 기회로 바꾸고, 제품으로 가치를 전하는 메이커 김대정입니다.\n\n기획자로 시작해 백엔드로 왔고, 아이디어를 제안한 AI 콘텐츠 제품의 FastAPI 백엔드와 AI 생성·평가 시스템을 직접 만들고 핵심 화면은 coding agent로 완성해 고객이 구독하는 서비스로 운영합니다. 커머스·피부과 운영·SNS 콘텐츠 세 도메인에서 현업의 반복 업무를 실제로 쓰이는 제품으로 만들었고, 백엔드 경험이 적은 팀원도 같은 기준으로 만들 수 있게 FastAPI 조직 표준을 직접 구축했습니다.\n\n대규모 콘텐츠 데이터를 검수 가능한 구조와 사람 평가 워크벤치로 바꿨고, 시술 정보 지식 플랫폼의 hybrid retrieval API와 평가 게이트를 설계·구현하고 있습니다.\n\n상세 이력과 기술 사례는 marinkim.xyz에서 확인할 수 있습니다.",
+          "after_len": 408,
           "after_banned": [],
           "over_limit": false,
           "changed": true
@@ -236,8 +236,8 @@
       "name": "리멤버",
       "url": "https://profile.rememberapp.co.kr/",
       "status": "active",
-      "live_version": "product-engineer-v3",
-      "live_verified_at": "2026-09-03",
+      "live_version": "maker-v4",
+      "live_verified_at": "\\\"2026-09-03\\\"",
       "live_checked_at": null,
       "drift": false,
       "automation": {
@@ -252,8 +252,8 @@
           "before_banned": [
             "돈을 내는"
           ],
-          "after": "가능성을 제품으로 만들고, 끝까지 책임지는 Product Engineer 김대정입니다. 기획자로 시작해 백엔드로 왔고, 지금은 고객이 구독하는 AI 제품을 만들고 운영합니다.\n\n아이디어를 제안한 AI 콘텐츠 제품의 FastAPI 백엔드와 AI 생성·평가 시스템을 직접 만들고, 핵심 화면은 coding agent로 완성해 운영합니다. 커머스·피부과 운영·SNS 콘텐츠 세 도메인에서 현업의 반복 업무를 실제로 쓰이는 제품으로 만들었고, 백엔드 경험이 적은 팀원도 같은 기준으로 만들 수 있게 FastAPI 조직 표준을 직접 구축했습니다.",
-          "after_len": 298,
+          "after": "가능성을 기회로 바꾸고, 제품으로 가치를 전하는 메이커 김대정입니다.\n\n기획자로 시작해 백엔드로 왔고, 아이디어를 제안한 AI 콘텐츠 제품의 FastAPI 백엔드와 AI 생성·평가 시스템을 직접 만들고 핵심 화면은 coding agent로 완성해 고객이 구독하는 서비스로 운영합니다. 커머스·피부과 운영·SNS 콘텐츠 세 도메인에서 현업의 반복 업무를 실제로 쓰이는 제품으로 만들었고, 백엔드 경험이 적은 팀원도 같은 기준으로 만들 수 있게 FastAPI 조직 표준을 직접 구축했습니다.",
+          "after_len": 270,
           "after_banned": [],
           "over_limit": false,
           "changed": true
@@ -265,8 +265,8 @@
           "before_banned": [
             "돈을 내는"
           ],
-          "after": "가능성을 제품으로 만들고, 끝까지 책임지는 Product Engineer 김대정입니다. 기획자로 시작해 백엔드로 왔고, 지금은 고객이 구독하는 AI 제품을 만들고 운영합니다.\n\n아이디어를 제안한 AI 콘텐츠 제품의 FastAPI 백엔드와 AI 생성·평가 시스템을 직접 만들고, 핵심 화면은 coding agent로 완성해 운영합니다. 커머스·피부과 운영·SNS 콘텐츠 세 도메인에서 현업의 반복 업무를 실제로 쓰이는 제품으로 만들었고, 백엔드 경험이 적은 팀원도 같은 기준으로 만들 수 있게 FastAPI 조직 표준을 직접 구축했습니다.\n\n대규모 콘텐츠 데이터를 검수 가능한 구조와 사람 평가 워크벤치로 바꿨고, 시술 정보 지식 플랫폼의 hybrid retrieval API와 평가 게이트를 설계·구현하고 있습니다.\n\n현재 MediSolve AI에서 Tech Lead · Backend Engineer로 제품 운영과 백엔드·AI 시스템을 함께 맡고 있습니다.",
-          "after_len": 474,
+          "after": "가능성을 기회로 바꾸고, 제품으로 가치를 전하는 메이커 김대정입니다.\n\n기획자로 시작해 백엔드로 왔고, 아이디어를 제안한 AI 콘텐츠 제품의 FastAPI 백엔드와 AI 생성·평가 시스템을 직접 만들고 핵심 화면은 coding agent로 완성해 고객이 구독하는 서비스로 운영합니다. 커머스·피부과 운영·SNS 콘텐츠 세 도메인에서 현업의 반복 업무를 실제로 쓰이는 제품으로 만들었고, 백엔드 경험이 적은 팀원도 같은 기준으로 만들 수 있게 FastAPI 조직 표준을 직접 구축했습니다.\n\n대규모 콘텐츠 데이터를 검수 가능한 구조와 사람 평가 워크벤치로 바꿨고, 시술 정보 지식 플랫폼의 hybrid retrieval API와 평가 게이트를 설계·구현하고 있습니다.\n\n현재 MediSolve AI에서 Tech Lead · Backend Engineer로 제품 운영과 백엔드·AI 시스템을 함께 맡고 있습니다.",
+          "after_len": 446,
           "after_banned": [],
           "over_limit": false,
           "changed": true
@@ -337,8 +337,8 @@
       "name": "그룹바이",
       "url": "https://groupby.kr/scouts/my-profile",
       "status": "active",
-      "live_version": "product-engineer-v3",
-      "live_verified_at": "2026-09-03",
+      "live_version": "maker-v4",
+      "live_verified_at": "\\\"2026-09-03\\\"",
       "live_checked_at": null,
       "drift": false,
       "automation": {
@@ -354,8 +354,8 @@
           "before_banned": [
             "돈을 내는"
           ],
-          "after": "가능성을 제품으로 만들고, 끝까지 책임지는 Product Engineer 김대정입니다. 기획자로 시작해 백엔드로 왔고, 지금은 고객이 구독하는 AI 제품을 만들고 운영합니다.\n\n아이디어를 제안한 AI 콘텐츠 제품의 FastAPI 백엔드와 AI 생성·평가 시스템을 직접 만들고, 핵심 화면은 coding agent로 완성해 운영합니다. 커머스·피부과 운영·SNS 콘텐츠 세 도메인에서 현업의 반복 업무를 실제로 쓰이는 제품으로 만들었고, 백엔드 경험이 적은 팀원도 같은 기준으로 만들 수 있게 FastAPI 조직 표준을 직접 구축했습니다.\n\n대규모 콘텐츠 데이터를 검수 가능한 구조와 사람 평가 워크벤치로 바꿨고, 시술 정보 지식 플랫폼의 hybrid retrieval API와 평가 게이트를 설계·구현하고 있습니다.",
-          "after_len": 396,
+          "after": "가능성을 기회로 바꾸고, 제품으로 가치를 전하는 메이커 김대정입니다.\n\n기획자로 시작해 백엔드로 왔고, 아이디어를 제안한 AI 콘텐츠 제품의 FastAPI 백엔드와 AI 생성·평가 시스템을 직접 만들고 핵심 화면은 coding agent로 완성해 고객이 구독하는 서비스로 운영합니다. 커머스·피부과 운영·SNS 콘텐츠 세 도메인에서 현업의 반복 업무를 실제로 쓰이는 제품으로 만들었고, 백엔드 경험이 적은 팀원도 같은 기준으로 만들 수 있게 FastAPI 조직 표준을 직접 구축했습니다.\n\n대규모 콘텐츠 데이터를 검수 가능한 구조와 사람 평가 워크벤치로 바꿨고, 시술 정보 지식 플랫폼의 hybrid retrieval API와 평가 게이트를 설계·구현하고 있습니다.",
+          "after_len": 368,
           "after_banned": [],
           "over_limit": false,
           "changed": true
@@ -453,8 +453,8 @@
           "before_banned": [
             "돈을 내는"
           ],
-          "after": "가능성을 제품으로 만들고, 끝까지 책임지는 Product Engineer 김대정입니다. 기획자로 시작해 백엔드로 왔고, 지금은 고객이 구독하는 AI 제품을 만들고 운영합니다. FastAPI 백엔드·AI 생성/평가 시스템을 직접 만들고 핵심 화면은 coding agent로 완성했으며, 대규모 콘텐츠 데이터를 검수 가능한 구조와 평가 워크벤치로 바꿨습니다. https://marinkim.xyz",
-          "after_len": 219,
+          "after": "가능성을 기회로 바꾸고, 제품으로 가치를 전하는 메이커 김대정입니다. 기획자로 시작해 백엔드로 왔고, FastAPI 백엔드·AI 생성/평가 시스템을 직접 만들고 핵심 화면은 coding agent로 완성했으며, 대규모 콘텐츠 데이터를 검수 가능한 구조와 평가 워크벤치로 바꿨습니다. https://marinkim.xyz",
+          "after_len": 178,
           "after_banned": [],
           "over_limit": false,
           "changed": true
