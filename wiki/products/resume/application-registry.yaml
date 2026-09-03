@@ -46,9 +46,9 @@ attempts:
     role: "Software Engineer / AI"
     header_role: "Software Engineer / AI"
     status: pre-apply
-    tracking: "승인 · 제출 준비 (UI v3·Package r2)"
+    tracking: "승인 · PDF 재생성 2026-09-03 (경력기술서 첫 줄 브랜딩·약 94%·헤더 단일화 반영) · 제출 준비"
     artifact_state: approved
-    last_confirmed: "2026-09-02"
+    last_confirmed: "2026-09-03"
     source_path: "wiki/products/resume/tailored/jyp-entertainment/2026-08-29_jype-career_software-engineer-ai/README.md"
     work_session:
       state: waiting-review
@@ -57,11 +57,11 @@ attempts:
       next_action: "2026-09-02 순서 일치(Backend 기준→유료 제품→Agent)·승인·PDF 생성 완료 (output/pdf/jyp/). 제출 시 Snapshot 동결"
     current:
       kind: checkpoint
-      package_revision: 3
+      package_revision: 4
       artifact_revisions:
-        resume: 4
-        career-description: 4
-        portfolio: 3
+        resume: 5
+        career-description: 5
+        portfolio: 4
       checkpoint_at: "2026-09-03"
     artifacts:
       resume:
@@ -81,9 +81,9 @@ attempts:
     role: "[프로덕트] 백엔드 개발 엔지니어"
     header_role: "Backend Engineer"
     status: pre-apply
-    tracking: "승인 · 제출 준비 (UI v3·Package r2)"
+    tracking: "승인 · PDF 재생성 2026-09-03 (경력기술서 첫 줄 브랜딩·약 94%·헤더 단일화 반영) · 제출 준비"
     artifact_state: approved
-    last_confirmed: "2026-09-02"
+    last_confirmed: "2026-09-03"
     source_path: "wiki/products/resume/tailored/featuring/2026-08-31_wanted_backend-engineer/README.md"
     work_session:
       state: waiting-review
@@ -92,11 +92,11 @@ attempts:
       next_action: "2026-09-02 승인·PDF 생성 완료 (output/pdf/featuring/). 제출 시 Snapshot 동결. 면접 준비는 interview-prep.md"
     current:
       kind: checkpoint
-      package_revision: 3
+      package_revision: 4
       artifact_revisions:
-        resume: 4
-        career-description: 4
-        portfolio: 3
+        resume: 5
+        career-description: 5
+        portfolio: 4
       checkpoint_at: "2026-09-03"
     artifacts:
       resume:

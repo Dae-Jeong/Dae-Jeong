@@ -49,8 +49,8 @@
       "status": "pre-apply",
       "artifactState": "approved",
       "sourcePath": "wiki/products/resume/tailored/jyp-entertainment/2026-08-29_jype-career_software-engineer-ai/README.md",
-      "tracking": "승인 · 제출 준비 (UI v3·Package r2)",
-      "lastConfirmed": "2026-09-02",
+      "tracking": "승인 · PDF 재생성 2026-09-03 (경력기술서 첫 줄 브랜딩·약 94%·헤더 단일화 반영) · 제출 준비",
+      "lastConfirmed": "2026-09-03",
       "artifacts": {
         "resume": {
           "mode": "tailored",
@@ -70,11 +70,11 @@
       },
       "current": {
         "kind": "checkpoint",
-        "packageRevision": 3,
+        "packageRevision": 4,
         "artifactRevisions": {
-          "resume": 4,
-          "career-description": 4,
-          "portfolio": 3
+          "resume": 5,
+          "career-description": 5,
+          "portfolio": 4
         },
         "checkpointAt": "2026-09-03"
       },
@@ -92,8 +92,8 @@
       "status": "pre-apply",
       "artifactState": "approved",
       "sourcePath": "wiki/products/resume/tailored/featuring/2026-08-31_wanted_backend-engineer/README.md",
-      "tracking": "승인 · 제출 준비 (UI v3·Package r2)",
-      "lastConfirmed": "2026-09-02",
+      "tracking": "승인 · PDF 재생성 2026-09-03 (경력기술서 첫 줄 브랜딩·약 94%·헤더 단일화 반영) · 제출 준비",
+      "lastConfirmed": "2026-09-03",
       "artifacts": {
         "resume": {
           "mode": "tailored",
@@ -113,11 +113,11 @@
       },
       "current": {
         "kind": "checkpoint",
-        "packageRevision": 3,
+        "packageRevision": 4,
         "artifactRevisions": {
-          "resume": 4,
-          "career-description": 4,
-          "portfolio": 3
+          "resume": 5,
+          "career-description": 5,
+          "portfolio": 4
         },
         "checkpointAt": "2026-09-03"
       },
