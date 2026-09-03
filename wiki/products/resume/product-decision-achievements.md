@@ -24,7 +24,7 @@ tags: [resume, product-decision, planning, career, evidence]
 
 | 층 | 독자가 판정할 역량 | 대표 사례 |
 | --- | --- | --- |
-| 제품 판단 | 무엇을 만들고 어떤 순서로 제품화할지 결정 | SellerCanvas 0→1·기업 PoC |
+| 제품 판단 | 무엇을 만들고 어떤 순서로 제품화할지 결정 | SellerCanvas 초기 제품화·기업 PoC |
 | 제품 요구의 backend 번역 | 정책·사용자 흐름을 domain·transaction·API contract로 구체화 | Memento 결제 정합성, TellingMe BFF·Mock API 후보 |
 | 기술 실행 체계 | 새 제품과 팀이 같은 기준으로 개발·배포되게 구조화 | 더데이랩스 초기 backend·개발 기준 |
 
@@ -38,7 +38,7 @@ tags: [resume, product-decision, planning, career, evidence]
 
 | 우선순위 | 회사·프로젝트 | 정확한 성과 분류 | 결과 | Claim·상한 |
 | --- | --- | --- | --- | --- |
-| A | STUDIO LAB · SellerCanvas | 제품 0→1 판단 | 프로토타입에서 v1.0 제품까지 연결 | `career.sellercanvas-product-system` · `led/high` |
+| A | STUDIO LAB · SellerCanvas | 초기 제품화 판단 | 프로토타입에서 v1.0 제품까지 연결 | `career.sellercanvas-product-system` · `led/high` |
 | A | STUDIO LAB · SellerCanvas | 기업 요구의 제품·기술 스펙화 | 프로토타입·v1.0 제품을 기업 PoC로 연결 | `career.sellercanvas-enterprise-poc` · `led/high` |
 | A | STUDIO LAB · SellerCanvas | 제작 flow 재설계 | 특허 「페이지 출력 방법」 출원·등록과 연결 | `career.sellercanvas-product-system` · `led/high`, `credentials.page-output-patent` · `contributed/high` |
 | B | 외부 Product·UX 활동 | 사용자 흐름 분석과 요구사항 구체화 | 운영 서비스 pain point를 개선 가설·prototype artifact로 전환 | `career.product-ux-practice` · `contributed/medium` |
@@ -51,7 +51,7 @@ Claims: `career.sellercanvas-product-system` (`led/high`)
 
 성과 후보:
 
-- 프로토타입 단계의 생성형 AI 커머스 제품을 v1.0으로 세우는 과정에서 제품 흐름·기능 범위·출시 우선순위를 정한 PM 메인 역할로 0→1 구간을 이끌었다.
+- 프로토타입 단계의 생성형 AI 커머스 제품을 v1.0으로 세우는 과정에서 제품 흐름·기능 범위·출시 우선순위를 정한 PM 메인 역할을 맡았다.
 - 기능 목록을 관리하는 데 그치지 않고, 무엇을 남기고 바꿀지 판단해 제품이 실제로 운영되는 구조를 기획·구축했다.
 
 Backend 관점의 전문성:
@@ -91,7 +91,7 @@ Claims: `career.sellercanvas-product-system` (`led/high`),
 
 성과 후보:
 
-- SellerCanvas 0→1 과정에서 상세페이지 제작 flow를 재설계했고, 해당 작업은 특허 「페이지 출력 방법」 출원·등록으로 이어졌다.
+- SellerCanvas를 프로토타입에서 v1.0으로 발전시키는 과정에서 상세페이지 제작 flow를 재설계했고, 해당 작업은 특허 「페이지 출력 방법」 출원·등록으로 이어졌다.
 - 화면 기능 하나가 아니라 입력부터 페이지 출력까지 이어지는 workflow를 제품 시스템으로 구조화한 사례다.
 
 Backend 관점의 전문성:
@@ -172,7 +172,7 @@ resume에 먼저 쓰지 않고 evidence·역할 분담·공개 범위를 보강�
 
 | 회사·프로젝트 | 후보 성과 | 현재 근거 | 상한·보강 조건 |
 | --- | --- | --- | --- |
-| Memento AI · Check | PM 인턴으로 서비스 기획부터 API·DB schema·인증 domain·구현까지 0→1 범위 경험 | 공개 플랫폼 자기 기록 | 인턴 `contributed` 상한. 원 repo·기획서·배포 범위·역할 분담 확인 후 claim 신설 |
+| Memento AI · Check | PM 인턴으로 서비스 기획부터 API·DB schema·인증 domain·구현까지 초기 구축 범위 경험 | 공개 플랫폼 자기 기록 | 인턴 `contributed` 상한. 원 repo·기획서·배포 범위·역할 분담 확인 후 claim 신설 |
 | TellingMe | Main 화면 BFF, 신규 기능 Dummy·Mock API, v2 domain contract로 모바일 요구사항을 backend 계약화 | `workspace:tellingme-server` commits `68f9b07`, `c38d963`, `84fd363` | commit 사실은 code-backed. 제품 의사결정 ownership과 협업 artifact를 확인해 별도 claim 신설 |
 | 아이즈솔 · Kidsly | UX 사용자 흐름·기능 요구사항 정의, 일정·task·커뮤니케이션 조율 | 여러 플랫폼 자기 기록 | 인턴 `contributed` 상한. 전용 stable claim과 원 source 필요 |
 | 아이즈솔 · EatUp | 데이터·Detection 모델 개발과 PM 역할 | 플랫폼 자기 기록 | 제품 범위·역할 분담·결과 확인 후 별도 claim 필요 |
@@ -220,8 +220,8 @@ resume에 먼저 쓰지 않고 evidence·역할 분담·공개 범위를 보강�
 ## 이력서 편집 기준
 
 - 일반 Backend JD: Memento의 transaction 판단과 더데이랩스의 delivery system을 경력에 넣고, SellerCanvas는 product/backend bridge를 증명하는 과거 핵심 경력으로 둔다.
-- Product Backend·초기 스타트업 JD: SellerCanvas 0→1·PoC를 넓게 쓰고 Memento·더데이랩스를 실행 근거로 연결한다.
-- AI Product·PO 병행 JD: SellerCanvas의 `0→1 → PoC → flow 재설계 → 특허`를 하나의 완결된 서사로 쓰고 현재 제품 운영 claim으로 반복 가능성을 증명한다.
+- Product Backend·초기 스타트업 JD: SellerCanvas의 프로토타입→v1.0 제품화·PoC를 넓게 쓰고 Memento·더데이랩스를 실행 근거로 연결한다.
+- AI Product·PO 병행 JD: SellerCanvas의 `프로토타입 → v1.0 → PoC → flow 재설계 → 특허`를 하나의 완결된 서사로 쓰고 현재 제품 운영 claim으로 반복 가능성을 증명한다.
 - 한 지원본에 같은 내용을 `소개`, `경력`, `대표 기술 사례`에서 반복하지 않는다. 가장 강한 위치 한 곳에서 깊게 쓰고 다른 섹션은 claim만 보강한다.
 
 ## 현행 public expression 반영 상태

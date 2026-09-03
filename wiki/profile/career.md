@@ -58,7 +58,7 @@ MediSolve AI에는 법인 설립 전 초기 멤버로 영입돼 설립과 함께
 
 | Product/Project | Relationship |
 | --- | --- |
-| Thready | 기획·QA·마케팅과 함께 0→1 제품 운영·관리 리드; backend·AI와 Next.js 핵심 제품 workflow 직접 개발·운영 |
+| Thready | 제품 아이디어 제안; 초기 prototype 이후 기획·QA·마케팅과 유료 제품화·운영 리드; backend·AI와 Next.js 핵심 제품 workflow 직접 개발·운영 |
 | Centurion | CRM & ERP product backend: DAY/BAY/RAY/SAY and shared platform |
 | NEXUS | 외부 병원 product backend and IaC |
 | BE Template | organization backend engineering standard |

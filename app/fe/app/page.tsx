@@ -4,14 +4,10 @@ import { Container } from "@/components/site/container";
 import { SiteFooter } from "@/components/site/site-footer";
 import { TopBar } from "@/components/site/topbar";
 import { Button } from "@/components/ui/button";
-import { KeyValueCard } from "@/components/ui/key-value-list";
 import { Reveal } from "@/components/ui/reveal";
 import { SectionHead } from "@/components/ui/section-head";
 import { PRIMARY_CASES, SUPPORTING_CASES } from "@/lib/cases";
 import { cn } from "@/lib/cn";
-
-/* root = 15초 검증 관문 (v3 확정 — 다이어트형).
-   콘텐츠는 root-v3-prototype.html 확정 표현 verbatim */
 
 function Arrow() {
   return (
@@ -29,72 +25,30 @@ function Arrow() {
   );
 }
 
-const SUMMARY: { no: string; accent?: boolean; text: React.ReactNode }[] = [
+const DOCUMENTS = [
   {
     no: "01",
-    accent: true,
-    text: (
-      <>
-        고객이 돈을 내는 이유를 찾고, 기획·QA·마케팅과 문제 정의부터 출시·운영까지
-        이끌었다 — 팀과 함께 <strong>실제 고객이 결제하는 제품</strong>으로 만들었다
-      </>
-    ),
+    name: "Resume",
+    localName: "이력서",
+    href: "/resume",
+    review: false,
   },
   {
     no: "02",
-    text: (
-      <>
-        제품 운영에 필요한 FastAPI backend·AI 생성/평가·Next.js 핵심 흐름을 직접
-        구현했고, 인계받은 backend는 validation harness와 함께 병렬 재구축했다 — 같은
-        기준에서 해결된 QA 이슈의 <strong>재오픈 비율이 26%p 낮아졌다</strong>
-      </>
-    ),
+    name: "Portfolio",
+    localName: "포트폴리오",
+    href: "/portfolio",
+    review: false,
   },
   {
     no: "03",
-    text: (
-      <>
-        측정값으로 믿고 쓰던 품질 기준이{" "}
-        <strong>자사 출력을 되먹이고 있었다</strong> — 순환을 끊는 과정에서 문제 정의
-        자체의 오류가 함께 드러났다
-      </>
-    ),
+    name: "Career Description",
+    localName: "경력기술서",
+    href: "/career",
+    review: true,
   },
-  {
-    no: "04",
-    text: (
-      <>
-        유형 분기 판정을 writer에 뒀더니{" "}
-        <strong>18건 전부 발동하지 않았다</strong> — 판단을 어느 역할에 둘 것인가가
-        agent 설계의 핵심이었다
-      </>
-    ),
-  },
-];
-
-const ROUTES = [
-  {
-    name: "Resume",
-    href: "/resume",
-    badge: "LIVE",
-    warn: false,
-    desc: "A4 마스터 이력서 — 경력·대표 성과·기술·외부 활동을 한 문서에.",
-  },
-  {
-    name: "Portfolio",
-    href: "/portfolio",
-    badge: "LIVE",
-    warn: false,
-    desc: "대표 사례 3건과 supporting 사례 1건 — 문제·판단·시스템·운영 근거.",
-  },
-  {
-    name: "Chat",
-    href: "/chat",
-    badge: "PREVIEW",
-    warn: true,
-    desc: "프로필 agent와의 전체 대화 — 검증된 claim registry의 근거로만 답합니다. 근거 rail 포함, 우하단 Ask 런처의 full 페이지.",
-  },
-];
+  { no: "04", name: "CV", localName: "", href: "/cv", review: true },
+] as const;
 
 const HOME_CASES = [
   ...PRIMARY_CASES,
@@ -102,129 +56,111 @@ const HOME_CASES = [
 ];
 
 export default function Home() {
+  const visibleDocuments = DOCUMENTS.filter(
+    (document) => !document.review || process.env.NODE_ENV !== "production",
+  );
+
   return (
     <>
       <TopBar />
 
       <main className="flex-1">
-        {/* ── Hero ── */}
-        <section className="pb-16 pt-[72px]">
-          <Container
-            variant="hub"
-            className="grid grid-cols-[minmax(0,1fr)_300px] items-end gap-12 max-lg:grid-cols-1 max-lg:gap-8"
-          >
-            <div>
-              <span className="mb-6 inline-flex items-center gap-2 border border-border px-2.5 py-1 font-mono text-xs tracking-[0.06em] text-fg-2">
-                MediSolve AI · Tech Lead · Backend Engineer · 재직 중
-              </span>
-              <h1 className="max-w-[18ch] text-balance font-mono text-4xl font-semibold leading-[1.18] tracking-[-0.025em] max-md:max-w-none max-md:text-[34px]">
-                아이디어를 새로운 가치로 실현하는 메이커, 김대정입니다.
-              </h1>
-              <p className="mt-4 font-mono text-base uppercase tracking-[0.06em] text-fg-2">
-                <b className="font-semibold text-fg">Tech Lead · Backend Engineer</b> · AI Product Systems
+        <section className="border-b border-border-soft pb-20 pt-[88px] max-md:pb-14 max-md:pt-14">
+          <Container variant="hub">
+            <div className="max-w-[1040px]">
+              <p className="m-0 font-mono text-xs font-medium tracking-[0.06em] text-muted">
+                Maker Profile · Product / Backend / AI
               </p>
-              <div className="mt-8 flex flex-wrap gap-3">
-                {/* Resume PDF 준비 시 다운로드 chip 복귀 (7차 결정) */}
-                <Button href="/resume" className="px-[13px] py-[9px]">
-                  이력서 보기
+              <h1 className="mt-7 max-w-[22ch] text-pretty text-[clamp(2.5rem,4.4vw,4.25rem)] font-semibold leading-[1.16] tracking-[-0.045em] max-md:max-w-none">
+                가능성을 기회로 바꾸고, 제품으로 가치를 전하는 메이커 김대정입니다.
+              </h1>
+              <p className="mt-6 font-mono text-sm tracking-[0.025em] text-fg-2">
+                <strong className="font-semibold text-fg">
+                  Tech Lead · Backend Engineer
+                </strong>{" "}
+                · AI Product Systems
+              </p>
+              <p className="mt-7 max-w-[780px] text-lg leading-[1.75] text-fg-2 max-md:text-base">
+                팀과 함께 고객 문제를 실제 결제가 발생하는 제품으로 만들고, 필요한
+                Backend·AI·핵심 화면을 직접 구현해 출시 이후 운영까지 이끌었습니다.
+              </p>
+              <div className="mt-9 flex flex-wrap gap-3">
+                <Button href="/portfolio" className="px-[14px] py-[10px]">
+                  Portfolio 보기
                 </Button>
+                <Link
+                  href="/resume"
+                  className="focus-ring inline-flex items-center border border-border px-[14px] py-[10px] font-mono text-xs font-medium tracking-[0.03em] text-fg transition-colors duration-100 hover:border-fg hover:bg-surface"
+                >
+                  Resume 보기
+                </Link>
                 <a
                   href="https://github.com/Dae-Jeong"
                   target="_blank"
                   rel="noopener"
-                  className="focus-ring inline-flex items-center gap-2 border border-border px-[13px] py-[9px] font-mono text-xs tracking-[0.03em] transition-colors duration-100 hover:border-fg hover:bg-surface"
+                  className="focus-ring inline-flex items-center border border-border px-[14px] py-[10px] font-mono text-xs tracking-[0.03em] text-muted transition-colors duration-100 hover:border-fg hover:bg-surface hover:text-fg"
                 >
-                  github.com/Dae-Jeong
+                  GitHub ↗
                 </a>
               </div>
             </div>
-
-            <KeyValueCard
-              className="self-end max-lg:max-w-[340px]"
-              valueClassName="text-cred"
-              groups={[
-                [
-                  { k: "Role", v: "Tech Lead · Backend" },
-                  { k: "Domain", v: "AI Product" },
-                  { k: "Career", v: "2020 —" },
-                ],
-                [
-                  { k: "Now", v: "MediSolve AI" },
-                  { k: "Since", v: "2025.04" },
-                  {
-                    k: "Stack",
-                    v: (
-                      <>
-                        Python · FastAPI
-                        <br />
-                        TypeScript · PostgreSQL
-                        <br />
-                        Redis · RabbitMQ
-                      </>
-                    ),
-                  },
-                ],
-                [
-                  {
-                    k: "Award",
-                    v: (
-                      <>
-                        CES 2024
-                        <br />
-                        Best of Innovation
-                      </>
-                    ),
-                  },
-                  { k: "Patent", v: "등록 1건" },
-                ],
-                [
-                  { k: "Site", v: "marinkim.xyz" },
-                  { k: "GitHub", v: "Dae-Jeong" },
-                ],
-              ]}
-            />
           </Container>
         </section>
 
-        {/* ── Summary 4행 ── */}
-        <section className="border-y border-border-soft bg-surface py-20 max-md:py-12">
+        <section className="border-b border-border-soft py-20 max-md:py-12">
           <Container variant="hub">
             <Reveal>
-              <SectionHead no="00" title="Summary" meta="요약 · 4" />
+              <SectionHead
+                no="01"
+                title="Documents"
+                meta={`${visibleDocuments.length} documents`}
+              />
             </Reveal>
-            <Reveal stagger>
-              <ol className="m-0 grid list-none p-0">
-                {SUMMARY.map((s) => (
-                  <li
-                    key={s.no}
-                    className="grid grid-cols-[56px_1fr] items-baseline gap-4 border-t border-border py-5 first:border-t-0 max-md:grid-cols-[40px_1fr]"
+            <Reveal stagger className="border-y border-border">
+              {visibleDocuments.map((document) => (
+                <Link
+                  key={document.href}
+                  href={document.href}
+                  aria-label={`${document.name} 열기`}
+                  className="group focus-ring grid min-h-24 grid-cols-[56px_minmax(0,1fr)_48px] items-center gap-5 border-b border-border px-1 transition-[background-color,padding] duration-[160ms] last:border-b-0 hover:bg-surface hover:px-4 max-md:min-h-20 max-md:grid-cols-[40px_minmax(0,1fr)_40px] max-md:gap-3"
+                >
+                  <span className="font-mono text-sm tracking-[0.06em] text-muted">
+                    {document.no}
+                  </span>
+                  <span className="flex min-w-0 items-baseline gap-4 max-md:flex-wrap max-md:gap-x-3 max-md:gap-y-1">
+                    <span className="text-[clamp(1.25rem,2vw,1.65rem)] font-semibold tracking-[-0.025em]">
+                      {document.name}
+                    </span>
+                    {document.localName && (
+                      <span className="text-sm text-muted">
+                        {document.localName}
+                      </span>
+                    )}
+                  </span>
+                  <span
+                    aria-hidden
+                    className="grid size-11 place-items-center justify-self-end border border-border transition-[transform,background-color,border-color,color] duration-150 group-hover:translate-x-0.5 group-hover:border-accent group-hover:bg-accent group-hover:text-accent-on max-md:size-10"
                   >
-                    <span
-                      className={cn(
-                        "font-mono text-sm tracking-[0.06em]",
-                        s.accent ? "font-bold text-success" : "text-muted",
-                      )}
-                    >
-                      {s.no}
-                    </span>
-                    <span className="text-lg font-[450] leading-normal max-md:text-base [&_strong]:font-semibold [&_strong]:text-fg">
-                      {s.text}
-                    </span>
-                  </li>
-                ))}
-              </ol>
+                    <Arrow />
+                  </span>
+                </Link>
+              ))}
             </Reveal>
           </Container>
         </section>
 
         {/* ── Selected Proof — portfolio 넘버드 문법의 관문형 축약 ── */}
-        <section className="py-20 max-md:py-12">
+        <section className="bg-surface py-20 max-md:py-12">
           <Container variant="hub">
             <Reveal>
-              <SectionHead no="01" title="Selected Proof" meta={`Cases · ${HOME_CASES.length} — 상세는 Portfolio`} />
+              <SectionHead
+                no="02"
+                title="Selected Proof"
+                meta={`Cases · ${HOME_CASES.length}`}
+              />
             </Reveal>
             <Reveal stagger>
-              <div>
+              <div className="border-y border-border">
                 {HOME_CASES.map((c) => {
                   const href = c.available ? `/portfolio/${c.slug}` : "/portfolio";
                   return (
@@ -232,8 +168,8 @@ export default function Home() {
                       key={c.slug}
                       href={href}
                       className={cn(
-                        "group focus-ring grid grid-cols-[56px_minmax(0,1fr)_220px_auto] items-center gap-5 border-b border-border px-1 py-5",
-                        "transition-[background,padding-left] duration-[180ms] hover:bg-surface hover:pl-4",
+                        "group focus-ring grid grid-cols-[56px_minmax(0,1fr)_220px_auto] items-center gap-5 border-b border-border px-1 py-5 last:border-b-0",
+                        "transition-[background,padding] duration-[180ms] hover:bg-bg hover:px-4",
                         "max-md:grid-cols-[40px_minmax(0,1fr)_auto] max-md:gap-3",
                         !c.available && "text-muted",
                       )}
@@ -283,54 +219,6 @@ export default function Home() {
                   );
                 })}
               </div>
-            </Reveal>
-            <p className="m-0 mt-5 text-xs tracking-[0.03em] text-muted">
-              세 대표 사례와 Memento 결제 사례는{" "}
-              <Link
-                href="/portfolio"
-                className="focus-ring border-b border-border text-fg-2 transition-colors duration-100 hover:border-fg hover:text-fg"
-              >
-                /portfolio 한 문서
-              </Link>
-              에서 이어서 볼 수 있습니다.
-            </p>
-          </Container>
-        </section>
-
-        {/* ── Explore · route gateway ── */}
-        <section className="pb-24 pt-4">
-          <Container variant="hub">
-            <Reveal>
-              <SectionHead no="02" title="Explore" meta="Routes · 3" />
-            </Reveal>
-            <Reveal stagger className="grid grid-cols-3 gap-px border border-border-soft bg-border-soft max-md:grid-cols-1">
-              {ROUTES.map((r) => (
-                <Link
-                  key={r.name}
-                  href={r.href}
-                  className="focus-ring grid min-h-[148px] content-start gap-3 bg-bg p-5 transition-colors duration-[180ms] hover:bg-surface"
-                >
-                  <span className="flex items-center gap-2">
-                    <span className="font-mono text-base font-semibold uppercase tracking-[0.08em]">
-                      {r.name}
-                    </span>
-                    <span
-                      className={cn(
-                        "ml-auto border px-[7px] py-0.5 font-mono text-xs uppercase tracking-[0.08em]",
-                        r.warn ? "border-warn text-warn" : "border-border text-muted",
-                      )}
-                    >
-                      {r.badge}
-                    </span>
-                  </span>
-                  <span className="text-sm leading-[1.55] text-fg-2 [&_b]:font-semibold [&_b]:text-fg">
-                    {r.desc}
-                  </span>
-                  <span className="mt-auto font-mono text-xs tracking-[0.04em] text-muted">
-                    {r.href} →
-                  </span>
-                </Link>
-              ))}
             </Reveal>
           </Container>
         </section>

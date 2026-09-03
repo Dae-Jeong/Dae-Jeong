@@ -2,7 +2,7 @@
 type: product-content
 title: Homepage Public Content
 description: Homepage hero, bio, and section-level public-safe canonical copy.
-timestamp: 2026-08-24
+timestamp: 2026-09-01
 tags: [homepage, public, branding]
 claim_ids: [thready.product-zero-to-one-contribution, thready.frontend-product-delivery, thready.subscription-revenue-band, thready.backend-rebuild, thready.qa-reopen-reduction, thready.generation-quality-system, centurion.bay-async-backend, centurion.say-realtime-ai, be-template.backend-standard, be-template.agent-context, mediness.company-work-ax-design, mediness.product-operations]
 ---
@@ -13,7 +13,7 @@ claim_ids: [thready.product-zero-to-one-contribution, thready.frontend-product-d
 
 Tech Lead · Backend Engineer · AI Product Systems
 
-> 아이디어를 새로운 가치로 실현하는 메이커, 김대정입니다.
+> 가능성을 기회로 바꾸고, 제품으로 가치를 전하는 메이커 김대정입니다.
 
 `Maker`는 브랜드 정체성이고, 검색·채용 역할은 `Tech Lead · Backend Engineer`다. 첫 근거는 고객 문제를 실제 매출이 발생하는 제품으로 만들고 운영한 경험이며, backend·AI·핵심 frontend는 그 제품을 직접 완성한 실행 범위로 증명한다.
 
@@ -24,8 +24,14 @@ site IA([2026-07-15 설계](../../docs/superpowers/specs/2026-07-15-personal-sit
 1. Home(`/`): category와 대표 ownership
 2. Resume(`/resume`): A4 master + PDF
 3. Portfolio(`/portfolio`): 문제·접근·구현·운영 깊이
-4. Blog(`/blog`): 판단 과정·운영 경험 — 글 0으로 시작 가능, evidence·public-safety gate 통과한 글만 게시
-5. Labs(`/labs`): 기능·서비스 관문
+4. Career Description(`/career`): 프로젝트별 역할·책임·기술 결정·기여 범위
+5. CV(`/cv`): 경력·학력·기술·활동 전체 기록
+6. Blog(`/blog`): 판단 과정·운영 경험 — 글 0으로 시작 가능, evidence·public-safety gate 통과한 글만 게시
+7. Labs(`/labs`): 기능·서비스 관문
+
+Home의 Documents 영역은 네 문서의 사용법을 다시 설명하지 않는다. 번호·문서명·한국어명과
+실제 route만 제공한다. `/career`와 `/cv`는 local review 중이며 production navigation과
+색인 전환은 사용자 승인 뒤 같은 revision에서 처리한다.
 
 Agent Workflow는 별도 nav가 아니라 Home/case 서술의 differentiator로 녹인다.
 

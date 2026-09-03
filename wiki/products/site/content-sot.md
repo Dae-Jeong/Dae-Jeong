@@ -2,7 +2,7 @@
 type: reference
 title: 콘텐츠 SoT — 공개 site surface 기준선
 description: 2026-08-13부터 app/fe의 각 public surface가 자신의 표현 SoT다. 플랫폼 프로필은 관련 surface에서 파생된다. 사실·강도는 claim registry가 계속 소유한다.
-timestamp: 2026-08-22
+timestamp: 2026-09-01
 tags: [sot, content, site, platform]
 ---
 
@@ -46,9 +46,9 @@ tags: [sot, content, site, platform]
 4. 플랫폼에 반영하고 **실측으로 검증**한다 (폼은 `innerText`가 아니라 필드 `value`로 읽는다).
 5. 결과를 [동기화 매트릭스](../../backlog/platform-profile-consolidation/2026-08-13-sync-matrix.md)에 기록한다.
 
-## 현재 SoT 스냅샷 (2026-08-22)
+## 현재 SoT 스냅샷 (2026-09-01)
 
-- 공통 소개: `아이디어를 새로운 가치로 실현하는 메이커, 김대정입니다.`
+- 공통 소개: `가능성을 기회로 바꾸고, 제품으로 가치를 전하는 메이커 김대정입니다.`
 - 채용 역할: `Tech Lead · Backend Engineer`; 전문 영역: `AI Product Systems`
 - resume 순서: `소개 → 경력 → 대표 성과 → 기술 → 외부 활동 → credentials`
 - portfolio 순서: `Thready → Company AX → Centurion`, supporting `Memento Payment`; Infrastructure는 archive evidence

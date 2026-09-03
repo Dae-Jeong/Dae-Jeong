@@ -1,14 +1,22 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/cn";
 
-const ROUTES: { no: string; label: string; href: string }[] = [
-  { no: "01", label: "Portfolio", href: "/portfolio" },
-  { no: "02", label: "Blog", href: "/blog" },
-  { no: "03", label: "Labs", href: "/labs" },
-  { no: "04", label: "Resume", href: "/resume" },
-];
+const ROUTES = [
+  { no: "01", label: "Home", href: "/", primary: true, review: false },
+  { no: "02", label: "Resume", href: "/resume", primary: true, review: false },
+  { no: "03", label: "Portfolio", href: "/portfolio", primary: true, review: false },
+  { no: "04", label: "Career", href: "/career", primary: true, review: true },
+  { no: "05", label: "CV", href: "/cv", primary: true, review: true },
+  { no: "06", label: "Blog", href: "/blog", primary: false, review: false },
+  { no: "07", label: "Labs", href: "/labs", primary: false, review: false },
+] as const;
+
+const VISIBLE_ROUTES = ROUTES.filter(
+  (route) => !route.review || process.env.NODE_ENV !== "production",
+);
 
 /* 시각부 — specimen 정적 렌더에서 재사용. 크기·배치는 wrapper 가 소유한다 */
 export function MobileNavPanel({
@@ -44,19 +52,21 @@ export function MobileNavPanel({
         </button>
       </div>
       <nav aria-label="모바일 메뉴" className="grid content-start self-start p-6">
-        {ROUTES.map((r, i) => (
-          <a
-            key={r.no}
-            href={r.href}
+        {VISIBLE_ROUTES.map((route, index) => (
+          <Link
+            key={route.no}
+            href={route.href}
             onClick={onNavigate}
+            aria-current={route.href === "/" ? "page" : undefined}
             className={cn(
               "focus-ring flex items-baseline gap-3 border-t border-white/15 py-3.5 font-mono text-xl",
-              i === 0 && "border-t-0",
+              index === 0 && "border-t-0",
+              !route.primary && "text-white/70",
             )}
           >
-            <span className="font-mono text-xs text-white/50">{r.no}</span>
-            {r.label}
-          </a>
+            <span className="font-mono text-xs text-white/50">{route.no}</span>
+            {route.label}
+          </Link>
         ))}
       </nav>
       <div className="border-t border-white/15 p-4 font-mono text-xs tracking-[0.06em] text-white/60">

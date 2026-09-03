@@ -13,7 +13,7 @@ tags: [resume, v4, content, korean, draft]
 
 v3까지는 **프로젝트가 뼈대**였다. Capabilities 6개 카드가 프로젝트와 1:1 대응하고, `Selected Projects`가 독립 섹션으로 있었다.
 
-[구조 리서치](../../../jd/reports/2026-08-09-resume-structure-research.md) 결론:
+[구조 리서치](../../../products/jd/reports/2026-08-09-resume-structure-research.md) 결론:
 
 > 이력서는 인벤토리가 아니라 **주장(argument)**이다. 프로젝트는 주제가 아니라 **증거**다. 관통 주제가 모든 역할을 꿰어야 한다.
 
@@ -79,7 +79,7 @@ v3 유지 + **마지막 줄에 3축 예고를 넣어** 이후 섹션과 연결�
 
 ## Career
 
-v3 구조 유지 ([recency weighting](../../../../rules/recency-weighting.md)). 단 **bullet을 3축 언어로 정렬**해 How I Work와 호응시킨다.
+v3 구조 유지 ([recency weighting](../../../rules/recency-weighting.md)). 단 **bullet을 3축 언어로 정렬**해 How I Work와 호응시킨다.
 
 ### MediSolve AI · Backend Engineer · 2025.04 — 현재
 
@@ -184,7 +184,7 @@ claim registry **39 → 42건**. 축 2가 2개 → **4개 프로젝트** 교차.
 
 1. **화면 반영 후 6초/30초 테스트** — 헤더+Summary로 "어떤 엔지니어인가" 답이 나오는지, How I Work까지 읽고 그 답이 **선명해지는지 흩어지는지**. 리서치가 제시한 실제 판단 시간 기준이다.
 2. **`medisolve-admin.*` 복원 시 배치** — Git history 대조로 `public: true` 회복되면 축 2(커넥션 풀 원인 분석)에 넣는다. 축 2 보강 후보 중 하나다.
-3. **A4 2장 (PDF 출력 시)** — [content-contract Acceptance Gate 5](../../content-contract.md). 웹은 스크롤이라 직접 제약이 아니다. PDF 파이프라인이 v0·v1 시절 것이라 재생성이 선행돼야 한다.
+3. **A4 2장 (PDF 출력 시)** — [content-contract Acceptance Gate 5](../../../products/resume/content-contract.md). 웹은 스크롤이라 직접 제약이 아니다. PDF 파이프라인이 v0·v1 시절 것이라 재생성이 선행돼야 한다.
 4. **Career bullet의 3축 정렬 확인** — 변경 요약에서 이 항목을 뺐다. 현재 Career bullet은 프로젝트 서술 그대로이며, 3축 언어로 다시 쓸지는 화면 반영 후 판단한다. **무리하게 맞추면 또 다른 억지 배치가 된다.**
 
 ### 판단 기준 — 다음에 같은 실수를 막기 위해

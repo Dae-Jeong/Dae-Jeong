@@ -1,13 +1,20 @@
 ---
 type: idea
 title: Personal Company Application Archive
-description: 플랫폼을 통한 지원 1회마다 회사 맞춤 이력서·포트폴리오 세트와 JD를 함께 보관하는 개인용 구조.
-status: spec
+description: 회사별 지원 package 구조를 설계했고 active ownership을 resume tailored registry로 승격한 historical design record.
+status: done
 registered: 2026-08-15
+promoted: 2026-09-01
 tags: [backlog, resume, portfolio, jd, application]
 ---
 
 # Personal Company Application Archive
+
+## 승격 상태
+
+- 2026-09-01에 active ownership을 [Tailored Application Lifecycle](../../products/resume/application-lifecycle.md)로 승격했다.
+- 현재 application lifecycle, stage, artifact state, 제출본 동결 규칙은 새 registry가 소유한다.
+- 이 backlog 문서는 최초 구조와 판단 과정을 보존하는 historical design record다. 아래 내용과 registry가 다르면 registry를 따른다.
 
 ## 한 줄
 
@@ -139,14 +146,20 @@ skill은 다음까지만 자동으로 수행한다.
 4. `package/`는 실제 제출한 이력서·포트폴리오 한 세트이며 지원 후 덮어쓰지 않는다.
 5. `tailored/`는 Git에 올리지 않고 개인 private backup으로만 보관한다.
 
+## Local operations workspace
+
+- `/applications`는 활성 공고의 분석·지원 준비 상태를 보는 local-only 화면이다.
+- `app/fe/content/applications.json`이 공고·분석 데이터의 canonical store다.
+- `app/fe/content/applications.ts`는 UI가 쓰는 type adapter만 소유한다.
+- AI 수집·재검증 작업은 같은 JSON을 갱신하며, DB·ORM·별도 backend service는 두지 않는다.
+- 실제 제출 패키지는 기존 `wiki/products/resume/tailored/` 구조에 동결한다.
+
 ## 하지 않을 것
 
-- 데이터베이스
-- 별도 웹 대시보드
-- opaque application ID
-- schema version과 상태 머신
+- 데이터베이스·ORM
+- 별도 backend service
 - SHA-256 manifest
-- 전용 CLI — 반복이 불편해진 뒤에만 추가
+- 전용 CLI — JSON 직접 갱신이 실제로 불편해진 뒤에만 추가
 
 ## 연결
 
@@ -158,7 +171,10 @@ skill은 다음까지만 자동으로 수행한다.
 
 ## 현재 상태
 
+- active owner 승격 완료: [Tailored Application Lifecycle](../../products/resume/application-lifecycle.md)
+- 이 문서의 역할은 historical design record로 종료
 - 구조 설계 완료
+- local `/applications` workspace와 단일 JSON store 구현
 - tracked package template 추가
 - `tailor-resume`에 Markdown-first content review gate 반영
 - 공개가 승인된 회사별 문안은 `/resume/{company}` typed content route로 export하며 DRAFT와 visibility를 분리

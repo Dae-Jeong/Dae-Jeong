@@ -1,5 +1,5 @@
 version: 2
-last_updated: 2026-08-13
+last_updated: 2026-09-01
 
 summary: >
   Portable source-of-truth manifest for Kim Daejeong's profile, evidence,
@@ -10,7 +10,7 @@ layers:
     owns: [routing, current_snapshot]
     canonical: false
   profile:
-    owns: [identity, career, tenure, capabilities, credentials, contribution, agent_workflow, writing]
+    owns: [identity, career, tenure, capabilities, credentials, contribution, decision_principles, agent_workflow, writing]
     canonical: true
   evidence:
     owns: [verified_facts, claims, confidence, public_scope, audits, client_masking]

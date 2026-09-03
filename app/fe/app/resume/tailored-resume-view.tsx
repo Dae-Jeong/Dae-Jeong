@@ -165,9 +165,11 @@ function OutcomeDescription({
                 key={`${groupIndex}-${itemIndex}`}
                 className={resumeType.achievementEvidenceItem}
               >
-                <RichText value={item.text} />
+                <span className="min-w-0 flex-1 text-pretty">
+                  <RichText value={item.text} />
+                </span>
                 {item.source && (
-                  <span className="ml-1.5 whitespace-nowrap font-mono text-xs text-muted">
+                  <span className="shrink-0 whitespace-nowrap text-right font-mono text-xs leading-relaxed text-muted max-sm:mt-0.5 max-sm:text-left">
                     [{item.source}]
                   </span>
                 )}
@@ -187,6 +189,7 @@ function Section({
   meta,
   children,
   className,
+  plain = false,
 }: {
   id: string;
   no: string;
@@ -194,20 +197,32 @@ function Section({
   meta: string;
   children: React.ReactNode;
   className?: string;
+  /** A안(v3): 번호·대문자 eyebrow 없이 제목 + 작은 meta만 */
+  plain?: boolean;
 }) {
   return (
     <section
       id={id}
       className={cn(resumeType.documentSection, "scroll-mt-6", className)}
     >
-      <SectionHead no={no} title={title} meta={meta} size="doc" />
+      {plain ? (
+        <div className="mb-7 flex flex-wrap items-baseline gap-x-5 gap-y-1 border-b border-fg pb-3">
+          <h2 className="m-0 text-xl font-semibold tracking-[-0.02em]">{title}</h2>
+          <span className="text-sm text-muted">{meta}</span>
+        </div>
+      ) : (
+        <SectionHead no={no} title={title} meta={meta} size="doc" />
+      )}
       {children}
     </section>
   );
 }
 
 function ResumeDocument({ resume }: { resume: TailoredResume }) {
-  const sections = getResumeSections(resume);
+  const isA = (resume.uiRevision ?? 1) >= 3;
+  const sections = getResumeSections(resume).filter(
+    (section) => !(isA && section.key === "profile"),
+  );
   const skillRows = resume.skills.map((skill) => ({
     k: skill.label,
     "data-claim": claim(skill.claimIds),
@@ -225,6 +240,7 @@ function ResumeDocument({ resume }: { resume: TailoredResume }) {
       no: section.no,
       title: section.title,
       meta: section.meta,
+      plain: isA,
     };
 
     if (section.key === "profile") {
@@ -395,6 +411,53 @@ function ResumeDocument({ resume }: { resume: TailoredResume }) {
     );
   }
 
+  if (isA) {
+    return (
+      <div data-tailored-resume data-resume-slug={resume.slug} data-ui-revision={resume.uiRevision}>
+        <header className={resumeType.commonDocumentHeader}>
+          <div id="s1" className={resumeType.commonIdentityBlock}>
+            <h1 className={resumeType.commonIdentity}>{resume.header.name}</h1>
+            <p className={resumeType.commonRoleMeta}>{resume.header.role}</p>
+          </div>
+          <div className={resumeType.commonMetaBlock}>
+            <p className={resumeType.careerMeta}>
+              <RichText value={resume.header.careerLine} />
+            </p>
+            <div className={resumeType.commonContactRow}>
+              {resume.header.contacts.map((contact) => (
+                <Chip
+                  key={contact.label}
+                  variant="contact"
+                  href={contact.href}
+                  external={contact.external}
+                >
+                  {contact.label}
+                </Chip>
+              ))}
+            </div>
+          </div>
+          {resume.header.submissionMeta && (
+            <p className="m-0 mt-3 w-fit border border-border px-2.5 py-1.5 font-mono text-xs font-medium text-fg">
+              {resume.header.submissionMeta}
+            </p>
+          )}
+          <div className={resumeType.summaryStack}>
+            {resume.summary.map((paragraph, index) => (
+              <p
+                key={index}
+                className={index === 0 ? resumeType.profileTitle : resumeType.profileDescription}
+                data-claim={claim(paragraph.claimIds)}
+              >
+                <RichText value={paragraph.text} />
+              </p>
+            ))}
+          </div>
+        </header>
+        {sections.map(renderSection)}
+      </div>
+    );
+  }
+
   return (
     <div data-tailored-resume data-resume-slug={resume.slug}>
       <header className={resumeType.documentHeader}>
@@ -519,7 +582,7 @@ export function TailoredResumeView({
   const sections = getResumeSections(resume).map(({ id, label }) => ({ id, label }));
 
   return (
-    <ResumeLayout sections={sections} pdfHref={resume.pdfHref}>
+    <ResumeLayout sections={sections} pdfHref={resume.pdfHref} printFlow={resume.printFlow}>
       {resume.roleVariant && roleOptions && (
         <ResumeVariantNav activeSlug={resume.slug} options={roleOptions} />
       )}

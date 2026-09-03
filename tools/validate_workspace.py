@@ -10,6 +10,12 @@ from typing import Any
 
 import yaml
 
+from build_application_projection import (
+    PROJECTION_RELATIVE_PATH,
+    expected_projection,
+    load_registry,
+)
+
 
 WIKI = "wiki"
 CONCEPT_DIRS = tuple(
@@ -37,6 +43,8 @@ REQUIRED_CLAIM_FIELDS = {
 }
 ALLOWED_STRENGTHS = {"owned", "led", "co-led", "contributed"}
 ALLOWED_CONFIDENCE = {"high", "medium", "low", "unknown"}
+COMMON_DOCUMENT_ARTIFACTS = {"resume", "career-description", "portfolio", "cv"}
+COMMON_CONTENT_USE = {"include", "primary", "supporting", "summary", "context", "exclude"}
 MARKDOWN_LINK = re.compile(r"\[[^\]]+\]\(([^)]+)\)")
 HEADING = re.compile(r"^#{1,6}\s+(.+?)\s*$", re.MULTILINE)
 DATA_CLAIM = re.compile(r'(?:data-claim=|"data-claim":\s*)"([^"]+)"')
@@ -200,6 +208,68 @@ def _validate_claim_map(root: Path) -> list[str]:
     return errors
 
 
+def _validate_common_content_inventory(root: Path) -> list[str]:
+    path = root / WIKI / "products" / "resume" / "common-content-inventory.yaml"
+    if not path.exists():
+        return []
+    try:
+        data = yaml.safe_load(path.read_text(encoding="utf-8"))
+    except yaml.YAMLError as exc:
+        return [f"common content inventory: {path.relative_to(root)} cannot parse: {exc}"]
+    if not isinstance(data, dict) or data.get("schema_version") != 1:
+        return [f"common content inventory: {path.relative_to(root)} must use schema_version 1"]
+
+    blocks = data.get("blocks")
+    if not isinstance(blocks, list):
+        return [f"common content inventory: {path.relative_to(root)} blocks must be a list"]
+
+    claims, _ = _load_claims(root)
+    public_claims = {
+        str(claim.get("id")) for claim in claims if claim.get("public") is True
+    }
+    errors: list[str] = []
+    seen: set[str] = set()
+    for index, block in enumerate(blocks):
+        label = f"common content inventory: blocks[{index}]"
+        if not isinstance(block, dict):
+            errors.append(f"{label} must be an object")
+            continue
+        block_id = block.get("id")
+        if not isinstance(block_id, str) or not block_id.strip():
+            errors.append(f"{label}.id must be a non-empty string")
+        elif block_id in seen:
+            errors.append(f"{label}.id duplicates {block_id}")
+        else:
+            seen.add(block_id)
+
+        for field in ("project", "focus"):
+            if not isinstance(block.get(field), str) or not block[field].strip():
+                errors.append(f"{label}.{field} must be a non-empty string")
+
+        claim_ids = block.get("claim_ids")
+        if not isinstance(claim_ids, list) or not claim_ids:
+            errors.append(f"{label}.claim_ids must be a non-empty list")
+        else:
+            for claim_id in claim_ids:
+                if claim_id not in public_claims:
+                    errors.append(f"{label} references unknown or non-public claim {claim_id}")
+
+        use = block.get("use")
+        if not isinstance(use, dict):
+            errors.append(f"{label}.use must be an object")
+            continue
+        if set(use) != COMMON_DOCUMENT_ARTIFACTS:
+            errors.append(
+                f"{label}.use must contain exactly {sorted(COMMON_DOCUMENT_ARTIFACTS)}"
+            )
+        for artifact, mode in use.items():
+            if mode not in COMMON_CONTENT_USE:
+                errors.append(
+                    f"{label}.use.{artifact} must be one of {sorted(COMMON_CONTENT_USE)}"
+                )
+    return errors
+
+
 def _validate_product_claim_refs(root: Path) -> list[str]:
     claims, _ = _load_claims(root)
     known = {claim.get("id") for claim in claims}
@@ -289,6 +359,34 @@ def _validate_tailored_resume_claims(root: Path) -> list[str]:
     return errors
 
 
+def _validate_professional_document_claims(root: Path) -> list[str]:
+    base = root / "app" / "fe" / "content" / "documents"
+    if not base.exists():
+        return []
+
+    claims, _ = _load_claims(root)
+    known = {str(claim.get("id")) for claim in claims}
+    public = {str(claim.get("id")) for claim in claims if claim.get("public") is True}
+    errors: list[str] = []
+
+    for artifact in sorted(base.glob("*.ts")):
+        text = artifact.read_text(encoding="utf-8")
+        used = {
+            claim_id
+            for block in TAILORED_CLAIM_IDS_BLOCK.findall(text)
+            for claim_id in STRING_LITERAL.findall(block)
+        }
+        for claim_id in sorted(used - known):
+            errors.append(
+                f"professional document: {artifact.relative_to(root)} has unknown claimIds value {claim_id}"
+            )
+        for claim_id in sorted(used - public):
+            errors.append(
+                f"professional document: {artifact.relative_to(root)} claimIds value {claim_id} is not public"
+            )
+    return errors
+
+
 def _validate_portfolio_artifact_claims(root: Path) -> list[str]:
     artifacts = (
         root / "app" / "fe" / "lib" / "cases.ts",
@@ -340,6 +438,33 @@ def _validate_portfolio_artifact_claims(root: Path) -> list[str]:
     return errors
 
 
+def _validate_application_registry(root: Path) -> list[str]:
+    """Validate the tracked registry without requiring ignored local artifacts."""
+    registry = root / "wiki" / "products" / "resume" / "application-registry.yaml"
+    if not registry.exists():
+        return []
+    _, errors = load_registry(registry, root)
+    return errors
+
+
+def _validate_application_projection_drift(root: Path) -> list[str]:
+    """Check a generated projection only when it is present in this workspace."""
+    output = root / PROJECTION_RELATIVE_PATH
+    if not output.exists():
+        return []
+    expected, errors = expected_projection(root)
+    if errors:
+        return errors
+    assert expected is not None
+    try:
+        actual = output.read_text(encoding="utf-8")
+    except OSError as exc:
+        return [f"application projection: {output.relative_to(root)} cannot read: {exc}"]
+    if actual != expected:
+        return [f"application projection: {output.relative_to(root)} is out of date"]
+    return []
+
+
 def validate(root: Path) -> list[str]:
     """Return stable validation failures; an empty list means pass."""
     root = root.resolve()
@@ -349,10 +474,14 @@ def validate(root: Path) -> list[str]:
         + _validate_claims(root)
         + _validate_links(root)
         + _validate_claim_map(root)
+        + _validate_common_content_inventory(root)
         + _validate_product_claim_refs(root)
         + _validate_resume_artifact_claims(root)
         + _validate_tailored_resume_claims(root)
+        + _validate_professional_document_claims(root)
         + _validate_portfolio_artifact_claims(root)
+        + _validate_application_registry(root)
+        + _validate_application_projection_drift(root)
     )
 
 

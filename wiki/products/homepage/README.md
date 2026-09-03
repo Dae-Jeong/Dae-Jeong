@@ -11,6 +11,7 @@ tags: [homepage, branding, product]
 Homepage는 profile과 evidence를 public navigation surface로 조립하는 consumer다.
 
 - Homepage content contract/reference: [public-content.md](public-content.md)
+- Current implementation task: [Homepage Profile Hub Refresh](../../docs/superpowers/plans/2026-09-02-homepage-profile-hub-refresh.md)
 - 브랜드 문장의 canonical owner는 [profile identity](../../profile/identity.md), 현재 화면 문장·배치는 `app/fe/app/page.tsx`가 소유한다.
 - Resume master가 안정된 뒤 동일한 category와 대표 claim을 이식한다.
 - public-safe [profile](../../profile/README.md)과 [claims](../../evidence/claims/README.md)만 사용한다.

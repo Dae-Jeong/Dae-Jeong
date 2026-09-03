@@ -2,7 +2,7 @@
 type: policy
 title: Persuasive Writing Policy
 description: 프로필·이력서·경력기술서 문장을 설득력 있게 쓰는 규칙. 외부 사례 리서치(2026-08-10)로 검증한 기준.
-timestamp: 2026-08-18
+timestamp: 2026-09-01
 tags: [policy, resume, profile, writing]
 ---
 
@@ -14,8 +14,9 @@ tags: [policy, resume, profile, writing]
 성과는 과거의 증거, **판단 서사는 재현 가능성** — 결과는 전 회사에 두고 오지만 판단력은 이식된다.
 포맷(bullet·문단)은 그걸 10초 안에 스캔되게 하는 포장일 뿐이다. 포장을 위해 판단을 버리지 않는다.
 
-이 문서는 [dual-track-copy](../backlog/platform-profile-consolidation/dual-track-copy-draft.md)의
-서술 구조 규칙을 외부 사례로 검증하고 보완한 결과다.
+이 문서는 [Decision Principles](../profile/decision-principles.md)의 Communication Standard를
+공개 프로필·이력서·경력기술서 문장에 적용하는 규칙이다. 실제 surface의 현재 문안은
+[site content SoT](../products/site/content-sot.md)를 따른다.
 
 ---
 
@@ -69,8 +70,8 @@ Julia Evans, *Get your work recognized: write a brag document*:
 ③ 관찰된 효과를 적는다 — 간접적이어도 된다
 ```
 
-우리 [서술 구조](../backlog/platform-profile-consolidation/dual-track-copy-draft.md)
-(`예상한 문제 → 판단 근거 → 결정 → 결과`)와 같은 뼈대이며, **③이 우리 쪽에서 약했다.**
+현재 [판단 원칙](../profile/decision-principles.md)의 Achievement Filter와 같은 뼈대이며,
+당시 문안에는 **③ 관찰된 효과가 약했다.**
 수치가 없으면 결과를 통째로 생략해 왔는데, *"신규 제품이 같은 구조에서 출발한다"*처럼
 간접 효과라도 쓰는 편이 낫다.
 
@@ -294,7 +295,7 @@ QA 티켓 reopen 비율 37% → 11% 개선 (해결 대비 reopen, cutover 전후
 - **소개(L1)는 문단형 유지.** 관점 선언은 서사가 필요하고, 개조식으로 쪼개면 논지가 사라진다.
 
 근거: [bullet impact 분석](../products/resume/research/2026-08-12-bullet-impact.md) (해외 실증 + 부록 A~E 한국 레퍼런스).
-canonical: [dual-track-copy-draft](../backlog/platform-profile-consolidation/dual-track-copy-draft.md) 「경력 설명 — canonical v3」.
+현재 경력 문장의 표현 SoT는 [site content SoT](../products/site/content-sot.md)에 정의된 실제 `app/fe` surface다.
 
 ## 11. 재작성·대규모 변경은 리스크 통제 서사로 쓴다 (2026-08-13 user-confirmed)
 

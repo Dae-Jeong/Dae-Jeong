@@ -88,6 +88,10 @@ export type TailoredResume = {
   status: "draft" | "approved" | "closed";
   visibility: "local" | "public";
   updatedAt: string;
+  /** UI revision. 3 = 2026-09-02 A안(문서형): 사진·섹션 번호 없음, 소개는 header에 흡수, 성과 → 경력 순서. registry artifact_revisions와 맞춘다. */
+  uiRevision?: number;
+  /** "compact" = 인쇄에서 성과·기술 블록을 통째로 넘기지 않고 흐르게 한다 (짧은 압축층 이력서용, 2026-09-03). */
+  printFlow?: "compact";
   pdfHref?: string;
   header: {
     name: string;

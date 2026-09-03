@@ -94,9 +94,9 @@ tags: [resume, research, structure, narrative]
 2. **측정과 게이트로 판정 가능하게 만든다** — 3층 판정 체계, 실측 근거로 규칙 검증, 반증 로그, 자기 되먹임 오류 발견·교정
 3. **해결을 표준과 자동화로 확장한다** — 조직 표준 template, agent context 내장, 릴리스 게이트, daily briefing
 
-⚠️ **축 이름은 [v4 초안](../../resume/master/v4/content.md)에서 한 차례 조정됐다.** 초안 1차의 "문제를 다시 정의한다"는 범위가 넓어 아키텍처 변경 대부분을 흡수했고, "팀이 쓰게 만든다"는 IaC 소유까지 끌어들였다. 위 이름이 확정본이다.
+⚠️ **축 이름은 [v4 초안](../../../archive/resume-master/v4/content.md)에서 한 차례 조정됐다.** 초안 1차의 "문제를 다시 정의한다"는 범위가 넓어 아키텍처 변경 대부분을 흡수했고, "팀이 쓰게 만든다"는 IaC 소유까지 끌어들였다. 위 이름이 확정본이다.
 
-⚠️ **축 2는 evidence 검증에서 2개 프로젝트만 교차**하는 것으로 확인됐다(thready·mediness). 관통선으로 쓰려면 [근거 보강](../../resume/master/v4/claim-expansion-draft.md)이 선행돼야 한다.
+⚠️ **축 2는 evidence 검증에서 2개 프로젝트만 교차**하는 것으로 확인됐다(thready·mediness). 당시 판단은 [근거 보강 초안](../../../archive/resume-master/v4/claim-expansion-draft.md)에 보존한다.
 
 ### B. Capabilities를 역량 축으로 재구성
 

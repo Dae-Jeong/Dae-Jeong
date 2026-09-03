@@ -2,9 +2,9 @@
 type: current-state
 title: Current State
 description: Current source-of-truth routing and deployed site state; this file is a derived snapshot.
-timestamp: 2026-08-28
+timestamp: 2026-09-01
 canonical: false
-derived_from: [profile/, evidence/claims/, products/, app/fe/, backlog/platform-profile-consolidation/2026-08-22-live-verification.md]
+derived_from: [profile/, evidence/claims/, products/, products/resume/application-registry.yaml, products/resume/application-lifecycle.md, app/fe/, backlog/platform-profile-consolidation/2026-08-22-live-verification.md]
 tags: [current-state, migration, resume]
 ---
 
@@ -12,8 +12,11 @@ tags: [current-state, migration, resume]
 
 ## Current Baseline
 
+- **지원본 작성 기준·블록 SoT 신설** (2026-09-02): 정체성·15초 문장·대표 성과 풀 6개·수치 정책을 고정 층으로 두고, 포장 허용 범위와 제출 전 게이트 10개를 [Application Copy Standard](../rules/application-copy-standard.md)가 소유한다. 블록별 문안 원형(문제·판단·구현 경계·결과)·강도·preset 순서는 [Resume Block Library](../products/resume/resume-block-library.md)가 소유하며, 회사별 `content-draft.md`는 여기서 시작한다. 회사별 헤더는 공고 직무명을 앞에 둔다. Codex 세션 304개 검토 결과 포지셔닝이 두 달간 다섯 번 바뀌고 같은 지적이 반복된 것이 배경이다.
+- **지원 문서 패키지 기준 확정** (2026-09-01): Common은 이력서·경력기술서·포트폴리오·CV 네 문서를 모두 상시 관리한다. 회사별 지원본은 이력서·경력기술서·포트폴리오를 기본으로 조립하고 CV만 JD·지원 채널 요구에 따라 선택한다. 회사 국적은 CV 생성의 단독 조건으로 쓰지 않으며, 영문 이력서와 CV도 별개 artifact로 관리한다. Common 이력서·포트폴리오는 active이고 경력기술서·CV는 typed content owner와 local/noindex route를 구성해 review-ready 상태다. JYP·피처링은 Resume·Career Description·Portfolio 3종을 tailored로, CV는 omitted로 기록했다. 상세 owner는 [Resume Document Package Contract](../products/resume/document-package-contract.md)다.
 - `Profile -> Evidence -> Products` knowledge harness migration 완료.
-- `master/v0`–`master/v4`는 baseline·superseded draft로 보존한다. 현재 KO 웹 이력서의 표현 SoT는 `app/fe/app/resume/resume-view.tsx`다.
+- `master/v0`–`master/v1`은 구조 baseline으로 유지하고, superseded 문안 v2–v4는 `archive/resume-master/`로 이동했다. 현재 KO 웹 이력서의 표현 SoT는 `app/fe/app/resume/resume-view.tsx`다.
+- **회사별 지원 status registry 승격** (2026-09-01): [Application Registry](../products/resume/application-registry.yaml)가 application status와 artifact metadata를 소유하고 [Tailored Application Lifecycle](../products/resume/application-lifecycle.md)은 상태·revision·Snapshot 규칙을 소유한다. 상태는 `지원 전(pre-apply)·진행중(in-progress)·합격(accepted)·거절(declined)·탈락(rejected)` 다섯 개로 제한하고, 기업 검토·면접·처우 협상은 tracking 문구로 관리한다. 왓섭은 `in-progress / 기업 검토 중 / frozen`이며 현재 direct-link·noindex 이력서·포트폴리오 제출 표면은 변경하지 않는다. JYP와 피처링은 `pre-apply / 문안·local route 검토 중 / mutable`이며 두 지원본의 portable `work_session`은 `waiting-review`로 관리한다. MGRV는 `rejected / frozen`, GNA COMPANY는 사용자 확인을 반영한 `rejected / 결과 확인 필요 / artifact unknown`이다. 그 밖의 tailored 폴더는 상태를 추정하지 않고 `[확인 필요]`로 둔다.
 - 2026-08-18부터 resume의 고정 2-page cap·요약/case 개수·경력 상세 bullet 금지와 `resume는 hooking, portfolio는 depth` 기준을 폐기했다. 첫 장 scanability를 유지하되 전체 resume는 self-contained technical proof를 제공하며, backend case 선택 기준은 [Backend Case Achievement Inventory](../products/resume/backend-case-achievements.md)가 소유한다. 2026-08-26부터 공통·직군별 resume는 `소개 → 핵심 성과 → 경력 → 기술` 순서로 결과를 먼저 판정하고 경력과 mechanism으로 검증한다.
 - 과거 회사의 기획 경험은 [Product Decision Achievement Inventory](../products/resume/product-decision-achievements.md)에서 `제품 판단`, `제품 요구의 backend 번역`, `기술 실행 체계`로 분리하며, stable public claim과 승격 대기 후보를 함께 관리한다.
 - 이력서의 역할 PR 기준은 [Resume Role Positioning Standard](../products/resume/role-positioning-standard.md)가 소유한다. `Tech Lead`를 primary, `Backend Engineer`를 supporting role로 두고 제품 판단을 backend contract와 production 운영으로 닫는 반복된 사례로 Product Owner 성격을 증명한다. active frame은 `소개 → 핵심 성과 → 경력 → 기술 → 외부 활동 → Credentials`이며 대표 성과는 Thready 유료 제품 운영, FastAPI 병렬 재구축·QA reopen, Centurion 주문·재고 비동기 복구, Thready AI/DB migration·Outbox, Backend Template·agent 기준의 다섯 사례다.
@@ -33,10 +36,10 @@ tags: [current-state, migration, resume]
 - **디자인 시스템 구현됨** (2026-07-18): 토큰 계약 전체를 `globals.css` @theme으로 이식(type scale 11~56px 포함), `components/site·ui` 11개 컴포넌트 + `cn()` 병합 계약(tailwind-merge), `/design` living specimen 라우트 — 빌드·렌더·computed style 검증 완료. Storybook 패키지는 도입하지 않음(라우트가 겸함 — 업계 레퍼런스 조사로 검증, 로컬 위키 design-systems 항목).
 - **공개 배포 완료** (2026-08-08): **marinkim.xyz 라이브**. Vercel(개인 계정 `marinbackend-1819`, Root Directory `app/fe`) + 가비아 DNS + Let's Encrypt(apex·www). 전 라우트 200, `git push origin main` -> 자동 배포. repo 는 **PRIVATE 전환**(evidence·연락처 보호), 사이트만 공개. 비용 최적화로 `commandForIgnoringBuildStep` 설정 — wiki 만 바뀐 커밋은 빌드 스킵.
 - **플랫폼 프로필 Maker v2 동기화 완료** (2026-08-24): 홈페이지·공통 resume에서 파생한 [붙여넣기 패키지](../backlog/platform-profile-consolidation/2026-08-22-platform-paste-package.md)를 Wanted·LinkedIn·Remember·Groupby·RocketPunch에 반영하고 저장 후 reload 검증을 마쳤다. 다섯 플랫폼 모두 `아이디어를 고객이 돈을 내는 제품으로 만드는 메이커`와 실제 고객이 결제하는 유료 제품 운영·직접 구현 범위를 사용하며, 정확한 매출 band와 광고 실험은 공개하지 않는다. RocketPunch 자동 AI 커리어 요약도 새 경력을 바탕으로 재생성됐다. LinkedIn Featured는 도메인 링크 검증 실패로 상단 웹사이트 버튼이 역할을 대신하고, Saramin은 사용하지 않기로 확정해 대상에서 제외했다. Oopy 정리와 Wanted·LinkedIn의 UI 잔여값은 남아 있다. 현재 플랫폼별 상태는 [Live 적용 검증](../backlog/platform-profile-consolidation/2026-08-22-live-verification.md)이 소유한다.
-- **Maker 브랜드 문장 복원** (2026-08-24): 공통 소개는 `아이디어를 새로운 가치로 실현하는 메이커, 김대정입니다.`로 복원했다. `Maker`는 브랜드 정체성이고 채용 역할 표기는 `Tech Lead · Backend Engineer`를 유지한다. 홈 hero와 공통 resume·portfolio·직군별 초안은 같은 문장을 쓰며, 실제 고객이 결제하는 제품을 만든 근거는 소개 문장에 넣지 않고 바로 아래 Thready 경력과 사례가 증명한다. 채용 플랫폼은 마지막 적용값을 보존하며 다음 동기화 때 이 문장으로 맞춘다.
+- **Maker 브랜드 기준문장 갱신** (2026-09-01): 공통 소개는 `가능성을 기회로 바꾸고, 제품으로 가치를 전하는 메이커 김대정입니다.`로 확정했다. `Maker`는 브랜드 정체성이고 채용 역할 표기는 `Tech Lead · Backend Engineer`를 유지한다. 홈 hero와 공통 resume·portfolio·직군별·회사별 mutable 초안은 같은 문장을 쓰며, 실제 고객이 결제하는 제품을 만든 근거는 소개 문장에 넣지 않고 바로 아래 Thready 경력과 사례가 증명한다. 채용 플랫폼은 마지막 적용값을 보존하며 다음 명시적 동기화 때 새 문장으로 맞춘다.
 - **포트폴리오 V3 단일 문서 반영** (2026-08-23): `/portfolio`는 세 primary case를 `Thready 유료 제품 운영·직접 구현` → `Company AX 전환 설계` → `Centurion service별 failure boundary` 순으로 보여준다. Company AX 사례는 MEDINESS의 제품·회사 업무 control plane과 직접 구축한 Backend Template·agent context를 contribution strength별로 분리한다. Infrastructure dossier는 archive evidence로 이동했고, Memento payment는 supporting case로 유지한다.
 - **직군별 이력서·포트폴리오 초안 확장** (2026-08-26): local-only route에서 Product Ownership·Backend·AI Backend·AX/FDE 네 관점으로 같은 claim과 case library의 순서·기술 깊이·focus를 바꿔 읽을 수 있게 했다. Tech Lead는 별도 지원본으로 나누지 않고 Backend 관점 안에서 기술 범위·검증 기준·전환을 정한 책임으로 증명한다. Product Ownership은 공식 직함이 아닌 지원 관점으로 둔다. AX/FDE는 Thready 유료 제품 운영 → NEXUS 외부 운영·예약 backend → SellerCanvas 기업 PoC로 field delivery를 먼저 증명하고, Company AX·Backend Template은 반복 가능한 실행 방식으로 확장한 후속 근거로 배치한다. 프로젝트 사실·수치·ownership은 복제하지 않고 기본 public surface는 유지한다.
-- **피노키오랩 맞춤 지원본 1차 확정** (2026-08-28): `/resume/pinokiolab`, `/portfolio/pinokiolab`를 승인된 public direct-link·noindex 지원본으로 전환했다. `고객이 사용하는 AI 제품을 만들고 운영한 Product Engineer`를 먼저 보여주고, AI 콘텐츠·실시간 상담/주문·재고·병원 운영/예약·예약/결제 사례 뒤에 FastAPI·SQLAlchemy transaction/session 기준을 기술 증거로 배치했다. BAY·SAY 실제 코드로 자동 발주 알림과 sequence 기반 STT 보정 경계를 재검증하고, 기획·QA·디자인 직군의 FastAPI template 적용과 Thready의 자동 검수·사람 라벨링 역할 분리를 반영했다. 웹·모바일·A4를 검수했으며 이력서 3쪽·포트폴리오 19쪽 PDF를 `output/pdf/`에 생성한다.
+- **피노키오랩 맞춤 지원본 1차 확정** (2026-08-28): `/resume/pinokiolab`, `/portfolio/pinokiolab`를 승인된 public direct-link·noindex 지원본으로 전환했다. `고객이 사용하는 AI 제품을 만들고 운영한 Product Engineer`를 먼저 보여주고, AI 콘텐츠·실시간 상담/주문·재고·병원 운영/예약·예약/결제 사례 뒤에 FastAPI·SQLAlchemy transaction/session 기준을 기술 증거로 배치했다. BAY·SAY 실제 코드로 자동 발주 알림과 sequence 기반 STT 보정 경계를 재검증하고, 기획·QA·디자인 직군의 FastAPI template 적용과 Thready의 자동 검수·사람 라벨링 역할 분리를 반영했다. 웹·모바일·A4를 검수했으며 이력서 3쪽·포트폴리오 19쪽 PDF를 `output/pdf/pinokiolab/`에 생성한다.
 - **Portfolio semantic visual system local preview** (2026-08-27): 공통·직군별·회사 맞춤 portfolio에 navy·white·gray 기반과 단일 blue accent를 적용했다. green·amber는 verified outcome·risk 같은 작은 판정 지점에만 제한한다. 동일한 회색 panel 반복은 `문제·대처·결과·system view·기술 판단·담당 범위`의 서로 다른 시각 위계로 교체하고, `compact-flow`는 mobile·A4에서 안정적으로 읽히는 code-native diagram으로 전환했다. 현재 local 검증 상태이며 공개 배포는 아직 하지 않았다.
 - **회사 Azure topology 시각화 기록** (2026-08-20, 2026-08-23 archive): Microsoft 공식 Azure icon 기반 current topology는 기술 audit·내부 evidence로 보존한다. 사용자의 전문성 positioning correction에 따라 public portfolio와 role variant에서는 선택하지 않는다.
 - **NEXUS·DAY 제품 경계 정정** (2026-08-20): 기존 `NEXUS ≡ Centurion` 판정을 supersede했다. DAY는 Centurion을 구성하는 범용 피부과 CRM 영역이고, NEXUS는 Centurion과 별개의 외부 피부과 홈페이지·관리·예약 운영 시스템이다. NEXUS backend 구축과 server-owned 지점 권한은 별도 사례로 분리했으며, 예약률 개선을 통한 고객사 매출 기여는 제품·팀 outcome의 `contributed/medium`으로만 공개한다. 정확한 예약률·매출 증분·개인 단독 인과는 금지한다.
@@ -58,7 +61,8 @@ tags: [current-state, migration, resume]
 | root routing hubs | complete |
 | evidence/claim registry | complete |
 | profile normalization | complete |
-| resume/portfolio/homepage/JD products | active; MGRV application closed after document rejection, tailored resume/portfolio are local-only (2026-08-18) |
+| resume/portfolio/homepage/JD products | active; 회사별 지원 status는 tailored registry가 소유하며 `pre-apply`·`in-progress`만 현재 진행 대상으로 분류 |
+| tailored applications | active registry; 왓섭 in-progress, JYP·피처링 pre-apply·work session review 대기, MGRV·GNA COMPANY rejected, 나머지 상태 미확인 (2026-09-01) |
 | skill adapters | complete |
 | temporary clean-clone verification | complete (2026-07-11) |
 

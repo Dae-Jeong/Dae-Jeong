@@ -11,7 +11,7 @@ tags: [resume, v3, content, korean, draft]
 
 v2 대비 변경 축 4개:
 
-1. **recency weighting 적용** ([rules/recency-weighting.md](../../../../rules/recency-weighting.md)) — MediSolve를 1 bullet → 4 bullet, 아이즈솔은 궤적 문장만
+1. **recency weighting 적용** ([rules/recency-weighting.md](../../../rules/recency-weighting.md)) — MediSolve를 1 bullet → 4 bullet, 아이즈솔은 궤적 문장만
 2. **연차 기준 확정** — "6년째 AI 제품"(혼용) → **4년차**(인턴 제외 실무 47개월). 궤적은 연차가 아니라 서술로
 3. **검증 자산 분리** — CES·특허를 경력 본문에서 Credentials로 승격, 경력 본문은 축약
 4. **최신 실적 반영** — quality lab 3층 체계 (registry 공백이던 영역). 어드민 시스템은 claim 강등으로 보류
@@ -57,7 +57,7 @@ v2 유지. 단 Engineering Standard에 계보 한 줄 추가:
 
 - layered architecture·DI·ADR·convention·runbook 기반 조직 표준 FastAPI template 설계·구축 전담 (`be-template.backend-standard`)
 - agent context system과 반복 작업 automation skill 내장 (`be-template.agent-context`)
-- *(선택)* 조직 표준 template 설계는 이전 소속의 Nest.js 개발 템플릿 제작에서 이어진 두 번째 사례 — **과거를 단독 서술하지 않고 현재 항목의 계보로 붙인다** ([recency weighting](../../../../rules/recency-weighting.md) 예외 3)
+- *(선택)* 조직 표준 template 설계는 이전 소속의 Nest.js 개발 템플릿 제작에서 이어진 두 번째 사례 — **과거를 단독 서술하지 않고 현재 항목의 계보로 붙인다** ([recency weighting](../../../rules/recency-weighting.md) 예외 3)
 
 ## Career — recency weighting 적용
 
@@ -92,7 +92,7 @@ v2 유지. 단 Engineering Standard에 계보 한 줄 추가:
 
 - Vision AI에서 시작한 AI product engineering 경력 (`career.ai-pm-backend-continuity`)
 
-> 궤적을 잇는 최소 문장만. 성과·수치를 쓰지 않는다 ([recency weighting](../../../../rules/recency-weighting.md) 초기 경력 규칙).
+> 궤적을 잇는 최소 문장만. 성과·수치를 쓰지 않는다 ([recency weighting](../../../rules/recency-weighting.md) 초기 경력 규칙).
 
 ## Personal Project
 
@@ -125,7 +125,7 @@ v2 3건 유지 + 1건 교체 검토.
 
 ## Open Items (확정 전)
 
-1. ~~연차 표기 최종 확인~~ → **확정 (2026-08-09)**: 인턴 제외 실무 47개월 = 만 3년 11개월 → **4년차**. `career.tenure` 신설, 산정 표는 [career.md#tenure](../../../../profile/career.md#tenure) 소유. **"BE 기준 N년차"는 쓰지 않는다** — BE 구간만은 27개월이라 부풀리기로 읽힌다
+1. ~~연차 표기 최종 확인~~ → **확정 (2026-08-09)**: 인턴 제외 실무 47개월 = 만 3년 11개월 → **4년차**. `career.tenure` 신설, 산정 표는 [career.md#tenure](../../../profile/career.md#tenure) 소유. **"BE 기준 N년차"는 쓰지 않는다** — BE 구간만은 27개월이라 부풀리기로 읽힌다
 2. ~~[미검증] 항목 처리~~ → **해소 (2026-08-08): 과거 정량은 검증 여부와 무관하게 쓰지 않는다.**
    - 아이즈솔 Yolo v5 99.8%·초당 30장 → 미사용. "안면 인식 기반 자동 출결 시스템 개발"까지
    - SellerCanvas Yolo v8 99%·VGG 85%·제작시간 95% 단축·이미지 15장→무제한 → 미사용. **"Vision AI 기반 의류 이미지 분석 모델 개발"** 수준 서술만

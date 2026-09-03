@@ -21,7 +21,7 @@ export function ResumePageShell({
         {children}
       </Container>
       <SiteFooter className="relative z-50 bg-bg print:hidden" />
-      <ReviewLauncher className="xl:right-20" />
+      <ReviewLauncher className="max-[720px]:hidden xl:right-20" />
     </>
   );
 }

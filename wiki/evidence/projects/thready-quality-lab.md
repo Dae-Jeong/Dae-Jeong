@@ -94,6 +94,13 @@ Source locator: `workspace:thready-lab` (브랜치 `lab/prompt-node-experiments`
 
 2026-08-26~27에 `workspace:thready-lab`의 독립 `prototype/thready_ai`에서 진행한 대화형 Threads 편집 에이전트 근거다. 아래 범위는 prototype으로 검증됐으며, 운영 Thready surface에 연결된 기능이나 production agent로 확대하지 않는다.
 
+### Product Intent
+
+- User-confirmed (2026-08-31): 이 task의 목적은 범용 대화형 Agent 자체를 만드는 것이 아니라, **Thready의 기능을 사용자가 대화로 제어하는 제품 흐름**을 검증하는 것이었다.
+- Code-backed: 글감 탐색·아이디어 발전·글 기획·작성·검토·수정·코칭 7개 편집 action과 계정·글 조회, 임시저장, 예약·발행·삭제, 성과 조회 등 13개 운영 action을 같은 대화 인터페이스에서 선택할 수 있도록 구성했다.
+- Product framing: 화면마다 기능을 찾아 들어가는 대신 사용자가 원하는 작업을 자연어로 말하면 Agent가 의도를 구조화하고, 허용된 Thready 기능을 골라 실행 결과를 대화로 돌려주는 control surface다.
+- Scope boundary: 편집 기능은 기존 Writer와 소재 원장을 재사용해 검증했고, 계정·글·성과 관련 운영 action은 `MockThreadyOperationsGateway`에서 실행 흐름과 안전 경계만 검증했다. 실제 운영 계정의 예약·발행·삭제를 수행한 것으로 표현하지 않는다.
+
 ### Architecture And Execution Boundary
 
 - Code-backed: 현재 구조는 multi-agent가 아니라 하나의 `ThreadyConversationAgent`가 요청을 분류하고 capability를 선택해 실행하는 **single-agent planner-executor**다.
@@ -124,6 +131,6 @@ Source locator: `workspace:thready-lab` (브랜치 `lab/prompt-node-experiments`
 
 ### Public Wording
 
-- 공개 가능: `대화형 AI 편집 prototype`, `single-agent planner-executor`, `typed capability registry`, `대화·turn·tool result·versioned artifact 원장`, `append-only activity`, `token-aware compaction`, `typed confirmation·idempotency가 있는 Mock operation gate`.
+- 공개 가능: `Thready 기능을 대화로 제어하는 Agent prototype`, `글감 탐색·기획·작성·수정과 계정·게시물 관리 흐름을 하나의 대화 인터페이스로 구성`, `single-agent planner-executor`, `typed capability registry`, `대화·turn·tool result·versioned artifact 원장`, `append-only activity`, `token-aware compaction`, `typed confirmation·idempotency가 있는 Mock operation gate`.
 - 공개 금지: `production agent`, `운영 Thready에 배포`, `multi-agent orchestration`, `실제 Threads 예약·발행·삭제`, `durable worker`, `재시작 복구 완료`, 진행 중인 fresh material capability의 완료 표현.
 - 강도: prototype architecture·ledger·activity·context·Mock operation gate의 설계·구현·검증은 `owned`. 운영 제품 승격과 실제 side effect는 미구현 범위다.

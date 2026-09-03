@@ -26,6 +26,7 @@ tags: [portfolio, cases, library]
 | [operating-policy-delivery.md](operating-policy-delivery.md) | OPERATING POLICY DELIVERY | 운영 요청을 규칙·실행으로 연결한 cross-project pattern | 프로젝트별 `led` 상한 |
 | [nexus-operations.md](nexus-operations.md) | NEXUS OPERATIONS | 외부 운영·예약 요구를 backend·권한 경계로 구현한 FDE supporting case | backend `led` · product outcome `contributed` |
 | [sellercanvas-poc.md](sellercanvas-poc.md) | SELLERCANVAS POC | 생성형 AI 제품과 외부 기업 PoC의 product·technical delivery | product/PoC `led` · outcome `contributed` |
+| [thready-agent-prototype.md](thready-agent-prototype.md) | THREADY AGENT PROTOTYPE | Thready의 글 제작·계정·게시물 관리 기능을 대화로 제어하는 흐름을 검증한 독립 prototype | prototype `owned` |
 
 ## Common Resume Selected Impact Coverage
 

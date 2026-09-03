@@ -289,3 +289,35 @@ claims:
       회고 주기와 검토 범위는 2026-08-27 user-confirmed다. 공개 문구는 요일·시간보다
       `주 1회` cadence와 검토 목적을 사용하며, 과거 사람 중심 code review 경험은 별도
       evidence를 확보하기 전 이 claim에 합치지 않는다.
+  - id: career.sellercanvas-vision-model-development
+    statement: STUDIO LAB AI Engineer 구간(2021.12–2022.09)에 SellerCanvas·Deep Scan의 Vision AI 기반 의류 이미지 분석 모델 개발에 참여
+    strength: contributed
+    confidence: high
+    public: true
+    evidence: [evidence/projects/previous-career.md#studio-lab-and-sellercanvas]
+    allowed_copy:
+      - Vision AI 기반 의류 이미지 분석 모델 개발
+      - AI Engineer 구간에서 의류 이미지 분석 모델을 개발하고 이후 PM·Backend로 역할을 넓힘
+    forbidden_copy:
+      - 모델 정확도 수치 (Yolo·VGG·KCL 99% 등)
+      - PM 재직 중 모델 직접 개발 (2026-09-02 user-refuted, oopy 시기가 정본)
+      - 모델 단독 개발·전담
+    verified_at: 2026-09-02
+    note: >-
+      2026-08-12의 "2023.05~06 PM 재직 중 추가 수행"은 2026-09-02 user-confirmed로 철회됐다. 시기는 oopy 실측(AI Engineer 기간)을 따른다.
+  - id: career.sellercanvas-nestjs-template
+    statement: STUDIO LAB Backend Engineer 구간(2023.08–12)에 Node.js 레거시를 NestJS로 개선하고 JWT·ExceptionFilter·Middleware Logger·MVC 흐름의 개발 template을 제작했다는 플랫폼 자기 기록
+    strength: led
+    confidence: low
+    public: false
+    evidence: [evidence/projects/previous-career.md#studio-lab-and-sellercanvas]
+    allowed_copy: []
+    forbidden_copy:
+      - FastAPI 도입으로 개발 기간 30% 단축 (12일→7일) 등 과거 정량
+      - 조직 표준 수립 (단일 제품 범위)
+      - 검증 전 public 문안 사용
+    verified_at: null
+    note: >-
+      리멤버·oopy 자기 기록만 있고 repository 근거가 없다. 2026-09-02 user-confirmed: 코드가 남아 있지 않다.
+      따라서 public 승격 경로가 없으며 면접 구두 설명용 사실로만 보존한다. 이력서·포폴에는 쓰지 않는다.
+

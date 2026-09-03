@@ -11,20 +11,26 @@ function CaseHeader({
   summary,
   displayNo,
   focus,
+  title,
+  roleLabel,
+  tagLabel,
 }: {
   meta: CaseMeta;
   summary: ReactNode;
   displayNo?: string;
   focus?: string;
+  title?: string;
+  roleLabel?: string;
+  tagLabel?: string;
 }) {
   return (
     <header className="portfolio-case-header">
       <div className="flex items-baseline justify-between gap-6 font-mono text-xs text-muted max-sm:grid max-sm:gap-1">
-        <span>{displayNo ?? meta.no} · {meta.tag}</span>
-        <span>{meta.role}</span>
+        <span>{displayNo ?? meta.no} · {tagLabel ?? meta.tag}</span>
+        <span>{roleLabel ?? meta.role}</span>
       </div>
       <h2 className="m-0 mt-4 text-[clamp(1.8rem,3.6vw,3.25rem)] font-semibold leading-[1.12] tracking-[-0.04em] text-balance">
-        {meta.name}
+        {title ?? meta.name}
       </h2>
       <p className="m-0 mt-6 max-w-4xl text-lg leading-[1.72] text-fg-2 text-pretty [&_strong]:font-semibold [&_strong]:text-fg">
         {summary}
@@ -36,6 +42,156 @@ function CaseHeader({
         </div>
       ) : null}
     </header>
+  );
+}
+
+function BackendTemplateCase({
+  meta,
+  displayNo,
+  focus,
+}: {
+  meta: CaseMeta;
+  displayNo?: string;
+  focus?: string;
+}) {
+  const propagationRows = [
+    [
+      "REQUIRED",
+      "기존 트랜잭션에 참여하고, 없으면 새로 시작",
+      "같은 session을 사용하며 바깥 트랜잭션과 함께 rollback",
+    ],
+    [
+      "REQUIRES_NEW",
+      "바깥 트랜잭션을 멈추고 새 connection·AsyncSession에서 실행",
+      "독립적으로 commit·rollback한 뒤 바깥 작업을 재개",
+    ],
+    [
+      "NESTED",
+      "같은 session·connection에 SAVEPOINT 생성",
+      "안쪽 작업만 rollback하고 바깥 트랜잭션은 계속 진행 가능",
+    ],
+    [
+      "TASK GUARD",
+      "child task가 같은 AsyncSession에 접근하면 즉시 실패",
+      "task마다 트랜잭션·session·복구 방법을 따로 결정",
+    ],
+  ];
+
+  const requestFlow = [
+    ["FastAPI Router", "요청과 domain input"],
+    ["@transactional Service", "트랜잭션 정책 선언"],
+    ["ContextVar → SessionProxy", "현재 AsyncSession 연결"],
+    ["Repository → DB", "SQL 실행·flush"],
+  ];
+
+  return (
+    <article
+      id={`case-${meta.slug}`}
+      className="portfolio-case scroll-mt-6 border-t-2 border-fg pb-16 pt-10"
+    >
+      <CaseHeader
+        meta={meta}
+        displayNo={displayNo}
+        focus={focus}
+        title="FastAPI에서 트랜잭션과 AsyncSession의 책임을 Service 계층에 두었습니다."
+        roleLabel="Backend Template 직접 설계·구축"
+        tagLabel="Backend Engineering · FastAPI"
+        summary={
+          <>
+            Router에서 받은 session을 모든 계층에 전달하던 반복에서 시작했습니다.
+            업무를 시작하는 Service method가 트랜잭션 범위를 선언하고, Repository는
+            현재 session을 찾아 SQL 실행에만 집중하도록 나눴습니다. 하나의 트랜잭션을
+            하나의 asyncio task와 AsyncSession이 사용하게 해 <strong>편의보다
+            데이터 가시성과 실패 복구를 먼저 예측할 수 있는 구조</strong>를 택했습니다.
+          </>
+        }
+      />
+
+      <section className="pt-10">
+        <Subhead note="문제 · 선택">반복 인자를 없애는 데서 끝내지 않고 트랜잭션 책임을 코드로 고정했습니다.</Subhead>
+        <div className="mt-6 grid grid-cols-2 border-y border-border max-md:grid-cols-1 print:grid-cols-2">
+          <div className="p-6 max-md:border-b max-md:border-border print:border-b-0 print:p-4">
+            <h4 className="m-0 text-base font-semibold">왜 바꿨나</h4>
+            <ul className="m-0 mt-4 grid gap-3 pl-5 text-sm leading-[1.65] text-fg-2">
+              <li>session 인자가 Router부터 Repository까지 업무와 무관하게 반복됐습니다.</li>
+              <li>트랜잭션을 참여·분리·중첩할 위치가 호출부마다 달라질 수 있었습니다.</li>
+              <li>여러 직군이 Coding Agent로 구현해도 같은 구조를 따를 기본값이 필요했습니다.</li>
+            </ul>
+          </div>
+          <div className="border-l border-border p-6 max-md:border-l-0 print:border-l print:p-4">
+            <h4 className="m-0 text-base font-semibold">무엇을 기본값으로 뒀나</h4>
+            <ul className="m-0 mt-4 grid gap-3 pl-5 text-sm leading-[1.65] text-fg-2">
+              <li>Router·Service·Validator·Repository·Model의 책임과 의존 방향을 고정했습니다.</li>
+              <li>Service가 트랜잭션을 시작하고 Repository는 SQL 실행과 flush만 담당합니다.</li>
+              <li>FastAPI의 Depends를 부정하지 않고, 업무 단위 정책을 Service에 모았습니다.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section className="pt-10">
+        <Subhead note="RUNTIME BEHAVIOR">중첩 호출에서 달라지는 동작과 실패 범위를 명시했습니다.</Subhead>
+        <div className="mt-6 overflow-hidden border-y border-border">
+          <div className="grid grid-cols-[180px_minmax(0,1fr)_minmax(280px,0.9fr)] bg-surface px-5 py-4 text-sm font-semibold max-md:hidden print:grid">
+            <span>구분</span>
+            <span>설계한 동작</span>
+            <span>실패·복구 범위</span>
+          </div>
+          {propagationRows.map(([name, behavior, failure]) => (
+            <div
+              key={name}
+              className="grid grid-cols-[180px_minmax(0,1fr)_minmax(280px,0.9fr)] gap-5 border-t border-border px-5 py-5 text-sm leading-[1.65] first:border-t-0 max-md:grid-cols-1 max-md:gap-2 print:grid-cols-[150px_minmax(0,1fr)_minmax(220px,0.9fr)] print:gap-3 print:py-3"
+            >
+              <strong className="font-mono text-sm text-accent">{name}</strong>
+              <span>{behavior}</span>
+              <span className="text-fg-2">{failure}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="portfolio-keep pt-10">
+        <Subhead note="REQUEST RESOURCE BINDING">Service가 정한 트랜잭션을 하위 계층이 반복 인자 없이 사용합니다.</Subhead>
+        <ol className="m-0 mt-6 grid list-none grid-cols-[1fr_auto_1.15fr_auto_1.2fr_auto_1fr] items-stretch gap-3 p-0 max-lg:grid-cols-1 print:grid-cols-[1fr_auto_1.15fr_auto_1.2fr_auto_1fr]">
+          {requestFlow.map(([title, description], index) => (
+            <li key={title} className="contents max-lg:block print:contents">
+              <div className={`border-y border-border p-5 print:p-3 ${index === 1 ? "border border-accent bg-surface print:bg-transparent" : ""}`}>
+                <strong className="block text-sm">{title}</strong>
+                <span className="mt-2 block text-xs leading-[1.55] text-fg-2">{description}</span>
+              </div>
+              {index < requestFlow.length - 1 ? (
+                <span aria-hidden className="grid place-items-center font-mono text-muted max-lg:rotate-90 print:rotate-0">→</span>
+              ) : null}
+            </li>
+          ))}
+        </ol>
+        <p className="m-0 mt-4 border-y border-border py-3 text-center font-mono text-xs text-muted">
+          session 인자 반복 없음 · 1 transaction · 1 task · 1 AsyncSession
+        </p>
+      </section>
+
+      <section className="pt-10">
+        <Subhead note="TRADE-OFF · VERIFICATION">내부 병렬성을 제한한 이유와 예외 처리 방법을 함께 남겼습니다.</Subhead>
+        <div className="mt-6 grid grid-cols-2 border-y border-border max-md:grid-cols-1 print:grid-cols-2">
+          <div className="p-6 max-md:border-b max-md:border-border print:border-b-0 print:p-4">
+            <h4 className="m-0 text-base font-semibold">의도한 제약</h4>
+            <p className="m-0 mt-4 text-sm leading-[1.7] text-fg-2">
+              같은 트랜잭션 안에서 여러 task가 AsyncSession을 공유하지 못하게 했습니다.
+              병렬 DB 작업이 필요하면 task별 트랜잭션, 데이터 가시성, 실패 복구와
+              connection 비용을 먼저 결정하도록 ADR·runbook에 기록했습니다.
+            </p>
+          </div>
+          <div className="border-l border-border p-6 max-md:border-l-0 print:border-l print:p-4">
+            <h4 className="m-0 text-base font-semibold">검증한 실패 경로</h4>
+            <p className="m-0 mt-4 text-sm leading-[1.7] text-fg-2">
+              child task의 동일 session 접근을 즉시 실패시키고, CancelledError가 발생하면
+              rollback과 connection cleanup이 실행되는지 통합 테스트로 확인했습니다.
+              propagation별 commit·rollback과 SAVEPOINT 동작도 함께 고정했습니다.
+            </p>
+          </div>
+        </div>
+      </section>
+    </article>
   );
 }
 
@@ -82,8 +238,9 @@ function ThreadyCase({
             고객이 돈을 내는 이유를 기획·QA·마케팅과 함께 구체화하고, 제품 판단부터
             출시·운영까지 이끌었습니다. 제품에 필요한 Next.js 핵심 흐름을 직접 구현하고,
             빠른 기능 검증 중심의 초기 백엔드를 인계받아 팀이 운영할 수 있는 FastAPI
-            구조로 재구축했습니다. 이어 제품 원장과 AI 실행 상태의 소유권을 분리했습니다.
-            팀과 함께 <strong>실제 고객이 결제하는 유료 제품</strong>으로 만들었습니다.
+            구조로 재구축했습니다. 이어 제품 기준 데이터와 AI 실행 상태의
+            관리 책임을 나눴습니다.
+            팀과 함께 <strong>구독료를 내는 고객이 쓰는 제품</strong>으로 만들었습니다.
           </>
         }
       />
@@ -92,7 +249,7 @@ function ThreadyCase({
         <div className="px-5 py-5 max-md:border-b max-md:border-border print:border-b-0">
           <p className="m-0 font-mono text-xs font-semibold text-success">CURRENT · SUBSCRIPTION</p>
           <strong className="mt-3 block text-lg">유료 제품 운영</strong>
-          <span className="mt-2 block text-sm text-fg-2">실제 고객 결제 · 제품·팀 outcome</span>
+          <span className="mt-2 block text-sm text-fg-2">구독 결제 · 제품 운영</span>
         </div>
         <div className="border-l border-border px-5 py-5 max-md:border-l-0 print:border-l">
           <p className="m-0 font-mono text-xs font-semibold text-muted">NEXT · ADVERTISING</p>
@@ -119,6 +276,29 @@ function ThreadyCase({
             </div>
           ))}
         </dl>
+      </section>
+
+      <section className="pt-12">
+        <Subhead note="외부 AI 장애 대응">한 모델의 장애가 전체 생성 기능 중단으로 번지지 않게 운영했습니다.</Subhead>
+        <div className="portfolio-keep mt-5 grid grid-cols-3 border-y border-border max-md:grid-cols-1 print:grid-cols-3">
+          {[
+            ["감지", "Sentry 알림", "반복되는 외부 AI 5xx를 운영자가 확인"],
+            ["격리", "문제 모델 일시 제외", "오류가 반복되는 모델을 사용자 선택지에서 제거"],
+            ["작업 지속", "정상 모델 선택", "서비스 중인 다른 모델로 생성을 계속 진행"],
+          ].map(([step, title, desc], index) => (
+            <div
+              key={step}
+              className={`min-w-0 p-5 ${index > 0 ? "border-l border-border max-md:border-l-0 max-md:border-t print:border-l print:border-t-0" : ""}`}
+            >
+              <span className="font-mono text-xs text-muted">{step}</span>
+              <strong className="mt-3 block text-sm">{title}</strong>
+              <span className="mt-2 block text-xs leading-[1.6] text-fg-2">{desc}</span>
+            </div>
+          ))}
+        </div>
+        <p className="m-0 mt-4 text-xs leading-[1.65] text-muted">
+          5xx는 재시도 가능한 실패로 분류하고 최대 시도 뒤 최종 실패 상태와 사용자 재시도 경로를 남겼습니다. 당시 사용자·트래픽 규모에서는 복잡한 자동 복구보다 운영자가 문제 모델만 격리하는 방식이 적절하다고 판단했습니다.
+        </p>
       </section>
 
       <section className="pt-12">
@@ -249,6 +429,12 @@ function CenturionCase({
 
       <section className="portfolio-keep pt-10">
         <Subhead note="TRANSACTION · STATE · RECOVERY">외부 연동 실패가 사용자 요청 전체를 되돌리지 않게 했습니다.</Subhead>
+        <p className="m-0 mt-5 max-w-[920px] text-sm leading-[1.7] text-fg-2">
+          기존에도 Celery로 API 밖의 작업을 처리하고 있었습니다. 전환의 이유는
+          비동기 분리 자체가 아니라, async FastAPI 코드베이스와 worker의 실행
+          모델을 맞추기 위함이었습니다. RabbitMQ는 유지하고 TaskIQ로 전환하며
+          상태·재시도·최종 실패·수동 재발송을 주문 운영 흐름에 연결했습니다.
+        </p>
         <div className="portfolio-keep mt-6 grid grid-cols-[1fr_auto_1fr_auto_1.15fr] items-stretch gap-3 max-lg:grid-cols-1 print:grid-cols-[1fr_auto_1fr_auto_1.15fr]">
           <div className="border-y border-border p-5 print:p-3">
             <span className="font-mono text-xs text-muted">TRANSACTION BOUNDARY</span>
@@ -278,8 +464,10 @@ function CenturionCase({
         <p className="m-0 mt-5 max-w-[920px] text-sm leading-[1.7] text-fg-2">
           Gateway와 SSO를 거친 상담 연결은 WebSocket session orchestrator가 관리합니다.
           STT에서 나온 중간 전사 DELTA는 도메인 키워드를 먼저 확인하는 데 사용하고,
-          COMPLETE는 확정 문맥과 저장에 사용합니다. 상담 종료 뒤에는 timer·GC·shutdown의
-          정리 책임을 stop guard로 모았습니다.
+          COMPLETE는 확정 문맥과 저장에 사용합니다. 다만 COMPLETE의 도착 순서가
+          보장되지 않아 DELTA·COMPLETE·CORRECTED를 같은 sequence로 연결했고,
+          늦은 보정이 다른 발화를 덮지 않게 했습니다. 상담 종료 뒤에는
+          timer·GC·shutdown의 정리 책임을 stop guard로 모았습니다.
         </p>
 
         <SayRealtimeDiagram />
@@ -559,10 +747,12 @@ export function CaseDossier({
   meta,
   displayNo,
   focus,
+  variant,
 }: {
   meta: CaseMeta;
   displayNo?: string;
   focus?: string;
+  variant?: "backend-template";
 }) {
   switch (meta.slug) {
     case "thready":
@@ -572,6 +762,9 @@ export function CaseDossier({
     case "infrastructure-delivery":
       return <InfrastructureCase meta={meta} displayNo={displayNo} focus={focus} />;
     case "be-template":
+      if (variant === "backend-template") {
+        return <BackendTemplateCase meta={meta} displayNo={displayNo} focus={focus} />;
+      }
       return <CompanyAxCase meta={meta} displayNo={displayNo} focus={focus} />;
     case "memento-payment":
       return <MementoCase meta={meta} displayNo={displayNo} focus={focus} />;

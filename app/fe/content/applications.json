@@ -1,0 +1,1033 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-08-31T00:00:00+09:00",
+  "jobs": [
+    {
+      "id": "upstage-agent-gym",
+      "company": "Upstage",
+      "role": "Applied AI Engineer · Agent GYM",
+      "priority": "A",
+      "track": "Applied AI",
+      "source": "Official",
+      "url": "https://careers.upstage.ai/ko/o/194880",
+      "location": "서울",
+      "experience": "경력 무관",
+      "verifiedAt": "2026-08-31",
+      "verdict": "가장 먼저 지원",
+      "companyAnalysis": "공고상 Agent GYM은 모델 데모보다 에이전트의 학습·평가 환경과 제품 신뢰성을 다루는 역할이다. 김대정의 생성 품질 운영 경험을 연구-제품 사이의 실행 역량으로 번역하기 좋다.",
+      "roleAnalysis": "품질 기준, 평가, 회귀 검증, 실패 복구를 하나의 운영 루프로 만든 경험이 핵심 요구와 직접 겹친다. 단순 LLM 연동보다 평가 가능한 시스템을 만든 사람으로 보여줘야 한다.",
+      "eligibility": "경력 gate 없음. 현재 경력 구간을 과장하지 않고도 지원 가능.",
+      "strengths": [
+        "생성 품질을 기준·자동 평가·사람 판정으로 나눈 운영 체계",
+        "planner/writer 역할을 분리한 agent pipeline 설계",
+        "provider 실패 시 연속성과 회귀 검증을 다룬 production 경험"
+      ],
+      "gaps": [
+        "연구팀과의 공동 실험 깊이",
+        "정식 observability 제품 사용 범위"
+      ],
+      "pitch": "LLM 기능을 붙이는 데서 끝내지 않고, 품질 기준과 회귀·복구 체계를 설계해 사용자가 반복해서 쓸 수 있는 제품으로 운영했습니다.",
+      "resumeFocus": [
+        "Thready 생성 품질 시스템을 첫 번째 사례로 배치",
+        "평가 기준 → 실측 → 수정의 루프를 구체적으로 서술",
+        "MCP·agent pipeline은 결과와 검증 방법을 함께 제시"
+      ],
+      "questions": [
+        "Agent GYM의 핵심 고객은 내부 연구팀인가, 외부 개발자인가?",
+        "평가 결과가 모델·제품 릴리스에 연결되는 방식은?"
+      ],
+      "evidenceIds": [
+        "thready.generation-quality-system",
+        "thready.agent-pipeline-design",
+        "thready.quality-criteria-system",
+        "thready.provider-failure-continuity"
+      ]
+    },
+    {
+      "id": "elice-backend-python",
+      "company": "Elice Group",
+      "role": "Backend Engineer · Python",
+      "priority": "A",
+      "track": "AI Backend",
+      "source": "Groupby",
+      "url": "https://groupby.kr/positions/8969",
+      "location": "서울",
+      "experience": "공고 확인",
+      "verifiedAt": "2026-08-31",
+      "verdict": "높은 기술 적합도",
+      "companyAnalysis": "AI 교육·플랫폼 제품을 운영하는 조직의 backend 역할로, 기능 개발뿐 아니라 비동기 처리와 배포 품질을 함께 보는 공고다.",
+      "roleAnalysis": "Python, PostgreSQL, Redis, RabbitMQ, CI/CD가 직접 겹친다. 백엔드 표준화와 제품 운영 경험을 함께 내면 기술 나열보다 강한 서사가 된다.",
+      "eligibility": "전체 실무 4년차로 지원. 백엔드 전용 경력은 28개월로 정확히 설명.",
+      "strengths": [
+        "FastAPI 기반 backend 재구축",
+        "RabbitMQ·비동기 경계와 outbox 운영",
+        "template·CI로 팀 개발 기준을 표준화"
+      ],
+      "gaps": [
+        "Kubernetes 실운영",
+        "대규모 트래픽을 수치로 증명할 근거"
+      ],
+      "pitch": "AI 제품을 받치는 FastAPI 백엔드를 재구축하고, 비동기 처리·배포·QA 기준까지 운영 가능한 엔지니어링 시스템으로 만들었습니다.",
+      "resumeFocus": [
+        "FastAPI 재구축과 cutover",
+        "Centurion 비동기 복구",
+        "Backend Template의 팀 leverage"
+      ],
+      "questions": [
+        "Kubernetes를 입사 즉시 독립 운영해야 하는가?",
+        "현재 backend 팀의 가장 큰 신뢰성 병목은 무엇인가?"
+      ],
+      "evidenceIds": [
+        "thready.backend-rebuild",
+        "thready.ai-replica-outbox",
+        "centurion.async-migration",
+        "be-template.team-leverage"
+      ]
+    },
+    {
+      "id": "draph-ai-image-backend",
+      "company": "Draph",
+      "role": "AI Image Platform Backend Engineer",
+      "priority": "A",
+      "track": "AI Backend",
+      "source": "Wanted",
+      "url": "https://www.wanted.co.kr/wd/370975",
+      "location": "서울",
+      "experience": "공고 확인",
+      "verifiedAt": "2026-08-31",
+      "verdict": "생성형 AI backend 직결",
+      "companyAnalysis": "생성형 이미지 기능을 실제 서비스로 제공하는 제품 조직이다. 모델 자체보다 요청·작업·결과를 안정적으로 연결하는 backend 운영 역량을 어필하기 좋다.",
+      "roleAnalysis": "FastAPI, PostgreSQL, Redis와 비동기 작업 처리가 핵심 접점이다. 생성 품질 시스템 경험까지 더하면 일반 backend 후보와 차별화된다.",
+      "eligibility": "Wanted 상태값 active 확인. 요구 연차는 원문 제출 직전 재확인.",
+      "strengths": [
+        "FastAPI·SQLAlchemy 기반 typed backend",
+        "AI 작업의 비동기 실행·실패 복구",
+        "생성 결과 품질을 운영 기준으로 연결"
+      ],
+      "gaps": [
+        "Celery 직접 운영 범위",
+        "AWS·Prometheus 경험의 깊이"
+      ],
+      "pitch": "생성형 AI 기능의 API·비동기 실행·품질 판정을 분리해 운영했고, 실패가 사용자 경험 전체로 번지지 않도록 backend 경계를 설계했습니다.",
+      "resumeFocus": [
+        "AI service boundary와 outbox",
+        "생성 파이프라인 품질·복구",
+        "FastAPI transaction/session 기준"
+      ],
+      "questions": [
+        "이미지 생성 작업 큐의 현재 병목은 무엇인가?",
+        "backend가 모델 serving 영역까지 소유하는가?"
+      ],
+      "evidenceIds": [
+        "thready.ai-service-boundary",
+        "thready.ai-replica-outbox",
+        "thready.generation-quality-system",
+        "be-template.fastapi-sqlalchemy-standard"
+      ]
+    },
+    {
+      "id": "atci-ai-agent",
+      "company": "ATCI",
+      "role": "Software Engineer · AI Agent",
+      "priority": "A",
+      "track": "Applied AI",
+      "source": "Wanted",
+      "url": "https://www.wanted.co.kr/wd/349626",
+      "location": "서울",
+      "experience": "백엔드 3년 문구 확인",
+      "verifiedAt": "2026-08-31",
+      "verdict": "경력 표현만 주의",
+      "companyAnalysis": "공고는 AI agent를 독립 데모가 아니라 tool과 업무 상태를 다루는 소프트웨어로 본다. agent-readable workflow 설계 경험이 차별점이다.",
+      "roleAnalysis": "FastAPI, tool calling, state/context 설계가 직접 맞는다. 다만 백엔드 3년을 보유했다고 쓰지 말고 전체 48개월과 백엔드 직무 구간을 나눠 설명해야 한다.",
+      "eligibility": "지원은 가능하되 서류에 ‘백엔드 경력 3년 이상’ 표현 금지.",
+      "strengths": [
+        "agent context·tool·human gate 구조",
+        "MCP 기반 workflow",
+        "제품 상태와 AI 실행 경계를 분리한 설계"
+      ],
+      "gaps": [
+        "공고 경력 gate 해석",
+        "agent framework별 실무 깊이"
+      ],
+      "pitch": "업무 상태와 tool, 사람의 승인 지점을 agent-readable context로 연결하고 실제 제품 backend에 적용해 온 엔지니어입니다.",
+      "resumeFocus": [
+        "Company AX 구조",
+        "Backend Template의 agent context",
+        "Thready agent pipeline"
+      ],
+      "questions": [
+        "백엔드 3년은 hard gate인가?",
+        "agent의 state와 audit trail은 현재 어떻게 관리하는가?"
+      ],
+      "evidenceIds": [
+        "career.sellercanvas-product-system",
+        "be-template.agent-context",
+        "thready.agent-pipeline-design",
+        "thready.ai-service-boundary"
+      ]
+    },
+    {
+      "id": "pix-agent-developer",
+      "company": "PIX",
+      "role": "AI Agent Developer",
+      "priority": "A",
+      "track": "Applied AI",
+      "source": "Groupby",
+      "url": "https://groupby.kr/positions/10118",
+      "location": "서울 · 관악",
+      "experience": "공고 확인",
+      "verifiedAt": "2026-08-31",
+      "verdict": "품질 실험 경험 강점",
+      "companyAnalysis": "생성 결과의 정답이 고정되지 않은 제품에서 빠른 실험과 사용자 품질 개선을 중시하는 공고다.",
+      "roleAnalysis": "블라인드 테스트, 품질 기준, 운영 데이터 기반 수정 경험이 잘 맞는다. 모델 튜닝보다 제품 품질 문제를 구조화한 실행을 전면에 둔다.",
+      "eligibility": "핵심 요구와 경력 범위가 대체로 적합. 로컬 모델 튜닝은 우대 gap.",
+      "strengths": [
+        "정답 없는 생성 품질을 rubric으로 구조화",
+        "자동 판정과 사람 라벨링의 역할 분리",
+        "실측 분포로 기준을 교정"
+      ],
+      "gaps": [
+        "로컬 모델 fine-tuning",
+        "모델 학습 파이프라인 직접 운영"
+      ],
+      "pitch": "생성 품질을 감각이 아닌 비교 가능한 기준과 실측 루프로 바꾸고, 제품 운영 중 계속 교정해 왔습니다.",
+      "resumeFocus": [
+        "generation quality system",
+        "measurement correction",
+        "falsification log를 통한 과장 통제"
+      ],
+      "questions": [
+        "현재 품질 평가는 offline과 online 중 어디에 더 무게가 있는가?",
+        "모델 튜닝과 application layer 개선의 책임 경계는?"
+      ],
+      "evidenceIds": [
+        "thready.generation-quality-system",
+        "thready.quality-criteria-system",
+        "thready.measurement-correction",
+        "thready.falsification-log"
+      ]
+    },
+    {
+      "id": "groupbyhr-ai-problem-solver",
+      "company": "GroupbyHR",
+      "role": "AI Engineer · Problem Solver",
+      "priority": "A",
+      "track": "Product Engineer",
+      "source": "Groupby",
+      "url": "https://groupby.kr/positions/6576",
+      "location": "서울 · 영등포",
+      "experience": "공고 확인",
+      "verifiedAt": "2026-08-31",
+      "verdict": "Maker 서사 적합",
+      "companyAnalysis": "직함보다 문제 정의부터 제품화까지의 실행 폭과 AI-native 업무 방식을 강하게 평가하는 공고다.",
+      "roleAnalysis": "제품 판단, backend·AI·핵심 frontend 직접 구현, coding agent workflow가 한 흐름으로 이어진다. ‘상위 1%’ 같은 추상어 대신 실제 산출물과 검증 체계를 보여준다.",
+      "eligibility": "전 과정 ownership 경험으로 지원 가능. 리드 직함보다 직접 만든 결과를 증명.",
+      "strengths": [
+        "아이디어를 유료 제품 운영까지 연결",
+        "backend·AI·핵심 frontend 직접 구현",
+        "agent-readable engineering workflow"
+      ],
+      "gaps": [
+        "채용 공고의 강한 인재상과 실제 평가 기준 간 차이",
+        "작은 팀에서 기대하는 영업·고객 접점 범위"
+      ],
+      "pitch": "모호한 고객 문제를 제품 판단으로 구조화하고, backend·AI·핵심 frontend를 직접 구현해 출시와 운영까지 닫아 왔습니다.",
+      "resumeFocus": [
+        "Thready 유료 제품 운영",
+        "0→1 제품화",
+        "coding-agent workflow의 팀 적용"
+      ],
+      "questions": [
+        "Problem Solver의 첫 90일 성공 기준은?",
+        "개별 엔지니어가 고객 인터뷰와 배포를 어디까지 소유하는가?"
+      ],
+      "evidenceIds": [
+        "thready.prototype-to-user-operation",
+        "thready.product-zero-to-one-contribution",
+        "thready.frontend-product-delivery",
+        "career.coding-agent-usage"
+      ]
+    },
+    {
+      "id": "teamsparta-agent-engineer",
+      "company": "TeamSparta",
+      "role": "AI Agent Engineer",
+      "priority": "A",
+      "track": "Applied AI",
+      "source": "RocketPunch",
+      "url": "https://www.rocketpunch.com/jobs/157279",
+      "location": "서울",
+      "experience": "공고 확인",
+      "verifiedAt": "2026-08-31",
+      "verdict": "MCP·배포 경험 직결",
+      "companyAnalysis": "AI 교육·업무 제품을 빠르게 실험하고 배포하는 조직 성격상 demo→deployment 전환과 개선 속도를 함께 볼 가능성이 높다.",
+      "roleAnalysis": "MCP, context, eval, agent pipeline 요구가 강하게 겹친다. 최근 산출물 링크와 본인 기여 범위를 서류에서 바로 확인 가능하게 만든다.",
+      "eligibility": "핵심 기술·제품 경험 적합. 지원 전 공고 원문의 근무 조건 재확인.",
+      "strengths": [
+        "MCP·agent context 설계",
+        "품질 평가와 회귀 기준",
+        "prototype을 실제 사용자 운영으로 전환"
+      ],
+      "gaps": [
+        "공개 가능한 최신 MCP 산출물 링크",
+        "특정 agent framework 요구 여부"
+      ],
+      "pitch": "에이전트 프로토타입을 tool·context·평가 기준이 있는 배포 가능한 제품 흐름으로 전환한 경험이 있습니다.",
+      "resumeFocus": [
+        "agent pipeline",
+        "MCP와 human gate",
+        "release·production operation"
+      ],
+      "questions": [
+        "현재 agent 제품이 demo와 production 중 어느 단계인가?",
+        "평가와 관측 데이터는 누가 소유하는가?"
+      ],
+      "evidenceIds": [
+        "thready.agent-pipeline-design",
+        "be-template.agent-context",
+        "thready.prototype-to-user-operation",
+        "thready.release-operation"
+      ]
+    },
+    {
+      "id": "tnh-ai-development",
+      "company": "TNH",
+      "role": "AI Development Engineer",
+      "priority": "A",
+      "track": "AI Backend",
+      "source": "Groupby",
+      "url": "https://groupby.kr/positions/9671",
+      "location": "성남",
+      "experience": "2년+",
+      "verifiedAt": "2026-08-31",
+      "verdict": "헬스케어 도메인 시너지",
+      "companyAnalysis": "의료 서비스에 AI 기능을 연결하는 역할이라 제품 도메인 이해와 production backend 안정성을 함께 평가할 가능성이 높다.",
+      "roleAnalysis": "Python/FastAPI/Node/RDB/Agent/MCP 요구가 직접 겹치고 의료·병원 운영 제품 경험도 보조 근거가 된다.",
+      "eligibility": "2년+ 기준 충족 가능. RAG·GPU는 partial/gap으로 분리.",
+      "strengths": [
+        "의료·병원 운영 시스템 backend",
+        "FastAPI·Node 기반 서비스",
+        "agent와 제품 workflow 연결"
+      ],
+      "gaps": [
+        "production RAG",
+        "GPU serving·최적화"
+      ],
+      "pitch": "의료 서비스의 실제 운영 흐름을 backend contract로 번역하고, 그 위에 AI 기능을 안정적으로 연결해 왔습니다.",
+      "resumeFocus": [
+        "MEDINESS 운영 흐름",
+        "NEXUS 예약 backend",
+        "AI service boundary"
+      ],
+      "questions": [
+        "AI 팀과 서비스 backend 팀의 책임 경계는?",
+        "RAG·GPU 경험은 입사 시 필수인가 학습 가능한 영역인가?"
+      ],
+      "evidenceIds": [
+        "nexus.backend-architecture",
+        "nexus.branch-access-boundary",
+        "thready.ai-service-boundary",
+        "career.sellercanvas-product-system"
+      ]
+    },
+    {
+      "id": "zet-agent-engineer",
+      "company": "ZET",
+      "role": "AI Agent Engineer",
+      "priority": "A",
+      "track": "Product Engineer",
+      "source": "Groupby",
+      "url": "https://groupby.kr/positions/7751",
+      "location": "서울 · 마포",
+      "experience": "2년+",
+      "verifiedAt": "2026-08-31",
+      "verdict": "0→1 자동화 적합",
+      "companyAnalysis": "외부 API와 AI를 조합해 광고·업무 자동화 제품을 빠르게 만드는 초기 조직 성격의 공고다.",
+      "roleAnalysis": "0→1, 외부 API, 성과 데이터 기반 개선 경험을 내기 좋다. 광고 도메인 경험 부족은 빠른 도메인 학습과 제품 실험 방식으로 보완한다.",
+      "eligibility": "2년+ 기준 충족 가능. AWS 세부 범위 확인 필요.",
+      "strengths": [
+        "모호한 요구를 실행 가능한 자동화 흐름으로 전환",
+        "외부 provider 실패 격리",
+        "제품 신호를 기준으로 우선순위 조정"
+      ],
+      "gaps": [
+        "광고 도메인",
+        "AWS 서비스별 실운영 깊이"
+      ],
+      "pitch": "외부 API와 AI 실행을 제품 상태에서 분리하고, 고객 신호를 빠르게 검증하는 0→1 workflow를 만들어 왔습니다.",
+      "resumeFocus": [
+        "0→1 product contribution",
+        "provider failure continuity",
+        "제품 판단→구현→운영"
+      ],
+      "questions": [
+        "현재 가장 먼저 자동화할 고객 workflow는?",
+        "성과 데이터는 어떤 단위로 agent 개선에 반영되는가?"
+      ],
+      "evidenceIds": [
+        "thready.product-zero-to-one-contribution",
+        "thready.provider-failure-continuity",
+        "thready.measurement-correction",
+        "career.sellercanvas-enterprise-poc"
+      ]
+    },
+    {
+      "id": "museblossom-backend",
+      "company": "MuseBlossom",
+      "role": "Backend Engineer · FastAPI / AWS",
+      "priority": "A",
+      "track": "AI Backend",
+      "source": "Groupby",
+      "url": "https://groupby.kr/positions/8807",
+      "location": "서울 · 성동",
+      "experience": "2–4년",
+      "verifiedAt": "2026-08-31",
+      "verdict": "스택 적합도 최상",
+      "companyAnalysis": "FastAPI backend와 AWS 배포를 함께 소유하는 작은 제품 팀 포지션으로 보인다. 범용 플랫폼보다 직접 구현 범위가 넓을 가능성이 높다.",
+      "roleAnalysis": "FastAPI, SQLAlchemy, RabbitMQ, Terraform, CI/CD가 높은 직접도를 가진다. AWS ECS와 Celery는 경험 경계를 정확히 말해야 한다.",
+      "eligibility": "2–4년 범위와 현재 경력 포지셔닝이 잘 맞음.",
+      "strengths": [
+        "typed FastAPI·SQLAlchemy 기준",
+        "RabbitMQ 비동기 backend",
+        "Terraform과 CI/CD 구성"
+      ],
+      "gaps": [
+        "AWS ECS 실운영 범위",
+        "Celery 직접 경험"
+      ],
+      "pitch": "FastAPI의 transaction/session 기준부터 비동기 처리, IaC, CI까지 작은 팀이 반복해서 쓸 수 있는 backend 기반을 직접 만들었습니다.",
+      "resumeFocus": [
+        "Backend Template",
+        "Centurion async backend",
+        "Terraform·quality automation"
+      ],
+      "questions": [
+        "AWS 인프라의 현재 운영 책임 범위는?",
+        "Celery 경험이 hard requirement인가?"
+      ],
+      "evidenceIds": [
+        "be-template.fastapi-sqlalchemy-standard",
+        "centurion.bay-async-backend",
+        "nexus.terraform-infra",
+        "nexus.quality-automation"
+      ]
+    },
+    {
+      "id": "trinio-fullstack-ai",
+      "company": "Trinio",
+      "role": "FullStack Engineer / AI Engineer",
+      "priority": "A",
+      "track": "Product Engineer",
+      "source": "Groupby",
+      "url": "https://groupby.kr/positions/9471",
+      "location": "서울 · 강남",
+      "experience": "1–5년",
+      "verifiedAt": "2026-08-31",
+      "verdict": "제품 완결 경험 강점",
+      "companyAnalysis": "AI 응용 제품을 작은 팀에서 end-to-end로 만드는 역할로, 직무 경계보다 사용자 가치 완결을 중시하는 공고다.",
+      "roleAnalysis": "FastAPI, LLM, frontend, 운영을 한 제품 흐름으로 연결한 경험이 맞는다. 제조 도메인과 Kubernetes는 별도 학습 영역이다.",
+      "eligibility": "1–5년 범위 충족. FullStack 명칭에 맞춰 frontend 직접 기여도 함께 제시.",
+      "strengths": [
+        "backend·AI·핵심 frontend 직접 구현",
+        "유료 제품 운영",
+        "AI coding workflow"
+      ],
+      "gaps": [
+        "Kubernetes 직접 운영",
+        "제조 도메인"
+      ],
+      "pitch": "제품의 backend와 AI 기능, 핵심 frontend workflow를 직접 연결해 고객이 실제로 쓰고 결제하는 단계까지 운영했습니다.",
+      "resumeFocus": [
+        "Thready product operation",
+        "frontend product delivery",
+        "AI/backend boundary"
+      ],
+      "questions": [
+        "FullStack와 AI engineering의 실제 업무 비중은?",
+        "제조 현장 데이터에 접근하는 방식은?"
+      ],
+      "evidenceIds": [
+        "thready.prototype-to-user-operation",
+        "thready.frontend-product-delivery",
+        "thready.ai-service-boundary",
+        "career.coding-agent-usage"
+      ]
+    },
+    {
+      "id": "makinarocks-fde",
+      "company": "MakinaRocks",
+      "role": "Forward Deployed Software Engineer",
+      "priority": "B",
+      "track": "FDE",
+      "source": "Official",
+      "url": "https://makinarocks.career.greetinghr.com/ko/o/202057",
+      "location": "서울 · 서초",
+      "experience": "2년+",
+      "verifiedAt": "2026-08-31",
+      "verdict": "Kubernetes gap 감수",
+      "companyAnalysis": "산업 현장의 AI 문제를 고객과 함께 정의하고 deployment 가능한 소프트웨어로 전환하는 FDE 역할이다.",
+      "roleAnalysis": "기업 PoC와 고객 운영 workflow를 제품 구조로 만든 경험은 강하다. Kubernetes와 ML lifecycle은 명확한 gap이다.",
+      "eligibility": "2년+ 기준은 통과 가능. 인프라 전문성을 과장하지 않는 조건부 지원.",
+      "strengths": [
+        "enterprise PoC를 서비스 구조로 전환",
+        "고객 요구를 backend contract로 번역",
+        "실제 운영과 후속 개선"
+      ],
+      "gaps": [
+        "Kubernetes 배포",
+        "ML lifecycle 깊이"
+      ],
+      "pitch": "고객 현장의 모호한 요구를 빠르게 검증하고, 일회성 PoC가 아닌 반복 가능한 제품·운영 구조로 전환했습니다.",
+      "resumeFocus": [
+        "SellerCanvas enterprise PoC",
+        "NEXUS 외부 운영 backend",
+        "Company AX workflow"
+      ],
+      "questions": [
+        "FDE가 Kubernetes 운영을 독립 소유해야 하는가?",
+        "고객 현장과 제품 core 팀 사이의 handoff 방식은?"
+      ],
+      "evidenceIds": [
+        "career.sellercanvas-enterprise-poc",
+        "career.sellercanvas-product-system",
+        "nexus.backend-architecture",
+        "thready.prototype-to-user-operation"
+      ]
+    },
+    {
+      "id": "wrtn-internal-agent",
+      "company": "Wrtn",
+      "role": "Internal Agent Developer",
+      "priority": "B",
+      "track": "Applied AI",
+      "source": "Official",
+      "url": "https://wrtn.career.greetinghr.com/ko/o/158349",
+      "location": "서울",
+      "experience": "3년+ 문구 확인",
+      "verifiedAt": "2026-08-31",
+      "verdict": "경력·RAG 실사",
+      "companyAnalysis": "내부 업무를 agent와 tool로 재설계하는 역할로, 단일 챗봇보다 조직 workflow와 orchestration이 중심이다.",
+      "roleAnalysis": "MCP, orchestration, RabbitMQ가 맞지만 text-to-SQL/RAG와 3년+ 기준은 경계다. Company AX 경험을 구체적인 workflow로 보여준다.",
+      "eligibility": "전체 경력 4년차로 지원하되 backend 3년 이상 보유 표현은 금지.",
+      "strengths": [
+        "agent-readable 업무 context",
+        "tool·human gate 설계",
+        "RabbitMQ 기반 비동기 workflow"
+      ],
+      "gaps": [
+        "production text-to-SQL/RAG",
+        "백엔드 경력 gate"
+      ],
+      "pitch": "조직의 의사결정·승인·후속 작업을 agent가 읽을 수 있는 context와 tool, 사람의 gate로 연결하는 구조를 설계했습니다.",
+      "resumeFocus": [
+        "Company AX",
+        "agent context",
+        "비동기 실패 복구"
+      ],
+      "questions": [
+        "3년+는 전체 소프트웨어 경력으로 판단하는가?",
+        "text-to-SQL/RAG는 즉시 투입 필수인가?"
+      ],
+      "evidenceIds": [
+        "be-template.agent-context",
+        "career.sellercanvas-product-system",
+        "thready.ai-replica-outbox",
+        "career.coding-agent-usage"
+      ]
+    },
+    {
+      "id": "toss-brain-ai",
+      "company": "Toss",
+      "role": "AI Engineer · Brain / AIOC",
+      "priority": "B",
+      "track": "Applied AI",
+      "source": "Official",
+      "url": "https://toss.im/career/job-detail?job_id=7503655003",
+      "location": "서울",
+      "experience": "공고 확인",
+      "verifiedAt": "2026-08-31",
+      "verdict": "AI 품질 stretch",
+      "companyAnalysis": "고객 규모가 큰 환경에서 AI 기능의 품질과 반복 가능한 실험 시스템을 다루는 역할이다. 인터뷰에서 ML system 기초 검증이 강할 가능성이 높다.",
+      "roleAnalysis": "agent 품질·음성·평가 경험은 강점이다. multimodal, RAG, ML system design 깊이는 stretch로 보고 준비 비용을 감안한다.",
+      "eligibility": "지원 가능하나 준비 비용이 큼. A군 제출 후 도전.",
+      "strengths": [
+        "제약→가설→평가→개선 루프",
+        "실시간 STT event pipeline",
+        "생성 품질 운영"
+      ],
+      "gaps": [
+        "ML 이론·system design",
+        "multimodal·RAG 실험 깊이"
+      ],
+      "pitch": "AI 품질을 막연한 모델 성능이 아니라 제품 제약, 평가 기준, 회귀 테스트와 운영 데이터의 문제로 풀어 왔습니다.",
+      "resumeFocus": [
+        "SAY realtime AI",
+        "generation quality",
+        "evaluation and correction"
+      ],
+      "questions": [
+        "application engineering과 model research의 실제 비중은?",
+        "면접의 ML system design 기대 수준은?"
+      ],
+      "evidenceIds": [
+        "centurion.say-realtime-ai",
+        "thready.generation-quality-system",
+        "thready.measurement-correction",
+        "thready.quality-criteria-system"
+      ]
+    },
+    {
+      "id": "toss-ai-platform",
+      "company": "Toss",
+      "role": "AI Engineer · Platform",
+      "priority": "B",
+      "track": "AI Platform",
+      "source": "Official",
+      "url": "https://toss.im/career/job-detail?job_id=7646941003",
+      "location": "서울",
+      "experience": "공고 확인",
+      "verifiedAt": "2026-08-31",
+      "verdict": "플랫폼 관점 stretch",
+      "companyAnalysis": "여러 제품 팀이 공통으로 쓰는 AI platform과 품질·운영 기준을 만드는 역할이다.",
+      "roleAnalysis": "AI service boundary와 evaluation 관점은 맞지만 vector search/RAG platform 직접 운영이 부족하다. 재사용 가능한 기준을 만든 경험으로 일부 보완한다.",
+      "eligibility": "핵심 gap이 커 조건부. 포지션 기대 수준을 먼저 확인.",
+      "strengths": [
+        "AI application과 product DB 경계",
+        "공통 backend template",
+        "품질·release 기준 표준화"
+      ],
+      "gaps": [
+        "vector DB·retrieval 운영",
+        "ML platform scale"
+      ],
+      "pitch": "여러 제품에서 재사용할 수 있도록 AI 실행 경계, 데이터 일관성, 평가·릴리스 기준을 시스템화했습니다.",
+      "resumeFocus": [
+        "AI service boundary",
+        "Backend Template",
+        "release operation"
+      ],
+      "questions": [
+        "vector retrieval 경험이 hard gate인가?",
+        "플랫폼 팀이 모델 serving과 application SDK 중 무엇을 소유하는가?"
+      ],
+      "evidenceIds": [
+        "thready.ai-service-boundary",
+        "thready.ai-replica-outbox",
+        "be-template.backend-standard",
+        "thready.release-operation"
+      ]
+    },
+    {
+      "id": "cheiron-applied-agents",
+      "company": "Cheiron",
+      "role": "Backend Engineer · Applied Agents",
+      "priority": "B",
+      "track": "AI Backend",
+      "source": "Ashby",
+      "url": "https://jobs.ashbyhq.com/Cheiron/5465945c-953b-4f0d-8d23-eaa06adf377a",
+      "location": "서울",
+      "experience": "공고 확인",
+      "verifiedAt": "2026-08-31",
+      "verdict": "영어·RAG 확인",
+      "companyAnalysis": "agent 기능을 production backend와 harness로 만드는 역할이며 국제 협업 환경을 전제로 한 공고다.",
+      "roleAnalysis": "Python/FastAPI/Postgres와 검증 가능한 agent 결과는 맞는다. production RAG/vector DB와 영어 협업이 실질 gate다.",
+      "eligibility": "기술 일부 적합. 영어 인터뷰와 RAG 필수 수준 확인 후 제출.",
+      "strengths": [
+        "agent backend와 평가 harness",
+        "PostgreSQL 기반 product backend",
+        "실패 복구와 운영 기준"
+      ],
+      "gaps": [
+        "production RAG/vector DB",
+        "영어 협업·인터뷰"
+      ],
+      "pitch": "에이전트 결과를 검증·복구·추적할 수 있는 backend와 평가 harness로 만들어 production에서 운영했습니다.",
+      "resumeFocus": [
+        "agent pipeline",
+        "quality system",
+        "backend rebuild"
+      ],
+      "questions": [
+        "RAG/vector 운영 경험은 어느 수준까지 필수인가?",
+        "일상 협업과 면접의 영어 비중은?"
+      ],
+      "evidenceIds": [
+        "thready.agent-pipeline-design",
+        "thready.generation-quality-system",
+        "thready.backend-rebuild",
+        "thready.provider-failure-continuity"
+      ]
+    },
+    {
+      "id": "elice-ai-platform",
+      "company": "Elice Group",
+      "role": "AI Engineer · Platform",
+      "priority": "B",
+      "track": "AI Platform",
+      "source": "Groupby",
+      "url": "https://groupby.kr/positions/10900",
+      "location": "서울",
+      "experience": "공고 확인",
+      "verifiedAt": "2026-08-31",
+      "verdict": "RAG 필수 gap",
+      "companyAnalysis": "AI 기능을 개별 제품이 아닌 platform으로 제공하며 품질과 신뢰성을 표준화하는 역할이다.",
+      "roleAnalysis": "생성 품질 eval과 backend 신뢰성은 강하지만 RAG가 필수 신호다. 알고 있다고 암시하지 말고 인접 역량과 학습 계획을 분리한다.",
+      "eligibility": "조건부. RAG hard gate라면 우선순위 하향.",
+      "strengths": [
+        "생성 품질 evaluation",
+        "AI service boundary",
+        "배포·QA 기준"
+      ],
+      "gaps": [
+        "RAG 정확도 개선",
+        "Kubernetes·LLMOps 제품 경험"
+      ],
+      "pitch": "AI 기능의 품질 기준과 regression·guardrail을 제품 backend와 release 흐름에 연결해 신뢰성을 운영했습니다.",
+      "resumeFocus": [
+        "quality criteria",
+        "measurement correction",
+        "release operation"
+      ],
+      "questions": [
+        "RAG 개선이 역할의 몇 퍼센트를 차지하는가?",
+        "LLMOps 도구보다 자체 평가 체계를 얼마나 중시하는가?"
+      ],
+      "evidenceIds": [
+        "thready.quality-criteria-system",
+        "thready.measurement-correction",
+        "thready.release-operation",
+        "thready.ai-service-boundary"
+      ]
+    },
+    {
+      "id": "closer-backend-data",
+      "company": "Closer Labs",
+      "role": "Software Engineer · Back-end / Data",
+      "priority": "B",
+      "track": "Product Engineer",
+      "source": "Groupby",
+      "url": "https://groupby.kr/positions/8624",
+      "location": "서울 · 마포",
+      "experience": "3년+ 문구 확인",
+      "verifiedAt": "2026-08-31",
+      "verdict": "스프린트 조건 확인",
+      "companyAnalysis": "B2B 고객 문제를 빠르게 정의하고 backend·data 기능으로 전달하는 작은 팀 역할이다. 채용 과정의 유급 스프린트 조건이 중요한 실사 항목이다.",
+      "roleAnalysis": "FastAPI, B2B, problem-to-delivery는 적합하다. 경력 문구와 데이터 파이프라인 깊이는 경계다.",
+      "eligibility": "전체 경력 4년차로 설명. 2주 유급 스프린트 참여 가능 여부 선확인.",
+      "strengths": [
+        "B2B 고객 문제 구조화",
+        "FastAPI 제품 backend",
+        "제품 판단부터 운영까지 ownership"
+      ],
+      "gaps": [
+        "backend 3년 표현 불가",
+        "대규모 data pipeline"
+      ],
+      "pitch": "B2B 고객의 모호한 요구를 backend contract로 구조화하고, 검증 가능한 기능과 운영 결과까지 책임졌습니다.",
+      "resumeFocus": [
+        "SellerCanvas PoC",
+        "NEXUS backend",
+        "Thready product operation"
+      ],
+      "questions": [
+        "2주 유급 스프린트의 시간·계약 조건은?",
+        "data 역할이 analytics인가 production pipeline인가?"
+      ],
+      "evidenceIds": [
+        "career.sellercanvas-enterprise-poc",
+        "nexus.backend-architecture",
+        "thready.prototype-to-user-operation",
+        "thready.product-zero-to-one-contribution"
+      ]
+    },
+    {
+      "id": "hypereasy-fde",
+      "company": "HyperEasy",
+      "role": "Forward Deploy Engineer",
+      "priority": "B",
+      "track": "FDE",
+      "source": "Groupby",
+      "url": "https://groupby.kr/positions/9998",
+      "location": "성남",
+      "experience": "경력 무관",
+      "verifiedAt": "2026-08-31",
+      "verdict": "RAG gap 확인",
+      "companyAnalysis": "엔터프라이즈 고객 문제를 현장에서 prototype으로 검증하고 scale 가능한 제품으로 넘기는 FDE 역할이다.",
+      "roleAnalysis": "고객 문제·prototype→scale은 적합하나 RAG가 핵심 요구다. 고객 대면 사례를 구체적으로 준비해야 한다.",
+      "eligibility": "경력 gate 없음. RAG 실무 기대 수준이 지원 여부를 결정.",
+      "strengths": [
+        "enterprise PoC",
+        "prototype을 운영 서비스로 전환",
+        "고객 요구와 기술 경계 조율"
+      ],
+      "gaps": [
+        "production RAG/vector DB",
+        "직접 고객 대면 사례의 공개 범위"
+      ],
+      "pitch": "고객 문제를 빠르게 프로토타입으로 검증하고, 일회성 구현을 반복 가능한 제품 backend와 운영 기준으로 전환했습니다.",
+      "resumeFocus": [
+        "SellerCanvas",
+        "NEXUS",
+        "prototype-to-user-operation"
+      ],
+      "questions": [
+        "RAG 구현은 기존 플랫폼 활용인가 core 개발인가?",
+        "FDE의 고객 상주·출장 비중은?"
+      ],
+      "evidenceIds": [
+        "career.sellercanvas-enterprise-poc",
+        "career.sellercanvas-product-system",
+        "nexus.backend-architecture",
+        "thready.prototype-to-user-operation"
+      ]
+    },
+    {
+      "id": "futureworklab-ai-ml",
+      "company": "FutureWorkLab",
+      "role": "AI / ML Developer · Lead Preferred",
+      "priority": "B",
+      "track": "Applied AI",
+      "source": "Groupby",
+      "url": "https://groupby.kr/positions/6783",
+      "location": "서울 · 금천",
+      "experience": "전체 4년 또는 backend 2년+ 대체",
+      "verifiedAt": "2026-08-31",
+      "verdict": "hands-on lead 조건부",
+      "companyAnalysis": "AI 제품과 backend·DevOps를 넓게 묶어 소수 인력이 주도하는 역할로 보이며, ML 리딩 기대가 강하다.",
+      "roleAnalysis": "FastAPI·agent·DevOps를 연결하는 실행 폭은 맞지만 ML/DL 학습과 fine-tuning, graph DB가 gap이다.",
+      "eligibility": "대체 경력 조건은 통과 가능. ML 팀장 기대가 hard gate인지 확인.",
+      "strengths": [
+        "AI 제품의 backend·운영 연결",
+        "Tech Lead로 기술 기준 설정",
+        "작은 팀의 end-to-end 실행"
+      ],
+      "gaps": [
+        "ML/DL 학습·fine-tuning",
+        "graph DB",
+        "ML 조직 리딩"
+      ],
+      "pitch": "AI 기능을 FastAPI backend, 데이터 일관성, 배포·운영 기준과 연결해 제품 전체를 닫는 hands-on lead 역할을 해왔습니다.",
+      "resumeFocus": [
+        "Tech Lead 책임",
+        "AI/backend boundary",
+        "Backend Template"
+      ],
+      "questions": [
+        "lead preferred가 필수인가?",
+        "모델 연구와 application engineering의 업무 비율은?"
+      ],
+      "evidenceIds": [
+        "thready.ai-service-boundary",
+        "thready.backend-rebuild",
+        "be-template.team-leverage",
+        "thready.release-operation"
+      ]
+    },
+    {
+      "id": "jemi-agent-web",
+      "company": "Jemi Studio",
+      "role": "AI Agent Web Service Developer",
+      "priority": "B",
+      "track": "Product Engineer",
+      "source": "Groupby",
+      "url": "https://groupby.kr/positions/9983",
+      "location": "대전",
+      "experience": "TypeScript 풀스택 2년",
+      "verifiedAt": "2026-08-31",
+      "verdict": "근무지·연차 확인",
+      "companyAnalysis": "실시간 AI agent web service를 0→1로 만드는 풀스택 역할이며 대전 근무 조건이 중요한 포지션이다.",
+      "roleAnalysis": "agent, SSE/WebSocket, 0→1은 맞지만 TypeScript 풀스택 2년이라는 표현과 대전 상주 가능 여부가 gate다.",
+      "eligibility": "기술 인접성은 높음. TypeScript 경력 산정과 근무 방식 확인 후 지원.",
+      "strengths": [
+        "WebSocket·SSE 실시간 처리",
+        "agent 제품 0→1",
+        "frontend·backend 연결"
+      ],
+      "gaps": [
+        "TypeScript 풀스택 2년 증명",
+        "대전 상주 가능 여부"
+      ],
+      "pitch": "실시간 event pipeline과 agent backend, 사용자 workflow를 연결해 0→1 제품을 실제 운영 단계까지 만들었습니다.",
+      "resumeFocus": [
+        "SAY realtime AI",
+        "frontend product delivery",
+        "agent pipeline"
+      ],
+      "questions": [
+        "대전 상주가 필수인가?",
+        "TypeScript 2년은 전체 풀스택 기여로 판단하는가?"
+      ],
+      "evidenceIds": [
+        "centurion.say-realtime-ai",
+        "thready.frontend-product-delivery",
+        "thready.agent-pipeline-design",
+        "thready.product-zero-to-one-contribution"
+      ]
+    },
+    {
+      "id": "kakao-mobility-ai",
+      "company": "Kakao Mobility",
+      "role": "AI Engineer",
+      "priority": "C",
+      "track": "AI Platform",
+      "source": "Official",
+      "url": "https://kakaomobility.career.greetinghr.com/ko/o/167192",
+      "location": "성남",
+      "experience": "관련 3년+",
+      "verifiedAt": "2026-08-31",
+      "verdict": "실사 후 도전",
+      "companyAnalysis": "대규모 mobility 데이터와 ML platform 운영을 전제로 한 역할로 application AI보다 MLOps·data infrastructure 비중이 커 보인다.",
+      "roleAnalysis": "제품 AI 품질 경험은 있으나 Kubernetes/GCP/MLOps/data pipeline이 핵심 gap이다. 지원한다면 인접 backend 역량을 정직하게 제한해야 한다.",
+      "eligibility": "관련 3년+와 핵심 infra gate 때문에 도전 지원.",
+      "strengths": [
+        "AI 제품 품질 운영",
+        "실시간 event pipeline",
+        "backend 신뢰성"
+      ],
+      "gaps": [
+        "Kubernetes·GCP",
+        "MLOps·대규모 data pipeline",
+        "관련 경력 3년 gate"
+      ],
+      "pitch": "실시간·생성형 AI 기능을 제품 backend에서 운영하며 평가와 실패 경계를 설계한 application-side AI engineer입니다.",
+      "resumeFocus": [
+        "SAY realtime",
+        "quality system",
+        "운영 신뢰성"
+      ],
+      "questions": [
+        "application engineering 배경의 후보도 고려하는가?",
+        "MLOps 운영의 필수 도구 범위는?"
+      ],
+      "evidenceIds": [
+        "centurion.say-realtime-ai",
+        "thready.generation-quality-system",
+        "thready.production-operation-quality"
+      ]
+    },
+    {
+      "id": "wishist-backend",
+      "company": "Wishist",
+      "role": "Backend Developer",
+      "priority": "C",
+      "track": "AI Backend",
+      "source": "Groupby",
+      "url": "https://groupby.kr/positions/10226",
+      "location": "서울 · 관악",
+      "experience": "공고 확인",
+      "verifiedAt": "2026-08-31",
+      "verdict": "인프라 gap 큼",
+      "companyAnalysis": "AI workload를 받치는 backend와 GPU·vector infrastructure를 함께 소유하는 역할이다.",
+      "roleAnalysis": "FastAPI/RabbitMQ는 강점이지만 Kubernetes, vector DB, GPU infra가 핵심 업무라 즉시 전력 범위가 좁다.",
+      "eligibility": "핵심 업무의 gap이 커 실사 우선. 지원 수 대비 효율 낮음.",
+      "strengths": [
+        "FastAPI",
+        "RabbitMQ 비동기 처리",
+        "AI service boundary"
+      ],
+      "gaps": [
+        "Kubernetes",
+        "vector DB",
+        "GPU infrastructure"
+      ],
+      "pitch": "AI workload의 API·비동기 처리·데이터 일관성 경계를 production에서 운영한 backend 경험이 있습니다.",
+      "resumeFocus": [
+        "async backend",
+        "AI boundary",
+        "failure continuity"
+      ],
+      "questions": [
+        "GPU·vector infra가 업무의 몇 퍼센트인가?",
+        "입사 시 독립 운영을 기대하는가?"
+      ],
+      "evidenceIds": [
+        "thready.backend-rebuild",
+        "thready.ai-replica-outbox",
+        "centurion.bay-async-backend"
+      ]
+    },
+    {
+      "id": "aim-intelligence-backend",
+      "company": "AIM Intelligence",
+      "role": "Backend Engineer",
+      "priority": "C",
+      "track": "AI Backend",
+      "source": "LinkedIn",
+      "url": "https://kr.linkedin.com/jobs/view/backend-engineer-at-aim-intelligence-4454488738",
+      "location": "서울",
+      "experience": "Python production backend 3년+",
+      "verifiedAt": "2026-08-31",
+      "verdict": "계약·경력 gate",
+      "companyAnalysis": "AI 보안 제품의 production backend 역할이며 3개월 계약 후 전환 조건이 의사결정의 핵심이다.",
+      "roleAnalysis": "Python production backend는 맞지만 3년+와 NoSQL 명시가 경계다. 계약 전환 기준을 지원 전에 확인한다.",
+      "eligibility": "경력 gate와 계약 조건으로 C. LinkedIn 원문 활성 상태 재확인 필수.",
+      "strengths": [
+        "Python/FastAPI production backend",
+        "배포·QA 운영",
+        "제품 데이터 경계"
+      ],
+      "gaps": [
+        "Python backend 3년+ 증명",
+        "NoSQL",
+        "3개월 계약 리스크"
+      ],
+      "pitch": "Python backend를 재구축한 뒤 배포·QA·운영까지 책임지고, 제품 데이터와 AI 실행의 일관성 경계를 설계했습니다.",
+      "resumeFocus": [
+        "backend rebuild",
+        "production operation",
+        "quality automation"
+      ],
+      "questions": [
+        "3개월 후 전환 기준과 과거 전환율은?",
+        "NoSQL이 hard requirement인가?"
+      ],
+      "evidenceIds": [
+        "thready.backend-rebuild",
+        "thready.production-operation-quality",
+        "nexus.quality-automation"
+      ]
+    },
+    {
+      "id": "bjak-agent-backend",
+      "company": "Bjak",
+      "role": "Backend Engineer · AI Agent Systems",
+      "priority": "C",
+      "track": "Applied AI",
+      "source": "Ashby",
+      "url": "https://jobs.ashbyhq.com/bjakcareer/af28163e-2f68-4312-81b7-df78e95cd1b1/",
+      "location": "서울 · Hybrid",
+      "experience": "공고 확인",
+      "verifiedAt": "2026-08-31",
+      "verdict": "문화·영어 실사",
+      "companyAnalysis": "글로벌 조직의 agent systems backend 포지션으로 영어 협업과 높은 업무 몰입 기대가 강하게 드러나는 공고다.",
+      "roleAnalysis": "agent backend는 적합하지만 영어 인터뷰, 실제 team/location, 근무 방식이 기술 fit보다 먼저 확인할 조건이다.",
+      "eligibility": "조건 실사 전에는 지원서 작업 보류.",
+      "strengths": [
+        "agent pipeline",
+        "backend 신뢰성",
+        "AI 기능의 제품 운영"
+      ],
+      "gaps": [
+        "영어 인터뷰",
+        "근무 강도·협업 문화",
+        "실제 소속 팀과 location"
+      ],
+      "pitch": "agent를 production backend와 평가·복구 체계에 연결해 실제 사용자 흐름으로 운영한 경험이 있습니다.",
+      "resumeFocus": [
+        "agent pipeline",
+        "quality system",
+        "provider failure continuity"
+      ],
+      "questions": [
+        "서울 팀의 실제 협업 시간대와 언어는?",
+        "공고의 장시간 몰입 기대가 일상 근무에도 적용되는가?"
+      ],
+      "evidenceIds": [
+        "thready.agent-pipeline-design",
+        "thready.generation-quality-system",
+        "thready.provider-failure-continuity"
+      ]
+    }
+  ]
+}
+

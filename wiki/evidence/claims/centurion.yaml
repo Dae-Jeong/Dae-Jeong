@@ -100,8 +100,14 @@ claims:
       - VAD silence 200·350·500ms E2E에서 주 병목이 모델 추론임을 확인해 DELTA 조기 trigger와 provider 경계 분리에 집중
       - 4분 37초 상담 E2E에서 DELTA 586건·COMPLETE 25건·ADVICE 14건과 sequence 1–25의 누락·중복 없음을 확인
       - 종료 뒤 재연결되던 session의 timer·GC·shutdown 정리 경계를 보강하고 13개 focused regression scenario로 고정
+      - 외부 실시간 음성 모델의 세션이 발화 중간에 끊겨 전사가 멈추는 문제를, 20초 window·10초 stagger로 겹치는 세션 3개를 병렬로 열고 세션별 버퍼로 순서를 보장해 우회 (led)
+      - 우회책의 비용 증가(동시 3세션)와 실시간성 손실을 문서로 남기고, 모델 교체로 문제가 해소된 뒤 레거시 provider를 제거
+      - 약 1분 시점 응답 중단의 원인 하나가 자체 60초 재연결 타이머의 경합이었음을 찾아 제거
     forbidden_copy:
       - provider 실명
+      - 모델 실명
+      - 우회책으로 STT 품질이 개선됐다는 전후 수치
+      - 30초 간격 (코드 값은 10초 stagger·20초 window)
       - 상담 backend 전체 단독 구축
       - asyncio 전반의 심화 전문성
       - VAD 또는 keyword weighting으로 STT 정확도를 개선했다는 단정
@@ -156,3 +162,19 @@ claims:
       - 모든 Azure resource를 최초부터 단독 생성
       - 정확한 resource·cost·security detail
     verified_at: 2026-07-11
+  - id: centurion.sso-auth-foundation
+    statement: Centurion SSO의 인증·세션 로직을 설계·구현해 회사 인증 기반을 만들었다는 사용자 확정 발언. Git author 대조 전이며 기존 centurion.sso-session(contributed)보다 강한 ownership 주장
+    strength: led
+    confidence: low
+    public: false
+    evidence: [evidence/projects/centurion.md#sso-auth-foundation]
+    allowed_copy: []
+    forbidden_copy:
+      - 검증 전 public 문안 사용
+      - SSO 전체 단독 구축 (Git 대조 전)
+      - centurion.sso-session의 contributed 상한을 넘는 표현
+    verified_at: null
+    note: >-
+      2026-08-28 user-confirmed, 2026-09-02 범위를 SSO로 확정. 승격 조건: workspace:SSO-BE-API Git author 대조 후
+      centurion.sso-session 강도 상향 또는 이 claim의 allowed_copy 작성·public 전환. 둘 중 하나로 통합하고 중복 owner를 두지 않는다.
+

@@ -1,26 +1,28 @@
 ---
 type: portfolio-case
 case: mediness-ops
-title: 제품 운영 흐름 — Decision에서 release까지
+title: 제품 개발 흐름 — 결정에서 릴리스까지
 resume_tag: MEDINESS
 origin: MediSolve AI · 제품 운영
 claim_ids:
   - mediness.product-system-design-participation
   - mediness.product-operations
+  - mediness.product-development-coordination-leverage
   - mediness.company-work-ax-design
 claim_strength: mixed (design contributed · operations led)
 ---
 
 ## Executive Summary
 
-서비스 구현은 담당 개발자들이 맡았고, 김대정은 제품 요구와 운영 흐름을 구체화하는 설계에 참여했습니다. 이후 여러 제품의 일정·이슈·릴리스 상태를 Decision -> SPEC -> Work Package -> release gate로 연결해 운영했습니다. 제품 개발에서 생기는 결정·작업·검증 기록을 의사결정·회의·업무 배정·승인·후속 작업으로 넓히는 회사 AX 구조 설계에도 참여했습니다. 설계 참여는 `contributed`, 제품 운영은 `led`로 구분합니다.
+서비스 구현은 각 담당 개발자가 맡았고, 김대정은 제품 요구와 운영 방식을 구체화하는 설계에 참여했습니다. 이후 여러 제품의 결정 기록과 명세, 작업 항목, QA 승인, 릴리스 조건을 이어 관리했습니다. 결정과 진행 상황을 한곳에 쌓아 반복 설명과 담당자 변경 때 다시 파악하는 시간을 줄였고, 이 방식을 의사결정·회의·업무 배정·승인으로 넓히는 회사 AX 설계에도 참여했습니다. 설계는 참여, 제품별 적용과 운영은 리드한 범위로 구분합니다.
 
 ## My Scope
 
 - MEDINESS 제품 요구와 운영 흐름을 구체화하는 설계 참여
 
-- 제품팀 일정·이슈·release operation 리드
-- decision/SPEC/WP pipeline, registry, release gate workflow 구축·운영
+- 제품팀 일정·이슈·릴리스 운영 리드
+- 결정 기록·명세·작업 항목·릴리스 승인 체계 구축·운영
+- 결정과 진행 상황을 축적해 반복 조율과 담당자 변경 때 다시 파악하는 시간을 줄임
 - 회사 업무 AX 확장 구조 설계 참여
 - product·business 최종 결정은 human owner의 범위이며 agent의 자율 의사결정으로 claim하지 않음
 - 서비스 코드 구현, 공통 architecture 최초 설계, 시스템 구조 설계 주도는 claim하지 않음
@@ -57,6 +59,7 @@ diagram: [current/solid] Decision -> SPEC -> Work Package -> BE·FE·QA -> relea
 - User-confirmed: 서비스 구현 담당자와 제품 요구·운영 흐름을 구체화하는 설계에 참여함. `contributed` 상한.
 
 - Workflow-backed: decision/SPEC/WP pipeline, registry, release gate, version cut 운영이 확인됨
+- User-confirmed: 누적된 Decision·SPEC·ADR·runbook·agent context로 반복 설명과 인수인계의 맥락 복원 비용을 낮추고 후속 변경의 lead time 단축에 기여함. 정량 수치는 없음
 - User-confirmed: 의사결정·회의·업무 배정·승인·후속 작업을 잇는 회사 AX 구조 설계 참여 범위가 확인됨
 - Operating evidence: 생성 품질 blocker를 당일 판단·수정 배포로 연결한 사례가 확인됨
 - Limits: 서비스 직접 구현과 architecture·시스템 구조 설계 주도·전담을 주장하지 않음. status 확인 시간 절감과 구성원 adoption rate는 측정되지 않았으며, agent가 product decision을 자율 수행했다는 claim도 하지 않음

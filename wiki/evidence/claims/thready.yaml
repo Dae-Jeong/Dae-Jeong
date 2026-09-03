@@ -31,12 +31,14 @@ claims:
       - 사람 사용자 수를 runtime request 수로 환산
     verified_at: 2026-08-17
   - id: thready.product-zero-to-one-contribution
-    statement: PO 역할로 기획·QA·마케팅 담당자와 함께 Threads 콘텐츠 제작·성과 판단의 고객 불편을 제품 문제로 구체화하고 기능·실험 우선순위, 생성 품질 기준, backend·frontend·QA·release·operation을 실제 사용자 운영까지 연결하는 Thready 0→1 제품 운영·관리 주도
+    statement: Thready 제품 아이디어를 제안하고, 다른 engineer가 구현한 초기 prototype 이후 PO 역할로 기획·QA·마케팅 담당자와 고객 문제·기능 우선순위·생성 품질 기준·backend·핵심 frontend·data·QA·release·operation을 실제 사용자와 구독료 매출이 발생하는 제품까지 연결하는 0→1 제품화 주도
     strength: led
     confidence: medium
     public: true
     evidence: [evidence/projects/thready.md#product-zero-to-one-contribution]
     allowed_copy:
+      - 아이디어를 제안하고 초기 프로토타입 이후 제품화를 주도해, 실제 고객이 결제하는 서비스로 발전시켰습니다.
+      - Thready 제품 아이디어를 제안하고 초기 prototype 이후 실제 고객이 결제하는 제품까지 제품화를 주도
       - 기획·QA·마케팅과 함께 Thready의 제품 운영·관리를 리드
       - PO 역할로 Thready의 고객 문제 정의·기능 우선순위·품질 기준·QA·release·production operation을 연결하는 제품 운영 주도
       - Thready의 제품 운영을 리드하고, 제품 판단을 backend·핵심 frontend·data·AI 생성·평가 system으로 직접 구현
@@ -46,13 +48,17 @@ claims:
     forbidden_copy:
       - PO가 공식 등재 직함이라고 단정
       - Thready를 0부터 혼자 구축
+      - 초기 prototype을 직접 구현
+      - 아이디어부터 prototype·제품화·매출까지 전 과정을 혼자 만듦
       - 기획·QA·마케팅·design·acquisition 실행을 혼자 담당
       - frontend·design·acquisition을 포함한 제품 전체 단독 ownership
       - 특정 기능 또는 개인이 월 구독료 매출을 직접 만들었다는 단독 인과
       - MRR·ARR·지속 성장·월평균 표현
-    verified_at: 2026-08-20
+    verified_at: 2026-08-31
     note: >-
-      cross-functional team과 함께한 PO 역할의 제품 운영과 제품 0→1 전체 contribution은 user-confirmed라 confidence medium이다.
+      제품 아이디어 제안, 다른 engineer의 초기 prototype 구현, 이후 cross-functional team과 함께한
+      PO 역할의 제품 운영과 제품 0→1 contribution은 user-confirmed라 confidence medium이다.
+      고객 결제와 구독료 매출은 제품·팀 outcome이며 개인 또는 특정 기능의 단독 인과가 아니다.
       backend·frontend·data·quality·release의 각 실행 영역은 별도 high-confidence claim이 소유한다.
   - id: thready.frontend-product-delivery
     statement: Thready Next.js frontend에서 콘텐츠 생성·가져오기, 콘텐츠 상태, 예약·발행, dashboard, account/settings, super-admin과 labeling의 핵심 사용자·관리 workflow를 직접 구현·운영
@@ -75,6 +81,29 @@ claims:
     note: >-
       current release branch의 frontend author history와 current-source blame, 대표 feature commit을 교차 검증했다.
       commit·line 비율은 ownership의 내부 보조 근거이며 public copy에는 사용하지 않는다.
+  - id: thready.threads-content-workflow-automation
+    statement: Threads 글 작성에서 사람이 반복하던 참고 자료 가져오기·정리, 초안 생성, 1차 검수, 예약·발행 준비를 하나의 제품 흐름으로 연결하고 최종 수정·예약·발행 판단은 사람이 맡도록 구성
+    strength: owned
+    confidence: high
+    public: true
+    evidence: [evidence/projects/thready.md#threads-content-workflow-automation]
+    allowed_copy:
+      - Threads 글 작성에서 사람이 반복하던 참고 자료 가져오기·정리, 초안 생성, 1차 검수, 예약·발행 준비를 하나의 제품 흐름으로 자동화
+      - 사람이 반복하던 Threads 콘텐츠 제작 업무를 자료 정리 → 초안 생성 → 1차 검수 → 예약·발행 준비의 제품 흐름으로 연결
+      - 콘텐츠 운영을 Scout·Friend·Creator·Guard 역할로 나눠 설계하고, 콘텐츠 가져오기·생성·검수 흐름을 직접 구현
+      - AI가 자료 정리·초안·1차 검수를 돕고 최종 수정·예약·발행은 사람이 판단하는 구조
+    forbidden_copy:
+      - Threads 운영 전 과정 완전 자동화
+      - 외부 채널의 소재 자동 탐색 또는 production Scouter 구현 완료
+      - Friend Agent production 배포
+      - 사람 확인 없는 자동 발행
+      - 전체 multi-agent system의 production 운영
+    verified_at: 2026-08-31
+    note: >-
+      Scout·Friend·Creator·Guard는 김대정 author가 확인된 AX baseline의 역할 설계다.
+      production code에서는 콘텐츠 가져오기·URL preview·source ownership 검증,
+      planner/writer 생성, LLM judge·검수 이력, 예약·발행·관리 화면을 확인했다.
+      설계 전체와 실제 구현 범위를 구분해 사용한다.
   - id: thready.subscription-revenue-band
     statement: 2026년 8월 기준 Thready에서 월 약 1,000만~1,200만원의 구독료 매출이 발생
     strength: contributed
@@ -229,6 +258,8 @@ claims:
       - AI 실행부를 독립 application·DB로 분리하고 STG 생성 이력 2,616건·품질 snapshot 795건·trace 7,111건을 이관
       - STG 실데이터 기반 local rehearsal과 row count·MD5 fingerprint·FK orphan 검증으로 migration 정합성 확인
       - 배포 성공과 기능 정상 동작을 분리해 post-deploy 생성 API E2E gate 수립
+      - migration 후 FK orphan 0건, 세 table MD5 fingerprint 일치 확인
+      - workflow·health·ping이 성공해도 실제 생성이 실패한 사례를 계기로 배포 성공과 기능 동작을 분리한 gate 수립
     forbidden_copy:
       - Prod migration 완료
       - Prod 데이터 기반 rehearsal 완료
@@ -251,6 +282,31 @@ claims:
       - exactly-once 보장
       - production 장애율 개선
     verified_at: 2026-08-22
+  - id: thready.provider-failure-continuity
+    statement: 외부 AI 모델의 5xx를 실패 유형으로 분류해 재시도·최종 실패·사용자 재시도 경로를 두고, 반복 장애 모델은 Sentry 알림을 바탕으로 선택지에서 일시 제외해 정상 모델로 작업을 이어갈 수 있게 운영
+    strength: contributed
+    confidence: medium
+    public: true
+    evidence: [evidence/projects/thready.md#provider-failure-continuity]
+    allowed_copy:
+      - 외부 AI 모델의 5xx를 Sentry로 확인하고 반복 장애 모델을 선택지에서 일시 제외해 사용자가 정상 모델로 작업을 이어가게 운영
+      - 외부 AI 5xx를 재시도 가능한 실패로 분류하고 최대 시도 뒤 최종 실패 상태와 사용자 재시도 경로를 제공
+      - 한 모델의 장애가 전체 생성 기능 중단으로 번지지 않도록 문제 모델을 운영에서 제외하고 정상 모델 선택지를 유지
+      - 당시 사용자·트래픽 규모를 고려해 복잡한 자동 복구보다 Sentry 기반 감지와 운영자 판단의 모델 격리를 선택
+    forbidden_copy:
+      - 자동 circuit breaker 또는 실패율 기반 자동 모델 차단
+      - 실행 중인 요청의 자동 provider failover
+      - 무중단·장애 0건·availability 개선 수치
+      - 외부 AI provider 실명
+      - Sentry 연동·모델 상태 전환의 개인 단독 설계·구현
+    verified_at: 2026-08-29
+    note: >-
+      5xx 분류·재시도·최종 실패·사용자 재시도 경로는 current code로 확인했다.
+      Sentry 연결과 반복 장애 모델의 사용 불가 전환은 2026-08-28 사용자 확인 근거다.
+      당시 실시간 트래픽과 사용자 규모가 크지 않아 자동 circuit breaker·failover 같은
+      복잡한 운영 체계를 추가하지 않은 판단은 2026-08-29 사용자 확인 근거다.
+      현재 source snapshot에서는 자동 차단·자동 failover가 확인되지 않으므로 수동 운영에도
+      성립하는 표현만 허용한다.
   - id: thready.production-operation-quality
     statement: AI 콘텐츠 생성 production backend를 월 수만 건 규모 요청, HTTP 5xx 0.3% 수준으로 운영 유지
     strength: owned
@@ -304,8 +360,11 @@ claims:
       - QA 티켓 reopen(재발) 전환율 대폭 감소
       - 잔여 이슈도 원인 영역이 파악된 상태로 관리
       - validation harness를 먼저 세운 backend cutover 전후, 해결된 QA issue의 reopen 비율이 26%p 감소
+      - 재발 발생 일평균 4.45건 → 0.26건 (v1.0 QA기 4월 대비 7월, Jira 실측)
+      - 재구축 뒤 반복 결함이 하루 4.5건에서 0.3건으로
     forbidden_copy:
       - 95% 이상 감소 (실측 94.1% 초과 표현)
+      - 일평균 절대값을 활동량 보정 없이 backend 단독 효과로 단정 (4월은 QA 집중 초기)
       - 재발 완전 제거
       - backend 단독 효과로 단정 (BE/FE 분리 불가)
       - QA 총건수가 37건에서 11건으로 감소
@@ -328,17 +387,19 @@ claims:
       - 18건을 벤치마크·평가셋 규모로 확대 해석
     verified_at: 2026-08-12
   - id: thready.conversational-editorial-agent-prototype
-    statement: 독립 Thready AI prototype에서 single-agent planner-executor, typed capability registry, 대화·turn·tool result·versioned artifact 원장, append-only activity, token-aware compaction과 Mock operation confirmation gate를 설계·구현·검증
+    statement: 독립 Thready AI prototype에서 기존 글 제작·계정·게시물 관리 기능을 대화로 제어하는 흐름과 single-agent planner-executor, typed capability registry, 상태 원장, Mock operation confirmation gate를 설계·구현·검증
     strength: owned
     confidence: high
     public: true
     evidence: [evidence/projects/thready-quality-lab.md#conversational-editorial-agent-prototype]
     allowed_copy:
-      - 대화형 Threads 편집 AI prototype의 planner·capability·tool 실행 경계와 대화·turn·artifact 원장 설계·구현
-      - 자연어 요청을 7개 편집 capability로 분류하고 기존 Writer를 재사용하는 single-agent planner-executor prototype 구축
+      - Thready의 글감 탐색·기획·작성·수정과 계정·게시물 관리 흐름을 대화로 제어하는 Agent prototype 설계·구현
+      - 화면별 기능 조작을 자연어 요청·typed plan·등록 capability 실행·대화형 결과 회수 흐름으로 재구성
+      - 자연어 요청을 7개 편집 capability와 13개 운영 capability로 나누고 기존 Writer를 재사용하는 single-agent planner-executor prototype 구축
       - append-only turn activity와 token-aware context compaction, versioned artifact로 대화 실행 상태와 결과를 복원
       - 운영 command를 typed gateway 뒤에 두고 명시적 confirmation·idempotency 경계를 Mock에서 검증
       - deterministic route와 lazy insight loading으로 단순 요청과 편집 작업의 실행 경로를 분리
+      - prototype 전체 test 679 passed와 Ruff 통과, browser·network·DB 교차 확인으로 검증
     forbidden_copy:
       - production Thready에 배포된 agent
       - multi-agent orchestration system
@@ -409,3 +470,31 @@ claims:
       - 플랫폼 전체 통계·대표성 표현 (원 기록이 "통계가 아니라 경향"으로 한정)
       - 제3자 계정·개별 게시물 지표 인용
     verified_at: 2026-08-08
+  - id: thready.generation-aggregate-optimistic-lock
+    statement: AI 생성 원장을 rich domain model로 복원하고 version CAS(optimistic offline lock)로 다중 worker 경합을 중재해, 전이 합법성 판단과 동시성 중재를 분리하고 멱등 replay 판별과 전이가 같은 술어를 쓰게 함
+    strength: owned
+    confidence: high
+    public: true
+    evidence: [evidence/projects/thready.md#generation-aggregate-consistency]
+    allowed_copy:
+      - 생성 원장은 version CAS(optimistic lock)로 다중 worker 경합을 중재하고 상태 전이 규칙을 entity에 복원
+      - 멱등 replay 판별과 상태 전이가 같은 판정을 재사용해 이중 정의 제거
+      - 전이 합법성(도메인 술어)과 동시성 중재(rowcount)를 분리한 ADR 결정
+    forbidden_copy:
+      - 경합 발생 건수·장애 감소 수치
+      - 모든 aggregate에 적용했다는 일반화
+    verified_at: 2026-09-03
+  - id: thready.generation-quota-admission
+    statement: 생성 quota를 예약 시점에 잡고 admission gate가 확정 사용량과 진행 중 예약(PENDING/RUNNING)을 함께 봐 동시 요청의 초과 실행을 막음
+    strength: owned
+    confidence: high
+    public: true
+    evidence: [evidence/projects/thready.md#generation-aggregate-consistency]
+    allowed_copy:
+      - quota는 예약 시점에 잡고 admission gate가 확정 사용량과 진행 중 예약을 함께 봐 동시 요청의 초과 실행을 차단
+      - 성공·시작 후 취소만 quota로 확정하고 실패는 예약을 해제
+    forbidden_copy:
+      - 이중 과금 발생 건수·차단 건수
+      - 결제·정산 시스템 전체 ownership 표현
+    verified_at: 2026-09-03
+

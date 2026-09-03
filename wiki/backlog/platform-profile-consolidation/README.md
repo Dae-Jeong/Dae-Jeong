@@ -28,6 +28,7 @@ tags: [backlog, profile, platform, distribution]
 
 ## 연결
 
+- [2026-08-28 Product Engineer Platform Package](2026-08-28-product-engineer-platform-package.md) — 제품 운영 경험을 먼저 보여주고 FastAPI 전문성을 근거로 연결하는 최신 플랫폼 문안
 - [2026-08-22 Live 적용 검증](2026-08-22-live-verification.md) — 현재 live 적용·reload 결과와 남은 차이의 단독 기록
 - [2026-08-22 Platform Paste Package](2026-08-22-platform-paste-package.md) — 현재 붙여넣기 문안과 플랫폼별 적용 체크리스트
 - [2026-08-13 sync matrix](2026-08-13-sync-matrix.md) — 과거 live 실측 snapshot. 현재 상태로 간주하지 않음

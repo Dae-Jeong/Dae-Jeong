@@ -4,6 +4,10 @@ import type { RolePortfolioCaseSelection } from "@/content/portfolios/types";
 import { CASES, type CaseMeta } from "@/lib/cases";
 import { cn } from "@/lib/cn";
 import { CaseDossier } from "../case-dossier";
+import { FeaturingCase } from "../featuring/featuring-case";
+import { JypConversationalAgentCase } from "../jyp/jyp-conversational-agent-case";
+import { JypProductDevelopmentCase } from "../jyp/jyp-product-development-case";
+import { JypThreadyAutomationCase } from "../jyp/jyp-thready-automation-case";
 
 export type RolePortfolioOption = {
   slug: string;
@@ -121,10 +125,20 @@ function SupportingCaseDossier({
 export function RolePortfolioView({
   portfolio,
   options,
+  contextLabel,
+  resumeHref,
+  indexHeading,
 }: {
-  portfolio: RolePortfolio;
-  options: readonly RolePortfolioOption[];
+  portfolio: RolePortfolio<string>;
+  options?: readonly RolePortfolioOption[];
+  contextLabel?: string;
+  resumeHref?: string;
+  indexHeading?: string;
 }) {
+  const isJyp = portfolio.slug === "jyp";
+  const isFeaturing = portfolio.slug === "featuring";
+  const lightHero = isJyp || portfolio.heroVariant === "light";
+  const heroAxesLabel = `${portfolio.shortLabel}에서 먼저 확인할 ${["", "한", "두", "세", "네", "다섯"][portfolio.proofAxes.length] ?? portfolio.proofAxes.length} 가지`;
   const selectedCases = portfolio.cases.map((selection) => {
     const meta = CASES.find((item) => item.slug === selection.slug);
     if (!meta) {
@@ -135,54 +149,118 @@ export function RolePortfolioView({
 
   return (
     <>
-      <RolePortfolioNav activeSlug={portfolio.slug} options={options} />
-      <main data-portfolio-document>
-        <header className="portfolio-hero pb-10 pt-6 print:pt-0">
+      {options?.length ? (
+        <RolePortfolioNav activeSlug={portfolio.slug} options={options} />
+      ) : null}
+      <main data-portfolio-document data-portfolio-slug={portfolio.slug}>
+        <header
+          className={cn(
+            "portfolio-hero pb-10 pt-6 print:pt-0",
+            isJyp && "portfolio-hero--jyp",
+            lightHero && "portfolio-hero--light",
+          )}
+        >
           <div className="flex flex-wrap items-baseline justify-between gap-3">
             <p className="m-0 font-mono text-xs text-muted">
-              Tech Lead · Backend Engineer
-              {portfolio.slug === "backend" ? "" : ` · ${portfolio.label}`}
+              {contextLabel ??
+                `Tech Lead · Backend Engineer${portfolio.slug === "backend" ? "" : ` · ${portfolio.label}`}`}
             </p>
             <Link
-              href={`/resume/${portfolio.slug}`}
+              href={resumeHref ?? `/resume/${portfolio.slug}`}
               className="focus-ring font-mono text-xs font-semibold text-accent hover:underline print:hidden"
             >
-              같은 직군 이력서 →
+              {resumeHref ? "맞춤 이력서 →" : "같은 직군 이력서 →"}
             </Link>
           </div>
-          <p className="m-0 mt-4 text-base font-medium leading-relaxed">
-            {portfolio.brandLine}
-          </p>
-          <h1 className="mt-4 text-[clamp(2.2rem,5vw,4.8rem)] font-semibold leading-[0.98] tracking-[-0.04em] text-balance">
-            {portfolio.headline}
-          </h1>
-          <p className="m-0 mt-8 max-w-4xl text-lg leading-[1.72] text-fg-2 text-pretty">
-            {portfolio.introduction}
-          </p>
-          <dl className="mt-8 grid grid-cols-3 border-y border-border max-md:grid-cols-1">
-            {portfolio.proofAxes.map((axis, index) => (
-              <div
-                key={axis.title}
-                className={cn(
-                  "px-5 py-5",
-                  index > 0
-                    ? "border-l border-border max-md:border-l-0 max-md:border-t"
-                    : "",
-                )}
-              >
-                <dt className="font-mono text-xs text-muted">{axis.title}</dt>
-                <dd className="m-0 mt-3 text-sm font-semibold leading-[1.6]">
-                  {axis.description}
-                </dd>
+          {lightHero ? (
+            <div className="jyp-portfolio-hero-grid mt-8 grid grid-cols-[minmax(0,1fr)_minmax(320px,1fr)] gap-10 max-lg:grid-cols-1 max-lg:gap-8">
+              <div className="min-w-0">
+                {portfolio.brandLine ? (
+                  <p className="m-0 mb-5 text-sm font-medium leading-relaxed text-fg-2">
+                    {portfolio.brandLine}
+                  </p>
+                ) : null}
+                <h1 className="m-0 max-w-[22ch] text-[clamp(2rem,3vw,2.85rem)] font-semibold leading-[1.12] tracking-[-0.03em] text-balance">
+                  {portfolio.headline}
+                </h1>
+                <p className="m-0 mt-7 max-w-[66ch] text-base leading-[1.75] text-fg-2 text-pretty">
+                  {portfolio.introduction}
+                </p>
               </div>
-            ))}
-          </dl>
+              <div className="min-w-0 border-t-2 border-[var(--portfolio-ink)]">
+                <p className="m-0 py-4 font-mono text-[11px] font-semibold tracking-[0.08em] text-[var(--portfolio-blue)]">
+                  {heroAxesLabel}
+                </p>
+                <dl className="m-0 border-t border-border">
+                  {portfolio.proofAxes.map((axis, index) => (
+                    <div
+                      key={axis.title}
+                      className="grid grid-cols-[32px_minmax(0,1fr)] gap-3 border-b border-border py-4"
+                    >
+                      <span className="font-mono text-[11px] text-muted">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                      <div>
+                        <div className="flex flex-wrap items-baseline justify-between gap-2">
+                          <dt className="text-base font-semibold text-[var(--portfolio-ink)]">
+                            {axis.title}
+                          </dt>
+                        </div>
+                        <dd className="m-0 mt-1 text-sm leading-[1.6] text-fg-2">
+                          {axis.description}
+                        </dd>
+                      </div>
+                    </div>
+                  ))}
+                </dl>
+              </div>
+            </div>
+          ) : (
+            <>
+              <p className="m-0 mt-4 text-base font-medium leading-relaxed">
+                {portfolio.brandLine}
+              </p>
+              <h1 className="mt-4 text-[clamp(2.2rem,5vw,4.8rem)] font-semibold leading-[0.98] tracking-[-0.04em] text-balance">
+                {portfolio.headline}
+              </h1>
+              <p className="m-0 mt-8 max-w-4xl text-lg leading-[1.72] text-fg-2 text-pretty">
+                {portfolio.introduction}
+              </p>
+              <dl className="mt-8 grid grid-cols-3 border-y border-border max-md:grid-cols-1">
+                {portfolio.proofAxes.map((axis, index) => (
+                  <div
+                    key={axis.title}
+                    className={cn(
+                      "px-5 py-5",
+                      index > 0
+                        ? "border-l border-border max-md:border-l-0 max-md:border-t"
+                        : "",
+                    )}
+                  >
+                    <div className="flex flex-wrap items-baseline justify-between gap-2">
+                      <dt className="font-mono text-xs text-muted">{axis.title}</dt>
+                      {axis.status ? (
+                        <span className="font-mono text-[10px] font-semibold text-[var(--portfolio-blue)]">
+                          {axis.status}
+                        </span>
+                      ) : null}
+                    </div>
+                    <dd className="m-0 mt-3 text-sm font-semibold leading-[1.6]">
+                      {axis.description}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            </>
+          )}
         </header>
 
+        {/* 회사별(light hero)에서는 hero 오른쪽 목차가 이 역할을 하므로 표를 두 번 두지 않는다 (2026-09-03). */}
+        {lightHero ? null : (
         <nav aria-label="선택한 사례 바로가기" className="py-12 print:py-8">
           <div className="flex items-end justify-between gap-6 border-b border-border pb-4">
             <h2 className="m-0 text-2xl font-semibold tracking-[-0.025em]">
-              이 직군에서 먼저 볼 사례
+              {indexHeading ?? "이 직군에서 먼저 볼 사례"}
             </h2>
             <span className="font-mono text-xs text-muted">
               {selectedCases.length} CASES
@@ -198,38 +276,113 @@ export function RolePortfolioView({
                   <span className="font-mono text-sm text-muted">
                     {String(index + 1).padStart(2, "0")}
                   </span>
-                  <strong className="block text-base">{meta.shortName}</strong>
-                  <span className="text-sm leading-[1.6] text-fg-2 max-md:col-start-2 max-sm:line-clamp-2 max-sm:text-xs">
-                    {selection.focus}
+                  <strong className="block text-base">
+                    {selection.label ?? meta.shortName}
+                  </strong>
+                  <span className="text-sm leading-[1.6] text-fg-2 max-md:col-start-2 max-sm:text-xs">
+                    {selection.scope ?? selection.focus}
                   </span>
                 </a>
               </li>
             ))}
           </ol>
         </nav>
+        )}
 
         <div className="grid gap-0 print:gap-0">
           {selectedCases.map(({ selection, meta }, index) => {
             const displayNo = String(index + 1).padStart(2, "0");
+            let caseContent: React.ReactNode;
 
-            if (selection.kind === "supporting") {
-              return (
-                <SupportingCaseDossier
-                  key={meta.slug}
+            if (isFeaturing && selection.kind === "dossier") {
+              caseContent = (
+                <FeaturingCase
                   meta={meta}
                   selection={selection}
                   displayNo={displayNo}
                 />
               );
+            } else if (
+              isJyp &&
+              meta.slug === "thready-agent-prototype" &&
+              selection.kind === "supporting"
+            ) {
+              caseContent = (
+                <JypConversationalAgentCase
+                  meta={meta}
+                  selection={selection}
+                  displayNo={displayNo}
+                />
+              );
+            } else if (
+              isJyp &&
+              meta.slug === "mediness-ops" &&
+              selection.kind === "supporting"
+            ) {
+              caseContent = (
+                <JypProductDevelopmentCase
+                  meta={meta}
+                  selection={selection}
+                  displayNo={displayNo}
+                />
+              );
+            } else if (
+              isJyp &&
+              meta.slug === "thready" &&
+              selection.kind === "dossier"
+            ) {
+              caseContent = (
+                <JypThreadyAutomationCase
+                  meta={meta}
+                  selection={selection}
+                  displayNo={displayNo}
+                />
+              );
+            } else if (selection.kind === "supporting") {
+              caseContent = (
+                <SupportingCaseDossier
+                  meta={meta}
+                  selection={selection}
+                  displayNo={displayNo}
+                />
+              );
+            } else {
+              caseContent = (
+                <CaseDossier
+                  meta={meta}
+                  displayNo={displayNo}
+                  focus={selection.focus}
+                  variant={selection.variant}
+                />
+              );
             }
 
             return (
-              <CaseDossier
+              <section
                 key={meta.slug}
-                meta={meta}
-                displayNo={displayNo}
-                focus={selection.focus}
-              />
+                className="portfolio-case-shell relative"
+                data-case-position={index % 2 === 0 ? "odd" : "even"}
+              >
+                <div className="portfolio-case-marker sticky top-0 z-30 grid min-h-12 grid-cols-[88px_minmax(0,1fr)_auto] items-center border-b border-border px-4 py-2 print:hidden max-md:grid-cols-[72px_minmax(0,1fr)]">
+                  <span className="font-mono text-[11px] font-semibold tracking-[0.06em] text-[var(--portfolio-blue)]">
+                    CASE {displayNo}
+                  </span>
+                  <strong className="truncate text-sm text-[var(--portfolio-ink)]">
+                    {selection.label ?? meta.shortName}
+                  </strong>
+                  <span className="flex items-center gap-4 max-md:hidden">
+                    {selection.status ? (
+                      <span className="font-mono text-[10px] font-semibold text-[var(--portfolio-blue)]">
+                        {selection.status}
+                      </span>
+                    ) : null}
+                    <span className="font-mono text-[10px] text-muted">
+                      {index + 1} / {selectedCases.length}
+                    </span>
+                  </span>
+                </div>
+                {caseContent}
+              </section>
             );
           })}
         </div>

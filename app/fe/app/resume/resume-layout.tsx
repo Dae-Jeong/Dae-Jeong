@@ -18,6 +18,7 @@ export type ResumeLanguageControl = {
 };
 
 type ResumeLayoutProps = {
+  printFlow?: "compact";
   children: React.ReactNode;
   sections: readonly ResumeSection[];
   pdfHref?: string;
@@ -142,6 +143,7 @@ function ResumeNavigator({
 }
 
 export function ResumeLayout({
+  printFlow,
   children,
   sections,
   pdfHref,
@@ -170,6 +172,7 @@ export function ResumeLayout({
 
       <main
         data-resume-canvas
+        data-print-flow={printFlow}
         className={cn(
           "mx-auto w-full max-w-[210mm] pb-24 print:pb-0",
           hasCompactActions ? "pt-6 xl:pt-12" : "pt-12",

@@ -3,7 +3,7 @@ type: project-evidence
 title: Thready Evidence
 description: AI content product operation, full-stack delivery, backend rebuild, generation quality, and operation evidence.
 timestamp: 2026-08-24
-source_roots: [workspace]
+source_roots: [workspace, agentspace]
 tags: [thready, ai-product, full-stack, backend, frontend, evidence]
 ---
 
@@ -36,14 +36,26 @@ Source locator: `workspace:thready`
 - Commit-backed examples: `workspace:thready@44828203…`에서 콘텐츠 가져오기 UI·state·API 연동 12개 파일을 구현했고, `workspace:thready@5144d998…`에서 labeling API client와 평가 workbench 22개 파일을 backend bounded context와 함께 구축했다. 그 밖에도 생성 실패·발행 상태·계정 관리·관리자 화면의 release 변경이 현재 branch에 포함돼 있다.
 - Contribution boundary: 핵심 사용자·관리 workflow의 frontend 구현·운영은 `led`. 2026-03-30 초기 prototype UI의 최초 개발, frontend 전체 단독 구축, design 전담은 주장하지 않는다.
 
+- User-confirmed guardrail (2026-09-03): frontend 화면을 직접 구현한 사실은 공개하되 **FE 전문성으로 읽히게 쓰지 않는다.** 소개·성과·경력 bullet에서는 `핵심 화면 직접 구현`처럼 프레임워크명 없이 쓰고, `Next.js`는 기술 섹션 stack 줄 한 곳에만 둔다. "FE를 알고 작업한 것이 아니라 필요한 화면을 만든 것"이 본인 표현이다. 같은 날 추가 확정: 화면은 손으로 짠 것이 아니라 **coding agent로 구현**했고 본인은 요구 정의·검수·배포를 맡았다. 공개 문안은 `핵심 화면은 coding agent로 완성`처럼 도구를 밝힌다(`career.coding-agent-usage`와 정합). commit author가 본인인 것과 코드를 손으로 쓴 것은 다르다.
+
 ## Product Zero-To-One Contribution
 
+- User-confirmed (2026-08-31): Thready의 제품 아이디어는 김대정이 제안했다. 당시 여러 제품·기술 운영을 함께 담당하고 있어 초기 prototype 구현은 다른 engineer가 맡았고, 김대정은 prototype 이후 고객 문제·기능 우선순위·backend·핵심 frontend·data·AI 품질·QA·release·operation을 연결하는 제품화를 주도했다.
 - User-confirmed (2026-08-19): 기획자로 일한 경험을 바탕으로 Threads 콘텐츠 제작과 성과 판단 과정의 고객 불편을 제품 문제로 구체화하고, 시장·콘텐츠 data 분석에서 생성·평가 기능 요구를 도출했다.
 - User-confirmed (2026-08-20): Thready에서는 PO 역할을 병행하며 기획·QA·마케팅 담당자와 함께 제품 운영·관리를 리드했다. 고객 문제 정의, 기능·실험 우선순위, 생성 품질 기준, QA·release·production operation을 하나의 제품 실행 흐름으로 조율했다.
 - User-confirmed: 초기 prototype 이후 제품 요구 구체화, backend·frontend·AI 품질 system 구축, QA·release·production operation을 실제 사용자 운영까지 연결하는 0→1 실행을 주도했다.
 - Evidence-backed support: 아래 market data·labeling·quality evidence와 backend rebuild·release evidence가 각 실행 영역을 독립적으로 뒷받침한다.
 - Business boundary: 2026년 8월 기준 월 약 1,000만~1,200만원 구독료 매출이 발생하는 제품에 문제 정의부터 기술 구현·운영까지 상당 부분 기여했다. 매출은 제품·팀 outcome이며 특정 기능 또는 개인의 단독 인과가 아니다.
-- Contribution boundary: cross-functional team과 함께한 PO 역할의 제품 운영과 제품 0→1 실행은 `led`; PO가 공식 등재 직함이라고 단정하거나 기획·QA·마케팅·design·acquisition의 실행까지 혼자 담당한 것으로 표현하지 않는다. frontend는 별도 code-backed claim 범위에서 직접 개발로 표현하되, 제품 전체 frontend를 단독 구축한 것으로 확대하지 않는다. 공개 문구는 responsibility map과 함께 사용한다.
+- Contribution boundary: 제품 아이디어 제안과 prototype 이후 cross-functional team과 함께한 PO 역할의 제품 운영·0→1 실행은 `led`; 초기 prototype 구현을 직접 담당했거나 제품·매출 전 과정을 혼자 만든 것으로 표현하지 않는다. PO가 공식 등재 직함이라고 단정하거나 기획·QA·마케팅·design·acquisition의 실행까지 혼자 담당한 것으로 표현하지 않는다. frontend는 별도 code-backed claim 범위에서 직접 개발로 표현하되, 제품 전체 frontend를 단독 구축한 것으로 확대하지 않는다. 공개 문구는 responsibility map과 함께 사용한다.
+
+## Threads Content Workflow Automation
+
+- User-confirmed (2026-08-31): Threads 글을 만들 때 사람이 반복하던 참고 자료 가져오기·정리, 글 구성·작성, 1차 검수, 예약·발행 준비를 하나의 제품 흐름으로 연결하는 것이 Thready의 핵심 자동화 범위였다.
+- Design-/Git-backed (`agentspace:mediness`, 2026-08-31 re-audit): 김대정이 작성한 personal-account AX baseline은 콘텐츠 운영 역할을 Scout(자료 수집·분석), Friend(계정 정체성과 방향), Creator(초안 생성), Guard(정책·검수)로 나눴다. 이 문서는 역할과 data flow를 검토한 설계 기준이며, 모든 역할이 production Agent로 구현됐다는 근거는 아니다.
+- Code-backed (`workspace:thready`, 2026-08-31 re-audit): 운영 제품에는 콘텐츠 가져오기·URL preview·source ownership 검증, planner/writer 기반 생성, LLM judge와 검수 이력, 예약·발행·관리 화면이 구현됐다. 콘텐츠 가져오기와 주요 Next.js workflow의 대표 변경은 김대정 author commit으로 확인했다.
+- Human boundary: AI와 제품은 자료 정리·초안·1차 검수·발행 준비의 반복 작업을 줄이고, 사용자가 결과를 수정하고 예약·발행 여부를 최종 판단하도록 구성했다.
+- Verification boundary: 외부 채널에서 소재를 자동 탐색하는 production Scouter, 독립 Friend Agent, 사람 확인 없는 자동 발행은 확인되지 않았다. `Scout → Friend → Creator → Guard`는 전체 AX 설계로, 운영 구현은 위에 확인한 product workflow로 구분한다.
+- Contribution boundary: AX 역할·data flow 설계와 콘텐츠 가져오기·생성·검수 workflow의 직접 구현은 `owned`; 유료 제품 운영과 고객 결제는 제품·팀 outcome이다.
 
 ## Threads Market Data And Outcome Design
 
@@ -104,6 +116,8 @@ Source locator: `workspace:thready`
 - User-confirmed (2026-08-28): LLM judge는 운영에서 생성·prompt 데이터를 1차로 가공하고 검수 근거를 남기는 데 사용했다.
 - Tool-backed/operation-backed: 생성 품질 이슈를 evaluation과 release/QA task로 연결한 운영 기록이 있다.
 - Contribution boundary: 품질 system 구축은 말할 수 있으나 품질 배수나 business outcome과의 직접 인과는 검증되지 않았다.
+- Code-backed / User-confirmed (2026-09-02): AI application의 agent 역할 객체는 `workspace:thready/ai/src/agent/roles/`에 scout·writer·friend·referee·scheduler로 구현돼 있다. writer는 생성 지능(prompt 조립·harness 실행·출구 검증·judge·repair ≤ 2·salvage), friend는 brand wizard graph(extract → build → judge), referee는 prompt check graph(evaluate → score 미달 시 recommend → finalize), scheduler는 분석 feature를 LLM이 바꿀 수 없는 발행 시간 candidate plan으로 변환하고 사유 문장만 LLM이 쓴다. scout는 소재 입력 판정·정규화 노드만 구현이고 자동 소재화 Scouter는 계약 선언 단계다. 생성 graph는 input_guard → input_semantic_guard → source_normalize → agent_generate 4노드이며, 재시도 판정(should_retry)·3회 attempt·backoff는 executor가 소유한다. `ai/src` 변경 commit의 대다수가 KimMarin author다(2026-09-02 git 확인, 공개 문안은 `대부분`까지).
+- Public wording: `Friend·Referee·Scheduler 역할 객체 구현`은 공개 가능. provider 실명·harness 구현체 이름은 적지 않는다.
 
 ## AI Service Boundary And Durable Delivery
 
@@ -116,6 +130,22 @@ Source locator: `workspace:thready`
 - Live operation-backed (2026-08-23): Azure live inventory에서 Thready AI App Service 2개가 모두 `Running`이고 health endpoint가 모두 2xx를 반환했다. STG·Prod product backend 2개도 각각 localhost가 아닌 AI base URL을 사용했으며, AI application 2개는 product backend와 다른 database endpoint·database name을 사용했다. resource name·URL·credential은 public evidence에서 노출하지 않는다.
 - Verification boundary: 독립 AI application·DB의 STG·Prod 운영은 확인됐다. 다만 무중단 전환, production 데이터 유실 0건, 정확한 availability·장애율은 검증되지 않았다.
 - Contribution boundary: 해당 backend/AI 경계와 전달 안전성 설계·구현은 `owned`.
+
+## Generation Aggregate Consistency
+
+- Code-/ADR-backed (2026-09-03, `workspace:thready/docs/adr/0011-rich-generation-aggregate-optimistic-locking.md`, ADR commit author KimMarin): 생성 원장 `AIGeneration`이 `close·cancel·consume·dismiss` 전이와 `is_terminal·can_cancel·is_recovery_consumable` 판정을 소유하고, SQLAlchemy `version_id_col` CAS가 다중 worker 경합의 승자를 중재한다(`ai/src/models/ai_generation.py`). 조건부 UPDATE가 한 몸에 갖던 "전이 합법성 판단"과 "동시성 중재"를 분리했고, 멱등 replay 판별과 전이가 같은 술어를 재사용해 이중 정의를 없앴다. terminal ⇒ lease 해제 같은 숨은 불변식을 entity로 끌어올렸다.
+- Code-backed (2026-09-03, `ai/src/enums/ai.py`, `ai/src/schemas/ai/execution_snapshot.py`): quota는 PENDING 시점에 reservation으로 잡고, admission gate는 charge(SUCCESS·시작 후 CANCELLED)와 active reservation(PENDING/RUNNING)을 함께 계산해 동시 요청의 초과 실행을 막는다. FAILED는 reservation을 해제한다.
+- Measurement boundary: 경합·초과 실행 발생 건수와 장애 감소 수치는 없다. 구조와 ADR 결정까지만 공개한다.
+- Contribution boundary: ADR 작성과 model·enum·snapshot 구현은 KimMarin author. `owned`.
+
+## Provider Failure Continuity
+
+- Code-backed (2026-08-28): 외부 AI 모델 호출의 HTTP 500·502·503·504·529를 `UNAVAILABLE`로 분류하고, 최대 3회까지 재시도한 뒤에도 실패하면 generation을 terminal `FAILED` 상태와 정규화된 failure reason으로 남긴다. 사용자는 실패한 generation의 옵션을 바탕으로 새 generation을 만드는 수동 재시도 경로를 사용할 수 있다.
+- User-confirmed (2026-08-28): 반복되는 500 오류를 빠르게 확인하기 위해 서비스에 Sentry를 연결했고, 특정 외부 AI 모델에서 예측 가능한 오류가 반복되면 해당 모델을 사용자 선택지에서 일시적으로 사용 불가로 전환했다. 사용자는 서비스 중인 다른 정상 모델로 작업을 이어갈 수 있었다.
+- User-confirmed (2026-08-29): 당시 실시간 트래픽과 사용자 규모가 크지 않아 자동 circuit breaker·provider failover 같은 복잡한 체계의 운영 이점이 작다고 판단했다. Sentry로 장애를 감지하고 운영자가 문제 모델만 격리하는 수준을 선택했다.
+- Verification boundary: current source snapshot에서 5xx 분류·재시도·terminal failure·사용자 재시도는 확인했다. Sentry runtime wiring과 모델 사용 불가 전환은 사용자 확인 근거이며, 자동 circuit breaker·실패율 기반 자동 차단·실행 중 요청의 자동 provider failover는 확인되지 않았다.
+- Contribution boundary: 사용자 진술이 `우리`라는 팀 범위이므로 현 public strength는 `contributed`다. 개인 단독 설계·구현으로 표현하지 않는다.
+- Public wording: provider 실명은 제거하고 `외부 AI 모델 장애를 Sentry로 확인하고, 반복 장애 모델을 선택지에서 일시 제외해 정상 모델로 작업을 이어가게 운영했다. 당시 사용자·트래픽 규모를 고려해 복잡한 자동 복구보다 운영자 판단의 격리를 선택했다`로 제한한다.
 
 ## AI Application Split Migration
 

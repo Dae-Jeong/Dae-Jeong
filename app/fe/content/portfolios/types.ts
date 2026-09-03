@@ -1,20 +1,32 @@
 import type { RoleVariantSlug } from "@/content/role-catalog";
 import type { DossierCaseSlug, SupportingCaseSlug } from "@/lib/cases";
+import type { DesignDiagramKey } from "@/app/portfolio/diagrams/design-diagrams";
 
 export type RolePortfolioCaseSelection =
   | {
       kind: "dossier";
       slug: DossierCaseSlug;
+      label?: string;
+      variant?: "backend-template";
       focus: string;
+      status?: string;
+      scope?: string;
+      /** 설계 도식. 배열 순서가 곧 우선순위(회사별로 다르게 둔다). */
+      designs?: readonly DesignDiagramKey[];
     }
   | {
       kind: "supporting";
       slug: SupportingCaseSlug;
+      label?: string;
+      variant?: "backend-template";
       focus: string;
+      status?: string;
+      scope?: string;
+      designs?: readonly DesignDiagramKey[];
     };
 
-export type RolePortfolio = {
-  slug: RoleVariantSlug;
+export type RolePortfolio<TSlug extends string = RoleVariantSlug> = {
+  slug: TSlug;
   label: string;
   shortLabel: string;
   signals: readonly string[];
@@ -22,12 +34,15 @@ export type RolePortfolio = {
   status: "draft";
   visibility: "local";
   updatedAt: string;
+  /** "light" = A안 두 열 hero (브랜드 줄·헤드라인·소개 | 먼저 확인할 축). 기본은 기존 navy hero. */
+  heroVariant?: "light" | "bold";
   brandLine: string;
   headline: string;
   introduction: string;
   proofAxes: readonly {
     title: string;
     description: string;
+    status?: string;
   }[];
   cases: readonly RolePortfolioCaseSelection[];
 };

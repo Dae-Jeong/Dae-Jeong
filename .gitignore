@@ -6,15 +6,18 @@ Thumbs.db
 
 # ── Local agent/plugin installations ─────────────────────────
 .agents/
+.impeccable/
 skills-lock.json
 
 # ── Tool runtime and render scratch ──────────────────────────
 .playwright-mcp/
+.pnpm-store/
 .worktrees/
 .tmp/
 tmp/
 .local/
 tools/.visual-baseline/
+graphify-out/
 
 # ── Python (root tools + app/be + labs 서비스) ────────────────
 .venv/

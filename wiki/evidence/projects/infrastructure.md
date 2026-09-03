@@ -62,6 +62,15 @@ Source locators: `workspace:MEDISOLVEAI-INFRA`, `workspace:MEDISOLVEAI-B2C-INFRA
 - Measurement boundary: 수집·alert 구성을 증명하지만 MTTR·가용성·장애 감소의 전후 수치는 없다.
 - Contribution boundary: 기존 구성을 포함한 현재 관측·alert infrastructure의 구성 관리와 운영 범위는 `owned`. 10대 VM log·8개 alert 전체를 최초부터 단독 구축했다고 확대하지 않는다.
 
+## Company Kubernetes Cluster (Design Review)
+
+- Repo-backed (2026-09-03, `github:MediSolveAIDev/k8s_infra_mac`, private): 회사는 Mac Studio(M2 Ultra, arm64) 1대 위에 Lima + kubeadm으로 3노드 vanilla Kubernetes 클러스터(control-plane 1 · worker 2)를 세우고, Calico·MetalLB·ingress-nginx·local-path-provisioner, Helm + ArgoCD GitOps, Cloudflare Tunnel 외부 노출, ARC self-hosted runner로 mediness 앱을 dev/prod namespace로 운영한다. PRD는 단일 클러스터 namespace 분리, in-cluster postgres(VM 재생성에도 생존하는 데이터 디스크), HA 비목표, arm64 전용을 확정 설계로 적는다.
+- Git boundary: PRD·구축·운영 commit은 모두 다른 계정(설계 문서 author 1명, Mac Studio 로컬 계정, CI 봇)이며 김대정 author commit은 없다. mediness의 k8s 관련 문서에도 김대정 author 기록이 없다.
+- User-confirmed (2026-09-03): 설계는 구두 미팅으로 함께 검토했다. 문서·commit 근거가 없으므로 `contributed / confidence: low`로만 등록하고, 공개 문안은 `회사 k8s 클러스터(kubeadm·GitOps) 설계 검토에 참여`를 넘지 않는다. `Kubernetes`를 기술 stack에 hands-on처럼 올리지 않는다.
+- Lab-backed (2026-09-03, `workspace:k8s-lab-mac`, 전 commit 본인 author, 회사 코드 미복사): 같은 설계를 개인 Mac(arm64·12코어·24GB)에서 직접 재구축했다. Lima(vz) + kubeadm v1.33 3노드(control-plane 1·worker 2), Calico, MetalLB L2, ingress-nginx(LoadBalancer IP 할당), local-path-provisioner(worker별 Lima 데이터 디스크), Helm 샘플 앱으로 ingress → service → pod → PVC 전 경로 검증, ArgoCD 설치. `docs/design-decisions.md`에 회사 설계 결정을 본인 말로 옮기고 개인 Mac에서 바꾼 결정을 적었다.
+- Lab-backed 판단 기록(`docs/lab-log.md`): ① Lima `vzNAT`는 호스트↔VM만 통하고 VM 간 통신이 안 돼 worker join 실패 → 다중 노드는 VM 간 L2/L3가 전제임을 확인. ② `shared`(socket_vmnet)는 root 소유 바이너리·sudoers가 필요해 세션에서 sudo를 쓰지 않기로 하고 `user-v2`(root 불필요, VM 간 통신 가능)를 선택, 호스트 접근은 Lima 포워딩(127.0.0.1:6443)과 apiserver certSANs로 해결. 트레이드오프: 호스트에서 MetalLB LB IP 직접 접근 불가(VM 내부에서 검증). ③ 호스트 스크립트가 VM 마운트 경로를 참조한 실수를 실행 위치 기준 경로로 수정.
+- Boundary: 회사 설계 대비 Cloudflare Tunnel과 kube-prometheus-stack은 생략했고, GitOps 동기화는 repo push 뒤 확인 예정이다. 회사 클러스터 구축·운영 경험으로 확대하지 않는다.
+
 ## Measurement Boundary
 
 - 현재 snapshot은 운영 범위와 현재 상태를 증명한다.

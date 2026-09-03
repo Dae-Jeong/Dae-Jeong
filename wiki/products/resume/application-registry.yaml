@@ -1,0 +1,218 @@
+schema_version: 2
+updated_at: "2026-09-01"
+
+# This is the canonical owner for ApplicationAttempt status and artifact metadata.
+# Local tailored README files provide provenance and package detail only.
+attempts:
+  - id: whatssub-2026-08-25-linkedin-ai-native-product-engineer-backend
+    company: "왓섭"
+    role: "AI-Native Product Engineer / Backend 중심"
+    status: in-progress
+    tracking: "기업 검토 중"
+    artifact_state: frozen
+    last_confirmed: "2026-09-01"
+    source_path: "wiki/products/resume/tailored/whatssub/2026-08-25_linkedin_ai-native-product-engineer-backend/README.md"
+    artifacts:
+      resume:
+        mode: tailored
+        route: "/resume/whatssub"
+      career-description:
+        mode: omitted
+      portfolio:
+        mode: tailored
+        route: "/portfolio/whatssub"
+      cv:
+        mode: omitted
+    current:
+      kind: legacy-import
+      package_revision: null
+      artifact_revisions:
+        resume: null
+        portfolio: null
+      checkpoint_at: null
+    snapshot:
+      id: null
+      verification: unknown
+      captured_at: null
+      submitted_at: null
+      package_revision: null
+      artifact_revisions:
+        resume: null
+        portfolio: null
+      artifact_refs: {}
+
+  - id: jyp-entertainment-2026-08-29-jype-career-software-engineer-ai
+    company: "JYP Entertainment"
+    role: "Software Engineer / AI"
+    status: pre-apply
+    tracking: "승인 · 제출 준비 (UI v3·Package r2)"
+    artifact_state: approved
+    last_confirmed: "2026-09-02"
+    source_path: "wiki/products/resume/tailored/jyp-entertainment/2026-08-29_jype-career_software-engineer-ai/README.md"
+    work_session:
+      state: waiting-review
+      scope: "JYP content-draft와 local resume·career description·portfolio 문안·시각 검토"
+      last_synced: "2026-09-02"
+      next_action: "2026-09-02 순서 일치(Backend 기준→유료 제품→Agent)·승인·PDF 생성 완료 (output/pdf/jyp/). 제출 시 Snapshot 동결"
+    current:
+      kind: checkpoint
+      package_revision: 3
+      artifact_revisions:
+        resume: 4
+        career-description: 4
+        portfolio: 3
+      checkpoint_at: "2026-09-03"
+    artifacts:
+      resume:
+        mode: tailored
+        route: "/resume/jyp"
+      career-description:
+        mode: tailored
+        route: "/career/jyp"
+      portfolio:
+        mode: tailored
+        route: "/portfolio/jyp"
+      cv:
+        mode: omitted
+
+  - id: featuring-2026-08-31-wanted-backend-engineer
+    company: "피처링"
+    role: "[프로덕트] 백엔드 개발 엔지니어"
+    status: pre-apply
+    tracking: "승인 · 제출 준비 (UI v3·Package r2)"
+    artifact_state: approved
+    last_confirmed: "2026-09-02"
+    source_path: "wiki/products/resume/tailored/featuring/2026-08-31_wanted_backend-engineer/README.md"
+    work_session:
+      state: waiting-review
+      scope: "피처링 맞춤 문안·typed content·local resume·career description·portfolio의 review-ready package"
+      last_synced: "2026-09-02"
+      next_action: "2026-09-02 승인·PDF 생성 완료 (output/pdf/featuring/). 제출 시 Snapshot 동결. 면접 준비는 interview-prep.md"
+    current:
+      kind: checkpoint
+      package_revision: 3
+      artifact_revisions:
+        resume: 4
+        career-description: 4
+        portfolio: 3
+      checkpoint_at: "2026-09-03"
+    artifacts:
+      resume:
+        mode: tailored
+        route: "/resume/featuring"
+      career-description:
+        mode: tailored
+        route: "/career/featuring"
+      portfolio:
+        mode: tailored
+        route: "/portfolio/featuring"
+      cv:
+        mode: omitted
+
+  - id: mgrv-2026-08-15-platform-unknown-backend-engineer
+    company: "MGRV"
+    role: "Backend Engineer"
+    status: rejected
+    tracking: "서류 전형 종료"
+    artifact_state: frozen
+    last_confirmed: "2026-09-01"
+    source_path: "wiki/products/resume/tailored/mgrv/2026-08-15_platform-unknown_backend-engineer/README.md"
+    artifacts:
+      resume:
+        mode: tailored
+        route: "/resume/mgrv"
+      career-description:
+        mode: omitted
+      portfolio:
+        mode: tailored
+        route: "/portfolio/mgrv"
+      cv:
+        mode: omitted
+    current:
+      kind: legacy-import
+      package_revision: null
+      artifact_revisions:
+        resume: null
+        portfolio: null
+      checkpoint_at: null
+    snapshot:
+      id: null
+      verification: unknown
+      captured_at: null
+      submitted_at: null
+      package_revision: null
+      artifact_revisions:
+        resume: null
+        portfolio: null
+      artifact_refs: {}
+
+  - id: gna-company-2026-08-15-groupby-backend-engineer-python
+    company: "GNA COMPANY"
+    role: "Backend Engineer (Python)"
+    status: rejected
+    tracking: "탈락으로 판단 · 결과 확인 필요"
+    artifact_state: unknown
+    last_confirmed: "2026-09-01"
+    source_path: "wiki/products/resume/tailored/gna-company/2026-08-15_groupby_backend-engineer-python/README.md"
+
+  - id: groupbyhr-2026-08-31-groupby-ai-engineer-problem-solver
+    posting_id: groupbyhr-ai-problem-solver
+    company: "GroupbyHR"
+    role: "AI Engineer / Problem Solver"
+    status: unknown
+    tracking: null
+    artifact_state: unknown
+    last_confirmed: null
+    source_path: "wiki/products/resume/tailored/groupbyhr/2026-08-31_groupby_ai-engineer-problem-solver/README.md"
+
+  - id: pinokiolab-2026-08-27-wanted-backend-engineer-fastapi
+    company: "피노키오랩"
+    role: "백엔드 개발자 (Backend Engineer, FastAPI)"
+    status: unknown
+    tracking: null
+    artifact_state: unknown
+    last_confirmed: null
+    source_path: "wiki/products/resume/tailored/pinokiolab/2026-08-27_wanted_backend-engineer-fastapi/README.md"
+    artifacts:
+      resume:
+        mode: tailored
+        route: "/resume/pinokiolab"
+      portfolio:
+        mode: tailored
+        route: "/portfolio/pinokiolab"
+
+  - id: pix-2026-08-31-groupby-ai-agent-developer
+    posting_id: pix-agent-developer
+    company: "PIX"
+    role: "AI Agent Developer"
+    status: unknown
+    tracking: null
+    artifact_state: unknown
+    last_confirmed: null
+    source_path: "wiki/products/resume/tailored/pix/2026-08-31_groupby_ai-agent-developer/README.md"
+
+  - id: teamreboot-2026-08-28-wanted-ai-native-engineer-backend
+    company: "팀리부뜨"
+    role: "AI-Native Engineer (Backend) (3년 이상)"
+    status: unknown
+    tracking: null
+    artifact_state: unknown
+    last_confirmed: null
+    source_path: "wiki/products/resume/tailored/teamreboot/2026-08-28_wanted_ai-native-engineer-backend/README.md"
+    artifacts:
+      resume:
+        mode: tailored
+        route: "/resume/teamreboot"
+      portfolio:
+        mode: tailored
+        route: "/portfolio/teamreboot"
+
+  - id: trinio-2026-08-31-groupby-fullstack-ai-engineer
+    posting_id: trinio-fullstack-ai
+    company: "Trinio"
+    role: "FullStack Engineer / AI Engineer"
+    status: unknown
+    tracking: null
+    artifact_state: unknown
+    last_confirmed: null
+    source_path: "wiki/products/resume/tailored/trinio/2026-08-31_groupby_fullstack-ai-engineer/README.md"

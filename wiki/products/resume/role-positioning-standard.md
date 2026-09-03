@@ -2,7 +2,7 @@
 type: product-contract
 title: Resume Role Positioning Standard
 description: 김대정의 역할을 직함이 아니라 반복된 판단·기술 경계·운영 결과로 전달하는 이력서 기준.
-timestamp: 2026-08-26
+timestamp: 2026-09-01
 derived_from:
   - profile/identity.md
   - evidence/claims/
@@ -14,7 +14,7 @@ tags: [resume, positioning, role, backend]
 
 ## 브랜드 소개와 채용 역할
 
-> 아이디어를 새로운 가치로 실현하는 메이커, 김대정입니다.
+> 가능성을 기회로 바꾸고, 제품으로 가치를 전하는 메이커 김대정입니다.
 
 이 문장은 브랜드 소개다. 채용 역할 label은 `Tech Lead · Backend Engineer`, specialty는 `AI Product Systems`다. `Maker`를 직함처럼 사용하지 않고, 아이디어를 실제 제품과 가치로 만든 범위는 경력과 대표 사례가 증명한다. `Product Owner` 역시 슬래시로 병기할 별도 정체성이 아니라 무엇을 만들지 판단하고 그 판단을 실행 가능한 backend contract로 바꾼 경험으로 증명한다.
 
@@ -108,13 +108,14 @@ contract·state·gate를 세팅하고 실제 운영을 책임했다면 이력으
 
 ### Header
 
-- `Tech Lead · Backend Engineer` 순서를 고정한다.
+- 공통 이력서는 `Tech Lead · Backend Engineer` 순서를 고정한다.
+- 회사별 지원본은 **공고의 직무명을 앞에** 두고 병행 역할을 뒤에 붙인다 (예: `Backend Engineer · Tech Lead 역할 병행`). Tech Lead를 앞에 두는 것은 리드 포지션 공고뿐이다. 규칙 owner는 [Application Copy Standard §1-1](../../rules/application-copy-standard.md)이다 (2026-09-02).
 - 현재·이전 주요 회사, 직함, 기간을 즉시 보여준다.
 - 브랜드 문장·PO 병기는 넣지 않는다.
 
 ### 소개
 
-공통 Maker 문장 한 문장만 둔다. 채용하면 맡길 수 있는 backend 범위와 AI·PM 경험의 쓰임은 경력·대표 성과의 구체적인 문제, 판단, mechanism으로 증명하며 소개에서 다시 요약하지 않는다.
+공통 이력서는 Maker 문장 한 문장만 둔다. 회사별 지원본의 소개 첫 줄은 브랜드 문장이 아니라 [Application Copy Standard §1-2](../../rules/application-copy-standard.md)의 15초 문장 세 사실(기획자 출신 · 결제 고객이 있는 AI 제품 직접 구현·운영 · 조직 표준 직접 구축)을 JD 순서로 조합한 것이다. 채용하면 맡길 수 있는 backend 범위와 AI·PM 경험의 쓰임은 경력·대표 성과의 구체적인 문제, 판단, mechanism으로 증명하며 소개에서 다시 요약하지 않는다.
 
 ### 경력
 

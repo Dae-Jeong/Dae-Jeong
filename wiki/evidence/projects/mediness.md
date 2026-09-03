@@ -47,11 +47,26 @@ Source locator: `agentspace:mediness`
 - Contribution boundary: 김대정의 상한은 회사 AX 업무 구조 **설계 참여(`contributed`)**다. MEDINESS app·DB·runtime 구현은 담당 개발팀의 범위이며, 제품별 실행 원장 적용·운영은 별도 `led` claim, Backend Template·agent context 직접 구축은 별도 `owned` claim이 소유한다.
 - Outcome boundary: 업무 생산성, 회의 시간, 승인 속도, release lead time 개선 수치는 아직 검증되지 않았다.
 
+## Slack Issue Intake Flow Proposal
+
+- User-confirmed (2026-08-30): Slack에서 제기된 사내 이슈를 MEDINESS의 샤라웃 기록으로 적재하고, 이후 해결 상태를 이어서 확인하는 업무 흐름을 제안했다.
+- Contribution boundary: 김대정의 범위는 업무 흐름 제안이다. 실제 Slack 연동 구현은 다른 담당자가 수행했다.
+- Experience boundary: 회사 Slack Bot을 직접 설계·구현하거나 운영한 경험으로 확대하지 않는다. 개인적으로 사용한 Slack 연동 경험도 회사 경력과 합치지 않는다.
+- Public wording: `Slack에서 접수한 이슈를 사내 시스템에 남기고 해결 상태를 추적하는 흐름을 제안`까지 허용한다. `Slack Bot 구축`, `Slack 연동 구현`, `사내 이슈 자동화 시스템 구축`은 사용하지 않는다.
+
 ## Daily Briefing Ownership Reverification
 
 - Tool-backed: collaboration tool activity를 집계해 제품 상태와 blocker를 요약하는 daily briefing workflow가 확인됐다.
 - Git-backed verification gap (2026-08-18): briefing automation의 최초 구현과 pipeline·DB 재설계 commit은 다른 author이며, 김대정 author의 구현 변경은 확인되지 않았다. non-code 운영 ownership 가능성까지 부정하는 근거는 아니지만, 별도 운영 기록을 확인하기 전에는 기본 이력서에서 `구축` claim을 사용하지 않는다.
 - Registry action (2026-08-21): 기존 `owned/high/public:true` 등록은 Git author 근거와 충돌하므로 `public:false`로 내렸다. non-code 운영 ownership 또는 직접 구현 근거를 확인하기 전에는 어떤 공개 산출물에서도 소비하지 않는다.
+
+## Quality Evidence Harness And AI QA Team
+
+- Doc-/Git-backed (2026-09-03, `agentspace:mediness/rules/qa/quality-evidence-harness.md`, author KimMarin, 2026-06-11 신설·06-24 갱신): 기획·정책 요구사항을 `REQ-*`로 쪼개고 각 REQ를 어떤 evidence(FE/DB/Log/Network/AI quality)로 닫을지 정한 뒤 `PASS / FAIL / UNKNOWN`으로 판정하는 전 제품 공통 QA 운영 규칙을 작성했다. 원칙: 실행 성공만으로 PASS 처리하지 않는다, evidence 부족은 UNKNOWN, 반복·release risk 이슈는 자동화 승격, AI 기능은 "응답 생성"과 "품질 기준 만족"을 분리, LLM judge 단독 품질 승인 금지.
+- Doc-backed: 이 하네스는 판정 layer이고 QA 팀의 AI QA 에이전트 파이프라인(QA-MEDI: 시나리오 → TC → 자동화 → 버그 등록, QA 팀장 승인 포인트)은 실행 파이프라인으로 두어 둘을 연결했다. Thready를 첫 제품 adapter로 잡은 WP-038(backlog, author KimMarin)과 백그라운드 작업 fault-injection QA WP-039(proposed, author KimMarin)가 이어진다.
+- User-confirmed (2026-09-03): QA 팀과 함께 QA 과정을 하네스화했고, 그 위에서 AI QA 팀을 운영했다.
+- Git boundary: QA AI 에이전트 플러그인 `agentspace:QA-MEDI-PLUGIN`의 코드·스킬은 QA 담당(다른 author)이 구현·유지한다. 김대정의 범위는 공통 판정 규칙 설계·문서화(led)와 AI QA 팀 운영 참여(contributed — 운영 주체·기간은 추가 확인 전)다. 플러그인 구현이나 QA 조직 총괄로 확대하지 않는다.
+- Measurement boundary: WP-038·039는 backlog/proposed 상태라 "적용 완료"로 쓰지 않는다. 결함 감소·QA 시간 수치는 없다.
 
 ## Role Boundary
 
@@ -64,6 +79,8 @@ Source locator: `agentspace:mediness`
 - pipeline registry와 decision/spec/work/release gate의 일반 구조는 공개 가능하다.
 - 서비스 구현 담당자와 제품 요구·운영 흐름을 구체화하는 설계에 참여했다는 contribution boundary는 공개 가능하다.
 - 제품 개발과 회사 업무를 agent-readable context·tool·human gate로 연결하는 AX 구조의 설계 참여는 공개 가능하다. 현재 운영 중인 제품 pipeline과 확장 설계인 회사 업무 AX는 구분한다.
+- Slack에서 접수한 이슈를 사내 시스템에 남기고 해결 상태를 추적하는 흐름을 제안한 사실은 공개 가능하다.
+- 요구사항별 evidence로 닫는 공통 QA 판정 규칙(PASS/FAIL/UNKNOWN, 실행 성공≠품질 통과)을 설계하고 QA 팀의 AI QA 에이전트 파이프라인과 연결한 사실은 공개 가능하다. 플러그인 구현 주체는 QA 담당임을 함께 밝힌다. 실제 연동 구현은 다른 담당자의 범위로 함께 밝힌다.
 - 제품 수, 담당자, 날짜, blocker, private collaboration content는 공개하지 않는다.
 - daily briefing의 존재 자체는 내부 evidence로 남기되 김대정의 직접 구축·운영 claim으로 공개하지 않는다.
 
@@ -81,3 +98,4 @@ Source locator: `agentspace:mediness`
 - AI 또는 AX를 통한 인원 대체·인력 감축
 - 제품 개발 체계가 QA 총건수 감소나 매출을 직접 만들었다는 단독 인과
 - internal product count와 운영 metric
+- Slack Bot 직접 구축·운영 또는 Slack 연동 구현

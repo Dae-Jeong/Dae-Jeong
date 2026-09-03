@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 
 const mermaidConfig = {
   startOnLoad: false,
@@ -35,6 +35,8 @@ let mermaidConfigured = false;
 
 export function MermaidDiagram({ chart, title }: { chart: string; title: string }) {
   const diagramRef = useRef<HTMLDivElement>(null);
+  const reactId = useId();
+  const diagramId = `mermaid-${reactId.replace(/[^a-zA-Z0-9_-]/g, "")}`;
   const [state, setState] = useState<"loading" | "ready" | "error">("loading");
 
   useEffect(() => {
@@ -55,12 +57,14 @@ export function MermaidDiagram({ chart, title }: { chart: string; title: string 
           mermaidConfigured = true;
         }
 
-        diagram.removeAttribute("data-processed");
-        diagram.textContent = chart;
-        return mermaid.run({ nodes: [diagram] });
+        return mermaid.render(diagramId, chart);
       })
-      .then(() => {
-        if (active) setState("ready");
+      .then(({ svg, bindFunctions }) => {
+        if (!active) return;
+
+        diagram.innerHTML = svg;
+        bindFunctions?.(diagram);
+        setState("ready");
       })
       .catch(() => {
         if (active) setState("error");
@@ -73,7 +77,7 @@ export function MermaidDiagram({ chart, title }: { chart: string; title: string 
       active = false;
       window.clearTimeout(timeout);
     };
-  }, [chart]);
+  }, [chart, diagramId]);
 
   return (
     <div className="relative min-h-40">

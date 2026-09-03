@@ -10,7 +10,7 @@ import { CaseSummary } from "./case-summary";
 export const metadata: Metadata = {
   title: "Portfolio — 김대정 · Tech Lead · Backend Engineer",
   description:
-    "아이디어를 새로운 가치로 실현하는 메이커, 김대정의 제품·백엔드·회사 AX 포트폴리오",
+    "가능성을 기회로 바꾸고, 제품으로 가치를 전하는 메이커 김대정의 제품·백엔드·회사 AX 포트폴리오",
 };
 
 export default function PortfolioPage() {
@@ -18,15 +18,14 @@ export default function PortfolioPage() {
     <>
       <div className="print:hidden"><TopBar variant="subpage" crumb="Portfolio" /></div>
       <Container variant="doc" className="flex-1 pb-24 print:pb-0">
-        <main id="top" data-portfolio-document>
-          <header className="portfolio-hero border-b-2 border-fg pb-10 pt-14 print:pt-0">
+        <main id="top" data-portfolio-document data-portfolio-slug="common">
+          <header className="portfolio-hero pb-10 pt-12 print:pt-0">
             <p className="m-0 text-sm font-medium text-muted">Maker · Tech Lead · Backend Engineer</p>
-            <h1 className="mt-4 text-[clamp(2.15rem,4.6vw,3.35rem)] font-semibold leading-[1.04] tracking-[-0.035em] text-balance">
-              <span className="block md:whitespace-nowrap">아이디어를 새로운 가치로 실현하는</span>
-              <span className="block">메이커, 김대정입니다.</span>
+            <h1 className="mt-4 text-pretty text-[clamp(2rem,4vw,2.75rem)] font-semibold leading-[1.14] tracking-[-0.03em]">
+              가능성을 기회로 바꾸고, 제품으로 가치를 전하는 메이커 김대정입니다.
             </h1>
-            <div className="mt-8 grid grid-cols-[minmax(0,0.9fr)_minmax(320px,1.1fr)] gap-10 border-y border-border py-6 max-lg:grid-cols-1 max-lg:gap-5">
-              <p className="m-0 text-xl font-semibold leading-[1.55] text-pretty">
+            <div className="mt-7 grid grid-cols-[minmax(0,0.9fr)_minmax(320px,1.1fr)] gap-10 border-t border-border pt-6 max-lg:grid-cols-1 max-lg:gap-5">
+              <p className="m-0 text-lg font-semibold leading-[1.6] text-pretty">
                 고객이 돈을 내는 이유를 찾고, 기획·QA·마케팅과 제품 판단부터 출시·운영까지
                 이끌었습니다. 팀과 함께 Thready를 실제 고객이 결제하는 제품으로 만들었습니다.
               </p>
@@ -60,9 +59,20 @@ export default function PortfolioPage() {
             </ol>
           </nav>
 
-          <div className="grid gap-0">
-            {PRIMARY_CASES.map((meta) => (
-              <CaseSummary key={meta.slug} meta={meta} />
+          <div className="portfolio-summary-cases grid gap-0">
+            {PRIMARY_CASES.map((meta, index) => (
+              <section
+                key={meta.slug}
+                className="portfolio-summary-case-shell"
+                data-case-position={index % 2 === 0 ? "odd" : "even"}
+              >
+                <div className="portfolio-summary-case-marker sticky top-0 z-20 grid min-h-12 grid-cols-[72px_minmax(0,1fr)_auto] items-center gap-4 border-y border-border bg-bg px-4 py-2 print:hidden max-md:grid-cols-[56px_minmax(0,1fr)]">
+                  <span className="font-mono text-xs text-[var(--portfolio-blue)]">CASE {meta.no}</span>
+                  <strong className="truncate text-sm text-[var(--portfolio-ink)]">{meta.shortName}</strong>
+                  <span className="text-sm text-muted max-md:hidden">{meta.scope}</span>
+                </div>
+                <CaseSummary meta={meta} />
+              </section>
             ))}
           </div>
 
@@ -115,7 +125,7 @@ export default function PortfolioPage() {
         </main>
       </Container>
       <div className="print:hidden"><SiteFooter /></div>
-      <ReviewLauncher />
+      <ReviewLauncher className="max-[720px]:hidden" />
     </>
   );
 }

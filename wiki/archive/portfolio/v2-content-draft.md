@@ -13,7 +13,7 @@ tags: [portfolio, content, system-dossier, superseded]
 
 # Portfolio V2 Content Specification
 
-> Superseded by [Portfolio V3](v3-content-draft.md). 현재 primary/supporting tier와 route slug는 `app/fe/lib/cases.ts`가 소유하며 이 문서의 case 순서·route mapping을 active contract로 사용하지 않는다.
+> Superseded by [Portfolio V3](../../products/portfolio/v3-content-draft.md). 현재 primary/supporting tier와 route slug는 `app/fe/lib/cases.ts`가 소유하며 이 문서의 case 순서·route mapping을 active contract로 사용하지 않는다.
 
 ## 1. 목적
 

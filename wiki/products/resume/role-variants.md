@@ -2,13 +2,17 @@
 type: product
 title: Role Resume Variants
 description: 공통 이력서 틀에서 직군별로 성과·근거·기술 순서를 바꾸는 local draft contract.
-timestamp: 2026-08-26
+timestamp: 2026-09-01
 tags: [resume, role, draft, product, backend, ai, ax]
 ---
 
 # Role Resume Variants
 
 직군별 이력서는 새로운 경력을 만드는 문서가 아니다. 동일한 public claim 중 채용사가 먼저 확인할 성과를 골라 소개·경력 bullet·대표 사례·기술 순서를 바꾼다.
+
+이 문서의 `Common`은 **이력서 안에서의 기본 claim 순서**만 뜻한다. 이력서·경력기술서·
+포트폴리오·CV로 구성되는 전체 Common 패키지와 회사별 artifact 선택은
+[Resume Document Package Contract](document-package-contract.md)가 소유한다.
 
 ## Current Drafts
 
@@ -23,7 +27,7 @@ tags: [resume, role, draft, product, backend, ai, ax]
 
 ## Shared Contract
 
-- 공통 이력서는 `아이디어를 새로운 가치로 실현하는 메이커, 김대정입니다.`를 대표 소개로 유지한다. 역할별 local draft는 15초 안에 지원 직군이 드러나도록 해당 직군의 증명 문장을 먼저 두고, 메이커 관점은 경력과 성과의 연결 방식으로 보여준다.
+- 공통 이력서는 `가능성을 기회로 바꾸고, 제품으로 가치를 전하는 메이커 김대정입니다.`를 대표 소개로 유지한다. 역할별 local draft는 15초 안에 지원 직군이 드러나도록 해당 직군의 증명 문장을 먼저 두고, 메이커 관점은 경력과 성과의 연결 방식으로 보여준다.
 - 공개 정체성은 `Tech Lead · Backend Engineer` 순서를 유지한다. Tech Lead는 별도 지원 관점으로 나누지 않고 Backend 지원본 안에서 기술 범위·전환 기준을 정하고 직접 구현한 책임으로 증명한다.
 - Product variant의 `Product Ownership`은 지원 관점이다. 공식 `Product Owner` 경력으로 쓰지 않고 고객 문제·우선순위·제품 운영·직접 구현의 evidence로 증명한다.
 - 회사 AX 구조는 설계 참여, 제품별 Decision→release 적용·운영은 리드, Backend Template은 직접 구축한 범위로 나눈다. Cloud/Delivery는 서비스 배포·환경 설정·기본 운영 경험으로만 둔다.

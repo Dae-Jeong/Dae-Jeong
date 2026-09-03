@@ -187,6 +187,142 @@ body {
   color: #fff;
 }
 
+[data-portfolio-document][data-portfolio-slug="common"] .portfolio-hero {
+  overflow: visible;
+  border-bottom: 1px solid var(--portfolio-ink);
+  background: #fff;
+  color: var(--portfolio-ink);
+  padding-inline: 0;
+}
+
+[data-portfolio-document][data-portfolio-slug="common"] .portfolio-hero::after {
+  display: none;
+}
+
+[data-portfolio-document][data-portfolio-slug="common"] .portfolio-hero .text-muted {
+  color: var(--muted);
+}
+
+[data-portfolio-document][data-portfolio-slug="common"] .portfolio-hero .text-fg-2 {
+  color: var(--fg-2);
+}
+
+[data-portfolio-document][data-portfolio-slug="common"] .portfolio-hero .text-fg,
+[data-portfolio-document][data-portfolio-slug="common"] .portfolio-hero a {
+  color: var(--portfolio-ink);
+}
+
+[data-portfolio-document][data-portfolio-slug="common"] .portfolio-summary-case-shell {
+  margin-inline: calc(clamp(16px, 2.5vw, 28px) * -1);
+  padding-inline: clamp(16px, 2.5vw, 28px);
+}
+
+[data-portfolio-document][data-portfolio-slug="common"]
+  .portfolio-summary-case-shell
+  + .portfolio-summary-case-shell {
+  border-top: 12px solid #f1f3f6;
+}
+
+[data-portfolio-document][data-portfolio-slug="common"]
+  .portfolio-summary-case-shell[data-case-position="even"] {
+  background: #fbfcfe;
+}
+
+[data-portfolio-document][data-portfolio-slug="common"] .portfolio-summary-case-marker {
+  margin-inline: calc(clamp(16px, 2.5vw, 28px) * -1);
+}
+
+[data-portfolio-document][data-portfolio-slug="common"]
+  .portfolio-case
+  > .portfolio-case-header {
+  border-top: 0;
+  background: transparent;
+  padding: 0;
+}
+
+[data-portfolio-document] .portfolio-hero--light {
+  overflow: visible;
+  border-block: 1px solid #cbd5e1;
+  background: #fff;
+  color: var(--portfolio-ink);
+}
+
+[data-portfolio-document] .portfolio-hero--light::after {
+  width: min(10%, 112px);
+  height: 4px;
+}
+
+[data-portfolio-document] .portfolio-hero--light .text-muted {
+  color: #6b7280;
+}
+
+[data-portfolio-document] .portfolio-hero--light .text-fg-2 {
+  color: #475569;
+}
+
+[data-portfolio-document] .portfolio-hero--light .text-fg,
+[data-portfolio-document] .portfolio-hero--light a {
+  color: var(--portfolio-ink);
+}
+
+[data-portfolio-document] .portfolio-hero--light a {
+  color: var(--portfolio-blue);
+}
+
+[data-portfolio-document] .portfolio-hero--light .border-border {
+  border-color: #d8dee8;
+}
+
+[data-portfolio-document][data-portfolio-slug="jyp"] .portfolio-hero--jyp {
+  border-block: 1px solid #cbd5e1;
+  background: #fff;
+  color: var(--portfolio-ink);
+}
+
+[data-portfolio-document][data-portfolio-slug="jyp"]
+  .portfolio-hero--jyp::after {
+  width: min(10%, 112px);
+  height: 4px;
+}
+
+[data-portfolio-document][data-portfolio-slug="jyp"]
+  .portfolio-hero--jyp
+  .text-muted {
+  color: #6b7280;
+}
+
+[data-portfolio-document][data-portfolio-slug="jyp"]
+  .portfolio-hero--jyp
+  .text-fg-2 {
+  color: #475569;
+}
+
+[data-portfolio-document][data-portfolio-slug="jyp"]
+  .portfolio-hero--jyp
+  a {
+  color: var(--portfolio-blue);
+}
+
+[data-portfolio-document][data-portfolio-slug="jyp"]
+  .portfolio-hero--jyp
+  .border-border {
+  border-color: #d8dee8;
+}
+
+[data-portfolio-document][data-portfolio-slug="jyp"]
+  .portfolio-case-marker {
+  border-top: 2px solid var(--portfolio-ink);
+  background: rgb(255 255 255 / 97%);
+  box-shadow: none;
+  backdrop-filter: blur(8px);
+}
+
+[data-portfolio-document][data-portfolio-slug="jyp"]
+  .portfolio-case-shell[data-case-position="even"]
+  .portfolio-case-marker {
+  background: rgb(251 252 254 / 97%);
+}
+
 [data-portfolio-document] .portfolio-case-index {
   border-color: #cbd5e1;
 }
@@ -213,6 +349,39 @@ body {
 [data-portfolio-document] .portfolio-case-index > li > a:hover strong,
 [data-portfolio-document] .portfolio-case-index > li > a:focus-visible strong {
   color: var(--portfolio-blue);
+}
+
+[data-portfolio-document] .portfolio-case-shell {
+  margin-inline: calc(clamp(16px, 2.5vw, 32px) * -1);
+  padding-inline: clamp(16px, 2.5vw, 32px);
+}
+
+[data-portfolio-document] .portfolio-case-shell article[id^="case-"] {
+  scroll-margin-top: 64px;
+}
+
+[data-portfolio-document] .portfolio-case-shell + .portfolio-case-shell {
+  margin-top: clamp(56px, 8vw, 96px);
+  border-top: 12px solid #eef1f5;
+  padding-top: 0;
+}
+
+[data-portfolio-document] .portfolio-case-shell[data-case-position="even"] {
+  background: #fbfcfe;
+}
+
+[data-portfolio-document] .portfolio-case-marker {
+  margin-inline: calc(clamp(16px, 2.5vw, 32px) * -1);
+  border-top: 1px solid #d8dee8;
+  background: rgb(255 255 255 / 94%);
+  box-shadow: 0 8px 18px rgb(16 32 68 / 5%);
+  backdrop-filter: blur(10px) saturate(150%);
+}
+
+[data-portfolio-document]
+  .portfolio-case-shell[data-case-position="even"]
+  .portfolio-case-marker {
+  background: rgb(251 252 254 / 94%);
 }
 
 [data-portfolio-document] .portfolio-case {
@@ -556,6 +725,20 @@ body {
     break-inside: avoid;
   }
 
+  /* 압축층 이력서(printFlow=compact): 성과 항목과 기술 섹션을 통째로 넘기지 않고 흐르게 한다. 안쪽 bullet만 유지. */
+  [data-resume-canvas][data-print-flow="compact"] section li,
+  [data-resume-canvas][data-print-flow="compact"] #s5 {
+    break-inside: auto;
+  }
+  [data-resume-canvas][data-print-flow="compact"] section li li {
+    break-inside: avoid;
+  }
+  [data-resume-canvas][data-print-flow="compact"] h2,
+  [data-resume-canvas][data-print-flow="compact"] h3,
+  [data-resume-canvas][data-print-flow="compact"] section > div:first-child {
+    break-after: auto;
+  }
+
   /* 회사 행은 여러 bullet을 포함하므로 페이지를 넘길 수 있고, 내부 bullet은 위 규칙으로 유지한다. */
   [data-resume-canvas] .resume-career-row {
     break-inside: auto;
@@ -573,6 +756,10 @@ body {
 
   [data-resume-canvas] #s5 {
     break-inside: avoid;
+  }
+
+  [data-resume-canvas] [data-resume-slug="common"] #s3 {
+    break-before: page;
   }
 
   [data-portfolio-document] .portfolio-case,
@@ -602,5 +789,28 @@ body {
 
   [data-portfolio-document] .portfolio-subhead {
     break-after: avoid-page;
+  }
+}
+
+/* 설계 도식 인쇄: 도식 전체가 한 쪽에 들어가면 함께, 아니면 시퀀스·표·footer·경계 상자 단위로만 나뉜다. */
+@media print {
+  .design-diagram figcaption {
+    break-after: avoid;
+    break-inside: avoid;
+  }
+  /* 시퀀스는 행 사이에서만, 표는 행 단위로만, footer·경계 상자는 통째로. */
+  .design-diagram .design-flow,
+  .design-diagram .design-timeline,
+  .design-diagram .design-compare,
+  .design-diagram .design-sequence > div > div,
+  .design-diagram .design-state-table,
+  .design-diagram .design-boundary,
+  .design-diagram dl,
+  .design-diagram thead,
+  .design-diagram tr {
+    break-inside: avoid;
+  }
+  .design-diagram thead {
+    display: table-header-group;
   }
 }

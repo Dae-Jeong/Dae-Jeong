@@ -49,6 +49,7 @@ tool-agnostic skill의 canonical 위치는 `skills/`다. tool-specific 폴더는
 
 | Skill | 위치 | 용도 |
 | --- | --- | --- |
+| analyze-jd-fit | [skills/analyze-jd-fit/SKILL.md](skills/analyze-jd-fit/SKILL.md) | JD 링크·본문을 검증된 profile/evidence와 대조해 지원 판단·강점·공백 분석 |
 | tailor-resume | [skills/tailor-resume/SKILL.md](skills/tailor-resume/SKILL.md) | 검증된 claim 기반 회사/JD 맞춤 이력서 생성 |
 
 ## 검증

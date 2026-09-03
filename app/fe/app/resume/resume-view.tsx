@@ -1,13 +1,11 @@
 "use client";
 
-import Image from "next/image";
 import { Children, isValidElement, useEffect, useState } from "react";
 import { cn } from "@/lib/cn";
 import { Banner } from "@/components/ui/banner";
 import { Chip } from "@/components/ui/chip";
 import { KeyValueRows } from "@/components/ui/key-value-list";
 import { NumberedList, NumberedRow } from "@/components/ui/numbered-row";
-import { SectionHead } from "@/components/ui/section-head";
 import { ResumeLayout } from "./resume-layout";
 import { ResumePeriod } from "./resume-period";
 import { resumeType } from "./resume-typography";
@@ -26,7 +24,7 @@ function PlainList({ items }: { items: React.ReactNode[] }) {
       {items.map((item, i) => (
         <li
           key={i}
-          className="relative pl-4 text-fg-2 before:absolute before:left-0 before:font-mono before:text-muted before:content-['—'] [&_strong]:font-medium [&_strong]:text-fg"
+          className="relative pl-4 text-fg-2 before:absolute before:left-0 before:top-[0.72em] before:size-1 before:rounded-full before:bg-muted before:content-[''] [&_strong]:font-medium [&_strong]:text-fg"
         >
           {item}
         </li>
@@ -150,21 +148,6 @@ function PortfolioCaseLink({
     >
       {children}
     </a>
-  );
-}
-
-function ProfilePhoto() {
-  return (
-    <div className={resumeType.profilePhoto}>
-      <Image
-        src="/profile/daejeong-profile-v2.png"
-        alt=""
-        fill
-        priority
-        sizes="(max-width: 639px) 80px, 112px"
-        className="object-contain"
-      />
-    </div>
   );
 }
 
@@ -346,14 +329,12 @@ const SKILLS_EN = [
 
 function Sec({
   id,
-  no,
   title,
   meta,
   "data-claim": dataClaim,
   children,
 }: {
   id?: string;
-  no: string;
   title: string;
   meta?: string;
   "data-claim"?: string;
@@ -365,7 +346,10 @@ function Sec({
       data-claim={dataClaim}
       className={cn(resumeType.documentSection, "scroll-mt-6")}
     >
-      <SectionHead no={no} title={title} meta={meta} size="doc" />
+      <div className="mb-7 flex flex-wrap items-baseline gap-x-5 gap-y-1 border-b border-fg pb-3">
+        <h2 className="m-0 text-xl font-semibold tracking-[-0.02em]">{title}</h2>
+        {meta && <span className="text-sm text-muted">{meta}</span>}
+      </div>
       {children}
     </section>
   );
@@ -375,18 +359,18 @@ function Sec({
 
 function DocKo() {
   return (
-    <div>
-      <header className={resumeType.documentHeader}>
-        <div className={resumeType.identityBlock}>
-          <h1 className={resumeType.identity}>김대정</h1>
-          <p className={resumeType.roleMeta}>Tech Lead · Backend Engineer</p>
+    <div data-resume-slug="common">
+      <header className={resumeType.commonDocumentHeader}>
+        <div id="s1" className={resumeType.commonIdentityBlock}>
+          <h1 className={resumeType.commonIdentity}>김대정</h1>
+          <p className={resumeType.commonRoleMeta}>Tech Lead · Backend Engineer</p>
         </div>
-        <div className={resumeType.metaBlock}>
+        <div className={resumeType.commonMetaBlock}>
           <p className={resumeType.careerMeta}>
             <b className="font-medium text-fg">MediSolve AI</b> · Tech Lead · Backend Engineer{" "}
             <span className="text-muted">(2025.04 — 재직 중)</span>
           </p>
-          <div className={resumeType.contactRow}>
+          <div className={resumeType.commonContactRow}>
             <Chip variant="contact" href="mailto:marin.backend@gmail.com">
               marin.backend@gmail.com
             </Chip>
@@ -398,14 +382,9 @@ function DocKo() {
             </Chip>
           </div>
         </div>
-        <ProfilePhoto />
-      </header>
-
-      <OrderedSections order={SECTIONS_KO.map((section) => section.id)}>
-      <Sec id="s1" no="01" title="소개" meta="Profile">
         <div className={resumeType.summaryStack}>
           <p className={resumeType.profileTitle}>
-            아이디어를 새로운 가치로 실현하는 메이커, 김대정입니다.
+            가능성을 기회로 바꾸고, 제품으로 가치를 전하는 메이커 김대정입니다.
           </p>
           <p
             className={resumeType.profileDescription}
@@ -414,9 +393,10 @@ function DocKo() {
             기획자 출신 Tech Lead로, 고객의 문제를 제품 우선순위와 구현 범위로 구체화합니다. 필요한 백엔드·AI·핵심 화면은 직접 만들고, 기획·QA·마케팅과 함께 출시와 유료 운영까지 이끌어 왔습니다.
           </p>
         </div>
-      </Sec>
+      </header>
 
-      <Sec id="s3" no="03" title="경력" meta="Career">
+      <OrderedSections order={SECTIONS_KO.filter((section) => section.id !== "s1").map((section) => section.id)}>
+      <Sec id="s3" title="경력" meta="Career">
         <NumberedList className="border-t border-border-soft">
           <CareerRow org="MediSolve AI" period="2025.04 —" currentLabel="재직 중" allowBreak data-claim="career.medisolve-role-evolution career.thedaylabs-freelance career.memento-to-medisolve-early-member">
             <span className="mb-1.5 block text-base font-medium text-fg">Tech Lead · Backend Engineer <span className="font-normal text-fg-2">— 제품 운영 리드</span></span>
@@ -460,12 +440,12 @@ function DocKo() {
         </NumberedList>
       </Sec>
 
-      <Sec id="s2" no="02" title="대표 성과" meta="Selected Impact">
+      <Sec id="s2" title="대표 성과" meta="Selected Impact">
         <NumberedList>
           <Axis
             first
             no="01"
-            title="아이디어를 팀과 실제 고객이 결제하는 Thready 제품으로 만들고 운영"
+            title="아이디어를 제안하고 초기 프로토타입 이후 제품화를 주도해, 실제 고객이 결제하는 서비스로 발전시켰습니다."
             data-claim="thready.product-zero-to-one-contribution thready.frontend-product-delivery thready.prototype-to-user-operation thready.subscription-revenue-band thready.release-operation thready.generation-quality-system"
             description="고객이 돈을 내는 이유를 찾고, 콘텐츠 제작과 성과 판단의 불편을 기능·실험·품질 기준으로 나눴습니다. 기획·QA·마케팅과 제품 판단부터 출시·운영까지 리드했습니다."
             evidence={[
@@ -521,11 +501,11 @@ function DocKo() {
         </NumberedList>
       </Sec>
 
-      <Sec id="s5" no="04" title="기술" meta="Skills">
+      <Sec id="s5" title="기술" meta="Skills">
         <KeyValueRows items={SKILLS} />
       </Sec>
 
-      <Sec id="s6" no="05" title="외부 활동" meta="External Activities">
+      <Sec id="s6" title="외부 활동" meta="External Activities">
         <NumberedList className="border-t border-border-soft">
           <NumberedRow label="UX 컨설팅" labelWidth="lg" className={resumeType.careerRow} data-claim="career.product-ux-practice career.ux-consulting-product-outcome">
             <ExternalActivity
@@ -546,7 +526,7 @@ function DocKo() {
         </NumberedList>
       </Sec>
 
-      <Sec id="s7" no="06" title="수상·특허·자격 / 학력" meta="Credentials">
+      <Sec id="s7" title="수상·특허·자격 / 학력" meta="Credentials">
         <NumberedList className="border-t border-border-soft">
           <NumberedRow label={"특허\n2022.10.13 출원"} labelWidth="lg" labelClassName="whitespace-pre-line" className={resumeType.credentialRow} data-claim="credentials.page-output-patent">
             <span className="text-base text-fg"><strong className="font-medium">「페이지 출력 방법」</strong> · 등록 10-2898273 (2025.12경)</span>
@@ -574,21 +554,21 @@ function DocKo() {
 
 function DocEn() {
   return (
-    <div>
+    <div data-resume-slug="common">
       <Banner tag="DRAFT" className="mb-6">
         This English resume is a <b>draft</b> — under review against the Korean master.
       </Banner>
-      <header className={resumeType.documentHeader}>
-        <div className={resumeType.identityBlock}>
-          <h1 className={resumeType.identity}>Daejeong Kim</h1>
-          <p className={resumeType.roleMeta}>Tech Lead · Backend Engineer</p>
+      <header className={resumeType.commonDocumentHeader}>
+        <div id="s1" className={resumeType.commonIdentityBlock}>
+          <h1 className={resumeType.commonIdentity}>Daejeong Kim</h1>
+          <p className={resumeType.commonRoleMeta}>Tech Lead · Backend Engineer</p>
         </div>
-        <div className={resumeType.metaBlock}>
+        <div className={resumeType.commonMetaBlock}>
           <p className={resumeType.careerMeta}>
             <b className="font-medium text-fg">MediSolve AI</b> · Tech Lead · Backend Engineer{" "}
             <span className="text-muted">(Apr 2025 — present)</span>
           </p>
-          <div className={resumeType.contactRow}>
+          <div className={resumeType.commonContactRow}>
             <Chip variant="contact" href="mailto:marin.backend@gmail.com">
               marin.backend@gmail.com
             </Chip>
@@ -600,11 +580,6 @@ function DocEn() {
             </Chip>
           </div>
         </div>
-        <ProfilePhoto />
-      </header>
-
-      <OrderedSections order={SECTIONS_EN.map((section) => section.id)}>
-      <Sec id="s1" no="01" title="Profile">
         <div className={resumeType.summaryStack}>
           <p className={resumeType.profileTitle}>
             I&apos;m Daejeong Kim, a maker who turns ideas into new value.
@@ -616,9 +591,10 @@ function DocEn() {
             As a former product planner and current Tech Lead, I turn customer problems into product priorities and implementation scope. I build the backend, AI systems, and core product flows needed to bring products from launch into paid operation with planning, QA, and marketing.
           </p>
         </div>
-      </Sec>
+      </header>
 
-      <Sec id="s3" no="03" title="Career">
+      <OrderedSections order={SECTIONS_EN.filter((section) => section.id !== "s1").map((section) => section.id)}>
+      <Sec id="s3" title="Career">
         <NumberedList className="border-t border-border-soft">
           <CareerRow org="MediSolve AI" period="Apr 2025 —" currentLabel="Present" allowBreak data-claim="career.medisolve-role-evolution career.thedaylabs-freelance career.memento-to-medisolve-early-member">
             <span className="mb-1.5 block text-base font-medium text-fg">Tech Lead · Backend Engineer <span className="font-normal text-fg-2">— product operations lead</span></span>
@@ -662,12 +638,12 @@ function DocEn() {
         </NumberedList>
       </Sec>
 
-      <Sec id="s2" no="02" title="Selected Impact">
+      <Sec id="s2" title="Selected Impact">
         <NumberedList>
           <Axis
             first
             no="01"
-            title="Turned an idea into a Thready product customers pay for with the team"
+            title="Proposed the idea and led productization after the initial prototype into a service with paying customers"
             data-claim="thready.product-zero-to-one-contribution thready.frontend-product-delivery thready.prototype-to-user-operation thready.subscription-revenue-band thready.release-operation thready.generation-quality-system"
             description="I identified why customers would pay, broke their content creation and performance problem into product, experiment, and quality criteria, and led the path from product decisions to launch and operations."
             evidence={[
@@ -723,11 +699,11 @@ function DocEn() {
         </NumberedList>
       </Sec>
 
-      <Sec id="s5" no="04" title="Skills">
+      <Sec id="s5" title="Skills">
         <KeyValueRows items={SKILLS_EN} />
       </Sec>
 
-      <Sec id="s6" no="05" title="External Activities">
+      <Sec id="s6" title="External Activities">
         <NumberedList className="border-t border-border-soft">
           <NumberedRow label="UX Consulting" labelWidth="lg" className={resumeType.careerRow} data-claim="career.product-ux-practice career.ux-consulting-product-outcome">
             <ExternalActivity
@@ -748,7 +724,7 @@ function DocEn() {
         </NumberedList>
       </Sec>
 
-      <Sec id="s7" no="06" title="Credentials & Education">
+      <Sec id="s7" title="Credentials & Education">
         <NumberedList className="border-t border-border-soft">
           <NumberedRow label={"Patent\nFiled Oct 13, 2022"} labelWidth="lg" labelClassName="whitespace-pre-line" className={resumeType.credentialRow} data-claim="credentials.page-output-patent">
             <span className="text-base text-fg"><strong className="font-medium">&ldquo;Method for Displaying Page&rdquo;</strong> · registration 10-2898273 (c. Dec 2025)</span>

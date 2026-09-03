@@ -87,3 +87,33 @@ claims:
       - WebSocket workload 전체 coverage
       - 10대 VM log·8개 alert 전체를 최초부터 단독 구축
     verified_at: 2026-08-18
+  - id: infra.k8s-cluster-design-review
+    statement: 회사 Mac Studio 단일 서버 위 Lima + kubeadm 3노드 Kubernetes 클러스터(GitOps·Cloudflare Tunnel) 설계를 구두 미팅으로 함께 검토
+    strength: contributed
+    confidence: low
+    public: true
+    evidence: [evidence/projects/infrastructure.md#company-kubernetes-cluster-design-review]
+    allowed_copy:
+      - 회사 k8s 클러스터(kubeadm·GitOps) 설계 검토에 참여
+    forbidden_copy:
+      - Kubernetes 클러스터 구축·운영
+      - 기술 stack에 Kubernetes를 hands-on으로 표기
+      - 설계 주도·전담
+    verified_at: 2026-09-03
+  - id: infra.k8s-lab-rebuild
+    statement: 회사가 구두 검토한 단일 서버 Kubernetes 설계(Lima + kubeadm 3노드, Calico·MetalLB·ingress-nginx·local-path, Helm + ArgoCD)를 개인 Mac에서 회사 코드 없이 직접 재구축하고, 네트워크 선택(vzNAT→user-v2)과 실패 진단을 설계 판단으로 기록
+    strength: led
+    confidence: high
+    public: true
+    evidence: [evidence/projects/infrastructure.md#company-kubernetes-cluster-design-review]
+    allowed_copy:
+      - Lima + kubeadm 3노드 Kubernetes 클러스터를 개인 Mac에 직접 구축 (Calico · MetalLB · ingress-nginx · local-path · Helm · ArgoCD)
+      - ingress → service → pod → PVC 전 경로와 LoadBalancer IP 할당을 검증
+      - VM 간 통신이 안 되는 vzNAT를 진단해 user-v2로 전환하고 호스트 접근을 포워딩·certSANs로 해결한 판단 기록
+      - 회사 k8s 클러스터 설계 검토에 참여하고 같은 설계를 직접 재구축
+    forbidden_copy:
+      - 회사 Kubernetes 클러스터 구축·운영
+      - production 운영 경험
+      - Cloudflare Tunnel·모니터링 스택 구축 (생략 범위)
+    verified_at: 2026-09-03
+

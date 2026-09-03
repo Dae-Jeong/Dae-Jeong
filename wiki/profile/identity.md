@@ -2,7 +2,7 @@
 type: profile
 title: Identity
 description: Canonical personal category, positioning, bio, and branding guardrails.
-timestamp: 2026-08-24
+timestamp: 2026-09-01
 tags: [identity, positioning, branding]
 ---
 
@@ -16,35 +16,50 @@ tags: [identity, positioning, branding]
 | Primary category | Tech Lead |
 | Supporting role | Backend Engineer |
 | **Dual role** | **Product Owner** (2026-08-10 user-confirmed — 병기하되 primary를 대체하지 않는다) |
+| **Self-definition (회사별 소개)** | **Product Engineer** — 2026-09-03 user-confirmed. 브랜드 정체성(Maker)을 대체하지 않고 회사별 소개 첫 줄에서 "무엇을 하는 사람인가"를 답한다 |
 | Specialty | AI Product Systems |
 | Differentiator | **고객이 돈을 내는 이유를 찾고, 제품 판단부터 구현·운영까지 연결한다** + 제품·회사 업무를 잇는 Agent-readable Workflow |
 | Supporting narrative | Vision AI -> PM -> Backend -> AI Product/Agent Workflow |
 
 ## Canonical One-Line
 
-> 아이디어를 새로운 가치로 실현하는 메이커, 김대정입니다.
+> 가능성을 기회로 바꾸고, 제품으로 가치를 전하는 메이커 김대정입니다.
 
 ## Brand Line Application
 
-- 위 `Canonical One-Line`을 public brand line으로 사용한다 (2026-08-24 user-confirmed).
+- 위 `Canonical One-Line`을 public brand line으로 사용한다 (2026-09-01 user-confirmed).
+- 브랜드 문장의 의미 흐름은 `가능성 발견 → 기회 전환 → 제품을 통한 가치 전달`이다. 구현 수단보다 기회를 포착하고 제품으로 가치를 전달하는 Maker 정체성을 먼저 말한다.
 - `Maker`는 브랜드 정체성이며 채용 직함이 아니다. 채용 역할 표기는 `Tech Lead · Backend Engineer`를 유지한다.
 - 이 문장은 홈 hero와 이력서·포트폴리오의 소개에 사용하되 경력 행·역할 label을 대체하지 않는다.
 - Vision AI Engineer → PM → Backend Engineer 전환을 직무 나열이 아니라, 제품에 더 크게 기여하기 위해 필요한 역할과 역량을 확장해온 서사로 표현한다.
 - 공개 이력서에서는 `Tech Lead`를 primary, `Backend Engineer`를 supporting role로 사용한다.
+
+## 확장형 한 문장 (2026-09-03 신설, user-confirmed)
+
+> 가능성을 제품으로 만들고, 끝까지 책임지는 Product Engineer 김대정입니다.
+
+- `Canonical One-Line`은 바꾸지 않는다. 이 문장은 회사별 지원본(포트폴리오 hero·이력서 소개 첫 줄)에서만 쓰는 확장형이다. 홈 hero와 공통 소개는 canonical 그대로다. Product Engineer 관점의 브랜딩 전체는 [branding-product-engineer.md](branding-product-engineer.md)가 소유한다.
+- 구조: 메이커 문장의 움직임(가능성 → 제품 → 가치)을 뼈대로, Product Engineer의 닻(결과·책임)을 술어로. "고객이 돈을 내는"은 Differentiator 줄의 표현을 그대로 가져온 사실 후킹이다.
+- 버린 표현: `기회를 결제하는 제품으로`(명사 3단 반복·주어 불명확, AI 번역투), `백엔드로 책임지는`(헤더의 공고 직무명이 이미 백엔드를 말하므로 중복), `고객이 돈을 내는 제품으로`(자기소개 첫 줄에서는 날것으로 읽히고 목적어 안에 관형절이 겹침 → 결제 사실은 둘째 문장 `고객이 구독하는 AI 제품`으로).
+- 15초 문장의 첫 사실(기획자 출신)은 바로 뒤 문장 `기획자로 시작해 백엔드로 왔고, 지금은 고객이 구독하는 AI 제품을 만들고 운영합니다.`가 잇는다. Product Engineer 뒤에 슬래시로 다른 직함을 붙이지 않는다(Dual Track 규칙과 동일).
+
+## 기술 주장의 축
+
+엔지니어로서 반복해서 지키는 축은 **성능·보장·신뢰·멱등·정합·설계**다. canonical은 [engineering-keywords.md](engineering-keywords.md). "끝까지 책임진다"의 실체가 이 여섯 축이다.
 
 ## 관통 질문 (2026-08-11 신설, user-confirmed)
 
 > **"AI가 구현을 점점 더 많이 맡을수록, 사람이 끝까지 책임져야 하는 층을 어떻게 지킬 것인가?"**
 
 소개(L1)의 착지로 쓰는 브랜드 자산. 백엔드 선택 판단(previous-career.md role-continuity,
-user-confirmed)에서 도출한 것으로 차용이 아니다. 문안 canonical은
-[dual-track-copy v6](../backlog/platform-profile-consolidation/dual-track-copy-draft.md)가 소유한다.
+user-confirmed)에서 도출한 것으로 차용이 아니다. 이 문단이 질문의 canonical이며,
+각 공개 surface의 실제 표현은 [site content SoT](../products/site/content-sot.md)를 따른다.
 >
 > *(v5.2, 2026-08-11 — "무엇을 왜"는 의문사 스태킹 번역투라 제거. [persuasive-writing §9](../rules/persuasive-writing.md))*
 
 ## English
 
-> I’m Daejeong Kim, a maker who turns ideas into new value.
+> I’m Daejeong Kim, a maker who turns possibilities into opportunities and delivers value through products.
 
 ## Dual Track 근거와 경계
 

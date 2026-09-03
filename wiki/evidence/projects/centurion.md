@@ -81,6 +81,11 @@ DAY, BAY, RAY, SAY는 별도 제품이 아니라 Centurion CRM & ERP 제품을 �
 - Experiment-backed (2026-08-21): `workspace:SAY-BE-API` handover E2E는 VAD silence 200·350·500ms의 P50을 각각 약 3.0·3.17·3.23초로 기록했고, 모델 추론 P50 2.4초가 전체의 약 80%를 차지해 VAD tuning이 주 병목이 아니라고 판정했다. KimMarin commit `a63152e`가 이 분석 문서를 기록한다. 공개 문안은 provider 실명을 제외하고 `VAD를 무작정 줄이지 않고 DELTA 조기 trigger와 provider 경계 분리에 집중`한 판단으로 사용한다.
 - Current architecture boundary (2026-08-21): VAD는 speech start/end와 interrupt·session 경계를 다루며 STT 인식률 자체를 높이지 않는다. 현재 production의 text COMPLETE는 VAD가 아니라 전사 buffer의 문장 분리에서 발생한다. 현재 SAY에는 keyword별 numeric weight가 없으며 DELTA의 exact keyword priority trigger와 provider 후보 실험의 domain keyword hint를 `키워드 가중치`로 합쳐 표현하지 않는다.
 - Code-/review-backed (2026-08-21): 운영에서 WebSocket 종료 뒤 reconnect timer가 남아 종료된 외부 AI session이 다시 연결되는 경로를 재현하고, pause·complete·timeout·GC·shutdown의 정리 책임과 reconnect 진입 전/backoff 이후 stop guard를 보강했다. reconnect lifecycle/race 8개와 GC TTL 5개를 합친 13개 focused regression scenario로 회귀를 고정했다. 전체 test harness 최초 구축은 주장하지 않는다.
+- User-confirmed (2026-09-02): 당시 사용한 외부 실시간 음성 모델의 세션이 약 1분 주기로, 발화 중간에 무작위로 강제 종료돼 STT 품질이 떨어지는 문제가 있었다. 세션 여러 개를 시간차로 열고 응답을 종합해 기능이 끝까지 동작하게 만들었고(비용 증가 감수), 이후 모델을 교체하면서 문제가 일단락됐다. 사용자 기억은 `30초 간격`이나 코드 값은 아래와 같다.
+- Code-/Git-backed (2026-09-02, `workspace:PROTON`): KimMarin commit `d0b951d`(2026-01-08)는 batch 전사 모드의 제약(전사 window 약 15초, 첫 응답 10~15초)을 우회하는 Staggered Parallel Pipeline을 구현했다 — AudioBuffer → AudioSlicer(20초 window, 10초 stagger, 5초 overlap) → WorkerPool(동시 세션 3, worker timeout 60초는 SDK 제약). 277초 오디오 test에서 worker 28개·성공률 82%·첫 응답 10.5초를 기록했고 동시 3세션으로 비용이 늘어나는 제약을 문서에 명시했다(`docs/gemini-staggered-summary.md`, test report 동봉). commit `8fbdcca`(2026-01-12)는 realtime provider를 단일 세션에서 3개 세션 풀로 바꿔 `transcription 멈춤 이슈`에 대응했다 — turn_complete 기반 세션 스위칭·브로드캐스팅, 세션별 독립 버퍼로 순서 보장, 문장 종결 부호 기반 COMPLETE 분리, 재연결 시 버퍼 정리. commit `c42c2c3`(2026-01-14)로 dev/stg provider를 staggered로 전환했다.
+- Code-/Git-backed (2026-09-02): 이후 다른 author의 commit `2499428`(2026-02-05)이 staggered를 포함한 레거시 STT provider 전체를 삭제하며 provider 교체가 마무리됐다. KimMarin commit `1f8c9b5`(2026-02-11)는 번역 provider의 듀얼 세션(A/B)을 싱글 세션으로 되돌리며 `60초 주기 재연결 타이머가 경합 조건으로 약 1분 시점 응답 중단의 원인`이었음을 기록했다 — 우회책 뒤에 자체 타이머 경합이라는 원인 하나를 찾아 제거한 기록이며, 외부 모델 세션 종료 문제 전체의 단일 원인으로 표현하지 않는다.
+- Measurement boundary: 82%·10.5초는 개발 test 결과이며 production 품질 수치가 아니다. 우회 전후의 STT 품질·상담 완료율 비교 수치는 없다.
+- Contribution boundary: staggered pipeline·멀티세션 풀·순서 보장의 설계·구현 commit은 모두 KimMarin author라 이 하위 영역은 `led`로 표현할 수 있다. SAY 전체는 `co-led`를 유지한다. provider·모델 실명은 공개하지 않는다.
 - Contribution boundary: SAY 공동 주 기여와 연계 영역 주도를 합친 `co-led` claim. provider 실명은 공개하지 않는다.
 
 ## DAY Product Integration
@@ -97,6 +102,14 @@ DAY, BAY, RAY, SAY는 별도 제품이 아니라 Centurion CRM & ERP 제품을 �
 
 - Code-backed: Redis/JTI session, duplicate login, E2E 관련 변경이 확인됐다.
 - Contribution boundary: 담당·참여. SSO 전체 구축 표현은 금지한다.
+
+## SSO Auth Foundation
+
+- User-confirmed (2026-08-28, 2026-09-02 범위 확정): "인증 세션은 내가 전부 설계하고 구현했고, 회사 인증 로직의 기반을 만들었다"는 진술은 Thready가 아니라 **Centurion SSO**를 가리킨다.
+- Existing claim boundary: `centurion.sso-session`은 Redis/JTI session·duplicate login·E2E를 `contributed`로 등록돼 있다. 사용자 진술은 이보다 강한 ownership(설계·구현 전담)이다.
+- Code-backed 단서: `workspace:SSO-BE-API`는 NestJS·JWT·Prisma·TypeScript다 ([workspace-project-audit](../audits/workspace-project-audit.md#sso-be-api)).
+- Verification boundary (2026-09-02): `workspace:SSO-BE-API`의 Git author 대조를 아직 하지 않았다. 대조 결과 설계·구현 대부분이 본인 author면 `centurion.sso-session`을 `led` 이상으로 상향하고 allowed_copy를 확장한다. 그 전까지 공개 문안은 기존 `contributed` 상한을 유지한다.
+- Claim status: `centurion.sso-auth-foundation`을 `public: false / confidence: low`로 등록했다.
 
 ## Shared Infra
 

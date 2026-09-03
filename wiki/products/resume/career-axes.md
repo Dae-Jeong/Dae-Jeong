@@ -2,8 +2,8 @@
 type: reference
 title: 회사별 역량 축 지도
 description: 각 회사 경력 설명의 축 구성·근거 claim·미사용 자산을 한 장으로 본다. 축은 회사마다 다르고 JD에 따라 재배치된다.
-timestamp: 2026-08-23
-derived_from: [rules/persuasive-writing.md, backlog/platform-profile-consolidation/dual-track-copy-draft.md, evidence/claims/]
+timestamp: 2026-09-01
+derived_from: [profile/decision-principles.md, rules/persuasive-writing.md, evidence/claims/]
 tags: [resume, career, axes, reference]
 ---
 
@@ -12,9 +12,8 @@ tags: [resume, career, axes, reference]
 user: "각 회사들별로 이 구조가 좀 변동될 수 있겠지 / 그 관점에서 이걸 md파일에 적재해놓고 볼 수 있을까?"
 
 **축은 고정 틀이 아니다.** 그 회사에서 실제로 한 일이 축이 되고, 지원 JD에 따라 순서와 묶음이 바뀐다.
-이 문서는 그 변동을 관리하기 위한 지도다. 문안 자체의 canonical은
-[dual-track-copy-draft](../../backlog/platform-profile-consolidation/dual-track-copy-draft.md)
-「경력 설명 — canonical v4」이며, 여기서는 **구조와 근거**만 다룬다.
+이 문서는 그 변동을 관리하는 **구조와 근거 지도**다. 실제 경력 문장의 표현 SoT는
+[site content SoT](../site/content-sot.md)에 정의된 `app/fe` surface가 소유한다.
 
 ## 0. 규칙 요약
 
@@ -105,12 +104,12 @@ Closure Table(repo에 없는 자기보고 오류)·고객사 실명 전부 금�
 
 **축 1은 JD relevance 예외다** (2026-08-12 user-confirmed: "스튜디오랩에서는 PM으로서의 성과가 강해").
 
-오래된 경력이라서 줄 수를 제한하지 않는다. 제품 시스템·0→1 POC·외부 검증이 현재 JD에 고유한 판정 근거를 제공할 때 필요한 깊이로 쓴다.
-PM 축은 `0→1 구간 통과 → 대기업 POC → 상세페이지 제작 flow 재설계 → 특허 출원·등록`의 연결된 판단 서사로 설명한다.
+오래된 경력이라서 줄 수를 제한하지 않는다. 제품 시스템·초기 제품화·POC·외부 검증이 현재 JD에 고유한 판정 근거를 제공할 때 필요한 깊이로 쓴다.
+PM 축은 `프로토타입 → v1.0 제품화 → 대기업 POC → 상세페이지 제작 flow 재설계 → 특허 출원·등록`의 연결된 판단 서사로 설명한다.
 
 신규 반영한 재료:
-- **0→1 경험** (user-confirmed: "셀러캔버스라는 시스템을 내가 처음부터 기획했고 zero to one을 경험")
-  — `career.yaml`에 `프로토타입 단계에서 v1.0 제품까지 0→1 구간을 PM으로 통과` allowed_copy 추가.
+- **초기 제품화 경험** (user-confirmed: "셀러캔버스라는 시스템을 내가 처음부터 기획했고 zero to one을 경험")
+  — 공개 표현은 프로토타입 단계에서 v1.0 제품까지 제품 흐름·기능 범위·출시 우선순위를 정한 PM 역할로 구체화한다.
   ⚠️ 금지 유지·추가: 제품 전체 단독 기획·총괄 / **창업자·설립 시점부터 참여** / **0에서 혼자 만들었다**
   (합류는 2021.12 AI Engineer, 프로토타입 선행, PM 전환은 2022.10)
 - **"제품이 원활하게 돌아가는 시스템을 기획·구축"** — 개발 시스템이 아니라는 구분.
@@ -219,7 +218,7 @@ PM 축은 `0→1 구간 통과 → 대기업 POC → 상세페이지 제작 flow
 | 2026-08-12 | v4.2 NEXUS ≡ Centurion 확인 → 병기 제거, 「어드민 시스템 구축·운영」 축 신설 |
 | 2026-08-12 | v4.3 「인프라·플랫폼 운영」 축 신설(owned ×3), 메디솔브 6축 · 과거 회사 압축으로 총량 유지 |
 | 2026-08-12 | v4.4 스튜디오랩 PM 축 강화 (배분 예외 — 목표 포지션 직결 축) |
-| 2026-08-12 | v4.5 PM 축을 0→1 서사로 재구성 (0→1 → POC → Flow 재설계 → 특허) |
+| 2026-08-12 | v4.5 PM 축을 초기 제품화 서사로 재구성 (프로토타입 → v1.0 → POC → Flow 재설계 → 특허) |
 | 2026-08-18 | 고정 bullet·회사별 분량 quota 폐기. recency는 정렬 신호로만 사용하고 고유한 technical evidence는 필요한 깊이로 유지 |
 | 2026-08-20 | 기존 NEXUS ≡ Centurion 판정을 supersede. NEXUS는 외부 피부과 운영·예약 시스템, DAY는 범용 피부과 CRM으로 분리하고 예약률·매출 기여를 제품 outcome으로 추가 |
 | 2026-08-21 | 회사 업무 AX 구조 설계 참여를 제품 운영·Backend Template·인프라와 구분하고, 직군별로 AX 비중만 조절하도록 축과 기여 동사를 재정의 |

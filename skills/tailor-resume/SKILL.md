@@ -1,11 +1,11 @@
 ---
 name: tailor-resume
-description: Use when the user provides a company job-posting URL, pastes or attaches a job description, or asks to prepare, review, adapt, render, or archive a company-specific resume and portfolio application package for a recruiting platform. Uses a Markdown-first content review before HTML/PDF rendering.
+description: Prepare, review, adapt, render, or archive a company-specific resume, career-description, portfolio, and optional CV package when the user asks for application artifacts. Uses a Markdown-first content review before HTML/PDF rendering. Do not use for fit-only JD analysis.
 ---
 
 # Tailor Resume
 
-특정 JD에 맞춘다는 것은 사실을 다시 쓰는 일이 아니라 검증된 claim을 회사가 돈을 주고 맡길 **성과 축**으로 선택·묶음·배열하는 일이다. 프로젝트는 성과를 증명하는 출처이지 문서의 1차 목차가 아니다.
+특정 JD에 맞춘다는 것은 사실을 다시 쓰는 일이 아니라 검증된 claim을 회사가 돈을 주고 맡길 **성과 축**으로 선택·묶음·배열하는 일이다. 프로젝트는 성과를 증명하는 출처이지 문서의 1차 목차가 아니다. Common은 이력서·경력기술서·포트폴리오·CV 네 문서를 유지하고, 회사별 package는 이력서·경력기술서·포트폴리오를 기본으로 조립하며 CV만 선택한다.
 
 내용과 레이아웃을 분리한다. 먼저 Markdown에서 사용자와 문장을 확정하고, 명시적 승인 뒤에만 HTML/PDF를 만든다.
 
@@ -55,10 +55,14 @@ description: Use when the user provides a company job-posting URL, pastes or att
 
 `assets/application-package/content-draft.md`를 복사해 지원 폴더의 `content-draft.md`를 만든다. 이 파일이 승인 전 문안의 canonical owner다.
 
-- resume와 portfolio에 들어갈 **실제 공개 문장 전체**를 Markdown에 먼저 쓴다.
+- 성과·소개·경력 행·기술 문안은 `wiki/products/resume/resume-block-library.md`의 블록에서 시작한다. 회사별로 바꾸는 것은 블록 선택·순서·연결 문장·헤더 직함뿐이며 사실·수치·동사 강도·mechanism은 블록 그대로 쓴다 (`wiki/rules/application-copy-standard.md` §3).
+
+- resume·career description·portfolio와 선택한 CV에 들어갈 **실제 공개 문장 전체**를 Markdown에 먼저 쓴다.
 - 이력서의 `대표 기술 사례`는 문제·제약 → 실제 대안과 선택 → 구현 경계 → failure mode → 검증·운영 → 결과·한계 순으로 resume 안에서 자립적으로 쓴다.
 - 기술 사례 수와 줄 수를 먼저 고정하지 않는다. JD와 가까운 강한 case를 깊게 쓰고, 추가 case는 새로운 technical signal을 제공할 때만 포함한다.
 - 포트폴리오는 이력서와 같은 성과 축·순서를 사용하고, 각 축 아래 1~N개 프로젝트를 proof block으로 배치한다.
+- 경력기술서는 프로젝트별 `문제 → 담당 범위 → 선택 → 구현 → 검증 → 결과·한계`를 기록하고 이력서 bullet을 길게 복제하지 않는다.
+- CV는 전체 chronology와 credential의 누락 없는 확인을 우선한다. 회사별 CV가 필요 없으면 `omitted`를 정상 상태로 기록하고 빈 문서나 route를 만들지 않는다.
 - 프로젝트별 상세 문제·판단·기여·결과·한계를 분리한다.
 - 서로 다른 프로젝트의 수치를 더하거나 하나의 인과관계·통합 프로젝트처럼 쓰지 않는다.
 - 각 성과와 proof에 claim ID를 함께 적어 검토 중에도 근거를 잃지 않는다.
@@ -90,15 +94,19 @@ wiki/products/resume/tailored/{company-slug}/{YYYY-MM-DD}_{platform}_{position-s
   content-draft.md
   source/
     resume.html
+    career-description.html
     portfolio.html
+    cv.html                 # selected only
   package/
     resume.pdf
+    career-description.pdf
     portfolio.pdf
+    cv.pdf                  # selected only
 ```
 
 - 폴더 하나는 회사 × 공고 × 지원 플랫폼 1회를 뜻한다.
 - `jd.md`에는 URL만 남기지 말고 수집 시점의 원문을 저장한다.
-- `source/`와 `package/`는 승인 후 생성한다. 승인 전 이미 존재하면 preview 상태로 유지한다.
+- `source/`와 `package/`는 승인 후 생성한다. 승인 전 이미 존재하면 preview 상태로 유지한다. 회사별 artifact mode는 `common | tailored | omitted`로 기록한다.
 - 플랫폼이 파일 하나만 받으면 `resume-portfolio.pdf`, 포트폴리오 URL을 받으면 `portfolio-url.md`를 만든다.
 - 실제 플랫폼 업로드나 지원 완료 표시는 사용자가 명시적으로 요청하거나 제출 사실을 알려준 뒤에만 한다.
 - 지원 완료 뒤 해당 폴더는 덮어쓰지 않는다. 재지원·다른 공고·다른 플랫폼은 새 날짜 폴더로 만든다.
@@ -123,7 +131,9 @@ uv run --project tools python skills/tailor-resume/scripts/render_review_preview
 사용자가 회사별 준비 과정을 홈페이지에 공개하기로 승인하면 정적 HTML 사본 대신 app의 typed content 계약을 사용한다.
 
 - `app/fe/content/resumes/{company-slug}.ts`에 승인된 evidence 범위의 문안을 옮긴다.
+- `app/fe/content/documents/{company-slug}.ts`에 맞춤 경력기술서와 선택한 CV 문안을 옮긴다.
 - `app/fe/content/resumes/index.ts` registry에 등록하면 `/resume/{company-slug}`에서 기존 resume shell과 동일한 구성으로 열린다.
+- 경력기술서는 `/career/{company-slug}`, 선택한 CV는 `/cv/{company-slug}`에서 열리며 `omitted`인 CV route는 만들지 않는다.
 - `visibility: "local" | "public"`은 production 노출 여부, `status: "draft" | "approved"`는 문안 승인 상태를 각각 소유한다. 두 상태를 섞지 않는다.
 - 공개 draft는 화면에 `DRAFT`를 명시한다. 회사별 route는 sitemap·navigation에 넣지 않고 `noindex`, `nofollow`, `noarchive`, `nosnippet`을 유지한다.
 - `wiki/products/resume/tailored/.../content-draft.md`가 계속 문안 owner다. typed content는 공개 화면을 위한 export이며 독자적인 사실을 추가하지 않는다.
@@ -144,16 +154,26 @@ uv run --project tools python skills/tailor-resume/scripts/html_to_pdf.py \
 uv run --project tools python skills/tailor-resume/scripts/html_to_pdf.py \
   wiki/products/resume/tailored/{company-slug}/{application-folder}/source/portfolio.html \
   wiki/products/resume/tailored/{company-slug}/{application-folder}/package/portfolio.pdf
+
+uv run --project tools python skills/tailor-resume/scripts/html_to_pdf.py \
+  wiki/products/resume/tailored/{company-slug}/{application-folder}/source/career-description.html \
+  wiki/products/resume/tailored/{company-slug}/{application-folder}/package/career-description.pdf
+
+# CV를 선택한 package에서만 실행한다.
+uv run --project tools python skills/tailor-resume/scripts/html_to_pdf.py \
+  wiki/products/resume/tailored/{company-slug}/{application-folder}/source/cv.html \
+  wiki/products/resume/tailored/{company-slug}/{application-folder}/package/cv.pdf
 ```
 
 ### 9. Verify and Deliver
 
+0. `wiki/rules/application-copy-standard.md`의 제출 전 게이트 10개를 `content-draft.md`와 대조하고, 위반 항목을 `match-report.md`에 남긴다. 하나라도 걸리면 `approved: true`로 바꾸지 않는다.
 1. `uv run --project tools python tools/validate_workspace.py`
 2. JD 요구별 match 또는 gap이 모두 기록됐는지 확인한다.
-3. `content-draft.md`, resume, portfolio의 성과 축 집합·순서가 동일한지 확인한다.
+3. `content-draft.md`, resume, career description, portfolio의 성과 축 집합·순서가 같은 지원 전략을 유지하는지 확인한다. CV는 chronology 우선이라 같은 목차를 강제하지 않는다.
 4. 모든 bullet이 claim ID와 역추적되는지 확인한다.
 5. `allowed_copy`와 public-safety 상한을 넘지 않는지 확인한다.
 6. 여러 프로젝트를 묶은 문장이 source별 claim 경계와 metric 귀속을 보존하는지 확인한다.
-7. PDF page 수는 gate로 쓰지 않는다. 첫 장의 category·경력·최강 근거 scanability, 이후 페이지의 technical signal, A4 100% scale의 잘림·겹침을 image로 확인한다.
+7. 선택한 모든 PDF를 생성하고 page 수는 gate로 쓰지 않는다. 첫 장의 category·경력·최강 근거 scanability, 이후 페이지의 technical signal, A4 100% scale의 잘림·겹침을 image로 확인한다.
 8. 면접에서 근거를 설명할 수 없는 문장을 완화하거나 제거한다.
 9. 최종 응답에 archive 경로, 현재 단계, `[확인 필요]`, 실제 플랫폼 제출 여부를 명시한다.

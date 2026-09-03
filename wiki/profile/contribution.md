@@ -10,7 +10,7 @@ tags: [contribution, ownership, claims]
 
 | Project/Cluster | Maximum framing | Primary evidence |
 | --- | --- | --- |
-| Thready | 기획·QA·마케팅과 함께 0→1 제품 운영·관리 리드; backend 전면 재구축·AI system·Next.js 핵심 workflow 직접 개발·운영 | [claims](../evidence/claims/thready.yaml) |
+| Thready | 기획·QA·마케팅과 함께 초기 prototype 이후 유료 제품화·운영 리드; backend 전면 재구축·AI system·Next.js 핵심 workflow 직접 개발·운영 | [claims](../evidence/claims/thready.yaml) |
 | Centurion BAY | 주문·재고 backend와 async worker 구축·설계 주도 | [claims](../evidence/claims/centurion.yaml) |
 | Centurion SAY/PROTON | realtime AI backend cluster 공동 주 기여 | [claims](../evidence/claims/centurion.yaml) |
 | Centurion DAY | backend·frontend·QA·release 연결 리드 | [claims](../evidence/claims/centurion.yaml) |

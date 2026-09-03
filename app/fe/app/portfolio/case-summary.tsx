@@ -20,22 +20,19 @@ function SummaryHeader({
   outcome: ReactNode;
 }) {
   return (
-    <header className="portfolio-case-header grid grid-cols-[150px_minmax(0,1fr)] gap-10 max-md:grid-cols-1 max-md:gap-5">
-      <div className="flex items-start justify-between gap-4 font-mono text-sm text-muted md:grid md:content-start md:justify-normal md:gap-3">
-        <span className="text-base font-semibold text-fg">{meta.no}</span>
-        <span>{meta.tag}</span>
+    <header className="portfolio-case-header">
+      <div className="flex flex-wrap items-baseline justify-between gap-x-8 gap-y-2">
+        <p className="m-0 text-sm font-medium leading-[1.55] text-fg-2">{meta.tag}</p>
+        <p className="m-0 text-sm text-muted">{meta.role}</p>
       </div>
-      <div>
-        <p className="m-0 text-sm font-medium leading-[1.55] text-fg-2">{meta.role}</p>
-        <h2 className="m-0 mt-3 text-[clamp(1.9rem,3.4vw,3rem)] font-semibold leading-[1.12] tracking-[-0.035em] text-balance">
-          {meta.name}
-        </h2>
-        <p className="m-0 mt-5 max-w-[900px] text-base leading-[1.75] text-fg-2 text-pretty [&_strong]:font-semibold [&_strong]:text-fg">
-          {lead}
-        </p>
-        <div className="mt-6 border-y border-fg py-4">
-          <p className="m-0 text-lg font-semibold leading-[1.55] text-pretty">{outcome}</p>
-        </div>
+      <h2 className="m-0 mt-4 text-pretty text-[clamp(1.75rem,3vw,2.35rem)] font-semibold leading-[1.18] tracking-[-0.03em]">
+        {meta.name}
+      </h2>
+      <p className="m-0 mt-5 text-base leading-[1.75] text-fg-2 text-pretty [&_strong]:font-semibold [&_strong]:text-fg">
+        {lead}
+      </p>
+      <div className="mt-6 border-y border-fg py-4">
+        <p className="m-0 text-lg font-semibold leading-[1.55] text-pretty">{outcome}</p>
       </div>
     </header>
   );
@@ -134,7 +131,7 @@ function ThreadySummary({ meta }: { meta: CaseMeta }) {
   return (
     <article
       id={`case-${meta.slug}`}
-      className="portfolio-case scroll-mt-6 border-t-2 border-fg py-12 print:pt-8"
+      className="portfolio-case scroll-mt-6 py-11 print:pt-8"
     >
       <SummaryHeader
         meta={meta}
@@ -187,7 +184,7 @@ function CompanyAxSummary({ meta }: { meta: CaseMeta }) {
   return (
     <article
       id={`case-${meta.slug}`}
-      className="portfolio-case scroll-mt-6 border-t-2 border-fg py-12 print:pt-8"
+      className="portfolio-case scroll-mt-6 py-11 print:pt-8"
     >
       <SummaryHeader
         meta={meta}
@@ -238,7 +235,7 @@ function CenturionSummary({ meta }: { meta: CaseMeta }) {
   return (
     <article
       id={`case-${meta.slug}`}
-      className="portfolio-case scroll-mt-6 border-t-2 border-fg py-12 print:pt-8"
+      className="portfolio-case scroll-mt-6 py-11 print:pt-8"
     >
       <SummaryHeader
         meta={meta}

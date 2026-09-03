@@ -1,8 +1,8 @@
 ---
 type: product-spec
 title: Portfolio V3 Content Specification
-description: 제품 0→1, 회사 AX 전환 설계, MSA failure boundary를 한 문서에서 검증하는 구현 명세.
-timestamp: 2026-08-24
+description: 유료 AI 제품화·운영, 회사 AX 전환 설계, MSA failure boundary를 한 문서에서 검증하는 구현 명세.
+timestamp: 2026-09-01
 status: implemented
 depends_on:
   - products/portfolio/README.md
@@ -21,7 +21,7 @@ tags: [portfolio, content, tech-lead, company-ax, backend, implemented]
 
 ```text
 10초  Maker 정체성 · Tech Lead/Backend 역할 · 세 대표 범위
-30초  제품 0→1 · 회사 AX · MSA의 기여와 결과
+30초  유료 AI 제품화·운영 · 회사 AX · MSA의 기여와 결과
 정독  상세 route에서 선택 이유 · failure/human gate · 검증 방식
 ```
 
@@ -30,7 +30,7 @@ tags: [portfolio, content, tech-lead, company-ax, backend, implemented]
 ### Hero
 
 - Eyeline: `Maker · Tech Lead · Backend Engineer`
-- Headline: `아이디어를 새로운 가치로 실현하는 메이커, 김대정입니다.`
+- Headline: `가능성을 기회로 바꾸고, 제품으로 가치를 전하는 메이커 김대정입니다.`
 - First proof: 고객이 돈을 내는 이유를 찾고 Thready를 팀과 실제 고객이 결제하는 유료 제품으로 만든 사실을 먼저 제시한다. 정확한 매출 band는 internal evidence로만 보존한다.
 - Introduction: 제품 판단·구현·출시·운영을 연결한 범위를 먼저 쓰고, backend·AI·핵심 frontend는 제품을 완성한 직접 구현 근거로 제시한다. 비동기 작업·실시간 session의 failure boundary와 회사 AX 구조 설계 참여는 다음 사례에서 확장한다.
 
@@ -238,7 +238,7 @@ Stripe Checkout·manual capture·provider-side cancel/refund 영역 구축 주�
 
 ## 10. 완료 기준
 
-- 첫 화면에서 Maker, Tech Lead·Backend Engineer, 제품 0→1, 회사 AX, backend가 10초 안에 구분됨
+- 첫 화면에서 Maker, Tech Lead·Backend Engineer, 유료 AI 제품화·운영, 회사 AX, backend가 10초 안에 구분됨
 - 목차가 `Thready → Company AX → Centurion` 순서로 읽힘
 - Company AX에서 현재 운영과 확장 설계가 실선·점선으로 구분됨
 - MEDINESS 설계 참여·제품 운영 리드·Backend Template 직접 구축·플랫폼 구현팀의 책임이 한 표에서 구분됨

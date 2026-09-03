@@ -5,6 +5,7 @@ export type CaseTier = "primary" | "supporting" | "archive";
 
 export type DossierCaseSlug =
   | "thready"
+  | "thready-rebuild"
   | "centurion-platform"
   | "infrastructure-delivery"
   | "memento-payment"
@@ -13,6 +14,7 @@ export type DossierCaseSlug =
 export type SupportingCaseSlug =
   | "memento-payment"
   | "mediness-ops"
+  | "thready-agent-prototype"
   | "nexus-operations"
   | "sellercanvas-poc";
 
@@ -47,20 +49,21 @@ export const CASES: CaseMeta[] = [
     slug: "thready",
     no: "01",
     name: "아이디어를 팀과 실제 고객이 결제하는 제품으로 만들고, 운영에 필요한 시스템을 직접 구축했습니다.",
-    shortName: "AI 콘텐츠 제품 0→1·운영",
+    shortName: "AI 콘텐츠 유료 제품화·운영",
     tag: "AI 콘텐츠 제품 · Thready",
     blurb:
-      "고객이 돈을 내는 이유를 기획·QA·마케팅과 함께 구체화하고, 기능 우선순위부터 출시·운영까지 이끌었습니다. 제품에 필요한 Next.js 핵심 흐름·FastAPI backend·AI 생성/평가 system을 직접 구축하고, 제품 원장과 AI 실행부의 경계를 분리했습니다.",
+      "고객이 돈을 내는 이유를 기획·QA·마케팅과 함께 구체화하고, 기능 우선순위부터 출시·운영까지 이끌었습니다. 제품에 필요한 FastAPI backend·AI 생성/평가 system을 직접 구축하고 핵심 화면은 coding agent로 완성했으며, 제품 원장과 AI 실행부의 경계를 분리했습니다.",
     role: "제품 운영 리드 · 핵심 제품 시스템 직접 구현",
-    scope: "제품 0→1 · Backend · AI · 핵심 Frontend",
+    scope: "제품화·운영 · Backend · AI · 핵심 Frontend",
     proof: [
       "고객 문제 정의 · 기능 우선순위 · 출시·운영 리드",
       "실제 고객이 결제하는 유료 제품 운영",
-      "FastAPI·AI·Next.js 핵심 흐름 직접 구현",
+      "FastAPI·AI 직접 구현 · 핵심 화면은 coding agent로 완성",
     ],
     claimIds: [
       "thready.product-zero-to-one-contribution",
       "thready.frontend-product-delivery",
+      "thready.threads-content-workflow-automation",
       "thready.prototype-to-user-operation",
       "thready.subscription-revenue-band",
       "thready.ad-revenue-experiment",
@@ -75,10 +78,35 @@ export const CASES: CaseMeta[] = [
       "thready.ai-service-boundary",
       "thready.ai-service-migration",
       "thready.ai-replica-outbox",
+      "thready.provider-failure-continuity",
       "thready.release-operation",
     ],
     tier: "primary",
     available: true,
+  },
+  {
+    slug: "thready-rebuild",
+    no: "01B",
+    name: "빠른 검증용 prototype backend를 실제 사용자 운영 구조로 전환했습니다.",
+    shortName: "Thready Backend 재구축",
+    tag: "Backend Cutover · Thready",
+    blurb:
+      "기능 검증 중심의 초기 backend를 인계받아 부분 수정과 병렬 재구축을 비교하고, validation harness·cutover 기준을 먼저 세운 뒤 FastAPI backend를 실제 사용자 운영까지 전환했습니다.",
+    role: "FastAPI Backend 재구축·운영 전담",
+    scope: "Architecture · Validation · Cutover · Operation",
+    proof: [
+      "부분 수정과 backend 병렬 재구축 대안 비교",
+      "API inventory·응답 비교 harness·test acceptance 기반 cutover",
+      "v1.1.0 전환 · v1.3.0 실제 사용자 운영",
+    ],
+    claimIds: [
+      "thready.backend-rebuild",
+      "thready.prototype-to-user-operation",
+      "thready.rebuild-decision-execution",
+      "thready.release-operation",
+    ],
+    tier: "supporting",
+    available: false,
   },
   {
     slug: "centurion-platform",
@@ -182,18 +210,47 @@ export const CASES: CaseMeta[] = [
   {
     slug: "mediness-ops",
     no: "S2",
-    name: "제품 결정을 명세·작업·QA·릴리스까지 추적했습니다.",
-    shortName: "Product Operations",
-    tag: "Product Operations · MediSolve AI",
+    name: "제품의 결정이 작업과 QA, 릴리스까지 이어지게 관리했습니다.",
+    shortName: "제품 개발 흐름",
+    tag: "제품 운영 · MediSolve AI",
     blurb:
-      "제품 요구와 운영 흐름의 설계에 참여하고, Decision·SPEC·Work Package를 실제 작업·QA 승인·릴리스 조건으로 구체화했습니다.",
-    role: "Operations Lead · Design Contributor",
-    scope: "AX · Product Operations",
-    proof: ["Decision → SPEC → 작업 → 릴리스 조건", "제품별 버전 확정·릴리스 노트 추적"],
+      "제품 요구와 운영 방식을 구체화하는 설계에 참여하고, 결정 기록과 명세를 실제 작업·QA 승인·릴리스 조건으로 이어 운영했습니다.",
+    role: "제품 운영 리드 · 설계 참여",
+    scope: "AX · 제품 운영",
+    proof: [
+      "Decision → SPEC → 작업 → QA 승인 → 릴리스 조건",
+      "제품별 버전 확정·릴리스 노트 추적",
+      "결정과 진행 상황을 한곳에 쌓아 반복 설명과 담당자 변경 때 다시 파악하는 시간을 줄임",
+    ],
     claimIds: [
       "mediness.company-work-ax-design",
       "mediness.product-system-design-participation",
       "mediness.product-operations",
+      "mediness.product-development-coordination-leverage",
+    ],
+    tier: "supporting",
+    available: false,
+  },
+  {
+    slug: "thready-agent-prototype",
+    no: "S5",
+    name: "여러 화면에 흩어진 Thready 기능을 대화 하나로 제어하는 방식을 검증했습니다.",
+    shortName: "Thready 대화형 Agent",
+    tag: "제품 기능 제어 · Thready Quality Lab",
+    blurb:
+      "사용자가 기능의 위치와 실행 순서를 외우는 대신, 원하는 작업을 말하면 Agent가 필요한 Thready 기능을 선택하고 결과를 대화로 이어서 보여주는 독립 프로토타입을 만들었습니다.",
+    role: "대화형 제품 인터페이스 · Agent 프로토타입 설계·구현",
+    scope: "Thready 기능 제어 · 실행 계획 · 상태 기록 · 사람 승인",
+    proof: [
+      "콘텐츠 제작·계정 및 게시물 관리·성과 조회를 하나의 대화 흐름으로 구성",
+      "실행 계획과 등록 capability의 실행 권한 분리",
+      "대화·실행 요청·도구 결과·결과물 버전 기록",
+      "사용자 확인과 중복 실행 방지를 거치는 Mock 상태 변경",
+      "운영 Agent가 아닌 독립 프로토타입으로 범위 명시",
+    ],
+    claimIds: [
+      "thready.agent-pipeline-design",
+      "thready.conversational-editorial-agent-prototype",
     ],
     tier: "supporting",
     available: false,
@@ -203,7 +260,7 @@ export const CASES: CaseMeta[] = [
     no: "S3",
     name: "여러 피부과의 운영·예약 요구를 backend와 권한 경계로 구현했습니다.",
     shortName: "피부과 운영·예약 시스템",
-    tag: "현장 운영 제품 · NEXUS",
+    tag: "현장 운영 제품 · 여러 지점 backend",
     blurb:
       "여러 피부과의 홈페이지·관리·예약 흐름을 지원하는 multi-brand backend의 service boundary와 migration을 주도하고, 운영자의 소속 지점과 현재 작업 지점을 분리한 접근 경계를 설계했습니다.",
     role: "Backend Architecture · Admin Backend Lead",
@@ -250,7 +307,7 @@ export const CASES: CaseMeta[] = [
     slug: "bay-async",
     no: "A1",
     name: "주문·재고 백엔드의 비동기 운영 경계",
-    shortName: "BAY Async Backend",
+    shortName: "주문·재고 비동기 Backend",
     tag: "Centurion · 주문·재고 백엔드",
     blurb: "Centurion 대표 사례에 포함된 주문·재고 워커 상세 기록입니다.",
     role: "Lead",
@@ -268,7 +325,7 @@ export const CASES: CaseMeta[] = [
     slug: "say-realtime",
     no: "A2",
     name: "실시간 AI 상담의 세션 흐름",
-    shortName: "SAY Realtime Session",
+    shortName: "실시간 상담 Session",
     tag: "Centurion · 실시간 상담 백엔드",
     blurb: "Centurion 대표 사례에 포함된 실시간 상담 세션 상세 기록입니다.",
     role: "Co-Lead Contributor",

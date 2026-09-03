@@ -2,7 +2,7 @@
 type: index
 title: Context Router
 description: 작업 의도별로 필요한 최소 source-of-truth만 안내하는 router.
-timestamp: 2026-07-11
+timestamp: 2026-09-01
 tags: [context, routing, progressive-disclosure]
 ---
 
@@ -17,10 +17,15 @@ tags: [context, routing, progressive-disclosure]
 | **무엇이 남았나** | **[todo.md](todo.md)** — 통합 작업 목록 |
 | 아이디어 등록·상태 | [../backlog/README.md](../backlog/README.md) |
 | 한 줄 소개와 branding | [../profile/identity.md](../profile/identity.md) |
+| 제품·기술·성과에서 중요하게 보는 판단 기준 | [../profile/decision-principles.md](../profile/decision-principles.md) |
 | 경력 timeline·연차 산정 | [../profile/career.md](../profile/career.md) |
 | 역량과 기여 범위 | [../profile/capabilities.md](../profile/capabilities.md), [../profile/contribution.md](../profile/contribution.md) |
 | claim 검증 | [../evidence/README.md](../evidence/README.md) |
 | 이력서 | [../products/resume/README.md](../products/resume/README.md) |
+| **회사별 지원본에서 고정하는 것·포장 범위·제출 게이트** | **[../rules/application-copy-standard.md](../rules/application-copy-standard.md)** |
+| 이력에 그대로 끼워 넣는 문안 블록 (문제·판단·구현·결과) | [../products/resume/resume-block-library.md](../products/resume/resume-block-library.md) |
+| 기본 이력서·경력기술서·포트폴리오·CV와 회사별 선택 | [../products/resume/document-package-contract.md](../products/resume/document-package-contract.md) |
+| 회사별 지원 상태·제출본 동결 여부 | [../products/resume/application-registry.yaml](../products/resume/application-registry.yaml) — 현재 값 owner, [../products/resume/application-lifecycle.md](../products/resume/application-lifecycle.md) — compact status와 Snapshot 규칙 |
 | 포트폴리오 | [../products/portfolio/README.md](../products/portfolio/README.md) |
 | 홈페이지 | [../products/homepage/README.md](../products/homepage/README.md) |
 | JD 분석 | [../products/jd/README.md](../products/jd/README.md) |

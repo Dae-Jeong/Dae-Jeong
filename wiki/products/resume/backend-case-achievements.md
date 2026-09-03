@@ -113,6 +113,7 @@ Claims: `thready.backend-rebuild` (`owned/high`), `thready.frontend-product-deli
 
 성과 후보:
 
+- Thready 제품 아이디어를 제안하고 초기 prototype 이후 제품화를 주도해, 실제 고객이 결제하는 서비스로 발전시켰다. 초기 prototype 구현은 다른 engineer가 담당했고, 고객 결제·매출은 제품·팀 outcome으로 분리한다.
 - 다른 구성원이 빠른 기능 검증 중심으로 만든 초기 prototype을 인계받아 production 운영 단계로 전환했다. 재구축 범위·architecture·validation harness·cutover 판단은 직접 소유하고, AI는 codebase 파악·기능 inventory·구현에 적극 활용했다.
 - 기존 release·QA 흐름과 Next.js frontend를 유지하면서 FastAPI backend를 parallel rebuild해 `v1.1.0`에서 cutover하고 이후 개발·release·운영을 전담했다.
 - backend cutover 이후 Next.js의 콘텐츠 생성·가져오기·예약·발행·dashboard·관리·labeling workflow도 직접 구현·운영해 backend·AI 기능을 실제 사용자·관리 흐름으로 닫았다.

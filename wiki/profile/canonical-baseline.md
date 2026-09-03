@@ -2,7 +2,7 @@
 type: profile
 title: Canonical Baseline
 description: 여러 레이어에 흩어진 확정값을 한 화면에서 보는 통합 인덱스. canonical은 각 owner 문서가 갖는다.
-timestamp: 2026-08-21
+timestamp: 2026-09-01
 canonical: false
 derived_from: [profile/career.md, profile/identity.md, evidence/claims/, evidence/clients.md, rules/recency-weighting.md, rules/public-safety.md, app/fe/app/resume/resume-view.tsx]
 tags: [profile, baseline, derived, index]
@@ -22,7 +22,7 @@ tags: [profile, baseline, derived, index]
 | --- | --- | --- |
 | 이름 | 김대정 | [identity.md](identity.md) |
 | 브랜드 정체성 | **Maker** | [identity.md](identity.md) |
-| 공통 소개 문장 | **아이디어를 새로운 가치로 실현하는 메이커, 김대정입니다.** | [identity.md](identity.md) |
+| 공통 소개 문장 | **가능성을 기회로 바꾸고, 제품으로 가치를 전하는 메이커 김대정입니다.** | [identity.md](identity.md) |
 | 1순위 직무 | **Tech Lead** | [identity.md](identity.md) |
 | 지원 역할 | **Backend Engineer** | [identity.md](identity.md) |
 | 전문 영역 | AI Product Systems | [identity.md](identity.md) |
@@ -81,7 +81,7 @@ AI Engineer 2021.12~2022.09 → PM 2022.10~2023.09 → Backend Engineer 2023.10~
 2. 기존 frontend contract를 유지한 채 FastAPI backend를 병렬 재구축하고 validation harness와 cutover를 운영. 동일 기준의 QA reopen 비율 **26%p 감소** (`thready.rebuild-decision-execution`, `thready.backend-rebuild`, `thready.qa-reopen-reduction`)
 3. Centurion BAY에서 주문·재고 API와 실패 가능한 후속 작업을 분리하고, Celery→TaskIQ·RabbitMQ 전환, 상태·retry·terminal failure·수동 재처리 경계와 재현 가능한 test/CI 기반 구축 (`centurion.bay-async-backend`, `centurion.async-migration`, `centurion.test-ci-foundation`)
 4. AI application·DB 분리, STG 실데이터 migration 검증, Transactional Outbox의 lease·attempt token·retry·delivery version fence·멱등 consumer·terminal failure 보존 기반 복구 경계 구축 (`thready.ai-service-boundary`, `thready.ai-service-migration`, `thready.ai-replica-outbox`)
-5. 백엔드 2~3명이 여러 제품을 맡는 환경에서 FastAPI architecture·contract와 agent context를 조직 표준 template로 구축 (`be-template.backend-standard`, `be-template.team-leverage`, `be-template.agent-context`)
+5. AI 활용이 본격화되며 모두가 메이커로 제품 개발·운영에 참여하는 팀에서 FastAPI architecture·contract와 agent context를 조직 표준 template로 구축 (`be-template.backend-standard`, `be-template.team-leverage`, `be-template.agent-context`)
 
 Cloud/Delivery는 대표 성과가 아니다. 여러 사내 서비스의 Azure·Vercel 배포 환경 구성과 기본 운영 경험만 경력·기술의 보조 신호로 사용한다 (`infra.company-azure-ownership`).
 
@@ -145,8 +145,6 @@ owner: [public-safety.md](../rules/public-safety.md) · [evidence-policy.md](../
 
 | 산출물 | 상태 |
 | --- | --- |
-| [resume v3](../products/resume/master/v3/content.md) | superseded draft — 현재 표현 source로 사용하지 않음 |
-| [resume v2](../products/resume/master/v2/content.md) | 이전 버전. v3 로 대체됐다 |
 | `app/fe/app/resume/resume-view.tsx` | **active expression SoT** (2026-08-13) — KO 웹 이력서의 문장·순서·강조를 소유 |
 | marinkim.xyz `/resume` | **배포됨** — active expression SoT와 동일한 공개 표면 |
 | 채용 플랫폼 7곳 | [sync-spec](../backlog/platform-profile-consolidation/sync-spec.md) 기준 미적용 |

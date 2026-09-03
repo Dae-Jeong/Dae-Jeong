@@ -7,6 +7,7 @@ origin: MediSolve AI · 2025.04 —
 claim_ids:
   - thready.product-zero-to-one-contribution
   - thready.frontend-product-delivery
+  - thready.threads-content-workflow-automation
   - thready.prototype-to-user-operation
   - thready.subscription-revenue-band
   - thready.ad-revenue-experiment
@@ -21,6 +22,7 @@ claim_ids:
   - thready.ai-service-boundary
   - thready.ai-service-migration
   - thready.ai-replica-outbox
+  - thready.provider-failure-continuity
   - thready.release-operation
 claim_strength: mixed (product/frontend led · backend/rebuild/system owned · revenue contributed)
 ---
@@ -37,6 +39,7 @@ visual_language: 기존 Azure topology와 같은 code-native reference architect
 ## My Scope
 
 - 고객 문제와 market data를 제품 기능·backend contract로 구체화
+- 사람이 반복하던 Threads 글 작성 업무를 자료 정리·초안·검수·발행 준비로 나눈 AX 설계와 제품 workflow 구현
 - 신규 FastAPI backend architecture·구현, cutover 이후 개발·운영 전담
 - Next.js 콘텐츠 생성·가져오기·예약·발행·dashboard·관리 workflow 직접 구현·운영
 - 생성 품질 기준, AI service boundary, data migration, release·QA 운영
@@ -58,11 +61,18 @@ visual_language: 기존 Azure topology와 같은 code-native reference architect
 
 diagram: Browser -> Next.js on Vercel -> FastAPI product API on Azure App Service -> product PostgreSQL·Object Storage -> external content API
 
+comparison diagram:
+  - AS-IS · 사람이 직접 운영: 소재 포착 -> 각도 잡기 -> 초안 작성 -> 다듬기·발행 -> 반응 해석 -> 다음 소재. 판단과 기억을 한 사람이 매번 다시 처리하고 마지막 연결이 끊기면 꾸준함이 무너진다.
+  - TO-BE · AI 콘텐츠 운영 시스템: 설문·내 콘텐츠 -> Raw·Normalize·Extract -> LLM 변경안 -> 사람 승인 -> 개인 Memory -> Scout·Friend·Creator -> Critic/Guard -> 사람 선택·수정·발행 -> feedback proposal -> 사람 승인 뒤 Memory 갱신.
+  - mapping: 단순한 작업 대체가 아니라 사람 머릿속의 암묵적인 인지 노동을 역할·memory·검수·학습 경계로 외부화한 차이를 보여준다. 운영 구현과 AX 설계 범위는 solid·dashed style로 구분한다.
+
 diagram: product backend (policy·owner) -> authenticated HTTP -> AI application·AI DB; owner mutation + Outbox -> relay retry -> delivery version fence
 
 diagram: GitHub -> GitHub Actions -> Vercel / Container Registry -> Azure App Service -> observability
 
 - 공개 구조도는 현재 운영 중인 product backend·AI application·data·delivery 경계와 STG migration rehearsal을 한 code-native component에서 구분한다.
+- Threads 글 작성에서 사람이 매번 떠안던 소재 포착·각도·작성·검수·반응 해석의 인지 노동을 Scout·Friend·Creator·Critic/Guard와 승인된 개인 memory의 역할로 분리했다. 비교 구조도는 단순 단계 축소가 아니라 암묵적인 사람의 판단과 기억을 재사용 가능한 시스템 경계로 바꾼 설계를 보여주며, 최종 수정·예약·발행과 장기 memory 승격은 사람이 결정하도록 표시한다.
+- 전체 AX 설계는 Scout(자료)·Friend(계정 맥락)·Creator(초안)·Guard(검수)로 역할을 나눴다. 운영 제품에서 확인된 구현 범위는 콘텐츠 가져오기·URL preview·source 검증, planner/writer 생성, LLM judge와 검수 이력, 예약·발행 화면이며 자동 소재 탐색이나 무인 발행으로 확대하지 않는다.
 - `Product Backend`는 제품 정책·원장과 동일 transaction의 Outbox를, `AI Application`은 generation lifecycle·실행 상태·active replica를 소유한다.
 - 비동기 전달의 핵심은 같은 transaction의 Outbox, retry, delivery version fence로 요약하고 상세 복구 단계는 본문에서 설명한다.
 - 하단에는 GitHub Actions 기반 FE·backend 배포와 STG migration 검증, 운영 관측 경계를 분리한다.
@@ -76,6 +86,7 @@ diagram: GitHub -> GitHub Actions -> Vercel / Container Registry -> Azure App Se
 
 - 재구축 자체가 새 결함을 만들 수 있어 validation harness를 먼저 두고 cutover 전후 QA reopen 비율이 26%p 낮아진 것을 확인했습니다. 단일 원인으로 과장하지 않습니다.
 - AI application 전달은 exactly-once가 아니라 retry·version fence·멱등 consumer로 수렴시키며, 최대 재시도 뒤 실패를 보존합니다.
+- 외부 AI 모델의 5xx는 재시도 가능한 실패로 분류하고, 반복 오류는 Sentry로 확인해 문제 모델을 사용자 선택지에서 일시 제외했습니다. 당시 사용자·트래픽 규모에서는 복잡한 자동 복구보다 운영자가 판단하는 격리가 적절하다고 봤습니다.
 - corpus 전체를 LLM으로 분석하거나 모델을 학습했다는 주장은 하지 않습니다. corpus productization과 rubric 실험은 별도 근거이며, 운영 지표가 production prompt로 자동 환류된다고 표현하지 않습니다.
 - 월 구독료 매출은 제품·팀 outcome이며 backend 재구축이나 특정 기능 하나의 직접 성과로 귀속하지 않습니다.
 - 광고 적용은 구독 외 수익원을 검증하는 다음 실험입니다. 아직 광고 매출·전환 성과가 없어 현재 결과와 분리해 `NEXT · 운영 데이터 수집 중`으로만 표현합니다.
