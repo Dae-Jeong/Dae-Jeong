@@ -131,3 +131,27 @@ owner: [Live 적용 검증](../backlog/platform-profile-consolidation/2026-08-22
 - [ ] P1: 게이트 15 `shared-facts.yaml`, `--render` 스크린샷, 3회 연속 FAIL tripwire, archive retrieval 경계
 - [ ] P2: 새 JD 1건을 이 하네스로 처음부터 돌려 tailor-resume 6~9단계를 verify·skill 호출로 교체
 
+## 2026-09-03 미리디 Product Engineer (Harness P2 첫 실전)
+
+- [x] 지원 패키지 초안 → 12개월 계약 수용 결정 → 문안 승인 → typed content(`/resume/miridih`, `/career/miridih`, `/portfolio/miridih`) → `make verify` PASS
+- [x] RAG 근거 SoT 반영: evidence `procedure-hub.md`, claim `procedure-hub.*` 3개, public-safety 제품명 표, §1-6 RAG 행, 게이트 12 금지어, skills 분류
+- [x] generic dossier에도 `designs` 도식이 붙도록 role-portfolio-view 수정 (새 회사 슬러그 대응)
+- [ ] 시술 지식 hybrid retrieval 전용 case slug(`lib/cases.ts`) + design-lab 도식 `hybrid-retrieval`(질의 → 엔티티 확정 → SQL 판정 → 문헌 보강 → Context Pack) — 포폴 case 4로 승격
+- [ ] 미리디 PDF (요청 시) · 제출 후 snapshot 동결
+- [ ] P1 후보: 초안 md 단계에서도 게이트 12 sweep 자동화 (typed content 전)
+
+## 2026-09-03 플랫폼 프로필 → 하네스 표면
+
+- [x] `wiki/products/platform-profiles/` 신설: README(절차·자동화 제약), `platform-registry.yaml`(플랫폼·필드·글자 수·live 상태), canonical 문안 5개(Product Engineer v3). copy-surfaces `kind: platform`, 게이트 17(글자 수), skill `sync-platform-profile`
+- [ ] **v3 live 적용**: 리멤버·그룹바이·로켓펀치는 자동 가능, 원티드·링크드인(장문)은 사람이 붙여넣기. 적용 후 registry `live_version: product-engineer-v3`, `drift: false`. 현재 live(Maker v2)에는 `돈을 내는`·`결제하는`·내부 제품명 잔존
+- [ ] Oopy 링크 정리·공개 종료 판단 (registry `pending`)
+- [ ] `/_map`에 플랫폼 행(URL·live 상태) 추가 후보
+
+## 2026-09-03 플랫폼 v3 적용 (Orca)
+
+- [x] 로켓펀치·리멤버·링크드인: 소개·MediSolve·더데이랩스 v3 적용, 새로고침 확인, 금지어 0
+- [x] 원티드: 기본 이력서 MediSolve 본문 적용 / 그룹바이: 자기소개(+수상·특허·자격) 적용
+- [x] 사람이 붙여넣기 완료(2026-09-03): 원티드 이력서 간단 소개·MediSolve 성과 제목, 그룹바이 MediSolve·더데이랩스 본문. 새로고침 확인, 5곳 모두 drift: false
+- [ ] 미적용 필드(각 플랫폼 Memento·STUDIO LAB·아이즈솔 본문, skill 목록, 링크드인 Featured)는 금지어가 없어 보류. 원하면 같은 절차로
+- [ ] 로켓펀치 자동 AI 커리어 요약 재생성 확인
+

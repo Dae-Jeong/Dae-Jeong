@@ -226,7 +226,7 @@ export const COMMON_CAREER_DESCRIPTION: CareerDescriptionDocument = {
   locale: "ko",
   updatedAt: "2026-09-03",
   title: "경력기술서",
-  subtitle: "제품 판단을 운영 가능한 Backend와 AI 기능으로 연결해 온 경험. 반복 업무를 제품 흐름으로, 팀이 같은 기준으로 만들도록 template으로.",
+  subtitle: "가능성을 기회로 바꾸고, 제품으로 가치를 전하는 메이커 김대정입니다.",
   name: "김대정",
   role: "Tech Lead · Backend Engineer · 실무 4년차",
   contacts: CONTACTS,

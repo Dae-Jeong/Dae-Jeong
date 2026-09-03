@@ -231,6 +231,10 @@ export default function MapPage() {
             <Link href="/applications" className="font-mono text-xs underline underline-offset-4">
               /applications
             </Link>
+            <span className="mx-3 text-muted">·</span>
+            <Link href="/_platforms" className="font-mono text-xs underline underline-offset-4">
+              /_platforms
+            </Link>
           </p>
           <ul className="m-0 flex flex-wrap gap-x-4 gap-y-1 p-0">
             {anchors.map((id) => (

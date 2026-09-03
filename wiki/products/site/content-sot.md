@@ -42,7 +42,7 @@ tags: [sot, content, site, platform]
 
 1. **관련 public surface를 먼저 고친다.** 홈 문안은 `/`, 경력·이력서 문안은 `/resume`에서 먼저 확정한다. 플랫폼부터 고치지 않는다.
 2. 고친 뒤 `claim registry` 대조 — `allowed_copy` 밖 표현이 없는지 확인한다.
-3. 플랫폼 변환본을 갱신한다 ([Platform Profile Paste Package](../../backlog/platform-profile-consolidation/2026-08-22-platform-paste-package.md)).
+3. 플랫폼 canonical 문안을 갱신한다 ([products/platform-profiles](../platform-profiles/README.md) — 2026-09-03부터 canonical. 옛 붙여넣기 패키지는 실행 기록).
 4. 플랫폼에 반영하고 **실측으로 검증**한다 (폼은 `innerText`가 아니라 필드 `value`로 읽는다).
 5. 결과를 [동기화 매트릭스](../../backlog/platform-profile-consolidation/2026-08-13-sync-matrix.md)에 기록한다.
 

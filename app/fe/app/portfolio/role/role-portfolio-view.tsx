@@ -4,6 +4,7 @@ import type { RolePortfolioCaseSelection } from "@/content/portfolios/types";
 import { CASES, type CaseMeta } from "@/lib/cases";
 import { cn } from "@/lib/cn";
 import { CaseDossier } from "../case-dossier";
+import { DesignSection } from "../diagrams/design-section";
 import { FeaturingCase } from "../featuring/featuring-case";
 import { JypConversationalAgentCase } from "../jyp/jyp-conversational-agent-case";
 import { JypProductDevelopmentCase } from "../jyp/jyp-product-development-case";
@@ -340,20 +341,26 @@ export function RolePortfolioView({
               );
             } else if (selection.kind === "supporting") {
               caseContent = (
-                <SupportingCaseDossier
-                  meta={meta}
-                  selection={selection}
-                  displayNo={displayNo}
-                />
+                <>
+                  <SupportingCaseDossier
+                    meta={meta}
+                    selection={selection}
+                    displayNo={displayNo}
+                  />
+                  <DesignSection ids={selection.designs} />
+                </>
               );
             } else {
               caseContent = (
-                <CaseDossier
-                  meta={meta}
-                  displayNo={displayNo}
-                  focus={selection.focus}
-                  variant={selection.variant}
-                />
+                <>
+                  <CaseDossier
+                    meta={meta}
+                    displayNo={displayNo}
+                    focus={selection.focus}
+                    variant={selection.variant}
+                  />
+                  <DesignSection ids={selection.designs} />
+                </>
               );
             }
 

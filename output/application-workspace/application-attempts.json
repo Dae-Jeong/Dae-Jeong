@@ -129,6 +129,49 @@
       }
     },
     {
+      "id": "miridih-2026-09-03-wanted-product-engineer",
+      "company": "미리디",
+      "role": "[미리캔버스] Product Engineer",
+      "status": "pre-apply",
+      "artifactState": "approved",
+      "sourcePath": "wiki/products/resume/tailored/miridih/2026-09-03_wanted_product-engineer/README.md",
+      "tracking": "승인 · typed content 생성 완료 · local route 검토 (Harness P2 첫 실전)",
+      "lastConfirmed": "2026-09-03",
+      "artifacts": {
+        "resume": {
+          "mode": "tailored",
+          "route": "/resume/miridih"
+        },
+        "career-description": {
+          "mode": "tailored",
+          "route": "/career/miridih"
+        },
+        "portfolio": {
+          "mode": "tailored",
+          "route": "/portfolio/miridih"
+        },
+        "cv": {
+          "mode": "omitted"
+        }
+      },
+      "current": {
+        "kind": "checkpoint",
+        "packageRevision": 1,
+        "artifactRevisions": {
+          "resume": 1,
+          "career-description": 1,
+          "portfolio": 1
+        },
+        "checkpointAt": "2026-09-03"
+      },
+      "workSession": {
+        "state": "waiting-review",
+        "scope": "미리디 Product Engineer 맞춤 문안·typed content·local resume·career description·portfolio",
+        "lastSynced": "2026-09-03",
+        "nextAction": "local /resume/miridih·/career/miridih·/portfolio/miridih 화면 검토 → (요청 시) PDF → 제출 시 snapshot 동결. 후속: hybrid-retrieval 전용 case slug·도식"
+      }
+    },
+    {
       "id": "mgrv-2026-08-15-platform-unknown-backend-engineer",
       "company": "MGRV",
       "role": "Backend Engineer",

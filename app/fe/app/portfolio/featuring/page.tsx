@@ -11,7 +11,7 @@ import type { RolePortfolio } from "@/content/portfolios/types";
 import { RolePortfolioView } from "../role/role-portfolio-view";
 
 export const metadata: Metadata = {
-  title: "피처링 Backend Engineer 지원 포트폴리오 · 김대정",
+  title: "김대정 Portfolio · 피처링 Backend Engineer",
   description: FEATURING_PORTFOLIO.description,
   robots: {
     index: false,

@@ -39,6 +39,7 @@ tags: [public-safety, privacy, resume]
 | SAY | 실시간 상담 session / 실시간 상담 runtime |
 | DAY, RAY | 기능 설명으로 풀어쓴다 |
 | NEXUS | 여러 피부과 운영·예약 backend / multi-tenant backend |
+| Procedure Hub | 시술 정보 지식 플랫폼 / 의료 시술 지식 검색 API |
 
 claim `allowed_copy`도 이 표를 따른다. source 라벨·tag·highlight 같은 짧은 필드도 예외가 아니다.
 

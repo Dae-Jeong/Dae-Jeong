@@ -25,6 +25,11 @@ surfaces:
     path: "app/fe/content/portfolios/{company}.ts"
     per_company: true
     kind: portfolio
+  - id: portfolio.page
+    route: "/portfolio/{company}"
+    path: "app/fe/app/portfolio/{company}/page.tsx"
+    per_company: true
+    kind: portfolio
   - id: career.common
     routes: ["/career/common", "/cv/common"]
     path: "app/fe/content/documents/common.ts"
@@ -33,10 +38,20 @@ surfaces:
     routes: ["/resume"]
     path: "app/fe/app/resume/resume-view.tsx"
     per_company: false
+  - id: resume.route
+    routes: ["/resume/{company}"]
+    path: "app/fe/app/resume/[company]/page.tsx"
+    per_company: false
   - id: cases
     routes: ["/portfolio"]
     path: "app/fe/lib/cases.ts"
     per_company: false
+  # 채용 플랫폼 canonical 문안 — 게이트 12·17 대상. live 상태는 platform-registry.yaml
+  - { id: platform.wanted, kind: platform, path: "wiki/products/platform-profiles/wanted.md", per_company: false }
+  - { id: platform.linkedin, kind: platform, path: "wiki/products/platform-profiles/linkedin.md", per_company: false }
+  - { id: platform.remember, kind: platform, path: "wiki/products/platform-profiles/remember.md", per_company: false }
+  - { id: platform.groupby, kind: platform, path: "wiki/products/platform-profiles/groupby.md", per_company: false }
+  - { id: platform.rocketpunch, kind: platform, path: "wiki/products/platform-profiles/rocketpunch.md", per_company: false }
 
 # registry attempt 가 active 인 조건. active 표면만 게이트 11·12·14·16 검사 대상이다.
 active:

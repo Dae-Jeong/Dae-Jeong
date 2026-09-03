@@ -111,6 +111,41 @@ attempts:
       cv:
         mode: omitted
 
+  - id: miridih-2026-09-03-wanted-product-engineer
+    company: "미리디"
+    role: "[미리캔버스] Product Engineer"
+    header_role: "Product Engineer"
+    status: pre-apply
+    tracking: "승인 · typed content 생성 완료 · local route 검토 (Harness P2 첫 실전)"
+    artifact_state: approved
+    last_confirmed: "2026-09-03"
+    source_path: "wiki/products/resume/tailored/miridih/2026-09-03_wanted_product-engineer/README.md"
+    work_session:
+      state: waiting-review
+      scope: "미리디 Product Engineer 맞춤 문안·typed content·local resume·career description·portfolio"
+      last_synced: "2026-09-03"
+      next_action: "local /resume/miridih·/career/miridih·/portfolio/miridih 화면 검토 → (요청 시) PDF → 제출 시 snapshot 동결. 후속: hybrid-retrieval 전용 case slug·도식"
+    current:
+      kind: checkpoint
+      package_revision: 1
+      artifact_revisions:
+        resume: 1
+        career-description: 1
+        portfolio: 1
+      checkpoint_at: "2026-09-03"
+    artifacts:
+      resume:
+        mode: tailored
+        route: "/resume/miridih"
+      career-description:
+        mode: tailored
+        route: "/career/miridih"
+      portfolio:
+        mode: tailored
+        route: "/portfolio/miridih"
+      cv:
+        mode: omitted
+
   - id: mgrv-2026-08-15-platform-unknown-backend-engineer
     company: "MGRV"
     role: "Backend Engineer"

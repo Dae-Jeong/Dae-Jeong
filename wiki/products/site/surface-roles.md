@@ -108,7 +108,7 @@ user: "각 영역별로 역할을 좀 정의를 해볼까? 이력서 롤, 포폴
 - **담는 것**: 홈페이지 문안을 각 플랫폼 제약(글자 수·필드·줄바꿈)에 맞춘 변환본 + 포트폴리오 링크.
 - **담지 않는 것**: 홈에 없는 새 주장. **플랫폼에서 문안을 새로 쓰지 않는다.**
 - **원칙**: 홈페이지가 SoT다. 홈 → claim 대조 → 변환본 → 플랫폼 → 실측 검증 순서
-  ([content-sot](content-sot.md)).
+  ([content-sot](content-sot.md)). canonical 문안·registry·절차는 [products/platform-profiles](../platform-profiles/README.md), 적용은 skill `sync-platform-profile` (2026-09-03).
 - **주의**: 플랫폼 AI 리뷰는 **선택한 포지션 기준**으로만 판정한다. 낮게 평가하면
   ①문안이 나쁘거나 ②포지션이 목표와 다르거나 둘 중 하나다 — ②를 ①로 오독하지 않는다.
 

@@ -35,7 +35,7 @@
     "WebSocket": "strong",
     "SSE": "strong",
     "LLM 연동": "strong",
-    "RAG": "partial",
+    "RAG": "strong",
     "LangChain": "partial",
     "LangGraph": "partial",
     "MCP": "strong",
@@ -47,6 +47,7 @@
     "STT/음성": "strong",
     "Observability 도구": "partial",
     "Airflow": "none",
-    "Spark": "none"
+    "Spark": "none",
+    "Hybrid retrieval": "strong"
   }
 }

@@ -108,6 +108,10 @@ tags: [policy, resume, tailored, packaging, gate]
 | 하네스 표현 | 재구축 검증 하네스는 `패턴·계층·검증 하네스` 한 가지로 | 세 문서에 세 가지 목록이 있었음 |
 | 공통 문서 동기화 | 회사별 문안 규칙이 바뀌면 `/resume`(resume-view.tsx)·`/career/common`·`/cv/common`(documents/common.ts)·`lib/cases.ts`도 **같은 작업에서** 맞춘다. 공통은 fallback이 아니라 같은 기준의 문서다 | 2026-09-03 공통 v2 동기화 |
 | 헤더 레이아웃 | tailored 이력서는 하나의 헤더(사진 포함)·번호 섹션을 쓴다. 회사별 CSS override·`uiRevision` 분기는 만들지 않는다 | JYP 전용 CSS 모듈·uiRevision 3 삭제 |
+| 플랫폼 프로필 | 채용 플랫폼 문안은 [products/platform-profiles](../products/platform-profiles/README.md)의 `{platform}.md`가 canonical이고 `app/fe` 표현 SoT에서 파생한다. 회사별 이력서에 반영한 §1-6 결정은 플랫폼 문안에도 같은 작업에서 반영하고, 반영 전까지 registry `drift: true`로 둔다. 플랫폼에서 문안을 새로 쓰지 않는다 (2026-09-03) | live Maker v2(`돈을 내는`·`결제하는`·내부 제품명) → v3 canonical 작성, drift 기록 |
+| 경력기술서 첫 줄 | 제목 `경력기술서` 아래 부제는 **브랜딩 문장 그대로** — 회사별은 확장형 한 문장(`가능성을 제품으로 만들고, 끝까지 책임지는 Product Engineer 김대정입니다.`), 공통은 canonical Maker 문장. 요약 첫 문단은 둘째 문장(`기획자로 시작해…`)부터 시작해 반복하지 않는다. JD 문구를 부제에 두지 않는다 (2026-09-03, 게이트 16) | 미리디 부제 `아이디어를 고객이 구독하는 제품으로, 지식 데이터를…` → 브랜딩 문장 |
+| 문서 제목 | 제목은 문서 종류만 쓴다: `경력기술서`, `이력서`, `Portfolio`. 회사명·직무는 메타 줄(눈썹)과 registry가 말한다. **`○○ 지원 경력기술서`·`지원 포트폴리오`·`지원용 맞춤 이력서`처럼 `지원`을 붙이지 않는다** — 모든 표면(제목·page metadata·description) 공통 (2026-09-03, 게이트 12) | `미리디 지원 경력기술서` → `경력기술서`, page title `… 지원 포트폴리오 · 김대정` → `김대정 Portfolio · …` |
+| RAG·검색 표현 | 시술 정보 지식 플랫폼의 hybrid retrieval(구조화 조회가 판단, 문헌 검색이 근거 보강)·Context Pack·평가/shadow 게이트·canonical 데이터 전환까지 쓴다. 배포 상태는 `구현 완료 · 임상 검수 대기`. **벡터 DB·embedding·Elasticsearch 운영 경험은 쓰지 않는다** (claim `procedure-hub.*`, 2026-09-03) | 미리디 초안 gap `시멘틱 검색·벡터 DB` → hybrid retrieval 근거로 재판정 |
 | 제출 완료·종료 패키지 | registry `artifact_state: frozen`인 패키지(진행 중인 왓섭, 탈락한 MGRV·GNA·피노키오랩 등)는 **스냅샷이다**. 문안도 `visibility`도 소급 수정하지 않는다. 게이트 12도 frozen·rejected는 건너뛴다 (2026-09-03 결정) | 왓섭 이력서·포폴 무변경, 탈락 7곳 legacy snapshot으로 동결 |
 
 ---
@@ -181,8 +185,9 @@ tags: [policy, resume, tailored, packaging, gate]
 | 11 | 대표 성과 제목 4개 안에 성능·보장·신뢰·멱등·정합·설계 중 **4개 이상**의 단어가 드러난다 (1-5) | 2026-09-03 이전 피처링·JYP: 기전은 있으나 `보장·신뢰·성능` 단어 0회 |
 | 13 | frozen 패키지(registry `artifact_state: frozen`)의 표면 파일이 변경되지 않았다. `tools/validate_workspace.py` 자동. 해제는 사용자 결정 + `make verify ARGS=--allow-frozen` | 2026-09-03 탈락 7곳·왓섭 스냅샷 동결 |
 | 14 | 이력서 헤더 `header.role`이 registry `header_role`로 시작한다 (registry가 헤더 직함의 owner). 자동 | 2026-09-03 피처링 헤더를 `Tech Lead · Backend Engineer`로 바꿔 게이트 1을 깨뜨림 |
-| 16 | 포폴 `introduction`·이력서 `summary[0]`이 두 문장 이하다. 자동 | 2026-09-03 JYP 포폴 소개 3문장 |
-| 12 | 공개 금지어가 0건이다 — `Centurion`·`BAY`·`SAY`·`NEXUS`·`돈을 내는`·`95%`·`2~3명`·`스쿼드 리더`·`3분의 1`·`local draft`·`대체된다`. `tools/validate_workspace.py`가 registry의 진행 중(pre-apply·in-progress, frozen 아님) 패키지 표면과 공통 표면(`/resume`·common.ts·cases.ts)에서 자동 검사한다 | 2026-09-03 이전 공통 경력기술서 `BAY 비동기 Backend · SAY 실시간 상담`, cases `고객이 돈을 내는 이유` |
+| 16 | 포폴 `introduction`·이력서 `summary[0]`이 두 문장 이하이고, 포폴 `introduction`은 `기획자로 시작해`로 시작한다(15초 문장 첫 사실, 1-1). 자동 | 2026-09-03 JYP 포폴 소개 3문장 / 미리디 포폴 소개에 `기획자로 시작해` 문장 누락 |
+| 17 | 플랫폼 문안 필드가 제목에 선언한 글자 수 상한(`### 이름 · N자`)을 넘지 않는다. 자동 | 원티드 `AI 활용 경험` 51/50 |
+| 12 | 공개 금지어가 0건이다 — 목록은 [copy-gates.yaml](copy-gates.yaml). `tools/validate_workspace.py`가 registry의 진행 중(pre-apply·in-progress·approved, frozen 아님) 패키지 표면, 공통 표면(`/resume`·common.ts·cases.ts·route page), **플랫폼 canonical 문안**에서 자동 검사한다 | 2026-09-03 이전 공통 경력기술서 `BAY 비동기 Backend · SAY 실시간 상담`, cases `고객이 돈을 내는 이유` |
 
 게이트 11~16 중 자동 항목은 `make verify`가 돌리고, 검사 데이터는 [copy-gates.yaml](copy-gates.yaml)이, 검사 대상 표면은 [copy-surfaces.yaml](../products/site/copy-surfaces.yaml)이 소유한다. 게이트 15(공유 사실 문자열)는 P1이다.
 

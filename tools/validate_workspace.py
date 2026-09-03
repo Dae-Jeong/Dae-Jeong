@@ -694,6 +694,16 @@ def _validate_hero_sentences(root: Path) -> list[str]:
                 n = _sentence_count(intro.group(1))
                 if n > limit:
                     errors.append(f"hero sentences: {portfolio.relative_to(root)} introduction has {n} sentences (max {limit})")
+                prefix = (gates.get("hero") or {}).get("introduction_prefix")
+                if prefix and not intro.group(1).lstrip().startswith(str(prefix)):
+                    errors.append(f"hero prefix: {portfolio.relative_to(root)} introduction must start with '{prefix}' (§1-1)")
+        career = files.get("career.tailored")
+        subtitle_expected = (gates.get("hero") or {}).get("career_subtitle")
+        if career is not None and subtitle_expected:
+            csrc = career.read_text(encoding="utf-8")
+            m = re.search(r'^  subtitle:\s*"((?:[^"\\]|\\.)*)"', csrc, re.M)
+            if m and m.group(1).strip() != str(subtitle_expected).strip():
+                errors.append(f"career subtitle: {career.relative_to(root)} subtitle must be the brand line (§1-1), got '{m.group(1)[:40]}…'")
         resume = files.get("resume.tailored")
         if resume is not None:
             source = resume.read_text(encoding="utf-8")
@@ -705,6 +715,34 @@ def _validate_hero_sentences(root: Path) -> list[str]:
                 n = _sentence_count(text)
                 if n > limit:
                     errors.append(f"hero sentences: {resume.relative_to(root)} summary[0] has {n} sentences (max {limit})")
+    return errors
+
+
+PLATFORM_FIELD = re.compile(r"^### (?P<name>.+?) · (?P<limit>\d+)자\s*\n\s*\n```text\n(?P<body>.*?)\n```", re.M | re.S)
+
+
+def _validate_platform_fields(root: Path) -> list[str]:
+    """Gate 17: platform copy fields stay within the char limit declared in their heading."""
+    gates = _load_yaml_file(root, COPY_GATES_PATH)
+    surfaces_cfg = _load_yaml_file(root, COPY_SURFACES_PATH)
+    cfg = gates.get("platform_fields") or {}
+    if not cfg.get("enforce"):
+        return []
+    kind = cfg.get("surface_kind") or "platform"
+    errors: list[str] = []
+    for surface in surfaces_cfg.get("surfaces") or []:
+        if surface.get("kind") != kind:
+            continue
+        path = root / str(surface["path"])
+        if not path.exists():
+            continue
+        for match in PLATFORM_FIELD.finditer(path.read_text(encoding="utf-8")):
+            length = len(match.group("body").replace("\n", ""))
+            limit = int(match.group("limit"))
+            if length > limit:
+                errors.append(
+                    f"platform field: {path.relative_to(root)} '{match.group('name')}' is {length} chars (limit {limit})"
+                )
     return errors
 
 
@@ -730,6 +768,7 @@ def validate(root: Path) -> list[str]:
         + _validate_frozen_surfaces(root)
         + _validate_header_role(root)
         + _validate_hero_sentences(root)
+        + _validate_platform_fields(root)
     )
 
 

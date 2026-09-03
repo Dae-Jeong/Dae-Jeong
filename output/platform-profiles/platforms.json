@@ -1,0 +1,560 @@
+{
+  "generated_at": "2026-09-03T08:38:34+00:00",
+  "canonical_version": "product-engineer-v3",
+  "platforms": [
+    {
+      "id": "wanted",
+      "name": "원티드",
+      "url": "https://social.wanted.co.kr/my/profile",
+      "status": "active",
+      "live_version": "product-engineer-v3",
+      "live_verified_at": "2026-09-03",
+      "live_checked_at": null,
+      "drift": false,
+      "automation": {
+        "text_input": "partial",
+        "click_fields": "auto"
+      },
+      "fields": [
+        {
+          "name": "프로필 소개",
+          "limit": 150,
+          "before": "아이디어를 고객이 돈을 내는 제품으로 만드는 메이커, 김대정입니다. 기획·QA·마케팅과 Thready를 유료 제품으로 만들고, FastAPI·AI·Next.js 핵심 흐름을 직접 구현·운영했습니다.",
+          "before_banned": [
+            "돈을 내는"
+          ],
+          "after": "가능성을 제품으로 만들고, 끝까지 책임지는 Product Engineer 김대정입니다. 기획자로 시작해 백엔드로 왔고, 지금은 고객이 구독하는 AI 제품을 만들고 운영합니다.",
+          "after_len": 97,
+          "after_banned": [],
+          "over_limit": false,
+          "changed": true
+        },
+        {
+          "name": "이력서 간단 소개",
+          "limit": null,
+          "before": "아이디어를 고객이 돈을 내는 제품으로 만드는 메이커, 김대정입니다.\n고객이 돈을 내는 이유를 찾고, 기획·QA·마케팅과 문제 정의부터 출시·운영까지 이끕니다. Thready를 팀과 실제 고객이 결제하는 유료 제품으로 만들었습니다.\n제품에 필요한 FastAPI 백엔드·AI 생성/평가 시스템·Next.js 핵심 흐름을 직접 구현하며, 현재 MediSolve AI에서 Tech Lead 역할과 제품 운영을 맡고 있습니다.",
+          "before_banned": [
+            "돈을 내는"
+          ],
+          "after": "가능성을 제품으로 만들고, 끝까지 책임지는 Product Engineer 김대정입니다. 기획자로 시작해 백엔드로 왔고, 지금은 고객이 구독하는 AI 제품을 만들고 운영합니다.\n\n아이디어를 제안한 AI 콘텐츠 제품의 FastAPI 백엔드와 AI 생성·평가 시스템을 직접 만들고, 핵심 화면은 coding agent로 완성해 운영합니다. 커머스·피부과 운영·SNS 콘텐츠 세 도메인에서 현업의 반복 업무를 실제로 쓰이는 제품으로 만들었고, 백엔드 경험이 적은 팀원도 같은 기준으로 만들 수 있게 FastAPI 조직 표준을 직접 구축했습니다.\n\n대규모 콘텐츠 데이터를 검수 가능한 구조와 사람 평가 워크벤치로 바꿨고, 시술 정보 지식 플랫폼의 hybrid retrieval API와 평가 게이트를 설계·구현하고 있습니다.",
+          "after_len": 396,
+          "after_banned": [],
+          "over_limit": false,
+          "changed": true
+        },
+        {
+          "name": "AI 활용 경험 1",
+          "limit": 50,
+          "before": "AI로 분석·구현을 가속하고 테스트·평가 하네스로 결과를 검증",
+          "before_banned": [],
+          "after": "Claude Code·Codex로 분석·기능 목록화·반복 구현·검증, 판단은 직접",
+          "after_len": 45,
+          "after_banned": [],
+          "over_limit": false,
+          "changed": true
+        },
+        {
+          "name": "AI 활용 경험 2",
+          "limit": 50,
+          "before": "조직 표준 Backend Template에 agent context·자동화 skill 내장",
+          "before_banned": [],
+          "after": "조직 표준 Backend Template에 agent context·자동화 skill 내장",
+          "after_len": 50,
+          "after_banned": [],
+          "over_limit": false,
+          "changed": false
+        },
+        {
+          "name": "AI 활용 경험 3",
+          "limit": 50,
+          "before": "제품 의사결정·QA·릴리스 기록을 agent가 읽는 실행 맥락으로 구조화",
+          "before_banned": [],
+          "after": "제품 의사결정·QA·릴리스 기록을 agent가 읽는 실행 맥락으로 구조화",
+          "after_len": 40,
+          "after_banned": [],
+          "over_limit": false,
+          "changed": false
+        },
+        {
+          "name": "MediSolve AI 경력",
+          "limit": null,
+          "before": "Tech Lead 역할 · Backend Engineer — 제품 운영 리드\n\n- [제품 0→1·유료 운영] 고객 문제를 기능 우선순위와 품질 기준으로 구체화하고, 기획·QA·마케팅과 Thready의 제품 판단·출시·운영을 리드했습니다. 팀과 실제 고객이 결제하는 유료 제품으로 만들었고, 제품에 필요한 FastAPI 백엔드·AI 생성/평가 시스템·Next.js 핵심 흐름도 직접 개발·운영했습니다.\n- [병렬 재구축·검증] 다른 구성원이 빠른 기능 검증을 위해 만든 초기 백엔드를 인계받아 기존 프런트엔드와 출시 흐름을 유지한 채 FastAPI로 병렬 재구축·전환했습니다. 같은 기준의 Jira 집계에서 해결된 QA 이슈의 재오픈 비율이 전환 전보다 26%p 낮게 관측됐습니다.\n- [주문·재고 비동기 처리] Centurion BAY의 주문·재고 API와 TaskIQ·RabbitMQ worker 구축을 주도하고, 작업 상태·retry·terminal failure·수동 재처리 경계를 설계했습니다.\n- [AI 실행부·데이터 경계] 제품 정책·원장은 product backend가, 생성 lifecycle·실행 상태는 독립 FastAPI application·DB가 소유하도록 분리했습니다. STG 이관을 행 수·MD5·FK·API E2E로 검증하고 Outbox·delivery version fence로 지연·중복·역순 전달이 최신 상태를 덮지 않도록 했습니다.\n- [조직 실행 기반] 조직 표준 FastAPI template과 agent context를 직접 구축했습니다. 여러 사내 서비스의 Azure·Vercel 배포 환경도 서비스가 동작하도록 구성하고 기본 운영을 맡았습니다.",
+          "before_banned": [
+            "Centurion"
+          ],
+          "after": "Tech Lead · Backend Engineer — 제품 운영 리드\n\n- [유료 AI 콘텐츠 제품] 아이디어를 제안하고 기획·QA·마케팅과 제품 운영을 리드해 고객이 구독하는 제품으로 출시했습니다. FastAPI 백엔드·AI 생성/평가 시스템을 직접 구현하고 핵심 화면은 coding agent로 완성했습니다.\n- [병렬 재구축·검증] 초기 백엔드를 인계받아 기존 프런트엔드와 릴리스 흐름을 유지한 채 FastAPI로 병렬 재구축·전환했습니다. 같은 기준의 Jira 집계에서 해결된 QA 이슈 재오픈 비율 37% → 11%, 재발 발생 일평균 약 94% 감소.\n- [데이터 검수·지식 검색] SNS 관측 데이터를 독립 labeling schema·멱등 importer·사람 평가 워크벤치로 바꿨습니다. 시술 정보 지식 플랫폼에서 구조화 조회가 판단하고 문헌 검색이 근거를 보강하는 hybrid retrieval API와 의사 검수 fixture 평가 게이트를 설계·구현했습니다(임상 검수 대기).\n- [운영 backend] 주문·재고 API와 RabbitMQ·TaskIQ worker의 상태·재시도·실패 기록·재처리 경계 구축을 주도하고, 여러 피부과 운영·예약 backend 구조와 관리·홈페이지 API 구축을 주도했습니다.\n- [조직 표준] 백엔드 경험이 적은 팀원도 coding agent와 같은 기준으로 만들 수 있게 FastAPI·SQLAlchemy의 계층·DI·transaction·session·테스트 기준을 조직 표준 template과 agent 작업 맥락으로 구축했습니다. 여러 사내 서비스의 Azure·Vercel 배포 환경 구성과 기본 운영도 맡았습니다.",
+          "after_len": 821,
+          "after_banned": [],
+          "over_limit": false,
+          "changed": true
+        },
+        {
+          "name": "Memento AI 경력",
+          "limit": null,
+          "before": "Backend Engineer — 인턴 합류 후 정규직 전환\n- Stripe Checkout의 manual capture 기반 선결제를 구축하고 내부 결제 ID로 결제 이력과 Checkout·Webhook 이벤트를 연결\n- 예약 처리 실패 시 PaymentIntent 상태에 따라 취소·환불하고, 환불 완료 뒤 마일리지와 이용권 상태를 변경하도록 결제 상태 흐름 정리\n- 다국어 Happy Call을 알림톡·이메일 즉시/예약 발송으로 확장하고 Celery ETA 작업의 취소·재등록·발송 이력 구현\n- 회사 폐업으로 재직 종료",
+          "before_banned": [],
+          "after": "- Stripe Checkout의 manual capture 기반 선결제를 구축하고 내부 결제 ID로 결제 이력과 Checkout·Webhook 이벤트를 연결\n- 예약 처리 실패 시 PaymentIntent 상태에 따라 취소·환불하고, 환불 완료 뒤 마일리지와 이용권 상태를 변경하도록 결제 상태 흐름 정리\n- 다국어 Happy Call을 알림톡·이메일 즉시/예약 발송으로 확장하고 Celery ETA 작업의 취소·재등록·발송 이력 구현",
+          "after_len": 242,
+          "after_banned": [],
+          "over_limit": false,
+          "changed": true
+        },
+        {
+          "name": "STUDIO LAB 경력",
+          "limit": null,
+          "before": "(미수집 — 이력서 편집 화면 하단)",
+          "before_banned": [],
+          "after": "- 생성형 AI 커머스 콘텐츠 제품의 prototype부터 v1.0까지 제품 흐름·기능 범위·출시 우선순위를 정하는 PM으로 0→1 구간 리드, 외부 패션 브랜드 PoC 진행\n- 상세 페이지 제작 방식이 특허 「페이지 출력 방법」 등록으로 이어졌고, 제품은 CES 2024 Best of Innovation 수상\n- Vision AI 모델 개발에서 시작해 PM과 Backend Engineer로 역할을 확장하며 제품 요구를 기술 실행으로 연결",
+          "after_len": 245,
+          "after_banned": [],
+          "over_limit": false,
+          "changed": true
+        },
+        {
+          "name": "아이즈솔 경력",
+          "limit": null,
+          "before": "(미수집)",
+          "before_banned": [],
+          "after": "Vision AI Engineer 인턴으로 인식 모델과 학습 데이터·전처리 pipeline을 제품 기능에 연결하는 개발·검증에 참여했습니다.",
+          "after_len": 78,
+          "after_banned": [],
+          "over_limit": false,
+          "changed": true
+        },
+        {
+          "name": "스킬 (우선순위)",
+          "limit": null,
+          "before": "제품 기획 … (목록 접힘, 미수집)",
+          "before_banned": [],
+          "after": "Python · FastAPI · SQLAlchemy · PostgreSQL · MySQL · Redis · RabbitMQ · TaskIQ · LLM API · WebSocket · TypeScript · Next.js · Docker · GitHub Actions · Azure",
+          "after_len": 157,
+          "after_banned": [],
+          "over_limit": false,
+          "changed": true
+        }
+      ]
+    },
+    {
+      "id": "linkedin",
+      "name": "LinkedIn",
+      "url": "https://www.linkedin.com/in/marinkim-dev",
+      "status": "active",
+      "live_version": "product-engineer-v3",
+      "live_verified_at": "2026-09-03",
+      "live_checked_at": null,
+      "drift": false,
+      "automation": {
+        "text_input": "auto",
+        "click_fields": "auto"
+      },
+      "fields": [
+        {
+          "name": "Headline",
+          "limit": 220,
+          "before": "Tech Lead · Backend Engineer | AI Product Systems · Python · FastAPI | 아이디어를 고객이 돈을 내는 제품으로 만드는 메이커",
+          "before_banned": [
+            "돈을 내는"
+          ],
+          "after": "Product Engineer · Backend / FastAPI · AI Product Systems | 가능성을 제품으로 만들고, 끝까지 책임집니다",
+          "after_len": 84,
+          "after_banned": [],
+          "over_limit": false,
+          "changed": true
+        },
+        {
+          "name": "About",
+          "limit": 2600,
+          "before": "아이디어를 고객이 돈을 내는 제품으로 만드는 메이커, 김대정입니다.\n\n고객이 돈을 내는 이유를 찾고, 기획·QA·마케팅과 문제 정의부터 출시·운영까지 이끕니다. Thready를 팀과 실제 고객이 결제하는 유료 제품으로 만들었습니다.\n\n제품 판단만 한 것이 아닙니다. 제품에 필요한 FastAPI 백엔드·AI 생성/평가 시스템·Next.js 핵심 흐름을 직접 구현했습니다. 다른 구성원이 빠른 검증을 위해 만든 초기 백엔드는 운영 가능한 FastAPI 구조로 병렬 재구축하고 검증 하네스로 전환을 확인했습니다. 의료 플랫폼의 주문·재고 worker와 실시간 AI 상담, 조직 표준 FastAPI 기반도 직접 다뤄 왔습니다.\n\n현재 MediSolve AI에서 Backend Engineer로 일하며 Tech Lead 역할과 제품 운영을 맡고 있습니다.",
+          "before_banned": [
+            "돈을 내는"
+          ],
+          "after": "가능성을 제품으로 만들고, 끝까지 책임지는 Product Engineer 김대정입니다. 기획자로 시작해 백엔드로 왔고, 지금은 고객이 구독하는 AI 제품을 만들고 운영합니다.\n\n아이디어를 제안한 AI 콘텐츠 제품의 FastAPI 백엔드와 AI 생성·평가 시스템을 직접 만들고, 핵심 화면은 coding agent로 완성해 운영합니다. 커머스·피부과 운영·SNS 콘텐츠 세 도메인에서 현업의 반복 업무를 실제로 쓰이는 제품으로 만들었고, 백엔드 경험이 적은 팀원도 같은 기준으로 만들 수 있게 FastAPI 조직 표준을 직접 구축했습니다.\n\n대규모 콘텐츠 데이터를 검수 가능한 구조와 사람 평가 워크벤치로 바꿨고, 시술 정보 지식 플랫폼의 hybrid retrieval API와 평가 게이트를 설계·구현하고 있습니다.\n\n상세 이력과 기술 사례는 marinkim.xyz에서 확인할 수 있습니다.",
+          "after_len": 436,
+          "after_banned": [],
+          "over_limit": false,
+          "changed": true
+        },
+        {
+          "name": "MediSolve AI description",
+          "limit": 2000,
+          "before": "(미수집 — Experience 상세 화면)",
+          "before_banned": [],
+          "after": "- 아이디어를 제안한 AI 콘텐츠 제품을 기획·QA·마케팅과 운영 리드해 고객이 구독하는 제품으로 출시. FastAPI 백엔드·AI 생성/평가 직접 구현, 핵심 화면은 coding agent로 완성\n- 초기 백엔드를 FastAPI로 병렬 재구축·전환. 같은 기준의 Jira 집계에서 QA 이슈 재오픈 비율 37% → 11%, 재발 일평균 약 94% 감소\n- 데이터 검수 워크벤치·시술 지식 hybrid retrieval API, 주문·재고 worker와 피부과 운영·예약 backend, 조직 표준 FastAPI template 구축",
+          "after_len": 296,
+          "after_banned": [],
+          "over_limit": false,
+          "changed": true
+        },
+        {
+          "name": "더데이랩스 description",
+          "limit": 2000,
+          "before": "(미수집)",
+          "before_banned": [],
+          "after": "Memento AI에서의 개발 성과를 인정받아 MediSolve AI 초기 멤버로 영입됐습니다. 법인 설립 전 더데이랩스 프리랜서로 제품 개발을 선행했고, 피부과 운영 제품군 backend 저장소의 기본 구조·Config·개발 환경·실행 문서·ISSUE/PR 템플릿을 구성했습니다. 2025.04 MediSolve AI 설립과 함께 Backend Engineer로 정규 합류해 Tech Lead 역할을 맡았습니다.",
+          "after_len": 231,
+          "after_banned": [],
+          "over_limit": false,
+          "changed": true
+        },
+        {
+          "name": "Memento AI description",
+          "limit": 2000,
+          "before": "(미수집)",
+          "before_banned": [],
+          "after": "- Stripe Checkout의 manual capture 기반 선결제를 구축하고 내부 결제 ID로 결제 이력과 Checkout·Webhook 이벤트를 연결\n- 예약 처리 실패 시 PaymentIntent 상태에 따라 취소·환불하고, 환불 완료 뒤 마일리지와 이용권 상태를 변경하도록 결제 상태 흐름 정리\n- 다국어 Happy Call을 알림톡·이메일 즉시/예약 발송으로 확장하고 Celery ETA 작업의 취소·재등록·발송 이력 구현",
+          "after_len": 242,
+          "after_banned": [],
+          "over_limit": false,
+          "changed": true
+        },
+        {
+          "name": "STUDIO LAB description",
+          "limit": 2000,
+          "before": "(미수집)",
+          "before_banned": [],
+          "after": "- 생성형 AI 커머스 콘텐츠 제품의 prototype부터 v1.0까지 제품 흐름·기능 범위·출시 우선순위를 정하는 PM으로 0→1 구간 리드, 외부 패션 브랜드 PoC 진행\n- 상세 페이지 제작 방식이 특허 「페이지 출력 방법」 등록으로 이어졌고, 제품은 CES 2024 Best of Innovation 수상\n- Vision AI 모델 개발에서 시작해 PM과 Backend Engineer로 역할을 확장하며 제품 요구를 기술 실행으로 연결",
+          "after_len": 245,
+          "after_banned": [],
+          "over_limit": false,
+          "changed": true
+        },
+        {
+          "name": "아이즈솔 description",
+          "limit": 2000,
+          "before": "(미수집)",
+          "before_banned": [],
+          "after": "Vision AI Engineer 인턴으로 인식 모델과 학습 데이터·전처리 pipeline을 제품 기능에 연결하는 개발·검증에 참여했습니다.",
+          "after_len": 78,
+          "after_banned": [],
+          "over_limit": false,
+          "changed": true
+        }
+      ]
+    },
+    {
+      "id": "remember",
+      "name": "리멤버",
+      "url": "https://profile.rememberapp.co.kr/",
+      "status": "active",
+      "live_version": "product-engineer-v3",
+      "live_verified_at": "2026-09-03",
+      "live_checked_at": null,
+      "drift": false,
+      "automation": {
+        "text_input": "auto",
+        "click_fields": "auto"
+      },
+      "fields": [
+        {
+          "name": "커넥트용 소개",
+          "limit": null,
+          "before": "아이디어를 고객이 돈을 내는 제품으로 만드는 메이커, 김대정입니다.\n\n고객이 돈을 내는 이유를 찾고, 기획·QA·마케팅과 무엇을 먼저 만들지 정합니다. Thready를 팀과 실제 고객이 결제하는 유료 제품으로 만들었습니다.\n\n제품 판단부터 출시·운영까지 연결하고 필요한 백엔드·AI·핵심 화면을 직접 만듭니다. 현재 MediSolve AI에서 Tech Lead 역할과 제품 운영을 맡고 있습니다.",
+          "before_banned": [
+            "돈을 내는"
+          ],
+          "after": "가능성을 제품으로 만들고, 끝까지 책임지는 Product Engineer 김대정입니다. 기획자로 시작해 백엔드로 왔고, 지금은 고객이 구독하는 AI 제품을 만들고 운영합니다.\n\n아이디어를 제안한 AI 콘텐츠 제품의 FastAPI 백엔드와 AI 생성·평가 시스템을 직접 만들고, 핵심 화면은 coding agent로 완성해 운영합니다. 커머스·피부과 운영·SNS 콘텐츠 세 도메인에서 현업의 반복 업무를 실제로 쓰이는 제품으로 만들었고, 백엔드 경험이 적은 팀원도 같은 기준으로 만들 수 있게 FastAPI 조직 표준을 직접 구축했습니다.",
+          "after_len": 298,
+          "after_banned": [],
+          "over_limit": false,
+          "changed": true
+        },
+        {
+          "name": "채용 서비스용 소개",
+          "limit": null,
+          "before": "아이디어를 고객이 돈을 내는 제품으로 만드는 메이커, 김대정입니다.\n\nMediSolve AI에서 Tech Lead 역할을 맡고, Backend Engineer로 여러 사내 제품을 직접 개발·운영합니다. Thready에서는 고객 문제를 제품 우선순위와 품질 기준으로 구체화하고 기획·QA·마케팅과 출시·운영을 리드했습니다. 팀과 실제 고객이 결제하는 유료 제품으로 만들었고, 필요한 FastAPI 백엔드·AI 생성/평가 시스템·Next.js 핵심 흐름을 직접 구현했습니다.\n\nPython·FastAPI를 중심으로 운영 백엔드 재구축, 주문·재고 비동기 처리, AI 실행부·데이터 분리와 조직 표준 backend 기반을 다뤄왔습니다. Azure·Vercel 배포 환경은 서비스가 동작하도록 구성하고 기본 운영을 맡았습니다.",
+          "before_banned": [
+            "돈을 내는"
+          ],
+          "after": "가능성을 제품으로 만들고, 끝까지 책임지는 Product Engineer 김대정입니다. 기획자로 시작해 백엔드로 왔고, 지금은 고객이 구독하는 AI 제품을 만들고 운영합니다.\n\n아이디어를 제안한 AI 콘텐츠 제품의 FastAPI 백엔드와 AI 생성·평가 시스템을 직접 만들고, 핵심 화면은 coding agent로 완성해 운영합니다. 커머스·피부과 운영·SNS 콘텐츠 세 도메인에서 현업의 반복 업무를 실제로 쓰이는 제품으로 만들었고, 백엔드 경험이 적은 팀원도 같은 기준으로 만들 수 있게 FastAPI 조직 표준을 직접 구축했습니다.\n\n대규모 콘텐츠 데이터를 검수 가능한 구조와 사람 평가 워크벤치로 바꿨고, 시술 정보 지식 플랫폼의 hybrid retrieval API와 평가 게이트를 설계·구현하고 있습니다.\n\n현재 MediSolve AI에서 Tech Lead · Backend Engineer로 제품 운영과 백엔드·AI 시스템을 함께 맡고 있습니다.",
+          "after_len": 474,
+          "after_banned": [],
+          "over_limit": false,
+          "changed": true
+        },
+        {
+          "name": "MediSolve AI 경력",
+          "limit": null,
+          "before": "Tech Lead 역할 · Backend Engineer — 제품 운영 리드\n\n- [제품 0→1·유료 운영] 고객 문제를 기능 우선순위와 품질 기준으로 구체화하고, 기획·QA·마케팅과 Thready의 제품 판단·출시·운영을 리드했습니다. 팀과 실제 고객이 결제하는 유료 제품으로 만들었고, 제품에 필요한 FastAPI 백엔드·AI 생성/평가 시스템·Next.js 핵심 흐름도 직접 개발·운영했습니다.\n- [병렬 재구축·검증] 다른 구성원이 빠른 기능 검증을 위해 만든 초기 백엔드를 인계받아 기존 프런트엔드와 출시 흐름을 유지한 채 FastAPI로 병렬 재구축·전환했습니다. 같은 기준의 Jira 집계에서 해결된 QA 이슈의 재오픈 비율이 전환 전보다 26%p 낮게 관측됐습니다.\n- [주문·재고 비동기 처리] Centurion BAY의 주문·재고 API와 TaskIQ·RabbitMQ worker 구축을 주도하고, 작업 상태·retry·terminal failure·수동 재처리 경계를 설계했습니다.\n- [AI 실행부·데이터 경계] 제품 정책·원장은 product backend가, 생성 lifecycle·실행 상태는 독립 FastAPI application·DB가 소유하도록 분리했습니다. STG 이관을 행 수·MD5·FK·API E2E로 검증하고 Outbox·delivery version fence로 지연·중복·역순 전달이 최신 상태를 덮지 않도록 했습니다.\n- [조직 실행 기반] 조직 표준 FastAPI template과 agent context를 직접 구축했습니다. 여러 사내 서비스의 Azure·Vercel 배포 환경도 서비스가 동작하도록 구성하고 기본 운영을 맡았습니다.",
+          "before_banned": [
+            "Centurion"
+          ],
+          "after": "Tech Lead · Backend Engineer — 제품 운영 리드\n\n- [유료 AI 콘텐츠 제품] 아이디어를 제안하고 기획·QA·마케팅과 제품 운영을 리드해 고객이 구독하는 제품으로 출시했습니다. FastAPI 백엔드·AI 생성/평가 시스템을 직접 구현하고 핵심 화면은 coding agent로 완성했습니다.\n- [병렬 재구축·검증] 초기 백엔드를 인계받아 기존 프런트엔드와 릴리스 흐름을 유지한 채 FastAPI로 병렬 재구축·전환했습니다. 같은 기준의 Jira 집계에서 해결된 QA 이슈 재오픈 비율 37% → 11%, 재발 발생 일평균 약 94% 감소.\n- [데이터 검수·지식 검색] SNS 관측 데이터를 독립 labeling schema·멱등 importer·사람 평가 워크벤치로 바꿨습니다. 시술 정보 지식 플랫폼에서 구조화 조회가 판단하고 문헌 검색이 근거를 보강하는 hybrid retrieval API와 의사 검수 fixture 평가 게이트를 설계·구현했습니다(임상 검수 대기).\n- [운영 backend] 주문·재고 API와 RabbitMQ·TaskIQ worker의 상태·재시도·실패 기록·재처리 경계 구축을 주도하고, 여러 피부과 운영·예약 backend 구조와 관리·홈페이지 API 구축을 주도했습니다.\n- [조직 표준] 백엔드 경험이 적은 팀원도 coding agent와 같은 기준으로 만들 수 있게 FastAPI·SQLAlchemy의 계층·DI·transaction·session·테스트 기준을 조직 표준 template과 agent 작업 맥락으로 구축했습니다. 여러 사내 서비스의 Azure·Vercel 배포 환경 구성과 기본 운영도 맡았습니다.",
+          "after_len": 821,
+          "after_banned": [],
+          "over_limit": false,
+          "changed": true
+        },
+        {
+          "name": "더데이랩스 경력",
+          "limit": null,
+          "before": "Memento AI에서의 개발 성과를 인정받아 MediSolve AI 초기 멤버로 영입됐습니다. 법인 설립 전 더데이랩스 프리랜서로 제품 개발을 선행했고, Centurion backend 저장소의 기본 구조·Config·개발 환경·실행 문서·ISSUE/PR 템플릿을 구성했습니다. 2025.04 MediSolve AI 설립과 함께 Backend Engineer로 정규 합류해 Tech Lead 역할을 맡았습니다.",
+          "before_banned": [
+            "Centurion"
+          ],
+          "after": "Memento AI에서의 개발 성과를 인정받아 MediSolve AI 초기 멤버로 영입됐습니다. 법인 설립 전 더데이랩스 프리랜서로 제품 개발을 선행했고, 피부과 운영 제품군 backend 저장소의 기본 구조·Config·개발 환경·실행 문서·ISSUE/PR 템플릿을 구성했습니다. 2025.04 MediSolve AI 설립과 함께 Backend Engineer로 정규 합류해 Tech Lead 역할을 맡았습니다.",
+          "after_len": 231,
+          "after_banned": [],
+          "over_limit": false,
+          "changed": true
+        },
+        {
+          "name": "Memento AI 경력",
+          "limit": null,
+          "before": "(미수집)",
+          "before_banned": [],
+          "after": "- Stripe Checkout의 manual capture 기반 선결제를 구축하고 내부 결제 ID로 결제 이력과 Checkout·Webhook 이벤트를 연결\n- 예약 처리 실패 시 PaymentIntent 상태에 따라 취소·환불하고, 환불 완료 뒤 마일리지와 이용권 상태를 변경하도록 결제 상태 흐름 정리\n- 다국어 Happy Call을 알림톡·이메일 즉시/예약 발송으로 확장하고 Celery ETA 작업의 취소·재등록·발송 이력 구현",
+          "after_len": 242,
+          "after_banned": [],
+          "over_limit": false,
+          "changed": true
+        },
+        {
+          "name": "STUDIO LAB 경력",
+          "limit": null,
+          "before": "(미수집)",
+          "before_banned": [],
+          "after": "- 생성형 AI 커머스 콘텐츠 제품의 prototype부터 v1.0까지 제품 흐름·기능 범위·출시 우선순위를 정하는 PM으로 0→1 구간 리드, 외부 패션 브랜드 PoC 진행\n- 상세 페이지 제작 방식이 특허 「페이지 출력 방법」 등록으로 이어졌고, 제품은 CES 2024 Best of Innovation 수상\n- Vision AI 모델 개발에서 시작해 PM과 Backend Engineer로 역할을 확장하며 제품 요구를 기술 실행으로 연결",
+          "after_len": 245,
+          "after_banned": [],
+          "over_limit": false,
+          "changed": true
+        },
+        {
+          "name": "아이즈솔 경력",
+          "limit": null,
+          "before": "(미수집)",
+          "before_banned": [],
+          "after": "Vision AI Engineer 인턴으로 인식 모델과 학습 데이터·전처리 pipeline을 제품 기능에 연결하는 개발·검증에 참여했습니다.",
+          "after_len": 78,
+          "after_banned": [],
+          "over_limit": false,
+          "changed": true
+        }
+      ]
+    },
+    {
+      "id": "groupby",
+      "name": "그룹바이",
+      "url": "https://groupby.kr/scouts/my-profile",
+      "status": "active",
+      "live_version": "product-engineer-v3",
+      "live_verified_at": "2026-09-03",
+      "live_checked_at": null,
+      "drift": false,
+      "automation": {
+        "text_input": "auto",
+        "click_fields": "partial",
+        "note": "경력 카드 연필 아이콘은 ref 없는 svg — 자동 클릭 불가(2026-09-03)"
+      },
+      "fields": [
+        {
+          "name": "소개",
+          "limit": null,
+          "before": "아이디어를 고객이 돈을 내는 제품으로 만드는 메이커, 김대정입니다.\n\n고객이 돈을 내는 이유를 찾고, 기획·QA·마케팅과 문제 정의부터 출시·운영까지 이끕니다. Thready를 팀과 실제 고객이 결제하는 유료 제품으로 만들었습니다.\n\n제품에 필요한 FastAPI 백엔드·AI 생성/평가 시스템·Next.js 핵심 흐름을 직접 구현하며, 현재 MediSolve AI에서 Tech Lead 역할과 제품 운영을 맡고 있습니다.\n\n[수상·특허·자격]\n- CES 2024 Best of Innovation · AI 부문 대상 제품 참여\n- 특허 「페이지 출력 방법」 등록 10-2898273\n- 한국건설생활환경시험연구원(KCL) AI 정확도 부문 인증 통과\n- ADsP · 데이터분석 준전문가 (2021.09)",
+          "before_banned": [
+            "돈을 내는"
+          ],
+          "after": "가능성을 제품으로 만들고, 끝까지 책임지는 Product Engineer 김대정입니다. 기획자로 시작해 백엔드로 왔고, 지금은 고객이 구독하는 AI 제품을 만들고 운영합니다.\n\n아이디어를 제안한 AI 콘텐츠 제품의 FastAPI 백엔드와 AI 생성·평가 시스템을 직접 만들고, 핵심 화면은 coding agent로 완성해 운영합니다. 커머스·피부과 운영·SNS 콘텐츠 세 도메인에서 현업의 반복 업무를 실제로 쓰이는 제품으로 만들었고, 백엔드 경험이 적은 팀원도 같은 기준으로 만들 수 있게 FastAPI 조직 표준을 직접 구축했습니다.\n\n대규모 콘텐츠 데이터를 검수 가능한 구조와 사람 평가 워크벤치로 바꿨고, 시술 정보 지식 플랫폼의 hybrid retrieval API와 평가 게이트를 설계·구현하고 있습니다.",
+          "after_len": 396,
+          "after_banned": [],
+          "over_limit": false,
+          "changed": true
+        },
+        {
+          "name": "credentials (소개 뒤에 이어 붙임)",
+          "limit": null,
+          "before": "(소개 안에 포함됨 — 위 [수상·특허·자격] 블록)",
+          "before_banned": [],
+          "after": "- 특허 「페이지 출력 방법」 · 등록 10-2898273\n- CES 2024 Best of Innovation · AI 부문 대상 제품 참여\n- 한국건설생활환경시험연구원(KCL) · AI 정확도 부문 인증 통과\n- ADsP · 데이터분석 준전문가 (2021.09)\n- 우송대학교 게임멀티미디어 전공 · 2016.03–2021.08 · 졸업",
+          "after_len": 186,
+          "after_banned": [],
+          "over_limit": false,
+          "changed": true
+        },
+        {
+          "name": "MediSolve AI 경력",
+          "limit": null,
+          "before": "Tech Lead 역할 · Backend Engineer — 제품 운영 리드\n\n- [제품 0→1·유료 운영] 고객 문제를 기능 우선순위와 품질 기준으로 구체화하고, 기획·QA·마케팅과 Thready의 제품 판단·출시·운영을 리드했습니다. 팀과 실제 고객이 결제하는 유료 제품으로 만들었고, 제품에 필요한 FastAPI 백엔드·AI 생성/평가 시스템·Next.js 핵심 흐름도 직접 개발·운영했습니다.\n- [병렬 재구축·검증] 다른 구성원이 빠른 기능 검증을 위해 만든 초기 백엔드를 인계받아 기존 프런트엔드와 출시 흐름을 유지한 채 FastAPI로 병렬 재구축·전환했습니다. 같은 기준의 Jira 집계에서 해결된 QA 이슈의 재오픈 비율이 전환 전보다 26%p 낮게 관측됐습니다.\n- [주문·재고 비동기 처리] Centurion BAY의 주문·재고 API와 TaskIQ·RabbitMQ worker 구축을 주도하고, 작업 상태·retry·terminal failure·수동 재처리 경계를 설계했습니다.\n- [AI 실행부·데이터 경계] 제품 정책·원장은 product backend가, 생성 lifecycle·실행 상태는 독립 FastAPI application·DB가 소유하도록 분리했습니다. STG 이관을 행 수·MD5·FK·API E2E로 검증하고 Outbox·delivery version fence로 지연·중복·역순 전달이 최신 상태를 덮지 않도록 했습니다.\n- [조직 실행 기반] 조직 표준 FastAPI template과 agent context를 직접 구축했습니다. 여러 사내 서비스의 Azure·Vercel 배포 환경도 서비스가 동작하도록 구성하고 기본 운영을 맡았습니다.",
+          "before_banned": [
+            "Centurion"
+          ],
+          "after": "Tech Lead · Backend Engineer — 제품 운영 리드\n\n- [유료 AI 콘텐츠 제품] 아이디어를 제안하고 기획·QA·마케팅과 제품 운영을 리드해 고객이 구독하는 제품으로 출시했습니다. FastAPI 백엔드·AI 생성/평가 시스템을 직접 구현하고 핵심 화면은 coding agent로 완성했습니다.\n- [병렬 재구축·검증] 초기 백엔드를 인계받아 기존 프런트엔드와 릴리스 흐름을 유지한 채 FastAPI로 병렬 재구축·전환했습니다. 같은 기준의 Jira 집계에서 해결된 QA 이슈 재오픈 비율 37% → 11%, 재발 발생 일평균 약 94% 감소.\n- [데이터 검수·지식 검색] SNS 관측 데이터를 독립 labeling schema·멱등 importer·사람 평가 워크벤치로 바꿨습니다. 시술 정보 지식 플랫폼에서 구조화 조회가 판단하고 문헌 검색이 근거를 보강하는 hybrid retrieval API와 의사 검수 fixture 평가 게이트를 설계·구현했습니다(임상 검수 대기).\n- [운영 backend] 주문·재고 API와 RabbitMQ·TaskIQ worker의 상태·재시도·실패 기록·재처리 경계 구축을 주도하고, 여러 피부과 운영·예약 backend 구조와 관리·홈페이지 API 구축을 주도했습니다.\n- [조직 표준] 백엔드 경험이 적은 팀원도 coding agent와 같은 기준으로 만들 수 있게 FastAPI·SQLAlchemy의 계층·DI·transaction·session·테스트 기준을 조직 표준 template과 agent 작업 맥락으로 구축했습니다. 여러 사내 서비스의 Azure·Vercel 배포 환경 구성과 기본 운영도 맡았습니다.",
+          "after_len": 821,
+          "after_banned": [],
+          "over_limit": false,
+          "changed": true
+        },
+        {
+          "name": "더데이랩스 경력",
+          "limit": null,
+          "before": "Memento AI에서의 개발 성과를 인정받아 MediSolve AI 초기 멤버로 영입됐습니다. 법인 설립 전 더데이랩스 프리랜서로 제품 개발을 선행했고, Centurion backend 저장소의 기본 구조·Config·개발 환경·실행 문서·ISSUE/PR 템플릿을 구성했습니다. 2025.04 MediSolve AI 설립과 함께 Backend Engineer로 정규 합류해 Tech Lead 역할을 맡았습니다.",
+          "before_banned": [
+            "Centurion"
+          ],
+          "after": "Memento AI에서의 개발 성과를 인정받아 MediSolve AI 초기 멤버로 영입됐습니다. 법인 설립 전 더데이랩스 프리랜서로 제품 개발을 선행했고, 피부과 운영 제품군 backend 저장소의 기본 구조·Config·개발 환경·실행 문서·ISSUE/PR 템플릿을 구성했습니다. 2025.04 MediSolve AI 설립과 함께 Backend Engineer로 정규 합류해 Tech Lead 역할을 맡았습니다.",
+          "after_len": 231,
+          "after_banned": [],
+          "over_limit": false,
+          "changed": true
+        },
+        {
+          "name": "Memento AI 경력",
+          "limit": null,
+          "before": "(미수집)",
+          "before_banned": [],
+          "after": "- Stripe Checkout의 manual capture 기반 선결제를 구축하고 내부 결제 ID로 결제 이력과 Checkout·Webhook 이벤트를 연결\n- 예약 처리 실패 시 PaymentIntent 상태에 따라 취소·환불하고, 환불 완료 뒤 마일리지와 이용권 상태를 변경하도록 결제 상태 흐름 정리\n- 다국어 Happy Call을 알림톡·이메일 즉시/예약 발송으로 확장하고 Celery ETA 작업의 취소·재등록·발송 이력 구현",
+          "after_len": 242,
+          "after_banned": [],
+          "over_limit": false,
+          "changed": true
+        },
+        {
+          "name": "STUDIO LAB 경력",
+          "limit": null,
+          "before": "AI 커머스 제품의 prototype부터 v1.0까지 제품 흐름과 출시 우선순위를 리드하고 Vision AI·backend 개발을 병행했습니다. 페이지 출력 방법 특허(등록 10-2898273)와 CES 2024 Best of Innovation · AI 부문 대상 제품에 참여했습니다.",
+          "before_banned": [],
+          "after": "- 생성형 AI 커머스 콘텐츠 제품의 prototype부터 v1.0까지 제품 흐름·기능 범위·출시 우선순위를 정하는 PM으로 0→1 구간 리드, 외부 패션 브랜드 PoC 진행\n- 상세 페이지 제작 방식이 특허 「페이지 출력 방법」 등록으로 이어졌고, 제품은 CES 2024 Best of Innovation 수상\n- Vision AI 모델 개발에서 시작해 PM과 Backend Engineer로 역할을 확장하며 제품 요구를 기술 실행으로 연결",
+          "after_len": 245,
+          "after_banned": [],
+          "over_limit": false,
+          "changed": true
+        },
+        {
+          "name": "아이즈솔 경력",
+          "limit": null,
+          "before": "(미수집)",
+          "before_banned": [],
+          "after": "Vision AI Engineer 인턴으로 인식 모델과 학습 데이터·전처리 pipeline을 제품 기능에 연결하는 개발·검증에 참여했습니다.",
+          "after_len": 78,
+          "after_banned": [],
+          "over_limit": false,
+          "changed": true
+        }
+      ]
+    },
+    {
+      "id": "rocketpunch",
+      "name": "로켓펀치",
+      "url": "https://www.rocketpunch.com/@marinkim",
+      "status": "active",
+      "live_version": "product-engineer-v3",
+      "live_verified_at": "2026-09-03",
+      "live_checked_at": "2026-09-03",
+      "drift": false,
+      "automation": {
+        "text_input": "auto",
+        "click_fields": "auto"
+      },
+      "fields": [
+        {
+          "name": "소개",
+          "limit": 300,
+          "before": "아이디어를 고객이 돈을 내는 제품으로 만드는 메이커, 김대정입니다. 기획·QA·마케팅과 고객 문제를 제품으로 만들고 출시·운영을 리드합니다. Thready를 팀과 실제 고객이 결제하는 유료 제품으로 만들었고, 필요한 FastAPI 백엔드·AI·Next.js 핵심 흐름을 직접 구현했습니다. https://marinkim.xyz",
+          "before_banned": [
+            "돈을 내는"
+          ],
+          "after": "가능성을 제품으로 만들고, 끝까지 책임지는 Product Engineer 김대정입니다. 기획자로 시작해 백엔드로 왔고, 지금은 고객이 구독하는 AI 제품을 만들고 운영합니다. FastAPI 백엔드·AI 생성/평가 시스템을 직접 만들고 핵심 화면은 coding agent로 완성했으며, 대규모 콘텐츠 데이터를 검수 가능한 구조와 평가 워크벤치로 바꿨습니다. https://marinkim.xyz",
+          "after_len": 219,
+          "after_banned": [],
+          "over_limit": false,
+          "changed": true
+        },
+        {
+          "name": "MediSolve AI 경력",
+          "limit": null,
+          "before": "Tech Lead 역할 · Backend Engineer — 제품 운영 리드\n\n- [제품 0→1·유료 운영] 고객 문제를 기능 우선순위와 품질 기준으로 구체화하고, 기획·QA·마케팅과 Thready의 제품 판단·출시·운영을 리드했습니다. 팀과 실제 고객이 결제하는 유료 제품으로 만들었고, 제품에 필요한 FastAPI 백엔드·AI 생성/평가 시스템·Next.js 핵심 흐름도 직접 개발·운영했습니다.\n- [병렬 재구축·검증] 다른 구성원이 빠른 기능 검증을 위해 만든 초기 백엔드를 인계받아 기존 프런트엔드와 출시 흐름을 유지한 채 FastAPI로 병렬 재구축·전환했습니다. 같은 기준의 Jira 집계에서 해결된 QA 이슈의 재오픈 비율이 전환 전보다 26%p 낮게 관측됐습니다.\n- [주문·재고 비동기 처리] Centurion BAY의 주문·재고 API와 TaskIQ·RabbitMQ worker 구축을 주도하고, 작업 상태·retry·terminal failure·수동 재처리 경계를 설계했습니다.\n- [AI 실행부·데이터 경계] 제품 정책·원장은 product backend가, 생성 lifecycle·실행 상태는 독립 FastAPI application·DB가 소유하도록 분리했습니다. STG 이관을 행 수·MD5·FK·API E2E로 검증하고 Outbox·delivery version fence로 지연·중복·역순 전달이 최신 상태를 덮지 않도록 했습니다.\n- [조직 실행 기반] 조직 표준 FastAPI template과 agent context를 직접 구축했습니다. 여러 사내 서비스의 Azure·Vercel 배포 환경도 서비스가 동작하도록 구성하고 기본 운영을 맡았습니다.",
+          "before_banned": [
+            "Centurion"
+          ],
+          "after": "- 아이디어를 제안한 AI 콘텐츠 제품을 기획·QA·마케팅과 운영 리드해 고객이 구독하는 제품으로 출시. FastAPI 백엔드·AI 생성/평가 직접 구현, 핵심 화면은 coding agent로 완성\n- 초기 백엔드를 FastAPI로 병렬 재구축·전환. 같은 기준의 Jira 집계에서 QA 이슈 재오픈 비율 37% → 11%, 재발 일평균 약 94% 감소\n- 데이터 검수 워크벤치·시술 지식 hybrid retrieval API, 주문·재고 worker와 피부과 운영·예약 backend, 조직 표준 FastAPI template 구축",
+          "after_len": 296,
+          "after_banned": [],
+          "over_limit": false,
+          "changed": true
+        },
+        {
+          "name": "더데이랩스 경력",
+          "limit": null,
+          "before": "Memento AI에서의 개발 성과를 인정받아 MediSolve AI 초기 멤버로 영입됐습니다. 법인 설립 전 더데이랩스 프리랜서로 제품 개발을 선행했고, Centurion backend 저장소의 기본 구조·Config·개발 환경·실행 문서·ISSUE/PR 템플릿을 구성했습니다. 2025.04 MediSolve AI 설립과 함께 Backend Engineer로 정규 합류해 Tech Lead 역할을 맡았습니다.",
+          "before_banned": [
+            "Centurion"
+          ],
+          "after": "Memento AI에서의 개발 성과를 인정받아 MediSolve AI 초기 멤버로 영입됐습니다. 법인 설립 전 더데이랩스 프리랜서로 제품 개발을 선행했고, 피부과 운영 제품군 backend 저장소의 기본 구조·Config·개발 환경·실행 문서·ISSUE/PR 템플릿을 구성했습니다. 2025.04 MediSolve AI 설립과 함께 Backend Engineer로 정규 합류해 Tech Lead 역할을 맡았습니다.",
+          "after_len": 231,
+          "after_banned": [],
+          "over_limit": false,
+          "changed": true
+        },
+        {
+          "name": "Memento AI 경력",
+          "limit": null,
+          "before": "(미수집)",
+          "before_banned": [],
+          "after": "- Stripe Checkout의 manual capture 기반 선결제를 구축하고 내부 결제 ID로 결제 이력과 Checkout·Webhook 이벤트를 연결\n- 예약 처리 실패 시 PaymentIntent 상태에 따라 취소·환불하고, 환불 완료 뒤 마일리지와 이용권 상태를 변경하도록 결제 상태 흐름 정리\n- 다국어 Happy Call을 알림톡·이메일 즉시/예약 발송으로 확장하고 Celery ETA 작업의 취소·재등록·발송 이력 구현",
+          "after_len": 242,
+          "after_banned": [],
+          "over_limit": false,
+          "changed": true
+        },
+        {
+          "name": "STUDIO LAB 경력",
+          "limit": null,
+          "before": "(미수집)",
+          "before_banned": [],
+          "after": "- 생성형 AI 커머스 콘텐츠 제품의 prototype부터 v1.0까지 제품 흐름·기능 범위·출시 우선순위를 정하는 PM으로 0→1 구간 리드, 외부 패션 브랜드 PoC 진행\n- 상세 페이지 제작 방식이 특허 「페이지 출력 방법」 등록으로 이어졌고, 제품은 CES 2024 Best of Innovation 수상\n- Vision AI 모델 개발에서 시작해 PM과 Backend Engineer로 역할을 확장하며 제품 요구를 기술 실행으로 연결",
+          "after_len": 245,
+          "after_banned": [],
+          "over_limit": false,
+          "changed": true
+        },
+        {
+          "name": "아이즈솔 경력",
+          "limit": null,
+          "before": "(미수집)",
+          "before_banned": [],
+          "after": "Vision AI Engineer 인턴으로 인식 모델과 학습 데이터·전처리 pipeline을 제품 기능에 연결하는 개발·검증에 참여했습니다.",
+          "after_len": 78,
+          "after_banned": [],
+          "over_limit": false,
+          "changed": true
+        }
+      ]
+    },
+    {
+      "id": "saramin",
+      "name": "사람인",
+      "url": "https://www.saramin.co.kr/zf_user/resume/resume-manage",
+      "status": "excluded",
+      "live_version": null,
+      "live_verified_at": null,
+      "live_checked_at": null,
+      "drift": null,
+      "automation": null,
+      "fields": []
+    },
+    {
+      "id": "jumpit",
+      "name": "점핏",
+      "url": "https://jumpit.saramin.co.kr",
+      "status": "excluded",
+      "live_version": null,
+      "live_verified_at": null,
+      "live_checked_at": null,
+      "drift": null,
+      "automation": null,
+      "fields": []
+    },
+    {
+      "id": "oopy",
+      "name": "Oopy (옛 노션 포트폴리오)",
+      "url": "https://daejeongkim.oopy.io",
+      "status": "pending",
+      "live_version": null,
+      "live_verified_at": null,
+      "live_checked_at": null,
+      "drift": null,
+      "automation": null,
+      "fields": []
+    }
+  ]
+}

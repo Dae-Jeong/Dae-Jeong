@@ -184,12 +184,12 @@ export const FEATURING_CAREER_DESCRIPTION: CareerDescriptionDocument = {
   slug: "featuring",
   companyName: "피처링",
   targetRole: "백엔드 개발 엔지니어",
-  title: "피처링 지원 경력기술서",
-  subtitle: "SNS 데이터를 제품 기준으로, prototype을 운영 가능한 FastAPI Backend로.",
+  title: "경력기술서",
+  subtitle: "가능성을 제품으로 만들고, 끝까지 책임지는 Product Engineer 김대정입니다.",
   role: "Tech Lead · Backend Engineer",
   updatedAt: "2026-09-03",
   summary: [
-    "가능성을 제품으로 만들고, 끝까지 책임지는 Product Engineer 김대정입니다. 기획자로 시작해 백엔드로 왔고, 지금은 고객이 구독하는 AI 제품의 FastAPI 백엔드와 AI 실행부를 직접 만들고 운영합니다.",
+    "기획자로 시작해 백엔드로 왔고, 지금은 고객이 구독하는 AI 제품의 FastAPI 백엔드와 AI 실행부를 직접 만들고 운영합니다.",
     "이 문서는 이력서의 성과를 같은 순서로 풀어, 각 항목에서 무엇이 문제였고 무엇을 판단했으며 어떤 경계를 구현하고 어떻게 검증했는지를 적었습니다. 화면은 coding agent로 구현하고 직접 검수했으며, 수치는 측정된 것만 썼습니다.",
   ],
   companies: [

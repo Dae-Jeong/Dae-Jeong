@@ -1,12 +1,14 @@
 import { COMMON_CAREER_DESCRIPTION, COMMON_CV } from "./common";
 import { FEATURING_CAREER_DESCRIPTION } from "./featuring";
 import { JYP_CAREER_DESCRIPTION } from "./jyp";
+import { MIRIDIH_CAREER_DESCRIPTION } from "./miridih";
 import type { CareerDescriptionDocument, CvDocument } from "./types";
 
 const CAREER_DOCUMENTS: Record<string, CareerDescriptionDocument> = {
   common: COMMON_CAREER_DESCRIPTION,
   jyp: JYP_CAREER_DESCRIPTION,
   featuring: FEATURING_CAREER_DESCRIPTION,
+  miridih: MIRIDIH_CAREER_DESCRIPTION,
 };
 
 const CV_DOCUMENTS: Record<string, CvDocument> = {

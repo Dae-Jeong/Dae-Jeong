@@ -52,6 +52,7 @@ tool-agnostic skill의 canonical 위치는 `skills/`다. tool-specific 폴더는
 | analyze-jd-fit | [skills/analyze-jd-fit/SKILL.md](skills/analyze-jd-fit/SKILL.md) | JD 링크·본문을 검증된 profile/evidence와 대조해 지원 판단·강점·공백 분석 |
 | tailor-resume | [skills/tailor-resume/SKILL.md](skills/tailor-resume/SKILL.md) | 검증된 claim 기반 회사/JD 맞춤 이력서 생성 |
 | review-application-copy | [skills/review-application-copy/SKILL.md](skills/review-application-copy/SKILL.md) | active 회사·공통 표면의 공개 문안을 규칙 대비 전수 검토 (파일 수정 없음) |
+| sync-platform-profile | [skills/sync-platform-profile/SKILL.md](skills/sync-platform-profile/SKILL.md) | 채용 플랫폼 프로필을 canonical 문안(`wiki/products/platform-profiles`)에 맞춰 파생·검사·적용·reload 검증·registry 기록 |
 | propagate-copy-decision | [skills/propagate-copy-decision/SKILL.md](skills/propagate-copy-decision/SKILL.md) | 사용자 결정 한 문장을 evidence → claim → 규칙 → 게이트 → 표면 순으로 전파하고 verify |
 
 ## 검증

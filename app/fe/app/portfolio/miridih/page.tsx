@@ -5,14 +5,14 @@ import { Container } from "@/components/site/container";
 import { ReviewLauncher } from "@/components/site/review-launcher";
 import { SiteFooter } from "@/components/site/site-footer";
 import { TopBar } from "@/components/site/topbar";
-import { JYP_PORTFOLIO } from "@/content/portfolios/jyp";
+import { MIRIDIH_PORTFOLIO } from "@/content/portfolios/miridih";
 import type { RolePortfolio } from "@/content/portfolios/types";
 
 import { RolePortfolioView } from "../role/role-portfolio-view";
 
 export const metadata: Metadata = {
-  title: "김대정 Portfolio · JYP ENTERTAINMENT Software Engineer / AI",
-  description: JYP_PORTFOLIO.description,
+  title: "김대정 Portfolio · 미리디 [미리캔버스] Product Engineer",
+  description: MIRIDIH_PORTFOLIO.description,
   robots: {
     index: false,
     follow: false,
@@ -21,8 +21,8 @@ export const metadata: Metadata = {
   },
 };
 
-export default function JypPortfolioPage() {
-  const portfolio: RolePortfolio<"jyp"> = JYP_PORTFOLIO;
+export default function MiridihPortfolioPage() {
+  const portfolio: RolePortfolio<"miridih"> = MIRIDIH_PORTFOLIO;
 
   if (process.env.NODE_ENV === "production") {
     notFound();
@@ -33,16 +33,16 @@ export default function JypPortfolioPage() {
       <div className="print:hidden">
         <TopBar
           variant="subpage"
-          crumb={<>Portfolio / JYP ENTERTAINMENT</>}
+          crumb={<>Portfolio / 미리디</>}
           tag="DRAFT"
         />
       </div>
       <Container variant="doc" className="flex-1 pb-24 print:pb-0">
         <RolePortfolioView
           portfolio={portfolio}
-          contextLabel="JYP ENTERTAINMENT · Software Engineer / AI"
-          resumeHref="/resume/jyp"
-          indexHeading="JYP 지원에서 먼저 볼 사례"
+          contextLabel="미리디 · Product Engineer"
+          resumeHref="/resume/miridih"
+          indexHeading="미리디 지원에서 먼저 볼 사례"
         />
       </Container>
       <div className="print:hidden">

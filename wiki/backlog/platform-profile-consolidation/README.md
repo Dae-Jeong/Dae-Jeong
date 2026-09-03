@@ -40,4 +40,8 @@ tags: [backlog, profile, platform, distribution]
 
 ## 승격
 
+**2026-09-03 승격됨**: canonical 문안·registry·절차는 [products/platform-profiles](../../products/platform-profiles/README.md)가 소유한다(Application Copy Harness의 platform 표면, 게이트 12·17). 이 폴더의 패키지·검증 문서는 실행 기록이다. 남은 것은 v3 live 적용과 Oopy 정리.
+
+### 이전 메모
+
 Wanted·LinkedIn·Remember·Groupby·RocketPunch는 최신 문안을 저장하고 reload 검증을 마쳤다. Saramin은 대상에서 제외했으며, Oopy 링크 교체·공개 종료 판단과 플랫폼 UI 잔여값을 닫을 때 `done`으로 전환한다.

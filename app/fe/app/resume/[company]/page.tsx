@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   return {
     title: `${target} Resume — 김대정`,
-    description: resume.roleVariant?.description ?? `${target} 지원용 맞춤 이력서`,
+    description: resume.roleVariant?.description ?? `김대정 이력서 · ${target}`,
     robots: {
       index: false,
       follow: false,

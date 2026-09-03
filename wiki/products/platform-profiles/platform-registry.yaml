@@ -1,0 +1,107 @@
+# 채용 플랫폼 프로필 registry — 플랫폼·필드·제약·live 상태의 단일 owner.
+# canonical 문안은 같은 폴더의 {platform}.md, 적용 절차는 README.md · skill sync-platform-profile.
+schema_version: 1
+updated_at: "2026-09-03"
+browser: orca-embedded             # 2026-09-03부터 검토·적용은 Orca 내장 브라우저(orca tab/snapshot/fill). 로그인은 사용자가 Orca 탭에서 직접
+canonical_version: product-engineer-v3
+
+platforms:
+  - id: wanted
+    name: 원티드
+    url: https://social.wanted.co.kr/my/profile
+    status: active
+    canonical: wanted.md
+    live_version: product-engineer-v3   # 2026-09-03: 프로필 소개·MediSolve 본문은 Orca로, 이력서 간단 소개·성과 제목은 사용자가 붙여넣기. 새로고침 확인, 금지어 0
+    live_verified_at: "2026-09-03"
+    drift: false
+    notes: "이력서 경력 한줄 요약(business_title)은 옛 제목 '유료 AI 제품 운영과 백엔드·AI 시스템 구축' 그대로(금지어 없음). 간단 소개·성과 제목 textbox는 자동 입력 5회 미저장 → 다음에도 사람이 붙여넣기"
+    automation:
+      text_input: partial           # 경력 본문 textarea는 fill + 작성 완료로 저장됨(2026-09-03 Orca). 간단 소개·제목 textarea는 미저장
+      click_fields: auto            # 직무·스킬 combobox·삭제
+    fields:
+      - { id: intro-short, label: 프로필 소개, limit: 150, surface: profile }
+      - { id: intro, label: 이력서 간단 소개, surface: resume, note: 5줄 권장 }
+      - { id: ai-usage, label: AI 활용 경험 3항목, limit: 50, note: 항목당 50자 }
+      - { id: job, label: 직무, value: 백엔드 개발자 }
+      - { id: title, label: 직책, value: Tech Lead }
+      - { id: careers, label: 경력 4건, note: 인증 경력 날짜 수정 불가 · 더데이랩스 별도 row 미적용 }
+      - { id: skills, label: 스킬 }
+      - { id: link, label: 링크, value: https://marinkim.xyz }
+  - id: linkedin
+    name: LinkedIn
+    url: https://www.linkedin.com/in/marinkim-dev
+    status: active
+    canonical: linkedin.md
+    live_version: product-engineer-v3
+    live_verified_at: "2026-09-03"  # Orca: headline·About(줄바꿈 보존)·MediSolve·더데이랩스 description 적용, 새로고침 확인. 금지어 0건
+    drift: false
+    notes: "Memento·STUDIO LAB·아이즈솔 description·대표 보유기술·Featured 미적용(live에 금지어 없음)"
+    automation:
+      text_input: auto              # 2026-09-03 Orca fill: 줄바꿈 포함 저장됨 (이전 paseo 기록과 다름)
+      click_fields: auto
+    fields:
+      - { id: headline, label: Headline, limit: 220 }
+      - { id: about, label: About, limit: 2600, newline: manual }
+      - { id: experience, label: Experience 6 entry, limit: 2000 }
+      - { id: skills, label: 대표 보유기술 5 }
+      - { id: website, label: 웹사이트, value: https://marinkim.xyz }
+      - { id: featured, label: Featured, note: 링크 검증 실패로 미등록 }
+  - id: remember
+    name: 리멤버
+    url: https://profile.rememberapp.co.kr/
+    status: active
+    canonical: remember.md
+    live_version: product-engineer-v3
+    live_verified_at: "2026-09-03"  # Orca: 커넥트용·채용 서비스용 소개, MediSolve·더데이랩스 본문 적용, 새로고침 확인. 금지어 0건
+    drift: false
+    notes: "Memento·STUDIO LAB·아이즈솔 본문·skill 15는 미적용(live에 금지어 없음)"
+    automation: { text_input: auto, click_fields: auto }
+    fields:
+      - { id: intro-connect, label: 커넥트용 소개 }
+      - { id: intro-hiring, label: 채용 서비스용 소개 }
+      - { id: careers, label: 경력 5건 }
+      - { id: skills, label: skill 15 }
+      - { id: website, label: 웹사이트, value: https://marinkim.xyz }
+  - id: groupby
+    name: 그룹바이
+    url: https://groupby.kr/scouts/my-profile
+    status: active
+    canonical: groupby.md
+    live_version: product-engineer-v3   # 2026-09-03: 소개(+수상·특허·자격)는 Orca로, MediSolve·더데이랩스 본문은 사용자가 붙여넣기(1차 소개 문단 오입력 → 재입력). 새로고침 확인, 금지어 0
+    live_verified_at: "2026-09-03"
+    drift: false
+    notes: "Memento·STUDIO LAB·아이즈솔 본문·skill 15 미적용(live에 금지어 없음). 경력 카드 연필은 자동 클릭 불가 → 다음에도 사람이"
+    automation: { text_input: auto, click_fields: partial, note: "경력 카드 연필 아이콘은 ref 없는 svg — 자동 클릭 불가(2026-09-03)" }
+    fields:
+      - { id: intro, label: 소개, note: credentials 목록 보존 확인 }
+      - { id: careers, label: 경력 5건 }
+      - { id: skills, label: skill 15 }
+      - { id: link, label: 포트폴리오, value: https://marinkim.xyz }
+  - id: rocketpunch
+    name: 로켓펀치
+    url: https://www.rocketpunch.com/@marinkim
+    status: active
+    canonical: rocketpunch.md
+    live_version: product-engineer-v3
+    live_verified_at: "2026-09-03"  # Orca 내장 브라우저(로그인)로 소개·MediSolve·더데이랩스 본문 적용, 새로고침 후 값 확인. 금지어 0건
+    live_checked_at: "2026-09-03"
+    drift: false
+    notes: "Memento·STUDIO LAB·아이즈솔 본문은 live에 금지어가 없어 미적용(canonical과 다름). 자동 AI 커리어 요약 재생성 여부 미확인"
+    automation: { text_input: auto, click_fields: auto }
+    fields:
+      - { id: intro, label: 소개, limit: 300 }
+      - { id: careers, label: 경력 5건 }
+      - { id: projects, label: 실무 프로젝트 3건, note: 후속 }
+      - { id: link, label: 포트폴리오, value: https://marinkim.xyz }
+  - id: saramin
+    name: 사람인
+    url: https://www.saramin.co.kr/zf_user/resume/resume-manage
+    status: excluded                # 2026-08 사용자 결정 — 동기화하지 않음
+  - id: jumpit
+    name: 점핏
+    url: https://jumpit.saramin.co.kr
+    status: excluded                # 이력서 미작성
+  - id: oopy
+    name: Oopy (옛 노션 포트폴리오)
+    url: https://daejeongkim.oopy.io
+    status: pending                 # 다른 플랫폼의 링크를 marinkim.xyz로 교체 뒤 공개 종료 판단
