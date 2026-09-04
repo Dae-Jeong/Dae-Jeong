@@ -259,7 +259,7 @@ export function CompanyAxOperatingModel() {
         <span className="block">실선 영역은 제품별로 실제 적용·운영한 흐름입니다.</span>
         <span className="block">
           점선 영역은 제품 운영에서 쌓인 기록을 회사 업무 AX로 넓히는 설계 범위입니다.
-          Agent는 실행안을 준비하고, 제품 판단과 최종 승인은 사람이 소유합니다.
+          Agent는 실행안을 준비하고 제품 판단과 최종 승인은 사람이 소유합니다.
         </span>
       </figcaption>
     </figure>

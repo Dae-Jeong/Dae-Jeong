@@ -99,7 +99,7 @@ function ServiceLanes() {
       <ProductLane
         eyebrow="BAY · ORDER / INVENTORY"
         role="구축 주도"
-        summary="요청 처리와 외부 연동의 실패 경계를 나누고, 작업 상태를 기록해 실패한 후속 작업만 다시 처리하게 했습니다."
+        summary="요청 처리와 외부 연동의 실패 경계를 나누고 작업 상태를 기록해 실패한 후속 작업만 다시 처리하게 했습니다."
         title="요청 경계와 작업 상태를 분리"
         steps={[
           ["TX", "API 판정 · 작업 상태 생성"],
@@ -162,7 +162,7 @@ export function CenturionContributionDiagram() {
       <figcaption className="sr-only">
         공통 Express API Gateway와 NestJS SSO 아래에서 DAY 예약 정책은 백엔드부터 화면,
         QA와 릴리스까지 연결을 주도했습니다. BAY 주문·재고는 요청 처리와 외부 연동의
-        실패 경계를 분리하고, 작업 상태·재시도·수동 복구가 가능한 backend 구축을
+        실패 경계를 분리하고 작업 상태·재시도·수동 복구가 가능한 backend 구축을
         주도했습니다. SAY 실시간
         AI 상담은 WebSocket session, DELTA와 COMPLETE 전사, 종료 후 재연결 차단을 공동
         개발했습니다. 시설·재고 연동과 여러 서비스의 로그인 세션 정책에도 기여했습니다.

@@ -402,10 +402,10 @@ function DocKo() {
             <span className="mb-1.5 block text-base font-medium text-fg">Tech Lead · Backend Engineer <span className="font-normal text-fg-2">— 제품 운영 리드</span></span>
             <PlainList
               items={[
-                <span key="thready-business" data-claim="thready.product-zero-to-one-contribution thready.frontend-product-delivery thready.prototype-to-user-operation thready.generation-quality-system thready.subscription-revenue-band"><PortfolioCaseLink href="https://marinkim.xyz/portfolio/thready" label="Thready 포트폴리오 사례 보기">Thready</PortfolioCaseLink>에서 고객 문제를 기능 우선순위와 품질 기준으로 구체화하고, <strong>기획·QA·마케팅과 제품 운영을 리드</strong>했습니다. 팀과 함께 실제 고객이 구독하는 유료 제품으로 만들었고, 이를 위해 FastAPI 백엔드·AI 생성/평가 시스템을 직접 구현·운영했으며 핵심 사용자·관리 화면은 coding agent로 완성했습니다.</span>,
+                <span key="thready-business" data-claim="thready.product-zero-to-one-contribution thready.frontend-product-delivery thready.prototype-to-user-operation thready.generation-quality-system thready.subscription-revenue-band"><PortfolioCaseLink href="https://marinkim.xyz/portfolio/thready" label="Thready 포트폴리오 사례 보기">Thready</PortfolioCaseLink>에서 고객 문제를 기능 우선순위와 품질 기준으로 구체화하고, <strong>기획·QA·마케팅과 제품 운영을 리드</strong>했습니다. 팀과 함께 실제 고객이 구독하는 유료 제품으로 만들었고 이를 위해 FastAPI 백엔드·AI 생성/평가 시스템을 직접 구현·운영했으며 핵심 사용자·관리 화면은 coding agent로 완성했습니다.</span>,
                 <span key="centurion" data-claim="career.thedaylabs-freelance centurion.msa-platform-context centurion.bay-async-backend centurion.day-product-integration centurion.say-realtime-ai centurion.ray-backend centurion.sso-session">피부과 운영 제품군에서는 법인 설립 전 <strong>초기 백엔드와 개발 기준</strong>을 세웠습니다. 이후 주문·재고 워커와 예약 정책의 백엔드·프런트엔드·QA·릴리스 연결을 주도했고, 실시간 AI 상담은 공동 주 기여, 시설·재고 연동과 SSO 정책은 일부 기능을 맡았습니다.</span>,
                 <span key="hospital-operations" data-claim="nexus.backend-architecture nexus.admin-backend-ownership">별도의 여러 피부과 운영·예약 시스템에서는 <strong>백엔드 architecture와 migration flow, Admin·Homepage API 구축을 주도</strong>하고 있습니다.</span>,
-                <span key="company-ax" data-claim="mediness.company-work-ax-design mediness.product-system-design-participation mediness.product-operations">MEDINESS의 제품 요구·운영 흐름 설계에 참여하고, Decision·SPEC·Work Package·QA·릴리스는 제품별로 적용·운영했습니다. 회사 AX 구조는 회의·의사결정·업무 배정·승인·후속 작업에서 agent가 맥락·실행안을 준비하고 판단은 사람이 확정하도록 설계하는 데 참여했습니다.</span>,
+                <span key="company-ax" data-claim="mediness.company-work-ax-design mediness.product-system-design-participation mediness.product-operations">MEDINESS의 제품 요구·운영 흐름 설계에 참여하고 Decision·SPEC·Work Package·QA·릴리스는 제품별로 적용·운영했습니다. 회사 AX 구조는 회의·의사결정·업무 배정·승인·후속 작업에서 agent가 맥락·실행안을 준비하고 판단은 사람이 확정하도록 설계하는 데 참여했습니다.</span>,
                 <span key="engineering-system" data-claim="be-template.backend-standard be-template.team-leverage be-template.agent-context infra.company-azure-ownership">조직 표준 FastAPI 템플릿과 agent 작업 맥락을 직접 구축했습니다. 여러 사내 서비스의 Azure·Vercel 배포 환경도 서비스가 동작하도록 구성하고 기본 운영을 맡았습니다.</span>,
                 <span key="joining-path" data-claim="career.memento-to-medisolve-early-member career.thedaylabs-freelance"><strong>합류 경로</strong> · Memento AI 개발 성과를 인정받아 MediSolve AI 초기 멤버로 영입됐고, 법인 설립 전 더데이랩스 프리랜서 기간(2025.02–04)을 거쳐 2025.04 정규 합류했습니다.</span>,
               ]}
@@ -433,7 +433,7 @@ function DocKo() {
             <span className="mb-1.5 block text-base font-medium text-fg">Vision AI Engineer <span className="font-normal text-fg-2">— 인턴</span></span>
             <PlainList
               items={[
-                <>Vision AI Engineer 인턴으로 제품 개발 경력을 시작했고, 이후 PM과 Backend Engineer로 역할을 넓혔습니다.</>,
+                <>Vision AI Engineer 인턴으로 제품 개발 경력을 시작했고 이후 PM과 Backend Engineer로 역할을 넓혔습니다.</>,
               ]}
             />
           </CareerRow>
@@ -469,7 +469,7 @@ function DocKo() {
             no="03"
             title="주문·재고 후속 작업을 API와 분리하고, 실패 상태를 다시 처리할 수 있게 설계"
             data-claim="centurion.bay-async-backend centurion.async-migration centurion.test-ci-foundation"
-            description="피부과 운영 제품군의 주문·재고 API와 실패 가능한 후속 작업을 나누고, 자동 재시도가 끝난 뒤에도 원인과 상태를 남겨 운영자가 다시 처리할 수 있게 했습니다."
+            description="피부과 운영 제품군의 주문·재고 API와 실패 가능한 후속 작업을 나누고 자동 재시도가 끝난 뒤에도 원인과 상태를 남겨 운영자가 다시 처리할 수 있게 했습니다."
             evidence={[
               <>async FastAPI 실행 모델과의 정합성을 기준으로 Celery에서 TaskIQ·RabbitMQ로 전환하고, 워커 이미지를 API와 분리했습니다.<Src>피부과 운영 제품군 · 주문·재고</Src></>,
               <>작업 상태·retry·terminal failure를 기록하고 수동 재처리 경계를 뒀습니다.<Src>피부과 운영 제품군 · 주문·재고</Src></>,
@@ -491,7 +491,7 @@ function DocKo() {
             no="05"
             title="FastAPI·AI 에이전트 실행 기준을 조직 표준으로 구축"
             data-claim="be-template.backend-standard be-template.team-leverage be-template.agent-context mediness.quality-evidence-harness"
-            description="프로젝트마다 반복되던 구조와 작업 규칙을 실행 가능한 템플릿으로 만들고, 사람과 AI 에이전트가 같은 기준을 읽도록 했습니다."
+            description="프로젝트마다 반복되던 구조와 작업 규칙을 실행 가능한 템플릿으로 만들고 사람과 AI 에이전트가 같은 기준을 읽도록 했습니다."
             evidence={[
               <>계층형 아키텍처·DI·트랜잭션·오류 계약·ADR·운영 문서를 갖춘 조직 표준 FastAPI 템플릿을 설계·구축했습니다.<Src>조직 표준</Src></>,
               <>제품별 차이는 명시적인 선택지로 남기고, 로깅·모니터링 같은 공통 기능은 같은 기준으로 적용했습니다.<Src>조직 표준</Src></>,
@@ -511,7 +511,7 @@ function DocKo() {
           <NumberedRow label="UX 컨설팅" labelWidth="lg" className={resumeType.careerRow} data-claim="career.product-ux-practice career.ux-consulting-product-outcome">
             <ExternalActivity
               title="운영 서비스 UX 컨설팅"
-              description="사용자가 보상 포인트를 알아차리기 어렵고 다시 방문할 이유도 약하다고 보고, 배지와 푸시 알림을 활용한 개선 가설과 Figma 화면을 제안했습니다."
+              description="사용자가 보상 포인트를 알아차리기 어렵고 다시 방문할 이유도 약하다고 보고 배지와 푸시 알림을 활용한 개선 가설과 Figma 화면을 제안했습니다."
               outcomeLabel="성과"
               outcome="서비스 측은 여러 개선안이 반영된 뒤 3개월 안에 App Store 순위가 9위에서 5위로 오르고, DAU가 기존 대비 200% 수준이 됐다고 공유했습니다. 제안은 이 공동 성과에 기여했습니다."
             />

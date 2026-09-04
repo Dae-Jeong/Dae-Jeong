@@ -42,17 +42,17 @@ const THREADY_PRODUCT: CareerProject = {
   context: "아이디어 제안 → prototype 이후 제품화 주도 → 고객이 구독하는 서비스 운영",
   role: "제품 운영 리드 · Backend/AI 직접 구현 · 핵심 화면은 coding agent로 완성",
   problem:
-    "여러 채널을 운영하는 고객은 자료 수집·작성·검수·예약을 매번 반복했고, 반응이 좋은 글의 기준은 감에 의존했습니다.",
+    "여러 채널을 운영하는 고객은 자료 수집·작성·검수·예약을 매번 반복했고 반응이 좋은 글의 기준은 감에 의존했습니다.",
   decision:
-    "글쓰기만 AI에 맡기지 않고 자료 수집·정체성·작성·검수 역할을 나눠 AI는 초안과 1차 검수를, 사람은 최종 수정과 발행 판단을 맡게 했습니다. 좋은 글의 기준은 판정기가 아니라 판단 데이터를 쌓는 장치로 LLM judge를 두고, 기준 자체는 직접 수집한 실측 corpus로 다시 쟀습니다.",
+    "글쓰기만 AI에 맡기지 않고 자료 수집·정체성·작성·검수 역할을 나눠 AI는 초안과 1차 검수를, 사람은 최종 수정과 발행 판단을 맡게 했습니다. 좋은 글의 기준은 판정기가 아니라 판단 데이터를 쌓는 장치로 LLM judge를 두고 기준 자체는 직접 수집한 실측 corpus로 다시 쟀습니다.",
   implementation: [
     "FastAPI 제품 API와 별도 AI application·DB를 인증된 HTTP 경계로 분리했습니다. 콘텐츠 가져오기·URL preview·source 검증과 생성·예약·발행·대시보드·관리 화면은 coding agent로 구현해 직접 검수·배포했습니다.",
-    "typed prompt builder·planner/writer 생성·LLM judge·사람 라벨링을 분리해 평가 이력을 남기고, 대량 corpus importer는 (source, source_key) upsert와 batch rollback으로 재적재를 멱등하게 만들었습니다.",
-    "품질 기준값이 자사 출력을 되먹이던 순환을 재실측으로 발견해 교정하고, 반증된 접근은 '다시 시도하지 말 것' 로그로 남겨 실험 범위를 좁혔습니다.",
+    "typed prompt builder·planner/writer 생성·LLM judge·사람 라벨링을 분리해 평가 이력을 남기고 대량 corpus importer는 (source, source_key) upsert와 batch rollback으로 재적재를 멱등하게 만들었습니다.",
+    "품질 기준값이 자사 출력을 되먹이던 순환을 재실측으로 발견해 교정하고 반증된 접근은 '다시 시도하지 말 것' 로그로 남겨 실험 범위를 좁혔습니다.",
   ],
   verification: [
-    "local 격리 DB에서 corpus를 두 번 적재해 건수 불변과 기존 라벨 보존을 확인했고, release·QA·task 기준으로 실제 사용자 흐름의 회귀를 확인했습니다.",
-    "외부 AI 5xx는 실패 유형으로 분류해 재시도·최종 실패·사용자 재시도 경로를 두고, 반복 장애 모델은 Sentry 확인 뒤 선택지에서 일시 제외했습니다.",
+    "local 격리 DB에서 corpus를 두 번 적재해 건수 불변과 기존 라벨 보존을 확인했고 release·QA·task 기준으로 실제 사용자 흐름의 회귀를 확인했습니다.",
+    "외부 AI 5xx는 실패 유형으로 분류해 재시도·최종 실패·사용자 재시도 경로를 두고 반복 장애 모델은 Sentry 확인 뒤 선택지에서 일시 제외했습니다.",
   ],
   result: "기획·QA·마케팅과 제품 운영을 리드해 실제 고객이 구독료를 내는 제품으로 출시·운영 중입니다.",
   boundary: "매출은 팀·제품의 결과입니다. 초기 prototype은 다른 engineer가 만들었고, 제 범위는 아이디어 제안과 prototype 이후 제품화·Backend·AI·운영 리드입니다.",
@@ -77,19 +77,19 @@ const PRODUCT_SYSTEM: CareerProject = {
   context: "제품별 결정·명세·작업·QA·릴리스 운영 리드, QA 팀과의 하네스화, 회사 AX 구조 설계 참여",
   role: "제품 단위 운영 리드 · QA 판정 규칙 설계 · 회사 AX 설계 참여",
   problem:
-    "제품 간 맥락 공유가 사람에 의존해 요구·판단을 재확인하는 비용이 컸고, 담당 교체·병행 시 실행이 지연되는 병목이 잦았습니다. QA는 실행이 성공하면 통과로 보는 경우가 있어 AI 기능의 품질 판정이 흐려졌습니다.",
+    "제품 간 맥락 공유가 사람에 의존해 요구·판단을 재확인하는 비용이 컸고 담당 교체·병행 시 실행이 지연되는 병목이 잦았습니다. QA는 실행이 성공하면 통과로 보는 경우가 있어 AI 기능의 품질 판정이 흐려졌습니다.",
   decision:
-    "결정·명세·작업·릴리스 근거를 실행 원장으로 축적해 사람과 AI가 같은 맥락을 읽게 하되, 우선순위·승인·릴리스처럼 판단이 필요한 단계는 사람이 확정하는 경계를 지켰습니다. QA는 요구사항을 REQ로 쪼개 evidence로 닫는 판정 규칙을 세우고, 실행 성공과 품질 통과를 분리했습니다.",
+    "결정·명세·작업·릴리스 근거를 실행 원장으로 축적해 사람과 AI가 같은 맥락을 읽게 하되, 우선순위·승인·릴리스처럼 판단이 필요한 단계는 사람이 확정하는 경계를 지켰습니다. QA는 요구사항을 REQ로 쪼개 evidence로 닫는 판정 규칙을 세우고 실행 성공과 품질 통과를 분리했습니다.",
   implementation: [
-    "제품별 pipeline registry에 결정·명세·작업 기록을 실행 원장으로 적용하고, BE·FE·QA 담당 lane과 QA 승인을 release gate에 연결해 release note 생성을 자동화했습니다.",
+    "제품별 pipeline registry에 결정·명세·작업 기록을 실행 원장으로 적용하고 BE·FE·QA 담당 lane과 QA 승인을 release gate에 연결해 release note 생성을 자동화했습니다.",
     "전 제품 공통 Quality Evidence Harness를 QA 팀원의 서포트를 받아 작성했습니다. REQ별 evidence plan(FE·DB·Log·Network·AI quality), PASS/FAIL/UNKNOWN 판정, 반복 이슈의 자동화 승격, LLM judge 단독 승인 금지가 규칙입니다.",
-    "이 판정 layer를 QA 팀이 운영하는 AI QA 에이전트 파이프라인(시나리오→TC→자동화→버그 등록)에 연결하고, 백그라운드 작업의 고장 모드 카탈로그와 fault-injection QA를 설계로 제안했습니다.",
+    "이 판정 layer를 QA 팀이 운영하는 AI QA 에이전트 파이프라인(시나리오→TC→자동화→버그 등록)에 연결하고 백그라운드 작업의 고장 모드 카탈로그와 fault-injection QA를 설계로 제안했습니다.",
   ],
   verification: [
-    "팀 주 1회 agent 활용 회고로 무엇을 만들지와 구현 방법을 함께 정했고, Slack에서 접수한 이슈를 사내 시스템에 남겨 해결 상태를 추적하는 흐름을 제안했습니다.",
+    "팀 주 1회 agent 활용 회고로 무엇을 만들지와 구현 방법을 함께 정했고 Slack에서 접수한 이슈를 사내 시스템에 남겨 해결 상태를 추적하는 흐름을 제안했습니다.",
   ],
   result:
-    "담당자가 바뀌어도 기록에서 업무를 이어가 인수인계·맥락 복원 비용이 낮아졌고, 유사 기능에서 기존 판단을 재사용해 lead time 단축에 기여했습니다. 이 구조를 회의·의사결정·업무 배정·승인으로 넓히는 회사 AX 설계에 참여했습니다.",
+    "담당자가 바뀌어도 기록에서 업무를 이어가 인수인계·맥락 복원 비용이 낮아졌고 유사 기능에서 기존 판단을 재사용해 lead time 단축에 기여했습니다. 이 구조를 회의·의사결정·업무 배정·승인으로 넓히는 회사 AX 설계에 참여했습니다.",
   boundary:
     "전사 문서 규칙 정의와 QA AI 에이전트 플러그인 구현은 다른 담당자가 주도했습니다. 제 범위는 제품 단위 적용·운영 리드, 공통 QA 판정 규칙 설계, AI QA 팀 운영 참여입니다. lead time·QA 시간의 수치는 측정하지 않았습니다.",
   claimIds: [
@@ -111,11 +111,11 @@ const AGENT_PROTOTYPE: CareerProject = {
   problem:
     "원하는 작업을 말하면 제품이 허용된 기능을 골라 실행하는 흐름이 실제로 성립하는지, 예약·발행·삭제 같은 변경 작업을 어디까지 agent에 맡길지 검증이 필요했습니다.",
   decision:
-    "multi-agent 대신 planner-executor 하나로 두고 planner는 typed plan만 만들게 했습니다. 실행은 capability registry가 등록·일치를 확인한 action만 dispatch하고, 변경 작업은 다음 turn의 typed confirmation과 receipt idempotency를 통과할 때만 상태를 바꿉니다.",
+    "multi-agent 대신 planner-executor 하나로 두고 planner는 typed plan만 만들게 했습니다. 실행은 capability registry가 등록·일치를 확인한 action만 dispatch하고 변경 작업은 다음 turn의 typed confirmation과 receipt idempotency를 통과할 때만 상태를 바꿉니다.",
   implementation: [
-    "글감 탐색·기획·작성·수정 7개 편집 action과 계정·게시물·성과 13개 운영 action을 capability로 등록하고, 편집은 기존 writer를 재사용했습니다.",
+    "글감 탐색·기획·작성·수정 7개 편집 action과 계정·게시물·성과 13개 운영 action을 capability로 등록하고 편집은 기존 writer를 재사용했습니다.",
     "conversation·message·turn·tool result·versioned artifact를 분리한 원장과 append-only activity event, token-aware context selection과 compaction snapshot을 구현했습니다.",
-    "명확한 읽기 요청은 deterministic fast lane으로 처리하고, 모호한 mutation 요청은 planner fallback으로 실행하지 않게 했습니다.",
+    "명확한 읽기 요청은 deterministic fast lane으로 처리하고 모호한 mutation 요청은 planner fallback으로 실행하지 않게 했습니다.",
   ],
   verification: [
     "승인 전 무변경·승인 뒤 상태 전이·새로고침 뒤 activity와 artifact 복원을 확인했고 prototype 전체 test 679개가 통과했습니다.",
@@ -133,17 +133,17 @@ const AI_RUNTIME: CareerProject = {
   problem:
     "제품 정책·원장과 AI 생성 lifecycle이 한 backend·DB에 있어 AI 확장과 장애가 원장에 결합됐고, 분리 뒤에는 전달 유실과 역순 도착이 최신 상태를 덮을 수 있었습니다. 다중 worker가 같은 생성 원장을 두고 경합하는 문제도 있었습니다.",
   decision:
-    "DB를 공유하지 않고 독립 FastAPI application·DB로 분리해 인증된 HTTP 계약으로만 연결하고, 전달은 원장 변경과 같은 transaction에 기록하는 Transactional Outbox로 두었습니다. 생성 원장은 상태 전이 규칙을 entity에 복원하고 version CAS로 경합을 중재했습니다.",
+    "DB를 공유하지 않고 독립 FastAPI application·DB로 분리해 인증된 HTTP 계약으로만 연결하고 전달은 원장 변경과 같은 transaction에 기록하는 Transactional Outbox로 두었습니다. 생성 원장은 상태 전이 규칙을 entity에 복원하고 version CAS로 경합을 중재했습니다.",
   implementation: [
     "lease 기반 claim·attempt token·delivery version fence·멱등 consumer·최대 재시도 뒤 terminal failure 보존을 구현했습니다.",
     "생성 원장은 optimistic lock으로 다중 worker 승자를 정하고, 멱등 replay 판별과 전이가 같은 판정을 쓰게 해 이중 정의를 없앴습니다. quota는 예약 시점에 잡고 admission gate가 확정 사용량과 진행 중 예약을 함께 봐 동시 요청의 초과 실행을 막습니다.",
     "STG 생성 이력·품질 기록·실행 추적을 parent→child 순서로 streaming copy했고 영구 cross-DB link는 쓰지 않았습니다.",
   ],
   verification: [
-    "local rehearsal·건수·id·status·사유를 결합한 MD5 fingerprint·FK orphan 0건으로 이관 정합성을 확인했고, stale PUT/DELETE fence test와 양쪽 서비스 전체 회귀를 통과했습니다.",
+    "local rehearsal·건수·id·status·사유를 결합한 MD5 fingerprint·FK orphan 0건으로 이관 정합성을 확인했고 stale PUT/DELETE fence test와 양쪽 서비스 전체 회귀를 통과했습니다.",
     "health가 성공해도 생성이 실패한 사례를 계기로 배포 성공과 기능 동작을 분리한 post-deploy 생성 API E2E gate를 세웠습니다.",
   ],
-  result: "독립 AI application·DB를 STG·Prod에서 운영 중이며, 지연·중복·역순 전달이 최신 원장 상태를 덮지 않는 복구 경계를 확보했습니다.",
+  result: "독립 AI application·DB를 STG·Prod에서 운영 중이며 지연·중복·역순 전달이 최신 원장 상태를 덮지 않는 복구 경계를 확보했습니다.",
   boundary: "Prod migration 완료와 무중단 전환은 주장하지 않습니다. 경합·초과 실행 건수는 측정하지 않았습니다.",
   claimIds: [
     "thready.ai-service-boundary",
@@ -165,7 +165,7 @@ export const JYP_CAREER_DESCRIPTION: CareerDescriptionDocument = {
   updatedAt: "2026-09-03",
   summary: [
     "기획자로 시작해 백엔드로 왔고, 아이디어를 제안한 AI 콘텐츠 제품의 FastAPI 백엔드와 AI 생성·평가 시스템을 직접 만들고 핵심 화면은 coding agent로 완성해 월 1천만원 수준의 구독 매출이 발생하는 제품으로 운영합니다.",
-    "이 문서는 이력서의 성과를 같은 순서로 풀어, 각 항목에서 무엇이 문제였고 무엇을 판단했으며 어떤 경계를 구현하고 어떻게 검증했는지를 적었습니다. 화면은 coding agent로 구현하고 직접 검수했으며, 수치는 측정된 것만 썼습니다.",
+    "이 문서는 이력서의 성과를 같은 순서로 풀어 각 항목에서 무엇이 문제였고 무엇을 판단했으며 어떤 경계를 구현하고 어떻게 검증했는지를 적었습니다. 화면은 coding agent로 구현하고 직접 검수했으며 수치는 측정된 것만 썼습니다.",
   ],
   companies: [
     {

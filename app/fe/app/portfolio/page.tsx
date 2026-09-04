@@ -26,13 +26,13 @@ export default function PortfolioPage() {
             </h1>
             <div className="mt-7 grid grid-cols-[minmax(0,0.9fr)_minmax(320px,1.1fr)] gap-10 border-t border-border pt-6 max-lg:grid-cols-1 max-lg:gap-5">
               <p className="m-0 text-lg font-semibold leading-[1.6] text-pretty">
-                고객이 돈을 내는 이유를 찾고, 기획·QA·마케팅과 제품 판단부터 출시·운영까지
+                고객이 돈을 내는 이유를 찾고 기획·QA·마케팅과 제품 판단부터 출시·운영까지
                 이끌었습니다. 팀과 함께 Thready를 실제 고객이 결제하는 제품으로 만들었습니다.
               </p>
               <p className="m-0 text-base leading-[1.75] text-fg-2 text-pretty">
-                제품 판단부터 구현·출시·운영까지 연결하고, 그 과정에 필요한 backend·AI·핵심
+                제품 판단부터 구현·출시·운영까지 연결하고 그 과정에 필요한 backend·AI·핵심
                 frontend를 직접 구축했습니다. 다른 제품에서는 비동기 작업과 실시간 세션의
-                실패 경계를 다뤘고, 제품에서 쌓인 결정과 검증 기록을 회사 업무로 확장하는 AX
+                실패 경계를 다뤘고 제품에서 쌓인 결정과 검증 기록을 회사 업무로 확장하는 AX
                 구조 설계에도 참여했습니다.
               </p>
             </div>
@@ -90,7 +90,7 @@ export default function PortfolioPage() {
                   </div>
                   <div>
                     <h3 className="m-0 text-lg font-semibold leading-[1.4]">Stripe 선결제부터 Webhook·취소·환불까지 결제 상태 흐름을 구축했습니다.</h3>
-                    <p className="m-0 mt-3 text-sm leading-[1.65] text-fg-2">Stripe Checkout manual capture 영역을 구축하고 local transaction ID로 Checkout·Webhook을 결제 이력과 연결했습니다. 예약 처리에 실패하면 PaymentIntent 상태에 따라 cancel/refund하고, 마일리지 복원·이용권 삭제는 provider의 환불 완료 뒤로 옮겼습니다.</p>
+                    <p className="m-0 mt-3 text-sm leading-[1.65] text-fg-2">Stripe Checkout manual capture 영역을 구축하고 local transaction ID로 Checkout·Webhook을 결제 이력과 연결했습니다. 예약 처리에 실패하면 PaymentIntent 상태에 따라 cancel/refund하고 마일리지 복원·이용권 삭제는 provider의 환불 완료 뒤로 옮겼습니다.</p>
                   </div>
                 </div>
                 <div className="portfolio-keep mt-6 grid grid-cols-[repeat(5,minmax(0,1fr))] border-y border-border text-center text-xs max-md:grid-cols-1 max-md:text-left print:grid-cols-5 print:text-center">
@@ -105,7 +105,7 @@ export default function PortfolioPage() {
           <section className="portfolio-keep my-14 bg-fg px-7 py-9 text-bg print:my-8 print:border print:border-fg print:bg-transparent print:text-fg">
             <p className="m-0 text-sm font-medium text-bg/65 print:text-muted">다음 제품에서 맡고 싶은 일</p>
             <h2 className="m-0 mt-3 max-w-[900px] text-[clamp(1.7rem,3vw,2.7rem)] font-semibold leading-[1.2] tracking-[-0.03em] text-balance">
-              고객 문제를 실제 매출이 발생하는 제품으로 만들고, 그 제품을 계속 운영할 시스템까지 책임집니다.
+              고객 문제를 실제 매출이 발생하는 제품으로 만들고 그 제품을 계속 운영할 시스템까지 책임집니다.
             </h2>
             <p className="m-0 mt-5 max-w-[760px] text-base leading-[1.7] text-bg/75 print:text-fg-2">
               제품 판단과 직접 구현을 함께 맡을 Tech Lead·Backend Engineer 역할이라면 이야기 나누고 싶습니다.

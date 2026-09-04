@@ -190,7 +190,7 @@ export const FEATURING_RESUME = {
       no: "02",
       title: "규칙을 먼저 설계한 뒤 돌아가는 제품을 멈추지 않고 backend를 교체했고, 결함 재발이 약 94% 줄었습니다",
       description: [
-        "빠른 검증 중심으로 만들어진 초기 backend는 도메인 의존성이 얽혀 회원 로직 변경이 AI 생성 중단으로 이어졌고, 해결된 QA 이슈가 같은 영역에서 다른 형태로 재발했습니다.",
+        "빠른 검증 중심으로 만들어진 초기 backend는 도메인 의존성이 얽혀 회원 로직 변경이 AI 생성 중단으로 이어졌고 해결된 QA 이슈가 같은 영역에서 다른 형태로 재발했습니다.",
         {
           text: "부분 수정과 backend만 병렬 재구축하는 안을 비교해, 서비스가 작고 AI 확장이 예정된 시점이라 재구축을 택하되 기존 frontend와 릴리스 흐름은 유지했습니다. 패턴·계층·검증 하네스를 먼저 세우고 그 위에서 새 backend를 나란히 만들어 응답을 비교한 뒤 전환했습니다.",
           source: "Thready",
@@ -248,9 +248,9 @@ export const FEATURING_RESUME = {
       no: "04",
       title: "제품 원장과 AI 실행 상태를 분리하고, 전달 보장·멱등 소비·정합 검증으로 지연·중복·역순 전달이 최신 상태를 덮지 않게 했습니다",
       description: [
-        "제품 정책·원장과 AI 생성 lifecycle이 한 backend·DB에 있어 AI 확장과 장애가 원장에 결합됐고, 분리하면 전달 유실과 역순 도착이 최신 상태를 덮을 수 있었습니다.",
+        "제품 정책·원장과 AI 생성 lifecycle이 한 backend·DB에 있어 AI 확장과 장애가 원장에 결합됐고 분리하면 전달 유실과 역순 도착이 최신 상태를 덮을 수 있었습니다.",
         {
-          text: "DB를 공유하지 않고 독립 FastAPI application·DB로 분리해 인증된 HTTP 계약으로만 연결하고, 전달은 원장 변경과 같은 transaction에 기록하는 Transactional Outbox로 두었습니다. 소비 쪽은 더 높은 version만 받아들이는 멱등 consumer로, 생성 원장은 version CAS로 worker 경합을 중재했습니다.",
+          text: "DB를 공유하지 않고 독립 FastAPI application·DB로 분리해 인증된 HTTP 계약으로만 연결하고 전달은 원장 변경과 같은 transaction에 기록하는 Transactional Outbox로 두었습니다. 소비 쪽은 더 높은 version만 받아들이는 멱등 consumer로, 생성 원장은 version CAS로 worker 경합을 중재했습니다.",
           source: "Thready · AI",
         },
         {

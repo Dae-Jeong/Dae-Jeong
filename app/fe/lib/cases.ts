@@ -48,11 +48,11 @@ export const CASES: CaseMeta[] = [
   {
     slug: "thready",
     no: "01",
-    name: "아이디어를 팀과 실제 고객이 구독하는 제품으로 만들고, 운영에 필요한 시스템을 직접 구축했습니다.",
+    name: "아이디어를 팀과 실제 고객이 구독하는 제품으로 만들고 운영에 필요한 시스템을 직접 구축했습니다.",
     shortName: "AI 콘텐츠 유료 제품화·운영",
     tag: "AI 콘텐츠 제품 · Thready",
     blurb:
-      "고객이 구독하는 이유를 기획·QA·마케팅과 함께 구체화하고, 기능 우선순위부터 출시·운영까지 이끌었습니다. 제품에 필요한 FastAPI backend·AI 생성/평가 system을 직접 구축하고 핵심 화면은 coding agent로 완성했으며, 제품 원장과 AI 실행부의 경계를 분리했습니다.",
+      "고객이 구독하는 이유를 기획·QA·마케팅과 함께 구체화하고 기능 우선순위부터 출시·운영까지 이끌었습니다. 제품에 필요한 FastAPI backend·AI 생성/평가 system을 직접 구축하고 핵심 화면은 coding agent로 완성했으며 제품 원장과 AI 실행부의 경계를 분리했습니다.",
     role: "제품 운영 리드 · 핵심 제품 시스템 직접 구현",
     scope: "제품화·운영 · Backend · AI · 핵심 Frontend",
     proof: [
@@ -111,11 +111,11 @@ export const CASES: CaseMeta[] = [
   {
     slug: "centurion-platform",
     no: "03",
-    name: "실패한 작업은 다시 돌리고, 실시간 상담은 빠르게 반응하면서도 엉뚱한 발화를 덮지 않게 만들었습니다.",
+    name: "실패한 작업은 다시 돌리고 실시간 상담은 빠르게 반응하면서도 엉뚱한 발화를 덮지 않게 만들었습니다.",
     shortName: "의료 MSA · 작업 복구와 실시간 상담",
     tag: "피부과 운영 제품군 · 주문·재고 / 실시간 상담 backend",
     blurb:
-      "주문·재고 backend는 요청 처리와 외부 연동의 실패 경계를 나누고, 명시적인 작업 상태·재시도·수동 복구 흐름을 구축했습니다. 실시간 AI 상담은 공동 개발하며 VAD 발화 감지, DELTA·COMPLETE 전사 흐름, session lifecycle을 분리했습니다.",
+      "주문·재고 backend는 요청 처리와 외부 연동의 실패 경계를 나누고 명시적인 작업 상태·재시도·수동 복구 흐름을 구축했습니다. 실시간 AI 상담은 공동 개발하며 VAD 발화 감지, DELTA·COMPLETE 전사 흐름, session lifecycle을 분리했습니다.",
     role: "주문·재고 주도 · 실시간 상담 공동 기여",
     scope: "멀티 서비스 · 비동기 작업 · 실시간 통신",
     proof: [
@@ -188,7 +188,7 @@ export const CASES: CaseMeta[] = [
     shortName: "회사 AX 실행 체계",
     tag: "Company AX · MediSolve AI",
     blurb:
-      "제품의 Decision·SPEC·Work Package·QA·release 흐름을 먼저 운영하고, 의사결정·회의·업무 배정·승인·후속 작업까지 같은 맥락에서 이어지는 회사 AX 구조 설계에 참여했습니다.",
+      "제품의 Decision·SPEC·Work Package·QA·release 흐름을 먼저 운영하고 의사결정·회의·업무 배정·승인·후속 작업까지 같은 맥락에서 이어지는 회사 AX 구조 설계에 참여했습니다.",
     role: "AX 구조 설계 참여 · 제품 운영 Lead · Backend System Owner",
     scope: "Product · Work System · Agent Context · Human Gate",
     proof: [

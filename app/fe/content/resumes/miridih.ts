@@ -41,7 +41,7 @@ export const MIRIDIH_RESUME = {
       ],
     },
     {
-      text: "기획자로 시작해 백엔드로 왔고, 아이디어를 제안한 AI 콘텐츠 제품의 FastAPI 백엔드와 AI 생성·평가 시스템을 직접 만들고 핵심 화면은 coding agent로 완성해 월 1천만원 수준의 구독 매출이 발생하는 제품으로 운영합니다. 커머스(생성형 AI 상세페이지)·피부과 운영·SNS 콘텐츠 세 도메인에서 현업의 반복 업무를 실제로 쓰이는 제품으로 만들었고, 대규모 콘텐츠 데이터를 검수 가능한 구조와 사람 평가 워크벤치로 바꿨습니다.",
+      text: "기획자로 시작해 백엔드로 왔고, 아이디어를 제안한 AI 콘텐츠 제품의 FastAPI 백엔드와 AI 생성·평가 시스템을 직접 만들고 핵심 화면은 coding agent로 완성해 월 1천만원 수준의 구독 매출이 발생하는 제품으로 운영합니다. 커머스(생성형 AI 상세페이지)·피부과 운영·SNS 콘텐츠 세 도메인에서 현업의 반복 업무를 실제로 쓰이는 제품으로 만들었고 대규모 콘텐츠 데이터를 검수 가능한 구조와 사람 평가 워크벤치로 바꿨습니다.",
       claimIds: [
         "thready.product-zero-to-one-contribution",
         "thready.frontend-product-delivery",
@@ -99,7 +99,7 @@ export const MIRIDIH_RESUME = {
         { text: " — 인턴 합류 후 정규직 전환 · 회사 폐업으로 종료" },
       ],
       details: [
-        "FastAPI·SQLAlchemy 2.0·MySQL 예약·결제 backend에서 Stripe Checkout 선결제 영역을 구축하고, 환불 유형별 처리 순서와 마일리지 복원 시점을 조정해 결제 상태 정합성 보완",
+        "FastAPI·SQLAlchemy 2.0·MySQL 예약·결제 backend에서 Stripe Checkout 선결제 영역을 구축하고 환불 유형별 처리 순서와 마일리지 복원 시점을 조정해 결제 상태 정합성 보완",
       ],
       claimIds: [
         "career.memento-fastapi-backend",
@@ -212,7 +212,7 @@ export const MIRIDIH_RESUME = {
       no: "04",
       title: "의료 시술 지식을 canonical 데이터로 옮기고, 구조화 조회가 판단하고 문헌 검색이 근거를 보강하는 hybrid retrieval API를 설계해 출처 정합성을 지켰습니다",
       description: [
-        "시술·고민·제품·금기·간격·추천 패키지·문헌 근거가 JSON과 문서에 흩어져 있어 자연어 질의에 답하려면 사람이 찾아 조합해야 했고, 검색 결과가 안전·추천 판정을 새로 만들어 버릴 위험이 있었습니다.",
+        "시술·고민·제품·금기·간격·추천 패키지·문헌 근거가 JSON과 문서에 흩어져 있어 자연어 질의에 답하려면 사람이 찾아 조합해야 했고 검색 결과가 안전·추천 판정을 새로 만들어 버릴 위험이 있었습니다.",
         {
           text: "지식의 대부분이 관계가 명확한 구조화 데이터라 문서를 전부 벡터화하는 방식으로 시작하지 않았습니다. 자연어 질의를 canonical 엔티티로 확정한 뒤 구조화 조회가 판단하고 문헌 검색이 근거를 보강하는 hybrid retrieval로 정했고, 실측 규모(수십~수백 건)에서 vector DB·chunking·reranker는 평가셋에서 recall 부족이 증명될 때만 추가하기로 했습니다. LLM은 출처 ID와 content revision이 붙은 Context Pack의 문장화만 맡고, 안전·추천 판정은 구조화 규칙만 내리게 경계를 뒀습니다.",
           source: "시술 정보 지식 플랫폼",

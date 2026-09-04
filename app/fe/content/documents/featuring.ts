@@ -14,7 +14,7 @@ const SNS_DATA: CareerProject = {
   problem:
     "반응이 좋은 콘텐츠를 임계값 하나로 정의하기 어려웠고, 게시물의 최신 상태·반복 관측·원문·사람 평가가 서로 다른 생명주기를 가져 한 table로는 정합이 깨졌습니다.",
   decision:
-    "URL별 최신 상태와 시계열 관측을 분리하고, 절대·저자 상대·도메인 상대·참여 품질·합의의 outcome 후보를 병렬로 설계했습니다. 품질 판정은 틀리지 않았는가(자동 게이트)·플랫폼다운가(실측 분포)·통하는가(사람) 3층으로 나눠 아래층을 못 넘으면 위층을 묻지 않게 했습니다.",
+    "URL별 최신 상태와 시계열 관측을 분리하고 절대·저자 상대·도메인 상대·참여 품질·합의의 outcome 후보를 병렬로 설계했습니다. 품질 판정은 틀리지 않았는가(자동 게이트)·플랫폼다운가(실측 분포)·통하는가(사람) 3층으로 나눠 아래층을 못 넘으면 위층을 묻지 않게 했습니다.",
   implementation: [
     "기존 제품 projection과 FK를 공유하지 않는 독립 labeling bounded context(schema·migration·repository·service·API·UI workbench)를 구축했습니다.",
     "importer는 JSONL을 typed batch로 검증하고 post는 (source, source_key) upsert, 이어쓰기는 source post 단위 replace, malformed line은 batch rollback으로 처리해 재적재를 멱등하게 만들었습니다.",
@@ -22,9 +22,9 @@ const SNS_DATA: CareerProject = {
   ],
   verification: [
     "local 격리 DB에서 전체 corpus를 두 번 적재해 건수 불변을, 증분 병합에서 기존 라벨 보존과 신규분 반영을 확인하고 API·UI·DB를 교차 대조했습니다.",
-    "측정 표본을 소표본에서 대량 corpus로 늘리는 과정에서 프롬프트 기준값이 자사 출력을 되먹이던 순환을 재실측으로 발견해 교정했고, 반증된 접근은 로그로 남겨 재시도를 막았습니다.",
+    "측정 표본을 소표본에서 대량 corpus로 늘리는 과정에서 프롬프트 기준값이 자사 출력을 되먹이던 순환을 재실측으로 발견해 교정했고 반증된 접근은 로그로 남겨 재시도를 막았습니다.",
   ],
-  result: "감에 의존하던 글쓰기 기준이 직접 수집한 실측 corpus 기반 생성·평가 기준으로 바뀌었고, 재적재·증분 병합이 정합을 깨지 않는 평가 workflow가 됐습니다.",
+  result: "감에 의존하던 글쓰기 기준이 직접 수집한 실측 corpus 기반 생성·평가 기준으로 바뀌었고 재적재·증분 병합이 정합을 깨지 않는 평가 workflow가 됐습니다.",
   boundary: "수집기는 별도 파이프라인이고 제 범위는 정제·적재·평가 구간입니다. 전체 corpus의 STG·Production 적재 완료는 주장하지 않습니다.",
   claimIds: [
     "thready.threads-marketing-criteria",
@@ -43,16 +43,16 @@ const REBUILD: CareerProject = {
   context: "기존 frontend contract를 유지한 병렬 재구축과 단계적 전환, 이후 실사용 backend 운영 전담",
   role: "대안 비교·설득·설계·구현·검증·전환 판단 직접 수행",
   problem:
-    "빠른 검증 중심으로 만들어진 초기 backend는 도메인 의존성이 얽혀 회원 로직 변경이 AI 생성 중단으로 이어졌고, 해결된 QA 이슈가 같은 영역에서 다른 형태로 재발했습니다.",
+    "빠른 검증 중심으로 만들어진 초기 backend는 도메인 의존성이 얽혀 회원 로직 변경이 AI 생성 중단으로 이어졌고 해결된 QA 이슈가 같은 영역에서 다른 형태로 재발했습니다.",
   decision:
-    "부분 수정을 누적하는 안과 backend만 병렬 재구축하는 안을 비교해, 서비스가 작고 AI 모듈 확장이 예정된 시점이라 재구축을 택하되 기존 frontend와 릴리스 흐름은 유지하는 범위로 한정했습니다. \"돌아가는 기능을 왜 다시 만드나\"에는 문제 누적 속도·AI 확장성·하네스 기반 이관 속도로 답했습니다.",
+    "부분 수정을 누적하는 안과 backend만 병렬 재구축하는 안을 비교해 서비스가 작고 AI 모듈 확장이 예정된 시점이라 재구축을 택하되 기존 frontend와 릴리스 흐름은 유지하는 범위로 한정했습니다. \"돌아가는 기능을 왜 다시 만드나\"에는 문제 누적 속도·AI 확장성·하네스 기반 이관 속도로 답했습니다.",
   implementation: [
-    "패턴·계층·검증 하네스를 먼저 세우고, 그 규칙 위에서 API·기능 inventory를 만든 뒤 새 FastAPI backend를 나란히 구현했습니다.",
+    "패턴·계층·검증 하네스를 먼저 세우고 그 규칙 위에서 API·기능 inventory를 만든 뒤 새 FastAPI backend를 나란히 구현했습니다.",
     "domain·repository·transaction 책임을 분리하고 전환 단위를 release로 관리해 frontend 호출을 단계적으로 옮겼습니다.",
-    "재구축 범위·architecture·검증·전환 판단은 직접 소유하고, coding agent는 codebase 파악·기능 inventory·반복 구현에 썼습니다.",
+    "재구축 범위·architecture·검증·전환 판단은 직접 소유하고 coding agent는 codebase 파악·기능 inventory·반복 구현에 썼습니다.",
   ],
   verification: [
-    "동일 기능의 응답 비교와 QA acceptance를 통과한 범위만 전환했고, 전환 뒤에도 같은 Jira 정의로 재발을 계속 측정했습니다.",
+    "동일 기능의 응답 비교와 QA acceptance를 통과한 범위만 전환했고 전환 뒤에도 같은 Jira 정의로 재발을 계속 측정했습니다.",
   ],
   result: "같은 기준의 Jira 집계에서 해결된 QA 이슈 재오픈 비율이 37%에서 11%로, 재발 발생 일평균이 약 94% 줄었습니다(하루 4.5건에서 0.3건). 전환 이후 실제 사용자가 쓰는 backend의 배포·QA·운영을 계속 전담하고 있습니다.",
   boundary: "티켓에 BE/FE 라벨이 없어 제품 전체 품질 지표로 서술합니다. 초기 prototype은 다른 engineer가 만들었습니다.",
@@ -100,19 +100,19 @@ const AI_RUNTIME: CareerProject = {
   context: "AI 실행부의 독립 application·DB 분리, STG 실데이터 이관, 서비스 간 durable delivery, 생성 원장의 경합 중재",
   role: "경계 설계·구현·migration·검증 직접 수행",
   problem:
-    "제품 정책·원장과 AI 생성 lifecycle이 한 backend·DB에 있어 AI 확장과 장애가 원장에 결합됐고, 분리하면 전달 유실과 역순 도착이 최신 상태를 덮을 수 있었습니다. 다중 worker가 같은 생성 원장을 두고 경합했습니다.",
+    "제품 정책·원장과 AI 생성 lifecycle이 한 backend·DB에 있어 AI 확장과 장애가 원장에 결합됐고 분리하면 전달 유실과 역순 도착이 최신 상태를 덮을 수 있었습니다. 다중 worker가 같은 생성 원장을 두고 경합했습니다.",
   decision:
-    "DB를 공유하지 않고 독립 FastAPI application·DB로 분리해 인증된 HTTP 계약으로만 연결하고, 전달은 원장 변경과 같은 transaction에 기록하는 Transactional Outbox로 두었습니다. 생성 원장은 상태 전이 규칙을 entity에 복원하고 version CAS로 경합을 중재했습니다.",
+    "DB를 공유하지 않고 독립 FastAPI application·DB로 분리해 인증된 HTTP 계약으로만 연결하고 전달은 원장 변경과 같은 transaction에 기록하는 Transactional Outbox로 두었습니다. 생성 원장은 상태 전이 규칙을 entity에 복원하고 version CAS로 경합을 중재했습니다.",
   implementation: [
     "relay는 짧은 lease로 row를 claim하고 delivery version·attempt count를 fencing token으로 붙이며, 소비 쪽은 더 높은 version만 반영하고 stable id·natural key 충돌을 최신 row 하나로 수렴시키는 멱등 upsert/delete를 소유합니다. 최대 시도를 넘긴 전달은 terminal failure로 보존합니다.",
     "생성 원장은 optimistic lock으로 worker 승자를 정하고 멱등 replay 판별과 전이가 같은 판정을 쓰게 했습니다. quota는 예약 시점에 잡고 admission gate가 확정 사용량과 진행 중 예약을 함께 봐 동시 요청의 초과 실행을 막습니다.",
     "STG 생성 이력·품질 기록·실행 추적을 parent→child 순서로 streaming copy했고 영구 cross-DB link는 쓰지 않았습니다.",
   ],
   verification: [
-    "local rehearsal·건수·id·status·사유를 결합한 MD5 fingerprint·FK orphan 0건으로 이관 정합성을 확인했고, stale PUT/DELETE fence test와 양쪽 서비스 전체 회귀를 통과했습니다.",
+    "local rehearsal·건수·id·status·사유를 결합한 MD5 fingerprint·FK orphan 0건으로 이관 정합성을 확인했고 stale PUT/DELETE fence test와 양쪽 서비스 전체 회귀를 통과했습니다.",
     "health가 성공해도 생성이 실패한 사례를 계기로 배포 성공과 기능 동작을 분리한 post-deploy 생성 API E2E gate를 세웠습니다.",
   ],
-  result: "독립 AI application·DB를 STG·Prod에서 운영 중이며, 지연·중복·역순 전달이 최신 원장 상태를 덮지 않는 복구 경계를 확보했습니다.",
+  result: "독립 AI application·DB를 STG·Prod에서 운영 중이며 지연·중복·역순 전달이 최신 원장 상태를 덮지 않는 복구 경계를 확보했습니다.",
   boundary: "Prod migration 완료와 무중단 전환은 주장하지 않습니다.",
   claimIds: [
     "thready.ai-service-boundary",
@@ -190,7 +190,7 @@ export const FEATURING_CAREER_DESCRIPTION: CareerDescriptionDocument = {
   updatedAt: "2026-09-03",
   summary: [
     "기획자로 시작해 백엔드로 왔고, 아이디어를 제안한 AI 콘텐츠 제품의 FastAPI 백엔드와 AI 실행부를 직접 만들어 월 1천만원 수준의 구독 매출이 발생하는 제품으로 운영합니다.",
-    "이 문서는 이력서의 성과를 같은 순서로 풀어, 각 항목에서 무엇이 문제였고 무엇을 판단했으며 어떤 경계를 구현하고 어떻게 검증했는지를 적었습니다. 화면은 coding agent로 구현하고 직접 검수했으며, 수치는 측정된 것만 썼습니다.",
+    "이 문서는 이력서의 성과를 같은 순서로 풀어 각 항목에서 무엇이 문제였고 무엇을 판단했으며 어떤 경계를 구현하고 어떻게 검증했는지를 적었습니다. 화면은 coding agent로 구현하고 직접 검수했으며 수치는 측정된 것만 썼습니다.",
   ],
   companies: [
     {

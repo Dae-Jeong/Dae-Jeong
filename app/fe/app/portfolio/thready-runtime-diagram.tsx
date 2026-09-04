@@ -158,7 +158,7 @@ export function ThreadyRuntimeDiagram() {
         외부 콘텐츠 API를 소유합니다. 원장 변경과 Outbox event는 같은 transaction에
         기록되고 relay retry와 delivery version fence를 거쳐 별도 FastAPI AI application과
         AI PostgreSQL로 전달됩니다. 제품 백엔드와 AI application은 STG와 Production에서
-        운영하며, 데이터 이관 근거는 STG 리허설에서 row count, MD5, 참조 무결성, API
+        운영하며 데이터 이관 근거는 STG 리허설에서 row count, MD5, 참조 무결성, API
         E2E로 확인했습니다.
       </figcaption>
     </figure>

@@ -66,7 +66,7 @@ export const HYPERNOVA_PORTFOLIO = {
       slug: "thready-rebuild",
       label: "운영 중인 제품을 멈추지 않는 backend 교체 · 결함 재발 약 94% 감소",
       focus:
-        "부분 수정과 backend 병렬 재구축을 비교해 재구축을 택하되 기존 frontend와 릴리스 흐름은 유지한 판단, 패턴·계층·검증 하네스를 먼저 세우고 coding agent와 새 backend를 나란히 만들어 응답을 비교한 뒤 전환한 과정, 그리고 재오픈 비율 37% → 11%·재발 발생 일평균 약 94% 감소(하루 4.5건 → 0.3건)의 결과를 봅니다. 재구축 범위·architecture·검증·전환 판단은 직접 소유하고, coding agent는 codebase 파악·기능 inventory·반복 구현에 썼습니다.",
+        "부분 수정과 backend 병렬 재구축을 비교해 재구축을 택하되 기존 frontend와 릴리스 흐름은 유지한 판단, 패턴·계층·검증 하네스를 먼저 세우고 coding agent와 새 backend를 나란히 만들어 응답을 비교한 뒤 전환한 과정, 그리고 재오픈 비율 37% → 11%·재발 발생 일평균 약 94% 감소(하루 4.5건 → 0.3건)의 결과를 봅니다. 재구축 범위·architecture·검증·전환 판단은 직접 소유하고 coding agent는 codebase 파악·기능 inventory·반복 구현에 썼습니다.",
       scope: "FastAPI Backend 재구축·운영 전담",
       designs: ["rebuild-decision"],
     },

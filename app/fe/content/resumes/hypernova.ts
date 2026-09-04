@@ -102,7 +102,7 @@ export const HYPERNOVA_RESUME = {
         { text: " — 인턴 합류 후 정규직 전환 · 회사 폐업으로 종료" },
       ],
       details: [
-        "FastAPI·SQLAlchemy 2.0·MySQL 예약·결제 backend에서 Stripe Checkout 선결제 영역을 구축하고, 환불 유형별 처리 순서와 마일리지 복원 시점을 조정해 결제 상태 정합성 보완",
+        "FastAPI·SQLAlchemy 2.0·MySQL 예약·결제 backend에서 Stripe Checkout 선결제 영역을 구축하고 환불 유형별 처리 순서와 마일리지 복원 시점을 조정해 결제 상태 정합성 보완",
       ],
       claimIds: [
         "career.memento-fastapi-backend",
@@ -144,7 +144,7 @@ export const HYPERNOVA_RESUME = {
       no: "01",
       title: "백엔드 경험이 적은 팀원도 coding agent로 운영 제품을 만들 수 있게 FastAPI 기준을 template으로 설계하고, AI가 만든 코드는 integration test와 evidence로 닫는 QA 판정 규칙으로 신뢰를 검증하게 했습니다",
       description: [
-        "팀이 coding agent로 기능을 만들기 시작하면서 백엔드 경험이 적은 담당자도 구현에 참여했습니다. QA와 운영 준비 단계에서 사용량이나 동시 요청 조건에 따라 구조적인 문제가 자주 드러났고, 실행이 성공하면 통과로 보는 경우가 있어 AI 기능의 품질 판정이 흐려졌습니다.",
+        "팀이 coding agent로 기능을 만들기 시작하면서 백엔드 경험이 적은 담당자도 구현에 참여했습니다. QA와 운영 준비 단계에서 사용량이나 동시 요청 조건에 따라 구조적인 문제가 자주 드러났고 실행이 성공하면 통과로 보는 경우가 있어 AI 기능의 품질 판정이 흐려졌습니다.",
         {
           text: "기능마다 완벽한 구조를 요구하는 대신 자주 틀리는 경계를 기본값으로 제공했습니다. Service가 transaction 정책을 선언하고 Repository는 현재 session만 resolve하게 했고, tool이 늘어나는 Agent 기능만 Hexagonal, 나머지는 MVC를 기본 구조로 두었습니다. QA는 요구사항을 REQ로 쪼개 evidence로 닫는 판정 규칙(PASS/FAIL/UNKNOWN)을 QA 팀원의 서포트를 받아 세우고, 실행 성공과 품질 통과를 분리하고 LLM judge 단독 승인을 금지했습니다.",
           source: "조직 표준 Template · QA 판정 규칙",
@@ -168,9 +168,9 @@ export const HYPERNOVA_RESUME = {
       no: "02",
       title: "규칙을 먼저 설계한 뒤 돌아가는 제품을 멈추지 않고 backend를 교체했고, 결함 재발이 약 94% 줄어 배포 보장을 지켰습니다",
       description: [
-        "빠른 검증 중심으로 만들어진 초기 backend는 도메인 의존성이 얽혀 회원 로직 변경이 AI 생성 중단으로 이어졌고, 해결된 QA 이슈가 같은 영역에서 다른 형태로 재발했습니다.",
+        "빠른 검증 중심으로 만들어진 초기 backend는 도메인 의존성이 얽혀 회원 로직 변경이 AI 생성 중단으로 이어졌고 해결된 QA 이슈가 같은 영역에서 다른 형태로 재발했습니다.",
         {
-          text: "부분 수정과 backend만 병렬 재구축하는 안을 비교해, 서비스가 작고 AI 확장이 예정된 시점이라 재구축을 택하되 기존 frontend와 릴리스 흐름은 유지했습니다. 패턴·계층·검증 하네스를 먼저 세우고 그 위에서 coding agent와 새 backend를 나란히 만들어 응답을 비교한 뒤 전환했습니다. 재구축 범위·architecture·검증·전환 판단은 직접 소유하고, coding agent는 codebase 파악·기능 inventory·반복 구현에 썼습니다.",
+          text: "부분 수정과 backend만 병렬 재구축하는 안을 비교해, 서비스가 작고 AI 확장이 예정된 시점이라 재구축을 택하되 기존 frontend와 릴리스 흐름은 유지했습니다. 패턴·계층·검증 하네스를 먼저 세우고 그 위에서 coding agent와 새 backend를 나란히 만들어 응답을 비교한 뒤 전환했습니다. 재구축 범위·architecture·검증·전환 판단은 직접 소유하고 coding agent는 codebase 파악·기능 inventory·반복 구현에 썼습니다.",
           source: "Thready · Jira",
         },
         {
@@ -226,13 +226,13 @@ export const HYPERNOVA_RESUME = {
       no: "04",
       title: "실시간 음성 AI 상담 backend의 세션과 전사 순서 경계를 공동으로 안정화해, 늦게 도착한 보정이 다른 발화를 덮지 않게 정합을 지켰습니다",
       description: [
-        "실시간 STT가 내보내는 부분 전사와 완성 전사, 비동기로 뒤늦게 도착하는 보정 결과가 같은 WebSocket 세션 안에서 섞여, 늦은 보정이 다른 turn을 덮거나 중복 event가 상태를 흔들었습니다.",
+        "실시간 STT가 내보내는 부분 전사와 완성 전사, 비동기로 뒤늦게 도착하는 보정 결과가 같은 WebSocket 세션 안에서 섞여 늦은 보정이 다른 turn을 덮거나 중복 event가 상태를 흔들었습니다.",
         {
-          text: "부분 전사는 domain keyword 우선 판정에, 완성 전사는 문맥 판단·저장에 쓰도록 역할을 나누고, 부분·완성·보정을 같은 sequence로 묶어 순서로 정합을 보장했습니다. 중복 event는 task cancellation·debounce·retry·turn-state guard로 제어했습니다.",
+          text: "부분 전사는 domain keyword 우선 판정에, 완성 전사는 문맥 판단·저장에 쓰도록 역할을 나누고 부분·완성·보정을 같은 sequence로 묶어 순서로 정합을 보장했습니다. 중복 event는 task cancellation·debounce·retry·turn-state guard로 제어했습니다.",
           source: "피부과 운영 제품군 · 실시간 상담",
         },
         {
-          text: "보정이 뒤늦게 와도 같은 sequence의 발화만 교체되고, 외부 모델 세션이 끊겨도 발화 순서가 유지되는 경계를 확보했습니다. provider 후보 비교를 위한 WER·CER·keyword retention·latency benchmark를 함께 구축했습니다.",
+          text: "보정이 뒤늦게 와도 같은 sequence의 발화만 교체되고 외부 모델 세션이 끊겨도 발화 순서가 유지되는 경계를 확보했습니다. provider 후보 비교를 위한 WER·CER·keyword retention·latency benchmark를 함께 구축했습니다.",
           source: "피부과 운영 제품군 · 실시간 상담",
         },
       ],
