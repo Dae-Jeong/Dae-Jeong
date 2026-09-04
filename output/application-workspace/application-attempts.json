@@ -133,10 +133,10 @@
       "company": "하이퍼노바",
       "role": "[헤이링] Product Engineer",
       "status": "pre-apply",
-      "artifactState": "mutable",
+      "artifactState": "approved",
       "sourcePath": "wiki/products/resume/tailored/hypernova/2026-09-03_groupby_product-engineer/README.md",
-      "tracking": "문안 초안 작성 · 내용 검토 대기 (Harness P2 두 번째 실전)",
-      "lastConfirmed": "2026-09-03",
+      "tracking": "승인 · typed content 생성 완료 · PDF 생성 · local route 검토 (Harness P2 두 번째 실전)",
+      "lastConfirmed": "2026-09-04",
       "artifacts": {
         "resume": {
           "mode": "tailored",
@@ -162,13 +162,13 @@
           "career-description": 1,
           "portfolio": 1
         },
-        "checkpointAt": "2026-09-03"
+        "checkpointAt": "2026-09-04"
       },
       "workSession": {
-        "state": "waiting-review",
-        "scope": "하이퍼노바 [헤이링] Product Engineer 맞춤 문안 초안 (content-draft.md) · typed content 미생성",
-        "lastSynced": "2026-09-03",
-        "nextAction": "사용자가 content-draft.md 검토(4인 Seed 스타트업·마포 근무 수용 여부 포함) → 승인 시 typed content(/resume/hypernova 등) 생성 → make verify → PDF"
+        "state": "complete",
+        "scope": "하이퍼노바 [헤이링] Product Engineer typed content 3종 (/resume·/career·/portfolio/hypernova) · PDF output/pdf/hypernova",
+        "lastSynced": "2026-09-04",
+        "nextAction": "그룹바이 제출 → 제출 시 status in-progress · artifact_state frozen · snapshot 동결"
       }
     },
     {
