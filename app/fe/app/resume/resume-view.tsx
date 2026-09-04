@@ -390,7 +390,7 @@ function DocKo() {
             className={resumeType.profileDescription}
             data-claim="career.medisolve-role-evolution thready.product-zero-to-one-contribution thready.frontend-product-delivery thready.subscription-revenue-band"
           >
-            기획자로 시작해 백엔드로 왔고, 아이디어를 제안한 AI 콘텐츠 제품을 고객이 구독하는 서비스로 만들어 운영합니다. AI 활용이 본격화되면서 모두가 메이커로 제품을 만들고 운영하는 팀에서, 제품별 결정·QA·릴리스 운영을 리드하고 Backend·AI application을 직접 구현합니다.
+            기획자로 시작해 백엔드로 왔고, 아이디어를 제안한 AI 콘텐츠 제품을 월 1천만원 수준의 구독 매출이 발생하는 제품으로 만들어 운영합니다. AI 활용이 본격화되면서 모두가 메이커로 제품을 만들고 운영하는 팀에서, 제품별 결정·QA·릴리스 운영을 리드하고 Backend·AI application을 직접 구현합니다.
           </p>
         </div>
       </header>
@@ -589,7 +589,7 @@ function DocEn() {
             className={resumeType.profileDescription}
             data-claim="career.medisolve-role-evolution thready.product-zero-to-one-contribution thready.frontend-product-delivery thready.subscription-revenue-band"
           >
-            I started as a product planner and moved to backend, and now build and operate an AI content product I proposed that customers subscribe to. On a team where AI adoption has made everyone a maker who builds and operates products, I lead decisions, QA, and release operations per product and implement the backend and AI applications myself.
+            I started as a product planner and moved to backend, and now build and operate an AI content product I proposed that generates around ten million KRW in monthly subscription revenue. On a team where AI adoption has made everyone a maker who builds and operates products, I lead decisions, QA, and release operations per product and implement the backend and AI applications myself.
           </p>
         </div>
       </header>

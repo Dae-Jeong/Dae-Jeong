@@ -231,7 +231,7 @@ export const COMMON_CAREER_DESCRIPTION: CareerDescriptionDocument = {
   role: "Tech Lead · Backend Engineer · 실무 4년차",
   contacts: CONTACTS,
   summary: [
-    "기획자로 시작해 백엔드로 왔고, 아이디어를 제안한 AI 콘텐츠 제품의 FastAPI 백엔드와 AI 생성·평가 시스템을 직접 만들고 핵심 화면은 coding agent로 완성해 고객이 구독하는 서비스로 운영합니다.",
+    "기획자로 시작해 백엔드로 왔고, 아이디어를 제안한 AI 콘텐츠 제품의 FastAPI 백엔드와 AI 생성·평가 시스템을 직접 만들고 핵심 화면은 coding agent로 완성해 월 1천만원 수준의 구독 매출이 발생하는 제품으로 운영합니다.",
     "Python·FastAPI를 중심으로 API·transaction·비동기 worker·AI runtime을 구축하며, 실패를 확인하고 복구할 수 있는 운영 경계를 함께 만듭니다.",
   ],
   companies: [

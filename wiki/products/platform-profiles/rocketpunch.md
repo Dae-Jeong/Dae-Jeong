@@ -28,7 +28,7 @@ tags: [platform, profile, canonical, product-engineer]
 ### 소개 · 300자
 
 ```text
-가능성을 기회로 바꾸고, 제품으로 가치를 전하는 메이커 김대정입니다. 기획자로 시작해 백엔드로 왔고, FastAPI 백엔드·AI 생성/평가 시스템을 직접 만들고 핵심 화면은 coding agent로 완성했으며, 대규모 콘텐츠 데이터를 검수 가능한 구조와 평가 워크벤치로 바꿨습니다. https://marinkim.xyz
+가능성을 기회로 바꾸고, 제품으로 가치를 전하는 메이커 김대정입니다. 기획자로 시작해 백엔드로 왔고, 월 1천만원 수준의 구독 매출이 발생하는 AI 콘텐츠 제품의 FastAPI 백엔드·AI 생성/평가 시스템을 직접 만들고 핵심 화면은 coding agent로 완성했으며, 대규모 콘텐츠 데이터를 검수 가능한 구조와 평가 워크벤치로 바꿨습니다. https://marinkim.xyz
 ```
 
 ### MediSolve AI 경력 · 제한 없음

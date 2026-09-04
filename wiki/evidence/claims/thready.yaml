@@ -114,11 +114,11 @@ claims:
       - 실제 고객이 결제하는 AI 콘텐츠 제품
       - 팀과 함께 고객 문제를 유료 제품으로 만들고 운영
       - 구독료 매출이 발생하는 제품·팀 outcome
+      - 월 1천만원 수준의 구독 매출이 발생하는 제품 (2026년 8월 기준, 2026-09-04 user-confirmed)
     forbidden_copy:
-      - 정확한 월 매출액 또는 매출 구간을 공개 문구에 노출
-      - 월 1천만원대 매출
+      - 정확한 월 매출액(1,000만~1,200만원)을 공개 문구에 노출
+      - 연 1억 · ARR · 연 매출 환산
       - MRR 1,000만~1,200만원
-      - ARR 1억 이상
       - 월평균·매달 안정적·N개월 연속·지속 성장
       - 순매출·영업이익·고객 수·ARPU
       - 내가 월 매출 1,000만~1,200만원을 만들었다
@@ -382,10 +382,28 @@ claims:
       - 판단을 어느 역할에 둘 것인가가 agent 설계의 핵심임을 실측으로 확인
       - 평가 하네스와 함께 하네스로 검증할 agent 구조 자체를 설계·구현 (대표 영역 writer)
     forbidden_copy:
-      - 멀티에이전트 오케스트레이션 프레임워크(LangGraph·CrewAI 등) 사용 경험으로 표현
+      - 멀티에이전트 오케스트레이션 플랫폼 운영 경험으로 표현 (LangGraph는 그래프 실행 방식이다 — thready.langgraph-generation-graph 참조)
       - 전체 agent 파이프라인 단독 설계로 단정 (writer가 대표 영역이다)
       - 18건을 벤치마크·평가셋 규모로 확대 해석
     verified_at: 2026-08-12
+  - id: thready.langgraph-generation-graph
+    statement: Thready AI 생성·역할·소재 추출 파이프라인을 LangGraph StateGraph로 구현·운영하고, 15노드 legacy 그래프를 publishable 단일 파이프라인으로 축소한 뒤 SDK 기반 단일 agent 엔진과 실측 비교해 두 엔진을 병존시킴
+    strength: owned
+    confidence: high
+    public: true
+    evidence: [evidence/projects/thready.md#generation-graph-on-langgraph]
+    allowed_copy:
+      - LangGraph StateGraph로 생성 파이프라인과 역할(friend·referee)·소재 추출 그래프 구현·운영
+      - 15노드 legacy 그래프를 publishable 단일 파이프라인으로 축소하고 노드명은 trace 연속성을 위해 유지
+      - SDK 기반 단일 agent 엔진을 같은 guard·repair 코드로 병존시켜 실 파이프라인에서 실행 시간을 비교(agent 엔진 43초 vs 그래프 294초)
+      - LLM provider·tool처럼 치환이 실재하는 경계에만 port를 두고 그 위에 그래프 application을 올리는 구조
+      - 그래프 컴파일을 첫 생성까지 미루는 lazy 구성
+    forbidden_copy:
+      - 멀티에이전트 오케스트레이션 플랫폼 운영·전문가
+      - 43초 vs 294초를 품질 개선 수치로 표현
+      - 15노드·삭제 줄 수 등 내부 규모 수치 (공개 문안은 "15노드 legacy 그래프를 단일 파이프라인으로 축소"까지)
+      - CrewAI 등 다른 프레임워크 경험
+    verified_at: 2026-09-04
   - id: thready.conversational-editorial-agent-prototype
     statement: 독립 Thready AI prototype에서 기존 글 제작·계정·게시물 관리 기능을 대화로 제어하는 흐름과 single-agent planner-executor, typed capability registry, 상태 원장, Mock operation confirmation gate를 설계·구현·검증
     strength: owned

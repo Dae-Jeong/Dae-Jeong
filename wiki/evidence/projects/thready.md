@@ -102,6 +102,8 @@ Source locator: `workspace:thready`
 - Causality boundary: Threads 마케팅 기준이나 backend 재구축이 매출을 직접 만들었다는 인과는 검증되지 않았다. 기술·제품 기여와 매출 결과는 병렬 성과로만 제시한다.
 - Public wording: `실제 고객이 결제하는 AI 콘텐츠 제품`, `팀과 함께 고객 문제를 유료 제품으로 만들고 운영`처럼 정확한 매출액을 드러내지 않는 표현만 허용한다.
 
+- User-confirmed (2026-09-04): 공개 문안에서 "월 1천만원 수준의 구독 매출이 발생하는 제품"까지 쓴다. 기준 시점은 2026-08 실측(월 약 1,000만~1,200만원)이며, 정확 금액·MRR·연 환산(ARR·연 1억)·월평균·지속 성장 표현·개인 인과("내가 매출을 만들었다")는 계속 쓰지 않는다. 회사 제품 매출의 부분 공개는 사용자가 감수하기로 결정.
+
 ## Advertising Revenue Experiment
 
 - User-confirmed (2026-08-24): 구독 외 수익원을 검증하기 위해 Thready 공개 화면에 광고 적용을 시작했다.
@@ -118,6 +120,14 @@ Source locator: `workspace:thready`
 - Contribution boundary: 품질 system 구축은 말할 수 있으나 품질 배수나 business outcome과의 직접 인과는 검증되지 않았다.
 - Code-backed / User-confirmed (2026-09-02): AI application의 agent 역할 객체는 `workspace:thready/ai/src/agent/roles/`에 scout·writer·friend·referee·scheduler로 구현돼 있다. writer는 생성 지능(prompt 조립·harness 실행·출구 검증·judge·repair ≤ 2·salvage), friend는 brand wizard graph(extract → build → judge), referee는 prompt check graph(evaluate → score 미달 시 recommend → finalize), scheduler는 분석 feature를 LLM이 바꿀 수 없는 발행 시간 candidate plan으로 변환하고 사유 문장만 LLM이 쓴다. scout는 소재 입력 판정·정규화 노드만 구현이고 자동 소재화 Scouter는 계약 선언 단계다. 생성 graph는 input_guard → input_semantic_guard → source_normalize → agent_generate 4노드이며, 재시도 판정(should_retry)·3회 attempt·backoff는 executor가 소유한다. `ai/src` 변경 commit의 대다수가 KimMarin author다(2026-09-02 git 확인, 공개 문안은 `대부분`까지).
 - Public wording: `Friend·Referee·Scheduler 역할 객체 구현`은 공개 가능. provider 실명·harness 구현체 이름은 적지 않는다.
+
+## Generation Graph On LangGraph
+
+- Git-backed (2026-09-04 local clone `workspace:thready`): `ai/pyproject.toml`에 `langgraph>=1.2.0` 직접 의존. `ai/src/agent/generation_graph.py`(`StateGraph`·`CompiledStateGraph`), `ai/src/agent/roles/friend/graph.py`·`roles/referee/graph.py`, `ai/src/agent/tools/source_extraction/graph.py` 등 15개 파일이 LangGraph 위에서 동작한다. `core/container.py`는 그래프 컴파일 시점을 첫 생성까지 미루는 lazy 구성이다.
+- Git-backed 이력 (author KimMarin): 2026-04-24 `[PLAN-F11] Playground/Prompt 인프라 전면 재편`에서 첫 `StateGraph` 도입, 04-27 `plan-then-write` 파이프라인. 2026-07-14 `80a49cd6 legacy 그래프 제거 — publishable 단일 파이프라인 (v1.6.0-rc.1)`: 15노드 legacy 그래프·improvement_layers·12k 조립기·guards 형식 엔진(523→19줄)을 삭제(−7,717줄)하고 publishable 그래프 하나로 축소, 노드명은 trace DB 연속성을 위해 유지, 전체 1017 test pass. 2026-07-16 `81ee1f97 content_generation agent 엔진 (SDK 하니스 통짜 위임)`: 단일 노드 agent 엔진을 그래프 엔진과 같은 guard·repair·salvage 코드를 재사용하도록 두고 실 파이프라인 E2E에서 agent 엔진 43s vs graph 294s를 실측, `CONTENT_GENERATION_ENGINE` 분기로 두 엔진을 병존시킴.
+- Doc-backed (`tasks/2026-08-05-ai-agent-architecture.md` G3·G4·G5): 헥사고날 port는 치환이 실재하는 경계(LLM provider `AgentHarness(ABC)` + Claude/GPT 구현, tool)에만 두고 "langgraph 위에 application"을 올린다. 역할 상위 배치 `agent/<role>/{graph,nodes,state,prompts}`, 역할을 엮는 상위 그래프 없음("graph는 개념이 아니라 그 역할이 실행되는 방식").
+- User-confirmed (2026-09-04): "랭그래프 thready에서 썼는데?" — 2026-08-12 claim의 `LangGraph 사용 경험으로 표현 금지`는 잘못된 근거였고 이 섹션으로 대체한다.
+- Boundary: LangGraph는 생성·역할·소재 추출 그래프의 실행 방식이지 "멀티에이전트 오케스트레이션 플랫폼 운영"이 아니다. 43s vs 294s는 엔진 비교 실측이며 품질 개선 수치가 아니다. legacy 그래프의 15노드·−7,717줄은 내부 규모라 공개 문안에서는 "15노드 legacy 그래프를 단일 파이프라인으로 축소" 정도까지만 쓴다.
 
 ## AI Service Boundary And Durable Delivery
 

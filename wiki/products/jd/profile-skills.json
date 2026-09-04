@@ -37,7 +37,7 @@
     "LLM 연동": "strong",
     "RAG": "strong",
     "LangChain": "partial",
-    "LangGraph": "partial",
+    "LangGraph": "strong",
     "MCP": "strong",
     "AI Agent": "strong",
     "프롬프트 엔지니어링": "strong",

@@ -73,6 +73,16 @@ def active_routes() -> list[str]:
     statuses = set(active.get("statuses") or [])
     excluded = set(active.get("exclude_artifact_states") or [])
     routes = list(COMMON_ROUTES)
+    # per_company 표면: route template → path template. 표면 파일이 없는 route(typed content 전)는 검사하지 않는다.
+    templates = [(str(s["route"]), str(s["path"])) for s in (cfg.get("surfaces") or []) if s.get("per_company") and s.get("route")]
+    def has_surface(route: str) -> bool:
+        for tpl, path_tpl in templates:
+            prefix = tpl.split("{company}")[0]
+            if route.startswith(prefix):
+                company = route[len(prefix):].strip("/")
+                if company and (ROOT / path_tpl.format(company=company)).exists():
+                    return True
+        return False
     data = yaml.safe_load(REGISTRY.read_text(encoding="utf-8")) or {}
     for attempt in data.get("attempts") or []:
         if not isinstance(attempt, dict):
@@ -81,7 +91,7 @@ def active_routes() -> list[str]:
             continue
         for artifact in (attempt.get("artifacts") or {}).values():
             route = artifact.get("route") if isinstance(artifact, dict) else None
-            if isinstance(route, str) and route not in routes:
+            if isinstance(route, str) and route not in routes and has_surface(route):
                 routes.append(route)
     return routes
 

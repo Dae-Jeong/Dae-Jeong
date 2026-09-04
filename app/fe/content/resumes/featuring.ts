@@ -43,7 +43,7 @@ export const FEATURING_RESUME = {
       claimIds: ["career.medisolve-role-evolution", "thready.product-zero-to-one-contribution", "career.ai-pm-backend-continuity", "career.sellercanvas-product-system"],
     },
     {
-      text: "기획자로 시작해 백엔드로 왔고, 아이디어를 제안한 AI 콘텐츠 제품의 FastAPI 백엔드와 AI 실행부를 직접 만들어 고객이 구독하는 서비스로 운영합니다. AI 활용이 본격화되면서 모두가 메이커로 제품을 만들고 운영하는 팀에서, 백엔드 경험이 적은 팀원도 같은 기준으로 만들 수 있게 FastAPI 표준 template과 transaction·session 경계를 직접 구축했습니다.",
+      text: "기획자로 시작해 백엔드로 왔고, 아이디어를 제안한 AI 콘텐츠 제품의 FastAPI 백엔드와 AI 실행부를 직접 만들어 월 1천만원 수준의 구독 매출이 발생하는 제품으로 운영합니다. AI 활용이 본격화되면서 모두가 메이커로 제품을 만들고 운영하는 팀에서, 백엔드 경험이 적은 팀원도 같은 기준으로 만들 수 있게 FastAPI 표준 template과 transaction·session 경계를 직접 구축했습니다.",
       claimIds: [
         "thready.product-zero-to-one-contribution",
         "thready.subscription-revenue-band",

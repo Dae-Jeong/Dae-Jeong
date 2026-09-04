@@ -111,6 +111,41 @@ attempts:
       cv:
         mode: omitted
 
+  - id: hypernova-2026-09-03-groupby-product-engineer
+    company: "하이퍼노바"
+    role: "[헤이링] Product Engineer"
+    header_role: "Product Engineer"
+    status: pre-apply
+    tracking: "문안 초안 작성 · 내용 검토 대기 (Harness P2 두 번째 실전)"
+    artifact_state: mutable
+    last_confirmed: "2026-09-03"
+    source_path: "wiki/products/resume/tailored/hypernova/2026-09-03_groupby_product-engineer/README.md"
+    work_session:
+      state: waiting-review
+      scope: "하이퍼노바 [헤이링] Product Engineer 맞춤 문안 초안 (content-draft.md) · typed content 미생성"
+      last_synced: "2026-09-03"
+      next_action: "사용자가 content-draft.md 검토(4인 Seed 스타트업·마포 근무 수용 여부 포함) → 승인 시 typed content(/resume/hypernova 등) 생성 → make verify → PDF"
+    current:
+      kind: checkpoint
+      package_revision: 1
+      artifact_revisions:
+        resume: 1
+        career-description: 1
+        portfolio: 1
+      checkpoint_at: "2026-09-03"
+    artifacts:
+      resume:
+        mode: tailored
+        route: "/resume/hypernova"
+      career-description:
+        mode: tailored
+        route: "/career/hypernova"
+      portfolio:
+        mode: tailored
+        route: "/portfolio/hypernova"
+      cv:
+        mode: omitted
+
   - id: miridih-2026-09-03-wanted-product-engineer
     company: "미리디"
     role: "[미리캔버스] Product Engineer"
