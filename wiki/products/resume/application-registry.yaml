@@ -116,7 +116,7 @@ attempts:
     role: "[헤이링] Product Engineer"
     header_role: "Product Engineer"
     status: pre-apply
-    tracking: "승인 · typed content 생성 완료 · PDF 생성 · local route 검토 (Harness P2 두 번째 실전)"
+    tracking: "승인 · typed content·PDF 완료 · 지원서 문항 답변 작성 완료 · 제출 대기 (Harness P2 두 번째 실전)"
     artifact_state: approved
     last_confirmed: "2026-09-04"
     source_path: "wiki/products/resume/tailored/hypernova/2026-09-03_groupby_product-engineer/README.md"
@@ -124,7 +124,7 @@ attempts:
       state: complete
       scope: "하이퍼노바 [헤이링] Product Engineer typed content 3종 (/resume·/career·/portfolio/hypernova) · PDF output/pdf/hypernova"
       last_synced: "2026-09-04"
-      next_action: "그룹바이 제출 → 제출 시 status in-progress · artifact_state frozen · snapshot 동결"
+      next_action: "그룹바이 폼 제출 (문항 답변은 application-answers.md) → 제출 시 status in-progress · artifact_state frozen · snapshot 동결"
     current:
       kind: checkpoint
       package_revision: 1
