@@ -2,7 +2,7 @@
 type: policy
 title: Application Copy Harness — 이렇게 관리한다
 description: 회사 지원 문안을 만들고 고치고 검증하는 운영 흐름. 결정은 SoT로 먼저 들어가고, 표면으로 전파되고, make verify가 닫는다. 실패는 규칙 행과 게이트로 적립된다.
-timestamp: 2026-09-03
+timestamp: 2026-09-07
 tags: [harness, application-copy, operations, ratchet]
 ---
 
@@ -117,6 +117,17 @@ flowchart LR
 
 ## 3. Owner 표
 
+### 기술 표 작성·검토 연결
+
+기술 분류의 단독 owner는 [Application Copy Standard §1-7](application-copy-standard.md#1-7-기술-표의-분류-기준)이다. 분류표를 skill이나 회사별 문서에 규칙으로 복제하지 않는다.
+
+1. 작성 시 검증된 기술·사용 범위를 선택한 뒤 owner 기준으로 분류한다. 이전 지원본의 분류를 무조건 재사용하지 않는다.
+2. 웹 export 전 문안 owner와 typed content를 대조하면서 **게이트 22**로 분류·항목 배치·불필요한 범주 채우기를 검토한다.
+3. 전수 검토에서는 기술명을 찾는 독자의 관점으로 게이트 22를 명시적으로 판정한다. `make verify` PASS나 화면 무잘림만으로 의미 검토가 끝났다고 보고하지 않는다.
+4. 불일치는 문안 owner와 해당 mutable 표면을 함께 고친다. 하네스 문서만 갱신하라는 요청은 표면 재작성 권한으로 확대하지 않으며, frozen 제출본은 유지한다.
+
+이 결정은 기술의 보유 여부나 기여 강도를 바꾸지 않는 **편집 기준**이므로, 새 evidence나 claim을 만들지 않고 규칙·검토 게이트를 갱신한다.
+
 | 무엇 | 파일 | 바꾸는 때 |
 | --- | --- | --- |
 | 표현 규칙과 게이트 목록 | [application-copy-standard.md](application-copy-standard.md) §1-6 · §4 | 결정·피드백이 있을 때마다 행 추가 |
@@ -149,6 +160,7 @@ make verify ARGS=--allow-frozen  # 게이트 13 해제. 사용자의 명시적 �
 | 16 | hero 소개 2문장 이하 | 자동 |
 | 15 | 공유 사실 문자열 일치 (재오픈 37→11, 약 94%) | P1 |
 | 1~10 | 15초 문장 세 사실, 재직 사유, 번역투, 문제→판단→경계→결과 등 | 사람 (review skill lens) |
+| 22 | 기술 표의 분류·항목 배치·선택이 §1-7 기준과 일치하는지 | 사람 (작성·웹 export·전수 검토에서 명시 판정) |
 
 ## 관련
 

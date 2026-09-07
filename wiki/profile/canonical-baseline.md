@@ -2,7 +2,7 @@
 type: profile
 title: Canonical Baseline
 description: 여러 레이어에 흩어진 확정값을 한 화면에서 보는 통합 인덱스. canonical은 각 owner 문서가 갖는다.
-timestamp: 2026-09-01
+timestamp: 2026-09-05
 canonical: false
 derived_from: [profile/career.md, profile/identity.md, evidence/claims/, evidence/clients.md, rules/recency-weighting.md, rules/public-safety.md, app/fe/app/resume/resume-view.tsx]
 tags: [profile, baseline, derived, index]
@@ -61,7 +61,7 @@ AI Engineer 2021.12~2022.09 → PM 2022.10~2023.09 → Backend Engineer 2023.10~
 
 **표기하지 않는 공백**: 2021.06~2021.12 (서울 취업 준비). 이력서에 쓰지 않고 면접 답변으로만 사용한다.
 
-## 3. 검증 자산 (시점 무관)
+## 3. 검증 자산·외부 인정
 
 | 항목 | 확정값 | claim |
 | --- | --- | --- |
@@ -70,9 +70,11 @@ AI Engineer 2021.12~2022.09 → PM 2022.10~2023.09 → Backend Engineer 2023.10~
 | 인증 | 한국건설생활환경시험연구원(KCL) · AI 정확도 부문 인증 통과 | `credentials.ai-accuracy-certification` |
 | 학력 | 우송대학교 게임멀티미디어 전공 2016.03–2021.08 **졸업** | `credentials.education` |
 | 자격 | ADsP (2021.09) | `credentials.adsp` |
+| OSS partnership | 공개 GitHub 프로젝트를 계기로 제안받은 OrcaRouter OSS Developer Partner Program 수락 (2026.09) | `career.orcarouter-oss-developer-partnership` |
 
 - **출원번호(10-2022-0130234)는 쓰지 않는다.** 등록번호만 사용한다.
 - **인증은 "통과" 사실만.** 정확도 수치와 사용 모델(Yolo 등)은 쓰지 않는다. confidence medium — 인증서 실물 확인 시 상향.
+- **OSS partnership은 제안·수락까지만.** 연동·directory 등재·referral 수익은 후속 근거 전까지 성과로 쓰지 않는다.
 - 검증 자산은 경력 본문에 묻지 않고 **Credentials 섹션에 독립 배치**한다 ([recency weighting](../rules/recency-weighting.md)).
 
 ## 4. Common Resume 대표 성과

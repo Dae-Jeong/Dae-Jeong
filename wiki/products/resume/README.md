@@ -2,7 +2,7 @@
 type: index
 title: Resume Product
 description: Active web resume expression, evidence mapping, and JD-tailored resume contract.
-timestamp: 2026-09-01
+timestamp: 2026-09-05
 tags: [resume, product, master]
 ---
 
@@ -27,10 +27,13 @@ tags: [resume, product, master]
 - 기본 이력서·경력기술서·포트폴리오·CV와 회사별 선택 규칙: [Resume Document Package Contract](document-package-contract.md)
 - Common 네 문서의 화면·A4 개편 계획: [Common Document Visual Refresh](../../docs/superpowers/plans/2026-09-02-common-document-visual-refresh.md)
 - 회사별 지원 status·artifact 상태: [Tailored Application Lifecycle](application-lifecycle.md)
+- 지원 현황·마감 임박 조회: [report-application-status](../../../skills/report-application-status/SKILL.md)
+- 분석·작성·검토 팀 협업: [run-application-team](../../../skills/run-application-team/SKILL.md)
 - artifact와 근거 연결: [claim-map.yaml](claim-map.yaml)
 - backend 케이스별 성과 후보: [backend-case-achievements.md](backend-case-achievements.md)
 - 과거 회사의 제품 판단·기획 성과 후보: [product-decision-achievements.md](product-decision-achievements.md)
 - 국내외 엔지니어 자기 PR benchmark: [research/2026-08-18-engineer-self-positioning.md](research/2026-08-18-engineer-self-positioning.md)
+- 첫 페이지 설득 구조에서 수용한 원칙과 기존 contract mapping: [research/2026-09-05-first-page-persuasion-review.md](research/2026-09-05-first-page-persuasion-review.md)
 
 ## Artifacts
 

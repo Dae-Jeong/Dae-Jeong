@@ -1,6 +1,6 @@
 ---
 name: analyze-jd-fit
-description: Automatically analyze a job description when the user sends a job-posting URL or JD text, even with only a vague request such as "해줘" or "봐줘". Compare it with Kim Daejeong's verified profile and evidence to decide fit, strengths, gaps, and positioning. Do not use for non-job links or for producing resume or portfolio artifacts.
+description: Analyze job-posting URLs or JD text against Kim Daejeong's verified profile, accumulate source-backed keywords, and report recurring requirements across reviewed postings. Use for 공고 검토, JD 분석, or accumulated 채용 키워드 분석. Not for non-job links or resume/portfolio creation.
 ---
 
 # Analyze JD Fit
@@ -8,6 +8,10 @@ description: Automatically analyze a job description when the user sends a job-p
 JD 하나를 보고 지원 여부를 판단하는 local-only workflow다. 사용자가 링크만 보내도 분석 요청으로 간주한다. 외부 LLM 서비스는 호출하지 않고, 현재 Codex의 추론과 이 repo의 canonical source만 사용한다.
 
 전체 실행 구조는 [flow diagram](references/flow.md)에서 확인할 수 있다.
+
+개별 공고 분석에는 키워드 관측 기록의 저장·집계를 포함한다 (2026-09-07 사용자 승인). 저장 위치·스키마·집계 기준은 [JD keyword contract](../../wiki/products/jd/keyword-analysis.md)를 먼저 읽고 따른다. 사용자가 저장하지 말라고 하면 해당 실행은 읽기 전용으로 처리한다.
+
+`누적 키워드 분석`만 요청하면 기존 관측 기록을 집계한다. 새 공고 수집이나 개인 claim 재검증을 강제하지 않는다.
 
 ## 입력 수집
 
@@ -62,6 +66,12 @@ JD 하나를 보고 지원 여부를 판단하는 local-only workflow다. 사용
 - `조건부 지원`: 중요한 partial/check가 있지만 지원 포지셔닝이나 확인으로 해소 가능하다.
 - `비추천`: 명시적 hard blocker가 있거나 역할의 핵심 대부분이 검증된 경험 밖이다.
 
+### 5. 키워드 추출·누적
+
+원문에서 기술과 엔지니어링 책임 키워드를 추출하고, 필수·우대·업무·단순 스택 언급을 구분한다. 위 contract에 따라 근거 있는 관측만 저장하고 `scripts/summarize_keywords.py`로 누적 공고 수와 키워드별 공고 수를 계산한다. 추출은 현재 LLM이, 집계는 코드가 맡는다.
+
+현재 공고의 주요 키워드와 관련 누적 표본의 반복 요구를 짧게 설명한다. 기록이 한 건이면 첫 관측이라고 말하고 추세를 만들지 않는다. 저장 후 프로젝트 검증을 실행하고 저장 경로·집계 범위·검증 결과를 보고한다. 원문 접근 실패는 키워드 0건 공고로 저장하지 않는다.
+
 ## 기본 응답
 
 사용자가 별도 형식을 지정하지 않으면 채팅에 아래 순서로 간결하게 답한다.
@@ -72,12 +82,13 @@ JD 하나를 보고 지원 여부를 판단하는 local-only workflow다. 사용
 4. `실제 공백` — gap과 그 영향
 5. `포지셔닝` — 지원한다면 앞세울 성과 축과 피해야 할 과장
 6. `확인 질문` — 판단을 바꿀 수 있는 것만
+7. `키워드 관측` — 이번 공고의 필수/우대 키워드, 누적 표본의 공고별 빈도와 출처, 저장 여부. 누적 분석만 요청했으면 이 항목을 중심으로 답한다.
 
 근거 없는 긍정 표현보다 탈락 위험과 gap을 먼저 선명하게 보여준다. public-safe claim wording을 사용하고 private source의 원문·고객사 실명·내부 수치는 노출하지 않는다.
 
 ## 변경 경계
 
-- 기본 실행은 분석 응답만 제공하며 repo 파일을 만들거나 수정하지 않는다.
+- 기본 쓰기 범위는 JD keyword contract의 정규화 관측 기록과 파생 키워드 보고서뿐이다. 개인 profile/evidence나 기존 시장 리포트는 자동 변경하지 않는다.
 - public homepage, `/chat`, API route를 만들거나 배포하지 않는다.
-- JD 원문이나 지원 기록을 저장하지 않는다. 사용자가 저장을 요청한 경우에만 `wiki/products/jd/`의 계약에 맞는 위치를 정한다.
+- 원문 전체·브라우저 로그·지원 기록은 저장하지 않는다. 공고 분석을 지원 의사로 간주하지 않으며 지원 registry는 변경하지 않는다. 과거 공고 일괄 적재·정기 수집·외부 공개는 별도 요청이 필요하다.
 - 이력서·포트폴리오 문안이나 PDF를 만들지 않는다. 사용자가 지원 패키지 제작을 요청하면 분석 결과를 입력으로 삼아 `$tailor-resume` 단계로 전환한다.

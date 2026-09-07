@@ -6,6 +6,8 @@ schema_version: 1
 axes:
   words: ["성능", "보장", "신뢰", "멱등", "정합", "설계"]
   min_distinct: 4
+  exemptions:
+    jyp-entertainment-2026-08-29-jype-career-software-engineer-ai: "2026-09-07 사용자 승인: 두 성과 중심의 검토한 v2 문안을 기본 v1으로 사용. 제목 키워드 할당량 대신 게이트 20·24로 선택과 기술 근거를 검토"
 
 # 게이트 12 — 공개 금지어 (public-safety Internal Product Names · §1-6)
 banned_terms:

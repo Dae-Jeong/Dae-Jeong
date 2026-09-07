@@ -10,6 +10,8 @@ tags: [jd, recruiting, gap-analysis, product]
 
 ## Purpose
 
+개별 공고 분석의 기본 키워드 적재·집계는 [JD Keyword Analysis](keyword-analysis.md)가 소유한다 (2026-09-07 추가). 기존 대량 corpus 기반 feature/gap 리포트와 구분하며, 아래 과거 구현 설명은 새 관측 workflow의 실행 명령으로 사용하지 않는다.
+
 채용 플랫폼의 현재 JD에서 대상 직군의 요구 특징을 추출하고 [profile capabilities](../../profile/capabilities.md)와 대조한다. raw corpus는 시점 의존적이고 회사 정보가 포함되므로 local input으로만 유지한다.
 
 최종 산출물은 두 개다:

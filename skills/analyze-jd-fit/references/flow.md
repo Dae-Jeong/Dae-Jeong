@@ -44,13 +44,17 @@ JD 링크 · 본문 · 파일
                           ▼
        강점 · 위험 · 실제 공백 · 지원 포지셔닝
                           │
+                          ▼
+              키워드 추출 · 관측 저장 · 집계
+                 (읽기 전용 요청은 저장 생략)
+                          │
                      지원 문서 필요?
                     ┌─────┴─────┐
                   아니오         예
                     │            │
                     ▼            ▼
-               분석 종료    $tailor-resume
-             파일 변경 없음  이력서·포트폴리오
+             관측 결과 보고   $tailor-resume
+                             이력서·포트폴리오
 ```
 
 ## Mermaid
@@ -85,8 +89,9 @@ flowchart TD
     CHECK --> DECISION
     DECISION["지원 판단<br/>지원 권장 · 조건부 · 비추천"] --> RESULT["강점 · 위험 · 실제 공백 · 지원 포지셔닝"]
 
-    RESULT --> NEXT{"지원 문서도 필요한가?"}
-    NEXT -->|아니오| END["분석 종료<br/>파일 저장 · repo 변경 없음"]
+    RESULT --> KEYWORDS["키워드 추출 · 근거 기록 · 공고 단위 집계<br/>읽기 전용 요청은 저장 생략"]
+    KEYWORDS --> NEXT{"지원 문서도 필요한가?"}
+    NEXT -->|아니오| END["분석 · 키워드 관측 결과 보고"]
     NEXT -->|사용자 요청| TAILOR["$tailor-resume<br/>이력서 · 포트폴리오 제작"]
 ```
 
@@ -94,5 +99,6 @@ flowchart TD
 
 - `$analyze-jd-fit`은 현재 Codex와 repo의 canonical source로 분석한다.
 - 외부 LLM을 호출하지 않는다.
-- 기본 실행에서는 홈페이지, `/chat`, API, JD 원문, 지원 기록을 변경하거나 저장하지 않는다.
+- 기본 실행은 [키워드 계약](../../../wiki/products/jd/keyword-analysis.md)에 따라 정규화 관측과 파생 보고서만 저장한다. 읽기 전용 요청은 저장하지 않는다.
+- 홈페이지, `/chat`, API, JD 원문 전체, 지원 기록은 변경하거나 저장하지 않는다.
 - 지원 문서 제작은 사용자가 요청할 때만 `$tailor-resume`로 넘긴다.

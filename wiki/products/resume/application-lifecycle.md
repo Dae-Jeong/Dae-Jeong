@@ -3,7 +3,7 @@ type: contract
 title: Tailored Application Lifecycle
 description: 회사별 맞춤 지원의 compact status, package checkpoint, 제출 Snapshot 규칙.
 status: active
-timestamp: 2026-09-01
+timestamp: 2026-09-06
 canonical: true
 tags: [resume, tailored, application, lifecycle]
 ---
@@ -33,6 +33,31 @@ consumer이며 registry의 상태를 새 canonical 값으로 만들지 않는다
 세부 진행 위치는 enum을 늘리지 않고 `tracking` 자유 문구로 기록한다. 예를 들어
 `문안 검토 중`, `기업 검토 중`, `1차 면접 예정`, `처우 협상 중`을 쓴다. 확인되지 않은
 tracking은 문구로 채우지 않고 `null`로 둔다.
+
+## Deadline And Status Report
+
+지원 현황 조회는 [report-application-status](../../../skills/report-application-status/SKILL.md)가 실행한다.
+사용자 결정(2026-09-06): **지원 전 공고만, 마감 3일 전부터 당일까지 임박 표시**한다.
+기준은 `Asia/Seoul`의 날짜 차이이며 `0 <= 마감일 - 오늘 <= 3`이면 `D-3`부터 `D-day`까지 표시한다.
+마감 시각이 있으면 그 시각부터 `마감 지남`이다. 날짜만 있으면 당일은 `D-day`이고 시각은 추정하지 않는다.
+
+현재 마감 정보도 registry의 attempt별 optional `deadline`이 소유한다.
+
+| Field | Contract |
+| --- | --- |
+| `kind` | `fixed`(날짜 지정), `rolling`(상시/채용 시 마감 명시), `unspecified`(열람했지만 날짜 미표시), `unknown`(미확인), `closed`(공고 종료 확인) |
+| `value` | `fixed`일 때만 quoted ISO 날짜 또는 offset 포함 시각. 예: `"2026-09-21"`, `"2026-09-21T18:00:00+09:00"`. 그 외 생략/null |
+| `source_url` | 해당 공고 URL. `unknown` 외에는 필수 |
+| `checked_at` | 그 마감 정보를 실제 확인한 날짜. 지원 상태의 `last_confirmed`와 독립. `unknown` 외에는 필수 |
+
+- 필드가 없는 legacy attempt는 `마감일 미확인`으로 읽는다. local JD는 출처이며 현재 값을 중복 소유하지 않는다.
+- 지원 전만 임박 대상으로 삼으며 `approved`·`frozen` 같은 artifact 상태로 대상을 고르지 않는다.
+- `rolling`·`unspecified`·`unknown`은 임의 날짜나 D-day를 만들지 않는다.
+- 마감 경과·공고 종료는 지원 상태와 별개다. 조회만으로 `pre-apply`를 `rejected`로 바꾸지 않는다.
+- 보고 때 지원 전 공고의 현재 마감 정보를 확인한다. 접근할 수 없으면 저장된 값·확인일을 밝히고 기록 기준으로 계산한다. 당일 확인은 재사용할 수 있다.
+- 사용자 정정이나 지정된 로그인 화면의 최신 지원 상태가 있으면 [지원 현황 최신성 규칙·게이트 18](../../rules/application-copy-standard.md#4-제출-전-게이트)을 적용한다. 공개 공고의 지원 버튼만으로 개인의 지원 여부를 판정하지 않는다. 단순 조회에서 원장과 불일치하면 보고에 명시하고, 원장 변경은 갱신 요청 범위에서 수행한다.
+- 조회 중의 새 관측은 report script의 `--deadline-overrides`로 이번 응답에만 반영할 수 있다. 원장 갱신 요청 시 `deadline`만 최신화하며 지원 여부가 확인되지 않았으면 `last_confirmed`를 바꾸지 않는다.
+- 신규 지원 attempt 등록 시 마감 정보도 함께 기록한다. 확정된 날짜가 없으면 그 확인 상태를 기록한다.
 
 ## Artifact Package And Checkpoint
 
@@ -104,5 +129,5 @@ conversation은 저장하지 않는다. 세션에서 문안을 수정했다면 `
 동기화 대상이다. local README의 상태 설명이 registry와 다르면
 [application-registry.yaml](application-registry.yaml)을 우선한다.
 
-새 attempt는 [tailored template](tailored/_template/README.md)에서 시작한다. legacy
+새 attempt는 [tailored template](../../../skills/tailor-resume/assets/application-package/application-readme.md)에서 시작한다. legacy
 `package/`, `preview/`, `source/`는 이동·삭제하거나 실제 제출 artifact로 추정하지 않는다.

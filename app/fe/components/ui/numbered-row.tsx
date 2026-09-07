@@ -44,7 +44,12 @@ export function NumberedRow({
   const key = (
     trailing !== undefined ? `${labelWidth}-t` : labelWidth
   ) as keyof typeof COLS;
-  const cols = COLS[key];
+  const hasLabel = typeof label === "string"
+    ? label.trim().length > 0
+    : label !== undefined && label !== null && label !== false;
+  const cols = hasLabel
+    ? COLS[key]
+    : trailing !== undefined ? "grid-cols-[minmax(0,1fr)_auto]" : "grid-cols-1";
   return (
     <li
       data-claim={dataClaim}
@@ -54,7 +59,7 @@ export function NumberedRow({
         className,
       )}
     >
-      <span
+      {hasLabel && <span
         className={cn(
           "font-mono text-sm tracking-[0.06em]",
           accent ? "font-bold text-success" : "text-muted",
@@ -62,7 +67,7 @@ export function NumberedRow({
         )}
       >
         {label}
-      </span>
+      </span>}
       <span className="min-w-0 text-lg font-[450] max-sm:text-base">{children}</span>
       {trailing !== undefined && (
         <span className="whitespace-nowrap text-right font-mono text-xs tracking-[0.04em] text-muted max-sm:text-left">

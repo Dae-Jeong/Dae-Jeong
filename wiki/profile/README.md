@@ -1,8 +1,8 @@
 ---
 type: index
 title: Profile Source Of Truth
-description: Canonical identity, career, capability, credentials, contribution, decision principles, workflow, and writing index.
-timestamp: 2026-09-01
+description: Canonical identity, career, capability, credentials, external recognition, contribution, decision principles, workflow, and writing index.
+timestamp: 2026-09-05
 tags: [profile, source-of-truth]
 ---
 
@@ -17,7 +17,7 @@ tags: [profile, source-of-truth]
 | [identity.md](identity.md) | primary category, positioning, bio |
 | [career.md](career.md) | timeline and role evolution |
 | [capabilities.md](capabilities.md) | capability groups and confidence |
-| [credentials.md](credentials.md) | education, awards, patent, certification |
+| [credentials.md](credentials.md) | education, awards, patent, certification, external recognition |
 | [contribution.md](contribution.md) | project contribution boundaries |
 | [decision-principles.md](decision-principles.md) | product, engineering, operation, and achievement selection principles |
 | [agent-workflow.md](agent-workflow.md) | stable agent/AX operating model |

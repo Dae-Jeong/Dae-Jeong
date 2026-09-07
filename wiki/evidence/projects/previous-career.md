@@ -155,6 +155,12 @@ tags: [career, credentials, product, ux, tellingme, evidence]
   - 직무가 "백엔드 엔지니어 & PM"으로 기재돼 있다 (oopy) — 인턴 시기에도 기획을 겸했다
 - 인턴 1개월 → 정규직 전환 구조가 oopy·링크드인에 날짜 단위로 기재돼 있다. 다른 플랫폼은 "2024.10~2025.01 4개월"로 합쳐 표기한다. **전환 사실이 드러나는 편이 유리하므로 분리 표기를 기본으로 한다.**
 
+## Java side-project experience
+
+- User-confirmed (2026-09-07): Java를 중심으로 학습했고 Java·Spring·Spring Boot를 활용한 사이드 프로젝트를 약 3개 진행했다. 사용자는 추가 기술 문구 `Java · Spring · Spring Boot — 사이드 프로젝트 3개에서 활용`을 승인했다.
+- 공개 범위: 기술 활용과 프로젝트 수만 표시한다. 프로젝트 전체의 단독 개발, 상용 운영 규모·기간·성과는 이 확인에 포함되지 않는다. 기존 TellingMe의 개별 근거와 다른 프로젝트들의 이름·구현 범위를 추정해 합치지 않는다.
+- Claim: `career.java-spring-side-projects`.
+
 ## TellingMe
 
 - Code-backed/user-confirmed: Spring Boot/JPA backend, OAuth2/JWT, gamification domain, AWS deploy/monitoring 범위와 backend lead/infra 역할이 확인됐다.

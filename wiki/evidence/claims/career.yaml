@@ -320,3 +320,37 @@ claims:
       리멤버·oopy 자기 기록만 있고 repository 근거가 없다. 2026-09-02 user-confirmed: 코드가 남아 있지 않다.
       따라서 public 승격 경로가 없으며 면접 구두 설명용 사실로만 보존한다. 이력서·포폴에는 쓰지 않는다.
 
+  - id: career.java-spring-side-projects
+    statement: Java·Spring·Spring Boot를 사이드 프로젝트 약 3개에서 활용
+    strength: contributed
+    confidence: medium
+    public: true
+    evidence: [evidence/projects/previous-career.md#java-side-project-experience]
+    allowed_copy:
+      - Java · Spring · Spring Boot — 사이드 프로젝트 3개에서 활용
+    forbidden_copy:
+      - Java·Spring 상용 서비스 실무 경력
+      - 사이드 프로젝트 3개 전체 단독 설계·개발·운영
+    verified_at: 2026-09-07
+    note: 사용자 확인에 근거한 기술 활용·프로젝트 수. 프로젝트별 코드 검증이나 운영 성과를 뜻하지 않는다.
+
+  - id: career.orcarouter-oss-developer-partnership
+    statement: 공개 GitHub 프로젝트를 보고 OrcaRouter가 먼저 제안한 OSS Developer Partner Program을 2026.09 수락
+    strength: contributed
+    confidence: high
+    public: true
+    evidence: [evidence/projects/orcarouter-oss-partnership.md#source-summary]
+    allowed_copy:
+      - 공개 GitHub 프로젝트를 계기로 OrcaRouter OSS Developer Partner Program 제안을 받아 2026.09 수락
+      - 개인 OSS 프로젝트가 외부 LLM API 플랫폼의 developer partnership으로 연결
+    forbidden_copy:
+      - 파트너십을 통한 수익 발생 또는 5% 수익 달성
+      - OrcaRouter provider 연동·release 완료
+      - Built with OrcaRouter directory 등재 완료
+      - 독점 파트너십·투자·고용·sponsorship 관계
+      - OrcaRouter가 아시아 최대 규모 LLM API gateway라는 독립 검증 없는 표현
+    verified_at: 2026-09-05
+    note: >-
+      제안 수신과 프로그램 조건은 2026-09-05 user-provided email screenshot으로 확인했고,
+      수락 사실은 같은 날 user-confirmed다.
+      5%는 eligible paid inference spend에 대한 프로그램 조건일 뿐 실제 유입·정산 성과가 아니다.

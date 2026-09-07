@@ -10,29 +10,40 @@ export type DocumentContact = {
 export type CareerProject = {
   id: string;
   title: string;
-  context: string;
-  role: string;
-  problem: string;
-  decision: string;
-  implementation: readonly string[];
-  verification: readonly string[];
-  result: string;
-  boundary?: string;
   claimIds: readonly string[];
-};
+} & (
+  | {
+      context: string;
+      role: string;
+      problem: string;
+      decision: string;
+      implementation: readonly string[];
+      verification: readonly string[];
+      result: string;
+      boundary?: string;
+    }
+  | {
+      sections: readonly {
+        title: string;
+        paragraphs?: readonly string[];
+        bullets?: readonly string[];
+      }[];
+    }
+);
 
 export type CareerCompany = {
   id: string;
   organization: string;
   period: string;
   role: string;
-  summary: string;
+  summary: string | readonly string[];
   projects: readonly CareerProject[];
   claimIds: readonly string[];
 };
 
 export type CareerDescriptionDocument = {
   kind: "career-description";
+  presentation?: "narrative";
   slug: string;
   companyName?: string;
   targetRole?: string;

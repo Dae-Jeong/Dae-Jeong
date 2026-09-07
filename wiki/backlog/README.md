@@ -21,6 +21,7 @@ Status: `idea`(등록) → `spec`(설계 확정) → `wip`(착수) → `done` ·
 
 | Id | 한 줄 | Status | 등록 |
 | --- | --- | --- | --- |
+| [backend-hiring-observatory](backend-hiring-observatory/README.md) | 공고 분석 스킬에 키워드 적재·집계 반영, 실제 관측 누적 단계 · 시계열 확장은 미착수 | wip | 2026-09-07 |
 | [blog-setup](blog-setup/README.md) | site scaffold + `/blog` + `/write-post` skill — OSS 베이스 선택 대기 | spec | 2026-07-15 |
 | [jarvis](jarvis/README.md) | wiki 연결 뷰 + 근거 chat + double-clap wake·STT 음성 — labs 서비스·k8s 1호 후보 | idea | 2026-07-15 |
 | [visitor-chat](visitor-chat/README.md) | 방문자용 profile chat — 설계 확정(2026-07-02/04), site Phase 2 labs 기능 1호 | spec | 2026-07-15 |
@@ -32,5 +33,7 @@ Status: `idea`(등록) → `spec`(설계 확정) → `wip`(착수) → `done` ·
 | [minigame](minigame/README.md) | 미니게임 아케이드 — 앱 하나에 여러 게임 (미니게임 천국 스타일), 개별 게임 미정 | idea | 2026-07-15 |
 | [english-resume](english-resume/README.md) | 영문 이력서 마스터 트랙 — claim 기반 재작성, 영문 표현 상한 정의 선행 | idea | 2026-07-16 |
 | [application-package-archive](application-package-archive/README.md) | 회사별 application lifecycle registry로 승격 · backlog는 historical design record | done | 2026-08-15 |
+| [application-status-skill](application-status-skill/README.md) | 지원 현황 조회·지원 전 마감 3일 이내 공고 표시 | done | 2026-09-06 |
+| [application-team-workflow](application-team-workflow/README.md) | 실무자 방식의 분석·작성·독립 검토 협업 스킬 | done | 2026-09-06 |
 | [resume-assembly-kit](resume-assembly-kit/README.md) | 검증된 이력서·포트폴리오 문안을 block과 직군 preset으로 조립 | idea | 2026-08-31 |
 | [agent-harness-operationalization](agent-harness-operationalization/README.md) | 기존 knowledge harness에 실행 루프·센서·권한·관측·래칫을 최소 구성으로 보강 — [design-v1](agent-harness-operationalization/design-v1.md) 작성, P0 착수 대기 | idea | 2026-09-03 |

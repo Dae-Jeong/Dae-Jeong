@@ -2,7 +2,7 @@
 type: index
 title: TODO — 통합 작업 목록
 description: 여러 문서에 흩어진 남은 작업의 단일 진입점. 상세는 각 owner 문서가 소유한다.
-timestamp: 2026-09-02
+timestamp: 2026-09-05
 canonical: false
 derived_from: [context/current-state.md, products/site/content-sot.md, products/resume/content-contract.md, backlog/platform-profile-consolidation/2026-08-22-live-verification.md, backlog/platform-profile-consolidation/2026-08-22-platform-paste-package.md, backlog/README.md]
 tags: [context, todo, routing]
@@ -84,6 +84,7 @@ owner: [Live 적용 검증](../backlog/platform-profile-consolidation/2026-08-22
 
 ### A2. claim 근거 보강
 
+- [ ] [OrcaRouter OSS partnership](../evidence/projects/orcarouter-oss-partnership.md) 후속 근거 — provider 연동·`Built with OrcaRouter` directory 등재·첫 eligible paid inference 발생을 각각 확인할 때 evidence를 갱신. 확인 전에는 5% 조건을 개인 수익 성과로 사용하지 않음
 - [ ] Thready production 안정성 최신화 — 최근 30/90일 request·5xx를 endpoint와 user-impact incident 단위로 재집계하고, 동일 Jira 정의로 resolve 대비 reopen 비율을 2026-08-19 현재까지 갱신. 재측정 전에는 `HTTP 5xx 0.3%`를 active resume 성과로 사용하지 않음
 - [ ] `nexus.pool-stabilization`을 공개 성과로 쓸 필요가 생기면 전후 모니터링 지표를 먼저 확보. NEXUS 예약률 전후 수치는 없음(2026-09-02) — `기여` 상한 고정
 - [ ] `mediness.daily-briefing`의 non-code 운영 ownership과 직접 구축 범위를 PR review·운영 기록으로 재검증 — 확인 전 active resume에서 제외
@@ -154,4 +155,3 @@ owner: [Live 적용 검증](../backlog/platform-profile-consolidation/2026-08-22
 - [x] 사람이 붙여넣기 완료(2026-09-03): 원티드 이력서 간단 소개·MediSolve 성과 제목, 그룹바이 MediSolve·더데이랩스 본문. 새로고침 확인, 5곳 모두 drift: false
 - [ ] 미적용 필드(각 플랫폼 Memento·STUDIO LAB·아이즈솔 본문, skill 목록, 링크드인 Featured)는 금지어가 없어 보류. 원하면 같은 절차로
 - [ ] 로켓펀치 자동 AI 커리어 요약 재생성 확인
-

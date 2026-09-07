@@ -2,7 +2,7 @@
 type: current-state
 title: Current State
 description: Current source-of-truth routing and deployed site state; this file is a derived snapshot.
-timestamp: 2026-09-01
+timestamp: 2026-09-05
 canonical: false
 derived_from: [profile/, evidence/claims/, products/, products/resume/application-registry.yaml, products/resume/application-lifecycle.md, app/fe/, backlog/platform-profile-consolidation/2026-08-22-live-verification.md]
 tags: [current-state, migration, resume]
@@ -12,6 +12,7 @@ tags: [current-state, migration, resume]
 
 ## Current Baseline
 
+- **개인 OSS 외부 partnership 수락** (2026-09-05): 공개 GitHub 프로젝트를 보고 OrcaRouter가 먼저 제안한 OSS Developer Partner Program을 2026.09 수락했다. 현재 개인 성과의 범위는 `외부 제안·수락`이며, provider 연동·directory 등재·referral 수익은 후속 근거 전까지 완료 성과로 사용하지 않는다. owner는 [partnership evidence](../evidence/projects/orcarouter-oss-partnership.md)와 `career.orcarouter-oss-developer-partnership` claim이다.
 - **지원본 작성 기준·블록 SoT 신설** (2026-09-02): 정체성·15초 문장·대표 성과 풀 6개·수치 정책을 고정 층으로 두고, 포장 허용 범위와 제출 전 게이트 10개를 [Application Copy Standard](../rules/application-copy-standard.md)가 소유한다. 블록별 문안 원형(문제·판단·구현 경계·결과)·강도·preset 순서는 [Resume Block Library](../products/resume/resume-block-library.md)가 소유하며, 회사별 `content-draft.md`는 여기서 시작한다. 회사별 헤더는 공고 직무명을 앞에 둔다. Codex 세션 304개 검토 결과 포지셔닝이 두 달간 다섯 번 바뀌고 같은 지적이 반복된 것이 배경이다.
 - **지원 문서 패키지 기준 확정** (2026-09-01): Common은 이력서·경력기술서·포트폴리오·CV 네 문서를 모두 상시 관리한다. 회사별 지원본은 이력서·경력기술서·포트폴리오를 기본으로 조립하고 CV만 JD·지원 채널 요구에 따라 선택한다. 회사 국적은 CV 생성의 단독 조건으로 쓰지 않으며, 영문 이력서와 CV도 별개 artifact로 관리한다. Common 이력서·포트폴리오는 active이고 경력기술서·CV는 typed content owner와 local/noindex route를 구성해 review-ready 상태다. JYP·피처링은 Resume·Career Description·Portfolio 3종을 tailored로, CV는 omitted로 기록했다. 상세 owner는 [Resume Document Package Contract](../products/resume/document-package-contract.md)다.
 - `Profile -> Evidence -> Products` knowledge harness migration 완료.

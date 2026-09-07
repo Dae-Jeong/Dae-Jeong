@@ -53,9 +53,11 @@ description: Prepare, review, adapt, render, or archive a company-specific resum
 
 ### 5. Create the Markdown Content Draft
 
+엔지니어링 문안은 [개인 판단 기준](../../wiki/profile/decision-principles.md)과 [Application Copy Standard §1-6](../../wiki/rules/application-copy-standard.md)의 `엔지니어링 판단의 구체성`을 적용한다. 경력의 책임 범위를 보존하면서, `구축·안정화`를 해당 경험만의 설계 판단으로 구체화한다. 사고방식의 참고 자료와 실제 구현을 증명하는 claim은 별개 입력으로 취급한다.
+
 `assets/application-package/content-draft.md`를 복사해 지원 폴더의 `content-draft.md`를 만든다. 이 파일이 승인 전 문안의 canonical owner다.
 
-- 성과·소개·경력 행·기술 문안은 `wiki/products/resume/resume-block-library.md`의 블록에서 시작한다. 회사별로 바꾸는 것은 블록 선택·순서·연결 문장·헤더 직함뿐이며 사실·수치·동사 강도·mechanism은 블록 그대로 쓴다 (`wiki/rules/application-copy-standard.md` §3).
+- 성과·소개·경력 행·기술 문안은 `wiki/products/resume/resume-block-library.md`의 블록에서 시작한다. 사실·수치·기여 강도·mechanism의 의미는 보존하며, 연결 claim과 최신 문안 기준 범위 안에서 선택·순서·연결 문장·헤더 직함을 조정하고 설계 판단을 구체화한다 (`wiki/rules/application-copy-standard.md` §1-6·§3). 블록의 오래된 표현을 최신 owner보다 우선하지 않는다.
 
 - resume·career description·portfolio와 선택한 CV에 들어갈 **실제 공개 문장 전체**를 Markdown에 먼저 쓴다.
 - 이력서의 `대표 기술 사례`는 문제·제약 → 실제 대안과 선택 → 구현 경계 → failure mode → 검증·운영 → 결과·한계 순으로 resume 안에서 자립적으로 쓴다.

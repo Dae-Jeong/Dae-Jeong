@@ -11,7 +11,7 @@ from __future__ import annotations
 import argparse
 import json
 import sys
-from datetime import date
+from datetime import date, datetime
 from pathlib import Path
 from typing import Any
 
@@ -40,6 +40,50 @@ ARTIFACT_KEYS = {"resume", "career-description", "portfolio", "cv"}
 ARTIFACT_MODES = {"common", "tailored", "omitted"}
 COMMON_ARTIFACT_STATES = {"drafting", "review-ready", "active"}
 ARTIFACT_VISIBILITIES = {"local", "public"}
+DEADLINE_KINDS = {"fixed", "rolling", "unspecified", "unknown", "closed"}
+
+
+def parse_deadline_value(value: Any) -> date | datetime:
+    """Keep date-only precision; require an explicit offset for a closing time."""
+    if not isinstance(value, str):
+        raise ValueError("deadline value must be a quoted ISO date or offset datetime")
+    if len(value) == 10:
+        return date.fromisoformat(value)
+    result = datetime.fromisoformat(value)
+    if result.utcoffset() is None:
+        raise ValueError("deadline datetime requires a timezone offset")
+    return result
+
+
+def validate_deadline(value: Any, label: str) -> list[str]:
+    """Optional posting metadata, independent of application and artifact state."""
+    if value is None:
+        return []
+    if not isinstance(value, dict):
+        return [f"{label} must be an object or null"]
+    errors: list[str] = []
+    extra = set(value) - {"kind", "value", "source_url", "checked_at"}
+    if extra:
+        errors.append(f"{label} has unknown fields {sorted(extra)}")
+    kind = value.get("kind")
+    if kind not in DEADLINE_KINDS:
+        errors.append(f"{label}.kind must be one of {sorted(DEADLINE_KINDS)}")
+    if kind == "fixed":
+        try:
+            parse_deadline_value(value.get("value"))
+        except ValueError as exc:
+            errors.append(f"{label}.value: {exc}")
+    elif value.get("value") is not None:
+        errors.append(f"{label}.value is only allowed for fixed deadlines")
+    source = value.get("source_url")
+    if source is not None and (
+        not isinstance(source, str) or not source.startswith(("https://", "http://"))
+    ):
+        errors.append(f"{label}.source_url must be an http(s) URL or null")
+    if kind != "unknown" and (not source or not value.get("checked_at")):
+        errors.append(f"{label} requires source_url and checked_at for a known deadline")
+    _validate_date(value.get("checked_at"), f"{label}.checked_at", errors, allow_none=True)
+    return errors
 
 
 def _relative(path: Path, root: Path) -> str:
@@ -287,6 +331,8 @@ def validate_registry_data(data: Any) -> list[str]:
         _validate_source_path(attempt.get("source_path"), f"{label}.source_path", errors)
         if "posting_id" in attempt:
             _validate_nullable_string(attempt.get("posting_id"), f"{label}.posting_id", errors)
+
+        errors.extend(validate_deadline(attempt.get("deadline"), f"application registry: {label}.deadline"))
 
         _validate_artifacts(attempt, index, errors)
         _validate_current(attempt, index, errors)

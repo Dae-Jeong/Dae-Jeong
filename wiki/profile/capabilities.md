@@ -23,7 +23,7 @@ tags: [capabilities, backend, ai-product, infra, agent-workflow, product, ux]
 
 ## Working Stack
 
-- Language/Framework: Python, FastAPI, TypeScript, NestJS; Java/Spring Boot in personal project
+- Language/Framework: Python, FastAPI, TypeScript, NestJS; Java·Spring·Spring Boot는 사이드 프로젝트 약 3개에서 활용 ([근거](../evidence/projects/previous-career.md#java-side-project-experience), `career.java-spring-side-projects`)
 - Data/Messaging: PostgreSQL, MySQL, Redis, RabbitMQ, TaskIQ
 - Runtime/Integration: WebSocket, SSE, STT/LLM integration
 - Cloud/Delivery: Docker, GitHub Actions, Azure, Terraform, AWS — service deployment and basic operations

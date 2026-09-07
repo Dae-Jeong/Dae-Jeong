@@ -1,5 +1,5 @@
 schema_version: 2
-updated_at: "2026-09-03"
+updated_at: "2026-09-07"
 
 # This is the canonical owner for ApplicationAttempt status and artifact metadata.
 # Local tailored README files provide provenance and package detail only.
@@ -46,15 +46,19 @@ attempts:
     role: "Software Engineer / AI"
     header_role: "Software Engineer / AI"
     status: pre-apply
-    tracking: "승인 · PDF 재생성 2026-09-03 (경력기술서 첫 줄 브랜딩·약 94%·헤더 단일화 반영) · 제출 준비"
-    artifact_state: approved
-    last_confirmed: "2026-09-03"
+    tracking: "2026-09-07 검토한 v2 이력서를 기본 v1(/resume/jyp)로 교체 · 경력기술서·포트폴리오 미전환"
+    artifact_state: mutable
+    last_confirmed: "2026-09-07"
     source_path: "wiki/products/resume/tailored/jyp-entertainment/2026-08-29_jype-career_software-engineer-ai/README.md"
+    deadline:
+      kind: unspecified
+      source_url: "https://recruit-apply.jype.com/ko/o/229263"
+      checked_at: "2026-09-07"
     work_session:
       state: waiting-review
-      scope: "JYP content-draft와 local resume·career description·portfolio 문안·시각 검토"
-      last_synced: "2026-09-02"
-      next_action: "2026-09-02 순서 일치(Backend 기준→유료 제품→Agent)·승인·PDF 생성 완료 (output/pdf/jyp/). 제출 시 Snapshot 동결"
+      scope: "이력서는 검토한 v2를 /resume/jyp 기본 v1으로 승격. /resume/jyp-v2는 이동 연결. 경력기술서·포트폴리오는 기존/v2 유지, PDF는 구판 기록"
+      last_synced: "2026-09-07"
+      next_action: "경력기술서·포트폴리오의 최신 관점 반영 검토. 현재 이력서 PDF는 미생성, 공개 배포·제출은 별도 결정"
     current:
       kind: checkpoint
       package_revision: 4
@@ -85,6 +89,9 @@ attempts:
     artifact_state: approved
     last_confirmed: "2026-09-03"
     source_path: "wiki/products/resume/tailored/featuring/2026-08-31_wanted_backend-engineer/README.md"
+    deadline:
+      kind: unknown
+      source_url: "https://www.wanted.co.kr/wd/346800"
     work_session:
       state: waiting-review
       scope: "피처링 맞춤 문안·typed content·local resume·career description·portfolio의 review-ready package"
@@ -115,24 +122,36 @@ attempts:
     company: "하이퍼노바"
     role: "[헤이링] Product Engineer"
     header_role: "Product Engineer"
-    status: pre-apply
-    tracking: "승인 · typed content·PDF 완료 · 지원서 문항 답변 작성 완료 · 제출 대기 (Harness P2 두 번째 실전)"
-    artifact_state: approved
-    last_confirmed: "2026-09-04"
+    status: rejected
+    tracking: "탈락 (2026-09-07 사용자 확인 · 2026-09-05 지원, 세부 전형 단계·사유 미확인)"
+    artifact_state: frozen
+    last_confirmed: "2026-09-07"
     source_path: "wiki/products/resume/tailored/hypernova/2026-09-03_groupby_product-engineer/README.md"
+    deadline:
+      kind: unspecified
+      source_url: "https://groupby.kr/positions/12530"
+      checked_at: "2026-09-06"
     work_session:
       state: complete
       scope: "하이퍼노바 [헤이링] Product Engineer typed content 3종 (/resume·/career·/portfolio/hypernova) · PDF output/pdf/hypernova"
       last_synced: "2026-09-04"
-      next_action: "그룹바이 폼 제출 (문항 답변은 application-answers.md) → 제출 시 status in-progress · artifact_state frozen · snapshot 동결"
+      next_action: "전형 종료 · 제출 문서 동결 유지"
     current:
-      kind: checkpoint
+      kind: legacy-import
       package_revision: 1
       artifact_revisions:
         resume: 1
         career-description: 1
         portfolio: 1
       checkpoint_at: "2026-09-04"
+    snapshot:
+      id: null
+      verification: partial
+      captured_at: null
+      submitted_at: "2026-09-05"
+      package_revision: null
+      artifact_revisions: {}
+      artifact_refs: {}
     artifacts:
       resume:
         mode: tailored
@@ -155,6 +174,11 @@ attempts:
     artifact_state: approved
     last_confirmed: "2026-09-03"
     source_path: "wiki/products/resume/tailored/miridih/2026-09-03_wanted_product-engineer/README.md"
+    deadline:
+      kind: fixed
+      value: "2026-09-21"
+      source_url: "https://www.wanted.co.kr/wd/353860"
+      checked_at: "2026-09-06"
     work_session:
       state: waiting-review
       scope: "미리디 Product Engineer 맞춤 문안·typed content·local resume·career description·portfolio"
@@ -374,4 +398,3 @@ attempts:
       package_revision: null
       artifact_revisions: {}
       artifact_refs: {}
-

@@ -117,7 +117,16 @@ function LabeledText({
   );
 }
 
-function CareerProjectBlock({ project }: { project: CareerProject }) {
+function CareerProjectBlock({
+  project,
+  narrative,
+}: {
+  project: CareerProject;
+  narrative: boolean;
+}) {
+  const ProjectHeading = narrative ? "h3" : "h4";
+  const DetailHeading = narrative ? "h4" : "h5";
+
   return (
     <article
       id={project.id}
@@ -125,40 +134,77 @@ function CareerProjectBlock({ project }: { project: CareerProject }) {
       className={cn(styles.project, "border-t border-border pt-8 first:border-t-0 first:pt-0")}
     >
       <div className="min-w-0">
-        <h4 className="text-pretty text-[17px] font-semibold leading-snug tracking-[-0.02em]">
+        <ProjectHeading className="text-pretty text-[17px] font-semibold leading-snug tracking-[-0.02em]">
           {project.title}
-        </h4>
-        <p className="mt-2 text-sm leading-relaxed text-muted">{project.context}</p>
+        </ProjectHeading>
+        {!("sections" in project) && (
+          <p className="mt-2 text-sm leading-relaxed text-muted">{project.context}</p>
+        )}
       </div>
 
-      <dl className={cn(styles.projectDetail, "mt-6 grid gap-4") }>
-        <LabeledText label="담당 범위">{project.role}</LabeledText>
-        <LabeledText label="문제">{project.problem}</LabeledText>
-        <LabeledText label="선택">{project.decision}</LabeledText>
-        <LabeledText label="구현">
-          <ul className={styles.detailList}>
-            {project.implementation.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-        </LabeledText>
-        <LabeledText label="검증">
-          <ul className={styles.detailList}>
-            {project.verification.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-        </LabeledText>
-        <LabeledText label="결과" emphasis>
-          <strong className="font-medium text-fg">{project.result}</strong>
-          {project.boundary && <span className="mt-1 block text-sm text-muted">범위 · {project.boundary}</span>}
-        </LabeledText>
-      </dl>
+      {"sections" in project ? (
+        <div className="mt-6 grid gap-7">
+          {project.sections.map((section) => (
+            <section key={section.title} className="min-w-0">
+              <DetailHeading className="text-pretty text-base font-semibold leading-snug tracking-[-0.02em]">
+                {section.title}
+              </DetailHeading>
+              <div className="mt-3 grid gap-3 text-[15px] leading-[1.72] text-fg-2">
+                {section.paragraphs?.map((paragraph) => (
+                  <p key={paragraph} className="max-w-[72ch] text-pretty">
+                    {paragraph}
+                  </p>
+                ))}
+                {section.bullets && section.bullets.length > 0 && (
+                  <ul className={styles.detailList}>
+                    {section.bullets.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            </section>
+          ))}
+        </div>
+      ) : (
+        <dl className={cn(styles.projectDetail, "mt-6 grid gap-4")}>
+          <LabeledText label="담당 범위">{project.role}</LabeledText>
+          <LabeledText label="문제">{project.problem}</LabeledText>
+          <LabeledText label="선택">{project.decision}</LabeledText>
+          <LabeledText label="구현">
+            <ul className={styles.detailList}>
+              {project.implementation.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </LabeledText>
+          <LabeledText label="검증">
+            <ul className={styles.detailList}>
+              {project.verification.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </LabeledText>
+          <LabeledText label="결과" emphasis>
+            <strong className="font-medium text-fg">{project.result}</strong>
+            {project.boundary && <span className="mt-1 block text-sm text-muted">범위 · {project.boundary}</span>}
+          </LabeledText>
+        </dl>
+      )}
     </article>
   );
 }
 
-function CareerCompanyBlock({ company }: { company: CareerCompany }) {
+function CareerCompanyBlock({
+  company,
+  narrative,
+}: {
+  company: CareerCompany;
+  narrative: boolean;
+}) {
+  const CompanyHeading = narrative ? "h2" : "h3";
+  const summary = typeof company.summary === "string" ? [company.summary] : company.summary;
+
   return (
     <section
       data-claim={company.claimIds.join(" ")}
@@ -169,24 +215,31 @@ function CareerCompanyBlock({ company }: { company: CareerCompany }) {
     >
       <div className={cn(styles.companyHeader, "grid gap-4 md:grid-cols-[200px_minmax(0,1fr)] md:gap-8")}> 
         <div>
-          <h3 className="text-lg font-semibold tracking-[-0.02em]">{company.organization}</h3>
+          <CompanyHeading className="text-lg font-semibold tracking-[-0.02em]">{company.organization}</CompanyHeading>
           <p className="mt-2 font-mono text-xs leading-relaxed text-muted">{company.period}</p>
         </div>
         <div>
           <p className="font-medium">{company.role}</p>
-          <p className="mt-2 max-w-[72ch] text-[15px] leading-[1.72] text-fg-2">{company.summary}</p>
+          {summary.map((paragraph) => (
+            <p key={paragraph} className="mt-2 max-w-[72ch] text-[15px] leading-[1.72] text-fg-2">
+              {paragraph}
+            </p>
+          ))}
         </div>
       </div>
-      <div className={cn(styles.companyProjects, "mt-8 grid gap-9")}>
-        {company.projects.map((project) => (
-          <CareerProjectBlock key={project.id} project={project} />
-        ))}
-      </div>
+      {(!narrative || company.projects.length > 0) && (
+        <div className={cn(styles.companyProjects, "mt-8 grid gap-9")}>
+          {company.projects.map((project) => (
+            <CareerProjectBlock key={project.id} project={project} narrative={narrative} />
+          ))}
+        </div>
+      )}
     </section>
   );
 }
 
 export function CareerDescriptionView({ document }: { document: CareerDescriptionDocument }) {
+  const narrative = document.presentation === "narrative";
   const meta = document.companyName
     ? `${document.companyName} · ${document.targetRole ?? "Tailored"}`
     : "Common · Career Description";
@@ -205,7 +258,7 @@ export function CareerDescriptionView({ document }: { document: CareerDescriptio
       />
 
       <section className={cn(styles.section, "py-12 md:py-14")}> 
-        <SectionTitle title="경력 요약" note="제품·Backend·AI" />
+        <SectionTitle title={narrative ? "소개" : "경력 요약"} note={narrative ? undefined : "제품·Backend·AI"} />
         <div className="mt-7 grid gap-3">
           {document.summary.map((paragraph) => (
             <p key={paragraph} className="max-w-[72ch] text-pretty text-base leading-[1.75] text-fg-2">
@@ -216,27 +269,29 @@ export function CareerDescriptionView({ document }: { document: CareerDescriptio
       </section>
 
       <section className={cn(styles.section, "pb-14")}> 
-        <SectionTitle title="프로젝트별 수행" note="문제에서 결과까지" />
-        <div className="mt-9 grid gap-14">
+        {!narrative && <SectionTitle title="프로젝트별 수행" note="문제에서 결과까지" />}
+        <div className={cn(!narrative && "mt-9", "grid gap-14")}>
           {document.companies.map((company) => (
-            <CareerCompanyBlock key={company.id} company={company} />
+            <CareerCompanyBlock key={company.id} company={company} narrative={narrative} />
           ))}
         </div>
       </section>
 
-      <section className={cn(styles.section, "border-t border-fg pt-8")}> 
-        <div className={styles.compactBlock}>
-          <SectionTitle title="기술" />
-          <dl className="mt-7 grid divide-y divide-border-soft border-y border-border-soft">
-            {document.skills.map((skill) => (
-              <div key={skill.label} className="grid gap-2 py-4 md:grid-cols-[180px_1fr] md:gap-6">
-                <dt className="font-medium">{skill.label}</dt>
-                <dd className="m-0 text-sm leading-relaxed text-fg-2">{skill.value}</dd>
-              </div>
-            ))}
-          </dl>
-        </div>
-      </section>
+      {(!narrative || document.skills.length > 0) && (
+        <section className={cn(styles.section, "border-t border-fg pt-8")}>
+          <div className={styles.compactBlock}>
+            <SectionTitle title="기술" />
+            <dl className="mt-7 grid divide-y divide-border-soft border-y border-border-soft">
+              {document.skills.map((skill) => (
+                <div key={skill.label} className="grid gap-2 py-4 md:grid-cols-[180px_1fr] md:gap-6">
+                  <dt className="font-medium">{skill.label}</dt>
+                  <dd className="m-0 text-sm leading-relaxed text-fg-2">{skill.value}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </section>
+      )}
     </main>
   );
 }

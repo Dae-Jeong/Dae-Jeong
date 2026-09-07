@@ -2,7 +2,7 @@
 type: profile
 title: Decision Principles
 description: 제품·기술·운영 경험을 선택하고 설명할 때 사용하는 안정적인 판단 기준.
-timestamp: 2026-09-01
+timestamp: 2026-09-07
 tags: [profile, decision-principles, product, engineering]
 ---
 
@@ -35,6 +35,19 @@ tags: [profile, decision-principles, product, engineering]
 - 의도적으로 포기한 성능·유연성·병렬성이 있다면 무엇을 얻기 위한 선택이었는지 함께 설명한다.
 
 ## Operation And Verification
+
+### Laughtale에서 확인한 엔지니어링 관점
+
+2026-09-07 사용자 요청으로 `workspace:laughtale`의 `README.md`, `docs/engineering-principles.md`와 Application·Domain·Persistence·외부 연계·Testing·Runtime Review 원문을 대조했다. 상세 개발 규칙은 Laughtale이 계속 소유하며, 여기서는 경험을 선택하는 관점만 연결한다. 해당 저장소는 초기 구상과 승인된 설계 규약이며 그 자체가 구현·운영 성과의 증거는 아니다.
+
+- 제품이 지켜야 할 권한·상태·순서·중복 방지 조건을 먼저 보고, 정상 응답뿐 아니라 실패·경합에서도 그 조건이 유지되는지를 묻는다.
+- 책임과 실패가 어디까지 전파되는지 구분한다. 특히 DB 변경과 외부 실행, 재시도 주체, 취소·자원 반환을 서로 다른 판단으로 본다.
+- 계층·패턴의 수가 아니라 필요한 책임의 분리와 복구 가능성을 본다. 기술 도입은 해결할 문제·유지 비용과 연결하고, 존재하지 않았던 대안 비교를 사후에 만들어내지 않는다.
+- 테스트 통과라는 말보다 상태 변경·미변경, 호출 횟수, 순서·누락·중복 등 해당 위험을 확인한 증거를 본다. 성능·용량은 실측과 가설을 구분하며 빠르더라도 정확성을 깨면 성공으로 보지 않는다.
+
+문안에 적용할 때는 이 관점을 기존 `evidence/`의 개별 claim과 대조한다. Laughtale의 선점·고부하·공정성 실험 관심이나 향후 인프라 목록을 실무 성과로 전환하지 않는다.
+
+### 실무 경험의 확인 기준
 
 - production 운영, STG 검증, prototype 제안을 같은 성숙도로 표현하지 않는다.
 - 성공 결과만 나열하지 않고 실제 failure mode, 관측 방법, 복구 방식, 검증 기준을 함께 본다.

@@ -108,6 +108,7 @@ export type TailoredResume = {
   outcomes: readonly ResumeOutcome[];
   workStyles: readonly ResumeWorkStyle[];
   skills: readonly ResumeSkill[];
+  additionalSkills?: readonly ResumeSkill[];
   externalActivities?: readonly ResumeExternalActivity[];
   credentials: readonly ResumeCredential[];
 };

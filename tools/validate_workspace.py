@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import re
+import subprocess
 import sys
 from pathlib import Path
 from typing import Any
@@ -593,10 +594,13 @@ def _validate_outcome_axes(root: Path) -> list[str]:
     axes = gates.get("axes") or {}
     words = [str(w) for w in (axes.get("words") or [])]
     minimum = int(axes.get("min_distinct") or 0)
+    exemptions = axes.get("exemptions") or {}
     if not words or not minimum:
         return []
     errors: list[str] = []
     for attempt in _active_attempts(root, surfaces_cfg):
+        if exemptions.get(attempt.get("id")):
+            continue
         resume = _surface_files(root, surfaces_cfg, attempt).get("resume.tailored")
         if resume is None:
             continue
@@ -754,6 +758,22 @@ def _validate_platform_fields(root: Path) -> list[str]:
     return errors
 
 
+def _validate_resume_row_layout(root: Path) -> list[str]:
+    """Gate 21: exercise blank and populated metadata using the actual React component."""
+    frontend = root / "app/fe"
+    test = frontend / "scripts/numbered-row.test.mjs"
+    # A wiki-only checkout may not have frontend dependencies; copy verification installs/requires them.
+    if not test.exists() or not (frontend / "node_modules/typescript").exists():
+        return []
+    try:
+        result = subprocess.run(
+            ["node", "--test", str(test)], cwd=frontend, capture_output=True, text=True, timeout=30,
+        )
+    except (OSError, subprocess.TimeoutExpired) as exc:
+        return [f"resume row layout: gate 21 could not run: {exc}"]
+    return [] if result.returncode == 0 else [f"resume row layout: gate 21 failed\n{result.stdout}\n{result.stderr}"]
+
+
 def validate(root: Path) -> list[str]:
     """Return stable validation failures; an empty list means pass."""
     root = root.resolve()
@@ -777,6 +797,7 @@ def validate(root: Path) -> list[str]:
         + _validate_header_role(root)
         + _validate_hero_sentences(root)
         + _validate_platform_fields(root)
+        + _validate_resume_row_layout(root)
     )
 
 

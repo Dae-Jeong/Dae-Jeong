@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { ApplicationVersionNav } from "@/components/site/application-version-nav";
 import { canViewDocument, getCareerDescription } from "@/content/documents";
 import { CareerDescriptionView } from "../../documents/professional-document";
 import { ResumePageShell } from "../../resume/resume-page-shell";
@@ -26,6 +27,7 @@ export default async function TailoredCareerPage({ params }: PageProps) {
 
   return (
     <ResumePageShell crumb={<>Career / {document.companyName}</>} tag="DRAFT · LOCAL">
+      {company === "jyp-v2" ? <ApplicationVersionNav slug="jyp-v2" label="JYP v2" active="career" /> : null}
       <CareerDescriptionView document={document} />
     </ResumePageShell>
   );

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
+import { ApplicationVersionNav } from "@/components/site/application-version-nav";
 import {
   canViewTailoredResume,
   getTailoredResume,
@@ -14,6 +15,7 @@ type PageProps = {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { company } = await params;
+  if (company === "jyp-v2") redirect("/resume/jyp");
   const resume = getTailoredResume(company);
 
   if (!resume || !canViewTailoredResume(resume)) {
@@ -35,6 +37,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 export default async function CompanyResumePage({ params }: PageProps) {
   const { company } = await params;
+  if (company === "jyp-v2") redirect("/resume/jyp");
   const resume = getTailoredResume(company);
 
   if (!resume || !canViewTailoredResume(resume)) notFound();
@@ -57,6 +60,7 @@ export default async function CompanyResumePage({ params }: PageProps) {
             : undefined
       }
     >
+      {company === "jyp" ? <ApplicationVersionNav slug="jyp-v2" label="JYP · 이력서 v1" active="resume" /> : null}
       <TailoredResumeView resume={resume} roleOptions={roleOptions} />
     </ResumePageShell>
   );

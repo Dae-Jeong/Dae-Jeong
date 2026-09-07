@@ -53,7 +53,7 @@ Canonical positioning은 [profile/identity.md](../../profile/identity.md)를, �
 | 01 | 소개 | `Maker title 1문장 + description 2문장`으로 구성한다. title은 브랜드 정체성, description은 `제품 판단 → 직접 구현 → cross-functional 출시·유료 운영` 범위만 설명하고 세부 기술·수치는 아래 경력과 대표 성과가 증명한다. |
 | 02 | 경력 | 최신순. 좌측 metadata column에 조직명과 기간을 세로로 쌓고, 우측에 직함·제품 성격·담당 범위를 배치. MediSolve AI row는 고객 문제를 실제 매출이 발생하는 Thready 제품으로 만든 과정과 제품·팀 outcome을 먼저 보여주고, 직접 구현 범위와 합류 경로는 그 뒤에 둔다. |
 | 03 | 대표 성과 | 다섯 사례를 한 섹션에서 연결: `Thready 제품화·매출·운영 → 인계받은 backend 병렬 재구축·QA reopen 관측 → Centurion 주문·재고 비동기 복구 → Thready 제품 원장/AI 실행 분리·STG migration·Outbox → 직접 구축한 Backend Template·agent 기준`. 회사 AX는 경력·기술과 AX/FDE 등 직군별 지원본에서 contribution strength를 분리해 사용한다. |
-| 04 | 기술 | `Backend Core → Data/Async → AI Runtime → Product Execution/AX → Cloud/Delivery`의 5개 capability lane으로 구성. Cloud/Delivery는 Docker·GitHub Actions·Azure·Terraform을 활용한 서비스 배포·환경 설정·기본 운영 경험만 표시한다. |
+| 04 | 기술 | [Application Copy Standard §1-7](../../rules/application-copy-standard.md#1-7-기술-표의-분류-기준)의 기본 분류로 검증된 기술·사용 범위를 선택·배치한다. 고정 5개 lane이나 모든 분류 채우기는 요구하지 않는다. 배포·인프라의 기여 범위는 evidence에 있는 서비스 배포·환경 설정·기본 운영 경험을 따른다. |
 | 05 | 외부 활동 | 제품·UX 외부 활동을 경력·기술·자격과 분리하고 `UX 컨설팅`과 `UX 스터디` 두 행으로 구성. 각 행은 활동명 뒤에 문제·판단·산출물을 한 문장으로 설명하며 상세 근거는 evidence 문서가 소유 |
 | 06 | Credentials | 특허·수상·외부 인증·자격·학력을 배치하고 검증된 고정 사실만 사용 |
 

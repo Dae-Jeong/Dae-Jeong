@@ -226,7 +226,7 @@ function ResumeDocument({ resume }: { resume: TailoredResume }) {
     v: (
       <>
         <span className="block text-base font-medium leading-normal text-fg">{skill.stack}</span>
-        <span className="mt-1 block text-pretty text-sm leading-relaxed text-fg-2">{skill.via}</span>
+        {skill.via ? <span className="mt-1 block text-pretty text-sm leading-relaxed text-fg-2">{skill.via}</span> : null}
       </>
     ),
   }));
@@ -351,6 +351,11 @@ function ResumeDocument({ resume }: { resume: TailoredResume }) {
       return (
         <Section key={section.key} {...sectionProps}>
           <KeyValueRows items={skillRows} />
+          {resume.additionalSkills?.map((skill) => (
+            <p key={skill.label} data-claim={claim(skill.claimIds)} className="m-0 mt-4 text-sm leading-relaxed text-fg-2">
+              <span className="font-medium">{skill.label}</span> · {skill.stack}{skill.via ? ` — ${skill.via}` : ""}
+            </p>
+          ))}
         </Section>
       );
     }

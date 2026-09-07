@@ -26,6 +26,8 @@ tags: [context, routing, progressive-disclosure]
 | 이력에 그대로 끼워 넣는 문안 블록 (문제·판단·구현·결과) | [../products/resume/resume-block-library.md](../products/resume/resume-block-library.md) |
 | 기본 이력서·경력기술서·포트폴리오·CV와 회사별 선택 | [../products/resume/document-package-contract.md](../products/resume/document-package-contract.md) |
 | 회사별 지원 상태·제출본 동결 여부 | [../products/resume/application-registry.yaml](../products/resume/application-registry.yaml) — 현재 값 owner, [../products/resume/application-lifecycle.md](../products/resume/application-lifecycle.md) — compact status와 Snapshot 규칙 |
+| 지원 현황 알려줘·마감 임박 조회 | [report-application-status](../../skills/report-application-status/SKILL.md) — registry 조회·마감 판정 |
+| 회사 분석·지원 문안을 팀으로 진행 | [run-application-team](../../skills/run-application-team/SKILL.md) — 실무자 방식의 분석·작성·독립 검토·조정 |
 | 포트폴리오 | [../products/portfolio/README.md](../products/portfolio/README.md) |
 | 홈페이지 | [../products/homepage/README.md](../products/homepage/README.md) |
 | JD 분석 | [../products/jd/README.md](../products/jd/README.md) |

@@ -50,6 +50,8 @@ tool-agnostic skill의 canonical 위치는 `skills/`다. tool-specific 폴더는
 | Skill | 위치 | 용도 |
 | --- | --- | --- |
 | analyze-jd-fit | [skills/analyze-jd-fit/SKILL.md](skills/analyze-jd-fit/SKILL.md) | JD 링크·본문을 검증된 profile/evidence와 대조해 지원 판단·강점·공백 분석 |
+| report-application-status | [skills/report-application-status/SKILL.md](skills/report-application-status/SKILL.md) | 지원 현황 조회·지원 전 공고의 마감 임박 표시. `현황 알려줘` 요청 시 사용 |
+| run-application-team | [skills/run-application-team/SKILL.md](skills/run-application-team/SKILL.md) | 실무자 방식의 분석·작성·독립 검토 협업. 지원 준비를 팀으로 진행할 때 사용 |
 | tailor-resume | [skills/tailor-resume/SKILL.md](skills/tailor-resume/SKILL.md) | 검증된 claim 기반 회사/JD 맞춤 이력서 생성 |
 | review-application-copy | [skills/review-application-copy/SKILL.md](skills/review-application-copy/SKILL.md) | active 회사·공통 표면의 공개 문안을 규칙 대비 전수 검토 (파일 수정 없음) |
 | sync-platform-profile | [skills/sync-platform-profile/SKILL.md](skills/sync-platform-profile/SKILL.md) | 채용 플랫폼 프로필을 canonical 문안(`wiki/products/platform-profiles`)에 맞춰 파생·검사·적용·reload 검증·registry 기록 |

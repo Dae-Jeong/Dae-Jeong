@@ -47,10 +47,10 @@
       "company": "JYP Entertainment",
       "role": "Software Engineer / AI",
       "status": "pre-apply",
-      "artifactState": "approved",
+      "artifactState": "mutable",
       "sourcePath": "wiki/products/resume/tailored/jyp-entertainment/2026-08-29_jype-career_software-engineer-ai/README.md",
-      "tracking": "승인 · PDF 재생성 2026-09-03 (경력기술서 첫 줄 브랜딩·약 94%·헤더 단일화 반영) · 제출 준비",
-      "lastConfirmed": "2026-09-03",
+      "tracking": "2026-09-07 검토한 v2 이력서를 기본 v1(/resume/jyp)로 교체 · 경력기술서·포트폴리오 미전환",
+      "lastConfirmed": "2026-09-07",
       "artifacts": {
         "resume": {
           "mode": "tailored",
@@ -80,9 +80,9 @@
       },
       "workSession": {
         "state": "waiting-review",
-        "scope": "JYP content-draft와 local resume·career description·portfolio 문안·시각 검토",
-        "lastSynced": "2026-09-02",
-        "nextAction": "2026-09-02 순서 일치(Backend 기준→유료 제품→Agent)·승인·PDF 생성 완료 (output/pdf/jyp/). 제출 시 Snapshot 동결"
+        "scope": "이력서는 검토한 v2를 /resume/jyp 기본 v1으로 승격. /resume/jyp-v2는 이동 연결. 경력기술서·포트폴리오는 기존/v2 유지, PDF는 구판 기록",
+        "lastSynced": "2026-09-07",
+        "nextAction": "경력기술서·포트폴리오의 최신 관점 반영 검토. 현재 이력서 PDF는 미생성, 공개 배포·제출은 별도 결정"
       }
     },
     {
@@ -132,11 +132,11 @@
       "id": "hypernova-2026-09-03-groupby-product-engineer",
       "company": "하이퍼노바",
       "role": "[헤이링] Product Engineer",
-      "status": "pre-apply",
-      "artifactState": "approved",
+      "status": "rejected",
+      "artifactState": "frozen",
       "sourcePath": "wiki/products/resume/tailored/hypernova/2026-09-03_groupby_product-engineer/README.md",
-      "tracking": "승인 · typed content·PDF 완료 · 지원서 문항 답변 작성 완료 · 제출 대기 (Harness P2 두 번째 실전)",
-      "lastConfirmed": "2026-09-04",
+      "tracking": "탈락 (2026-09-07 사용자 확인 · 2026-09-05 지원, 세부 전형 단계·사유 미확인)",
+      "lastConfirmed": "2026-09-07",
       "artifacts": {
         "resume": {
           "mode": "tailored",
@@ -155,7 +155,7 @@
         }
       },
       "current": {
-        "kind": "checkpoint",
+        "kind": "legacy-import",
         "packageRevision": 1,
         "artifactRevisions": {
           "resume": 1,
@@ -164,11 +164,17 @@
         },
         "checkpointAt": "2026-09-04"
       },
+      "snapshot": {
+        "verification": "partial",
+        "submittedAt": "2026-09-05",
+        "artifactRevisions": {},
+        "artifactRefs": {}
+      },
       "workSession": {
         "state": "complete",
         "scope": "하이퍼노바 [헤이링] Product Engineer typed content 3종 (/resume·/career·/portfolio/hypernova) · PDF output/pdf/hypernova",
         "lastSynced": "2026-09-04",
-        "nextAction": "그룹바이 폼 제출 (문항 답변은 application-answers.md) → 제출 시 status in-progress · artifact_state frozen · snapshot 동결"
+        "nextAction": "전형 종료 · 제출 문서 동결 유지"
       }
     },
     {
