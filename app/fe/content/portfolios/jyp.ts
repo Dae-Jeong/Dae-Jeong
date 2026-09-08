@@ -57,7 +57,7 @@ export const JYP_PORTFOLIO = {
         "사람이 반복하던 콘텐츠 제작 흐름을 재설계하고 FastAPI 백엔드·별도 AI 서비스를 직접 구현하고 핵심 화면은 coding agent로 완성해 유료 제품으로 운영한 경험입니다.",
       scope: "제품 운영 리드 · Backend·AI 직접 구현 · 화면은 coding agent로 완성",
       // JYP: AX 설계 2장 → 재구축 판단 → 구현 agent. Outbox는 백엔드 세부라 제외.
-      designs: ["thready-ax-pipeline", "thready-ax-roles", "rebuild-decision", "thready-agent"],
+      designs: ["thready-ax-pipeline", "thready-ax-roles", "rebuild-contract", "thready-agent"],
     },
     {
       kind: "supporting",

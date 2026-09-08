@@ -50,7 +50,7 @@ tags: [resume, backend, cases, achievements, evidence]
 | No. | Resume case | 결합 판단 |
 | --- | --- | --- |
 | 01 | Thready 유료 제품 운영과 핵심 시스템 직접 구현 | 제품 운영 리드·직접 구현 범위와 제품·팀의 구독료 매출 outcome을 구분해, 고객 문제를 실제 운영 제품으로 연결한 경험을 먼저 제시 |
-| 02 | 인계받은 초기 backend의 FastAPI 병렬 재구축 | 다른 구성원의 초기 prototype을 인계받은 사실, backend-only cutover, validation harness, QA reopen 전후 관측을 한 전환 서사로 결합 |
+| 02 | API 계약을 유지한 FastAPI 백엔드 재설계·전환 | 도메인·트랜잭션 경계, 기존 frontend와의 응답 비교, backend-only cutover·후속 운영 책임으로 설명 |
 | 03 | 주문·재고 worker 복구 흐름 | 다른 제품에서도 async runtime 선택·retry·terminal failure·manual reprocess를 직접 설계한 반복 가능성을 증명 |
 | 04 | 제품 원장·AI 실행 상태 분리와 STG migration·Outbox | service/data boundary 이후 기존 이력 이관과 지연·중복·역순 전달이 같은 정합성 문제이므로 결합 |
 | 05 | 조직 표준 FastAPI template·agent context | 개인의 구현 기준을 사람이든 agent든 다시 사용할 수 있는 조직 실행 기반으로 확장한 성과 |
@@ -108,26 +108,26 @@ Claims: `thready.backend-rebuild` (`owned/high`), `thready.frontend-product-deli
 (`led/high`), `thready.prototype-to-user-operation`
 (`led/high`), `thready.subscription-revenue-band` (`contributed/medium`),
 `thready.rebuild-decision-execution` (`owned/high`),
-`thready.release-operation` (`owned/high`), `thready.qa-reopen-reduction` (`owned/high`).
+`thready.release-operation` (`owned/high`). QA 감소율 claim은 측정·frozen 이력만 보존하며 현행 성과에서 제외한다 (2026-09-08).
 `thready.production-operation-quality` (`owned/high`)는 historical evidence로 보존하되 최신 재측정 전 active resume에서 제외한다.
 
 성과 후보:
 
-- Thready 제품 아이디어를 제안하고 초기 prototype 이후 제품화를 주도해, 실제 고객이 결제하는 서비스로 발전시켰다. 초기 prototype 구현은 다른 engineer가 담당했고, 고객 결제·매출은 제품·팀 outcome으로 분리한다.
-- 다른 구성원이 빠른 기능 검증 중심으로 만든 초기 prototype을 인계받아 production 운영 단계로 전환했다. 재구축 범위·architecture·validation harness·cutover 판단은 직접 소유하고, AI는 codebase 파악·기능 inventory·구현에 적극 활용했다.
+- Thready 제품 아이디어 제안부터 제품화·출시·운영까지 주도하고 Backend·AI와 핵심 화면을 구현했다. 고객 결제·매출은 제품·팀 outcome으로 분리한다. 최초 prototype 작성 이력은 evidence에 보존하며 공개 성과의 도입부로 반복하지 않는다.
+- 기존 화면의 API 계약을 유지하며 FastAPI backend로 전환했다. 재구축 범위·architecture·validation harness·cutover 판단은 직접 소유하고, AI는 codebase 파악·기능 inventory·구현에 적극 활용했다.
 - 기존 release·QA 흐름과 Next.js frontend를 유지하면서 FastAPI backend를 parallel rebuild해 `v1.1.0`에서 cutover하고 이후 개발·release·운영을 전담했다.
 - backend cutover 이후 Next.js의 콘텐츠 생성·가져오기·예약·발행·dashboard·관리·labeling workflow도 직접 구현·운영해 backend·AI 기능을 실제 사용자·관리 흐름으로 닫았다.
 - 작은 서비스 단계에서 AI 모듈 확장 비용을 근거로 부분 수정 대신 backend 재구축을 선택하고, contract·component·operational-flow validation harness를 먼저 세운 뒤 auth/account와 frontend 호출 전환까지 실행했다.
 - `v1.3.0`부터 실제 사용자가 쓰는 AI 콘텐츠 제품의 backend version cycle과 생성 품질 blocker의 판단·수정·배포를 운영했다.
-- 팀과 함께 Thready를 실제 고객이 결제하는 유료 제품으로 만들고 운영했다. 이는 제품·팀 outcome이며, 개인 기여는 초기 prototype 이후 제품 판단·backend 전환·release·QA·operation을 실제 사용자 운영까지 이끈 범위로 분리한다. 정확한 매출 band는 public copy에 쓰지 않는다.
-- contract·component·operational-flow validation harness를 먼저 세운 backend cutover 전후, 해결된 QA issue의 reopen 비율이 26%p 낮아졌다. 이는 QA 총건수가 아니라 반복 결함 signal이다.
+- 팀과 함께 Thready를 실제 고객이 결제하는 유료 제품으로 만들고 운영했다. 개인 기여는 아이디어 제안·제품화·backend·AI 구현·출시·운영을 이끈 범위로 설명하며 매출은 제품·팀 outcome으로 분리한다.
+- contract·component·operational-flow 검증으로 기존 화면의 API 계약을 유지하면서 backend를 전환하고 후속 개발을 이어갔다.
 
 깊이를 만드는 설명:
 
 - 회원 로직 변경이 AI 생성 중단으로 이어졌던 도메인 의존성과, 두 버전을 병행 관리해야 하는 비용을 재구축 결정의 제약으로 설명한다.
 - `36시간`은 달력 기간이 아닌 순수 작업 시간이며 backend 범위다. 속도만 앞세우지 말고 validation harness와 scope 판단의 결과로 보조 사용한다.
 - 2026-06~07의 5xx 0.3%는 개선 전후가 아닌 30일 운영 snapshot이고 baseline·SLO·user-impact incident 구분이 없어 active resume 성과로 쓰지 않는다. 최근 30/90일을 endpoint·incident 단위로 재측정한 뒤 다시 판단한다.
-- QA reopen은 제품 전체의 반복 결함 signal이다. validation harness·backend cutover와 시간 순서는 함께 제시할 수 있지만 harness 또는 backend 단독 인과로 귀속하지 않는다.
+- QA reopen·재발 감소는 초기 baseline에 크게 좌우되므로 현행 성과에서 제외한다. 검증은 감소율의 원인 설명이 아니라 API 계약을 유지한 전환 절차로 서술한다 (2026-09-08).
 - 구독료 매출은 날짜가 고정된 band만 사용한다. `MRR`·`ARR`, 지속 기간, 순매출, 고객 수는 확인되지 않았고 backend 재구축이나 품질 기준의 직접 효과로 연결하지 않는다.
 - DB migration·rollback·traffic 전환, latency percentile, SLO, incident·MTTR는 추가 evidence가 필요하다.
 

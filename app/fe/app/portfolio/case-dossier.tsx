@@ -222,10 +222,12 @@ function ThreadyCase({
   meta,
   displayNo,
   focus,
+  currentCopy,
 }: {
   meta: CaseMeta;
   displayNo?: string;
   focus?: string;
+  currentCopy: boolean;
 }) {
   return (
     <article id={`case-${meta.slug}`} className="portfolio-case scroll-mt-6 border-t-2 border-fg pt-10">
@@ -237,7 +239,7 @@ function ThreadyCase({
           <>
             고객이 돈을 내는 이유를 기획·QA·마케팅과 함께 구체화하고, 제품 판단부터
             출시·운영까지 이끌었습니다. 제품에 필요한 Next.js 핵심 흐름을 직접 구현하고,
-            빠른 기능 검증 중심의 초기 백엔드를 인계받아 팀이 운영할 수 있는 FastAPI
+            {currentCopy ? "기존 화면의 API 계약을 유지하며 백엔드를 FastAPI" : "빠른 기능 검증 중심의 초기 백엔드를 인계받아 팀이 운영할 수 있는 FastAPI"}{" "}
             구조로 재구축했습니다. 이어 제품 기준 데이터와 AI 실행 상태의
             관리 책임을 나눴습니다.
             팀과 함께 <strong>구독료를 내는 고객이 쓰는 제품</strong>으로 만들었습니다.
@@ -316,12 +318,12 @@ function ThreadyCase({
       </section>
 
       <section className="pt-12">
-        <Subhead note="백엔드 재구축">인계받은 초기 백엔드를 팀이 운영할 수 있는 FastAPI 구조로 재구축했습니다.</Subhead>
+        <Subhead note="백엔드 재구축">{currentCopy ? "API 계약을 유지한 백엔드 재설계·전환" : "인계받은 초기 백엔드를 팀이 운영할 수 있는 FastAPI 구조로 재구축했습니다."}</Subhead>
         <div className="mt-6 grid grid-cols-[minmax(0,0.92fr)_minmax(360px,1.08fr)] gap-10 max-lg:grid-cols-1">
           <div className="grid content-start gap-5 text-sm leading-[1.7] text-fg-2">
-            <p className="m-0"><strong className="text-fg">무엇이 문제였나</strong> · 인계받은 초기 백엔드는 빠른 기능 검증 중심으로 만들어져 있었습니다. 기능은 돌아갔지만 어떤 코드가 무엇을 책임지는지, 수정 영향이 어디까지 퍼지는지 설명하기 어려웠습니다.</p>
+            <p className="m-0"><strong className="text-fg">무엇이 문제였나</strong> · {currentCopy ? "회원 기능과 AI 생성 로직의 결합으로 변경 영향이 다른 기능까지 전파되어, 기능 확장에 필요한 도메인 경계를 다시 정해야 했습니다." : "인계받은 초기 백엔드는 빠른 기능 검증 중심으로 만들어져 있었습니다. 기능은 돌아갔지만 어떤 코드가 무엇을 책임지는지, 수정 영향이 어디까지 퍼지는지 설명하기 어려웠습니다."}</p>
             <p className="m-0"><strong className="text-fg">어떻게 풀었나</strong> · 기존 API와 기능을 먼저 목록으로 만들고, 현재 동작을 확인할 테스트와 검증 기준을 세웠습니다. 프론트엔드는 그대로 둔 채 새 백엔드를 옆에서 만들었고, AI는 코드 분석과 반복 구현에 활용했습니다. 아키텍처와 검증 기준, 작업 범위, 전환 시점은 직접 판단했습니다.</p>
-            <p className="m-0"><strong className="text-fg">무엇이 달라졌나</strong> · 기존 백엔드와 새 백엔드의 응답을 비교한 뒤 전환했습니다. 전환 전후 같은 기준으로 비교했을 때, 해결된 QA 항목의 재오픈 비율은 26%p 낮아졌습니다. 이후 배포와 운영도 계속 맡았습니다.</p>
+            <p className="m-0"><strong className="text-fg">무엇이 달라졌나</strong> · {currentCopy ? "기존 화면의 API 계약을 유지하며 FastAPI backend로 전환했습니다. 도메인·저장소·트랜잭션 책임을 분리한 구조에서 기능 확장을 이어가고 개발·배포·운영을 전담했습니다." : "기존 백엔드와 새 백엔드의 응답을 비교한 뒤 전환했습니다. 전환 전후 같은 기준으로 비교했을 때, 해결된 QA 항목의 재오픈 비율은 26%p 낮아졌습니다. 이후 배포와 운영도 계속 맡았습니다."}</p>
           </div>
           <div className="portfolio-keep border border-border bg-surface p-5 print:bg-transparent">
             <p className="m-0 font-mono text-xs text-muted">기존 서비스와 나란히 만든 뒤 전환</p>
@@ -748,15 +750,17 @@ export function CaseDossier({
   displayNo,
   focus,
   variant,
+  currentCopy = true,
 }: {
   meta: CaseMeta;
   displayNo?: string;
   focus?: string;
   variant?: "backend-template";
+  currentCopy?: boolean;
 }) {
   switch (meta.slug) {
     case "thready":
-      return <ThreadyCase meta={meta} displayNo={displayNo} focus={focus} />;
+      return <ThreadyCase meta={meta} displayNo={displayNo} focus={focus} currentCopy={currentCopy} />;
     case "centurion-platform":
       return <CenturionCase meta={meta} displayNo={displayNo} focus={focus} />;
     case "infrastructure-delivery":

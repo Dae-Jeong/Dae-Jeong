@@ -1,0 +1,197 @@
+{
+  "schema_version": 1,
+  "id": "miridih-210889",
+  "url": "https://www.miridih.com/ko/o/210889",
+  "company": "미리디",
+  "title": "[미리캔버스] Product Engineer",
+  "role_category": "product-engineer",
+  "seniority": "1년 이상 (풀스택 개발 또는 웹 기반 제품 개발)",
+  "domain": "AI 프레젠테이션·디자인 자동화",
+  "posted_at": null,
+  "observed_at": "2026-09-07T14:03:54+09:00",
+  "source_kind": "posting-page",
+  "selection": "user-selected",
+  "duplicate_of": null,
+  "keywords": [
+    {
+      "term": "TypeScript",
+      "kind": "technology",
+      "section": "required",
+      "evidence": "자격요건 2항: TypeScript, React 또는 Next.js 서비스 개발 경험"
+    },
+    {
+      "term": "React",
+      "kind": "technology",
+      "section": "required",
+      "evidence": "자격요건 2항: TypeScript, React 또는 Next.js 서비스 개발 경험; 각각 독립 필수라는 뜻은 아님"
+    },
+    {
+      "term": "Next.js",
+      "kind": "technology",
+      "section": "required",
+      "evidence": "자격요건 2항: TypeScript, React 또는 Next.js 서비스 개발 경험; 대안 관계 유지"
+    },
+    {
+      "term": "PostgreSQL",
+      "kind": "technology",
+      "section": "required",
+      "evidence": "자격요건 3항: PostgreSQL 등 관계형 DB 활용과 직접 쿼리 작성"
+    },
+    {
+      "term": "SQL",
+      "kind": "technology",
+      "section": "required",
+      "evidence": "자격요건 3항: 관계형 DB에서 필요한 쿼리 직접 작성"
+    },
+    {
+      "term": "REST API",
+      "kind": "technology",
+      "section": "required",
+      "evidence": "자격요건 4항: REST API 설계 또는 연동 경험"
+    },
+    {
+      "term": "웹 제품 개발",
+      "kind": "responsibility",
+      "section": "required",
+      "evidence": "자격요건 1항: 풀스택 개발 또는 웹 기반 제품 개발 1년 이상"
+    },
+    {
+      "term": "문제 구조화",
+      "kind": "responsibility",
+      "section": "required",
+      "evidence": "자격요건 5항: 기획 구현을 넘어 문제를 직접 구조화하고 해결"
+    },
+    {
+      "term": "실험 기반 개선",
+      "kind": "responsibility",
+      "section": "required",
+      "evidence": "자격요건 6항: 작은 실험을 빠르게 만들고 결과로 다음 행동 결정"
+    },
+    {
+      "term": "LLM 도구 업무 활용",
+      "kind": "responsibility",
+      "section": "required",
+      "evidence": "자격요건 7항: LLM 도구를 업무에 사용하고 인사이트와 한계 설명"
+    },
+    {
+      "term": "LLM 연동",
+      "kind": "technology",
+      "section": "preferred",
+      "evidence": "우대사항 1항: LLM API를 활용한 기능 구현"
+    },
+    {
+      "term": "Vector DB",
+      "kind": "technology",
+      "section": "preferred",
+      "evidence": "우대사항 3항: 검색·추천·시멘틱 검색·벡터 DB 등 정보 탐색 경험의 예시"
+    },
+    {
+      "term": "Supabase",
+      "kind": "technology",
+      "section": "preferred",
+      "evidence": "우대사항 4항: Supabase, Firebase 등 BaaS로 빠른 제품 구현"
+    },
+    {
+      "term": "Firebase",
+      "kind": "technology",
+      "section": "preferred",
+      "evidence": "우대사항 4항: Supabase, Firebase 등 BaaS로 빠른 제품 구현"
+    },
+    {
+      "term": "BaaS",
+      "kind": "technology",
+      "section": "preferred",
+      "evidence": "우대사항 4항: BaaS를 활용한 빠른 제품 구현"
+    },
+    {
+      "term": "Docker",
+      "kind": "technology",
+      "section": "preferred",
+      "evidence": "우대사항 6항: Docker, CI/CD, 클라우드 기본 이해"
+    },
+    {
+      "term": "CI/CD",
+      "kind": "technology",
+      "section": "preferred",
+      "evidence": "우대사항 6항: Docker, CI/CD, 클라우드 기본 이해"
+    },
+    {
+      "term": "내부 도구 개발",
+      "kind": "responsibility",
+      "section": "preferred",
+      "evidence": "우대사항 2항: Admin·CMS·백오피스 제작 경험"
+    },
+    {
+      "term": "정보 검색",
+      "kind": "responsibility",
+      "section": "preferred",
+      "evidence": "우대사항 3항: 검색·추천·시멘틱 검색·벡터 DB 등 정보 탐색 관련 기능 경험"
+    },
+    {
+      "term": "추천",
+      "kind": "responsibility",
+      "section": "preferred",
+      "evidence": "우대사항 3항: 정보 탐색 관련 기능의 예시로 추천 명시"
+    },
+    {
+      "term": "시멘틱 검색",
+      "kind": "responsibility",
+      "section": "preferred",
+      "evidence": "우대사항 3항: 정보 탐색 관련 기능의 예시로 시멘틱 검색 명시"
+    },
+    {
+      "term": "크리에이티브 도메인",
+      "kind": "responsibility",
+      "section": "preferred",
+      "evidence": "우대사항 5항: 디자인 툴·에디터·템플릿·크리에이티브 도메인 관심 또는 경험"
+    },
+    {
+      "term": "클라우드 기본 이해",
+      "kind": "responsibility",
+      "section": "preferred",
+      "evidence": "우대사항 6항: 클라우드 환경에 대한 기본 이해"
+    },
+    {
+      "term": "온톨로지 데이터 관리",
+      "kind": "responsibility",
+      "section": "responsibility",
+      "evidence": "주요 업무 1항: 디자인 온톨로지 데이터 등록·수정·검수·운영 내부 시스템 개발"
+    },
+    {
+      "term": "내부 도구 개발",
+      "kind": "responsibility",
+      "section": "responsibility",
+      "evidence": "주요 업무 1·3항: 데이터 관리 내부 시스템과 백오피스·실험 도구 개발"
+    },
+    {
+      "term": "AI PoC 개발",
+      "kind": "responsibility",
+      "section": "responsibility",
+      "evidence": "주요 업무 2항: AI 프레젠테이션 기능 검증 PoC 설계·구현; 구조 기반 검색·내용/스타일 대치·편집 보조 예시"
+    },
+    {
+      "term": "데이터 품질 관리",
+      "kind": "responsibility",
+      "section": "responsibility",
+      "evidence": "주요 업무 3항: 백오피스와 실험 도구로 데이터 품질 및 운영 효율 개선"
+    },
+    {
+      "term": "실험 기반 개선",
+      "kind": "responsibility",
+      "section": "responsibility",
+      "evidence": "주요 업무 4·5항: 협업해 실험 결과로 MVP 방향 구체화; 배포 후 사용성과 품질 지표로 우선순위 결정"
+    },
+    {
+      "term": "품질 기준 설계",
+      "kind": "responsibility",
+      "section": "responsibility",
+      "evidence": "기대 모습 1·3개월: 핵심 문제와 품질 기준 합의 및 PoC 실험 흐름 정리"
+    },
+    {
+      "term": "PoC 제품화",
+      "kind": "responsibility",
+      "section": "responsibility",
+      "evidence": "기대 모습 그 이후: 핵심 PoC를 MVP로 고도화하고 내부 시스템과 연결해 지속 운영"
+    }
+  ]
+}

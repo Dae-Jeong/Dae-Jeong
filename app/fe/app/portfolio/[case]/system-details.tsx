@@ -19,7 +19,7 @@ export const SYSTEM_DETAILS: Record<string, SystemCaseDetail> = {
       <>
         고객이 돈을 내는 이유를 기획·QA·마케팅과 함께 구체화하고,
         기능·실험 우선순위부터 구현·출시·운영까지 연결했습니다.
-        <strong> 초기 prototype 이후 실제 사용자·구독료 매출이 발생하는 제품으로</strong>
+        <strong> 아이디어를 실제 고객이 구독하는 제품으로 만들고</strong>
         운영하는 데 필요한 frontend·backend·data·AI를 직접 구축했습니다.
       </>
     ),
@@ -57,7 +57,7 @@ export const SYSTEM_DETAILS: Record<string, SystemCaseDetail> = {
       { label: "Next revenue model", value: "광고 적용 시작", note: "운영 데이터 수집 중 · 성과 미집계", claimIds: ["thready.ad-revenue-experiment"] },
       { label: "Data basis", value: "최근 1년 중심", note: "공개 게시글 / 반응 추이", claimIds: ["thready.threads-market-outcome-design"] },
       { label: "Migration", value: "2,616 / 795 / 7,111", note: "생성 이력 / 품질 snapshot / 실행 추적 · STG", claimIds: ["thready.ai-service-migration"] },
-      { label: "QA signal", value: "26%p 감소", note: "같은 집계 기준으로 확인한 cutover 전후 QA reopen 비율", claimIds: ["thready.qa-reopen-reduction"] },
+      { label: "Backend 전환", value: "API 계약 유지", note: "응답 비교·검증 후 FastAPI backend로 전환, 이후 개발·운영 전담", claimIds: ["thready.rebuild-decision-execution", "thready.backend-rebuild"] },
     ],
   },
   "centurion-platform": {

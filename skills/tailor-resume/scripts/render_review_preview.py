@@ -35,6 +35,8 @@ def parse_document(path: Path) -> tuple[dict[str, object], str]:
 
 
 def render_markdown(markdown: str) -> str:
+    # Provenance comments belong to the source, never the document canvas.
+    markdown = re.sub(r"<!--.*?-->", "", markdown, flags=re.DOTALL)
     if shutil.which("pandoc") is None:
         raise SystemExit("pandoc가 필요합니다. `brew install pandoc` 후 다시 실행하세요.")
 
@@ -55,7 +57,7 @@ def first_heading(markdown: str, fallback: str) -> str:
     return match.group(1).strip() if match else fallback
 
 
-def split_resume_draft(markdown: str) -> tuple[str, str]:
+def split_resume_draft(markdown: str, section_title: str = "이력서 초안") -> tuple[str, str]:
     """Separate the resume canvas from review-only notes.
 
     The canonical Markdown keeps review context around the resume.  The preview
@@ -64,7 +66,7 @@ def split_resume_draft(markdown: str) -> tuple[str, str]:
     are lifted by two to match the public ``/resume`` document hierarchy.
     """
 
-    start = RESUME_SECTION.search(markdown)
+    start = re.search(r"^##\s+" + re.escape(section_title) + r"\s*$", markdown, re.MULTILINE)
     if not start:
         return markdown, ""
 
@@ -85,6 +87,25 @@ def split_resume_draft(markdown: str) -> tuple[str, str]:
 
     resume_markdown = re.sub(r"^(#{3,6})\s+", lift_heading, resume_markdown, flags=re.MULTILINE)
     return resume_markdown, review_markdown
+
+
+def split_application_draft(markdown: str) -> dict[str, str]:
+    """Keep each document and private review notes in separate panels."""
+    # Strip complete comments before headings can split their delimiters.
+    markdown = re.sub(r"<!--.*?-->", "", markdown, flags=re.DOTALL)
+    parts = {}
+    remaining = markdown
+    for key, name in (("draft", "이력서"), ("career", "경력기술서"), ("portfolio", "포트폴리오")):
+        title = next((title for title in (name + " 초안", name)
+                      if re.search(r"^##\s+" + re.escape(title) + r"\s*$", remaining, re.MULTILINE)), None)
+        if title:
+            parts[key], remaining = split_resume_draft(remaining, title)
+        else:
+            parts[key] = ""
+    if not any(parts.values()):
+        parts["draft"], remaining = markdown, ""
+    parts["review"] = remaining
+    return parts
 
 
 def main() -> None:
@@ -125,10 +146,9 @@ def main() -> None:
         "%Y.%m.%d %H:%M"
     )
 
-    resume_markdown, review_markdown = split_resume_draft(draft_markdown)
+    parts = split_application_draft(draft_markdown)
     rendered = {
-        "draft": render_markdown(resume_markdown),
-        "review": render_markdown(review_markdown),
+        **{key: render_markdown(value) for key, value in parts.items()},
         "research": render_markdown(parsed["research"][1]),
         "match": render_markdown(parsed["match"][1]),
     }
@@ -140,6 +160,10 @@ def main() -> None:
         "[[UPDATED_AT]]": html.escape(updated_at),
         "[[APPLICATION_DIR]]": html.escape(application_dir.name),
         "[[DRAFT_HTML]]": rendered["draft"],
+        "[[CAREER_HTML]]": rendered["career"],
+        "[[PORTFOLIO_HTML]]": rendered["portfolio"],
+        "[[CAREER_HIDDEN]]": "" if parts["career"] else "hidden",
+        "[[PORTFOLIO_HIDDEN]]": "" if parts["portfolio"] else "hidden",
         "[[REVIEW_HTML]]": rendered["review"],
         "[[RESEARCH_HTML]]": rendered["research"],
         "[[MATCH_HTML]]": rendered["match"],

@@ -1,0 +1,425 @@
+{
+  "title": "Daejeong Kim",
+  "language": "en",
+  "template": "jake",
+  "header": [
+    {
+      "kind": "paragraph",
+      "text": "Tech Lead · Backend Engineer · AI Product Systems",
+      "claims": []
+    },
+    {
+      "kind": "paragraph",
+      "text": "[marin.backend@gmail.com](mailto:marin.backend@gmail.com) · [github.com/Dae-Jeong](https://github.com/Dae-Jeong) · [marinkim.xyz](https://marinkim.xyz)",
+      "claims": []
+    },
+    {
+      "kind": "paragraph",
+      "text": "I’m Daejeong Kim, a maker who turns possibilities into opportunities and delivers value through products.",
+      "claims": []
+    }
+  ],
+  "sections": [
+    {
+      "title": "Experience",
+      "level": 2,
+      "blocks": [],
+      "children": [
+        {
+          "title": "MediSolve AI",
+          "period": "Apr 2025 - Present",
+          "level": 3,
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Tech Lead · Backend Engineer | Full-time, early member",
+              "claims": [
+                "career.medisolve-role-evolution",
+                "career.memento-to-medisolve-early-member"
+              ]
+            },
+            {
+              "kind": "bullet",
+              "text": "Proposed Thready and led its development, launch, and operation as a paid subscription product with teammates in product planning, QA, and marketing. It helps creators already active on Instagram, YouTube, or blogs establish a presence on Threads despite limited time and unfamiliar platform conventions.",
+              "claims": [
+                "thready.product-zero-to-one-contribution",
+                "thready.creator-adoption-context"
+              ]
+            },
+            {
+              "kind": "bullet",
+              "text": "Built and operated the product backend and AI generation and evaluation systems; implemented core user and admin workflows with coding agents.",
+              "claims": [
+                "thready.backend-rebuild",
+                "thready.generation-quality-system",
+                "thready.frontend-product-delivery"
+              ]
+            },
+            {
+              "kind": "bullet",
+              "text": "Separated product policy and records from AI execution in an independent service and database. Implemented a transactional outbox with leases, attempt tokens, retries, and version checks to control stale workers and duplicate or out-of-order delivery.",
+              "claims": [
+                "thready.ai-service-boundary",
+                "thready.ai-replica-outbox"
+              ]
+            },
+            {
+              "kind": "bullet",
+              "text": "Implemented scheduled draft generation and approval notifications, transactional approval commands, and publishing recovery that distinguishes pre-call failures from uncertain external results.",
+              "claims": [
+                "thready.auto-generation-approval-flow",
+                "thready.approval-command-consistency",
+                "thready.publish-recovery-boundary"
+              ]
+            },
+            {
+              "kind": "bullet",
+              "text": "Led order and inventory backend development and a Redis-based SSO session redesign for a dermatology operations product suite. Co-led real-time AI consultation backend development and implemented reservation policies and operational integrations.",
+              "claims": [
+                "centurion.bay-async-backend",
+                "centurion.sso-session",
+                "centurion.say-realtime-ai",
+                "centurion.day-product-integration",
+                "centurion.ray-backend"
+              ]
+            },
+            {
+              "kind": "bullet",
+              "text": "Led backend architecture and website and admin API development for multi-clinic operations and reservations.",
+              "claims": [
+                "nexus.backend-architecture",
+                "nexus.admin-backend-ownership"
+              ]
+            },
+            {
+              "kind": "bullet",
+              "text": "Implemented APIs, review workflows, and publication controls for a procedure-information knowledge service; preparing clinical evaluation materials and search-data release approval.",
+              "claims": [
+                "procedure-hub.hybrid-retrieval-design",
+                "procedure-hub.canonical-data-platform",
+                "procedure-hub.retrieval-evaluation-gate"
+              ]
+            },
+            {
+              "kind": "bullet",
+              "text": "Built the organization’s standard backend template, enabling teammates across disciplines to implement features with coding agents. Led product planning, issue tracking, and releases; contributed to the design of AI-assisted company workflows and handled service deployment and routine cloud operations.",
+              "claims": [
+                "be-template.backend-standard",
+                "be-template.team-leverage",
+                "mediness.product-operations",
+                "mediness.company-work-ax-design",
+                "infra.company-azure-ownership"
+              ]
+            }
+          ],
+          "children": []
+        },
+        {
+          "title": "TheDayLabs",
+          "period": "Feb 2025 - Apr 2025",
+          "level": 3,
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Backend Engineer | Freelance, pre-incorporation engagement",
+              "claims": [
+                "career.thedaylabs-freelance"
+              ]
+            },
+            {
+              "kind": "bullet",
+              "text": "Built the initial dermatology CRM backend and established repository structure, development environments, documentation, and issue and pull-request conventions before MediSolve AI’s incorporation. Joined MediSolve AI full-time in April 2025.",
+              "claims": [
+                "career.thedaylabs-freelance",
+                "career.memento-to-medisolve-early-member"
+              ]
+            }
+          ],
+          "children": []
+        },
+        {
+          "title": "Memento AI",
+          "period": "Oct 2024 - Jan 2025",
+          "level": 3,
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Backend Engineer | Intern to full-time; company closed",
+              "claims": [
+                "career.memento-fastapi-backend"
+              ]
+            },
+            {
+              "kind": "bullet",
+              "text": "Built reservation and payment APIs, including payment authorization and capture, cancellation and refunds after reservation failures, and refund-triggered loyalty-point restoration and pass removal.",
+              "claims": [
+                "career.memento-fastapi-backend",
+                "career.memento-stripe-prepayment",
+                "career.memento-payment"
+              ]
+            },
+            {
+              "kind": "bullet",
+              "text": "Implemented immediate and scheduled multilingual follow-up surveys through messaging and email, with cancellation, rescheduling, and delivery history.",
+              "claims": [
+                "career.memento-happycall-survey"
+              ]
+            }
+          ],
+          "children": []
+        },
+        {
+          "title": "STUDIO LAB",
+          "period": "Dec 2021 - Jan 2024",
+          "level": 3,
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Vision AI Engineer / Product Manager / Backend Engineer | Full-time",
+              "claims": [
+                "career.ai-pm-backend-continuity"
+              ]
+            },
+            {
+              "kind": "bullet",
+              "text": "**Vision AI Engineer (Dec 2021 - Sep 2022):** Contributed to apparel-image analysis model development for SellerCanvas.",
+              "claims": [
+                "career.sellercanvas-vision-model-development"
+              ]
+            },
+            {
+              "kind": "bullet",
+              "text": "**Product Manager (Oct 2022 - Sep 2023):** Defined product workflows, scope, and release priorities from prototype to v1.0 and conducted enterprise proofs of concept.",
+              "claims": [
+                "career.sellercanvas-product-system",
+                "career.sellercanvas-enterprise-poc"
+              ]
+            },
+            {
+              "kind": "bullet",
+              "text": "**Backend Engineer (Oct 2023 - Jan 2024):** Transitioned into backend development.",
+              "claims": [
+                "career.ai-pm-backend-continuity"
+              ]
+            }
+          ],
+          "children": []
+        },
+        {
+          "title": "Izsol",
+          "period": "Aug 2020 - Jun 2021",
+          "level": 3,
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Vision AI Engineer | Intern",
+              "claims": []
+            },
+            {
+              "kind": "bullet",
+              "text": "Contributed to a facial-recognition-based automated attendance system.",
+              "claims": [
+                "career.ai-pm-backend-continuity"
+              ]
+            }
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "title": "Projects",
+      "level": 2,
+      "blocks": [],
+      "children": [
+        {
+          "title": "TellingMe",
+          "period": "Jan 2024 - Dec 2024",
+          "level": 3,
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Backend & Infrastructure Lead | Personal project",
+              "claims": [
+                "career.tellingme-backend-infra"
+              ]
+            },
+            {
+              "kind": "bullet",
+              "text": "Led Spring Boot backend development and AWS deployment and monitoring. Used Java, Spring, and Spring Boot across three side projects.",
+              "claims": [
+                "career.tellingme-backend-infra",
+                "career.java-spring-side-projects"
+              ]
+            }
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "title": "Technical Skills",
+      "level": 2,
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "**Backend:** Python, FastAPI, SQLAlchemy 2.0 async, PostgreSQL, MySQL, Redis, TypeScript, NestJS, RabbitMQ, TaskIQ",
+          "claims": [
+            "thready.backend-rebuild",
+            "centurion.sso-session",
+            "centurion.async-migration",
+            "be-template.fastapi-sqlalchemy-standard"
+          ]
+        },
+        {
+          "kind": "paragraph",
+          "text": "**AI / LLM:** LangGraph, LLM integration and evaluation, speech-to-text",
+          "claims": [
+            "thready.generation-quality-system",
+            "thready.langgraph-generation-graph",
+            "centurion.say-realtime-ai"
+          ]
+        },
+        {
+          "kind": "paragraph",
+          "text": "**Frontend:** Next.js, TypeScript - core user and admin workflows",
+          "claims": [
+            "thready.frontend-product-delivery"
+          ]
+        },
+        {
+          "kind": "paragraph",
+          "text": "**Engineering Tools:** Claude Code, Codex, pytest, Ruff, Pyright, Docker, GitHub Actions, Sentry, Jira",
+          "claims": [
+            "career.coding-agent-usage",
+            "nexus.quality-automation",
+            "be-template.fastapi-sqlalchemy-standard",
+            "infra.company-azure-ownership"
+          ]
+        },
+        {
+          "kind": "paragraph",
+          "text": "**Additional:** Java, Spring, Spring Boot (side projects); Azure, AWS, Terraform, Vercel (deployment, environment setup, routine operations)",
+          "claims": [
+            "career.java-spring-side-projects",
+            "career.tellingme-backend-infra",
+            "infra.company-azure-ownership"
+          ]
+        }
+      ],
+      "children": []
+    },
+    {
+      "title": "Education",
+      "level": 2,
+      "blocks": [],
+      "children": [
+        {
+          "title": "Woosong University",
+          "period": "Mar 2016 - Aug 2021",
+          "level": 3,
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Game Multimedia major | Graduated",
+              "claims": [
+                "credentials.education"
+              ]
+            }
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "title": "Military Service",
+      "level": 2,
+      "blocks": [],
+      "children": [
+        {
+          "title": "Republic of Korea Army · III Corps",
+          "period": "Aug 2017 - May 2019",
+          "level": 3,
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Signals | Sergeant (rank at discharge)",
+              "claims": ["career.military-service"]
+            },
+            {
+              "kind": "bullet",
+              "text": "Completed full-term military service.",
+              "claims": ["career.military-service"]
+            }
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "title": "Patents, Awards & Certifications",
+      "level": 2,
+      "blocks": [
+        {
+          "kind": "bullet",
+          "text": "**Registered patent:** METHOD FOR DISPLAYING PAGE, Korean registration No. 10-2898273. Contributed to the product-page creation workflow design.",
+          "claims": [
+            "credentials.page-output-patent"
+          ]
+        },
+        {
+          "kind": "bullet",
+          "text": "**CES 2024 Best of Innovation, Artificial Intelligence:** Contributed to the award-winning SellerCanvas product.",
+          "claims": [
+            "credentials.ces-2024"
+          ]
+        },
+        {
+          "kind": "bullet",
+          "text": "**KCL AI accuracy certification:** Contributed to a product that passed certification by Korea Conformity Laboratories.",
+          "claims": [
+            "credentials.ai-accuracy-certification"
+          ]
+        },
+        {
+          "kind": "bullet",
+          "text": "**ADsP:** Advanced Data Analytics Semi-Professional, September 2021.",
+          "claims": [
+            "credentials.adsp"
+          ]
+        }
+      ],
+      "children": []
+    },
+    {
+      "title": "Additional Activities",
+      "level": 2,
+      "blocks": [
+        {
+          "kind": "bullet",
+          "text": "**OSS Developer Partnership (Sep 2026):** Received and accepted an invitation to an external LLM API platform’s developer partner program after the team discovered my public GitHub work.",
+          "claims": [
+            "career.orcarouter-oss-developer-partnership"
+          ]
+        },
+        {
+          "kind": "bullet",
+          "text": "**UX Consulting:** Proposed hypotheses and interface improvements to make reward points easier to understand and encourage repeat visits. The changes were adopted alongside other product improvements and contributed to ranking and daily-active-user growth.",
+          "claims": [
+            "career.product-ux-practice",
+            "career.ux-consulting-product-outcome"
+          ]
+        },
+        {
+          "kind": "bullet",
+          "text": "**UX Study:** Presented improvements to Speak’s post-lesson recommendation flow and was selected as MVP of IPS cohort 12. Also analyzed and presented UX principles using YouTube Music.",
+          "claims": [
+            "career.product-ux-practice",
+            "career.ux-consulting-product-outcome"
+          ]
+        }
+      ],
+      "children": []
+    }
+  ]
+}

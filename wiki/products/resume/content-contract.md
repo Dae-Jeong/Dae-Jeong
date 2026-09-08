@@ -2,7 +2,7 @@
 type: product-contract
 title: Resume Content Contract
 description: Active web resume의 구조, claim, public safety, derived-output 계약.
-timestamp: 2026-08-24
+timestamp: 2026-09-08
 tags: [resume, contract, content]
 ---
 
@@ -26,7 +26,7 @@ tags: [resume, contract, content]
 4. Specialty: AI Product Systems
 5. Career facts: 어느 회사에서 어떤 직함·기간·담당 범위였는지
 6. Ownership: 어떤 시스템을 전담·주도·공동 기여했는지
-7. Differentiator: 고객이 돈을 내는 이유를 찾고 팀과 실제 매출이 발생하는 제품으로 만든 뒤, 그 제품을 직접 구현·운영한 경험
+7. Differentiator: 고객의 구체적인 진입 장벽을 제품 흐름으로 풀고 직접 구현·운영한 경험. 고객의 지속 사용·성장 사례와 구독 매출은 별도의 제품·팀 결과로 뒷받침
 8. Role: 제품 판단부터 구현·출시·운영을 잇고, 필요한 backend·AI·핵심 frontend를 직접 구축하는 Tech Lead · Backend Engineer
 
 Canonical positioning은 [profile/identity.md](../../profile/identity.md)를, 역할 전달 방식은
@@ -37,7 +37,7 @@ Canonical positioning은 [profile/identity.md](../../profile/identity.md)를, �
 
 - First-page reader: recruiter. Full-document reader: engineering manager·founder·CTO.
 - 첫 장은 career facts, category, specialty, ownership, strongest proof를 빠르게 스캔하게 한다.
-- 소개 다음에는 경력을 둔다. 사실과 시간축을 보여준 뒤 대표 기술 사례로 역할 주장을 검증한다.
+- 소개 다음에 대표 성과, 이어서 경력을 둔다. 헤더에서 현재 회사·직함·기간을 먼저 확인할 수 있게 하고, 대표 성과는 맡길 수 있는 결과를, 경력은 회사별 사실·시간축·넓은 담당 범위를 증명한다.
 - Resume 전체는 portfolio를 열지 않아도 인터뷰 여부와 기술 역량을 판단할 수 있는 self-contained proof여야 한다.
 - 대표 기술 사례는 문제·규모, 제약·failure mode, 실제 대안과 선택, 구현 경계, 검증·배포·운영, 결과를 claim 근거가 허용하는 만큼 연결한다.
 - Portfolio는 architecture diagram, 상세 evidence, 추가 failure analysis로 검증 깊이를 확장하며 resume의 필수 전제 지면으로 사용하지 않는다.
@@ -51,15 +51,17 @@ Canonical positioning은 [profile/identity.md](../../profile/identity.md)를, �
 | --- | --- | --- |
 | - | Header | 이름·category·현재/이전 주요 경력·연락처. 연락처는 이메일·GitHub·`marinkim.xyz`만 두고, 회사·직함·기간이 즉시 보여야 함 |
 | 01 | 소개 | `Maker title 1문장 + description 2문장`으로 구성한다. title은 브랜드 정체성, description은 `제품 판단 → 직접 구현 → cross-functional 출시·유료 운영` 범위만 설명하고 세부 기술·수치는 아래 경력과 대표 성과가 증명한다. |
-| 02 | 경력 | 최신순. 좌측 metadata column에 조직명과 기간을 세로로 쌓고, 우측에 직함·제품 성격·담당 범위를 배치. MediSolve AI row는 고객 문제를 실제 매출이 발생하는 Thready 제품으로 만든 과정과 제품·팀 outcome을 먼저 보여주고, 직접 구현 범위와 합류 경로는 그 뒤에 둔다. |
-| 03 | 대표 성과 | 다섯 사례를 한 섹션에서 연결: `Thready 제품화·매출·운영 → 인계받은 backend 병렬 재구축·QA reopen 관측 → Centurion 주문·재고 비동기 복구 → Thready 제품 원장/AI 실행 분리·STG migration·Outbox → 직접 구축한 Backend Template·agent 기준`. 회사 AX는 경력·기술과 AX/FDE 등 직군별 지원본에서 contribution strength를 분리해 사용한다. |
+| 02 | 대표 성과 | 고객 문제·제품 구현·운영, 실행 가능한 업무 정책, 팀의 개발 기반 등 근거가 강한 성과축을 선택한다. 관련 프로젝트는 그 축의 증거이며 사례 수를 고정하지 않는다. QA 하네스는 해당 제품의 구현·전환을 뒷받침하고, 고객 성장·매출은 §1-4 수치 정책에 따라 보조 결과로 둔다. |
+| 03 | 경력 | 최신순. 조직명·기간·직함·제품 성격·담당 범위를 명확히 배치한다. MediSolve AI는 제품화와 직접 구현 책임을 먼저 보여주고 합류 경로 및 다른 제품의 검증된 책임도 유지한다. 대표 사례를 반복하느라 회사에서 맡은 범위를 축소하지 않는다. |
 | 04 | 기술 | [Application Copy Standard §1-7](../../rules/application-copy-standard.md#1-7-기술-표의-분류-기준)의 기본 분류로 검증된 기술·사용 범위를 선택·배치한다. 고정 5개 lane이나 모든 분류 채우기는 요구하지 않는다. 배포·인프라의 기여 범위는 evidence에 있는 서비스 배포·환경 설정·기본 운영 경험을 따른다. |
-| 05 | 외부 활동 | 제품·UX 외부 활동을 경력·기술·자격과 분리하고 `UX 컨설팅`과 `UX 스터디` 두 행으로 구성. 각 행은 활동명 뒤에 문제·판단·산출물을 한 문장으로 설명하며 상세 근거는 evidence 문서가 소유 |
+| 05 | 외부 활동 | 검증된 OSS 파트너십·UX 컨설팅·UX 스터디를 경력·기술·자격과 분리한다. 행 수는 고정하지 않고 활동명 뒤에 실제 기여나 확인된 상태를 설명한다. 상세 근거는 evidence 문서가 소유 |
 | 06 | Credentials | 특허·수상·외부 인증·자격·학력을 배치하고 검증된 고정 사실만 사용 |
 
 `일하는 방식`은 active frame에서 제거한다. 대표 기술 사례가 같은 행동을 반복해서 증명하므로 별도 선언은 중복이다.
 
 ## Typography Contract
+
+2026-09-08 공용 `/resume`는 새 문안에 고전 양식을 우선 적용하고 `/resume/compare`의 기존안 비교를 유지한다. 공용 고전안은 210mm 단일 컬럼, 중앙 정렬 인적 사항, 30px 이름·17px 섹션·15px 성과 제목·14px 본문을 사용한다. 최종 양식 확정 전의 선택이며 회사별 양식에는 소급하지 않는다. 아래 표와 floating navigator 계약은 기존안·회사별 renderer의 기준이다. 새 공용본의 PDF·EN이 준비되기 전까지 과거 파일을 새 문안의 파생본으로 제공하지 않는다.
 
 Daejeong Design의 Profile 프로젝트와 `app/design/resume-page-prototype.html`이 시각 판단의 근거다. 런타임 semantic class의 단일 owner는 `app/fe/app/resume/resume-typography.ts`이며, 마스터와 회사별 이력서가 함께 소비한다.
 
@@ -100,7 +102,7 @@ Daejeong Design의 Profile 프로젝트와 `app/design/resume-page-prototype.htm
 - `전담`, `주도`, `공동`, `참여`는 [evidence policy](../../rules/evidence-policy.md)와 registry의 `allowed_copy`·`forbidden_copy`를 따른다.
 - 직접 application code를 작성하지 않은 설계·운영 기여도 이력이다. 다만 실행 가능한 contract·state·gate·운영 artifact와 실제 사용 근거가 있어야 하며, `설계 참여`·`적용/운영 리드`·`직접 구축`을 한 동사로 합치지 않는다.
 - 공개 시 [public safety](../../rules/public-safety.md)를 적용한다.
-- active artifact의 claim ID는 [claim-map.yaml](claim-map.yaml)과 JSX `data-claim`에서 일치해야 한다.
+- active artifact의 claim ID는 [claim-map.yaml](claim-map.yaml), 공용 JSON의 문단별 `claims`, 렌더된 `data-claim`에서 일치해야 한다. 회사별 JSX/typed content 검사는 그대로 유지한다.
 - `data-claim`은 섹션 전체가 아니라 근거가 적용되는 가장 좁은 의미 단위(문단·경력 행·역량 축·credential 행)에 둔다.
 - 사람용 출처 라벨(`[AI 콘텐츠 생성 제품]` 등)은 stable claim ID를 대체하지 않는다.
 
@@ -113,7 +115,7 @@ Daejeong Design의 Profile 프로젝트와 `app/design/resume-page-prototype.htm
 
 ## Acceptance Gates
 
-1. Career-first: 회사·직함·기간·담당 범위가 claim보다 먼저 읽힌다.
+1. Career visibility: 헤더에서 현재 회사·직함·기간을 즉시 확인하고, 대표 성과 다음의 경력에서 회사별 기간·담당 범위를 대조할 수 있다.
 2. Evidence: 모든 수치·강한 역할·대표 성과가 stable claim ID에 연결된다.
 3. Strength: `allowed_copy`보다 강한 역할 표현이 없다.
 4. Public: provider·고객사·팀원·private path·미검증 수치가 없다.

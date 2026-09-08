@@ -29,6 +29,7 @@ tags: [context, routing, progressive-disclosure]
 | 지원 현황 알려줘·마감 임박 조회 | [report-application-status](../../skills/report-application-status/SKILL.md) — registry 조회·마감 판정 |
 | 회사 분석·지원 문안을 팀으로 진행 | [run-application-team](../../skills/run-application-team/SKILL.md) — 실무자 방식의 분석·작성·독립 검토·조정 |
 | 포트폴리오 | [../products/portfolio/README.md](../products/portfolio/README.md) |
+| 서버·배치 아키텍처 구성도 | [render-server-architecture](../../skills/render-server-architecture/SKILL.md) — 글로벌 시각 선호 정본 참조·실제 파일·PC 렌더 검증 |
 | 홈페이지 | [../products/homepage/README.md](../products/homepage/README.md) |
 | JD 분석 | [../products/jd/README.md](../products/jd/README.md) |
 | 문서 위치 판단 | [../rules/document-routing.md](../rules/document-routing.md) |

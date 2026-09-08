@@ -46,7 +46,7 @@ export const MIRIDIH_PORTFOLIO = {
     {
       title: "빠른 배포와 품질 보장",
       description:
-        "운영 중인 제품을 멈추지 않고 backend를 교체해 결함 재발을 약 94% 줄였고, 실제 사용자가 쓰는 제품의 배포·QA·운영을 계속 전담하고 있습니다.",
+        "기존 화면의 API 계약을 유지하며 FastAPI backend로 전환하고, 실제 사용자가 쓰는 제품의 개발·배포·운영을 전담했습니다.",
     },
   ],
   cases: [
@@ -71,11 +71,11 @@ export const MIRIDIH_PORTFOLIO = {
     {
       kind: "dossier",
       slug: "thready-rebuild",
-      label: "운영 중인 제품을 멈추지 않는 backend 교체 · 결함 재발 약 94% 감소",
+      label: "API 계약을 유지한 백엔드 재설계·전환",
       focus:
-        "부분 수정과 backend 병렬 재구축을 비교해 재구축을 택하되 기존 frontend와 릴리스 흐름은 유지한 판단, 패턴·계층·검증 하네스를 먼저 세우고 응답을 비교한 뒤 전환한 과정, 그리고 재오픈 비율 37% → 11%·재발 발생 일평균 약 94% 감소(하루 4.5건 → 0.3건)의 결과를 봅니다.",
+        "부분 수정과 병렬 재구축을 비교한 판단, 기존 frontend의 API 계약을 유지한 도메인·트랜잭션 경계 설계, 응답 비교와 검증을 거쳐 실사용 backend로 전환한 과정을 봅니다.",
       scope: "FastAPI Backend 재구축·운영 전담",
-      designs: ["rebuild-decision"],
+      designs: ["rebuild-contract"],
     },
   ],
 } satisfies RolePortfolio<"miridih">;

@@ -133,6 +133,10 @@
     }
     .document-canvas { min-width: 0; padding: 48px 0 96px; }
     .panel[hidden] { display: none; }
+    .tab[hidden] { display: none; }
+    .panel { overflow-wrap: anywhere; }
+    .panel pre { overflow-x: auto; font-size: 12px; }
+    .a4-page.oversized { height: auto; min-height: 297mm; overflow: visible; }
     .support-document,
     .a4-page {
       width: 210mm;
@@ -303,7 +307,7 @@
     }
 
     /* 리서치와 근거 문서는 같은 shell 안의 보조 문서로만 표현한다. */
-    .support-document { max-width: 75ch; color: var(--fg-2); }
+    .support-document { max-width: 100%; color: var(--fg-2); }
     .support-document > :first-child { margin-top: 0; }
     .support-document h1,
     .support-document h2,
@@ -320,14 +324,14 @@
     .support-document ul,
     .support-document ol { margin: 0 0 18px; padding-left: 1.35em; }
     .support-document li { margin: 5px 0; }
-    .support-document table {
+    .panel table {
       width: 100%;
       margin: 20px 0 28px;
       border-collapse: collapse;
       font-size: 14px;
     }
-    .support-document th,
-    .support-document td {
+    .panel th,
+    .panel td {
       border-bottom: 1px solid var(--border);
       padding: 10px;
       text-align: left;
@@ -386,7 +390,7 @@
       .resume-section > h2 { gap: 10px; font-size: 21px; }
       .section-meta { margin-left: 28px; flex-basis: 100%; }
       .resume-section[data-section="핵심 성과"] > h3 { font-size: 20px; }
-      .support-document table { display: block; overflow-x: auto; white-space: nowrap; }
+      .panel table { display: block; overflow-x: auto; }
     }
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
     @media print {
@@ -427,6 +431,8 @@
     <div class="tabs-wrap">
       <div class="tabs" role="tablist" aria-label="검토 문서">
         <button class="tab" id="tab-draft" role="tab" aria-selected="true" aria-controls="panel-draft" data-panel="draft">이력서</button>
+        <button class="tab" id="tab-career" role="tab" aria-selected="false" aria-controls="panel-career" data-panel="career" tabindex="-1" [[CAREER_HIDDEN]]>경력기술서</button>
+        <button class="tab" id="tab-portfolio" role="tab" aria-selected="false" aria-controls="panel-portfolio" data-panel="portfolio" tabindex="-1" [[PORTFOLIO_HIDDEN]]>포트폴리오</button>
         <button class="tab" id="tab-review" role="tab" aria-selected="false" aria-controls="panel-review" data-panel="review" tabindex="-1">검토 메모</button>
         <button class="tab" id="tab-research" role="tab" aria-selected="false" aria-controls="panel-research" data-panel="research" tabindex="-1">회사 리서치</button>
         <button class="tab" id="tab-match" role="tab" aria-selected="false" aria-controls="panel-match" data-panel="match" tabindex="-1">JD 매칭</button>
@@ -437,6 +443,8 @@
   <main class="workspace">
     <section class="document-canvas" aria-live="polite">
       <article class="panel resume-document" id="panel-draft" role="tabpanel" aria-labelledby="tab-draft">[[DRAFT_HTML]]</article>
+      <article class="panel support-document" id="panel-career" role="tabpanel" aria-labelledby="tab-career" hidden>[[CAREER_HTML]]</article>
+      <article class="panel support-document" id="panel-portfolio" role="tabpanel" aria-labelledby="tab-portfolio" hidden>[[PORTFOLIO_HTML]]</article>
       <article class="panel support-document" id="panel-review" role="tabpanel" aria-labelledby="tab-review" hidden>[[REVIEW_HTML]]</article>
       <article class="panel support-document" id="panel-research" role="tabpanel" aria-labelledby="tab-research" hidden>[[RESEARCH_HTML]]</article>
       <article class="panel support-document" id="panel-match" role="tabpanel" aria-labelledby="tab-match" hidden>[[MATCH_HTML]]</article>
@@ -473,7 +481,6 @@
       ['Skills', ['기술', 'Skills']],
       ['Education & Credentials', ['학력·수상·자격', 'Credentials']],
     ]);
-    const sectionOrder = ['요약', '경력', '핵심 성과', '일하는 방식', '기술', '학력·수상·자격'];
 
     function prepareResume() {
       const original = [...resume.children];
@@ -492,7 +499,7 @@
           const meta = document.createElement('span');
           meta.className = 'section-meta';
           meta.textContent = mapped?.[1] || element.textContent.trim();
-          element.append(meta);
+          if (mapped) element.append(meta);
           section.append(element);
           resume.append(section);
           return;
@@ -500,9 +507,7 @@
         (section || header).append(element);
       });
 
-      const sections = [...resume.querySelectorAll('.resume-section')];
-      sections.sort((a, b) => sectionOrder.indexOf(a.dataset.section) - sectionOrder.indexOf(b.dataset.section));
-      sections.forEach((item) => resume.append(item));
+      // Markdown owns the document order; preview must not reorder the argument.
     }
 
     function splitSectionIntoGroups(section) {
@@ -557,6 +562,7 @@
 
       const pages = [...resume.querySelectorAll('.a4-page')];
       pages.forEach((item, index) => {
+        if (item.scrollHeight > item.clientHeight + 1) item.classList.add('oversized');
         const number = document.createElement('span');
         number.className = 'page-number';
         number.textContent = `${index + 1} / ${pages.length}`;
@@ -570,9 +576,21 @@
       return slug || `section-${index + 1}`;
     }
 
-    const tabs = [...document.querySelectorAll('[role="tab"]')];
+    const tabs = [...document.querySelectorAll('[role="tab"]:not([hidden])')];
     const panels = [...document.querySelectorAll('[role="tabpanel"]')];
     const toc = document.querySelector('#toc');
+    panels.forEach((panel) => {
+      const anchors = new Map();
+      panel.querySelectorAll('[id]').forEach((element) => {
+        const previous = element.id;
+        element.id = `${panel.id}-${previous}`;
+        anchors.set(previous, element.id);
+      });
+      panel.querySelectorAll('a[href^="#"]').forEach((link) => {
+        const destination = anchors.get(decodeURIComponent(link.getAttribute('href').slice(1)));
+        if (destination) link.setAttribute('href', `#${destination}`);
+      });
+    });
 
     function rebuildToc(panel) {
       toc.replaceChildren();

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { canViewDocument, getCv } from "@/content/documents";
 import { CvView } from "../../documents/professional-document";
 import { ResumePageShell } from "../../resume/resume-page-shell";
@@ -15,6 +15,7 @@ export const metadata: Metadata = {
 
 export default async function TailoredCvPage({ params }: PageProps) {
   const { company } = await params;
+  if (company === "common") redirect("/cv");
   const document = getCv(company);
   if (!document || !canViewDocument(document)) notFound();
 

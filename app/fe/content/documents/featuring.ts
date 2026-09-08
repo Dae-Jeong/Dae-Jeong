@@ -43,7 +43,7 @@ const REBUILD: CareerProject = {
   context: "기존 frontend contract를 유지한 병렬 재구축과 단계적 전환, 이후 실사용 backend 운영 전담",
   role: "대안 비교·설득·설계·구현·검증·전환 판단 직접 수행",
   problem:
-    "빠른 검증 중심으로 만들어진 초기 backend는 도메인 의존성이 얽혀 회원 로직 변경이 AI 생성 중단으로 이어졌고 해결된 QA 이슈가 같은 영역에서 다른 형태로 재발했습니다.",
+    "회원 기능과 AI 생성 로직의 결합으로 변경 영향이 다른 기능까지 전파되어, 기능 확장에 필요한 도메인 경계를 다시 정해야 했습니다.",
   decision:
     "부분 수정을 누적하는 안과 backend만 병렬 재구축하는 안을 비교해 서비스가 작고 AI 모듈 확장이 예정된 시점이라 재구축을 택하되 기존 frontend와 릴리스 흐름은 유지하는 범위로 한정했습니다. \"돌아가는 기능을 왜 다시 만드나\"에는 문제 누적 속도·AI 확장성·하네스 기반 이관 속도로 답했습니다.",
   implementation: [
@@ -52,15 +52,14 @@ const REBUILD: CareerProject = {
     "재구축 범위·architecture·검증·전환 판단은 직접 소유하고 coding agent는 codebase 파악·기능 inventory·반복 구현에 썼습니다.",
   ],
   verification: [
-    "동일 기능의 응답 비교와 QA acceptance를 통과한 범위만 전환했고 전환 뒤에도 같은 Jira 정의로 재발을 계속 측정했습니다.",
+    "기존 API와 새 backend의 동일 기능 응답을 비교하고, QA acceptance를 통과한 범위만 단계적으로 전환했습니다.",
   ],
-  result: "같은 기준의 Jira 집계에서 해결된 QA 이슈 재오픈 비율이 37%에서 11%로, 재발 발생 일평균이 약 94% 줄었습니다(하루 4.5건에서 0.3건). 전환 이후 실제 사용자가 쓰는 backend의 배포·QA·운영을 계속 전담하고 있습니다.",
-  boundary: "티켓에 BE/FE 라벨이 없어 제품 전체 품질 지표로 서술합니다. 초기 prototype은 다른 engineer가 만들었습니다.",
+  result: "기존 frontend의 API 계약을 유지하며 FastAPI backend로 전환했습니다. 도메인·저장소·트랜잭션 책임을 분리한 구조에서 기능 확장을 이어가고, 실사용 backend의 개발·배포·운영을 전담했습니다.",
+  boundary: "백엔드 재구축 범위·구조·검증·전환 판단을 직접 맡았고, 기존 frontend의 API 계약은 유지했습니다.",
   claimIds: [
     "thready.rebuild-decision-execution",
     "thready.backend-rebuild",
     "thready.prototype-to-user-operation",
-    "thready.qa-reopen-reduction",
     "thready.release-operation",
     "career.coding-agent-usage",
   ],

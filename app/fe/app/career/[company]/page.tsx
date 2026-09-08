@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { ApplicationVersionNav } from "@/components/site/application-version-nav";
 import { canViewDocument, getCareerDescription } from "@/content/documents";
 import { CareerDescriptionView } from "../../documents/professional-document";
@@ -22,6 +22,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function TailoredCareerPage({ params }: PageProps) {
   const { company } = await params;
+  if (company === "common") redirect("/career");
   const document = getCareerDescription(company);
   if (!document || !canViewDocument(document)) notFound();
 

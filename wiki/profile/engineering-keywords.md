@@ -8,7 +8,7 @@ tags: [identity, engineering, keywords, sot]
 
 # Engineering Keywords — 기술 주장의 축 (2026-09-03, user-confirmed)
 
-이력서·경력기술서·포트폴리오·면접에서 기술적으로 어필하는 축은 아래 여섯 개다. 기전만 쓰고 단어를 빼면 리뷰어가 키워드로 훑을 때 놓친다. **성과 제목이나 문장 머리에 이 단어가 드러나야 한다.** 새 사례를 추가할 때는 어느 축인지 먼저 정한다.
+이력서·경력기술서·포트폴리오·면접에서 기술 근거를 고르는 참고 축은 아래 여섯 개다. 제품 출시·실제 구독·매출을 먼저 보여주고, 이를 뒷받침한 구체적인 기술 판단을 본문에서 설명한다. 제목에 기술 단어를 채우는 할당량은 적용하지 않는다 (2026-09-07 사용자 성과 위계 결정).
 
 ## 여섯 축
 
@@ -23,10 +23,10 @@ tags: [identity, engineering, keywords, sot]
 
 ## 사용 규칙
 
-- 회사별 지원본의 대표 성과 제목 4개 안에 **최소 4개 축의 단어**가 드러나야 한다 (게이트 11). 백엔드 공고는 보장·멱등·정합·설계, AI 공고는 설계·신뢰·멱등·보장이 기본.
+- 기술 단어 수나 대표 성과 수를 강제하지 않는다. 관련 기술 축은 실제 claim의 판단·구현·검증을 설명하는 데 사용하며, 전문성은 문안 기준 게이트 24·25의 사람 검사로 확인한다.
 - 수치는 claim의 `allowed_copy` 범위 안에서만 붙인다. 성능 축은 "개선 %"가 없으면 **실측으로 병목을 가려낸 판단**으로 쓴다. `HTTP 5xx 0.3%`는 재측정 전까지 쓰지 않는다 (thready.md Resume selection decision).
 - 강도는 claim을 따른다. SAY 실시간(순서 보장·성능·13개 회귀)은 `공동 주 기여`를 문장 안에 둔다.
-- 여섯 축에 걸리지 않는 사례는 대표 성과가 아니라 supporting이다.
+- 제품 출시·구독 매출은 기술 축에 속하지 않아도 대표 성과다. QA 하네스 등 개발 방식의 개선은 제품을 만드는 엔지니어의 보조 경험으로 배치한다.
 
 ## 표면별 현황 (2026-09-03 보강 반영)
 
@@ -44,5 +44,5 @@ tags: [identity, engineering, keywords, sot]
 
 - [identity.md](identity.md) · [branding-product-engineer.md](branding-product-engineer.md) — "끝까지 책임진다"의 실체가 이 여섯 축이다
 - [Design Diagram Library](../products/portfolio/design-diagram-library.md) — 반복 습관 표 (도식 층)
-- [Application Copy Standard §1-5 · 게이트 11](../rules/application-copy-standard.md)
+- [Application Copy Standard §1-5 · 게이트 24·25](../rules/application-copy-standard.md)
 - [Claim Registry](../evidence/claims/README.md)

@@ -42,9 +42,9 @@ export const DETAILS: Record<string, CaseDetail> = {
     ],
     problem: [
       <>
-        AI 콘텐츠 생성 제품 Thready의 backend를 인계받았을 때, 도메인 간 의존성이
-        얽혀 있어 <strong>회원 로직 수정이 AI 생성 중단으로 전파</strong>됐다. QA
-        티켓을 닫아도 같은 영역에서 재발이 반복됐다.
+        Thready backend의 도메인 간 의존성 때문에
+        <strong>회원 로직 수정이 AI 생성 중단으로 전파</strong>되어,
+        기능 확장에 필요한 도메인 경계를 다시 정해야 했다.
       </>,
       <>
         생성 품질도 프롬프트·모델 호출에 흩어져 있어{" "}
@@ -173,11 +173,11 @@ export const DETAILS: Record<string, CaseDetail> = {
     evidence: [
       {
         index: "근거 1",
-        label: "QA reopen 37% → 11%",
+        label: "API 계약을 유지한 백엔드 전환",
         claim:
-          "재구축 cutover 전후 같은 기준에서 QA 티켓 reopen 비율이 37%에서 11%로 낮게 관측됨. backend 단독 효과가 아닌 제품 전체 변화가 포함된 지표",
-        source: "Jira 집계 · cutover 전후 비교",
-        claimIds: ["thready.qa-reopen-reduction"],
+          "기존 화면의 API 계약과 동일 기능 응답을 검증하며 FastAPI backend로 전환하고 후속 개발·배포·운영을 전담",
+        source: "API 응답 비교 · 전환 검증 · 운영 이력",
+        claimIds: ["thready.rebuild-decision-execution", "thready.backend-rebuild"],
       },
       {
         index: "근거 2",

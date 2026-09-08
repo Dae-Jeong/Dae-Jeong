@@ -2,7 +2,7 @@ import type { TailoredResume } from "./types";
 
 // 문안 owner: wiki/products/resume/tailored/featuring/2026-08-31_wanted_backend-engineer/content-draft.md
 // 2026-09-03 v2 정본화: 이력서=판단·결과, 기전·검증은 경력기술서. 코드명 제거, 화면은 coding agent. (2026-09-02 개정: wiki/rules/application-copy-standard.md 적용 (헤더 공고 직무명 우선, 15초 소개,
-// reopen 수치 복원, 블록 D·F 추가, 경계 종결 문장 제거). 블록 원형: products/resume/resume-block-library.md
+// API 계약 보존·전환 판단 중심, 블록 D·F 추가, 경계 종결 문장 제거). 블록 원형: products/resume/resume-block-library.md
 export const FEATURING_RESUME = {
   slug: "featuring",
   companyName: "피처링",
@@ -81,7 +81,6 @@ export const FEATURING_RESUME = {
         "thready.frontend-product-delivery",
         "thready.backend-rebuild",
         "thready.rebuild-decision-execution",
-        "thready.qa-reopen-reduction",
         "thready.prototype-to-user-operation",
         "thready.threads-market-outcome-design",
         "thready.labeling-corpus-workbench",
@@ -188,29 +187,24 @@ export const FEATURING_RESUME = {
     },
     {
       no: "02",
-      title: "규칙을 먼저 설계한 뒤 돌아가는 제품을 멈추지 않고 backend를 교체했고, 결함 재발이 약 94% 줄었습니다",
+      title: "API 계약을 유지한 백엔드 재설계·전환",
       description: [
-        "빠른 검증 중심으로 만들어진 초기 backend는 도메인 의존성이 얽혀 회원 로직 변경이 AI 생성 중단으로 이어졌고 해결된 QA 이슈가 같은 영역에서 다른 형태로 재발했습니다.",
+        "회원 기능과 AI 생성 로직의 결합으로 변경 영향이 다른 기능까지 전파되어, 기능 확장에 필요한 도메인 경계를 다시 정해야 했습니다.",
         {
           text: "부분 수정과 backend만 병렬 재구축하는 안을 비교해, 서비스가 작고 AI 확장이 예정된 시점이라 재구축을 택하되 기존 frontend와 릴리스 흐름은 유지했습니다. 패턴·계층·검증 하네스를 먼저 세우고 그 위에서 새 backend를 나란히 만들어 응답을 비교한 뒤 전환했습니다.",
           source: "Thready",
         },
         {
           text: [
-            { text: "같은 기준의 Jira 집계에서 해결된 QA 이슈 재오픈 비율 " },
-            { text: "37% → 11%", tone: "metric" },
-            { text: ", 재발 발생 일평균 " },
-            { text: "약 94% 감소", tone: "metric" },
-            { text: "(하루 4.5건 → 0.3건). 전환 뒤 실제 사용자가 쓰는 제품의 backend 배포·QA·운영을 계속 전담하고 있습니다." },
+            { text: "기존 화면의 API 계약을 유지하며 FastAPI backend로 전환하고, 도메인·저장소·트랜잭션 책임을 분리했습니다. 이후 실사용 backend의 기능 개발·배포·운영을 전담했습니다." },
           ],
-          source: "Thready · Jira",
+          source: "Thready",
         },
       ],
       claimIds: [
         "thready.rebuild-decision-execution",
         "thready.backend-rebuild",
         "thready.prototype-to-user-operation",
-        "thready.qa-reopen-reduction",
         "thready.release-operation",
         "career.coding-agent-usage",
       ],

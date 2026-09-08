@@ -16,7 +16,7 @@ tags: [sot, content, site, platform]
 | --- | --- | --- |
 | **사실·강도** | `wiki/evidence/` + `wiki/evidence/claims/*.yaml` | 무엇이 사실인가, owned/led/co-led/contributed, `allowed_copy`·`forbidden_copy` |
 | **브랜드 정체성** | `wiki/profile/identity.md` | 공통 Maker 문장과 채용 역할 hierarchy |
-| **표현 (SoT)** | **`app/fe`** — `app/page.tsx` · `app/resume/resume-view.tsx` | 각 surface에서 어떻게 말하는가. 문장·순서·강조 |
+| **표현 (SoT)** | **`app/fe`** — `app/page.tsx` · `content/common/*.json`와 각 문서 renderer | 각 surface에서 어떻게 말하는가. 문장·순서·강조 |
 | **파생** | 원티드 · 링크드인 · 리멤버 · 로켓펀치 · 그룹바이 · 사람인 | 플랫폼 제약(글자 수·필드·줄바꿈)에 맞춘 변환본 |
 | **디자인** | D2 → `app/design` | 타입 스케일·컴포넌트 문법·레이아웃 |
 
@@ -46,10 +46,12 @@ tags: [sot, content, site, platform]
 4. 플랫폼에 반영하고 **실측으로 검증**한다 (폼은 `innerText`가 아니라 필드 `value`로 읽는다).
 5. 결과를 [동기화 매트릭스](../../backlog/platform-profile-consolidation/2026-08-13-sync-matrix.md)에 기록한다.
 
-## 현재 SoT 스냅샷 (2026-09-01)
+## 현재 SoT 스냅샷 (2026-09-08, 공용 개편은 로컬 반영)
 
 - 공통 소개: `가능성을 기회로 바꾸고, 제품으로 가치를 전하는 메이커 김대정입니다.`
 - 채용 역할: `Tech Lead · Backend Engineer`; 전문 영역: `AI Product Systems`
-- resume 순서: `소개 → 경력 → 대표 성과 → 기술 → 외부 활동 → credentials`
-- portfolio 순서: `Thready → Company AX → Centurion`, supporting `Memento Payment`; Infrastructure는 archive evidence
+- resume 순서: `소개 → 대표 성과 → 경력 → 기술 → 외부 활동 → credentials`
+- portfolio 순서: `크리에이터의 새로운 채널 운영 → 업무 정책의 백엔드 구현 → 조직 표준 템플릿`. 이전 case library는 회사별·직군별 문서와 상세 경로의 기존 표현으로 보존한다.
+- 공용 표현 owner는 `content/common/*.json`이다. `content/documents/common.ts`는 회사별 패키지가 참조하는 개편 전 조립 기반이며 공용 경로가 소비하지 않는다. 공용 변경을 이유로 회사별 제출본이 함께 바뀌지 않도록 import 경계를 유지한다.
+- 로컬 `/common`은 4종 검토 허브다. 이번 변경은 배포·제출·플랫폼 동기화를 포함하지 않는다.
 - 플랫폼 프로필은 이 기준선의 문장·경력·대표 성과를 각 필드와 글자 수에 맞게 축약하며 새 사실을 만들지 않는다.

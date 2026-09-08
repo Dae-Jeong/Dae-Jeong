@@ -8,9 +8,9 @@ attempts:
     company: "왓섭"
     role: "AI-Native Product Engineer / Backend 중심"
     status: in-progress
-    tracking: "기업 검토 중"
+    tracking: "리크루터에게 자료 전달 완료 · 응답 대기 (2026-09-07 사용자 확인, 전달일 미확인)"
     artifact_state: frozen
-    last_confirmed: "2026-09-01"
+    last_confirmed: "2026-09-07"
     source_path: "wiki/products/resume/tailored/whatssub/2026-08-25_linkedin_ai-native-product-engineer-backend/README.md"
     artifacts:
       resume:
@@ -46,7 +46,7 @@ attempts:
     role: "Software Engineer / AI"
     header_role: "Software Engineer / AI"
     status: pre-apply
-    tracking: "2026-09-07 검토한 v2 이력서를 기본 v1(/resume/jyp)로 교체 · 경력기술서·포트폴리오 미전환"
+    tracking: "제품 출시·구독 매출 우선 문서 3종 초안 완료 · 사용자 검토 대기 · 기존 웹·PDF 보존"
     artifact_state: mutable
     last_confirmed: "2026-09-07"
     source_path: "wiki/products/resume/tailored/jyp-entertainment/2026-08-29_jype-career_software-engineer-ai/README.md"
@@ -56,9 +56,9 @@ attempts:
       checked_at: "2026-09-07"
     work_session:
       state: waiting-review
-      scope: "이력서는 검토한 v2를 /resume/jyp 기본 v1으로 승격. /resume/jyp-v2는 이동 연결. 경력기술서·포트폴리오는 기존/v2 유지, PDF는 구판 기록"
+      scope: "문서 3종 Markdown 재작성과 독립 검토·로컬 preview. 제품 성과 이후 AI 업무 흐름·연동·사용자 운영을 증명. 기존 웹·PDF는 미교체"
       last_synced: "2026-09-07"
-      next_action: "경력기술서·포트폴리오의 최신 관점 반영 검토. 현재 이력서 PDF는 미생성, 공개 배포·제출은 별도 결정"
+      next_action: "새 문안·preview 검토 후 기존 웹 교체 여부 결정. PDF·배포·제출은 별도 요청"
     current:
       kind: checkpoint
       package_revision: 4
@@ -85,18 +85,18 @@ attempts:
     role: "[프로덕트] 백엔드 개발 엔지니어"
     header_role: "Backend Engineer"
     status: pre-apply
-    tracking: "승인 · PDF 재생성 2026-09-03 (경력기술서 첫 줄 브랜딩·약 94%·헤더 단일화 반영) · 제출 준비"
-    artifact_state: approved
-    last_confirmed: "2026-09-03"
+    tracking: "제품 출시·구독 매출 우선 문서 3종 초안 완료 · 사용자 검토 대기 · 2026-09-03 승인 웹·PDF 보존"
+    artifact_state: mutable
+    last_confirmed: "2026-09-07"
     source_path: "wiki/products/resume/tailored/featuring/2026-08-31_wanted_backend-engineer/README.md"
     deadline:
       kind: unknown
       source_url: "https://www.wanted.co.kr/wd/346800"
     work_session:
       state: waiting-review
-      scope: "피처링 맞춤 문안·typed content·local resume·career description·portfolio의 review-ready package"
+      scope: "문서 3종 Markdown 재작성과 독립 검토·로컬 preview. 제품 성과 이후 백엔드 설계·데이터 처리·안정화를 증명. 기존 웹·PDF는 미교체"
       last_synced: "2026-09-02"
-      next_action: "2026-09-02 승인·PDF 생성 완료 (output/pdf/featuring/). 제출 시 Snapshot 동결. 면접 준비는 interview-prep.md"
+      next_action: "새 문안·preview 검토 후 기존 웹 교체 여부 결정. 보존 PDF는 새 문안과 미동기화이며 재승인·제출은 별도 요청"
     current:
       kind: checkpoint
       package_revision: 4

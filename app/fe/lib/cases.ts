@@ -91,7 +91,7 @@ export const CASES: CaseMeta[] = [
     shortName: "Thready Backend 재구축",
     tag: "Backend Cutover · Thready",
     blurb:
-      "기능 검증 중심의 초기 backend를 인계받아 부분 수정과 병렬 재구축을 비교하고, validation harness·cutover 기준을 먼저 세운 뒤 FastAPI backend를 실제 사용자 운영까지 전환했습니다.",
+      "제품 백엔드의 부분 수정과 병렬 재구축을 비교하고, validation harness·cutover 기준을 먼저 세운 뒤 FastAPI backend를 실제 사용자 운영까지 전환했습니다.",
     role: "FastAPI Backend 재구축·운영 전담",
     scope: "Architecture · Validation · Cutover · Operation",
     proof: [

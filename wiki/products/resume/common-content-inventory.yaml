@@ -1,5 +1,5 @@
 schema_version: 1
-updated_at: "2026-09-01"
+updated_at: "2026-09-08"
 
 # This file owns document selection, not career facts. Facts and public strength
 # remain owned by profile/ and evidence/claims/.
@@ -26,26 +26,43 @@ blocks:
       - thready.frontend-product-delivery
       - thready.threads-market-outcome-design
       - thready.threads-content-workflow-automation
-    focus: "고객 문제를 유료 AI 콘텐츠 제품과 운영 흐름으로 만든 경험"
+      - thready.creator-adoption-context
+      - thready.customer-follower-growth
+      - thready.agent-pipeline-design
+    focus: "시간·경험 부족이라는 크리에이터의 Threads 진입 장벽을 제품·AI 흐름으로 해소"
     use:
       resume: include
       career-description: include
       portfolio: primary
       cv: include
-    boundary: "매출은 제품·팀 outcome이며 정확한 비공개 band와 개인 단독 인과를 쓰지 않는다."
+    boundary: "팔로워 성장은 고객 한 사례, 매출은 2026.08 제품·팀 결과다. 최신 생성·승인 기능의 단독 인과로 연결하지 않는다."
+
+  - id: thready.generation-approval-publishing
+    project: thready
+    claim_ids:
+      - thready.youtube-source-reuse
+      - thready.auto-generation-approval-flow
+      - thready.approval-command-consistency
+      - thready.publish-recovery-boundary
+    focus: "소재 동기화·중복 편성 통제·고객 승인·발행 복구의 최근 구현"
+    use:
+      resume: include
+      career-description: include
+      portfolio: primary
+      cv: summary
+    boundary: "최근 구현·로컬 검증과 과거 고객 운영·성장 성과를 구분한다."
 
   - id: thready.backend-rebuild
     project: thready
     claim_ids:
       - thready.rebuild-decision-execution
       - thready.backend-rebuild
-      - thready.qa-reopen-reduction
       - thready.production-operation-quality
     focus: "기존 frontend contract를 지키며 backend를 재구축한 판단·검증·전환"
     use:
       resume: include
       career-description: include
-      portfolio: primary
+      portfolio: exclude
       cv: summary
 
   - id: thready.ai-runtime
@@ -107,7 +124,7 @@ blocks:
     use:
       resume: summary
       career-description: include
-      portfolio: primary
+      portfolio: supporting
       cv: summary
     boundary: "전사 업무 자동화 완료나 회사 전체 프로세스 단독 설계로 표현하지 않는다."
 
@@ -124,7 +141,7 @@ blocks:
     use:
       resume: summary
       career-description: include
-      portfolio: supporting
+      portfolio: exclude
       cv: include
     boundary: "진행 중 영역은 완료형으로 쓰지 않고 예약률·매출의 개인 단독 인과를 주장하지 않는다."
 
@@ -139,7 +156,7 @@ blocks:
     use:
       resume: summary
       career-description: include
-      portfolio: supporting
+      portfolio: exclude
       cv: include
 
   - id: studio-lab.product-system
@@ -152,7 +169,7 @@ blocks:
     use:
       resume: summary
       career-description: include
-      portfolio: supporting
+      portfolio: exclude
       cv: include
 
   - id: tellingme.personal-backend
@@ -163,9 +180,21 @@ blocks:
     use:
       resume: summary
       career-description: summary
-      portfolio: context
+      portfolio: exclude
       cv: include
     boundary: "정규 경력 timeline과 분리해 개인 프로젝트로 표기한다."
+
+  - id: career.military-service
+    project: career
+    claim_ids:
+      - career.military-service
+    focus: "사용자 확인 병역의 부대·병과·기간·전역 계급·만기 복무 완료"
+    use:
+      resume: exclude
+      career-description: exclude
+      portfolio: exclude
+      cv: include
+    boundary: "별도 Military Service 항목. 소프트웨어 실무 연차에 합산하지 않는다."
 
   - id: credentials.complete
     project: credentials
@@ -179,5 +208,19 @@ blocks:
     use:
       resume: include
       career-description: summary
-      portfolio: summary
+      portfolio: exclude
       cv: include
+
+  - id: procedure-hub.search-boundary
+    project: procedure-hub
+    claim_ids:
+      - procedure-hub.hybrid-retrieval-design
+      - procedure-hub.canonical-data-platform
+      - procedure-hub.retrieval-evaluation-gate
+    focus: "시술 정보 지식 검색의 데이터·검수·공개 승인 경계"
+    use:
+      resume: summary
+      career-description: include
+      portfolio: exclude
+      cv: include
+    boundary: "임상 검수와 공개 승인 준비 중. 검색 결합 LLM 생성 완료로 확대하지 않는다."

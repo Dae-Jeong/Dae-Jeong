@@ -8,11 +8,13 @@ tags: [portfolio, diagram, sot, copy]
 
 # Design Diagram Library — 도식 자산 SoT
 
+최신 비교 초안: [내부 동작 24항목](prototypes/visual-library-2026-09/details.html#transaction). 기존 요약본을 보존한 채 책임 경계·처리 규칙·실패 분기를 구체화한 로컬 검토본이며, 회사별 제출본에 일괄 반영하지 않는다.
+
 경험 하나를 **패턴 수준의 도식** 한 장으로 고정하고, 그 도식에서 세 층의 문안을 뽑는다. 회사별 지원본은 여기서 고르고 순서만 바꾼다.
 
 - 규칙 owner: [Application Copy Standard §2-1 도식 공개 수준](../../rules/application-copy-standard.md#2-1-도식-공개-수준-2026-09-03)
 - 코드: `app/fe/app/portfolio/diagrams/` — 문법 `design-grammar.tsx`(표·비교·상태 체인·topology·시간축) + `flow.tsx`(swimlane 흐름: 열 = 서비스 경계, 노드 격자 고정, SVG 직각 화살표), 도식 `design-diagrams*.tsx`, 검토 라우트 `/portfolio/design-lab` (local)
-- 형태 규칙 (2026-09-03): **백엔드 흐름 사례는 swimlane 흐름형**(실선 정상 · 점선 실패 · 마름모 판단 · 짙은 박스 사람 · 원통 저장소). 시간이 구조인 사례는 Timeline, 판단 비교는 Compare, 절차·승격은 StateMachine. mermaid는 GitHub README용으로만 쓴다(자동 배치라 A4에서 글자가 작아짐).
+- 형태 규칙 (2026-09-03): **백엔드 처리 흐름 사례는 swimlane 흐름형**(실선 정상 · 점선 실패 · 마름모 판단 · 짙은 박스 사람 · 원통 저장소). 시간이 구조인 사례는 Timeline, 판단 비교는 Compare, 절차·승격은 StateMachine. 포트폴리오의 이 흐름 자산에서 mermaid는 GitHub README용으로 쓴다(자동 배치라 A4에서 글자가 작아짐). 서버·배치 topology는 처리 흐름과 구분하며 [render-server-architecture](../../../skills/render-server-architecture/SKILL.md)를 통해 글로벌 표현 정본을 따른다. 공개 범위 규칙은 계속 적용한다.
 - **대상 매체 (2026-09-03 user-confirmed): 데스크톱 화면과 A4 PDF 둘뿐.** 모바일은 점검·수정 대상이 아니다. 리뷰어는 데스크톱이나 PDF로 읽는다. 이미 있는 반응형 코드는 걷어내지 않되 더 손대지 않는다.
 - 사실 범위: 각 항목의 claim과 evidence 문서. 도식은 claim의 `allowed_copy`를 넘지 않는다.
 - 블록 대응: [Resume Block Library](../resume/resume-block-library.md)의 A~Q
@@ -205,6 +207,10 @@ I/H · `thready.quality-criteria-system`(후보) · owned · 층 Boundary + Stat
 | lab only | — | tenant-boundary · azure-topology · sequence-fence · split-migration · stripe-prepayment · thready-ax-pipeline(피처링 미사용) · outbox-delivery(JYP 미사용) |
 
 배치 원칙(2026-09-03): 케이스당 2장이 기본, 핵심 케이스(Thready 02)만 4장. 피처링은 백엔드 판단·정합성 먼저, AX는 역할 그래프 한 장만 끝에. JYP는 AX 2장 먼저, Outbox 같은 백엔드 세부는 제외.
+
+## 항목별 시각화 검토 모음 (2026-09-07)
+
+[Portfolio Visual Library](prototypes/visual-library-2026-09/README.md)는 24개 항목을 한 장씩 검토하는 별도 HTML·SVG 초안이다. 제품화·백엔드·실시간 AI·검색·인프라·개인 구축을 포괄하며, claim별 근거와 구현 범위는 모음의 mapping에서 연결한다. 기존 회사별 제출본과 공개 route에는 아직 적용하지 않는다. 전체 모음에서 JD에 맞는 그림만 선별하며, 기존 배치표를 일괄 교체하지 않는다.
 
 ## 관련
 

@@ -39,7 +39,7 @@ const TEMPLATE: CareerProject = {
 const THREADY_PRODUCT: CareerProject = {
   id: "thready-paid-product",
   title: "Thready · 반복하던 글 제작을 제품 흐름으로, 글의 기준은 실측으로 신뢰를 쌓은 유료 AI 제품",
-  context: "아이디어 제안 → prototype 이후 제품화 주도 → 고객이 구독하는 서비스 운영",
+  context: "아이디어 제안 → 제품화·출시 주도 → 고객이 구독하는 서비스 운영",
   role: "제품 운영 리드 · Backend/AI 직접 구현 · 핵심 화면은 coding agent로 완성",
   problem:
     "여러 채널을 운영하는 고객은 자료 수집·작성·검수·예약을 매번 반복했고 반응이 좋은 글의 기준은 감에 의존했습니다.",
@@ -55,7 +55,7 @@ const THREADY_PRODUCT: CareerProject = {
     "외부 AI 5xx는 실패 유형으로 분류해 재시도·최종 실패·사용자 재시도 경로를 두고 반복 장애 모델은 Sentry 확인 뒤 선택지에서 일시 제외했습니다.",
   ],
   result: "기획·QA·마케팅과 제품 운영을 리드해 실제 고객이 구독료를 내는 제품으로 출시·운영 중입니다.",
-  boundary: "매출은 팀·제품의 결과입니다. 초기 prototype은 다른 engineer가 만들었고, 제 범위는 아이디어 제안과 prototype 이후 제품화·Backend·AI·운영 리드입니다.",
+  boundary: "아이디어 제안과 제품화·출시·운영을 주도하고 Backend·AI와 핵심 화면을 구현했습니다. 매출은 팀·제품의 결과입니다.",
   claimIds: [
     "thready.product-zero-to-one-contribution",
     "thready.subscription-revenue-band",

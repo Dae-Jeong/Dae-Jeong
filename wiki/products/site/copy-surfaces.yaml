@@ -31,19 +31,27 @@ surfaces:
     per_company: true
     kind: portfolio
   - id: career.common
-    routes: ["/career/common", "/cv/common"]
-    path: "app/fe/content/documents/common.ts"
+    routes: ["/career", "/career/common"]
+    path: "app/fe/content/common/career-description.json"
+    per_company: false
+  - id: cv.common
+    routes: ["/cv", "/cv/common"]
+    path: "app/fe/content/common/cv.json"
+    per_company: false
+  - id: portfolio.common
+    routes: ["/portfolio"]
+    path: "app/fe/content/common/portfolio.json"
     per_company: false
   - id: resume.common
     routes: ["/resume"]
-    path: "app/fe/app/resume/resume-view.tsx"
+    path: "app/fe/content/common/resume.json"
     per_company: false
   - id: resume.route
     routes: ["/resume/{company}"]
     path: "app/fe/app/resume/[company]/page.tsx"
     per_company: false
   - id: cases
-    routes: ["/portfolio"]
+    routes: ["/portfolio/{case}"]
     path: "app/fe/lib/cases.ts"
     per_company: false
   # 채용 플랫폼 canonical 문안 — 게이트 12·17 대상. live 상태는 platform-registry.yaml

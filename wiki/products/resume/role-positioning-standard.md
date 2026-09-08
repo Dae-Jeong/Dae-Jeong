@@ -2,7 +2,7 @@
 type: product-contract
 title: Resume Role Positioning Standard
 description: 김대정의 역할을 직함이 아니라 반복된 판단·기술 경계·운영 결과로 전달하는 이력서 기준.
-timestamp: 2026-09-01
+timestamp: 2026-09-08
 derived_from:
   - profile/identity.md
   - evidence/claims/
@@ -45,7 +45,7 @@ tags: [resume, positioning, role, backend]
 | 주 역할 | `Tech Lead` | 제품 범위·품질 기준·실행 정렬 책임을 먼저 전달 |
 | 기술 기반 | `Backend Engineer` | API·data·transaction·async/realtime·infra 전문성을 증명 |
 | 전문 영역 | `AI Product Systems` | AI runtime·quality·서비스 경계와 운영 범위 |
-| 차별화되는 작동 방식 | 고객이 돈을 내는 이유를 찾고 실제 매출이 발생하는 제품으로 만든 뒤, 운영에 필요한 backend 경계를 직접 설계 | 제품 운영·직접 구현·재구축·비동기 복구·AI 데이터 경계·Backend Template 사례가 반복해서 증명 |
+| 차별화되는 작동 방식 | 고객의 진입 장벽을 낮추는 제품을 만들고, 그 흐름을 백엔드·AI·핵심 화면으로 직접 구현·운영 | 고객 문제·제품 흐름·직접 구현을 먼저 설명하고 지속 사용·성장 사례와 구독 매출은 제품·팀 결과로 보조 |
 
 금지:
 
@@ -109,13 +109,13 @@ contract·state·gate를 세팅하고 실제 운영을 책임했다면 이력으
 ### Header
 
 - 공통 이력서는 `Tech Lead · Backend Engineer` 순서를 고정한다.
-- 회사별 지원본은 **공고의 직무명을 앞에** 두고 병행 역할을 뒤에 붙인다 (예: `Backend Engineer · Tech Lead 역할 병행`). Tech Lead를 앞에 두는 것은 리드 포지션 공고뿐이다. 규칙 owner는 [Application Copy Standard §1-1](../../rules/application-copy-standard.md)이다 (2026-09-02).
+- 회사별 지원본은 **공고의 직무명을 앞에** 두고 근거 있는 보조 역할을 뒤에 붙인다 (예: `Backend Engineer · Tech Lead`). Tech Lead를 앞에 두는 것은 리드 포지션 공고뿐이다. 규칙 owner는 [Application Copy Standard §1-1](../../rules/application-copy-standard.md)이다.
 - 현재·이전 주요 회사, 직함, 기간을 즉시 보여준다.
 - 브랜드 문장·PO 병기는 넣지 않는다.
 
 ### 소개
 
-공통 이력서는 Maker 문장 한 문장만 둔다. 회사별 지원본의 소개 첫 줄은 브랜드 문장이 아니라 [Application Copy Standard §1-2](../../rules/application-copy-standard.md)의 15초 문장 세 사실(기획자 출신 · 결제 고객이 있는 AI 제품 직접 구현·운영 · 조직 표준 직접 구축)을 JD 순서로 조합한 것이다. 채용하면 맡길 수 있는 backend 범위와 AI·PM 경험의 쓰임은 경력·대표 성과의 구체적인 문제, 판단, mechanism으로 증명하며 소개에서 다시 요약하지 않는다.
+공통·회사별 모두 고정 브랜드 문장을 소개 첫 줄에 둔다. 뒤에는 `기획자로 시작해 백엔드로 왔고, …`로 이어 실제 제품과 직접 기여를 간결하게 설명한다. [Application Copy Standard §1-1·1-2·1-6](../../rules/application-copy-standard.md)이 소개의 고정 값과 세 사실을 소유하며, 구체적인 판단·기전·결과는 경력과 대표 성과에서 증명한다.
 
 ### 경력
 

@@ -12,7 +12,8 @@ Portfolio는 resume가 선택한 claim의 깊이를 검증하는 제품이다.
 
 ## Active Architecture
 
-- [Portfolio V3 Content Specification](v3-content-draft.md) — `/portfolio`는 60초 안에 `결과·핵심 판단·담당 범위`를 읽을 수 있는 공통 요약본이다. Thready·Company AX·Centurion은 사례별 대표 시각화 한 개와 proof strip만 남기고, 기술 판단·failure handling·검증 근거는 기존 상세 route와 직군별 dossier에서 이어서 읽는다. Memento 결제는 supporting case로 배치한다. Infrastructure dossier는 근거 라이브러리에 보존하되 public master에서 제외한다.
+- [공용 4종 성과 개편](../resume/revisions/2026-09-08-achievement-refresh/README.md) — 2026-09-08 `/portfolio`의 현재 문안은 `app/fe/content/common/portfolio.json`이다. 고객의 Threads 진입 장벽·제품 구현 → 업무 정책의 백엔드 구현 → 조직 표준 템플릿의 세 축으로 구성했다. 긴 본문과 상태표·처리 단계·Outbox 경계 도식을 함께 보여주며 로컬 검토 중이다.
+- [Portfolio V3 Content Specification](v3-content-draft.md) — 개편 전 사례 라이브러리의 구성 기준. 회사별·직군별 패키지와 기존 상세 경로는 유지하며, 현재 공용 순서의 owner로 쓰지 않는다.
 - [Role Portfolio Variants](role-variants.md) — 같은 case library를 Product Ownership·Backend·AI Backend·AX/FDE 네 관점으로 선택·정렬하고 읽을 초점을 바꾸는 local-only 단일 문서 초안.
 - [Common Document Visual Refresh](../../docs/superpowers/plans/2026-09-02-common-document-visual-refresh.md) — Common Resume·Career Description·CV와 함께 `/portfolio`의 화면 위계·case 경계·A4를 개편하는 현재 계획.
 
@@ -27,14 +28,14 @@ Portfolio는 resume가 선택한 claim의 깊이를 검증하는 제품이다.
 - Portfolio: 왜 필요했는지, 무엇을 선택했는지, 어떻게 구현·운영했는지 설명
 - Resume claim을 반복하지 않고 `Problem -> Decision -> Design/Visualization -> Operating Result -> Responsibility -> JD fit`으로 확장한다.
 - Portfolio는 resume보다 자세할 수 있지만 더 강한 ownership을 주장할 수 없다.
-- 기본 공개 artifact는 `/portfolio` 단일 페이지다. `Thready → Company AX → Centurion` 세 대표 case의 결과·핵심 판단·담당 범위와 대표 system visual, `Memento Payment` supporting case를 한 문서에서 읽고 PDF로 변환할 수 있어야 한다. 상세 route는 공통 요약에서 연결된 기술 검증 경로이며, 직군별 포트폴리오는 기존 full dossier를 유지한다.
-- Company AX case는 MEDINESS 제품 요구·운영 구조 설계 참여, 제품별 Decision→release 운영 리드, Backend Template·agent context 직접 구축을 하나의 상위 이야기에서 보여주되 책임 강도를 표로 분리한다. Azure·Vercel은 배포 목적지로만 표현하며 infrastructure expertise의 근거로 사용하지 않는다.
-- Thready case는 `고객이 돈을 내는 이유 → 팀과 실제 매출이 발생하는 제품 운영 → 제품에 필요한 backend·AI·핵심 frontend 직접 구현 → FastAPI backend 재구축 → BE–AI 경계·STG 검증` 순서로 읽힌다. 매출은 제품·팀 outcome으로, 기술 역할은 제품을 완성하기 위한 직접 구현 범위로 분리한다. 광고 적용은 성과가 아니라 `NEXT · 운영 데이터 수집 중`으로만 표시한다. AI는 코드 분석·반복 구현에 활용했지만 아키텍처·검증 기준·cutover 판단은 사람이 직접 소유한다. 공개 화면에는 corpus·observation·experiment 정확 건수를 쓰지 않고, market evidence·기술 구조·제품 매출 사이의 직접 인과도 만들지 않는다.
+- 기본 artifact는 `/portfolio` 단일 페이지다. 현재 공용은 `Thready → 업무 정책의 백엔드 구현 → 조직 표준 템플릿`을 선택한다. Memento 등 이전 경력의 자세한 내용은 공용 경력기술서·CV에 유지한다. 기존 상세·직군별·회사별 포트폴리오는 변경하지 않으며, 공용 개편의 승격을 이유로 소급하지 않는다.
+- 회사 AX는 구조 설계 참여, 제품 운영은 리드, Backend Template은 직접 설계·구축으로 책임 강도를 분리한다. 현재 공용의 세 번째 축은 조직 표준 템플릿이며 회사 AX는 후속 확장 맥락으로 둔다. Azure·Vercel은 기본 배포·운영 경험의 범위를 넘지 않는다.
+- Thready는 기존 채널 운영자의 시간·경험 부족 → 새로운 채널 운영을 돕는 제품·AI 구현 → 소재·생성·승인·발행의 실행 경계로 읽힌다. 고객 한 사례의 팔로워 성장과 시점이 명시된 구독 매출은 별도 제품·팀 결과이며 최신 기능의 단독 인과로 연결하지 않는다. 재구축·평가 도구의 추가 설명은 경력기술서에서 다룬다. 공개 화면에는 corpus·observation·experiment 정확 건수나 자동 학습 주장을 추가하지 않는다.
 - 공통 headline은 `가능성을 기회로 바꾸고, 제품으로 가치를 전하는 메이커 김대정입니다.`다. `Maker`는 브랜드 정체성이고, `Tech Lead · Backend Engineer` 역할과 제품 판단·직접 구현·운영 책임은 바로 아래 proof와 case가 증명한다.
 - 내부 검증용 claim ID·forbidden copy·limits는 evidence와 case library에만 남기고 공개 문서에서는 자연스러운 역할·결과 문장으로 표현한다.
-- claim ID, 검증용 limits, 내부 taxonomy와 evidence policy는 내부 원장에만 두고 공개 DOM에는 노출하지 않는다.
+- claim ID·검증용 limits·내부 taxonomy를 사람이 읽는 본문이나 도식 라벨로 노출하지 않는다. 문단별 `data-claim`은 공용 문안 보존 검사를 위한 renderer metadata로만 사용한다.
 - 제목·설명·본문에는 `ch`나 임의의 `px` 기반 `max-width`로 줄 길이를 제한하지 않는다. 문서 컨테이너의 가용 폭을 사용하고 화면 폭에 따라 자연스럽게 줄바꿈한다.
-- 현재 공개 문장·순서·강조는 `app/fe/app/portfolio/`와 `app/fe/lib/cases.ts`가 표현 SoT로 소유하고, 이 library는 케이스 범위·claim 연결·표현 상한을 소유한다.
+- 현재 공용 문장·순서는 `app/fe/content/common/portfolio.json`, 렌더와 강조는 `app/fe/app/common/`이 소유한다. `app/fe/lib/cases.ts`는 기존 상세·직군별·회사별 표현 기반으로 유지하며, 이 wiki library는 케이스 범위·claim 연결·표현 상한을 소유한다.
 - Canonical library: [cases/README.md](cases/README.md)
 - Product decisions: [decisions.md](decisions.md)
 - Historical visual baseline: [prototypes/v0.1.0/README.md](prototypes/v0.1.0/README.md)

@@ -1,0 +1,138 @@
+---
+type: content-draft
+title: Common Resume Achievement Refresh
+description: 최신 성과 근거를 반영한 공용 이력서 내용 검토 초안.
+timestamp: 2026-09-08
+status: content-review
+approved: false
+canonical: false
+tags: [resume, common, achievement-refresh, content-review]
+---
+
+# 이력서
+
+김대정 · Tech Lead · Backend Engineer
+
+MediSolve AI · 2025.04 — 재직 중 · AI Product Systems
+
+[marin.backend@gmail.com](mailto:marin.backend@gmail.com) · [github.com/Dae-Jeong](https://github.com/Dae-Jeong) · [marinkim.xyz](https://marinkim.xyz)
+
+## 소개
+
+가능성을 기회로 바꾸고, 제품으로 가치를 전하는 메이커 김대정입니다.
+
+<!-- claims: career.ai-pm-backend-continuity thready.creator-adoption-context thready.product-zero-to-one-contribution thready.frontend-product-delivery career.coding-agent-usage be-template.backend-standard be-template.team-leverage -->
+기획자로 시작해 백엔드로 왔고, 크리에이터의 Threads 운영을 돕는 Thready의 아이디어를 제안해 백엔드·AI를 직접 만들고 핵심 화면은 coding agent로 완성했습니다. 제품 출시·운영을 리드하며, 팀원들도 coding agent와 제품을 만들 수 있도록 백엔드 구현·검증 기준을 조직 표준 템플릿으로 구축했습니다.
+
+## 대표 성과
+
+### 크리에이터의 새로운 채널 운영을 제품으로
+
+<!-- claims: thready.creator-adoption-context thready.product-zero-to-one-contribution thready.threads-content-workflow-automation -->
+Instagram·YouTube·블로그를 운영하는 크리에이터는 시간 부족과 다른 문화 때문에 Threads를 시작하고 꾸준히 운영하기 어려웠습니다. 이 문제를 풀기 위해 Thready를 제안하고, 초기 프로토타입 이후 자료 가져오기·초안 생성·검수·예약·발행을 하나의 제품 흐름으로 연결했습니다. 기획·QA·마케팅과 기능 우선순위와 품질 기준을 정하고 제품 운영을 리드했습니다.
+
+<!-- claims: thready.frontend-product-delivery thready.generation-quality-system thready.agent-pipeline-design career.coding-agent-usage -->
+백엔드와 AI 생성·평가 시스템을 직접 구축하고, 핵심 사용자·관리 화면은 coding agent로 완성해 검수·배포했습니다. 생성 파이프라인에서는 글의 유형을 정하는 역할과 작성 역할을 나누고, AI의 1차 검수와 사람의 최종 판단을 구분했습니다.
+
+<!-- claims: thready.customer-follower-growth thready.subscription-revenue-band -->
+제품 이용 고객 중 한 명은 꾸준히 운영하며 팔로워가 기존 대비 10배 이상 늘었습니다. 팀과 운영한 Thready에서는 2026년 8월 기준 월 1천만원 수준의 구독 매출이 발생했습니다.
+
+<!-- claims: thready.youtube-source-reuse thready.auto-generation-approval-flow thready.approval-command-consistency -->
+최근에는 기존 YouTube 소재를 정기 동기화하고 시간표에 맞춰 초안을 생성해, 고객이 알림에서 수정·예약·발행을 결정하는 흐름을 구현했습니다. 계정별로 성공적으로 쓴 소재를 제외하고, 고객의 수정본·승인 결정·발행 작업을 한 트랜잭션으로 저장해 같은 명령이 다시 와도 기존 결과를 반환하도록 구성했습니다.
+
+<!-- claims: thready.publish-recovery-boundary -->
+Thready의 외부 발행에서는 호출 전 실패와 호출 후 결과를 알 수 없는 상황을 구분했습니다. 결과가 불명인 작업은 기존 발행 시도에서 재개하고 이미 발행된 이어쓰기를 건너뛰도록 구현했습니다. 작업 점유 기한과 시도별 토큰으로 오래된 워커의 상태 변경을 막고, 작업·콘텐츠·실패 알림을 같은 트랜잭션으로 종결했습니다.
+
+<!-- claims: thready.ai-service-boundary thready.ai-replica-outbox thready.ai-service-migration -->
+AI 실행이 제품 원장에 결합되지 않도록 애플리케이션과 DB를 분리해 운영했습니다. 원장 변경과 Outbox 기록은 함께 커밋하고, 전달 버전과 멱등 처리로 지연·중복·역순 전달을 통제했습니다. STG 데이터 이관에서는 부모·자식 순서를 지킨 복사 뒤 행 수·데이터 지문·참조 관계를 대조하고, 배포 후 실제 생성 API까지 검증했습니다.
+
+### 업무 정책을 실행 가능한 백엔드로
+
+<!-- claims: centurion.sso-session -->
+여러 제품이 공유하는 SSO에서 중복 로그인·계정 전환·서비스 그룹별 로그아웃을 처리하도록 Redis 세션을 재설계·구현했습니다. 사용자·서비스·기기별 세션을 나누고, 로그아웃 요청의 토큰 식별자가 현재 세션의 소유자와 일치할 때만 삭제하도록 구성했습니다. 오래된 토큰이 교체된 유효 세션을 지우지 않는 조건을 테스트에 반영했습니다.
+
+<!-- claims: centurion.bay-async-backend centurion.async-migration centurion.test-ci-foundation -->
+피부과 주문·재고 백엔드에서는 주문 저장과 외부 알림을 나누고, 비동기 실행 방식에 맞춰 기존 작업 큐를 전환했습니다. 발송 상태·실패 이력과 조건 검증을 거친 수동 재발송 경계를 구현하고, API 테스트·CI·온보딩 문서로 같은 환경에서 흐름을 재현할 수 있게 했습니다.
+
+<!-- claims: centurion.say-realtime-ai -->
+실시간 상담에서는 전사 완료와 늦은 보정을 같은 발화 순서 번호로 연결해 다른 발화를 덮지 않도록 구현했습니다. 공동 주 기여자로 세션 종료 뒤 재연결되는 경합을 재현해 정리 책임을 보강하고, 발화 순서와 세션 수명의 회귀 테스트를 고정했습니다.
+
+### 팀이 같은 기준으로 제품을 만드는 기반
+
+<!-- claims: be-template.backend-standard be-template.team-leverage be-template.agent-context -->
+기획·QA·디자인 담당자도 coding agent와 제품을 만드는 팀에서, 반복되던 DB 세션 미반납과 연결 풀 고갈을 공통 구현 기준으로 다뤘습니다. 책임별 계층·API 계약·검증 규칙과 agent 작업 맥락을 조직 표준 백엔드 템플릿에 담아 직접 구축했습니다.
+
+<!-- claims: be-template.fastapi-sqlalchemy-standard -->
+서비스가 트랜잭션 정책을 선언하면 공통 계층이 세션 생성·커밋·롤백·반납을 책임지도록 설계했습니다. 하위 작업이 같은 세션을 공유하려 하면 즉시 차단하고, 작업 취소 시 롤백과 연결 반환을 통합 테스트로 검증했습니다.
+
+<!-- claims: be-template.team-leverage -->
+템플릿 전체를 적용한 신규 사내 프로그램의 STG QA에서 같은 유형의 세션·연결 풀 문제가 재관측되지 않았습니다. 기획·QA·디자인 담당자가 기능을 구현하고 백엔드는 결과 피드백과 배포를 지원하는 수준으로 개입 범위가 줄었습니다.
+
+## 경력
+
+### MediSolve AI · 2025.04 — 재직 중
+
+<!-- claims: career.medisolve-role-evolution career.thedaylabs-freelance career.memento-to-medisolve-early-member -->
+Tech Lead · Backend Engineer — 초기 멤버 영입 · 법인 설립 전 더데이랩스 프리랜서 선행 개발(2025.02 — 2025.04)
+
+<!-- claims: thready.product-zero-to-one-contribution thready.backend-rebuild thready.frontend-product-delivery thready.generation-quality-system thready.rebuild-decision-execution thready.qa-reopen-reduction centurion.bay-async-backend centurion.day-product-integration centurion.say-realtime-ai centurion.ray-backend centurion.sso-session nexus.backend-architecture nexus.admin-backend-ownership procedure-hub.hybrid-retrieval-design mediness.product-operations mediness.company-work-ax-design be-template.backend-standard infra.company-azure-ownership -->
+- Thready의 제품화와 출시·운영을 리드하고 백엔드·AI 생성·평가 시스템과 핵심 화면을 구현했습니다.
+- 인계받은 Thready 백엔드는 기존 화면의 API 계약을 유지한 채 병렬 재구축했습니다. 패턴·계층·검증 하네스를 먼저 세우고 응답을 비교해 전환했으며, 같은 기준으로 집계한 QA 이슈 재오픈 비율은 2026년 4월 37%에서 7월 11%로 낮아졌습니다.
+- 피부과 운영 제품군의 주문·재고 백엔드와 공유 SSO의 세션 재설계, 예약 정책의 화면·QA·릴리스 연결을 주도했습니다. 실시간 상담은 공동 주 기여자로 참여하고 시설 현황·긴급 호출·재고 연동 기능도 개발했습니다.
+- 별도의 여러 피부과 운영·예약 시스템에서 백엔드 구조와 관리·홈페이지 API 구축을 주도하고 있습니다. 시술 정보 지식 검색에서는 검색 결과와 안전 규칙의 판단을 분리한 API를 구현해 임상 검수를 준비하고 있습니다.
+- 제품별 일정·이슈·릴리스를 운영하고 회사 업무 AX 구조 설계에 참여했습니다. 조직 표준 백엔드 템플릿을 직접 구축했으며, 여러 사내 서비스의 배포 환경 구성과 기본 운영도 맡았습니다.
+
+### Memento AI · 2024.10 — 2025.01
+
+Backend Engineer — 인턴 합류 후 정규직 전환 · 회사 폐업으로 종료
+
+<!-- claims: career.memento-stripe-prepayment career.memento-payment career.memento-fastapi-backend -->
+예약 확정 전 결제를 보류하는 선결제 영역을 구축하고, 예약 실패 시 외부 결제 상태에 따라 취소·환불하도록 구현했습니다. 환불 요청과 완료를 나눠 마일리지 복원·이용권 삭제 시점을 환불 완료로 옮겼습니다.
+
+<!-- claims: career.memento-happycall-survey -->
+입사 초기에는 다국어 해피콜의 알림톡·이메일 즉시·예약 발송과 예약 작업 취소·재등록·발송 이력을 구현했습니다.
+
+### STUDIO LAB · 2021.12 — 2024.01
+
+Product Manager — AI Engineer → PM(주 역할) → Backend Engineer
+
+<!-- claims: career.sellercanvas-product-system career.sellercanvas-enterprise-poc credentials.page-output-patent credentials.ces-2024 -->
+생성형 AI 커머스 제품 SellerCanvas의 PM으로 프로토타입부터 v1.0까지 제품 흐름·기능 범위·출시 우선순위를 정하고 기업 PoC까지 연결했습니다. 상세페이지 제작 흐름의 재설계는 특허 「페이지 출력 방법」으로 이어졌고, 제품은 CES 2024 Best of Innovation AI 부문을 수상했습니다.
+
+### 아이즈솔 · 2020.08 — 2021.06
+
+Vision AI Engineer · 인턴
+
+<!-- claims: career.ai-pm-backend-continuity -->
+안면 인식 기반 자동 출결 시스템 개발에 참여했습니다.
+
+## 기술
+
+<!-- claims: thready.backend-rebuild thready.langgraph-generation-graph thready.generation-quality-system thready.frontend-product-delivery centurion.msa-platform-context centurion.async-migration centurion.say-realtime-ai be-template.fastapi-sqlalchemy-standard career.coding-agent-usage infra.company-azure-ownership nexus.quality-automation -->
+| 분야 | 사용 기술 |
+| --- | --- |
+| Backend | Python · FastAPI · SQLAlchemy 2.0 async · PostgreSQL · MySQL · Redis · TypeScript · NestJS · RabbitMQ · TaskIQ |
+| AI·LLM | LangGraph · LLM 연동·평가 · STT · WebSocket · SSE |
+| Frontend | Next.js — 핵심 사용자·관리 화면 구현 |
+| Engineering Tools | Claude Code · Codex · pytest · Ruff · Pyright · Docker · GitHub Actions · Sentry · Jira |
+
+<!-- claims: career.java-spring-side-projects infra.company-azure-ownership career.tellingme-backend-infra -->
+추가 기술: Java · Spring · Spring Boot — 사이드 프로젝트 3개에서 활용. Azure · AWS · Terraform · Vercel — 서비스 배포·환경 구성·기본 운영.
+
+## 외부 활동
+
+<!-- claims: career.orcarouter-oss-developer-partnership -->
+- OSS 개발자 파트너십 · 공개 GitHub 프로젝트를 계기로 외부 LLM API 플랫폼의 개발자 파트너 프로그램 제안을 받아 2026.09 수락했습니다.
+
+<!-- claims: career.product-ux-practice career.ux-consulting-product-outcome -->
+- UX 컨설팅 · 운영 서비스의 보상 포인트 인지·재방문 문제를 개선 가설과 화면안으로 제안했고, 다른 제품 개선과 함께 반영돼 순위·DAU 상승에 기여했습니다.
+- UX 스터디 · Speak의 학습 완료 후 추천 흐름을 분석해 개선안을 발표하고 IPS 12기 MVP로 선정됐습니다.
+
+## 수상·특허·자격·학력
+
+<!-- claims: credentials.page-output-patent credentials.ces-2024 credentials.ai-accuracy-certification credentials.adsp credentials.education -->
+- 특허 「페이지 출력 방법」 · 등록 10-2898273 · 상세페이지 제작 방식 설계 기여
+- CES 2024 Best of Innovation · AI 부문 수상 제품 참여
+- 한국건설생활환경시험연구원(KCL) AI 정확도 부문 인증 통과 제품 참여
+- ADsP · 데이터분석 준전문가 · 2021.09
+- 우송대학교 게임멀티미디어 전공 · 2016.03 — 2021.08 · 졸업

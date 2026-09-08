@@ -2,7 +2,7 @@
 type: project-evidence
 title: Thready Evidence
 description: AI content product operation, full-stack delivery, backend rebuild, generation quality, and operation evidence.
-timestamp: 2026-08-24
+timestamp: 2026-09-08
 source_roots: [workspace, agentspace]
 tags: [thready, ai-product, full-stack, backend, frontend, evidence]
 ---
@@ -10,6 +10,51 @@ tags: [thready, ai-product, full-stack, backend, frontend, evidence]
 # Thready Evidence
 
 Source locator: `workspace:thready`
+
+2026-09-08 재검증의 선택·보류와 검토 범위는 [성과 코드 조사 audit](../audits/2026-09-08-achievement-code-discovery.md)에 둔다.
+
+## Creator Customer Problem
+
+- User-confirmed (2026-09-08 적재, 이번 성과 조사 대화): 고객은 기존 Instagram·YouTube·blog 운영자다. Threads도 잘 운영하고 싶지만 시간이 부족하고 다른 문화·알고리즘에 맞추기 어려웠으며, Thready는 진입장벽을 낮추고 지속적인 운영을 돕는 제품이었다.
+- Scope boundary: 고객 문제와 제품 역할에 대한 사용자 확인이다. 모든 고객의 동일한 이용 행동, 특정 기능의 시간 절감량, Threads 알고리즘을 역공학했다는 근거는 아니다.
+- Claim: `thready.creator-adoption-context`. 개별 구현과 제품·팀 outcome을 연결할 때의 맥락이며, 기능별 효과 측정을 대신하지 않는다.
+
+## Customer Follower Growth
+
+- User-confirmed (2026-09-08 적재, 이번 성과 조사 대화): Thready 이용 고객 1명이 꾸준히 운영하며 팔로워가 기존 대비 10배 이상 증가한 사례가 있다.
+- Unknown: 측정 기간, 전후 원시 팔로워 수, 대조군, 실제 사용 기능과 사용 시작일, 광고·다른 활동의 영향. 운영 데이터나 고객 원문은 이번 조사에서 조회하지 않았다.
+- Attribution boundary: 제품 이용 고객의 관측 사례이며 제품·팀 outcome에 대한 `contributed/medium`이다. 김대정 개인이나 자동 생성·추천·재구축 등 특정 구현의 단독 인과, 모든 고객의 평균 성장, 재현 가능한 성장 보장으로 확대하지 않는다.
+- Claim: `thready.customer-follower-growth`. 구독 매출은 [Subscription Revenue](#subscription-revenue)의 별도 상업 검증이고, 이 사례와 새 기능의 효과를 서로 증명하는 수치로 쓰지 않는다.
+
+## Automatic Generation And Approval Flow
+
+- Code-/Git-backed (2026-09-08 재검증): `workspace:thready`, clean `prod@37fc328ee12124fbe5d41a9c13d66921786d8c4f`. KimMarin commit `ca328730`은 시간표에 따른 생성 실행 원장을 도입했고 `33fd0d45`는 생성 시작과 고객 알림 목표 시각을 분리했다. `backend/src/facade/auto_generation.py:73`은 슬롯 claim→입력 선택→AI 접수, `:118`은 성공 결과의 초안 채택·기존 초안 재사용, `:184`·`:219`는 목표 시각 판정 뒤 승인 요청·알림 편성을 처리한다.
+- Code-backed: `backend/src/repository/auto_generation_runs.py:91`의 계정×날짜×시간 UNIQUE와 `:170`의 잠금·상태 조건, 승인 요청·메시지 원장의 같은 transaction 적재가 중복 편성 경계를 이룬다. 고객은 승인 화면에서 수정·예약·발행을 결정한다. 사람 확인 없는 자동 발행이 아니다.
+- Test-source-backed: `backend/tests/integration/test_auto_generation_notification_pipeline.py:135`는 동시 호출에서 승인·항목·메시지 각 1개, `:196`은 목표 시각 이전 미편성을 검증한다. 이번 조사에서는 테스트를 실행하지 않았다.
+- Recorded-verification: `docs/releases/v1.9.1-rc.2.md:43`에 로컬 실제 모델 생성과 run·draft·approval·delivery 정합 기록이 있다. 같은 문서의 STG 새 버전 검증은 미완료다. prod branch 포함만으로 해당 기능의 현재 배포·고객 이용 또는 시간 절감량을 확정하지 않는다.
+- Contribution boundary: 해당 구현은 `led/high`; 제품 전체 단독 구축, frontend 손코딩 또는 신규 기능의 매출·팔로워 증가 인과로 쓰지 않는다. Claim: `thready.auto-generation-approval-flow`.
+
+## YouTube Source Reuse
+
+- Code-/Git-backed (2026-09-08): KimMarin commits `49835b31`(실데이터 가져오기), `f714b66b`(소재 원장 BE 이관), `fbdfc8cb`(채널 하루 2회 동기화), `b594fa14`(성공 소비 소재 재사용 차단)을 현재 코드·해당 경로 history/blame과 대조했다.
+- Code-backed: `backend/src/service/content_import.py:143`은 외부 채널 조회를 transaction 밖에서 수행하고 upsert만 짧은 transaction으로 닫는다. `:165`는 분야와 계정의 소유권을 검증해 콘텐츠 목록과 발행 여부를 반환하며 목록은 AI 앱의 파일 인덱스를 다시 조회하지 않는다. 현재 가져오기 목록과 자동 생성 입력은 YouTube에 한정된다.
+- Code-backed: `backend/src/repository/personal_content_sources.py:179`은 계정별 성공 소비 이력을 제외하고 `backend/src/service/approval_compositions.py:114`는 남은 소재만 반환한다. 고갈 시 이미 쓴 소재를 다시 채우지 않는다. 예약만 되었거나 생성에 실패한 소재는 성공 소비와 다르며, 모든 동시 요청 또는 의미상 유사 글의 중복 제거를 보장하지 않는다.
+- Test-source-backed: `backend/tests/scheduler/test_youtube_source_sync.py:119`·`:174`는 반복 upsert의 내부 상태 보존과 채널별 실패 격리, `backend/tests/scheduler/test_approval_composition_sources.py:145`는 성공 소비 소재 제외를 검증한다. `docs/releases/v1.9.1-rc.2.md:51`에는 고갈 회차의 초안·승인·알림·quota 증가 0건이라는 로컬 기록이 있다. 이번 조사에서 실행하지 않았다.
+- Contribution boundary: `led/high`, 기존 채널 자산을 Threads 제작에 활용하는 구현 범위. 외부 채널 전반의 자동 소재 탐색 Scouter 또는 성장·운영 시간 개선 실측으로 표현하지 않는다. Claim: `thready.youtube-source-reuse`.
+
+## Publishing Recovery Boundary
+
+- Code-/Git-backed (2026-09-08): KimMarin commits `4e4eb623`(호출 phase별 실패 구분), `0f4acf2c`(종결 정합성 보강)을 확인했다. `backend/src/adapters/threads/container_publisher.py:61`은 기존 container의 상태와 멱등 발행 경로로 외부 media ID를 회수한다. `backend/src/facade/posts.py:830`은 저장된 container를 재사용하고 `:964`는 이미 발행된 reply를 건너뛴다.
+- Decision: 외부 발행 호출 전의 확정 실패와 호출 후 응답이 끊겨 결과가 불명인 경우를 같은 실패로 종결하지 않는다. 후자는 lease 재시도로 기존 시도를 이어간다. `backend/src/facade/posts.py:920`은 job·thread·attempt·실패 알림을 같은 transaction으로 종결하며 `backend/src/models/content_publish_job.py:15`의 attempt token이 오래된 worker의 종결을 제한한다.
+- Test-source-backed: `backend/tests/scheduler/test_publish_jobs.py:714`는 호출 후 예외→lease 만료→동일 container 복구를 검증한다. 현재 테스트 소스와 대표 diff를 읽었으며 실행·운영 로그 조회는 하지 않았다.
+- Contribution boundary: 해당 발행 복구 구현은 `led/high`. 외부 exactly-once, 중복 게시 0건, 장애·문의·복구 시간 감소 또는 모든 발행의 완료 보장은 주장하지 않는다. AI replica outbox와 다른 외부 부작용 경계다. Claim: `thready.publish-recovery-boundary`.
+
+## Approval Command Consistency
+
+- Code-/Git-backed (2026-09-08): KimMarin commit `2a279e0f`의 `backend/src/facade/approval_publishing.py:229`·`:272`는 수정 revision·고객 결정·예약/발행 job을 한 transaction으로 확정하고 commit 후 dispatch한다. `backend/src/service/approval_decisions.py:39`의 command ID·payload fingerprint로 같은 명령 재전송과 다른 payload 충돌을 구별한다.
+- Code-backed: `backend/src/service/approval_requests.py:115`는 실제 발송 시각을 링크 만료 기준으로 쓰고, `backend/src/service/auth.py:96`·`:131`은 링크로 발급한 세션이 refresh rotation 뒤에도 원래 만료를 넘지 않게 한다. `5fe46eed`는 링크 진입, `ed0407d7`은 만료 상속의 본인 변경이다.
+- Test-source-backed: `backend/tests/api/v1/approvals/test_approval_commit_api.py:109`·`:153`·`:213`은 동일 명령의 동일 job 반환, 상충 명령의 승자만 반영, 잘못된 수정의 rollback을 검증한다. 이번 조사에서는 실행하지 않았다.
+- Contribution boundary: 해당 승인 command 구현은 `led/high`. 인증 체계 전체 ownership, 보안 사고·중복 발행 감소 실측은 포함하지 않는다. Claim: `thready.approval-command-consistency`.
 
 ## Backend Rebuild
 
@@ -19,8 +64,9 @@ Source locator: `workspace:thready`
 
 ## Prototype To User Operation
 
+- User-confirmed (2026-09-08, 표현 선호): 공개 문안에서 인계·초기 시제품 이후 합류를 성과의 도입부로 강조하지 않고 제품의 시작부터 관여한 흐름을 보여주길 요청했다. 공개 표현은 검증된 아이디어 제안·제품화·직접 개발·출시·운영을 중심으로 선택한다. 이는 최초 prototype 작성자에 대한 새 사실 정정이 아니며 아래 코드·기여 이력은 보존한다.
 - Code-backed: 2026-03-30 다른 구성원이 Next.js·Supabase 기반 초기 prototype을 시작했고, 김대정은 2026-04-14 합류해 FastAPI backend와 API Gateway, 인증·계정·콘텐츠 생성·발행 흐름을 구축했다.
-- User-confirmed (2026-08-22): 초기 prototype의 구현은 김대정의 작업이 아니다. 공개 문구에서는 이를 김대정의 바이브 코딩 경험으로 귀속하지 않고, 기존 prototype을 인계받아 재구축 범위·architecture·validation·cutover를 맡은 경험으로 구분한다.
+- User-confirmed (2026-08-22): 초기 prototype의 구현은 김대정의 작업이 아니다. 김대정의 기여는 재구축 범위·architecture·validation·cutover다. 2026-09-08 표현 결정에 따라 공개 문구에서 인계 배경을 반복할 필요는 없지만, 최초 prototype 구현을 직접 작업으로 귀속하지 않는다.
 - Code-backed: `v1.0`~`v1.2`는 release·QA와 `v1.1.0` backend cutover를 포함한 제품화 구간이다. release milestone과 실제 사용자 운영 시작은 같은 의미로 사용하지 않는다.
 - User-confirmed (2026-08-17): 실제 사용자가 제품을 사용하기 시작한 시점은 `v1.3.0`부터다.
 - Code-backed: `v1.3.0` release에는 고객 생성·계약 기간·AI 사용 한도·Threads account slot·삭제/복구·비밀번호 재설정·고객 session stream 등 실제 고객 운영을 위한 변경이 포함됐다.
@@ -100,9 +146,11 @@ Source locator: `workspace:thready`
 - Verification boundary: billing/accounting 자료, gross/net·VAT·refund 처리, `MRR` 정의, 지속 기간과 월평균은 확인되지 않았다. 날짜가 고정된 월 구독료 매출 band도 internal evidence에만 보존하고 공개하지 않는다.
 - Attribution boundary: 제품·팀의 business outcome이며 개인 단독 성과가 아니다. 김대정의 검증된 기여는 초기 prototype 이후 backend 전환·release·QA·operation을 실제 사용자 운영까지 이끈 범위다.
 - Causality boundary: Threads 마케팅 기준이나 backend 재구축이 매출을 직접 만들었다는 인과는 검증되지 않았다. 기술·제품 기여와 매출 결과는 병렬 성과로만 제시한다.
-- Public wording: `실제 고객이 결제하는 AI 콘텐츠 제품`, `팀과 함께 고객 문제를 유료 제품으로 만들고 운영`처럼 정확한 매출액을 드러내지 않는 표현만 허용한다.
+- Public wording: 실제 구독 고객과 제품·팀 결과를 설명하며, 2026-09-04 부분 공개 결정에 따라 `월 1천만원 수준의 구독 매출`까지 허용한다. 정확한 액수·범위는 공개 문안에 쓰지 않는다.
 
 - User-confirmed (2026-09-04): 공개 문안에서 "월 1천만원 수준의 구독 매출이 발생하는 제품"까지 쓴다. 기준 시점은 2026-08 실측(월 약 1,000만~1,200만원)이며, 정확 금액·MRR·연 환산(ARR·연 1억)·월평균·지속 성장 표현·개인 인과("내가 매출을 만들었다")는 계속 쓰지 않는다. 회사 제품 매출의 부분 공개는 사용자가 감수하기로 결정.
+
+- User-confirmed (2026-09-07): 지원 문안에서는 제품 출시·유료 구독이라는 시장 반응과 `월 1천만원 수준의 구독 매출`을 첫 성과에서 드러낸다. 제목에도 범위화한 매출을 사용할 수 있으며 인접 본문에 2026년 8월 기준과 팀 결과를 명시한다. 새로운 매출 측정이나 개인 단독 인과를 확정한 것은 아니다.
 
 ## Advertising Revenue Experiment
 
@@ -187,13 +235,14 @@ Source locator: `workspace:thready`
 
 ## QA Reopen Signal
 
+- User-confirmed (2026-09-08, 성과 선택): 인계 후 QA 재오픈 비율을 낮췄다는 서사를 공개 성과에서 제외한다. 초기 상태에 크게 좌우되는 비교이므로 재오픈 비율·재발 일평균 감소를 현행 공용·mutable 지원본의 성과로 사용하지 않는다. 측정 이력은 보존하고, 재구축은 API 계약 보존·도메인 경계 설계·검증·전환 판단으로 설명한다. 동결 제출본은 소급 수정하지 않는다.
 - User-confirmed (2026-07-19): QA 조직은 해결된 이슈가 재발하면 티켓을 Reopened 상태로 전환한다. backend 이관 이후 재발이 대폭 감소했고, 잔여 케이스도 원인 영역이 파악된 상태로 관리된다.
 - Tool-backed (2026-07-19 Jira 실측): THRDY 프로젝트 버그 236건, 상태 전이 944건 전수 분석 (분기점 v1.1.0 backend cutover = 2026-06-05, repo 태그 실측).
   - **재발률(월별 Resolved 전이 대비 Reopened 전이)**: 4월 37% → 5월 31% → 6월 20% → **7월(1~19일) 11%** — 단조 감소, 4월 대비 약 70% 하락.
   - **재발 발생 일평균**: 4월(4/20~30) 4.45건/일 → 7월 0.26건/일 = **-94.1%** — 구술 "95% 이상"과 정합. 단 4월은 QA 집중 테스트 초기라 활동량 교란 있음 — 공개 표현의 1축은 활동량 보정된 재발률(37%→11%)을 권장.
   - 한계: 티켓에 BE/FE 라벨이 없어 backend 단독 효과 분리는 불가 — "제품 전체 품질" 지표로 서술.
-- Public wording: "QA 버그 재발률(해결 대비 reopen) 37%→11%" 및 "재발 발생 일평균 약 94% 감소(v1.0 QA기 대비)"까지 허용. "95%"는 실측(94.1%)을 넘는 표현이라 금지.
-- Interpretation boundary (2026-08-19): 이 수치는 QA ticket 총건수 감소가 아니라 `Resolved`로 닫힌 issue가 다시 `Reopened`된 반복 결함 signal이다. active resume에서는 validation harness 선행과 backend cutover의 시간 순서를 함께 보여주되, harness 또는 backend만의 단독 인과로 단정하지 않는다.
+- Historical wording: 당시에는 "QA 버그 재발률(해결 대비 reopen) 37%→11%" 및 "재발 발생 일평균 약 94% 감소(v1.0 QA기 대비)"까지 허용했다. 2026-09-08부터 현행 성과 문안에서는 제외한다. "95%"는 실측(94.1%)을 넘는 표현이다.
+- Interpretation boundary (2026-08-19, 2026-09-08 선택 갱신): 이 수치는 QA ticket 총건수 감소가 아니라 `Resolved`로 닫힌 issue가 다시 `Reopened`된 반복 결함 signal이다. harness 또는 backend만의 단독 인과로 단정할 수 없으며, 기존 측정·제출 이력을 보존하는 용도이지 현행 성과 선택의 근거가 아니다.
 
 ## Judge Rationale
 

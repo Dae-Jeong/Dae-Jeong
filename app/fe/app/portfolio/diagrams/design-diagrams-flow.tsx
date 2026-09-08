@@ -264,12 +264,13 @@ export function SplitMigrationFlowDiagram() {
 }
 
 /* ---------- 재구축 판단 ---------- */
-export function RebuildDecisionDiagram() {
+export function RebuildDecisionDiagram({ currentCopy = false }: { currentCopy?: boolean }) {
+  // Default preserves the submitted Hypernova diagram. Mutable copies use rebuild-contract.
   return (
     <DesignFrame
       eyebrow="판단 비교 · 실행 순서"
-      title="prototype backend 재구축 — 돌아가는 기능을 왜 다시 만드는가에 대한 판단과 실행 순서"
-      caption="속도 우선으로 빠르게 검증된 초기 제품을 운영 단계로 전환한 판단이다. 전임 작업의 폄하가 아니라 시점과 비용의 비교다."
+      title={currentCopy ? "API 계약을 유지한 백엔드 재설계·전환" : "prototype backend 재구축 — 돌아가는 기능을 왜 다시 만드는가에 대한 판단과 실행 순서"}
+      caption={currentCopy ? "기존 화면의 API 계약은 유지하고 도메인·저장소·트랜잭션 책임을 분리했다. 대안 비교부터 응답 검증·전환까지의 판단을 보여준다." : "속도 우선으로 빠르게 검증된 초기 제품을 운영 단계로 전환한 판단이다. 전임 작업의 폄하가 아니라 시점과 비용의 비교다."}
     >
       <Compare
         before={{
@@ -279,7 +280,7 @@ export function RebuildDecisionDiagram() {
           nodes: [
             { label: "기능은 돌아간다", sub: "새로 만드는 비용 0" },
             { label: "도메인 간 의존성 얽힘", sub: "회원 로직 수정이 AI 생성 중단으로 이어진 실사례" },
-            { label: "QA 티켓이 닫힌 뒤 같은 영역에서 다른 형태로 재발", sub: "수정할수록 누적" },
+            currentCopy ? { label: "변경 영향 범위를 분리해야 함", sub: "도메인·저장소·트랜잭션 책임" } : { label: "QA 티켓이 닫힌 뒤 같은 영역에서 다른 형태로 재발", sub: "수정할수록 누적" },
             { label: "AI 모듈 확장이 막힌다", sub: "확장 지점이 없음" },
           ],
           notes: [{ label: "이 대안이 맞는 조건", items: ["서비스가 이미 크고 이관 비용이 재발 비용보다 클 때", "확장 계획이 없을 때"] }],
@@ -293,7 +294,7 @@ export function RebuildDecisionDiagram() {
             { label: "backend만 FastAPI로 분리", sub: "Next.js frontend는 유지. 화면 회귀 없음" },
             { label: "규칙을 먼저 세팅", sub: "디자인 패턴 · 컴포넌트 설계 · 하네스 → 그 위에서 AI와 협업", tone: "decision" },
             { label: "파악 → 기능 정의 → 재구축 → FE 호출 전환", sub: "기존 서비스는 그동안 그대로 운영" },
-            { label: "cutover 뒤 관측", sub: "QA reopen을 같은 정의로 계속 측정", tone: "human" },
+            { label: currentCopy ? "전환 이후 개발·운영" : "cutover 뒤 관측", sub: currentCopy ? "실사용 backend 기능 개발·배포·운영 전담" : "QA reopen을 같은 정의로 계속 측정", tone: "human" },
           ],
           notes: [{ label: "설득한 근거", items: ["문제 누적 속도", "AI 확장성", "하네스 기반 이관 속도 (작업 시간 기준)"] }],
         }}
@@ -316,7 +317,7 @@ export function RebuildDecisionDiagram() {
                 { kind: "edge", label: "" },
                 { kind: "state", label: "FE → BE 호출 전환", sub: "cutover" },
                 { kind: "edge", label: "이후" },
-                { kind: "state", label: "reopen 관측", sub: "월별 resolved 대비 reopened", tone: "human" },
+                { kind: "state", label: currentCopy ? "개발·운영" : "reopen 관측", sub: currentCopy ? "실사용 backend 후속 개발" : "월별 resolved 대비 reopened", tone: "human" },
               ],
             },
           ]}
@@ -325,8 +326,8 @@ export function RebuildDecisionDiagram() {
       <DesignFooter
         invariant="돌아가는 서비스를 멈추지 않는다. 재구축은 규칙(패턴·계층·하네스)을 먼저 세우고 그 위에서 한다."
         rejected="부분 수정 유지 (재발 누적) · frontend까지 동시 교체 (회귀 범위 확대) · 규칙 없이 AI로 바로 생성"
-        evidence="commit 실측 순서 · backend commit 대다수 본인 author · Jira 전이 전수 분석"
-        observed="QA 버그 재발률(해결 대비 reopen) 37% → 11%, 재발 발생 일평균 약 94% 감소. BE/FE 라벨이 없어 제품 전체 품질 지표로 서술"
+        evidence={currentCopy ? "API·기능 inventory · 동일 기능 응답 비교 · QA acceptance" : "commit 실측 순서 · backend commit 대다수 본인 author · Jira 전이 전수 분석"}
+        observed={currentCopy ? "기존 화면의 API 계약을 유지하며 FastAPI backend로 전환하고, 분리한 도메인·트랜잭션 경계에서 기능 개발·운영을 이어감" : "QA 버그 재발률(해결 대비 reopen) 37% → 11%, 재발 발생 일평균 약 94% 감소. BE/FE 라벨이 없어 제품 전체 품질 지표로 서술"}
       />
     </DesignFrame>
   );

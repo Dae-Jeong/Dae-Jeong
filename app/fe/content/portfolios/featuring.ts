@@ -67,7 +67,7 @@ export const FEATURING_CASE_DETAILS: readonly FeaturingCaseDetail[] = [
   {
     slug: "thready-rebuild",
     // 백엔드 지원본: 재구축 판단 → 전달 정합성 → 구현 agent. AX는 역할 그래프 한 장만 뒤에 (지원자 결정: 낮은 우선순위로 포함).
-    designs: ["rebuild-decision", "outbox-delivery", "thready-agent", "thready-ax-roles"],
+    designs: ["rebuild-contract", "outbox-delivery", "thready-agent", "thready-ax-roles"],
     eyebrow: "backend 전환 · 실제 사용자 운영",
     title: "검증용 prototype backend를 실제 사용자가 쓰는 운영 구조로 전환했습니다",
     summary:
@@ -91,11 +91,10 @@ export const FEATURING_CASE_DETAILS: readonly FeaturingCaseDetail[] = [
       },
       {
         label: "검증·결과",
-        title: "재구축 뒤 결함 재발이 약 94% 줄었습니다",
-        text: "기존 동작과 새 backend 응답을 비교하고 test acceptance를 통과한 범위부터 전환했습니다. 같은 기준의 Jira 집계에서 해결된 QA 이슈 재오픈 비율이 37%에서 11%로 낮아졌습니다.",
+        title: "API 호환성을 검증하며 백엔드를 전환했습니다",
+        text: "기존 동작과 새 backend 응답을 비교하고 test acceptance를 통과한 범위부터 전환했습니다. 기존 화면의 API 계약을 유지하면서 도메인·저장소·트랜잭션 책임을 분리했습니다.",
         items: [
           "패턴·계층·검증 하네스를 먼저 구성한 뒤 v1.1.0에서 backend cutover",
-          "재오픈 비율 37% → 11%, 재발 발생 일평균 약 94% 감소(4.5건 → 0.3건, Jira 236건 전수 집계)",
           "v1.3.0부터 실제 사용자가 쓰는 backend를 계속 개발·운영",
         ],
       },
@@ -111,7 +110,7 @@ export const FEATURING_CASE_DETAILS: readonly FeaturingCaseDetail[] = [
       },
     ],
     boundary:
-      "초기 prototype 이후 FastAPI backend 재구축·운영은 전담했고, 초기 prototype 구현은 다른 engineer의 범위입니다.",
+      "FastAPI backend 재구축과 이후 개발·운영을 전담하고, 기존 화면의 API 계약을 유지하며 전환을 주도했습니다.",
     jdFit:
       "검증 중인 제품을 멈추지 않고 신규 backend로 전환하고 안정화한 판단·설득·실행 경험입니다.",
   },
@@ -227,7 +226,7 @@ export const FEATURING_PORTFOLIO = {
     {
       title: "검증용 prototype을 실제 운영 backend로",
       description:
-        "돌아가는 prototype을 멈추지 않고 새 backend로 옮겨 실제 사용자 운영까지 이어갔습니다. 결함 재발이 약 94% 줄었습니다.",
+        "기존 화면의 API 계약을 유지하며 FastAPI backend로 전환하고 실제 사용자의 기능 개발·배포·운영을 이어갔습니다.",
     },
     {
       title: "실패를 상태와 복구 흐름으로",

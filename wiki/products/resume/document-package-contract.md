@@ -30,6 +30,7 @@ tags: [resume, career-description, portfolio, cv, tailored, package]
   요청하면 회사별 CV를 만든다.
 - 문서 언어는 artifact 종류와 별도 축이다. `영문 이력서`와 `CV`를 같은 문서로
   취급하지 않는다.
+  이 workspace의 공용 CV는 2026-09-08 사용자 결정에 따라 해외 지원용 **영문**을 기본으로 한다.
 
 ## 문서별 역할
 
@@ -48,13 +49,28 @@ tags: [resume, career-description, portfolio, cv, tailored, package]
 
 | Artifact | 현재 owner 또는 기준 | 상태 |
 | --- | --- | --- |
-| 이력서 | `app/fe/app/resume/resume-view.tsx` | active |
-| 경력기술서 | `app/fe/content/documents/common.ts` | review-ready · local/noindex |
-| 포트폴리오 | `app/fe`의 기본 `/portfolio` 표현 | active |
-| CV | `app/fe/content/documents/common.ts` | review-ready · local/noindex |
+| 이력서 | `app/fe/content/common/resume.json` | active source · 개편 로컬 검토 |
+| 경력기술서 | `app/fe/content/common/career-description.json` | review-ready · noindex |
+| 포트폴리오 | `app/fe/content/common/portfolio.json` | active source · 개편 로컬 검토 |
+| CV | `app/fe/content/common/cv.json` | English · Jake’s Resume · review-ready · noindex |
 
-Common 경력기술서와 CV의 현재 문안 owner는 typed content다. 둘 다 화면 검토가 가능한
-`review-ready` 상태이며 renderer·PDF 검증과 사용자 승인을 통과한 뒤 `active`로 바꾼다.
+2026-09-08 검토 문안은 공용 JSON으로 승격했다. `/common`은 개발 환경의 4종 검토 허브이며
+각 경로의 renderer는 app 문안만 소비한다. 경력기술서와 CV는 `review-ready`를 유지한다.
+회사별 문서가 참조하는 기존 `content/documents/common.ts`는 호환 조립 기반으로 보존하며
+현재 공용 경로에서 사용하지 않는다. 이번 승격은 배포·제출·PDF 생성 승인이 아니다.
+
+### 공용 CV의 영문·템플릿 결정 (2026-09-08)
+
+User-confirmed (2026-09-08): 공용 CV는 해외 지원용 영어로 작성하며 찾던 양식은 **Jake’s Resume**다.
+새 경력 사실이나 claim 강도를 바꾼 결정이 아니므로 기존 profile/evidence와 claim ID를 유지한다.
+
+- 양식 출처: [Jake’s Resume on Overleaf](https://www.overleaf.com/latex/templates/jakes-resume/syzfjbzwjncs), [author repository](https://github.com/jakegut/resume). MIT license를 `tools/templates/jake-cv/LICENSE`에 보존한다.
+- 원본의 이름 헤더·흑백·단일 컬럼·section rule·기간 우측 정렬을 적용한다. 현재 경력에 맞춰 Experience를 먼저 두고, 원본 Letter를 A4로 조정하며 복수 페이지를 허용한다.
+- 웹: `app/fe/app/cv/jake-cv.tsx`와 `jake.module.css`. 영문 이름이 문서 제목이며, 공용 3종의 제목·레이아웃에는 전파하지 않는다.
+- PDF: `tools/templates/jake-cv/template.tex`는 이름·성과를 소유하지 않는 레이아웃이다. `node tools/export_cv.mjs`가 현재 app JSON에서 LaTeX와 검토용 PDF를 생성한다. XeTeX 기반 Tectonic이 필요하다. 산출물은 `output/pdf/common-cv-jake/`이며 제출 스냅샷을 덮어쓰지 않는다.
+- 브랜드 영문은 [identity.md의 English](../../profile/identity.md#english)를 사용한다. HTML은 `lang=en`으로 선언하고 한국어 본문을 남기지 않는다.
+- 2026-09-08 후속 요청: 공용 CV의 학력 다음에 별도 `Military Service`를 두고 [병역 원장](../../profile/career.md#military-service)과 `career.military-service` claim을 소비한다. 직장 경력 5곳·실무 연차는 유지하며 다른 문서·제출본에 일괄 추가하지 않는다.
+- 템플릿 적용은 ATS 통과 보장이 아니다. 문구·순서·클릭 가능한 연락처와 PDF 텍스트 추출·실제 페이지를 검증한다. 배포·제출·플랫폼 변경은 별도 요청이다.
 
 ## 파생과 소유권
 

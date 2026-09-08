@@ -56,6 +56,7 @@ tags: [profile, decision-principles, product, engineering]
 
 ## Team And AI Leverage
 
+- 성과의 중심은 제품을 만들고 실제 사용·구독 매출로 시장의 반응을 확인한 경험이다. AX는 제품 개발 과정에서 시도한 협업·실행 방식의 개선이며, QA 하네스는 그 과정에서 고민하고 적용한 보조 성과다. 도구·하네스 운영자를 제품을 만드는 엔지니어보다 앞세우지 않는다 (2026-09-07 사용자 확정).
 - AI는 구현과 탐색을 가속하지만 문제 정의, architecture, 품질 기준, release 판단은 사람이 책임진다.
 - AI 활용 능력은 도구 이름이나 생성량이 아니라, agent가 따를 context·contract·verification gate를 설계한 경험으로 증명한다.
 - 반복되는 실수와 Backend 담당자의 상시 개입을 줄이기 위해 template, 공통 계약, 문서, 검증 규칙을 남긴다.

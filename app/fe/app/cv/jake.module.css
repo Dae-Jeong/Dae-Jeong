@@ -1,0 +1,56 @@
+.document { max-width: 210mm; margin: 40px auto 52px; padding: 0 10mm; color: #161616; font-family: "Times New Roman", Times, serif; font-size: 15px; line-height: 1.38; overflow-wrap: break-word; }
+.header { text-align: center; margin-bottom: 22px; }
+.header h1 { margin: 0 0 5px; font-size: 36px; font-weight: 700; font-variant: small-caps; line-height: 1.15; letter-spacing: 0; }
+.header p { margin: 3px 0; }
+.header p:first-of-type { font-size: 15px; }
+.header p:nth-of-type(2) { font-size: 13px; }
+.header p:last-child { margin-top: 13px; font-size: 14px; text-align: left; }
+.document a { text-decoration: underline; text-underline-offset: 2px; }
+.section { margin-top: 22px; scroll-margin-top: 24px; }
+.section > .headingRow { border-bottom: 1px solid #222; padding-bottom: 2px; margin-bottom: 10px; }
+.headingRow { display: flex; justify-content: space-between; align-items: baseline; gap: 4px 16px; }
+.document h2 { margin: 0; font-size: 19px; font-variant: small-caps; font-weight: 400; line-height: 1.2; letter-spacing: 0; }
+.document h3 { margin: 0; font-size: 16px; font-weight: 700; line-height: 1.3; }
+.period { flex-shrink: 0; font-size: 14px; font-variant-numeric: tabular-nums; }
+.entry { margin-top: 14px; }
+.entry > p:first-of-type { margin: 1px 0 5px; font-style: italic; font-size: 14px; }
+.document p { margin: 5px 0; }
+.document ul { list-style: disc; padding-left: 19px; margin: 5px 0 0; }
+.document li { padding-left: 1px; margin: 5px 0; }
+.document strong { font-weight: 700; }
+.templateNote { max-width: 210mm; margin: 0 auto 40px; padding: 12px 10mm 0; font-size: 12px; color: #555; border-top: 1px solid #ddd; }
+.templateNote a { text-decoration: underline; text-underline-offset: 3px; }
+.document a:focus-visible, .templateNote a:focus-visible { outline: 2px solid #222; outline-offset: 3px; }
+@media (max-width: 720px) {
+  .document { padding: 0; margin-top: 28px; font-size: 16px; line-height: 1.45; }
+  .header h1 { font-size: 32px; }
+  .header p:nth-of-type(2) { font-size: 13px; line-height: 1.8; overflow-wrap: anywhere; }
+  .header p:last-child { font-size: 16px; }
+  .headingRow { flex-wrap: wrap; gap: 2px 12px; }
+  .entry > .headingRow { display: block; }
+  .period { display: block; margin-top: 2px; }
+  .section { margin-top: 26px; }
+  .document h2 { font-size: 21px; }
+  .document h3 { font-size: 18px; }
+  .entry { margin-top: 20px; }
+  .entry > p:first-of-type { font-size: 15px; }
+  .document li { margin: 8px 0; }
+  .templateNote { padding-right: 0; padding-left: 0; }
+}
+@page jake { size: A4; margin: 13mm 16mm; }
+@media print {
+  .document { page: jake; max-width: none; margin: 0; padding: 0; font-size: 11pt; line-height: 1.2; }
+  .header h1 { font-size: 28pt; }
+  .header { margin-bottom: 14pt; }
+  .header p, .header p:first-of-type, .header p:nth-of-type(2), .header p:last-child { font-size: 10pt; }
+  .document h2 { font-size: 14pt; }
+  .document h3 { font-size: 11pt; }
+  .period, .entry > p:first-of-type { font-size: 10pt; }
+  .section { margin-top: 14pt; }
+  .entry { margin-top: 10pt; }
+  .headingRow { break-after: avoid; }
+  .entry > p:first-of-type { break-after: avoid; }
+  .document p, .document li { orphans: 2; widows: 2; }
+  .document li { break-inside: avoid; margin: 3pt 0; }
+  .templateNote { display: none; }
+}

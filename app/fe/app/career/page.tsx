@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
-import { getCareerDescription } from "@/content/documents";
-import { ResumePageShell } from "../resume/resume-page-shell";
-import { CareerDescriptionView } from "../documents/professional-document";
+import { CommonDocumentPage } from "../common/common-document";
 
 export const metadata: Metadata = {
   title: "경력기술서 — 김대정",
@@ -15,10 +13,5 @@ export const metadata: Metadata = {
 };
 
 export default function CareerPage() {
-  const document = getCareerDescription();
-  return (
-    <ResumePageShell crumb="Career Description" tag="LOCAL REVIEW">
-      <CareerDescriptionView document={document} />
-    </ResumePageShell>
-  );
+  return <CommonDocumentPage kind="career" />;
 }

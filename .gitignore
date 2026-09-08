@@ -62,3 +62,9 @@ wiki/products/resume/tailored/
 
 # harness run logs (tools/verify.py)
 output/harness/
+
+# Jake CV render intermediates; keep the final PDF and canonical template
+output/pdf/common-cv-jake/*.log
+output/pdf/common-cv-jake/*.tex
+output/pdf/common-cv-jake/page-*.png
+output/pdf/common-cv-jake/LICENSE

@@ -9,10 +9,10 @@ claims:
     allowed_copy:
       - 자연어 질의를 canonical 엔티티로 확정하고, 구조화 조회가 판단하고 문헌 검색이 근거를 보강하는 hybrid retrieval API 설계·구현
       - 실측 데이터 규모(수십~수백 건)를 근거로 vector DB·chunking·reranker를 첫 단계에 도입하지 않고, 평가셋에서 recall 부족이 증명될 때만 embedding을 추가하기로 결정
-      - 출처 ID와 content revision이 붙은 재현 가능한 Context Pack을 API의 주산출물로 설계
-      - LLM은 Context Pack의 문장화만 담당하고, 안전·추천 판정은 구조화 규칙만 내리도록 경계를 둠
+      - 출처 참조와 release 경계를 가진 구조화 Context Pack을 API의 주산출물로 설계
+      - 검색 결과와 안전 판정을 분리하고, 등록된 안전 규칙이 없다는 사실을 안전하다는 판정으로 바꾸지 않도록 구성
       - 검색 순서를 code·alias 확정 → 관계형 조회 → 문헌 lexical rank로 두고 embedding은 평가 근거가 생길 때 추가
-      - RAG 구조를 설계·구현 중이며 생성형 answer adapter는 임상 검수 대기
+      - 검색 API·검수·게시 경계를 구현했으며 임상 fixture와 content release 승인은 별도 대기
     forbidden_copy:
       - 벡터 DB·embedding 운영 경험
       - Elasticsearch·OpenSearch 등 검색 엔진 운영 경험
@@ -20,23 +20,31 @@ claims:
       - 임상 검수 완료
       - 내부 제품명 Procedure Hub
       - 시술·제품·고객사 실명, 정확 건수(17·60·774 등)
-    verified_at: 2026-09-03
+      - 현재 생성형 answer adapter가 운영되거나 임상 검수만 기다리는 구현이라는 서술
+      - 모든 source에 content revision이 채워진다는 서술
+      - STG 기술 검증을 현재 branch 전체의 production 운영·임상 승인으로 해석
+    verified_at: 2026-09-08
+    note: >-
+      refactor/frontend@5b9af030 source와 af3afbb의 generation·shadow 제거를 반영했다.
+      설명 생성 adapter는 과거 구현 경험이며 현재 retrieval 출력과 구분한다.
 
   - id: procedure-hub.retrieval-evaluation-gate
-    statement: 대표 예시 동작으로 RAG 품질을 승인하지 않고, 의사가 검수한 query fixture로 retrieval recall·안전 규칙 통과·false-clear·응답 시간을 자동 측정하는 평가 실행기와 canonical 경로 승격 전 legacy 판정과의 safety parity를 비교하는 shadow 게이트를 구현
+    statement: 대표 예시 동작으로 검색 품질을 승인하지 않고, 임상 검수 승인 fixture의 expected entity·근거·안전 판정·release 일관성·응답 시간을 검사하는 평가 실행기를 구현. 과거 canonical 전환에서는 legacy 안전 판정과의 shadow 비교도 구현
     strength: owned
     confidence: high
     public: true
     evidence: [evidence/projects/procedure-hub.md#evaluation-and-shadow-gates]
     allowed_copy:
-      - 대표 예시 몇 개로 RAG 품질을 승인하지 않고, 의사가 검수한 query fixture로 recall·안전 규칙 통과·응답 시간을 자동 측정하는 평가 게이트 구현
+      - 임상 검수 승인 fixture로 expected entity·근거·안전 판정·응답 시간을 검사하는 검색 평가 실행기 구현
       - 검수 승인이 없는 fixture는 평가 실행기가 거부하고, 안전 fixture는 100% 통과·false-clear 0을 기준으로 둠
-      - 새 canonical 검색 경로를 승격하기 전 기존 판정과 안전 판정 일치를 비교하는 shadow 게이트 구현
+      - 과거 canonical 전환 검증에서 기존 판정과 안전 판정 일치를 비교하는 shadow 게이트를 구현했으며 현재 해당 모듈은 제거됨
     forbidden_copy:
       - 임상 fixture 검수 완료
       - recall·정확도 실측 수치
       - 의사 실명
-    verified_at: 2026-09-03
+      - shadow 게이트가 현재 운영 중이라는 서술
+      - 임상 평가 완료 또는 임상 품질 개선 보장
+    verified_at: 2026-09-08
 
   - id: procedure-hub.canonical-data-platform
     statement: 현행 JSON 지식을 Master·Rule·Document·Release aggregate의 canonical 관계형 데이터로 옮기면서 기존 API 계약을 동결 테스트로 고정하고, 결정적 importer와 release 단위 publication gate로 공개를 통제하는 strangler 전환을 설계·구현 (진행 중)
@@ -49,9 +57,16 @@ claims:
       - 재실행해도 결과가 바뀌지 않는 결정적 importer와 draft·published를 구분하는 release 경계
       - 변경 규칙과 불변조건이 있는 객체만 aggregate로 두고 조회 전용 projection은 read model로 분리
       - 지식 데이터의 등록·검수·공개를 review queue와 publication gate로 운영 가능한 형태로 구현 (진행 중)
+      - 현재 claim의 검수 승인과 검증 citation을 확인하고, 미해결 mapping·validation이 있으면 content release 공개를 차단
+      - 이전 published revision 집합으로 content release를 복구하는 경계를 구현
     forbidden_copy:
       - 전환·cutover 완료
       - 제품 전체 단독 구축 (frontend·데이터 검수는 다른 담당)
       - 정확한 revision 수·건수
       - 내부 제품명 Procedure Hub
-    verified_at: 2026-09-03
+      - production rollback 실행·성공 또는 임상 승인 완료
+      - 과거 importer·data-init 구성이 현재 runtime 경로라는 단정
+    verified_at: 2026-09-08
+    note: >-
+      importer·계약 동결·strangler는 전환 과정의 구현 이력이다. 현재 source의 review·publication·release 복구를 보강했고,
+      후속 baseline·snapshot 정리와 STG 기술 검증을 production cutover 또는 임상 승인으로 확대하지 않는다.

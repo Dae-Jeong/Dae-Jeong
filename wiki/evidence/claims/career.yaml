@@ -1,6 +1,23 @@
 schema_version: 1
 project: career
 claims:
+  - id: career.military-service
+    statement: 2017.08부터 2019.05까지 대한민국 육군 제3군단 통신병과로 복무하고 병장 만기전역
+    strength: contributed
+    confidence: medium
+    public: true
+    evidence: [evidence/projects/previous-career.md#military-service]
+    allowed_copy:
+      - 대한민국 육군 제3군단 · 통신병과 · 병장 만기전역 · 2017.08–2019.05
+      - Republic of Korea Army · III Corps
+      - Signals | Sergeant (rank at discharge)
+      - Completed full-term military service.
+      - Aug 2017 - May 2019
+    forbidden_copy:
+      - 군 복무를 소프트웨어 실무 연차에 산입
+      - 확인되지 않은 분대장·지휘·통신망 구축·보안 인가·훈련 성과
+    verified_at: 2026-09-08
+    note: 사용자 직접 확인과 공개 기재 요청. 복무 증명서 별도 대조 없음. 계급은 전역 시점이며 전체 기간에 병장이었다고 쓰지 않는다.
   - id: career.medisolve-role-evolution
     statement: MediSolve AI에 Backend Engineer로 합류해 Tech Lead, PO, AI agent 관련 역할을 병행
     strength: led

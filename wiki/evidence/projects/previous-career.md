@@ -9,6 +9,14 @@ tags: [career, credentials, product, ux, tellingme, evidence]
 
 # Previous Career And Credentials Evidence
 
+## Military Service
+
+- User-confirmed (2026-09-08): 2017.08부터 2019.05까지 대한민국 육군 제3군단에서 통신병과로 복무하고 병장 만기전역했다. 사용자가 이력 기재를 요청했다.
+- 공개 범위: 부대·병과·복무 기간·전역 계급·만기 복무 완료. 복무 증명서는 별도로 대조하지 않았다. 구체 임무·장비·지휘 인원·성과·보안 인가 여부는 확인되지 않았으며 기재하지 않는다.
+- 영문 문안: `Republic of Korea Army · III Corps`, `Signals | Sergeant (rank at discharge)`, `Completed full-term military service.` 병장 계급을 미군 NCO 직책이나 분대장 임무로 확대하지 않는다.
+- 번역 참고 (2026-09-08): [미 육군 군사사 자료의 ROK III Corps 표기](https://history.army.mil/Research/Reference-Topics/Army-Campaigns/Brief-Summaries/Korean-War/), [병장 영문 사전 표기](https://en.wiktionary.org/wiki/%EB%B3%91%EC%9E%A5). 번역 참고이며 개인 복무 이력의 근거는 사용자 확인이다.
+- 직장·소프트웨어 실무 연차와 분리한다. Claim: `career.military-service`.
+
 ## Role Continuity
 
 - User-confirmed/source-backed timeline: Vision AI Engineer -> PM -> Backend Engineer.
@@ -232,10 +240,12 @@ tags: [career, credentials, product, ux, tellingme, evidence]
   - User-confirmed (2026-08-08) 표기 방침: **"인증 통과" 사실만 쓰고 정확도 수치와 사용 모델(Yolo 등)은 쓰지 않는다.** 과거 정량 미사용 원칙([recency weighting](../../rules/recency-weighting.md))의 예외로, 제3자 검증이라는 성격 때문에 사실만 남긴다.
   - ⚠️ confidence medium — 인증서 실물 대조 전이다. 확인 시 `credentials.ai-accuracy-certification`의 confidence를 high로 올리고 `verified_at`을 기입한다.
 - Contribution boundary: 회사/팀 수상이며 개인 단독 수상으로 쓰지 않는다. 특허 발명자 범위는 별도 확인 없이 단독 표현을 쓰지 않는다. 인증도 제품 단위 인증이며 개인 단독으로 표현하지 않는다.
+- Source-backed (2026-09-08, 영문 CV 표기): 기관 영문명은 [KCL 공식 영문 사이트](https://www.kcl.re.kr/site/main/index002.do)의 `Korea Conformity Laboratories`를 따른다. 영문명 확인은 개인 인증·수상이나 기존 인증 claim의 confidence 상향 근거가 아니다.
 
 ## Certification
 
 - User-confirmed/source-backed: ADsP, 2021.09.
+- Source-backed (2026-09-08, 영문 CV 표기): ADsP 영문명은 [한국데이터산업진흥원 자격 안내](https://www.dataq.or.kr/www/dataq_brochure_2022.pdf)의 `Advanced Data Analytics Semi-Professional`이다. 자격명 번역만 확인하며 취득 시점은 기존 근거를 유지한다.
 
 ## Rejected Or Unverified Claims
 

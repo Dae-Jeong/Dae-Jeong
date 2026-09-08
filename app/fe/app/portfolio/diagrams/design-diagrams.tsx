@@ -60,6 +60,7 @@ export type DesignDiagramKey =
   | "idempotent-importer"
   | "quality-layers"
   | "rebuild-decision"
+  | "rebuild-contract"
   | "stripe-prepayment"
   | "agent-prototype";
 
@@ -482,6 +483,7 @@ export function DesignDiagram({ id }: { id: DesignDiagramKey }) {
     case "idempotent-importer": return <IdempotentImporterDiagram />;
     case "quality-layers": return <QualityLayersDiagram />;
     case "rebuild-decision": return <RebuildDecisionDiagram />;
+    case "rebuild-contract": return <RebuildDecisionDiagram currentCopy />;
     case "stripe-prepayment": return <StripePrepaymentDiagram />;
     case "agent-prototype": return <AgentPrototypeDiagram />;
     case "outbox-delivery": return <OutboxSwimlaneDiagram />;

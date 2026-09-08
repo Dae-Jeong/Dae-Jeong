@@ -18,25 +18,30 @@ claims:
       - NEXUS Admin/Homepage backend·지점 권한·예약률·매출 outcome을 Centurion 또는 DAY 성과로 합산
     verified_at: 2026-08-19
   - id: centurion.bay-async-backend
-    statement: BAY 주문·재고 backend와 RabbitMQ·TaskIQ worker flow, 명시적 상태·retry·실패 기록·재처리 경계 구축 주도
+    statement: BAY 주문·재고 backend와 RabbitMQ·TaskIQ worker flow, 명시적 상태·실패 기록·수동 재발송 경계 구축 주도
     strength: led
     confidence: high
     public: true
     evidence: [evidence/projects/centurion.md#bay-async-backend]
     allowed_copy:
-      - 주문·재고 API와 RabbitMQ·TaskIQ 비동기 worker, 상태·retry·실패 기록·재처리 경계 구축 주도
+      - 주문·재고 API와 RabbitMQ·TaskIQ 비동기 worker, 상태·실패 기록·수동 재발송 경계 구축 주도
       - 실패 가능한 작업을 API 요청과 분리된 worker 경계에서 처리
-      - 자동 발주로 주문을 만든 뒤 공급사·병원 알림을 worker로 분리하고, 발송 결과를 주문 상태·자동 retry·최종 실패·수동 재발송과 연결
+      - 자동 발주와 공급사·병원 알림 worker를 연결하고, 발송 결과에 따른 주문 상태 분기·실패 기록·수동 재발송을 구현
     forbidden_copy:
       - Centurion backend 전체 단독 구축
       - 장애를 겪은 뒤의 사후 대응이라는 서술 (예방 설계다)
       - TaskIQ 도입으로 동기 API에서 비동기 처리를 처음 분리했다는 서술
       - TaskIQ 전환 전 외부 연동 실패가 API 응답과 주문 상태에 직접 결합됐다는 서술
-    verified_at: 2026-08-21
+      - 주문 transaction commit을 끝낸 뒤에만 알림을 생성·queue에 넣는다는 서술
+      - retry label 설정만으로 자동 재시도·최종 수렴·완료가 보장된다는 서술
+      - 모든 SENDING 작업이 자동 복구된다는 서술
+    verified_at: 2026-09-08
     note: >-
       2026-08-09 분리: test·CI·onboarding 은 centurion.test-ci-foundation 이,
       Celery -> TaskIQ 전환은 centurion.async-migration 이 소유한다.
       forbidden_copy 의 "Celery에서 TaskIQ로 전환"은 Git history 검증(BAY-BE-API)으로 해제했다.
+      2026-09-08 dev@9810c901·설치 TaskIQ source 대조로 주문 commit 순서와 자동 retry 보장을 정정했다.
+      상태·실패 기록·수동 재발송 구현 및 해당 영역 led 상한은 유지한다.
   - id: centurion.test-ci-foundation
     statement: BAY backend의 API test infrastructure, Docker CI 구축과 onboarding 문서 정비
     strength: led
@@ -58,7 +63,7 @@ claims:
       "refactor: 테스트 인프라 구축 #315"(2026-01-12),
       "docs: FE 온보딩 가이드 및 Docker Compose 원클릭 셋업 #321"(2026-03-30).
   - id: centurion.async-migration
-    statement: async FastAPI 실행 모델과의 정합성을 위해 BAY backend의 Celery 기반 비동기 처리를 TaskIQ + RabbitMQ로 전환하고 알림 상태·retry·실패 기록·재처리 경계를 재구성
+    statement: async FastAPI 실행 모델과의 정합성을 위해 BAY backend의 Celery 기반 비동기 처리를 TaskIQ + RabbitMQ로 전환하고 알림 상태·실패 기록·수동 재발송 경계를 재구성
     strength: led
     confidence: high
     public: true
@@ -67,14 +72,16 @@ claims:
       - 비동기 작업 시스템을 Celery에서 TaskIQ + RabbitMQ로 전환
       - async FastAPI 코드베이스와 worker 실행 모델의 정합성을 기준으로 TaskIQ 선택
       - 알림 발송 책임을 별도 domain·service·worker 경계로 재구성
-      - 상태·retry·실패 기록·수동 재발송 경계를 운영 흐름으로 연결
+      - 명시적 상태·실패 기록·수동 재발송 경계를 구현
       - 워커 이미지를 분리해 배포 단위를 나눔
     forbidden_copy:
       - 전환으로 인한 성능·지연 개선 수치 (측정값 없음)
       - 시스템 복잡도 감소 정량 표현 (측정값 없음)
       - TaskIQ가 비동기 분리 자체를 최초 도입했다는 서술
       - Celery가 비동기 작업 분배 자체를 지원하지 않았다는 서술
-    verified_at: 2026-08-16
+      - retry label 설정만으로 자동 재시도·최종 수렴·완료가 보장된다는 서술
+      - 주문 transaction commit 이후에만 알림을 발송한다는 서술
+    verified_at: 2026-09-08
     note: >-
       2026-08-09 Git history 실측으로 Celery→TaskIQ 전환을 검증했다.
       2026-08-16 TaskIQ 도입 직전 revision의 Celery task와 API queue 호출을 추가 확인해,
@@ -84,6 +91,7 @@ claims:
       "feat: 대규모 시스템 리팩토링 - Notification/Celery 제거 및 Alimtalk/TaskIQ 마이그레이션"(2025-09-14),
       "Remove/notification celery #304"(2025-09-15), TaskIQ 1~3차 구성(2025-09-08~09),
       "fix: taskIQ 재고 차감 처리 오류 시, retry 로직 추가"(2025-10-01). 전부 KimMarin 명의.
+      2026-09-08 현재 source에는 retry middleware 등록·SENDING 복구가 확인되지 않아 자동 retry 완료 보장은 제외했다.
   - id: centurion.say-realtime-ai
     statement: SAY realtime AI 상담 backend의 session lifecycle, VAD speech event, DELTA·COMPLETE·CORRECTED 전사 흐름, domain-keyword early trigger와 provider evaluation 경계 공동 주 기여
     strength: co-led
@@ -117,6 +125,27 @@ claims:
       - 4분 37초 E2E event 수치를 STT 정확도·지연 개선 수치로 해석
       - VAD tuning으로 전체 지연 또는 STT 정확도를 개선했다고 단정
     verified_at: 2026-08-21
+  - id: centurion.say-post-consultation-evaluation
+    statement: 상담 종료 후 근거 기반 응답의 3지표 평가·품질 저하 사례와 자유 생성 응답의 키워드 추출을 분리하고, outbox 처리에서 관리 조회까지 연결한 기능 구현
+    strength: contributed
+    confidence: high
+    public: true
+    evidence: [evidence/projects/centurion.md#say-post-consultation-evaluation]
+    allowed_copy:
+      - 실시간 상담 응답 생성과 분리된 상담 후 품질 평가·사례 검토 경로 구현
+      - 근거 기반 응답의 3지표 평가와 자유 생성 응답의 키워드 추출을 구분하고 관리 조회에 연결
+      - 평가 event 선점 transaction과 외부 LLM 분석을 분리하고, 종합 분석 실패 시 템플릿으로 품질 사례를 남김
+    forbidden_copy:
+      - 실제 운영팀의 지속 사용·검토 완료 또는 상담 품질 개선 수치
+      - 모든 응답에 같은 3지표 평가를 적용
+      - 자동 학습으로 모델 성능 개선
+      - 평가 event의 무손실·exactly-once·모든 부분 실패 재처리 보장
+      - SAY 전체 또는 직원 성과 평가 체계 단독 구축
+      - provider·모델 실명
+    verified_at: 2026-09-08
+    note: >-
+      선택한 KimMarin 구현 commit과 ff3e2596 source·테스트 source로 확인했다.
+      source-only 검증이며 운영 사용·효과는 미확인이다. 실시간 session 영역은 centurion.say-realtime-ai가 소유한다.
   - id: centurion.day-product-integration
     statement: DAY 예약 정책을 backend 판단, frontend 표시, QA seed/test, release docs로 연결
     strength: led
@@ -140,16 +169,26 @@ claims:
       - RAY backend 전담 구축
     verified_at: 2026-07-04
   - id: centurion.sso-session
-    statement: multi-service SSO session 정책, duplicate login, E2E 담당·참여
-    strength: contributed
+    statement: 기존 multi-service SSO에서 Redis 세션 v2를 재설계·구현하고 사용자·서비스·기기별 중복 로그인 분기와 JTI 소유권 기반 로그아웃을 구성
+    strength: led
     confidence: high
     public: true
     evidence: [evidence/projects/centurion.md#sso-session]
     allowed_copy:
-      - multi-service 인증·세션 정책과 duplicate login·E2E 담당
+      - 여러 제품이 공유하는 SSO의 Redis 세션 v2 재설계·구현 주도
+      - 사용자·서비스·기기별 세션을 구분하고 중복 로그인·계정 전환·그룹 로그아웃 분기를 구현
+      - 로그아웃 요청의 JTI 소유권을 확인해 교체된 유효 세션을 오래된 토큰이 삭제하지 않도록 보호
     forbidden_copy:
       - SSO 전체 구축
-    verified_at: 2026-07-04
+      - SSO 또는 회사 인증 시스템 최초 도입·전체 단독 구축
+      - 제품 로그인 정책 전체를 단독 기획
+      - JTI 검사와 세션 삭제 전체가 원자적이라는 보장
+      - 모든 동시성 race 제거 또는 보안 사고 감소율
+    verified_at: 2026-09-08
+    note: >-
+      기존 contributed 기록을 사용자 확인과 선택한 6개 구현 commit·dev@422d2112 source에 근거해
+      Redis 세션 v2 하위 영역의 led로 좁혀 보강했다. centurion.sso-auth-foundation의 부분 검증 결과를
+      이 ID로 통합하며 전체 SSO ownership으로 확장하지 않는다. 테스트 source 검토이며 이번 실행은 없다.
   - id: centurion.shared-infra
     statement: Centurion Azure/Terraform infra 구축·운영과 runbook·문서화 담당
     strength: owned
@@ -164,7 +203,7 @@ claims:
       - 정확한 resource·cost·security detail
     verified_at: 2026-07-11
   - id: centurion.sso-auth-foundation
-    statement: Centurion SSO의 인증·세션 로직을 설계·구현해 회사 인증 기반을 만들었다는 사용자 확정 발언. Git author 대조 전이며 기존 centurion.sso-session(contributed)보다 강한 ownership 주장
+    statement: Centurion SSO 인증·세션 전체를 설계·구현했다는 사용자 진술의 보류 이력. Redis 세션 v2 구현은 centurion.sso-session으로 부분 검증·통합했으며 전체 인증 기반 ownership은 미확정
     strength: led
     confidence: low
     public: false
@@ -172,10 +211,10 @@ claims:
     allowed_copy: []
     forbidden_copy:
       - 검증 전 public 문안 사용
-      - SSO 전체 단독 구축 (Git 대조 전)
-      - centurion.sso-session의 contributed 상한을 넘는 표현
+      - SSO 전체 단독 구축
+      - centurion.sso-session으로 검증한 Redis 세션 v2 범위를 전체 인증 기반 ownership으로 확대
     verified_at: null
     note: >-
-      2026-08-28 user-confirmed, 2026-09-02 범위를 SSO로 확정. 승격 조건: workspace:SSO-BE-API Git author 대조 후
-      centurion.sso-session 강도 상향 또는 이 claim의 allowed_copy 작성·public 전환. 둘 중 하나로 통합하고 중복 owner를 두지 않는다.
-
+      2026-08-28 user-confirmed, 2026-09-02 범위를 SSO로 확정.
+      2026-09-08 선택한 구현 commit·현재 source 대조로 세션 v2 하위 영역은 centurion.sso-session의 led로 통합했다.
+      이 record는 더 넓은 미확정 진술의 보류 이력만 보존하며 public copy의 source로 사용하지 않는다.

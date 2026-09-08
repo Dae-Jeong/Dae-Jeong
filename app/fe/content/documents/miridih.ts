@@ -9,7 +9,7 @@ import type { CareerDescriptionDocument, CareerProject } from "./types";
 const THREADY_PRODUCT: CareerProject = {
   id: "thready-paid-product",
   title: "Thready · 반복하던 글 제작을 제품 흐름으로, 글의 기준은 실측으로 신뢰를 쌓은 유료 AI 제품",
-  context: "아이디어 제안 → prototype 이후 제품화 주도 → 고객이 구독하는 서비스 운영",
+  context: "아이디어 제안 → 제품화·출시 주도 → 고객이 구독하는 서비스 운영",
   role: "제품 운영 리드 · Backend/AI 직접 구현 · 핵심 화면은 coding agent로 완성",
   problem:
     "여러 채널을 운영하는 고객은 자료 수집·작성·검수·예약을 매번 반복했고 반응이 좋은 글의 기준은 감에 의존했습니다.",
@@ -25,7 +25,7 @@ const THREADY_PRODUCT: CareerProject = {
     "외부 AI 5xx는 실패 유형으로 분류해 재시도·최종 실패·사용자 재시도 경로를 두고 반복 장애 모델은 Sentry 확인 뒤 선택지에서 일시 제외했습니다.",
   ],
   result: "기획·QA·마케팅과 제품 운영을 리드해 실제 고객이 구독료를 내는 제품으로 출시·운영 중입니다.",
-  boundary: "매출은 팀·제품의 결과입니다. 초기 prototype은 다른 engineer가 만들었고, 제 범위는 아이디어 제안과 prototype 이후 제품화·Backend·AI·운영 리드입니다.",
+  boundary: "아이디어 제안과 제품화·출시·운영을 주도하고 Backend·AI와 핵심 화면을 구현했습니다. 매출은 팀·제품의 결과입니다.",
   claimIds: [
     "thready.product-zero-to-one-contribution",
     "thready.subscription-revenue-band",
@@ -129,7 +129,7 @@ const REBUILD: CareerProject = {
   context: "기존 frontend contract를 유지한 병렬 재구축과 단계적 전환, 이후 실사용 backend 운영 전담",
   role: "대안 비교·설득·설계·구현·검증·전환 판단 직접 수행",
   problem:
-    "빠른 검증 중심으로 만들어진 초기 backend는 도메인 의존성이 얽혀 회원 로직 변경이 AI 생성 중단으로 이어졌고 해결된 QA 이슈가 같은 영역에서 다른 형태로 재발했습니다.",
+    "회원 기능과 AI 생성 로직의 결합으로 변경 영향이 다른 기능까지 전파되어, 기능 확장에 필요한 도메인 경계를 다시 정해야 했습니다.",
   decision:
     "부분 수정을 누적하는 안과 backend만 병렬 재구축하는 안을 비교해 서비스가 작고 AI 모듈 확장이 예정된 시점이라 재구축을 택하되 기존 frontend와 릴리스 흐름은 유지하는 범위로 한정했습니다. \"돌아가는 기능을 왜 다시 만드나\"에는 문제 누적 속도·AI 확장성·하네스 기반 이관 속도로 답했습니다.",
   implementation: [
@@ -138,15 +138,14 @@ const REBUILD: CareerProject = {
     "재구축 범위·architecture·검증·전환 판단은 직접 소유하고 coding agent는 codebase 파악·기능 inventory·반복 구현에 썼습니다.",
   ],
   verification: [
-    "동일 기능의 응답 비교와 QA acceptance를 통과한 범위만 전환했고 전환 뒤에도 같은 Jira 정의로 재발을 계속 측정했습니다.",
+    "기존 API와 새 backend의 동일 기능 응답을 비교하고, QA acceptance를 통과한 범위만 단계적으로 전환했습니다.",
   ],
-  result: "같은 기준의 Jira 집계에서 해결된 QA 이슈 재오픈 비율이 37%에서 11%로, 재발 발생 일평균이 약 94% 줄었습니다(하루 4.5건에서 0.3건). 전환 이후 실제 사용자가 쓰는 backend의 배포·QA·운영을 계속 전담하고 있습니다.",
-  boundary: "티켓에 BE/FE 라벨이 없어 제품 전체 품질 지표로 서술합니다. 초기 prototype은 다른 engineer가 만들었습니다.",
+  result: "기존 frontend의 API 계약을 유지하며 FastAPI backend로 전환했습니다. 도메인·저장소·트랜잭션 책임을 분리한 구조에서 기능 확장을 이어가고, 실사용 backend의 개발·배포·운영을 전담했습니다.",
+  boundary: "백엔드 재구축 범위·구조·검증·전환 판단을 직접 맡았고, 기존 frontend의 API 계약은 유지했습니다.",
   claimIds: [
     "thready.rebuild-decision-execution",
     "thready.backend-rebuild",
     "thready.prototype-to-user-operation",
-    "thready.qa-reopen-reduction",
     "thready.release-operation",
     "career.coding-agent-usage",
   ],

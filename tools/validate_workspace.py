@@ -292,6 +292,16 @@ def _validate_product_claim_refs(root: Path) -> list[str]:
     return errors
 
 
+def _json_copy_claims(value: Any) -> set[str]:
+    """Read the same leaf-level claim arrays the common document renderer consumes."""
+    if isinstance(value, list):
+        return set().union(*(_json_copy_claims(item) for item in value))
+    if isinstance(value, dict):
+        own = {str(item) for item in value.get("claims", [])}
+        return own | set().union(*(_json_copy_claims(item) for key, item in value.items() if key != "claims"))
+    return set()
+
+
 def _validate_resume_artifact_claims(root: Path) -> list[str]:
     claim_map = root / WIKI / "products" / "resume" / "claim-map.yaml"
     if not claim_map.exists():
@@ -319,6 +329,8 @@ def _validate_resume_artifact_claims(root: Path) -> list[str]:
         for value in DATA_CLAIM.findall(artifact.read_text(encoding="utf-8"))
         for claim_id in value.split()
     }
+    if artifact.suffix == ".json":
+        used = _json_copy_claims(yaml.safe_load(artifact.read_text(encoding="utf-8")))
 
     errors: list[str] = []
     for claim_id in sorted(used - known):
@@ -329,6 +341,48 @@ def _validate_resume_artifact_claims(root: Path) -> list[str]:
         errors.append(f"resume artifact: data-claim {claim_id} missing from claim map")
     for claim_id in sorted(mapped - used):
         errors.append(f"resume artifact: mapped claim {claim_id} is unused")
+    return errors
+
+
+def _validate_common_document_claims(root: Path) -> list[str]:
+    """Gates 31/34/35: public claims, English Jake CV, and separate military service."""
+    claims, _ = _load_claims(root)
+    public = {str(claim.get("id")) for claim in claims if claim.get("public") is True}
+    hero = _load_yaml_file(root, COPY_GATES_PATH).get("hero") or {}
+    errors: list[str] = []
+    for name in ("resume", "career-description", "portfolio", "cv"):
+        artifact = root / "app" / "fe" / "content" / "common" / f"{name}.json"
+        if not artifact.exists():
+            errors.append(f"common documents: missing {name}.json")
+            continue
+        source = artifact.read_text(encoding="utf-8")
+        try:
+            data = yaml.safe_load(source)
+            used = _json_copy_claims(data)
+        except (yaml.YAMLError, TypeError, AttributeError) as exc:
+            errors.append(f"common documents: invalid {name}.json: {exc}")
+            continue
+        if not isinstance(data, dict) or not data.get("sections") or not used:
+            errors.append(f"common documents: {name}.json has no sections or claims")
+        for claim_id in sorted(used - public):
+            errors.append(f"common documents: {name}.json uses unknown/non-public claim {claim_id}")
+        brand = str(hero.get("brand_line_en" if name == "cv" else "brand_line", ""))
+        if brand and source.count(brand) != 1:
+            errors.append(f"common documents: {name}.json must contain exactly one brand line")
+        if name == "cv" and isinstance(data, dict):
+            if data.get("language") != "en" or data.get("template") != "jake":
+                errors.append("common CV: gate 34 requires language=en and template=jake")
+            if re.search(r"[\uac00-\ud7a3]", source):
+                errors.append("common CV: gate 34 requires English headings and body copy")
+            if not data.get("sections") or data["sections"][0].get("title") != "Experience":
+                errors.append("common CV: gate 34 requires experience before education")
+            military = [section for section in data.get("sections", []) if section.get("title") == "Military Service"]
+            military_claim = "career.military-service"
+            if len(military) != 1 or military_claim not in _json_copy_claims(military):
+                errors.append("common CV: gate 35 requires a claim-backed Military Service section")
+            outside_military = [data.get("header", []), *[section for section in data.get("sections", []) if section.get("title") != "Military Service"]]
+            if military_claim in _json_copy_claims(outside_military):
+                errors.append("common CV: gate 35 keeps military service separate from employment")
     return errors
 
 
@@ -587,34 +641,40 @@ def _validate_public_copy_terms(root: Path) -> list[str]:
     return errors
 
 
-def _validate_outcome_axes(root: Path) -> list[str]:
-    """Gate 11: resume outcome titles carry >= N distinct axis words."""
+def _validate_copy_selection(root: Path) -> list[str]:
+    """Gates 32–33: current copy decisions, excluding frozen and platform sources."""
     gates = _load_yaml_file(root, COPY_GATES_PATH)
-    surfaces_cfg = _load_yaml_file(root, COPY_SURFACES_PATH)
-    axes = gates.get("axes") or {}
-    words = [str(w) for w in (axes.get("words") or [])]
-    minimum = int(axes.get("min_distinct") or 0)
-    exemptions = axes.get("exemptions") or {}
-    if not words or not minimum:
-        return []
+    surfaces = _load_yaml_file(root, COPY_SURFACES_PATH)
+    active_files = {
+        path for attempt in _active_attempts(root, surfaces)
+        for path in _surface_files(root, surfaces, attempt).values()
+    }
+    frozen_files = {
+        path for attempt in _registry_attempts(root) if attempt.get("artifact_state") == "frozen"
+        for path in _surface_files(root, surfaces, attempt).values()
+    }
     errors: list[str] = []
-    for attempt in _active_attempts(root, surfaces_cfg):
-        if exemptions.get(attempt.get("id")):
+    for rule in gates.get("copy_selection") or []:
+        try:
+            patterns = [re.compile(pattern) for pattern in rule["patterns"]]
+        except (KeyError, TypeError, re.error) as exc:
+            errors.append(f"copy selection: invalid rule {rule.get('gate')}: {exc}")
             continue
-        resume = _surface_files(root, surfaces_cfg, attempt).get("resume.tailored")
-        if resume is None:
-            continue
-        block = _bracket_block(resume.read_text(encoding="utf-8"), "outcomes")
-        titles = re.findall(r'\btitle:\s*"([^"]*)"', block)
-        if not titles:
-            continue
-        joined = " ".join(titles)
-        present = [w for w in words if w in joined]
-        if len(present) < minimum:
-            errors.append(
-                f"outcome axes: {resume.relative_to(root)} titles carry {len(present)}/{minimum} axis words "
-                f"({'·'.join(present) or 'none'})"
-            )
+        files = active_files | {
+            root / surface["path"] for surface in surfaces.get("surfaces", [])
+            if surface["id"] in rule.get("common_ids", [])
+        } | {root / path for path in rule.get("extra_paths", [])}
+        for path in sorted(files - frozen_files):
+            if not path.exists():
+                errors.append(f"copy selection gate {rule['gate']}: missing {path.relative_to(root)}")
+                continue
+            for number, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
+                if re.match(r"\s*(//|import\b)", line):
+                    continue
+                for excluded in rule.get("excluded_text", []):
+                    line = line.replace(excluded, "")
+                if any(pattern.search(line) for pattern in patterns):
+                    errors.append(f"copy selection gate {rule['gate']}: {path.relative_to(root)}:{number}: {rule['label']}")
     return errors
 
 
@@ -774,6 +834,22 @@ def _validate_resume_row_layout(root: Path) -> list[str]:
     return [] if result.returncode == 0 else [f"resume row layout: gate 21 failed\n{result.stdout}\n{result.stderr}"]
 
 
+def _validate_resume_comparison_copy(root: Path) -> list[str]:
+    """Gate 30: template comparison must not change the reviewed copy or claims."""
+    frontend = root / "app/fe"
+    test = frontend / "app/resume/compare/source.test.mjs"
+    if not test.exists() or not (frontend / "node_modules/typescript").exists():
+        return []
+    try:
+        result = subprocess.run(
+            ["node", "--experimental-strip-types", "--test", str(test)],
+            cwd=frontend, capture_output=True, text=True, timeout=30,
+        )
+    except (OSError, subprocess.TimeoutExpired) as exc:
+        return [f"resume comparison: gate 30 could not run: {exc}"]
+    return [] if result.returncode == 0 else [f"resume comparison: gate 30 failed\n{result.stdout}\n{result.stderr}"]
+
+
 def validate(root: Path) -> list[str]:
     """Return stable validation failures; an empty list means pass."""
     root = root.resolve()
@@ -788,16 +864,18 @@ def validate(root: Path) -> list[str]:
         + _validate_resume_artifact_claims(root)
         + _validate_tailored_resume_claims(root)
         + _validate_professional_document_claims(root)
+        + _validate_common_document_claims(root)
         + _validate_portfolio_artifact_claims(root)
         + _validate_application_registry(root)
         + _validate_application_projection_drift(root)
         + _validate_public_copy_terms(root)
-        + _validate_outcome_axes(root)
+        + _validate_copy_selection(root)
         + _validate_frozen_surfaces(root)
         + _validate_header_role(root)
         + _validate_hero_sentences(root)
         + _validate_platform_fields(root)
         + _validate_resume_row_layout(root)
+        + _validate_resume_comparison_copy(root)
     )
 
 

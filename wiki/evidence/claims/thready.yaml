@@ -1,6 +1,95 @@
 schema_version: 1
 project: thready
 claims:
+  - id: thready.creator-adoption-context
+    statement: 기존 Instagram·YouTube·blog 운영자가 시간 부족과 Threads의 다른 문화·알고리즘 때문에 겪는 진입장벽을 낮추고 지속 운영을 돕는 제품 맥락
+    strength: contributed
+    confidence: medium
+    public: true
+    evidence: [evidence/projects/thready.md#creator-customer-problem]
+    allowed_copy:
+      - 기존 채널 운영자가 시간 부족과 다른 플랫폼 문화 때문에 겪는 Threads 진입장벽을 낮추고 지속 운영을 돕는 콘텐츠 제품
+      - 기존 콘텐츠 자산을 활용해 Threads 운영을 이어가려는 고객을 위한 제품
+    forbidden_copy:
+      - 모든 고객의 동일한 이용 행동
+      - 운영 시간 절감률 또는 Threads 알고리즘 역공학
+    verified_at: 2026-09-08
+    note: 사용자 확인에 근거한 고객 문제·제품 역할이며 기능별 효과 측정은 아니다.
+  - id: thready.customer-follower-growth
+    statement: Thready 이용 고객 1명이 꾸준히 운영하며 팔로워가 기존 대비 10배 이상 증가한 사례에 대한 사용자 확인
+    strength: contributed
+    confidence: medium
+    public: true
+    evidence: [evidence/projects/thready.md#customer-follower-growth]
+    allowed_copy:
+      - 제품 이용 고객 1명이 꾸준히 운영하며 팔로워가 기존 대비 10배 이상 증가한 사례
+      - Threads 지속 운영을 돕는 제품을 만들었고, 이용 고객 중 팔로워가 기존 대비 10배 이상 늘어난 사례가 있음
+    forbidden_copy:
+      - 모든 고객 또는 평균 팔로워 10배 성장
+      - 특정 기능이나 개인 구현만으로 팔로워를 10배 늘렸다는 직접 인과
+      - 측정 기간·전후 원시 팔로워 수의 추정
+      - 신규 자동 생성·추천·재구축 효과로 소급 연결
+      - 성장 보장 또는 재현 가능한 성장률
+    verified_at: 2026-09-08
+    note: 사용자 확인이며 운영 데이터는 미조회. 기간·원시 수치·사용 기능·광고 등 다른 영향은 미확인이고 제품·팀 outcome으로만 사용한다.
+  - id: thready.auto-generation-approval-flow
+    statement: 시간표에 따른 소재 선택·AI 접수·초안 채택·목표 시각 승인 알림을 연결하고 슬롯 및 생성·알림 원장으로 중복 편성 경계를 구현
+    strength: led
+    confidence: high
+    public: true
+    evidence: [evidence/projects/thready.md#automatic-generation-and-approval-flow]
+    allowed_copy:
+      - 시간표에 맞춰 초안을 생성하고 고객이 알림에서 수정·예약·발행을 결정하는 흐름 구현
+      - 생성과 알림 상태를 분리하고 슬롯별 원장과 transaction으로 중복 편성을 통제
+    forbidden_copy:
+      - 사람 확인 없는 자동 발행
+      - 해당 기능의 production 고객 사용 또는 시간 절감량 확정
+      - 전체 운영의 exactly-once 또는 완료 보장
+      - 해당 기능이 구독 매출·팔로워 증가를 만들었다는 인과
+    verified_at: 2026-09-08
+  - id: thready.youtube-source-reuse
+    statement: 기존 YouTube 채널 소재를 정기 동기화하고 소유권·성공 소비 이력을 기준으로 Threads 생성에 활용하며 소재 고갈 시 재사용을 중단하는 경계 구현
+    strength: led
+    confidence: high
+    public: true
+    evidence: [evidence/projects/thready.md#youtube-source-reuse]
+    allowed_copy:
+      - 기존 YouTube 채널 소재를 정기 동기화해 Threads 제작에 활용하고 성공적으로 쓴 소재는 계정별로 제외
+      - 채널 조회와 DB 반영을 분리하고 채널별 실패 격리·내부 상태 보존·소재 고갈 시 중단 경계 구현
+    forbidden_copy:
+      - 모든 외부 채널의 자동 소재 탐색 또는 production Scouter 구현
+      - 모든 동시 요청이나 의미상 유사 글의 중복 제거 보장
+      - 운영 시간·성장률 개선 실측
+    verified_at: 2026-09-08
+  - id: thready.publish-recovery-boundary
+    statement: 외부 발행 호출 전 실패와 호출 후 결과 불명을 구별하고 기존 container·reply 실행 이력으로 재개하며 job·콘텐츠·실패 알림의 종결을 원자화하는 경계 구현
+    strength: led
+    confidence: high
+    public: true
+    evidence: [evidence/projects/thready.md#publishing-recovery-boundary]
+    allowed_copy:
+      - 외부 발행 전 실패와 발행 결과가 불명인 경우를 구별하고 기존 발행 시도를 이어가는 복구 경계 구현
+      - 이미 발행된 이어쓰기를 건너뛰고 작업·콘텐츠·실패 알림을 같은 transaction으로 종결
+      - lease와 attempt token으로 재점유와 오래된 worker의 상태 덮어쓰기를 통제
+    forbidden_copy:
+      - 외부 exactly-once 또는 중복 게시 0건 보장
+      - 장애·문의·복구 시간 감소 수치
+      - 모든 발행의 완료 보장
+    verified_at: 2026-09-08
+  - id: thready.approval-command-consistency
+    statement: 고객의 수정 revision·승인 결정·예약/발행 job을 한 transaction으로 확정하고 command ID·payload fingerprint와 만료 상속으로 재전송·세션 경계를 구현
+    strength: led
+    confidence: high
+    public: true
+    evidence: [evidence/projects/thready.md#approval-command-consistency]
+    allowed_copy:
+      - 고객의 수정본과 승인·예약·발행 결정을 함께 저장하고 같은 명령 재전송은 기존 결과로 처리
+      - 승인 링크로 발급한 세션이 갱신 후에도 원래 만료 시각을 넘지 않도록 구현
+    forbidden_copy:
+      - 인증 체계 전체 단독 구축
+      - 보안 사고·중복 발행 감소 실측
+      - 해당 기능의 고객 이용·시간 절감량 확정
+    verified_at: 2026-09-08
   - id: thready.backend-rebuild
     statement: FastAPI 기반 backend 전면 재구축과 v1.1.0 cutover 이후 개발·운영 전담
     strength: owned
@@ -15,13 +104,14 @@ claims:
     verified_at: 2026-07-05
   - id: thready.prototype-to-user-operation
     statement: 초기 prototype 이후 합류해 FastAPI backend 전환과 release·QA를 거쳐 v1.3.0 실제 사용자 운영까지 연결
+    note: "2026-09-08 표현 선택: 합류 경위는 evidence에 보존하되 공개 도입부는 backend 전환·개발·운영 책임으로 쓴다. 최초 prototype 작성 이력을 정정하는 것은 아니다."
     strength: led
     confidence: high
     public: true
     evidence: [evidence/projects/thready.md#prototype-to-user-operation]
     allowed_copy:
       - 초기 prototype에서 실제 사용자 운영까지 Thready의 backend 전환·release·QA·운영을 책임
-      - 초기 prototype 이후 실제 사용자 운영까지 0→1 구간의 backend 전환을 주도
+      - 기존 화면의 API 계약을 유지한 FastAPI backend 전환과 실제 사용자 운영을 주도
       - v1.3.0부터 실제 사용자가 쓰는 AI 콘텐츠 제품의 backend를 구축·운영
     forbidden_copy:
       - Thready를 0부터 혼자 구축
@@ -37,16 +127,17 @@ claims:
     public: true
     evidence: [evidence/projects/thready.md#product-zero-to-one-contribution]
     allowed_copy:
-      - 아이디어를 제안하고 초기 프로토타입 이후 제품화를 주도해, 실제 고객이 결제하는 서비스로 발전시켰습니다.
-      - Thready 제품 아이디어를 제안하고 초기 prototype 이후 실제 고객이 결제하는 제품까지 제품화를 주도
+      - Thready의 아이디어를 제안하고 제품화·출시·운영을 주도했습니다.
+      - 아이디어 제안부터 제품화·출시·운영까지 주도하고 백엔드·AI와 핵심 화면을 직접 구현
       - 기획·QA·마케팅과 함께 Thready의 제품 운영·관리를 리드
       - PO 역할로 Thready의 고객 문제 정의·기능 우선순위·품질 기준·QA·release·production operation을 연결하는 제품 운영 주도
       - Thready의 제품 운영을 리드하고, 제품 판단을 backend·핵심 frontend·data·AI 생성·평가 system으로 직접 구현
-      - Thready의 초기 prototype 이후 0→1 제품화와 backend 구축·운영 주도
+      - Thready의 0→1 제품화와 backend 구축·운영 주도
       - 고객의 콘텐츠 제작 문제를 market data 기반 생성·평가 기능과 backend system으로 구체화
       - 문제 정의부터 기술 구현·운영까지 맡아 실제 사용자와 구독료 매출이 발생하는 제품에 상당 부분 기여
     forbidden_copy:
       - PO가 공식 등재 직함이라고 단정
+      - 인계받은 제품·초기 프로토타입 이후 합류를 공개 성과의 도입부로 반복하는 표현 (2026-09-08 편집 제외, 사실 부정 아님)
       - Thready를 0부터 혼자 구축
       - 초기 prototype을 직접 구현
       - 아이디어부터 prototype·제품화·매출까지 전 과정을 혼자 만듦
@@ -60,6 +151,8 @@ claims:
       PO 역할의 제품 운영과 제품 0→1 contribution은 user-confirmed라 confidence medium이다.
       고객 결제와 구독료 매출은 제품·팀 outcome이며 개인 또는 특정 기능의 단독 인과가 아니다.
       backend·frontend·data·quality·release의 각 실행 영역은 별도 high-confidence claim이 소유한다.
+      2026-09-08 표현 결정은 아이디어 제안·제품화·출시·운영 중심의 선택이며 statement의
+      최초 prototype 기여 이력을 변경하거나 제품 전체 최초 구현을 새로 승인한 것이 아니다.
   - id: thready.frontend-product-delivery
     statement: Thready Next.js frontend에서 콘텐츠 생성·가져오기, 콘텐츠 상태, 예약·발행, dashboard, account/settings, super-admin과 labeling의 핵심 사용자·관리 workflow를 직접 구현·운영
     strength: led
@@ -115,6 +208,7 @@ claims:
       - 팀과 함께 고객 문제를 유료 제품으로 만들고 운영
       - 구독료 매출이 발생하는 제품·팀 outcome
       - 월 1천만원 수준의 구독 매출이 발생하는 제품 (2026년 8월 기준, 2026-09-04 user-confirmed)
+      - 월 1천만원 수준의 구독 매출이 발생하는 AI 제품 출시·운영 (성과 제목 허용; 인접 본문에 2026년 8월 기준·팀 결과 명시, 2026-09-07 user-confirmed)
     forbidden_copy:
       - 정확한 월 매출액(1,000만~1,200만원)을 공개 문구에 노출
       - 연 1억 · ARR · 연 매출 환산
@@ -128,8 +222,9 @@ claims:
       - 광고 매출을 포함한 수치
     verified_at: 2026-08-24
     note: >-
-      정확한 매출 band는 internal evidence로만 보존한다. 공개 surface에서는 고객 결제가 발생하는
-      유료 제품이라는 사실과 제품·팀 outcome 경계만 사용한다.
+      정확한 매출 band는 internal evidence로만 보존한다. 공개 문안은 월 1천만원 수준까지 허용하며
+      2026년 8월 기준·제품 및 팀 outcome 경계를 유지한다. 2026-09-07 결정으로 첫 성과 제목에도
+      배치할 수 있다. 측정 시점·기여 강도는 바뀌지 않았다.
   - id: thready.ad-revenue-experiment
     statement: 구독 외 수익원 검증을 위해 Thready 공개 화면에 광고 적용을 시작하고 운영 데이터를 수집 중
     strength: led
@@ -339,17 +434,20 @@ claims:
     public: true
     evidence: [evidence/projects/thready.md#rebuild-context-and-decision]
     allowed_copy:
+      - 기존 화면의 API 계약을 유지하며 Thready 백엔드를 병렬 재구축·검증하고 전환을 주도
       - 서비스가 작은 시점에 전면 재구축을 결정하고 반대를 설득 — 하네스를 먼저 세팅하고 AI와 협업해 파악부터 재구축까지 총 36시간(작업 시간 기준)에 완수
       - AI 모듈 확장을 근거로 FastAPI 분리 도입, FE는 Next.js 유지
       - 빠른 기능 검증 중심으로 만들어진 기존 prototype backend를 production 운영 단계에 맞게 재구축
       - 재구축 범위·architecture·검증·cutover는 직접 소유하고 AI를 codebase 파악·기능 inventory·구현에 적극 활용
     forbidden_copy:
       - 36시간 만에 서비스 전체 완성 (달력 기간 오독 표현)
+      - 인계받았다는 배경을 재구축 성과의 제목·도입부로 반복하는 표현 (2026-09-08 편집 제외)
       - 전임 작업 폄하 표현
       - 초기 prototype을 김대정이 직접 또는 바이브 코딩으로 만들었다는 표현
     verified_at: 2026-08-22
   - id: thready.qa-reopen-reduction
     statement: backend cutover 이후 QA 버그 재발률(해결 대비 reopen)이 37%에서 11%로 하락, 재발 발생 일평균 약 94% 감소 (Jira 236건 실측)
+    note: "2026-09-08 사용자 결정으로 현행 공용·mutable 지원본에서는 성과로 선택하지 않는다. 초기 baseline에 좌우되는 QA 감소율 대신 API 계약 보존·재설계·검증·전환을 설명한다. public/allowed_copy는 과거 측정 및 frozen 제출본의 표현 상한을 보존하며, 현행 문안에 재사용하라는 의미가 아니다."
     strength: owned
     confidence: high
     public: true
@@ -363,6 +461,7 @@ claims:
       - 재발 발생 일평균 4.45건 → 0.26건 (v1.0 QA기 4월 대비 7월, Jira 실측)
       - 재구축 뒤 반복 결함이 하루 4.5건에서 0.3건으로
     forbidden_copy:
+      - 현행 공용·mutable 지원본에서 QA 재오픈 비율 또는 재발 발생 일평균 감소를 성과로 재사용 (2026-09-08 편집 제외)
       - 95% 이상 감소 (실측 94.1% 초과 표현)
       - 일평균 절대값을 활동량 보정 없이 backend 단독 효과로 단정 (4월은 QA 집중 초기)
       - 재발 완전 제거
@@ -515,4 +614,3 @@ claims:
       - 이중 과금 발생 건수·차단 건수
       - 결제·정산 시스템 전체 ownership 표현
     verified_at: 2026-09-03
-

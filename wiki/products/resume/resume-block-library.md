@@ -2,7 +2,7 @@
 type: product-reference
 title: Resume Block Library
 description: 이력서·경력기술서·포트폴리오·플랫폼 프로필에 그대로 끼워 넣는 재사용 문안 블록. 블록마다 문제·판단·구현 경계·결과 네 칸, claim ID, 강도, 허용 수치, 사용 preset을 함께 둔다.
-timestamp: 2026-09-02
+timestamp: 2026-09-08
 canonical: true
 derived_from:
   - profile/identity.md
@@ -86,7 +86,7 @@ tags: [resume, blocks, assembly, sot, tailored]
 ### intro.paid-product · 결제 고객이 있는 AI 제품을 아이디어부터 직접 구현·운영
 강도 `led` · claim `thready.product-zero-to-one-contribution`, `thready.frontend-product-delivery`, `thready.subscription-revenue-band`
 
-> 아이디어를 제안하고 초기 프로토타입 이후 제품화를 주도해, 실제 고객이 결제하는 AI 콘텐츠 제품으로 발전시켰다. 그 제품의 FastAPI 백엔드·AI 생성/평가 시스템을 직접 구현하고, 핵심 화면은 coding agent로 완성해 운영한다.
+> 아이디어 제안부터 제품화·출시·운영까지 주도해, 실제 고객이 결제하는 AI 콘텐츠 제품으로 발전시켰다. 그 제품의 FastAPI 백엔드·AI 생성/평가 시스템을 직접 구현하고, 핵심 화면은 coding agent로 완성해 운영한다.
 
 ### intro.team-standard · 모두가 메이커로 제품을 만드는 팀의 조직 표준을 직접 구축
 강도 `owned` · claim `be-template.backend-standard`, `be-template.team-leverage`, `career.coding-agent-usage`
@@ -107,43 +107,57 @@ tags: [resume, blocks, assembly, sot, tailored]
 
 ## 1. 대표 성과 블록 (A~F)
 
-### A · thready.paid-product · 아이디어를 제안하고 초기 프로토타입 이후 제품화를 주도해, 실제 고객이 결제하는 서비스로 발전
-강도 제품화·운영 `led`, backend·AI `owned`, frontend `led`, 매출 `contributed` · claim `thready.product-zero-to-one-contribution`, `thready.threads-content-workflow-automation`, `thready.frontend-product-delivery`, `thready.generation-quality-system`, `thready.subscription-revenue-band` · 허용 수치 **없음** (매출 마스킹) · preset 전체 · inventory `thready.paid-product`
+### A · thready.paid-product · 크리에이터의 Threads 진입 장벽을 낮추는 AI 제품 구현·운영
+강도 제품화·운영 `led`, backend·AI `owned`, frontend `led`, 고객·매출 결과 `contributed` · claim `thready.creator-adoption-context`, `thready.product-zero-to-one-contribution`, `thready.threads-content-workflow-automation`, `thready.frontend-product-delivery`, `thready.generation-quality-system`, `thready.customer-follower-growth`, `thready.subscription-revenue-band` · 수치는 [수치 정책](../../rules/application-copy-standard.md#1-4-수치-정책)에 따라 보조로 선택 · preset 전체 · inventory `thready.paid-product`
 
-- 문제 — Threads 글을 만들 때 참고 자료 가져오기·정리, 글 구성, 1차 검수, 예약·발행 준비를 사람이 매번 반복하고 있었고, 무엇이 좋은 글인지 판단 기준도 감에 의존.
+- 문제 — 이미 Instagram·YouTube·blog를 운영하는 크리에이터는 Threads도 잘 운영하고 싶지만 시간과 경험이 부족하고 플랫폼의 다른 문화·알고리즘에 맞춰 새로 시작하기 어려웠음.
 - 판단 — 기획자 경험으로 고객 불편을 기능 우선순위와 생성 품질 기준으로 구체화하고, AI는 자료 정리·초안·1차 검수를 맡고 최종 수정·예약·발행 판단은 사람이 하도록 제품 흐름을 설계.
 - 구현 경계 — FastAPI 제품 백엔드, typed prompt builder·LLM judge·평가 이력 기반 생성 품질 시스템, 콘텐츠 생성·가져오기·예약·발행·대시보드·관리 화면을 직접 구현.
-- 결과 — 기획·QA·마케팅과 제품 운영을 리드해 팀과 함께 실제 고객이 결제하는 유료 제품으로 출시·운영 중.
+- 결과 — 기획·QA·마케팅과 제품 운영을 리드해 실제 고객이 구독하는 제품으로 출시·운영. 꾸준히 이용한 고객 한 명의 팔로워가 기존 대비 10배 이상 증가한 사례가 있으며, 2026년 8월 기준 팀이 운영한 제품에 월 1천만원 수준의 구독 매출 발생. 두 결과를 최근 특정 기능의 단독 효과로 연결하지 않음.
 
-금지: 초기 prototype 직접 구현, 제품 전체 단독, 매출액·MRR, 매출 단독 인과, PO 공식 직함 단정.
+금지: 초기 prototype 직접 구현, 제품 전체 단독, 정확 매출액·MRR·지속 성장, 고객 전체 평균 10배 성장, 기능별 성장·매출 단독 인과, PO 공식 직함 단정.
 
-### B · thready.backend-rebuild · 인계받은 prototype backend를 프런트엔드를 유지한 채 FastAPI로 병렬 재구축·전환, QA reopen 37%→11%
-강도 `owned` · claim `thready.rebuild-decision-execution`, `thready.backend-rebuild`, `thready.prototype-to-user-operation`, `thready.qa-reopen-reduction`, `thready.release-operation` · 허용 수치 `37% → 11%` 또는 `26%p`, `일평균 4.45건 → 0.26건`, `약 94% 감소` (반드시 하네스·cutover와 같은 자리), `36시간` 조건부 · preset 전체 · inventory `thready.backend-rebuild`
+#### A의 상세 근거 · 생성·승인·발행 연결 (2026-09-08)
 
-- 문제 — 빠른 기능 검증 중심으로 만들어진 초기 backend를 인계받았을 때 도메인 간 의존성이 얽혀 회원 로직 변경이 AI 생성 중단으로 이어지고, 해결된 QA 이슈가 같은 영역에서 다른 형태로 재발.
+- `thready.youtube-source-reuse`: 기존 YouTube 소재의 정기 동기화와 계정별 성공 소비 이력. 외부 조회와 짧은 DB 반영을 분리하고 소재가 소진되면 중단한다. 모든 채널 자동 수집으로 확대하지 않는다.
+- `thready.auto-generation-approval-flow`: 시간표 슬롯별 원장, 생성과 알림의 상태 분리, 초안 생성 후 고객이 수정·예약·발행을 결정하는 흐름. 동시 편성 테스트는 실제 고객 효과 측정이 아니다.
+- `thready.approval-command-consistency`: 수정 revision·승인 결정·발행 job을 한 transaction으로 확정하고 command ID·payload fingerprint로 재전송을 다룬다. 외부 발행까지 한 transaction이라는 뜻은 아니다.
+- `thready.publish-recovery-boundary`: 호출 전 실패와 발행 결과 불명을 나누고 기존 container·이어쓰기 이력을 재사용한다. lease·attempt token으로 오래된 worker 갱신을 통제한다. exactly-once·중복 게시 0건은 주장하지 않는다.
+
+네 claim은 코드·테스트 소스와 local 검증 범위의 최근 구현 근거다. 운영 제품의 전체 이력과 구별하며 구독·팔로워 성과를 소급 귀속하지 않는다.
+
+### B · thready.backend-rebuild · API 계약을 유지한 백엔드 재설계·전환
+강도 `owned` · claim `thready.rebuild-decision-execution`, `thready.backend-rebuild`, `thready.prototype-to-user-operation`, `thready.release-operation` · `36시간` 조건부 · preset 전체 · inventory `thready.backend-rebuild`. QA reopen·재발 감소 수치는 2026-09-08부터 현행 성과에서 비선택.
+
+- 문제 — 회원 기능과 AI 생성 로직의 결합으로 변경 영향이 다른 기능까지 전파되어, 기능 확장을 위한 도메인 경계 재설계 필요.
 - 판단 — 부분 수정을 이어가는 안과 backend만 병렬 재구축하는 안을 비교해, 서비스가 작고 AI 모듈 확장이 예정된 시점이라 재구축을 선택하되 기존 프런트엔드와 릴리스 흐름은 유지하는 범위로 한정.
 - 구현 경계 — 기존 API 동작을 고정할 계약·컴포넌트·운영 흐름 검증 하네스를 먼저 세우고, 새 FastAPI backend를 나란히 만들어 응답을 비교한 뒤 v1.1.0에서 전환. 재구축 범위·architecture·검증·전환 판단은 직접 소유하고 Claude Code·Codex는 codebase 파악·기능 inventory·구현에 활용.
-- 결과 — 같은 기준의 Jira 집계에서 해결된 QA 이슈의 재오픈 비율이 37%에서 11%로, 재발 발생이 하루 4.5건에서 0.3건으로 낮아졌고, v1.3.0부터 실제 사용자가 쓰는 제품의 backend 배포·QA·운영을 계속 전담.
+- 결과 — 기존 화면의 API 계약을 유지하며 FastAPI backend로 전환. 도메인·저장소·트랜잭션 책임을 분리한 구조에서 기능 확장을 이어가고 실제 사용자의 backend 개발·배포·운영을 전담.
 
 금지: 전임 폄하, `36시간` 단독, 95% 이상, backend 단독 인과, QA 총건수 감소.
 경계(면접용): 티켓에 BE/FE 라벨이 없어 backend 단독 효과는 분리 불가. 4월은 QA 집중 초기라 활동량 교란.
 
-### C · centurion.bay-async · 주문·재고 API와 실패 가능한 후속 작업을 worker로 분리하고 상태·재시도·수동 재처리 경계 구축
-강도 `led` · claim `centurion.bay-async-backend`, `centurion.async-migration`, `centurion.test-ci-foundation`, `centurion.msa-platform-context` · 허용 수치 없음 (최대 3회 retry는 mechanism 설명으로 가능) · preset Backend·AI Backend·데이터 · inventory `centurion.async-realtime`
+### C · centurion.bay-async · 주문·재고의 비동기 처리와 수동 복구 경계 구현
+강도 `led` · claim `centurion.bay-async-backend`, `centurion.async-migration`, `centurion.test-ci-foundation`, `centurion.msa-platform-context` · 허용 수치 없음 · preset Backend·AI Backend·데이터 · inventory `centurion.async-realtime`
 
 - 문제 — 피부과 CRM의 자동 발주에서 주문 생성 뒤 공급사·병원 알림이 외부 연동에서 실패할 수 있어, 실패가 주문 상태와 운영자의 재처리 흐름에 어떻게 남을지가 설계 과제.
 - 판단 — 실패 가능한 작업은 제품 시작 시점부터 API 요청 밖 worker 경계에서 처리하기로 하고(Memento에서 결제 실패를 수습한 경험의 전이), FastAPI를 async로 운용하는 상황에서 Celery가 asyncio 실행 모델을 공식 지원하지 않아 TaskIQ·RabbitMQ로 전환.
-- 구현 경계 — 알림 worker의 `PENDING → SENDING → SUCCESS/FAILED` 상태, 최대 3회 재시도, 최종 실패 기록, 전용 API의 조건 검증 후 수동 재발송 경계를 구현하고, 워커 이미지를 API와 분리해 배포 단위를 나눔. API test infrastructure·Docker CI·온보딩 문서로 API·broker·worker 흐름을 재현 가능하게 구성.
-- 결과 — 자동 재시도가 끝난 뒤에도 원인과 상태가 남아 운영자가 다시 처리할 수 있고, 신규 담당자가 같은 환경을 재현할 수 있는 개발 기반 확보.
+- 구현 경계 — 알림 상태·실패 기록과 전용 API의 조건 검증 후 수동 재발송을 구현하고 워커 이미지를 API와 분리. API test infrastructure·Docker CI·온보딩 문서로 개발 환경을 재현할 기준을 마련.
+- 결과 — 운영자가 기록을 확인하고 조건에 맞는 작업을 재처리할 수 있는 경계 확보. 2026-09-08 정적 재검토에서 자동 재시도 연결과 실패 후 상태 수렴은 확인되지 않았으므로 성공 보장으로 쓰지 않음.
 
-금지: 비동기 최초 도입, 사후 대응 서술, 성능·지연 수치, Centurion 전체 단독.
+금지: 비동기 최초 도입, 사후 대응 서술, 성능·지연 수치, 제품군 전체 단독, 자동 재시도 종료·최종 수렴 보장, 주문 commit 후 enqueue 보장, 외부 연동 실패에도 핵심 업무 반드시 완료.
+
+#### C의 인접 근거 · 다중 서비스 세션 v2 (2026-09-08)
+
+claim `centurion.sso-session` · 강도 Redis 세션 v2 영역 `led`.
+사용자·서비스·기기별 세션을 구분하고 중복 로그인·계정 전환·그룹 로그아웃 분기를 구현했다. JTI 소유권으로 로그아웃 대상을 확인해 교체된 세션을 오래된 토큰이 삭제하지 않도록 보호한다. SSO 전체 최초 구축이나 검사·삭제의 원자성, 모든 race 제거로 확대하지 않는다.
 
 ### D · thready.ai-boundary · 제품 원장과 AI 실행 상태를 분리하고 STG 이관·Outbox 전달 정합성 검증
-강도 `owned` · claim `thready.ai-service-boundary`, `thready.ai-service-migration`, `thready.ai-replica-outbox` · 허용 수치 `2,616 · 795 · 7,111` (강조 없이 검증 절차의 근거로) · preset Backend·AI Backend·데이터 · inventory `thready.ai-runtime`
+강도 `owned` · claim `thready.ai-service-boundary`, `thready.ai-service-migration`, `thready.ai-replica-outbox` · 내부 이관 건수는 공개 비선택, 절차로 서술 · preset Backend·AI Backend·데이터 · inventory `thready.ai-runtime`
 
 - 문제 — 제품 정책·원장과 AI 생성 lifecycle·실행 상태가 한 backend·DB에 있어 AI 확장과 장애가 제품 원장에 결합되고, 분리 뒤에는 원장 변경만 성공하고 전달이 사라지거나 오래된 전달이 늦게 도착해 최신 상태를 덮는 failure mode가 생김.
 - 판단 — DB를 공유하지 않고 AI 실행부를 독립 FastAPI application·DB로 분리해 authenticated HTTP 계약으로만 연결하고, 전달은 원장 변경과 같은 transaction에 기록하는 Transactional Outbox로 분리.
-- 구현 경계 — lease 기반 claim·attempt token·retry·delivery version fence·멱등 consumer·최대 재시도 뒤 terminal failure 보존으로 지연·중복·역순 전달 통제. STG 실데이터 생성 이력 2,616건·품질 기록 795건·실행 추적 7,111건을 parent→child 순서로 이관하고 local rehearsal·행 수·MD5 fingerprint·FK orphan 0건·post-deploy 생성 API E2E gate로 검증.
+- 구현 경계 — lease 기반 점유·attempt token·retry·delivery version fence·멱등 consumer·최대 재시도 뒤 terminal failure 보존으로 지연·중복·역순 전달 통제. STG 실데이터를 parent→child 순서로 이관하고 local rehearsal·행 수·데이터 지문·참조 관계·post-deploy 생성 API E2E gate로 검증.
 - 결과 — 독립 AI application·DB를 STG·Prod에서 운영 중이며, AI 장애나 역순 전달이 최신 원장 상태를 덮지 않는 복구 경계 확보.
 
 금지: 무중단·유실 0건·exactly-once, Prod migration 완료·Prod rehearsal.
@@ -332,9 +346,9 @@ claim `credentials.page-output-patent`, `credentials.ces-2024`, `credentials.ai-
 
 | 블록 | 가장 센 허용 표현 (그대로 써도 되는 것) | 근거 claim | 승격하면 더 세지는 것 (evidence 실측, claim 미반영) |
 | --- | --- | --- | --- |
-| A Thready 제품화 | `아이디어를 제안하고 초기 프로토타입 이후 제품화를 주도해, 실제 고객이 결제하는 서비스로 발전` · `사람이 반복하던 Threads 콘텐츠 제작 업무를 자료 정리→초안→1차 검수→예약·발행 준비의 제품 흐름으로 연결` | `product-zero-to-one-contribution`, `threads-content-workflow-automation` | 유료 운영 기간(v1.3.0 이후 개월 수), 운영 고객 계정 수 — evidence 없음, 확보 시 규모 신호 |
-| B 재구축 | **`재발 발생 일평균 약 94% 감소`** · `재발률 37% → 11%` · `4월 대비 약 70% 하락` · `잔여 이슈도 원인 영역이 파악된 상태로 관리` · `하네스를 먼저 세팅하고 AI와 협업해 파악부터 재구축까지 총 36시간(작업 시간)` | `qa-reopen-reduction`, `rebuild-decision-execution` | 재발 **일평균 4.45건 → 0.26건** (Jira 실측, thready.md QA Reopen Signal) — 절대값 병기 승격 후보. 합류 4/14 → cutover 6/5 → 실사용 v1.3.0 timeline |
-| C BAY 비동기 | `실패 가능한 작업을 API 요청과 분리된 worker 경계에서 처리` · `발송 결과를 주문 상태·자동 retry·최종 실패·수동 재발송과 연결` · `async FastAPI 실행 모델 정합성을 기준으로 TaskIQ 선택` | `bay-async-backend`, `async-migration` | 없음 (성능·지연 측정값 부재). 후킹은 판단 서사(Celery가 asyncio 실행 모델 미지원 → 전환)로 |
+| A Thready 제품화 | `크리에이터의 Threads 진입 장벽을 낮추는 AI 제품 구현·운영` · `소재 활용→생성→고객 승인→예약·발행 흐름 구현` | `creator-adoption-context`, `product-zero-to-one-contribution`, `auto-generation-approval-flow` | 최근 기능별 실제 이용·시간 절감 측정은 없음. 고객 성장·팀 매출은 별도 결과로만 사용 |
+| B 재구축 | `기존 화면의 API 계약을 유지하며 백엔드 병렬 재구축·검증·전환` · `도메인·저장소·트랜잭션 책임 분리` · `실사용 backend 개발·배포·운영 전담` | `rebuild-decision-execution`, `backend-rebuild`, `release-operation` | QA 재오픈·재발 감소 측정은 내부 이력으로만 보존. 인계 후 개선 서사와 함께 현행 성과에서 제외 (2026-09-08) |
+| C 주문·재고 비동기 | `외부 연동을 별도 worker에서 처리` · `알림 상태·실패 기록과 조건 검증 후 수동 재발송` · `async FastAPI 실행 모델 정합성을 기준으로 TaskIQ 선택` | `bay-async-backend`, `async-migration` | 자동 재시도·최종 수렴은 현재 구현의 추가 검증이 필요하며 문안으로 보강하지 않음 |
 | D AI 분리·Outbox | `AI 장애나 역순 전달이 최신 원장 상태를 덮지 않도록` · `lease 기반 재점유·delivery version·attempt token` · `STG 생성 이력 2,616건·품질 795건·trace 7,111건 이관, MD5 fingerprint·FK orphan 검증` · `배포 성공과 기능 정상 동작을 분리해 post-deploy E2E gate` | `ai-replica-outbox`, `ai-service-migration` | `FK orphan 0건` 명시 (evidence에 있음, allowed_copy는 "FK orphan 검증"까지) · `workflow·health 성공인데 생성 실패한 사례를 계기로 gate 수립` (evidence incident) |
 | E Template | **`백엔드를 모르는 기획·QA·디자인 담당자가 coding agent와 template으로 운영 제품 구현`** · `full template 신규 프로그램 STG QA에서 session 미반납·pool 고갈 재관측 없음` · `backend는 결과 피드백과 배포만 지원하는 수준으로 개입 축소` · `10명 안팎·백엔드 2~3명·다수 제품` | `team-leverage` | 사내 프로그램 **4개**, 엔지니어 8명(BE 3·FE 5)·제품 12개 — 정확 수치는 forbidden. 승격 대상 아님, 면접 구두용 |
 | F NEXUS | `client가 보내는 header가 아니라 server auth state가 데이터 접근 범위를 결정` · `본사 미선택 409·권한 밖 403` · `예약률 개선을 통해 고객사 매출 성과에 기여` | `branch-access-boundary`, `hospital-operations-revenue-contribution` | 커밋 **734/881(83%)** — 내부 근거, 공개 금지 유지. 예약률 전후 수치는 없음(2026-09-02) — `기여`까지가 상한으로 고정 |
@@ -356,7 +370,7 @@ claim `credentials.page-output-patent`, `credentials.ces-2024`, `credentials.ai-
 
 | 대상 claim | 추가할 allowed_copy | 근거 |
 | --- | --- | --- |
-| `thready.qa-reopen-reduction` | **반영** `재발 발생 일평균 4.45건 → 0.26건`, `하루 4.5건에서 0.3건으로` | thready.md QA Reopen Signal, Jira 실측 2026-07-19 |
+| `thready.qa-reopen-reduction` | 당시 allowed_copy 반영 이력은 보존하되 **2026-09-08부터 현행 성과 비선택** | thready.md QA Reopen Signal, Jira 실측 및 2026-09-08 사용자 선택 |
 | `thready.ai-service-migration` | **반영** `FK orphan 0건·MD5 일치`, `health 성공·생성 실패 사례를 계기로 gate 수립` | thready.md AI Application Split Migration |
 | `thready.conversational-editorial-agent-prototype` | **반영** `test 679 passed·Ruff 통과` | thready-quality-lab.md Verification |
 | `career.sellercanvas-vision-model-development` | **public 등록** `Vision AI 기반 의류 이미지 분석 모델 개발` (AI Engineer 기간). "PM 재직 중 모델 개발"은 철회 | previous-career.md 2026-09-02 user-confirmed |

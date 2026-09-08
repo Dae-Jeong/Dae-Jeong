@@ -2,7 +2,7 @@
 type: profile
 title: Career
 description: Canonical career timeline and role evolution.
-timestamp: 2026-08-20
+timestamp: 2026-09-08
 tags: [career, timeline, role]
 ---
 
@@ -45,6 +45,12 @@ tags: [career, timeline, role]
 - 참고: Backend Engineer 직무 구간만 합산하면 28개월(2년 4개월)이다. 회사별 맞춤 지원본에는 한국식 연차인 **`Backend Engineer 3년차`**까지 표기할 수 있다. `Backend 경력 3년 이상 보유` 또는 `Backend 4년`으로 확대하지 않는다.
 - 시간이 지나면 값이 변한다. **분기마다 재산정**하고 이 표를 갱신한다.
 - claim: `career.tenure`
+
+## Military Service
+
+- 2017.08–2019.05 · 대한민국 육군 제3군단 · 통신병과 · 병장 만기전역.
+- 직장 경력과 분리하며 위 실무 연차에 합산하지 않는다.
+- User-confirmed (2026-09-08). [복무 근거](../evidence/projects/previous-career.md#military-service), claim `career.military-service`.
 
 ## Role Evolution
 
