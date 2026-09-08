@@ -47,7 +47,8 @@ for (const [route, file] of (process.argv.includes("--copy-only") ? [] : [["resu
         duplicateIds: new Set(ids).size !== ids.length,
         headings: [...doc.querySelectorAll('h2')].map(e => e.textContent),
         brokenAnchors: [...doc.querySelectorAll('a[href^="#"]')].filter(a => !document.getElementById(a.hash.slice(1))).map(a => a.hash),
-        language: doc.lang, template: doc.dataset.cvTemplate
+        language: doc.lang, template: doc.dataset.cvTemplate,
+        templateCreditVisible: /Layout adapted from|Jake Gutierrez/.test(document.body.innerText)
       };
     })()`);
     assert.equal(state.bodyWidth, width, `${route}: body overflow ${JSON.stringify(state)}`);
@@ -58,8 +59,11 @@ for (const [route, file] of (process.argv.includes("--copy-only") ? [] : [["resu
     if (route === "cv") {
       assert.equal(state.language, "en");
       assert.equal(state.template, "jake");
+      assert.equal(state.templateCreditVisible, false, "Template credit belongs in source, not the CV presentation");
       assert(!/[\uac00-\ud7a3]/u.test(state.text), "English CV contains Korean text");
       assert.equal(state.headings[0], "Experience");
+      assert(state.headings.includes("Military Service") && state.headings.includes("Education"));
+      assert.equal(state.headings.indexOf("Military Service") + 1, state.headings.indexOf("Education"), "Military Service belongs immediately before Education");
     }
     delete state.text;
     delete state.claims;

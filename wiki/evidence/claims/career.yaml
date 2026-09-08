@@ -2,22 +2,26 @@ schema_version: 1
 project: career
 claims:
   - id: career.military-service
-    statement: 2017.08부터 2019.05까지 대한민국 육군 제3군단 통신병과로 복무하고 병장 만기전역
+    statement: 2017.08부터 2019.05까지 대한민국 육군 제3군단 무선통신병으로 군 통신체계를 구축·운영·관리하고 병장 만기전역. 전시 부여 임무는 안테나 구축·통신 노드 운용을 통한 군 통신망 운용·관리
     strength: contributed
     confidence: medium
     public: true
     evidence: [evidence/projects/previous-career.md#military-service]
     allowed_copy:
       - 대한민국 육군 제3군단 · 통신병과 · 병장 만기전역 · 2017.08–2019.05
+      - 무선통신병으로 군 통신체계 구축·운영·관리. 전시 부여 임무는 통신 안테나 구축·통신 노드 운용을 통한 군 통신망 운용·관리
       - Republic of Korea Army · III Corps
-      - Signals | Sergeant (rank at discharge)
+      - Radio Communications Operator | Discharged as Sergeant
+      - Set up, operated, and maintained military radio communications infrastructure. Assigned wartime duties included antenna installation and communications-node operation to establish and sustain military communications networks.
       - Completed full-term military service.
       - Aug 2017 - May 2019
     forbidden_copy:
       - 군 복무를 소프트웨어 실무 연차에 산입
-      - 확인되지 않은 분대장·지휘·통신망 구축·보안 인가·훈련 성과
+      - 확인되지 않은 분대장·지휘·장비 종류·프로토콜·망 규모·보안 인가·훈련 성과
+      - 전시 부여 임무를 실제 전쟁 참가·전투 수행 이력으로 표현
+      - 국방 통신체계 전체 설계·총괄
     verified_at: 2026-09-08
-    note: 사용자 직접 확인과 공개 기재 요청. 복무 증명서 별도 대조 없음. 계급은 전역 시점이며 전체 기간에 병장이었다고 쓰지 않는다.
+    note: 사용자 직접 확인과 공개 기재 요청. 같은 날 후속으로 무선통신병 업무와 전시 부여 임무를 확인했다. 복무 증명서 별도 대조 없음. 계급은 전역 시점이며 전체 기간에 병장이었다고 쓰지 않는다.
   - id: career.medisolve-role-evolution
     statement: MediSolve AI에 Backend Engineer로 합류해 Tech Lead, PO, AI agent 관련 역할을 병행
     strength: led
@@ -104,23 +108,26 @@ claims:
       - 프로토타입 단계에서 v1.0 제품까지 0→1 구간을 PM으로 통과
       - 프로토타입에서 v1.0까지 제품 흐름·기능 범위·출시 우선순위를 정한 PM 메인 역할로 0→1 구간을 이끌었던 경험
       - 무엇을 만들지 정하는 일부터 제품이 굴러가는 구조를 세우는 일까지 담당
+      - 상세페이지 제작 흐름을 재설계하고 관련 특허 「페이지 출력 방법」에 기여
+      - Led SellerCanvas from prototype to v1.0, defining product workflows, feature scope, and release priorities
+      - Redesigned the product-page creation workflow and contributed to the related patent, METHOD FOR DISPLAYING PAGE
     forbidden_copy:
       - 제품 전체 단독 기획·총괄
       - 창업자·설립 시점부터 참여 (합류 시점은 2021.12, AI Engineer다)
       - 0에서 혼자 만들었다는 표현 (프로토타입이 선행했고 PM은 2022.10부터다)
       - 매출·전환율 등 미검증 수치
       - 특허 단독 발명 표현
-    verified_at: 2026-08-12
+    verified_at: 2026-09-08
     note: >-
       2026-08-12 user-confirmed: "셀러캔버스라는 시스템을 내가 처음부터 기획했고 zero to one을
       경험하는 과정을 거쳤다". 0→1 표현을 해금하되 단독·총괄 표현 금지는 유지한다 —
       합류 시점(2021.12)에 프로토타입이 존재했고 PM 전환은 2022.10이다.
       "0→1 구간을 PM으로 통과"가 사실과 강도 양쪽을 만족하는 표현이다.
-    note: >-
       2026-08-12 user-confirmed: 특허 「페이지 출력 방법」은 SellerCanvas 상세페이지
       작업에서 나온 것이 맞다 — "특허와 SellerCanvas의 연결 (확정 전)" 금지를 해제한다.
       구버전 원티드 이력서의 "[PM] 상세페이지 제작 관련 특허 출원" 자기 기록과 정합.
       단독 발명 표현 금지는 유지.
+      2026-09-08: 기존 근거를 공용 CV·이력서에 더 구체적으로 드러내는 선별 결정과 영문 문안을 반영했다. 새 사실·정량의 승격은 아니다.
   - id: career.sellercanvas-enterprise-poc
     statement: SellerCanvas Product Manager 메인 역할로 외부 패션 브랜드 PoC 진행
     strength: led
@@ -130,6 +137,8 @@ claims:
     allowed_copy:
       - SellerCanvas Product Manager로 외부 패션 브랜드 PoC 진행
       - SellerCanvas 프로토타입·v1.0 제품을 기업 PoC로 연결
+      - 외부 패션 브랜드의 비즈니스 요구사항을 기술 스펙으로 구체화하고 기획·일정·기술 검증 범위를 조율해 기업 PoC 진행
+      - Translated business requirements into technical specifications for enterprise fashion-brand PoCs, coordinating scope, schedules, and technical validation
     forbidden_copy:
       - 고객 검증 완료
       - 상용 계약·매출 달성

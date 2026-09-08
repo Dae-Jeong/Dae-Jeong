@@ -165,12 +165,14 @@ blocks:
       - career.ai-pm-backend-continuity
       - career.sellercanvas-product-system
       - career.sellercanvas-enterprise-poc
-    focus: "Vision AI에서 PM과 backend로 확장하며 제품 시스템을 만든 경력"
+      - credentials.page-output-patent
+    focus: "PM 주 역할의 v1.0 제품화 판단, 기업 요구의 기술 스펙화·PoC 조율, 상세페이지 제작 흐름 재설계·특허 기여"
     use:
       resume: summary
       career-description: include
       portfolio: exclude
       cv: include
+    boundary: "공용 이력서·CV는 PM의 구체적인 기여를 분리해 설명하고 직무 이동은 배경으로 유지한다. 역할별 동일 분량·과거 정량·미승격 backend 구현을 추가하지 않는다."
 
   - id: tellingme.personal-backend
     project: career
@@ -188,13 +190,13 @@ blocks:
     project: career
     claim_ids:
       - career.military-service
-    focus: "사용자 확인 병역의 부대·병과·기간·전역 계급·만기 복무 완료"
+    focus: "사용자 확인 병역 이력과 무선통신체계 구축·운영·관리 업무"
     use:
       resume: exclude
       career-description: exclude
       portfolio: exclude
       cv: include
-    boundary: "별도 Military Service 항목. 소프트웨어 실무 연차에 합산하지 않는다."
+    boundary: "Education 바로 앞 별도 Military Service 항목. 소프트웨어 실무 연차에 합산하지 않으며 전시 안테나 구축·통신 노드 운용은 부여 임무로 구분한다."
 
   - id: credentials.complete
     project: credentials

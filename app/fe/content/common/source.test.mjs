@@ -50,11 +50,17 @@ test("the common CV is English, Jake-based, and keeps dated employment separate 
   assert(projects.children.some((entry) => entry.title === "TellingMe"));
   const military = data.sections.filter((section) => section.title === "Military Service");
   assert.equal(military.length, 1);
+  const headings = data.sections.map((section) => section.title);
+  assert.equal(headings.indexOf("Military Service") + 1, headings.indexOf("Education"));
   assert.equal(military[0].children.length, 1);
   const service = military[0].children[0];
   assert.equal(service.title, "Republic of Korea Army · III Corps");
   assert.equal(service.period, "Aug 2017 - May 2019");
-  assert.deepEqual(service.blocks.map((block) => block.text), ["Signals | Sergeant (rank at discharge)", "Completed full-term military service."]);
+  assert.deepEqual(service.blocks.map((block) => block.text), [
+    "Radio Communications Operator | Discharged as Sergeant",
+    "Set up, operated, and maintained military radio communications infrastructure. Assigned wartime duties included antenna installation and communications-node operation to establish and sustain military communications networks.",
+    "Completed full-term military service.",
+  ]);
   assert(service.blocks.every((block) => block.claims.includes("career.military-service")));
   const employment = data.sections[0];
   assert(!JSON.stringify(employment).includes("career.military-service"));
@@ -69,4 +75,43 @@ test("the common CV is English, Jake-based, and keeps dated employment separate 
     Object.values(value).forEach(inspect);
   }
   inspect(data);
+});
+
+test("the common resume and CV retain concrete STUDIO LAB PM contributions", () => {
+  for (const name of ["resume", "cv"]) {
+    const data = JSON.parse(readFileSync(new URL(`./${name}.json`, import.meta.url), "utf8"));
+    const entries = [];
+    function findStudioLab(value) {
+      if (Array.isArray(value)) { value.forEach(findStudioLab); return; }
+      if (!value || typeof value !== "object") return;
+      if (value.title?.startsWith("STUDIO LAB")) entries.push(value);
+      else Object.values(value).forEach(findStudioLab);
+    }
+    findStudioLab(data);
+    assert.equal(entries.length, 1, `${name}: one STUDIO LAB employment entry`);
+    const blocks = entries[0].blocks;
+    const claims = new Set(blocks.flatMap((block) => block.claims));
+    for (const claim of ["career.sellercanvas-product-system", "career.sellercanvas-enterprise-poc", "credentials.page-output-patent"]) {
+      assert(claims.has(claim), `${name}: missing STUDIO LAB contribution ${claim}`);
+    }
+    const product = blocks.find((block) => block.claims.includes("career.sellercanvas-product-system") && block.text.includes("v1.0"));
+    const poc = blocks.find((block) => block.claims.includes("career.sellercanvas-enterprise-poc"));
+    const patent = blocks.find((block) => block.claims.includes("credentials.page-output-patent"));
+    assert(product && poc && patent);
+    assert.notEqual(product, poc, `${name}: PoC work should not collapse into the productization summary`);
+    assert.notEqual(poc, patent, `${name}: workflow and patent contribution stays distinct`);
+    assert.match(poc.text, /기술 스펙|technical specifications/);
+    assert.match(poc.text, /기술 검증|technical validation/);
+    assert.match(patent.text, /제작 흐름|creation workflow/);
+    assert(!claims.has("career.sellercanvas-nestjs-template"), "Do not fill space with an unapproved backend claim");
+  }
+});
+
+test("Jake attribution stays in the source and license, outside the CV presentation", () => {
+  const view = readFileSync(new URL("../../app/cv/jake-cv.tsx", import.meta.url), "utf8");
+  const license = readFileSync(new URL("../../../../tools/templates/jake-cv/LICENSE", import.meta.url), "utf8");
+  assert(!view.includes("Layout adapted from") && !view.includes("styles.templateNote"));
+  assert(view.includes("tools/templates/jake-cv/"));
+  assert(license.includes("Copyright (c) 2020 Jake Gutierrez"));
+  assert(license.includes("Permission is hereby granted"));
 });

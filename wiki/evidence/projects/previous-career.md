@@ -12,8 +12,9 @@ tags: [career, credentials, product, ux, tellingme, evidence]
 ## Military Service
 
 - User-confirmed (2026-09-08): 2017.08부터 2019.05까지 대한민국 육군 제3군단에서 통신병과로 복무하고 병장 만기전역했다. 사용자가 이력 기재를 요청했다.
-- 공개 범위: 부대·병과·복무 기간·전역 계급·만기 복무 완료. 복무 증명서는 별도로 대조하지 않았다. 구체 임무·장비·지휘 인원·성과·보안 인가 여부는 확인되지 않았으며 기재하지 않는다.
-- 영문 문안: `Republic of Korea Army · III Corps`, `Signals | Sergeant (rank at discharge)`, `Completed full-term military service.` 병장 계급을 미군 NCO 직책이나 분대장 임무로 확대하지 않는다.
+- User-confirmed (2026-09-08 후속): 무선통신병으로 군 통신체계를 구축·운영·관리했다. 전쟁 발발 시 통신 안테나 구축과 통신 노드 운용을 통해 국군 통신망을 운용·관리하는 임무를 담당했다. 이는 전시 부여 임무이며 실제 전쟁 참가 이력을 뜻하지 않는다.
+- 공개 범위: 부대·병과·복무 기간·전역 계급·만기 복무 완료와 위 일반화한 담당 업무. 복무 증명서는 별도로 대조하지 않았다. 장비 종류·프로토콜·망 규모·지휘 인원·정량 성과·보안 인가 여부는 확인되지 않았으며 기재하지 않는다. 국방 통신체계 전체를 설계·총괄했다고 확대하지 않는다.
+- 영문 문안: `Republic of Korea Army · III Corps`, `Radio Communications Operator | Discharged as Sergeant`, `Set up, operated, and maintained military radio communications infrastructure. Assigned wartime duties included antenna installation and communications-node operation to establish and sustain military communications networks.`, `Completed full-term military service.` 병장 계급을 미군 NCO 직책이나 분대장 임무로 확대하지 않는다.
 - 번역 참고 (2026-09-08): [미 육군 군사사 자료의 ROK III Corps 표기](https://history.army.mil/Research/Reference-Topics/Army-Campaigns/Brief-Summaries/Korean-War/), [병장 영문 사전 표기](https://en.wiktionary.org/wiki/%EB%B3%91%EC%9E%A5). 번역 참고이며 개인 복무 이력의 근거는 사용자 확인이다.
 - 직장·소프트웨어 실무 연차와 분리한다. Claim: `career.military-service`.
 
@@ -63,6 +64,7 @@ tags: [career, credentials, product, ux, tellingme, evidence]
   표현은 "그 과정에서"로 잇는다 — 특허가 POC 산출물이라고 단정하지 않고 사용자가 말한 시간 순서를 그대로 유지한다.
   "운이 좋게도" 같은 겸양은 공개 문안에 쓰지 않는다 (성과를 스스로 깎는다).
 - Contribution boundary: PM 메인 시기를 backend 깊이로 포장하지 않는다. 제품 전체 단독 기획·총괄로 표현하지 않는다.
+- User-confirmed (2026-09-08, 문안 선별 결정): STUDIO LAB의 PM 경험이 직무 이동·일반 업무 한 줄로 축약되지 않도록 공용 CV와 이력서에서 보강한다. 기존 확인 범위인 v1.0 제품화 판단, 기업 요구의 기술 스펙화·PoC 기획·일정·기술 검증 조율, 상세페이지 제작 흐름 재설계·특허 기여를 선택한다. 새 성과 수치나 고객사 실명, 미승격 backend 구현은 추가하지 않는다.
 
 ### 재직 기간 확정 (2026-08-13 user-confirmed)
 

@@ -16,7 +16,7 @@ tags: [public-safety, privacy, resume]
 - 공개 GitHub 계정 `github.com/Dae-Jeong`
 - 시 단위 거주지
 - claim registry에서 `public: true`인 표현
-- 사용자가 공개 기재를 요청한 병역의 기본 이력 (`career.military-service`의 부대·병과·기간·전역 계급·만기 복무 완료 범위)
+- 사용자가 공개 기재를 요청한 병역의 기본 이력과 일반화한 담당 업무 (`career.military-service`의 부대·병과·기간·전역 계급·만기 복무 완료·무선통신체계 구축·운영·관리 범위. 전시 안테나 구축·통신 노드 운용은 부여 임무로 구분하며 미확인 장비·망 규모·보안 인가 등은 제외)
 - claim registry로 승격된 범위화(banded) 운영 수치 — 예: `월 수만 건 규모`, `1% 미만`
 
 ## Client Masking

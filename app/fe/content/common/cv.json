@@ -189,10 +189,24 @@
             },
             {
               "kind": "bullet",
-              "text": "**Product Manager (Oct 2022 - Sep 2023):** Defined product workflows, scope, and release priorities from prototype to v1.0 and conducted enterprise proofs of concept.",
+              "text": "**Product Manager (Oct 2022 - Sep 2023):** Led SellerCanvas from prototype to v1.0, defining product workflows, feature scope, and release priorities.",
+              "claims": [
+                "career.sellercanvas-product-system"
+              ]
+            },
+            {
+              "kind": "bullet",
+              "text": "Translated business requirements into technical specifications for enterprise fashion-brand PoCs, coordinating scope, schedules, and technical validation.",
+              "claims": [
+                "career.sellercanvas-enterprise-poc"
+              ]
+            },
+            {
+              "kind": "bullet",
+              "text": "Redesigned the product-page creation workflow and contributed to the related patent, METHOD FOR DISPLAYING PAGE.",
               "claims": [
                 "career.sellercanvas-product-system",
-                "career.sellercanvas-enterprise-poc"
+                "credentials.page-output-patent"
               ]
             },
             {
@@ -310,6 +324,36 @@
       "children": []
     },
     {
+      "title": "Military Service",
+      "level": 2,
+      "blocks": [],
+      "children": [
+        {
+          "title": "Republic of Korea Army · III Corps",
+          "period": "Aug 2017 - May 2019",
+          "level": 3,
+          "blocks": [
+            {
+              "kind": "paragraph",
+              "text": "Radio Communications Operator | Discharged as Sergeant",
+              "claims": ["career.military-service"]
+            },
+            {
+              "kind": "bullet",
+              "text": "Set up, operated, and maintained military radio communications infrastructure. Assigned wartime duties included antenna installation and communications-node operation to establish and sustain military communications networks.",
+              "claims": ["career.military-service"]
+            },
+            {
+              "kind": "bullet",
+              "text": "Completed full-term military service.",
+              "claims": ["career.military-service"]
+            }
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
       "title": "Education",
       "level": 2,
       "blocks": [],
@@ -325,31 +369,6 @@
               "claims": [
                 "credentials.education"
               ]
-            }
-          ],
-          "children": []
-        }
-      ]
-    },
-    {
-      "title": "Military Service",
-      "level": 2,
-      "blocks": [],
-      "children": [
-        {
-          "title": "Republic of Korea Army · III Corps",
-          "period": "Aug 2017 - May 2019",
-          "level": 3,
-          "blocks": [
-            {
-              "kind": "paragraph",
-              "text": "Signals | Sergeant (rank at discharge)",
-              "claims": ["career.military-service"]
-            },
-            {
-              "kind": "bullet",
-              "text": "Completed full-term military service.",
-              "claims": ["career.military-service"]
             }
           ],
           "children": []

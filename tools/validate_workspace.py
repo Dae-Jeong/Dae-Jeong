@@ -380,6 +380,9 @@ def _validate_common_document_claims(root: Path) -> list[str]:
             military_claim = "career.military-service"
             if len(military) != 1 or military_claim not in _json_copy_claims(military):
                 errors.append("common CV: gate 35 requires a claim-backed Military Service section")
+            headings = [section.get("title") for section in data.get("sections", [])]
+            if "Military Service" not in headings or "Education" not in headings or headings.index("Military Service") + 1 != headings.index("Education"):
+                errors.append("common CV: gate 35 requires Military Service immediately before Education")
             outside_military = [data.get("header", []), *[section for section in data.get("sections", []) if section.get("title") != "Military Service"]]
             if military_claim in _json_copy_claims(outside_military):
                 errors.append("common CV: gate 35 keeps military service separate from employment")

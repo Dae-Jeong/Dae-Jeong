@@ -45,8 +45,5 @@ export function JakeCv() {
       </header>
       {document.sections.map((section, i) => <Section key={section.title} section={section} id={`cv-${i + 1}`} />)}
     </main>
-    <aside className={styles.templateNote} lang="en">
-      Layout adapted from <a href="https://www.overleaf.com/latex/templates/jakes-resume/syzfjbzwjncs">Jake’s Resume</a> by Jake Gutierrez.
-    </aside>
   </ResumePageShell>;
 }

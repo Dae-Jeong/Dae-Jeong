@@ -330,10 +330,23 @@
             },
             {
               "kind": "paragraph",
-              "text": "생성형 AI 커머스 제품 SellerCanvas의 PM으로 프로토타입부터 v1.0까지 제품 흐름·기능 범위·출시 우선순위를 정하고 기업 PoC까지 연결했습니다. 상세페이지 제작 흐름의 재설계는 특허 「페이지 출력 방법」으로 이어졌고, 제품은 CES 2024 Best of Innovation AI 부문을 수상했습니다.",
+              "text": "생성형 AI 커머스 제품 SellerCanvas의 PM으로 프로토타입에서 v1.0까지 제품화를 이끌며 제품 흐름·기능 범위·출시 우선순위를 정했습니다.",
+              "claims": [
+                "career.sellercanvas-product-system"
+              ]
+            },
+            {
+              "kind": "paragraph",
+              "text": "외부 패션 브랜드의 비즈니스 요구사항을 기술 스펙으로 구체화하고, 기획·일정·기술 검증 범위를 조율해 기업 PoC를 진행했습니다.",
+              "claims": [
+                "career.sellercanvas-enterprise-poc"
+              ]
+            },
+            {
+              "kind": "paragraph",
+              "text": "상세페이지 제작 흐름을 재설계하고 관련 특허 「페이지 출력 방법」에 기여했습니다. 제품은 CES 2024 Best of Innovation AI 부문을 수상했습니다.",
               "claims": [
                 "career.sellercanvas-product-system",
-                "career.sellercanvas-enterprise-poc",
                 "credentials.page-output-patent",
                 "credentials.ces-2024"
               ]

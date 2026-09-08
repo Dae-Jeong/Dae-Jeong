@@ -67,9 +67,11 @@ User-confirmed (2026-09-08): 공용 CV는 해외 지원용 영어로 작성하�
 - 양식 출처: [Jake’s Resume on Overleaf](https://www.overleaf.com/latex/templates/jakes-resume/syzfjbzwjncs), [author repository](https://github.com/jakegut/resume). MIT license를 `tools/templates/jake-cv/LICENSE`에 보존한다.
 - 원본의 이름 헤더·흑백·단일 컬럼·section rule·기간 우측 정렬을 적용한다. 현재 경력에 맞춰 Experience를 먼저 두고, 원본 Letter를 A4로 조정하며 복수 페이지를 허용한다.
 - 웹: `app/fe/app/cv/jake-cv.tsx`와 `jake.module.css`. 영문 이름이 문서 제목이며, 공용 3종의 제목·레이아웃에는 전파하지 않는다.
+- 2026-09-08 후속 요청: 템플릿 출처 안내는 CV 웹 화면에 노출하지 않는다. 작성자·출처는 renderer 주석과 이 계약에, MIT 저작권·허가 고지는 `tools/templates/jake-cv/LICENSE`에 보존한다. 기존 PDF에는 해당 안내 영역이 없으므로 이 화면 수정만으로 PDF를 재생성하지 않는다.
 - PDF: `tools/templates/jake-cv/template.tex`는 이름·성과를 소유하지 않는 레이아웃이다. `node tools/export_cv.mjs`가 현재 app JSON에서 LaTeX와 검토용 PDF를 생성한다. XeTeX 기반 Tectonic이 필요하다. 산출물은 `output/pdf/common-cv-jake/`이며 제출 스냅샷을 덮어쓰지 않는다.
 - 브랜드 영문은 [identity.md의 English](../../profile/identity.md#english)를 사용한다. HTML은 `lang=en`으로 선언하고 한국어 본문을 남기지 않는다.
-- 2026-09-08 후속 요청: 공용 CV의 학력 다음에 별도 `Military Service`를 두고 [병역 원장](../../profile/career.md#military-service)과 `career.military-service` claim을 소비한다. 직장 경력 5곳·실무 연차는 유지하며 다른 문서·제출본에 일괄 추가하지 않는다.
+- 2026-09-08 후속 요청: 공용 CV의 `Education` 바로 앞에 별도 `Military Service`를 두고 [병역 원장](../../profile/career.md#military-service)과 `career.military-service` claim을 소비한다. 확인된 무선통신체계 구축·운영·관리 업무를 담고 전시 안테나 구축·통신 노드 운용은 부여 임무로 구분한다. 직장 경력 5곳·실무 연차는 유지하며 다른 문서·제출본에 일괄 추가하지 않는다.
+- 2026-09-08 후속 요청: 공용 이력서와 영문 CV의 STUDIO LAB PM 경험을 제품화 판단·기업 요구의 기술 스펙화와 PoC 조율·제작 흐름 재설계와 특허 기여로 구분해 보강한다. 같은 claim을 문서별 깊이로 표현하며 기존 UI 비교는 현재 이력서 문안을 그대로 소비한다. 경력기술서의 기존 PM 서술, 회사별 제출본·플랫폼은 유지한다. 선별·검증은 [Application Copy Standard](../../rules/application-copy-standard.md) 게이트 23을 따른다.
 - 템플릿 적용은 ATS 통과 보장이 아니다. 문구·순서·클릭 가능한 연락처와 PDF 텍스트 추출·실제 페이지를 검증한다. 배포·제출·플랫폼 변경은 별도 요청이다.
 
 ## 파생과 소유권

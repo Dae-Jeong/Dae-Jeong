@@ -48,7 +48,8 @@ tags: [career, timeline, role]
 
 ## Military Service
 
-- 2017.08–2019.05 · 대한민국 육군 제3군단 · 통신병과 · 병장 만기전역.
+- 2017.08–2019.05 · 대한민국 육군 제3군단 · 통신병과(무선통신병) · 병장 만기전역.
+- 군 통신체계 구축·운영·관리. 전시 부여 임무는 통신 안테나 구축·통신 노드 운용을 통한 군 통신망 운용·관리이며, 실제 전쟁 참가 이력은 아니다.
 - 직장 경력과 분리하며 위 실무 연차에 합산하지 않는다.
 - User-confirmed (2026-09-08). [복무 근거](../evidence/projects/previous-career.md#military-service), claim `career.military-service`.
 
