@@ -1,64 +1,38 @@
+# 김대정 · Daejeong Kim
+
+**Tech Lead · Backend Engineer**
+
+가능성을 기회로 바꾸고, 제품으로 가치를 전하는 메이커 김대정입니다.
+
+[![Homepage](https://img.shields.io/badge/Homepage-marinkim.xyz-181717?style=flat-square)](https://marinkim.xyz)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-marinkim--dev-0A66C2?style=flat-square)](https://www.linkedin.com/in/marinkim-dev)
+[![Resume](https://img.shields.io/badge/Resume-이력서-334155?style=flat-square)](https://marinkim.xyz/resume)
+[![Portfolio](https://img.shields.io/badge/Portfolio-포트폴리오-334155?style=flat-square)](https://marinkim.xyz/portfolio)
+
+## 소개
+
+기획자로 시작해 백엔드로 왔고, Thready의 아이디어를 제안해 고객이 구독하는 AI 제품으로 만들며 백엔드·AI·핵심 화면을 직접 구현하고 출시·운영을 리드했습니다.
+
+여러 직군이 coding agent로 제품을 만드는 팀에서, 백엔드 경험이 적은 구성원도 같은 기준으로 구현하도록 공통 구조·트랜잭션 규칙·agent 작업 맥락을 직접 설계해 적용했습니다.
+
+## 주요 기술
+
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white)
+![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy-D71F00?style=flat-square&logo=sqlalchemy&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=flat-square&logo=postgresql&logoColor=white)
+
+AI 콘텐츠 생성·평가 시스템, 비동기 백엔드, 사람과 agent가 함께 개발하는 작업 체계를 만들고 있습니다.
+
 ---
-type: index
-title: Dae-Jeong Profile Knowledge Harness
-description: Portable source-of-truth workspace for profile, evidence, resume, portfolio, homepage, and JD analysis.
-timestamp: 2026-07-11
-tags: [profile, evidence, resume, portfolio, knowledge-harness]
----
 
-# Dae-Jeong Profile Knowledge Harness
+<details>
+<summary>이 저장소 안내</summary>
 
-김대정의 검증된 경력·역량과 이를 사용하는 이력서, 포트폴리오, 홈페이지, JD 분석을 관리하는 개인 source-of-truth workspace다.
+이 저장소는 프로필과 경력의 검증 근거, 이력서·포트폴리오, 개인 홈페이지를 함께 관리합니다.
 
-## 작업 의도별 진입점
+- [작업 진입점](wiki/context/index.md) · [현재 상태](wiki/context/current-state.md)
+- [프로필 원장](wiki/profile/README.md) · [검증 근거](wiki/evidence/README.md)
+- [Agent 작업 규칙](AGENTS.md) · [문서 위치 기준](wiki/rules/document-routing.md)
 
-| 작업 의도 | 먼저 읽기 |
-| --- | --- |
-| 현재 상태와 다음 작업 | [wiki/context/current-state.md](wiki/context/current-state.md) |
-| 개인 원장 | [wiki/profile/README.md](wiki/profile/README.md) |
-| claim과 검증 근거 | [wiki/evidence/README.md](wiki/evidence/README.md) |
-| 이력서 | [wiki/products/resume/README.md](wiki/products/resume/README.md) |
-| 포트폴리오 | [wiki/products/portfolio/README.md](wiki/products/portfolio/README.md) |
-| 홈페이지 | [wiki/products/homepage/README.md](wiki/products/homepage/README.md) |
-| JD 분석 | [wiki/products/jd/README.md](wiki/products/jd/README.md) |
-| agent 작업 규칙 | [AGENTS.md](AGENTS.md) |
-| 지원 문안 운영 흐름 (SoT → 표면 → verify → 래칫) | [wiki/rules/application-copy-harness.md](wiki/rules/application-copy-harness.md) |
-| 문서 위치 결정 | [wiki/rules/document-routing.md](wiki/rules/document-routing.md) |
-
-## 지식 흐름
-
-```text
-external sources / Git / user confirmation
-                    ↓
-             wiki/evidence/
-                    ↓
-              wiki/profile/
-                    ↓
-             wiki/products/  ──export──▶  app/fe (site)
-```
-
-지식 층 (`wiki/`):
-
-- `wiki/context/`: 최소 라우팅과 휘발성 current-state
-- `wiki/profile/`: 안정적인 개인 원장
-- `wiki/evidence/`: 검증 사실, claim strength, public disclosure
-- `wiki/products/`: resume, portfolio, homepage, JD 계약과 산출물
-- `wiki/backlog/`: 아이디어 보드 · `wiki/rules/`: 교차 정책 · `wiki/docs/`: 설계 이력 · `wiki/archive/`: 과거 기록
-
-앱 층 (프로젝트 monorepo — 착수 시 생성):
-
-- `app/fe` → Vercel (marinkim.xyz) · `app/be` → Render (jarvis backend)
-- `labs/{svc}` → k8s (실험 서비스) · `infra/` → 배포 관제
-
-도구: `skills/` (실행 adapter) · `tools/` (validator·export·JD 도구 — 자체 Python env 소유)
-
-## Portable 사용
-
-```bash
-uv sync --project tools
-uv run --project tools playwright install chromium
-uv run --project tools python tools/validate_workspace.py
-uv run --project tools python tools/verify_portable_clone.py
-```
-
-외부 source repo를 다시 검증해야 할 때만 [tools/config/source-roots.example.yaml](tools/config/source-roots.example.yaml)을 `.local/source-roots.yaml`로 복사하고 현재 PC의 경로를 설정한다.
+</details>
