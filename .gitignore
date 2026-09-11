@@ -19,6 +19,12 @@ tmp/
 tools/.visual-baseline/
 graphify-out/
 
+# Canonical wiki lives in the local LLM Wiki. No trailing slash: wiki is a symlink.
+/wiki
+/wiki.pre-ssot-20260910/
+# Local evidence, application artifacts, projections, and review snapshots.
+/output/
+
 # ── Python (root tools + app/be + labs 서비스) ────────────────
 .venv/
 venv/
@@ -55,16 +61,3 @@ next-env.d.ts
 crash.log
 kubeconfig
 *.kubeconfig
-
-# ── Knowledge local-only (raw corpus·지원 산출물은 로컬 갱신) ─
-wiki/products/jd/corpus/
-wiki/products/resume/tailored/
-
-# harness run logs (tools/verify.py)
-output/harness/
-
-# Jake CV render intermediates; keep the final PDF and canonical template
-output/pdf/common-cv-jake/*.log
-output/pdf/common-cv-jake/*.tex
-output/pdf/common-cv-jake/page-*.png
-output/pdf/common-cv-jake/LICENSE

@@ -1,6 +1,6 @@
 # AGENTS
 
-이 repo는 김대정의 profile, evidence, resume, portfolio, homepage, agent workflow, writing, JD 분석을 위한 portable source-of-truth workspace다.
+이 repo는 김대정의 resume, portfolio, homepage, agent workflow, writing, JD 분석을 위한 제품 workspace다. wiki 8계층(context/products/rules/backlog/docs/archive/profile/evidence)의 물리 정본은 로컬 LLM Wiki의 `Wiki/sources/Dae-Jeong/wiki`가 소유하며, repo의 `wiki` 전체는 Git-ignored 단일 로컬 symlink다. 새 환경은 Git에 포함된 [지식 연결 설정](tools/knowledge-setup.md)을 먼저 따른다. 연결 후 아래 `wiki/` 진입 문서를 읽는다. bootstrap은 repo의 `wiki` 링크만 만들며 vault의 bridge를 생성하거나 수정하지 않는다.
 
 이 문서가 agent 규칙의 **단독 소유자**다. 도구별 진입 파일([CLAUDE.md](CLAUDE.md))은 이 문서를 가리키는 포인터일 뿐이며, Codex는 이 파일을 네이티브로 읽는다. 규칙 변경은 여기서만 한다.
 
@@ -20,19 +20,20 @@
 | Layer | Owns | Does not own |
 | --- | --- | --- |
 | `wiki/context/` | routing, current snapshot | canonical profile facts |
-| `wiki/profile/` | stable personal source of truth | raw Git evidence, output layout |
-| `wiki/evidence/` | verified facts, claim strength, public scope | resume prose hierarchy |
+| `wiki/profile/` (LLM Wiki 정본 연결) | stable personal source of truth | raw Git evidence, output layout |
+| `wiki/evidence/` (LLM Wiki 정본 연결) | verified facts, claim strength, public scope | resume prose hierarchy |
 | `wiki/products/` | output contracts, selection policy, artifact mapping | raw evidence, deployed expression |
 | `wiki/rules/` | cross-product policy | task-specific progress |
-| `app/` (fe→Vercel, be→Render) | marinkim.xyz 제품 코드와 현재 공개 표현 | canonical fact·evidence |
-| `labs/{svc}/` → k8s | 실험 서비스 (자립 폴더) | 서비스 간 import |
-| `infra/` | 배포 구성·manifest | 애플리케이션 코드, wiki 접근 |
+| `app/` (fe→Vercel) | marinkim.xyz 제품 코드와 현재 공개 표현 | canonical fact·evidence |
 | `skills/` | executable workflows and adapters | duplicated canonical policy |
 | `archive/` | superseded history | active dependencies |
+
+미구현 backend·실험 서비스·인프라 구성은 현재 실행 폴더가 아니다. 향후 구상은 vault의 `wiki/docs/superpowers/specs/2026-07-15-personal-site-architecture-design.md`와 `wiki/backlog/`에서 확인한다. 기존 `app/fe/app/labs`는 홈페이지 기능으로 유지한다.
 
 ## 작성 원칙
 
 - 한 사실에는 한 canonical owner만 둔다.
+- `wiki/` 편집은 단일 로컬 연결을 통해 LLM Wiki 정본에 기록된다. 별도 복사본을 만들거나 symlink를 Git에 추가하지 않는다. clone 단독으로 정본을 복원할 수 없으며 8계층 sentinel 또는 필수 검증 입력 누락은 검증 실패다. bootstrap은 기존 실폴더·파일·다른 링크(깨진 링크 포함)를 덮어쓰지 않는다. 기존 wiki 실폴더의 이관과 Git 추적 해제는 별도 작업이다.
 - 대화에서 새 기획·아이디어가 나오면 [wiki/backlog/](wiki/backlog/README.md)에 아이디어당 폴더로 등록한다 ([_template.md](wiki/backlog/_template.md) 준수). 착수 확정 시 spec/task로 승격한다.
 - public claim은 evidence record와 stable claim ID를 먼저 만든다.
 - `profile/`은 짧고 안정적으로 유지하고 긴 근거는 `evidence/`에 둔다.

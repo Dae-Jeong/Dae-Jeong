@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-"""Verify that a clean clone can restore and validate the active workspace."""
+"""Verify a clean tracked workspace after restoring its external LLM Wiki.
+
+See tools/knowledge-setup.md. Public clones exclude private canonical knowledge;
+run bootstrap_knowledge.py with the restored vault before this verification.
+Tracked symlinks remain forbidden; only ignored local bridges are supported.
+"""
 
 from __future__ import annotations
 
@@ -16,11 +21,12 @@ LOCAL_ONLY_PREFIXES = (
     ".playwright-mcp/",
     ".tmp/",
     ".venv/",
-    "wiki/products/jd/corpus/",
-    "wiki/products/resume/tailored/",
+    "wiki/",
+    "wiki.pre-ssot-20260910/",
+    "output/",
     "tmp/",
 )
-LOCAL_ONLY_PATHS = {"skills-lock.json"}
+LOCAL_ONLY_PATHS = {"skills-lock.json", "wiki"}
 
 
 def tracked_path_errors(entries: list[tuple[str, str]]) -> list[str]:

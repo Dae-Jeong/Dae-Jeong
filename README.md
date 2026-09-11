@@ -29,10 +29,11 @@ AI 콘텐츠 생성·평가 시스템, 비동기 백엔드, 사람과 agent가 �
 <details>
 <summary>이 저장소 안내</summary>
 
-이 저장소는 프로필과 경력의 검증 근거, 이력서·포트폴리오, 개인 홈페이지를 함께 관리합니다.
+이 저장소는 개인 홈페이지와 이력서·포트폴리오 제품 코드, 실행 도구를 관리합니다. 프로필·경력 근거와 작업 문서의 정본은 별도로 복원하는 로컬 Obsidian vault의 `Wiki/sources/Dae-Jeong/wiki`에 있습니다.
 
-- [작업 진입점](wiki/context/index.md) · [현재 상태](wiki/context/current-state.md)
-- [프로필 원장](wiki/profile/README.md) · [검증 근거](wiki/evidence/README.md)
-- [Agent 작업 규칙](AGENTS.md) · [문서 위치 기준](wiki/rules/document-routing.md)
+- [로컬 지식 연결 설정](tools/knowledge-setup.md) · [bootstrap 도구](tools/bootstrap_knowledge.py)
+- [Agent 작업 규칙](AGENTS.md) · [제품 코드](app/README.md)
+- `wiki`는 연결 설정 후 생기는 Git-ignored 로컬 symlink입니다. GitHub에서는 정본 문서를 제공하지 않습니다.
+- `output/`의 지원 산출물·검토 자료·파생 데이터는 로컬에 보존하며 Git 추적에서 제외합니다. clone만으로 개인 정본이나 산출물이 복원되지는 않습니다.
 
 </details>

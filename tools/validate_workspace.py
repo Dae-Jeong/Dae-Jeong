@@ -10,6 +10,7 @@ from pathlib import Path
 from typing import Any
 
 import yaml
+from bootstrap_knowledge import knowledge_errors
 
 from build_application_projection import (
     PROJECTION_RELATIVE_PATH,
@@ -856,6 +857,9 @@ def _validate_resume_comparison_copy(root: Path) -> list[str]:
 def validate(root: Path) -> list[str]:
     """Return stable validation failures; an empty list means pass."""
     root = root.resolve()
+    missing = knowledge_errors(root / WIKI)
+    if missing:
+        return missing
     return (
         _validate_metadata(root)
         + _validate_paths(root)
