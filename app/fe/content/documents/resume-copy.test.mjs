@@ -1,12 +1,12 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { test } from "node:test";
-import { parseResumeCopy } from "./source.ts";
+import { parseResumeCopy } from "./resume-copy.ts";
 
-const markdown = readFileSync(new URL("../../../../../wiki/products/resume/revisions/2026-09-08-achievement-refresh/resume.md", import.meta.url), "utf8");
+const markdown = readFileSync(new URL("../../../../wiki/products/resume/revisions/2026-09-08-achievement-refresh/resume.md", import.meta.url), "utf8");
 
-test("the comparison consumes current app copy, not the historical review snapshot", () => {
-  const page = readFileSync(new URL("./page.tsx", import.meta.url), "utf8");
+test("the document consumes current app copy, not the historical review snapshot", () => {
+  const page = readFileSync(new URL("../../app/resume/page.tsx", import.meta.url), "utf8");
   assert.match(page, /import copy from "@\/content\/common\/resume.json"/);
   assert.doesNotMatch(page, /readFile|parseResumeCopy|wiki\//);
   assert.match(page, /copy as ResumeCopy/);

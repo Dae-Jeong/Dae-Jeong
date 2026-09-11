@@ -1,3 +1,4 @@
+import json
 import subprocess
 import tempfile
 import unittest
@@ -5,6 +6,7 @@ from pathlib import Path
 from unittest.mock import patch
 
 from bootstrap_knowledge import LAYER_SENTINELS, REQUIRED_INPUTS, connect
+from validate_documents import validate_documents
 from validate_workspace import validate
 
 
@@ -145,6 +147,19 @@ class KnowledgeBootstrapTests(unittest.TestCase):
             result = subprocess.run(["git", "check-ignore", "--no-index", relative], cwd=self.repo, capture_output=True)
             self.assertEqual(result.returncode, 0, result.stderr)
 
+    def test_missing_company_owner_or_claim_map_cannot_skip_to_pass(self):
+        base = self.repo / "app/fe/content/documents/companies"
+        base.mkdir(parents=True)
+        for slug in ("miridih", "featuring", "jyp", "toss-place"):
+            (base / slug).mkdir()
+            for kind in ("resume", "career", "portfolio"):
+                (base / slug / f"{kind}.json").write_text(json.dumps({"applicationId": slug, "document": kind, "content": {}}))
+        attempts = [{"id": slug, "source_path": f"wiki/products/{slug}/README.md"} for slug in ("miridih", "featuring", "jyp", "toss-place")]
+        with patch("validate_documents.subprocess.run") as exporter:
+            errors = validate_documents(self.repo, [], {}, attempts)
+        self.assertEqual(len(errors), 8)
+        self.assertTrue(all("required source missing" in error for error in errors))
+        exporter.assert_not_called()
 
 
 if __name__ == "__main__":

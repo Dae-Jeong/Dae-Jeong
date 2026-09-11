@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import career from "@/content/common/career-description.json";
 import portfolio from "@/content/common/portfolio.json";
-import type { ContentBlock, ContentDocument, ContentSection, TextBlock } from "@/content/common/parse-review";
+import type { CaseVisual, ContentBlock, ContentDocument, ContentSection, TextBlock } from "@/content/documents/parse-markdown";
 import { ResumePageShell } from "../resume/resume-page-shell";
 import { CommonNav } from "./common-nav";
 import { Inline } from "./inline";
@@ -28,9 +28,20 @@ function Blocks({ blocks, kind }: { blocks: ContentBlock[]; kind: Kind }) {
           <tbody>{block.rows.map((row, rowIndex) => <tr key={rowIndex}>{row.map((cell, cellIndex) => cellIndex === 0 ? <th key={cellIndex} scope="row" data-copy><Inline text={cell} /></th> : <td key={cellIndex} data-copy><Inline text={cell} /></td>)}</tr>)}</tbody>
         </table>
       </div>);
-    } else output.push(<p key={index} data-copy data-claim={block.claims.join(" ")} className={block.text.startsWith("기술:") ? styles.techLine : undefined}><Inline text={block.text} /></p>);
+    } else output.push(<p key={index} data-copy data-claim={block.claims.join(" ")} className={block.presentation === "role" ? styles.roleLine : block.presentation === "metadata" ? styles.metadataLine : block.text.startsWith("기술:") ? styles.techLine : undefined}><Inline text={block.text} /></p>);
   }
   return output;
+}
+
+function CaseFlow({ visual }: { visual: CaseVisual }) {
+  return <figure className={styles.caseVisual} aria-label={visual.label} data-claim={visual.claims.join(" ")}>
+    <figcaption data-copy>{visual.label}</figcaption>
+    <ol>{visual.steps.map((step, index) => <li key={step.title}>
+      {index > 0 && <span className={styles.flowConnector}>{step.incoming && <span data-copy>{step.incoming}</span>}<span aria-hidden="true">→</span></span>}
+      <strong data-copy>{step.title}</strong><p data-copy>{step.detail}</p>
+    </li>)}</ol>
+    <p className={styles.visualCaption} data-copy>{visual.caption}</p>
+  </figure>;
 }
 
 function DeliveryBoundary() {
@@ -45,28 +56,30 @@ function DeliveryBoundary() {
 function Section({ section, kind, id }: { section: ContentSection; kind: Kind; id: string }) {
   const Heading = `h${section.level}` as "h2" | "h3" | "h4";
   const title = kind === "portfolio" ? section.title.replace(/^\d+\. /, "") : section.title;
-  return <section id={id} className={styles.section} data-level={section.level}>
-    <Heading data-copy>{title}</Heading>
+  const datedTitle = kind === "career" && section.level === 2 ? title.match(/^(.*?) · (\d{4}\.\d{2}.*)$/) : null;
+  return <section id={id} className={styles.section} data-level={section.level} data-emphasis={kind === "career" ? section.emphasis : undefined}>
+    <Heading data-copy className={datedTitle ? styles.datedHeading : undefined}>{datedTitle ? <><span>{datedTitle[1]}</span><span className={styles.period}><span className="sr-only"> · </span>{datedTitle[2]}</span></> : title}</Heading>
     <div className={styles.sectionBody}>
       <div className={styles.prose}><Blocks blocks={section.blocks} kind={kind} /></div>
-      {kind === "portfolio" && title === "제품 원장과 AI 실행의 분리" && <DeliveryBoundary />}
+      {kind === "portfolio" && section.visual && <CaseFlow visual={section.visual} />}
+      {kind === "portfolio" && section.visuals?.map((visual) => <CaseFlow key={visual.label} visual={visual} />)}
+      {kind === "portfolio" && (title === "제품 원장과 AI 실행의 분리" || title === "승인·전달·발행의 서로 다른 실패") && <DeliveryBoundary />}
       {section.children.map((child, index) => <Section key={index} section={child} kind={kind} id={`${id}-${index + 1}`} />)}
     </div>
   </section>;
 }
 
-export function CommonDocumentPage({ kind }: { kind: Kind }) {
-  const document = documents[kind];
+export function CommonDocumentPage({ kind, document = documents[kind], navigation, slug = "common" }: { kind: Kind; document?: ContentDocument; navigation?: ReactNode; slug?: string }) {
   const headerText = document.header.filter((block): block is TextBlock => block.kind === "paragraph");
-  const identity = headerText.find((block) => block.text.startsWith("김대정 ·"));
+  const identity = headerText.find((block) => block.text.startsWith("김대정 ·") || /^\*\*[^*]+\*\*$/.test(block.text));
   const contacts = headerText.find((block) => block.text.includes("mailto:"));
   const brand = headerText.find((block) => block.text.startsWith("가능성을 기회로"));
   const introduction = headerText.filter((block) => block !== identity && block !== contacts && block !== brand);
   return <ResumePageShell crumb={document.title} tag={kind === "portfolio" ? undefined : "LOCAL REVIEW"}>
-    <CommonNav active={`/${kind}`} />
-    <main className={styles.document} data-common-document={kind} data-professional-document={kind === "career" ? "career-description" : undefined} data-portfolio-document={kind === "portfolio" ? "" : undefined} data-portfolio-slug={kind === "portfolio" ? "common" : undefined}>
+    {navigation ?? <CommonNav active={`/${kind}`} />}
+    <main className={styles.document} data-common-document={kind} data-professional-document={kind === "career" ? "career-description" : undefined} data-portfolio-document={kind === "portfolio" ? "" : undefined} data-portfolio-slug={kind === "portfolio" ? slug : undefined}>
       <header className={styles.header}>
-        <div className={styles.identityRow}><h1>{document.title}</h1><p data-copy>{identity?.text}</p></div>
+        <div className={styles.identityRow}><h1>{document.title}</h1><p data-copy>{identity && <Inline text={identity.text} />}</p></div>
         {brand && <p className={styles.brand} data-copy>{brand.text}</p>}
         {contacts && <p className={styles.contacts} data-copy><Inline text={contacts.text} /></p>}
         {!!introduction.length && <div className={styles.introduction}><Blocks blocks={introduction} kind={kind} /></div>}

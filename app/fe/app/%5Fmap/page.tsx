@@ -7,6 +7,7 @@ import { listCareerDescriptions, listCvs } from "@/content/documents";
 import { listRolePortfolios } from "@/content/portfolios";
 import { listTailoredResumes } from "@/content/resumes";
 import { ROLE_VARIANT_SLUGS } from "@/content/role-catalog";
+import { companyDocuments, documentHref } from "@/content/documents/companies";
 
 // 로컬 전용 지도. 회사 한 줄에 포폴 · 이력서 · CV · 경력기술서.
 // 회사 목록은 요청마다 app/ 폴더와 content 레지스트리에서 합쳐 만들므로 손으로 갱신하지 않는다.
@@ -99,11 +100,16 @@ function buildCompanyRows(): Row[] {
   for (const d of cvs) row(d.slug).cells.cv = { href: `/cv/${d.slug}`, note: d.visibility };
 
   const { byRoute, byIdPrefix } = loadStatus();
+  for (const document of companyDocuments) {
+    const draft = row(`${document.slug}-${document.revision}`, `${document.companyName} · ${document.revision}`);
+    draft.cells[document.document] = { href: documentHref(document), note: "draft · local · 승인 전" };
+    draft.status = "pre-apply";
+  }
   for (const r of rows.values()) {
     r.status =
       Object.values(r.cells)
         .map((c) => byRoute.get(c.href))
-        .find(Boolean) ?? byIdPrefix.find((a) => a.id.startsWith(`${r.key}-`))?.status;
+        .find(Boolean) ?? byIdPrefix.find((a) => a.id.startsWith(`${r.key}-`))?.status ?? r.status;
   }
   const rank = (r: Row) => {
     const i = STATUS_ORDER.indexOf(r.status ?? "");
@@ -145,7 +151,7 @@ function designLabAnchors() {
 
 function Table({ title, rows }: { title: string; rows: Row[] }) {
   return (
-    <section>
+    <section className="min-w-0">
       <h2 className="m-0 mb-2 font-mono text-xs uppercase tracking-wide text-muted">{title}</h2>
       <div className="overflow-x-auto">
         <table className="w-full border-collapse text-sm">
@@ -183,7 +189,7 @@ function Table({ title, rows }: { title: string; rows: Row[] }) {
                       {cell ? (
                         <>
                           <Link href={cell.href} className="font-mono text-xs underline underline-offset-4">
-                            {cell.href}
+                            {cell.href.split("?")[0]}
                           </Link>
                           {cell.note ? <span className="ml-2 text-xs text-muted">{cell.note}</span> : null}
                         </>

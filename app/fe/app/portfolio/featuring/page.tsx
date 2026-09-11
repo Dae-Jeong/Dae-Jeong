@@ -1,3 +1,4 @@
+import { CompanyDocumentPage, type DocumentSearch } from "../../documents/company-document";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
@@ -21,7 +22,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default function FeaturingPortfolioPage() {
+export default async function FeaturingPortfolioPage({ searchParams }: { searchParams: DocumentSearch }) {
+  const { revision } = await searchParams;
+  if (revision) return <CompanyDocumentPage company="featuring" kind="portfolio" revision={revision} />;
   const portfolio: RolePortfolio<"featuring"> = FEATURING_PORTFOLIO;
 
   if (process.env.NODE_ENV === "production") {

@@ -11,8 +11,7 @@ export const COMMON_LINKS = [
 export function CommonNav({ active }: { active?: string }) {
   if (process.env.NODE_ENV === "production") return null;
   return <nav className={styles.nav} aria-label="공용 지원 문서">
-    <Link href="/common" className={styles.navHome}>공용 문서</Link>
+    <Link href="/_map" className={styles.navHome}>문서 지도</Link>
     {COMMON_LINKS.map((link) => <Link key={link.href} href={link.href} aria-current={active === link.href ? "page" : undefined}>{link.label}</Link>)}
-    <Link href="/resume/compare" className={styles.compareLink}>이력서 UI 비교 ↗</Link>
   </nav>;
 }

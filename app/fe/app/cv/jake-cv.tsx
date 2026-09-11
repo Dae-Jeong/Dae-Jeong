@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import cv from "@/content/common/cv.json";
-import type { ContentBlock, ContentDocument, ContentSection, TextBlock } from "@/content/common/parse-review";
+import type { ContentBlock, ContentDocument, ContentSection, TextBlock } from "@/content/documents/parse-markdown";
 import { CommonNav } from "../common/common-nav";
 import { Inline } from "../common/inline";
 import { ResumePageShell } from "../resume/resume-page-shell";

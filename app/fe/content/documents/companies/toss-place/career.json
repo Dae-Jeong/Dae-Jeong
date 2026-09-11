@@ -1,0 +1,333 @@
+{
+  "slug": "toss-place",
+  "companyName": "토스플레이스",
+  "position": "Server Developer · 3~6년차 집중채용",
+  "status": "draft",
+  "approved": false,
+  "visibility": "local",
+  "updatedAt": "2026-09-10",
+  "revision": "20260910-R1",
+  "applicationId": "toss-place-2026-09-10-local-review",
+  "focus": "제품 출시·운영과 예약·결제의 상태별 보상, 재고·발주 외부 연동, 팀의 공통 백엔드 기준을 구현한 경험을 담았습니다.",
+  "document": "career",
+  "content": {
+    "title": "경력기술서",
+    "header": [
+      {
+        "kind": "paragraph",
+        "text": "가능성을 기회로 바꾸고, 제품으로 가치를 전하는 메이커 김대정입니다.",
+        "claims": [
+          "career.ai-pm-backend-continuity"
+        ]
+      },
+      {
+        "kind": "paragraph",
+        "text": "기획자로 시작해 백엔드로 왔고, Thready의 아이디어를 제안해 백엔드·AI·핵심 화면을 직접 만들고 기획·QA·마케팅과 실제 고객이 구독하는 제품의 출시·운영을 리드했습니다. 여러 직군이 coding agent로 제품을 만드는 팀에서 백엔드 경험이 적은 팀원도 같은 기준으로 구현하도록 조직 공통 백엔드 구조·트랜잭션 규칙·agent 작업 기준을 직접 구축해 적용했습니다.",
+        "claims": [
+          "career.ai-pm-backend-continuity",
+          "thready.product-zero-to-one-contribution",
+          "thready.frontend-product-delivery",
+          "be-template.backend-standard",
+          "be-template.team-leverage",
+          "be-template.agent-context"
+        ]
+      }
+    ],
+    "sections": [
+      {
+        "title": "MediSolve AI · 2025.04 — 재직 중",
+        "level": 2,
+        "blocks": [
+          {
+            "kind": "paragraph",
+            "text": "**Tech Lead · Backend Engineer**",
+            "claims": [
+              "career.medisolve-role-evolution"
+            ],
+            "presentation": "role"
+          },
+          {
+            "kind": "paragraph",
+            "text": "법인 설립 전 더데이랩스 프리랜서 선행 개발 · 2025.02 — 2025.04",
+            "claims": [
+              "career.thedaylabs-freelance"
+            ],
+            "presentation": "metadata"
+          }
+        ],
+        "children": [
+          {
+            "title": "Thready · 콘텐츠 제품화·개발·운영",
+            "level": 3,
+            "blocks": [
+              {
+                "kind": "bullet",
+                "text": "Threads로 채널을 넓히려는 인플루언서와 홍보 콘텐츠가 필요한 의료진의 인력·시간 제약을 제품 기능과 우선순위로 구체화. 아이디어 제안, FastAPI 백엔드·AI 생성 및 평가·Next.js 핵심 화면 직접 개발, 기획·QA·마케팅과 출시·운영 리드.",
+                "claims": [
+                  "thready.creator-adoption-context",
+                  "thready.product-zero-to-one-contribution",
+                  "thready.frontend-product-delivery",
+                  "thready.threads-content-workflow-automation"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "콘텐츠 가져오기·생성·검수·예약·발행·대시보드와 관리 화면 구현. AI가 자료 정리·초안·1차 검수를 수행하고 고객이 최종 수정·예약·발행을 결정하는 업무 흐름 구성.",
+                "claims": [
+                  "thready.creator-adoption-context",
+                  "thready.product-zero-to-one-contribution",
+                  "thready.frontend-product-delivery",
+                  "thready.threads-content-workflow-automation"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "수정 revision·승인 결정·발행 작업의 트랜잭션과 동일 명령 재전송 처리 구현. 외부 호출 전 실패·호출 후 결과 불명을 분리하고, 기존 발행 이력과 lease·attempt token으로 재개 및 오래된 worker의 상태 갱신 통제.",
+                "claims": [
+                  "thready.approval-command-consistency",
+                  "thready.publish-recovery-boundary"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "제품 원장과 AI 실행 상태를 독립 애플리케이션·DB로 나누고 HTTP 계약으로 연결해 STG·Prod 운영. 원장 변경과 Outbox 기록을 함께 저장하며 전달은 재시도·version fence로 분리, 격리 DB에서 경합·지연 응답·실패 전달의 상태 전이 검증.",
+                "claims": [
+                  "thready.ai-service-boundary",
+                  "thready.ai-replica-outbox",
+                  "thready.approval-delivery-contract-verification"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "팀이 운영한 제품의 월 1천만원 수준 구독 매출 발생 확인 · 2026년 8월 기준.",
+                "claims": [
+                  "thready.subscription-revenue-band"
+                ]
+              }
+            ],
+            "children": []
+          },
+          {
+            "title": "피부과 운영 제품군 · 재고·발주·현황·예약",
+            "level": 3,
+            "blocks": [
+              {
+                "kind": "bullet",
+                "text": "재고 조회·입출고·발주 판단·승인·알림 백엔드 구축 주도. 안전재고와 발주 수량뿐 아니라 기존 발주 대기·진행 중 주문을 확인해 대상과 주문 처리 결정.",
+                "claims": [
+                  "centurion.inventory-order-workflow"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "알림 도메인·서비스·worker를 분리하고 발송 결과·실패 이력을 주문 상태와 연결. 실패 주문 전용 API의 조건 검사 후 수동 재발송 구현. async FastAPI와 실행 모델을 맞춰 Celery를 TaskIQ·RabbitMQ로 전환하고 worker 이미지 분리·API 테스트·Docker CI·온보딩 문서 구성.",
+                "claims": [
+                  "centurion.bay-async-backend",
+                  "centurion.async-migration",
+                  "centurion.test-ci-foundation"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "시설별 사용·시술 현황·대기 접수 조회와 긴급 호출 알림 생성 기능 개발. 시술 완료에 필요한 품목을 모아 재고 차감 요청을 보내고 외부 연동 예외 기록. 예약 정책을 백엔드 판단·화면 표시·QA·릴리스 문서에 연결하는 작업 리드.",
+                "claims": [
+                  "centurion.ray-status-management-implementation",
+                  "centurion.day-product-integration"
+                ]
+              }
+            ],
+            "children": []
+          },
+          {
+            "title": "공통 백엔드·인증과 제품 개발 지원",
+            "level": 3,
+            "blocks": [
+              {
+                "kind": "bullet",
+                "text": "FastAPI·SQLAlchemy 공통 계층·DI·트랜잭션·API 계약·agent 작업 맥락 직접 구축. 기능 담당자는 Service에서 정책을 선언하고 공통 계층은 세션 생성·전파·commit·rollback·정리를 맡도록 책임 분리.",
+                "claims": [
+                  "be-template.backend-standard",
+                  "be-template.fastapi-sqlalchemy-standard",
+                  "be-template.agent-context",
+                  "be-template.team-leverage"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "신규 프로그램은 전체 템플릿으로 시작하고 기존 제품은 DB 세션부터 점진 적용. 기획·QA·디자인 담당자의 기능 구현 결과에 피드백하고 배포 지원. 신규 템플릿 기반 STG QA에서 기존 세션 미반납·커넥션 풀 고갈 문제가 재관측되지 않은 범위 확인.",
+                "claims": [
+                  "be-template.backend-standard",
+                  "be-template.fastapi-sqlalchemy-standard",
+                  "be-template.agent-context",
+                  "be-template.team-leverage"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "Thready 실제 적용 모듈의 로컬 격리 PostgreSQL DB 시험에서 정상·예외·취소·전파·잘못된 공유 차단과 수백 회 규모 병렬 혼합 실행의 상태·연결 반환 검증.",
+                "claims": [
+                  "thready.db-session-contract-verification"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "Redis 세션 v2 재설계·구현 주도. 사용자·서비스·기기별 세션, 중복 로그인·계정 전환·그룹 로그아웃 분기를 구현하고 JTI 소유권으로 로그아웃 대상 검사.",
+                "claims": [
+                  "centurion.sso-session"
+                ]
+              }
+            ],
+            "children": []
+          },
+          {
+            "title": "여러 피부과 홈페이지·예약 백엔드",
+            "level": 3,
+            "blocks": [
+              {
+                "kind": "bullet",
+                "text": "별도 외부 운영·예약 백엔드의 서비스 경계와 이관 흐름 주도. 관리·홈페이지 API를 나누고 서버 인증 상태가 운영자의 작업 지점을 소유하도록 권한 경계 개선 진행 중.",
+                "claims": [
+                  "nexus.backend-architecture",
+                  "nexus.branch-access-boundary",
+                  "nexus.pool-stabilization"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "커넥션 풀 타임아웃 원인을 분석하고 풀 설정·세션 생명주기 재조정.",
+                "claims": [
+                  "nexus.backend-architecture",
+                  "nexus.branch-access-boundary",
+                  "nexus.pool-stabilization"
+                ]
+              }
+            ],
+            "children": []
+          }
+        ]
+      },
+      {
+        "title": "Memento AI · 2024.10 — 2025.01",
+        "level": 2,
+        "blocks": [
+          {
+            "kind": "paragraph",
+            "text": "**Backend Engineer**",
+            "claims": [
+              "career.memento-fastapi-backend",
+              "career.memento-payment"
+            ],
+            "presentation": "role"
+          },
+          {
+            "kind": "paragraph",
+            "text": "PM Intern 1개월 병행 · 회사 폐업으로 종료",
+            "claims": [
+              "career.memento-fastapi-backend",
+              "career.memento-payment"
+            ],
+            "presentation": "metadata"
+          }
+        ],
+        "children": [
+          {
+            "title": "예약·결제 API",
+            "level": 3,
+            "blocks": [
+              {
+                "kind": "bullet",
+                "text": "FastAPI·SQLAlchemy·MySQL 기반 병원 예약·결제 백엔드 개발. Stripe Checkout의 manual-capture 선결제 영역을 구축하고 로컬 거래 식별자로 결제 이력·Checkout·Webhook 이벤트 연결.",
+                "claims": [
+                  "career.memento-fastapi-backend",
+                  "career.memento-stripe-prepayment"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "예약 실패 시 결제 상태를 확인해 승인 대기는 cancel, 완료 결제는 refund하는 외부 결제 보상 구현.",
+                "claims": [
+                  "career.memento-fastapi-backend",
+                  "career.memento-stripe-prepayment"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "공유 결제 도메인에서 환불 요청과 완료를 분리하고 마일리지 복원·이용권 삭제를 완료 전이로 이동. 현금·Stripe·0원·전액 마일리지 경로별 상태 변경 순서 보완.",
+                "claims": [
+                  "career.memento-payment"
+                ]
+              }
+            ],
+            "children": []
+          },
+          {
+            "title": "고객 후속 안내",
+            "level": 3,
+            "blocks": [
+              {
+                "kind": "bullet",
+                "text": "다국어 해피콜의 알림톡·이메일 즉시·예약 발송 구현. 예약 변경 시 Celery task 취소·재등록과 발송 이력, 설문 당첨 결과 조회·요약·기간·검색 필터 개발.",
+                "claims": [
+                  "career.memento-happycall-survey"
+                ]
+              }
+            ],
+            "children": []
+          }
+        ]
+      },
+      {
+        "title": "STUDIO LAB · 2021.12 — 2024.01",
+        "level": 2,
+        "blocks": [
+          {
+            "kind": "paragraph",
+            "text": "**AI Engineer → PM → Backend Engineer**",
+            "claims": [
+              "career.ai-pm-backend-continuity"
+            ]
+          },
+          {
+            "kind": "bullet",
+            "text": "SellerCanvas의 PM으로 프로토타입 사용 흐름을 검토하고 v1.0 제품 흐름·기능 범위·출시 우선순위 수립. 기업 PoC에서 외부 패션 브랜드의 비즈니스 요구를 기술 스펙으로 구체화하고 기획·일정·기술 검증 범위 조율.",
+            "claims": [
+              "career.sellercanvas-product-system",
+              "career.sellercanvas-enterprise-poc"
+            ]
+          },
+          {
+            "kind": "bullet",
+            "text": "상세페이지 제작 흐름 재설계와 관련 특허 「페이지 출력 방법」에 기여. 참여 제품의 CES 2024 Best of Innovation AI 부문 수상.",
+            "claims": [
+              "credentials.page-output-patent",
+              "credentials.ces-2024"
+            ]
+          }
+        ],
+        "children": []
+      },
+      {
+        "title": "이전 경력·개인 프로젝트",
+        "level": 2,
+        "blocks": [
+          {
+            "kind": "bullet",
+            "text": "아이즈솔 · Vision AI Engineer 인턴 · 2020.08 — 2021.06.",
+            "claims": [
+              "career.ai-pm-backend-continuity"
+            ]
+          },
+          {
+            "kind": "bullet",
+            "text": "TellingMe · 개인 프로젝트 · 2024.01 — 2024.12. Spring Boot 백엔드와 AWS 배포·모니터링 리드. Java·Spring·Spring Boot는 사이드 프로젝트에서 활용.",
+            "claims": [
+              "career.tellingme-backend-infra",
+              "career.java-spring-side-projects"
+            ]
+          }
+        ],
+        "children": []
+      }
+    ]
+  }
+}

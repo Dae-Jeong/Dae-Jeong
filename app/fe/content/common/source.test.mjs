@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { test } from "node:test";
-import { parseReview } from "./parse-review.ts";
+import { parseReview } from "../documents/parse-markdown.ts";
 
 test("the import adapter preserves hierarchy, claims, bullets, and complete table cells", () => {
   const data = parseReview("# CV\n\nName\n\n## Career\n\n### Employer\n\n<!-- claims: a.b c.d -->\n- **Role**: work\n\n| State | Rule |\n| --- | --- |\n| A | B |\n\n#### Detail\n\nDone");
@@ -94,13 +94,13 @@ test("the common resume and CV retain concrete STUDIO LAB PM contributions", () 
     for (const claim of ["career.sellercanvas-product-system", "career.sellercanvas-enterprise-poc", "credentials.page-output-patent"]) {
       assert(claims.has(claim), `${name}: missing STUDIO LAB contribution ${claim}`);
     }
-    const product = blocks.find((block) => block.claims.includes("career.sellercanvas-product-system") && block.text.includes("v1.0"));
+    const product = blocks.find((block) => block.claims.includes("career.sellercanvas-product-system") && /v1\.0|정식 버전/.test(block.text));
     const poc = blocks.find((block) => block.claims.includes("career.sellercanvas-enterprise-poc"));
     const patent = blocks.find((block) => block.claims.includes("credentials.page-output-patent"));
     assert(product && poc && patent);
     assert.notEqual(product, poc, `${name}: PoC work should not collapse into the productization summary`);
     assert.notEqual(poc, patent, `${name}: workflow and patent contribution stays distinct`);
-    assert.match(poc.text, /기술 스펙|technical specifications/);
+    assert.match(poc.text, /기술 스펙|기술 명세|technical specifications/);
     assert.match(poc.text, /기술 검증|technical validation/);
     assert.match(patent.text, /제작 흐름|creation workflow/);
     assert(!claims.has("career.sellercanvas-nestjs-template"), "Do not fill space with an unapproved backend claim");

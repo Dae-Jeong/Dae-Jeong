@@ -1,0 +1,371 @@
+{
+  "slug": "toss-place",
+  "companyName": "토스플레이스",
+  "position": "Server Developer · 3~6년차 집중채용",
+  "status": "draft",
+  "approved": false,
+  "visibility": "local",
+  "updatedAt": "2026-09-10",
+  "revision": "20260910-R1",
+  "applicationId": "toss-place-2026-09-10-local-review",
+  "focus": "제품 출시·운영과 예약·결제의 상태별 보상, 재고·발주 외부 연동, 팀의 공통 백엔드 기준을 구현한 경험을 담았습니다.",
+  "document": "portfolio",
+  "content": {
+    "title": "포트폴리오",
+    "header": [
+      {
+        "kind": "paragraph",
+        "text": "가능성을 기회로 바꾸고, 제품으로 가치를 전하는 메이커 김대정입니다.",
+        "claims": [
+          "career.ai-pm-backend-continuity"
+        ]
+      },
+      {
+        "kind": "paragraph",
+        "text": "기획자로 시작해 백엔드로 왔고, Thready의 아이디어를 제안해 백엔드·AI·핵심 화면을 직접 만들고 기획·QA·마케팅과 실제 고객이 구독하는 제품의 출시·운영을 리드했습니다. 여러 직군이 coding agent로 제품을 만드는 팀에서 백엔드 경험이 적은 팀원도 같은 기준으로 구현하도록 조직 공통 백엔드 구조·트랜잭션 규칙·agent 작업 기준을 직접 구축해 적용했습니다.",
+        "claims": [
+          "career.ai-pm-backend-continuity",
+          "thready.product-zero-to-one-contribution",
+          "thready.frontend-product-delivery",
+          "be-template.backend-standard",
+          "be-template.team-leverage",
+          "be-template.agent-context"
+        ]
+      }
+    ],
+    "sections": [
+      {
+        "title": "1. 고객의 콘텐츠 운영을 제품으로 연결 — Thready",
+        "level": 2,
+        "blocks": [],
+        "children": [
+          {
+            "title": "고객 문제와 직접 구현",
+            "level": 3,
+            "blocks": [
+              {
+                "kind": "paragraph",
+                "text": "이미 다른 채널을 운영하는 인플루언서는 Threads로 확장하고 싶어도 새로운 플랫폼에 맞춰 콘텐츠를 꾸준히 만들 인력과 시간이 부족했습니다. 의료진의 병원 홍보 수요도 함께 고려해 아이디어를 제안하고 콘텐츠 가져오기·생성·검수·예약·발행 기능으로 구체화했습니다. 백엔드·AI와 핵심 사용자·관리 화면을 직접 구현하고 기획·QA·마케팅과 출시·운영을 리드했습니다.",
+                "claims": [
+                  "thready.creator-adoption-context",
+                  "thready.product-zero-to-one-contribution",
+                  "thready.frontend-product-delivery",
+                  "thready.threads-content-workflow-automation"
+                ]
+              },
+              {
+                "kind": "paragraph",
+                "text": "AI가 자료 정리·초안·1차 검수를 맡고 고객이 최종 수정·예약·발행을 결정하도록 했습니다. 생성 결과를 만드는 일과 고객의 의사를 확정하는 일을 나누면서 제품의 실제 사용 흐름을 설계했습니다.",
+                "claims": [
+                  "thready.creator-adoption-context",
+                  "thready.product-zero-to-one-contribution",
+                  "thready.frontend-product-delivery",
+                  "thready.threads-content-workflow-automation"
+                ]
+              }
+            ],
+            "children": []
+          },
+          {
+            "title": "고객의 승인과 외부 실행",
+            "level": 3,
+            "blocks": [
+              {
+                "kind": "paragraph",
+                "text": "고객 수정본과 승인 결정이 어긋나지 않도록 수정 revision·승인·예약 또는 발행 작업을 같은 트랜잭션으로 확정했습니다. 동일 명령의 재전송은 기존 결과를 돌려주도록 구현했습니다. 외부 발행에서는 호출 전에 실패한 경우와 이미 호출했지만 결과를 모르는 경우를 나눴습니다. 저장된 발행 시도를 재사용하고 lease·attempt token으로 오래된 worker의 상태 갱신을 통제했습니다.",
+                "claims": [
+                  "thready.approval-command-consistency",
+                  "thready.publish-recovery-boundary"
+                ]
+              }
+            ],
+            "children": [],
+            "visual": {
+              "label": "승인 결정과 외부 발행의 경계",
+              "steps": [
+                {
+                  "title": "고객 승인",
+                  "detail": "수정본·승인·발행 작업 함께 확정"
+                },
+                {
+                  "title": "발행 시도",
+                  "detail": "호출 전 실패와 결과 불명 구분"
+                },
+                {
+                  "title": "재개·종결",
+                  "detail": "기존 시도 재사용·오래된 갱신 통제"
+                }
+              ],
+              "caption": "고객의 결정을 저장하는 트랜잭션과 외부 발행 실행은 별도 경계입니다.",
+              "claims": [
+                "thready.approval-command-consistency",
+                "thready.publish-recovery-boundary"
+              ]
+            }
+          },
+          {
+            "title": "원장과 AI 실행부의 전달 계약",
+            "level": 3,
+            "blocks": [
+              {
+                "kind": "paragraph",
+                "text": "제품 정책·원장은 제품 백엔드가, 생성 lifecycle·실행 상태는 독립 AI 애플리케이션과 DB가 소유하도록 나누고 HTTP 계약으로 연결했습니다. 독립 AI 실행부는 STG·Prod에서 운영합니다. 원장 변경과 Outbox 기록을 같은 트랜잭션으로 저장한 뒤 전달을 재시도·version fence로 처리했습니다. 지연·역순 전달이 최신 상태를 덮지 않도록 하고, 재시도 소진 뒤에도 실패 기록을 남겼습니다.",
+                "claims": [
+                  "thready.ai-service-boundary",
+                  "thready.ai-replica-outbox"
+                ]
+              },
+              {
+                "kind": "paragraph",
+                "text": "2026년 9월 실제 승인 repository·전달 service를 격리 DB에서 실행해 중복 선점·오래된 응답·전달 실패·재시도 소진의 상태 전이를 확인했습니다. 조건부 갱신과 lease·version이 제어하는 범위를 검증한 시험입니다.",
+                "claims": [
+                  "thready.approval-delivery-contract-verification"
+                ]
+              },
+              {
+                "kind": "paragraph",
+                "text": "기획·QA·마케팅과 운영한 제품에서 2026년 8월 기준 월 1천만원 수준의 구독 매출이 발생했습니다.",
+                "claims": [
+                  "thready.subscription-revenue-band"
+                ]
+              }
+            ],
+            "children": []
+          }
+        ]
+      },
+      {
+        "title": "2. 예약·결제의 상태별 보상 처리",
+        "level": 2,
+        "blocks": [
+          {
+            "kind": "paragraph",
+            "text": "Memento AI에서 병원 예약·결제 API를 개발했습니다. Stripe 선결제 영역은 구축을 주도하고, 공유 환불 도메인은 상태 변경 순서를 보완했습니다. 외부 결제와 내부 예약·이용 권한은 서로 다른 시점에 확정되므로, 실패 시 어떤 처리를 되돌릴지 결제 상태를 기준으로 정해야 했습니다.",
+            "claims": [
+              "career.memento-fastapi-backend",
+              "career.memento-stripe-prepayment",
+              "career.memento-payment"
+            ]
+          }
+        ],
+        "children": [
+          {
+            "title": "예약 이전 결제의 추적과 보상",
+            "level": 3,
+            "blocks": [
+              {
+                "kind": "paragraph",
+                "text": "예약 객체가 만들어지기 전부터 결제 이력을 추적하도록 로컬 거래 식별자를 Checkout metadata에 연결했습니다. 결제 이력·수단과 Checkout·Webhook 이벤트가 같은 거래를 가리키도록 구성하고 manual capture를 사용했습니다. 예약 처리 실패 시 승인 대기 상태면 취소하고, 결제가 완료된 상태면 환불하는 보상 동작을 구현했습니다.",
+                "claims": [
+                  "career.memento-stripe-prepayment"
+                ]
+              },
+              {
+                "kind": "table",
+                "columns": [
+                  "예약 실패 시 결제 상태",
+                  "보상 처리"
+                ],
+                "rows": [
+                  [
+                    "승인 대기",
+                    "결제 취소"
+                  ],
+                  [
+                    "결제 완료",
+                    "결제 환불"
+                  ]
+                ],
+                "claims": [
+                  "career.memento-stripe-prepayment"
+                ]
+              }
+            ],
+            "children": []
+          },
+          {
+            "title": "환불 요청과 완료를 구별하는 이유",
+            "level": 3,
+            "blocks": [
+              {
+                "kind": "paragraph",
+                "text": "환불을 요청한 즉시 마일리지를 복원하거나 이용권을 삭제하면 외부 결과보다 내부 상태가 먼저 바뀝니다. 요청 접수와 완료 전이를 나누고, 마일리지 복원·이용권 삭제를 완료 전이로 옮겼습니다. 현금·Stripe·0원·전액 마일리지는 외부 조회와 후속 처리가 달라 각각의 분기로 정리했습니다.",
+                "claims": [
+                  "career.memento-payment"
+                ]
+              },
+              {
+                "kind": "paragraph",
+                "text": "예약 전 결제 이벤트의 추적, 예약 실패 시 상태별 보상, 환불 완료에 맞춘 내부 상태 변경을 구현했습니다. 외부 결제 결과와 내부 이용 권한이 바뀌는 조건을 코드의 분기와 처리 순서로 구체화한 작업입니다.",
+                "claims": [
+                  "career.memento-stripe-prepayment",
+                  "career.memento-payment"
+                ]
+              }
+            ],
+            "children": []
+          }
+        ]
+      },
+      {
+        "title": "3. 재고·발주의 업무 규칙과 외부 연동",
+        "level": 2,
+        "blocks": [],
+        "children": [
+          {
+            "title": "재고부터 발주 승인까지",
+            "level": 3,
+            "blocks": [
+              {
+                "kind": "paragraph",
+                "text": "피부과 재고·입출고 관리 백엔드 구축을 주도했습니다. 재고가 적다는 사실만으로 발주하지 않고 안전재고·자동발주 수량과 발주 대기·진행 중 주문을 함께 확인해 대상을 결정했습니다. 이후 승인 상태에 따라 주문을 처리하고 공급사·병원 알림으로 연결했습니다.",
+                "claims": [
+                  "centurion.inventory-order-workflow"
+                ]
+              }
+            ],
+            "children": []
+          },
+          {
+            "title": "실패를 업무 상태와 운영자의 행동으로 연결",
+            "level": 3,
+            "blocks": [
+              {
+                "kind": "paragraph",
+                "text": "외부 알림은 제품 시작부터 API 요청 밖의 worker에서 처리하기로 했습니다. async FastAPI 코드베이스와 worker 실행 모델을 맞추기 위해 기존 Celery 작업을 TaskIQ·RabbitMQ로 전환하고 알림 도메인·서비스·worker 책임을 나눴습니다. 주문 생성과 알림 전달 결과를 구별해 발송 상태·실패 기록을 남기고, 운영자가 실패 주문 전용 API로 재발송을 요청하면 현재 상태와 조건을 검사하도록 구현했습니다.",
+                "claims": [
+                  "centurion.bay-async-backend",
+                  "centurion.async-migration"
+                ]
+              },
+              {
+                "kind": "paragraph",
+                "text": "API와 worker 이미지를 분리해 배포 단위를 나누고, API 테스트 기반·Docker CI·로컬 실행·온보딩 문서를 구성했습니다. 팀이 주문 업무와 외부 연동을 같은 환경에서 재현하고 변경을 확인하는 개발 기반을 남겼습니다.",
+                "claims": [
+                  "centurion.test-ci-foundation",
+                  "centurion.async-migration"
+                ]
+              }
+            ],
+            "children": [],
+            "visual": {
+              "label": "실패 기록을 확인한 수동 재발송",
+              "steps": [
+                {
+                  "title": "실패 이력",
+                  "detail": "주문·알림의 현재 상태 확인"
+                },
+                {
+                  "title": "운영자 요청",
+                  "detail": "전용 API에서 재발송 조건 검사"
+                },
+                {
+                  "title": "알림 worker",
+                  "detail": "허용된 작업 발송·결과 기록"
+                }
+              ],
+              "caption": "외부 호출 결과를 기록하고 현재 업무 상태에서 허용된 재처리를 실행합니다.",
+              "claims": [
+                "centurion.bay-async-backend"
+              ]
+            }
+          },
+          {
+            "title": "현황 관리와 재고 요청의 연결",
+            "level": 3,
+            "blocks": [
+              {
+                "kind": "paragraph",
+                "text": "시설 사용·시술 현황·대기 접수 조회와 긴급 호출 알림 생성 기능을 개발했습니다. 시술 완료 시 필요한 품목을 모아 재고 차감 요청을 전달하고, 시술 완료와 외부 연동 실패를 나눠 예외를 기록했습니다. 현장 업무 완료와 다른 서비스에 요청을 전달하는 책임을 구별한 구현입니다.",
+                "claims": [
+                  "centurion.ray-status-management-implementation"
+                ]
+              }
+            ],
+            "children": []
+          }
+        ]
+      },
+      {
+        "title": "4. 팀의 기능 개발을 지원하는 공통 백엔드",
+        "level": 2,
+        "blocks": [],
+        "children": [
+          {
+            "title": "기능 담당자가 반복 판단하지 않는 기본값",
+            "level": 3,
+            "blocks": [
+              {
+                "kind": "paragraph",
+                "text": "기획·QA·디자인 담당자도 coding agent와 제품 기능을 구현하는 환경에서 공통 FastAPI·SQLAlchemy 템플릿을 직접 구축했습니다. Service는 트랜잭션 정책을 선언하고 Repository는 SQL을 실행하며 공통 계층이 세션 수명을 관리하도록 했습니다. 계층·DI·API 계약·ADR·실행 문서와 agent 작업 맥락을 함께 제공했습니다.",
+                "claims": [
+                  "be-template.backend-standard",
+                  "be-template.fastapi-sqlalchemy-standard",
+                  "be-template.team-leverage",
+                  "be-template.agent-context"
+                ]
+              }
+            ],
+            "children": []
+          },
+          {
+            "title": "트랜잭션 소유권과 실패 처리",
+            "level": 3,
+            "blocks": [
+              {
+                "kind": "paragraph",
+                "text": "REQUIRED는 기존 트랜잭션에 참여하고 REQUIRES_NEW는 새 연결·세션을 사용하며 NESTED는 SAVEPOINT로 처리하도록 구현했습니다. 하나의 트랜잭션을 하나의 asyncio task와 AsyncSession이 소유하게 하고, ContextVar로 전달된 세션에 child task가 접근하면 소유권 검사로 차단했습니다. 병렬 DB 작업은 task별 트랜잭션·가시성·복구·연결 비용을 먼저 결정하도록 문서화했습니다.",
+                "claims": [
+                  "be-template.fastapi-sqlalchemy-standard"
+                ]
+              },
+              {
+                "kind": "paragraph",
+                "text": "2026년 9월 Thready에 적용된 실제 DB 모듈을 로컬 격리 PostgreSQL DB에서 실행했습니다. 정상·예외·취소·전파·잘못된 공유 차단을 대조하고 수백 회 규모 병렬 혼합 실행의 데이터 상태와 종료 후 연결 반환을 확인했습니다.",
+                "claims": [
+                  "thready.db-session-contract-verification"
+                ]
+              }
+            ],
+            "children": [],
+            "visual": {
+              "label": "기능 정책과 자원 관리의 책임 분리",
+              "steps": [
+                {
+                  "title": "Service",
+                  "detail": "트랜잭션 정책 선언"
+                },
+                {
+                  "title": "공통 계층",
+                  "detail": "세션 전파·소유권·수명 관리"
+                },
+                {
+                  "title": "Repository",
+                  "detail": "현재 task의 세션으로 SQL 실행"
+                }
+              ],
+              "caption": "취소·예외 시 rollback과 연결 반환을 처리하며 child task의 동일 세션 접근을 차단합니다.",
+              "claims": [
+                "be-template.fastapi-sqlalchemy-standard"
+              ]
+            }
+          },
+          {
+            "title": "점진 적용과 팀의 구현",
+            "level": 3,
+            "blocks": [
+              {
+                "kind": "paragraph",
+                "text": "신규 사내 프로그램은 전체 템플릿으로 시작하고 기존 제품은 DB 세션 관리부터 점진적으로 도입했습니다. 전체 템플릿을 사용한 신규 STG QA에서는 기존 세션 미반납·커넥션 풀 고갈 문제가 재관측되지 않았습니다. 기능 구현은 각 담당자가 수행했고, 저는 기준을 설계하고 결과에 피드백하며 배포를 지원했습니다. 백엔드의 상시 개입에서 담당자 구현 후 피드백·배포로 지원 범위를 조정했습니다.",
+                "claims": [
+                  "be-template.team-leverage"
+                ]
+              }
+            ],
+            "children": []
+          }
+        ]
+      }
+    ]
+  }
+}

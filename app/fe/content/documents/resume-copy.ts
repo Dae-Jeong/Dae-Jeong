@@ -4,6 +4,7 @@ export type CopyBlock = {
   text: string;
   label?: string;
   claims: string[];
+  presentation?: "role" | "metadata" | "heading" | "subheading";
 };
 export type CopyEntry = { title?: string; blocks: CopyBlock[] };
 export type CopySection = { title: string; entries: CopyEntry[] };
@@ -11,6 +12,7 @@ export type ResumeCopy = {
   name: string;
   role: string;
   careerLine: string;
+  specialtyLine?: string;
   contacts: { label: string; href: string }[];
   sections: CopySection[];
 };

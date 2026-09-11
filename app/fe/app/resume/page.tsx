@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { ResumePageShell } from "./resume-page-shell";
 import copy from "@/content/common/resume.json";
 import { CommonNav } from "../common/common-nav";
-import { ComparisonDocument } from "./compare/document";
-import type { ResumeCopy } from "./compare/source";
-import styles from "./compare/compare.module.css";
+import { ComparisonDocument } from "../documents/classic-resume";
+import type { ResumeCopy } from "../../content/documents/resume-copy";
+import styles from "../documents/classic-resume.module.css";
 
 export const metadata: Metadata = {
   title: "Resume — 김대정 · Tech Lead · Backend Engineer",

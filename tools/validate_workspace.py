@@ -11,6 +11,7 @@ from typing import Any
 
 import yaml
 from bootstrap_knowledge import knowledge_errors
+from validate_documents import validate_documents
 
 from build_application_projection import (
     PROJECTION_RELATIVE_PATH,
@@ -345,12 +346,31 @@ def _validate_resume_artifact_claims(root: Path) -> list[str]:
     return errors
 
 
+def _validate_resume_selection(root: Path) -> list[str]:
+    """Gate 38: keep the retired Thready rebuild story out of the common resume."""
+    path = root / "app/fe/content/common/resume.json"
+    if not path.exists():
+        return []
+    data = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+    excluded = {"thready.backend-rebuild", "thready.rebuild-decision-execution"}
+    errors = []
+    if _json_copy_claims(data) & excluded:
+        errors.append("resume selection gate 38: Thready rebuild claims are not selected")
+    for section in data.get("sections", []):
+        for entry in section.get("entries", []):
+            for block in entry.get("blocks", []):
+                text = str(block.get("text", ""))
+                if re.search(r"(?:Thready|백엔드|backend).{0,50}(?:재구축|병렬 재설계|병렬 재작성)", text, re.I):
+                    errors.append("resume selection gate 38: Thready rebuild narrative is not selected")
+    return errors
+
+
 def _validate_common_document_claims(root: Path) -> list[str]:
     """Gates 31/34/35: public claims, English Jake CV, and separate military service."""
     claims, _ = _load_claims(root)
     public = {str(claim.get("id")) for claim in claims if claim.get("public") is True}
     hero = _load_yaml_file(root, COPY_GATES_PATH).get("hero") or {}
-    errors: list[str] = []
+    errors: list[str] = _validate_resume_selection(root)
     for name in ("resume", "career-description", "portfolio", "cv"):
         artifact = root / "app" / "fe" / "content" / "common" / f"{name}.json"
         if not artifact.exists():
@@ -368,7 +388,16 @@ def _validate_common_document_claims(root: Path) -> list[str]:
         for claim_id in sorted(used - public):
             errors.append(f"common documents: {name}.json uses unknown/non-public claim {claim_id}")
         brand = str(hero.get("brand_line_en" if name == "cv" else "brand_line", ""))
-        if brand and source.count(brand) != 1:
+        brand_count = source.count(brand)
+        if name == "resume" and isinstance(data, dict):
+            # Homepage copy may omit sentence periods; the wording must still match exactly.
+            brand_count = sum(
+                str(block.get("text", "")).removesuffix(".") == brand.removesuffix(".")
+                for section in data.get("sections", [])
+                for entry in section.get("entries", [])
+                for block in entry.get("blocks", [])
+            )
+        if brand and brand_count != 1:
             errors.append(f"common documents: {name}.json must contain exactly one brand line")
         if name == "cv" and isinstance(data, dict):
             if data.get("language") != "en" or data.get("template") != "jake":
@@ -456,11 +485,24 @@ def _validate_portfolio_artifact_claims(root: Path) -> list[str]:
     known = {str(claim.get("id")) for claim in claims}
     public = {str(claim.get("id")) for claim in claims if claim.get("public") is True}
     errors: list[str] = []
-    case_claims: set[str] = set()
     case_dir = root / WIKI / "products" / "portfolio" / "cases"
     for path in sorted(case_dir.glob("*.md")):
-        meta = _frontmatter(path.read_text(encoding="utf-8")) or {}
-        case_claims.update(str(claim_id) for claim_id in meta.get("claim_ids", []))
+        case_text = path.read_text(encoding="utf-8")
+        meta = _frontmatter(case_text) or {}
+        selected = {str(claim_id) for claim_id in meta.get("claim_ids", [])}
+        for claim_id in sorted(selected - known):
+            errors.append(f"portfolio library: {path.name} has unknown claim {claim_id}")
+        for claim_id in sorted(selected - public):
+            errors.append(f"portfolio library: {path.name} claim {claim_id} is not public")
+        if meta.get("library_status") == "ready":
+            if not selected:
+                errors.append(f"portfolio library: {path.name} has no claim_ids")
+            for heading in (
+                "성과와 전문성", "JD별 활용", "경력기술서 문안",
+                "이력서·CV 문안", "내부 근거와 후속 확인",
+            ):
+                if not re.search(rf"^## {re.escape(heading)}\s*$", case_text, re.MULTILINE):
+                    errors.append(f"portfolio library: {path.name} missing section {heading}")
 
     for artifact in artifacts:
         if not artifact.exists():
@@ -483,17 +525,9 @@ def _validate_portfolio_artifact_claims(root: Path) -> list[str]:
                 f"portfolio artifact: {artifact.relative_to(root)} claimIds value {claim_id} is not public"
             )
 
-        if artifact.name == "cases.ts":
-            catalog_text = text.split("export type Achievement", 1)[0]
-            catalog_claims = {
-                claim_id
-                for block in CLAIM_IDS_BLOCK.findall(catalog_text)
-                for claim_id in STRING_LITERAL.findall(block)
-            }
-            for claim_id in sorted(case_claims - catalog_claims):
-                errors.append(f"portfolio artifact: cases.ts is missing case-library claim {claim_id}")
-            for claim_id in sorted(catalog_claims - case_claims):
-                errors.append(f"portfolio artifact: cases.ts has claim absent from case library {claim_id}")
+        # Current library and prior/frozen artifact selections can differ. Both
+        # must cite the registry; equality would force publication or retroactive
+        # edits whenever a reusable case is added or a selection is retired.
     return errors
 
 
@@ -552,12 +586,13 @@ def _surface_files(root: Path, surfaces_cfg: dict[str, Any], attempt: dict[str, 
             continue
         for surface in surfaces:
             template = str(surface.get("route", ""))
-            prefix = template.split("{company}")[0]
-            if not route.startswith(prefix) or "{company}" not in template:
+            if "{company}" not in template:
                 continue
-            company = route[len(prefix):].strip("/")
-            if not company or "/" in company:
+            pattern = re.escape(template).replace(re.escape("{company}"), r"([^/]+)")
+            match = re.fullmatch(pattern, route)
+            if not match:
                 continue
+            company = match.group(1)
             path = root / str(surface["path"]).format(company=company)
             if path.exists():
                 found[str(surface["id"])] = path
@@ -664,7 +699,7 @@ def _validate_copy_selection(root: Path) -> list[str]:
         except (KeyError, TypeError, re.error) as exc:
             errors.append(f"copy selection: invalid rule {rule.get('gate')}: {exc}")
             continue
-        files = active_files | {
+        files = (active_files if rule.get("include_active", True) else set()) | {
             root / surface["path"] for surface in surfaces.get("surfaces", [])
             if surface["id"] in rule.get("common_ids", [])
         } | {root / path for path in rule.get("extra_paths", [])}
@@ -839,11 +874,11 @@ def _validate_resume_row_layout(root: Path) -> list[str]:
 
 
 def _validate_resume_comparison_copy(root: Path) -> list[str]:
-    """Gate 30: template comparison must not change the reviewed copy or claims."""
+    """Gate 30: the shared document reader preserves full copy and claims."""
     frontend = root / "app/fe"
-    test = frontend / "app/resume/compare/source.test.mjs"
+    test = frontend / "content/documents/resume-copy.test.mjs"
     if not test.exists() or not (frontend / "node_modules/typescript").exists():
-        return []
+        return ["document copy: gate 30 required reader test or TypeScript missing"]
     try:
         result = subprocess.run(
             ["node", "--experimental-strip-types", "--test", str(test)],
@@ -872,6 +907,7 @@ def validate(root: Path) -> list[str]:
         + _validate_tailored_resume_claims(root)
         + _validate_professional_document_claims(root)
         + _validate_common_document_claims(root)
+        + validate_documents(root, _load_claims(root)[0], _load_yaml_file(root, COPY_GATES_PATH), _registry_attempts(root))
         + _validate_portfolio_artifact_claims(root)
         + _validate_application_registry(root)
         + _validate_application_projection_drift(root)

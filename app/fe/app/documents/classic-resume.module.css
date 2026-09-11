@@ -1,0 +1,78 @@
+.pane { min-width: 0; min-height: 0; display: none; flex-direction: column; }
+.reader { overflow: auto; overscroll-behavior: contain; scrollbar-gutter: stable; min-height: 0; flex: 1; }
+.document { max-width: 210mm; margin: 0 auto; padding: 40px 38px 64px; background: white; color: #111; border: 1px solid #deded8; overflow-wrap: anywhere; }
+.meta { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+.contacts { justify-content: flex-start; }
+.section { padding-top: 44px; }
+.sectionTitle { font-size: 22px; font-weight: 600; line-height: 1.4; letter-spacing: -.02em; border-bottom: 1px solid #111; padding-bottom: 12px; margin-bottom: 28px; }
+.entry + .entry { border-top: 1px solid #eee; padding-top: 20px; margin-top: 20px; }
+.entryTitle { font-size: 18px; font-weight: 600; line-height: 1.4; margin: 0 0 10px; }
+.entryNumber { position: absolute; left: 0; font: 400 12px/1.6 var(--font-plex-mono), monospace; color: #707070; padding-top: 3px; }
+.section[data-kind="outcomes"] .entry { position: relative; padding-left: 56px; }
+.blocks { display: grid; gap: 10px; }
+.careerHeading { margin: 24px 0 0; padding-top: 16px; border-top: 1px solid #ddd; font-size: 18px; font-weight: 600; line-height: 1.5; color: #111; text-wrap: balance; break-after: avoid; }
+.careerSubheading { margin: 12px 0 0; font-size: 15px; font-weight: 600; line-height: 1.5; color: #333; text-wrap: balance; break-after: avoid; }
+.paragraph, .bullet { margin: 0; font-size: 16px; line-height: 1.55; color: #3a3a3a; }
+.bullet { padding-left: 15px; position: relative; }
+.bullet::before { content: ""; position: absolute; left: 1px; top: .7em; width: 4px; height: 4px; border-radius: 50%; background: #707070; }
+.section[data-kind="career"] .entry { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 16px; }
+.section[data-kind="career"] .entryTitle { font-size: 14px; }
+.section[data-kind="career"] .paragraph, .section[data-kind="career"] .bullet { font-size: 14px; }
+.skill { display: grid; grid-template-columns: 140px minmax(0, 1fr); gap: 16px; font-size: 16px; padding: 14px 0; border-bottom: 1px solid #eee; }
+.skillLabel { font: 500 13px/1.55 var(--font-plex-mono), var(--font-ko); }
+
+/* Classic changes presentation only, not the order or selection of copy. */
+.pane.standalone { display: block; margin: 36px auto 80px; }
+.pane.standalone .document { border: 0; }
+.pane[data-template="classic"] .document { padding: 36px 42px 52px; }
+.pane[data-template="classic"] .documentHeader { border: 0; padding-bottom: 0; }
+.pane[data-template="classic"] .identity { display: block; text-align: center; }
+.pane[data-template="classic"] .identity h1 { font-size: 30px; letter-spacing: .015em; line-height: 1.2; }
+.pane[data-template="classic"] .identity p { margin-top: 5px; font-size: 13px; }
+.pane[data-template="classic"] .meta { display: flex; flex-direction: column; align-items: center; gap: 7px; border: 0; margin-top: 8px; padding: 0; text-align: center; }
+.pane[data-template="classic"] .meta > p { font: 400 .8125rem/1.5 var(--font-ko); }
+.pane[data-template="classic"] .contacts { justify-content: center; gap: 4px 14px; }
+.pane[data-template="classic"] .contacts a { border: 0; background: none; padding: 0; min-height: 0; font: 400 12px/1.6 var(--font-ko); text-decoration: underline; text-underline-offset: 3px; }
+.pane[data-template="classic"] .contacts svg { display: none; }
+.pane[data-template="classic"] .summary { border-top: 2px solid #222; padding-top: 16px; margin-top: 18px; gap: 8px; }
+.pane[data-template="classic"] .summary p:first-of-type { font-size: 1rem; font-weight: 600; line-height: 1.5; }
+.pane[data-template="classic"] .summary p:not(:first-of-type) { font-size: .9375rem; line-height: 1.65; color: #222; }
+.pane[data-template="classic"] .section { padding-top: 30px; }
+.pane[data-template="classic"] .sectionTitle { font-size: 1.125rem; line-height: 1.4; padding-bottom: 8px; margin-bottom: 16px; }
+.pane[data-template="classic"] .entry { display: block; padding-left: 0; }
+.pane[data-template="classic"] .entry + .entry { margin-top: 20px; padding-top: 0; border: 0; }
+.pane[data-template="classic"] .section[data-kind="outcomes"] .entry + .entry { padding-top: 16px; border-top: 1px solid #d9d9d9; }
+.pane[data-template="classic"] .entryTitle { font-size: 1rem; margin-bottom: 10px; }
+.pane[data-template="classic"] :is(.sectionTitle, .entryTitle) { text-wrap: balance; }
+.pane[data-template="classic"] .entryNumber { display: none; }
+.pane[data-template="classic"] .blocks { gap: 9px; }
+.pane[data-template="classic"] :is(.paragraph, .bullet) { font-size: .9375rem; line-height: 1.65; color: #222; }
+.pane[data-template="classic"] :is(.paragraph, .bullet, .summary p) { text-wrap: pretty; }
+.pane[data-template="classic"] .skill { display: block; padding: 3px 0; border: 0; font-size: .9375rem; line-height: 1.65; }
+.pane[data-template="classic"] .skillLabel { font: 600 .9375rem/1.65 var(--font-ko); margin-right: 12px; }
+
+
+@media (max-width: 640px) {
+  .reader { scrollbar-gutter: auto; }
+  .document, .pane[data-template="classic"] .document { padding: 26px 20px 44px; border-left: 0; border-right: 0; }
+  .section[data-kind="outcomes"] .entry { padding-left: 0; }
+  .entryNumber { display: none; }
+  .section[data-kind="career"] .entry { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+  .skill { grid-template-columns: minmax(0, 1fr); gap: 5px; }
+}
+@media print {
+  .pane.standalone { display: block !important; margin: 0; }
+  .pane { display: none !important; }
+  .reader { overflow: visible; }
+  .document, .pane[data-template="classic"] .document { max-width: none; border: 0; padding: 0; }
+  .document h2, .document h3 { break-after: avoid; }
+  .document p { orphans: 3; widows: 3; }
+  /* Preserve the compact A4 reading size while the screen gets more breathing room. */
+  .pane[data-template="classic"] .summary p:not(:first-of-type),
+  .pane[data-template="classic"] :is(.paragraph, .bullet, .skill, .skillLabel) { font-size: .875rem; line-height: 1.6; }
+  .pane[data-template="classic"] .section { padding-top: 24px; }
+  .pane[data-template="classic"] .sectionTitle { margin-bottom: 12px; padding-bottom: 6px; }
+  .pane[data-template="classic"] .blocks { gap: 7px; }
+  .pane[data-template="classic"] .entry + .entry { margin-top: 16px; }
+  .pane[data-template="classic"] .section[data-kind="outcomes"] .entry + .entry { padding-top: 12px; }
+}

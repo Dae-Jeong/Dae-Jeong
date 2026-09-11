@@ -8,13 +8,19 @@ import {
 } from "@/content/resumes";
 import { ResumePageShell } from "../resume-page-shell";
 import { TailoredResumeView } from "../tailored-resume-view";
+import { CompanyDocumentPage, type DocumentSearch } from "../../documents/company-document";
 
 type PageProps = {
   params: Promise<{ company: string }>;
+  searchParams: DocumentSearch;
 };
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+export async function generateMetadata({ params, searchParams }: PageProps): Promise<Metadata> {
   const { company } = await params;
+  if ((await searchParams).revision || company === "toss-place") return {
+    title: `${company} 이력서 초안 — 김대정`,
+    robots: { index: false, follow: false, noarchive: true, nosnippet: true },
+  };
   if (company === "jyp-v2") redirect("/resume/jyp");
   const resume = getTailoredResume(company);
 
@@ -35,8 +41,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     },
   };
 }
-export default async function CompanyResumePage({ params }: PageProps) {
+export default async function CompanyResumePage({ params, searchParams }: PageProps) {
   const { company } = await params;
+  const { revision } = await searchParams;
+  if (revision || company === "toss-place") return <CompanyDocumentPage company={company} kind="resume" revision={revision ?? "20260910-R1"} />;
   if (company === "jyp-v2") redirect("/resume/jyp");
   const resume = getTailoredResume(company);
 

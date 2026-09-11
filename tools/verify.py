@@ -13,6 +13,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 import subprocess
 import sys
 import time
@@ -73,14 +74,19 @@ def active_routes() -> list[str]:
     statuses = set(active.get("statuses") or [])
     excluded = set(active.get("exclude_artifact_states") or [])
     routes = list(COMMON_ROUTES)
+    routes.append("/_map")
+    for path in sorted((APP / "content/documents/companies").glob("*/*.json")):
+        document = json.loads(path.read_text(encoding="utf-8"))
+        routes.append(f"/{document['document']}/{document['slug']}?revision={document['revision']}")
     # per_company 표면: route template → path template. 표면 파일이 없는 route(typed content 전)는 검사하지 않는다.
     templates = [(str(s["route"]), str(s["path"])) for s in (cfg.get("surfaces") or []) if s.get("per_company") and s.get("route")]
     def has_surface(route: str) -> bool:
         for tpl, path_tpl in templates:
-            prefix = tpl.split("{company}")[0]
-            if route.startswith(prefix):
-                company = route[len(prefix):].strip("/")
-                if company and (ROOT / path_tpl.format(company=company)).exists():
+            pattern = re.escape(tpl).replace(re.escape("{company}"), r"([^/]+)")
+            match = re.fullmatch(pattern, route)
+            if match:
+                company = match.group(1)
+                if (ROOT / path_tpl.format(company=company)).exists():
                     return True
         return False
     data = yaml.safe_load(REGISTRY.read_text(encoding="utf-8")) or {}

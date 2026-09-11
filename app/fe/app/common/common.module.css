@@ -58,7 +58,7 @@
 .document[data-common-document="portfolio"] .section[data-level="2"] { margin-top: 64px; padding-top: 28px; border-color: #263a4e; counter-increment: portfolio-case; }
 .document[data-common-document="portfolio"] .section h2 { font-size: clamp(24px, 3vw, 32px); }
 .document[data-common-document="portfolio"] .section[data-level="2"] > h2::before { content: "CASE 0" counter(portfolio-case); display: block; font: 500 11px/1.6 var(--font-plex-mono), monospace; letter-spacing: .07em; margin-bottom: 14px; color: #52708b; }
-.document[data-common-document="portfolio"] .section[data-level="2"] > .sectionBody > .prose { font-size: 13px; color: #5c6c7c; }
+.document[data-common-document="portfolio"] .section[data-level="2"] > .sectionBody > .prose > p:first-child { font-size: 13px; color: #5c6c7c; }
 .document[data-common-document="portfolio"] .section[data-level="3"] { display: grid; grid-template-columns: 178px minmax(0, 1fr); gap: 34px; padding-top: 30px; margin-top: 30px; }
 .document[data-common-document="portfolio"] .section h3 { font-size: 17px; }
 .document[data-common-document="portfolio"] .prose { font-size: 16px; line-height: 1.85; color: #35495c; }
@@ -104,10 +104,99 @@
   .header { padding-top: 5mm; }
   .section[data-level="2"] { margin-top: 9mm; padding-top: 5mm; }
   .section h2, .section h3, .section h4 { break-after: avoid; }
+  .sectionBody, .sectionBody > .prose, .sectionBody > .section:first-of-type { break-before: avoid; }
   .prose p, .bullets li { orphans: 3; widows: 3; }
   .tableWrap { overflow: visible; }
   .tableWrap tr, .flow li, .boundary { break-inside: avoid; }
   .tableWrap thead { display: table-header-group; }
   .document[data-common-document="portfolio"] .section[data-level="3"] { grid-template-columns: 135px minmax(0, 1fr); gap: 20px; }
   .document[data-common-document="portfolio"] .prose { font-size: 11pt; }
+}
+
+/* Career description: familiar single-column A4 document, independent of portfolio. */
+.document[data-common-document="career"] { padding: 36px 42px 72px; }
+.document[data-common-document="career"] .header { border-top: 0; padding-top: 0; }
+.document[data-common-document="career"] .identityRow { display: block; }
+.document[data-common-document="career"] .identityRow h1 { font-size: 30px; font-weight: 700; }
+.document[data-common-document="career"] .identityRow > p { text-align: left; margin-top: 10px; font-size: 14px; color: #333; }
+.document[data-common-document="career"] .brand { font-size: 16px; line-height: 1.65; margin: 14px 0 8px; font-weight: 500; }
+.document[data-common-document="career"] .contacts { font-size: 12px; color: #505050; }
+.document[data-common-document="career"] .introduction { margin-top: 18px; padding-top: 16px; font-size: 15px; line-height: 1.7; }
+.document[data-common-document="career"] .contents { display: flex; flex-wrap: wrap; gap: 4px 20px; margin: 20px 0 0; padding: 10px 0; border-top: 0; }
+.document[data-common-document="career"] .contents a { padding: 3px 0; font-size: 12px; }
+.document[data-common-document="career"] .contents span { display: none; }
+.document[data-common-document="career"] .section[data-level="2"] { margin-top: 32px; padding-top: 16px; border-top: 1px solid #333; }
+.document[data-common-document="career"] .section h2 { font-size: 21px; line-height: 1.45; font-weight: 650; margin-bottom: 14px; }
+.document[data-common-document="career"] .datedHeading { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 6px 20px; }
+.document[data-common-document="career"] .period { font-size: 13px; font-weight: 400; color: #505050; letter-spacing: 0; }
+.document[data-common-document="career"] .section[data-level="3"] { margin-top: 26px; padding-top: 20px; border-color: #ddd; }
+.document[data-common-document="career"] .section h3 { font-size: 18px; margin-bottom: 12px; }
+.document[data-common-document="career"] .section[data-level="4"] { margin-top: 20px; padding-top: 0; border-top: 0; }
+.document[data-common-document="career"] .section h4 { font-size: 16px; margin-bottom: 8px; }
+.document[data-common-document="career"] .prose { font-size: 15px; line-height: 1.7; color: #333; }
+.document[data-common-document="career"] .prose p { margin-bottom: 10px; }
+.document[data-common-document="career"] .techLine { color: #505050; font-size: 12px; line-height: 1.65; padding-top: 10px; margin-top: 14px !important; }
+.document[data-common-document="career"] .tableWrap { margin: 16px 0; border-color: #aaa; }
+.document[data-common-document="career"] .tableWrap table { font-size: 14px; line-height: 1.65; }
+.document[data-common-document="career"] .tableWrap thead { background: #f5f5f5; color: #333; }
+.document[data-common-document="career"] .tableWrap :is(th, td) { padding: 10px 12px; border-color: #ddd; }
+.document[data-common-document="career"] .tableWrap tbody th { color: #333; }
+@media (max-width: 720px) {
+  .document[data-common-document="career"] { padding: 28px 0 48px; }
+}
+@media print {
+  .document[data-common-document="career"] { padding: 5mm 5mm 0; }
+  .document[data-common-document="career"] .contents { display: none; }
+  .document[data-common-document="career"] .section[data-level="2"] { margin-top: 7mm; padding-top: 4mm; }
+  .document[data-common-document="career"] .section[data-level="3"] { margin-top: 4mm; padding-top: 3mm; }
+  .document[data-common-document="career"] .section[data-level="4"] { margin-top: 4mm; }
+  .document[data-common-document="career"] .prose { font-size: 10.5pt; line-height: 1.65; }
+  .document[data-common-document="career"] .techLine { font-size: 9pt; }
+  .document[data-common-document="career"] .tableWrap { break-inside: auto; }
+  .document[data-common-document="career"] .tableWrap :is(th, td) { padding: 6px 10px; }
+  .document[data-common-document="career"] .bullets li { margin: 3px 0; }
+}
+
+/* Company role is primary; employment history supports it. */
+.document[data-common-document="career"] .prose .roleLine { font-size: 16px; font-weight: 600; color: #222; margin-bottom: 4px; }
+.document[data-common-document="career"] .prose .metadataLine { font-size: 12px; line-height: 1.65; color: #595959; margin-bottom: 14px; }
+@media print {
+  .document[data-common-document="career"] .prose .roleLine { font-size: 11pt; }
+  .document[data-common-document="career"] .prose .metadataLine { font-size: 9pt; }
+}
+
+.document[data-common-document="career"] .section[data-emphasis="supporting"] { margin-top: 16px; }
+.document[data-common-document="career"] .section[data-emphasis="supporting"] > h4 { font-size: 15px; font-weight: 500; margin-bottom: 6px; }
+
+/* Evidence-backed process diagrams shared by portfolio cases. */
+.caseVisual { margin: 24px 0; padding: 20px; background: #f4f7fa; border-top: 2px solid #527da0; }
+.caseVisual > figcaption { font-size: 13px; font-weight: 600; color: #294f70; margin-bottom: 20px; }
+.caseVisual ol { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; list-style: none; padding: 0; margin: 0; }
+.caseVisual li { position: relative; min-width: 0; padding: 14px 12px; background: white; border: 1px solid #c6d3de; }
+.caseVisual li strong { font-size: 14px; font-weight: 600; color: #223f58; }
+.caseVisual li p { font-size: 12px; line-height: 1.75; margin: 8px 0 0; color: #435d72; }
+.flowConnector { position: absolute; left: -27px; top: 50%; width: 26px; transform: translateY(-50%); text-align: center; color: #527da0; font-size: 20px; }
+.flowConnector > span[data-copy] { display: block; font-size: 9px; line-height: 1.2; }
+.visualCaption { font-size: 12px; line-height: 1.8; color: #435d72; margin: 16px 0 0; }
+@media (max-width: 720px) {
+  .caseVisual ol { grid-template-columns: 1fr; gap: 28px; }
+  .flowConnector { left: 50%; top: -28px; transform: translateX(-50%); }
+  .flowConnector > span[aria-hidden] { display: inline-block; transform: rotate(90deg); }
+}
+@media print {
+  .caseVisual { break-inside: avoid; padding: 12px; margin: 14px 0; }
+  .caseVisual ol { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .caseVisual li { padding: 10px; }
+}
+
+@media print {
+  .document[data-common-document="portfolio"] .section[data-level="3"] { display: block; margin-top: 6mm; padding-top: 4mm; }
+  .document[data-common-document="portfolio"] .section h3 { margin-bottom: 3mm; }
+  .document[data-common-document="portfolio"] .section[data-level="2"] { margin-top: 8mm; padding-top: 5mm; }
+  .document[data-common-document="portfolio"] .sectionBody > .section:first-of-type { break-before: auto; }
+}
+
+@media print {
+  .document[data-common-document="portfolio"] .tableWrap :is(th, td) { padding: 8px 12px; }
+  .document[data-common-document="portfolio"] .techLine { padding-top: 10px; margin-top: 14px !important; }
 }

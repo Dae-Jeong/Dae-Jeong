@@ -1,18 +1,25 @@
 import { Chip } from "@/components/ui/chip";
-import { resumeType } from "../resume-typography";
-import type { CopyBlock, ResumeCopy } from "./source";
-import styles from "./compare.module.css";
+import { resumeType } from "../resume/resume-typography";
+import type { CopyBlock, ResumeCopy } from "@/content/documents/resume-copy";
+import styles from "./classic-resume.module.css";
+import { Inline } from "../common/inline";
 
 function Blocks({ blocks }: { blocks: CopyBlock[] }) {
   return blocks.map((block, index) => {
     const shared = { "data-copy": "", "data-claim": block.claims.join(" ") };
+    if (block.presentation === "heading") {
+      return <h4 key={index} className={styles.careerHeading} {...shared}>{block.text}</h4>;
+    }
+    if (block.presentation === "subheading") {
+      return <h5 key={index} className={styles.careerSubheading} {...shared}>{block.text}</h5>;
+    }
     if (block.kind === "skill") {
       return <div key={index} className={styles.skill} {...shared}>
         <span className={styles.skillLabel}>{block.label}</span>{" "}
         <span>{block.text}</span>
       </div>;
     }
-    return <p key={index} className={block.kind === "bullet" ? styles.bullet : styles.paragraph} {...shared}>{block.text}</p>;
+    return <p key={index} className={block.kind === "bullet" ? styles.bullet : styles.paragraph} {...shared}><Inline text={block.text} /></p>;
   });
 }
 
@@ -28,6 +35,7 @@ export function ComparisonDocument({ copy, prefix }: { copy: ResumeCopy; prefix:
         </div>
         <div className={`${resumeType.commonMetaBlock} ${styles.meta}`}>
           <p className={resumeType.careerMeta} data-copy>{copy.careerLine}</p>
+          {copy.specialtyLine && <p className={resumeType.careerMeta} data-copy>{copy.specialtyLine}</p>}
           <div className={`${resumeType.commonContactRow} ${styles.contacts}`}>
             {copy.contacts.map((contact) => <Chip key={contact.href} variant="contact" href={contact.href} external={contact.href.startsWith("https:")}><span data-copy>{contact.label}</span></Chip>)}
           </div>

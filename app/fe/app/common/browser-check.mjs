@@ -99,8 +99,8 @@ for (const route of [...new Set([...selection.routes, "/portfolio/thready"])]) {
 orca("goto", "--url", base + "/portfolio/hypernova");
 const frozen = evaluate("document.body.innerText");
 assert(frozen.includes("37% → 11%") && frozen.includes("94%"), "Frozen Hypernova copy changed");
-orca("goto", "--url", `${base}/common`);
+orca("goto", "--url", `${base}/_map`);
 const links = evaluate("[...document.querySelectorAll('main a')].map(a => a.getAttribute('href'))");
-for (const route of ["/resume", "/career", "/portfolio", "/cv", "/resume/compare"]) assert(links.includes(route), route);
+for (const route of ["/resume", "/career", "/portfolio", "/cv"]) assert(links.includes(route), route);
 writeFileSync(path.join(output, process.argv.includes("--copy-only") ? "copy-selection.json" : "checks.json"), JSON.stringify({ checkedAt: new Date().toISOString(), result: "PASS", records, selectionRecords, frozenHypernova: "preserved" }, null, 2));
 console.log(`PASS: common hub links, ${records.length} document viewports. Screenshots: ${output}`);
