@@ -5,19 +5,27 @@ import { CommonNav } from "../common/common-nav";
 import { ComparisonDocument } from "../documents/classic-resume";
 import type { ResumeCopy } from "../../content/documents/resume-copy";
 import styles from "../documents/classic-resume.module.css";
+import { commonResumePresentation } from "@/content/common/presentation";
+import { PagedResume } from "../documents/paged-resume";
 
 export const metadata: Metadata = {
-  title: "Resume — 김대정 · Tech Lead · Backend Engineer",
+  title: "Resume — 김대정 · Maker",
   description:
-    "가능성을 기회로 바꾸고, 제품으로 가치를 전하는 메이커 김대정의 Tech Lead · Backend Engineer 이력서",
+    "호기심을 현실로, 메이커 김대정의 제품 기획·개발·운영 경험",
 };
 
-export default function ResumePage() {
+export default async function ResumePage({ searchParams }: { searchParams: Promise<{ paged?: string }> }) {
+  const paged = (await searchParams).paged === "1";
+  if (paged) return <main className={`${styles.pane} ${styles.standalone}`} data-template="editorial" data-common-document="resume" data-paged="true">
+    <style>{"@page{size:A4;margin:0}"}</style>
+    <ComparisonDocument copy={copy as ResumeCopy} prefix="resume" presentation={commonResumePresentation} />
+    <PagedResume author={copy.name} role={copy.role} />
+  </main>;
   return (
     <ResumePageShell>
       <CommonNav active="/resume" />
-      <main className={`${styles.pane} ${styles.standalone}`} data-template="classic" data-common-document="resume">
-        <ComparisonDocument copy={copy as ResumeCopy} prefix="resume" />
+      <main className={`${styles.pane} ${styles.standalone}`} data-template="editorial" data-common-document="resume">
+        <ComparisonDocument copy={copy as ResumeCopy} prefix="resume" presentation={commonResumePresentation} />
       </main>
     </ResumePageShell>
   );

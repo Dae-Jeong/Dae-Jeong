@@ -28,10 +28,15 @@ test("all four app-owned copies have the expected shape and no private import me
       if (Array.isArray(value)) { value.forEach(inspect); return; }
       if (!value || typeof value !== "object") return;
       if (value.kind) {
-        assert(["paragraph", "bullet", "skill", "table"].includes(value.kind), name);
+        assert(["paragraph", "bullet", "skill", "row", "table", "image"].includes(value.kind), name);
         assert(Array.isArray(value.claims), name);
         if (value.kind === "table") value.rows.forEach((row) => assert.equal(row.length, value.columns.length));
-        else assert.equal(typeof value.text, "string");
+        else if (value.kind === "image") {
+          assert.equal(name, "career-description");
+          assert.match(value.src, /^\/portfolio\/[a-z0-9-]+\.png$/);
+          assert(value.alt && value.title && value.caption && value.width > 0 && value.height > 0);
+          assert(readFileSync(new URL(`../../public${value.src}`, import.meta.url)).length > 0);
+        } else assert.equal(typeof value.text, "string");
       }
       Object.values(value).forEach(inspect);
     }
@@ -94,15 +99,15 @@ test("the common resume and CV retain concrete STUDIO LAB PM contributions", () 
     for (const claim of ["career.sellercanvas-product-system", "career.sellercanvas-enterprise-poc", "credentials.page-output-patent"]) {
       assert(claims.has(claim), `${name}: missing STUDIO LAB contribution ${claim}`);
     }
-    const product = blocks.find((block) => block.claims.includes("career.sellercanvas-product-system") && /v1\.0|정식 버전/.test(block.text));
-    const poc = blocks.find((block) => block.claims.includes("career.sellercanvas-enterprise-poc"));
+    const product = blocks.find((block) => block.claims.includes("career.sellercanvas-product-system") && /v1\.0|정식 버전|제품 요구·우선순위/.test(block.text));
+    const poc = blocks.find((block) => block.claims.includes("career.sellercanvas-enterprise-poc") && block.kind === "bullet");
     const patent = blocks.find((block) => block.claims.includes("credentials.page-output-patent"));
     assert(product && poc && patent);
     assert.notEqual(product, poc, `${name}: PoC work should not collapse into the productization summary`);
     assert.notEqual(poc, patent, `${name}: workflow and patent contribution stays distinct`);
-    assert.match(poc.text, /기술 스펙|기술 명세|technical specifications/);
+    assert.match(poc.text, /기술 스펙|기술 명세|기능·기술 검증 항목|technical specifications/);
     assert.match(poc.text, /기술 검증|technical validation/);
-    assert.match(patent.text, /제작 흐름|creation workflow/);
+    assert.match(patent.text, /제작 흐름|배치 알고리즘 설계|creation workflow/);
     assert(!claims.has("career.sellercanvas-nestjs-template"), "Do not fill space with an unapproved backend claim");
   }
 });

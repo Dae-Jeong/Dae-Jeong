@@ -10,8 +10,10 @@ import { parseReview } from "../app/fe/content/documents/parse-markdown.ts";
 
 const args = process.argv.slice(2);
 const [source, outDir] = args;
-assert(source && outDir, "usage: build_revision_documents.mjs <content-draft.md> <out-dir> [--check] [--only=resume|career]");
+assert(source && outDir, "usage: build_revision_documents.mjs <content-draft.md> <out-dir> [--check] [--only=resume|career] [--common] [--career-source=<file>]");
 const check = args.includes("--check");
+// Common baseline owns independent Markdown; company submission revisions remain immutable.
+const common = args.includes("--common");
 // --only=<kind>: build/gate/write just that document (R3 adapter, 2026-09-13). The other document is left
 // untouched on disk and is not parsed or claim-gated here — it is out of scope, not bypassed.
 // --career-source=<file>: build the career document from a separate reviewed draft (career-draft-v1.md, 2026-09-13)
@@ -26,9 +28,13 @@ const markdown = readFileSync(source, "utf8");
 const frontmatter = Object.fromEntries((markdown.match(/^---\r?\n([\s\S]*?)\r?\n---/) ?? ["", ""])[1].split(/\r?\n/)
   .map((line) => line.match(/^([\w-]+):\s*(.*)$/)).filter(Boolean).map(([, key, value]) => [key, value.trim()]));
 for (const key of ["revision", "status", "visibility", "approved", "content_owner", "projection"]) assert(frontmatter[key] !== undefined, `frontmatter.${key}`);
-assert.equal(frontmatter.approved, "false"); assert.equal(frontmatter.status, "draft"); assert.equal(frontmatter.visibility, "local");
+assert.equal(frontmatter.approved, common ? "true" : "false"); assert.equal(frontmatter.status, common ? "approved" : "draft"); assert.equal(frontmatter.visibility, common ? "public" : "local");
 assert.equal(frontmatter.content_owner, "content-draft.md", "the Markdown draft is the only editable copy");
 assert.equal(path.relative(root, path.resolve(outDir)), frontmatter.projection, "projection must equal the app output directory");
+if (common) {
+  assert.equal(frontmatter.projection, "app/fe/content/common", "common output must target the common document directory");
+  assert(only === "resume" || careerSource, "common career export requires --career-source; do not export the placeholder block");
+}
 
 const parts = markdown.split(/^<!-- document: (\w+) -->\r?\n/m);
 const bodies = {};
@@ -95,7 +101,7 @@ const meta = {
   status: "draft", approved: false, visibility: "local", updatedAt: frontmatter.timestamp, revision: frontmatter.revision,
   applicationId: "miridih-2026-09-12-engineering-depth-review", focus: frontmatter.focus || "R2 구성은 유지하고 데이터 검수·검색·생성 품질·상태 경계·팀 개발 기반의 설계 선택·처리 방식·실패 경계·검증 범위를 엔지니어가 평가할 수 있는 밀도로 복원한 R3 검토본입니다",
 };
-assert.equal(meta.slug, "miridih");
+if (!common) assert.equal(meta.slug, "miridih");
 const projections = {};
 if (!only || only === "resume") projections.resume = { ...meta, document: "resume", content: parseResume(bodies.resume) };
 // Separate career draft → submission body only: drop frontmatter, cut the internal memo (`---` + `## 내부 편집·검토 메모` to EOF,
@@ -158,7 +164,7 @@ for (const [kind, data] of Object.entries(projections)) {
 mkdirSync(outDir, { recursive: true });
 let drift = 0;
 for (const [kind, data] of Object.entries(projections)) {
-  const file = path.join(outDir, `${kind}.json`); const next = `${JSON.stringify(data, null, 2)}\n`;
+  const file = path.join(outDir, `${common && kind === "career" ? "career-description" : kind}.json`); const next = `${JSON.stringify(common ? data.content : data, null, 2)}\n`;
   if (check) {
     if (!existsSync(file) || readFileSync(file, "utf8") !== next) { drift++; console.error(`DRIFT ${file}`); } else console.log(`OK ${file} matches ${path.basename(source)}`);
   } else { writeFileSync(file, next); console.log(`WROTE ${file}`); }

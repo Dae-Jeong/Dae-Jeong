@@ -121,7 +121,7 @@ export function CommonDocumentPage({ kind, document = documents[kind], navigatio
   const brand = headerText.find((block) => block.text.startsWith("가능성을 기회로"));
   const introduction = headerText.filter((block) => block !== identity && block !== contacts && block !== brand);
   const contents = contentsEntries(document, kind, layout);
-  return <ResumePageShell crumb={document.title} tag={kind === "portfolio" ? undefined : "LOCAL REVIEW"}>
+  return <ResumePageShell crumb={document.title} tag={kind === "portfolio" || layout === "a4-sheet" ? undefined : "LOCAL REVIEW"}>
     {navigation ?? <CommonNav active={`/${kind}`} />}
     <main className={styles.document} data-common-document={kind} data-document-layout={layout} data-professional-document={kind === "career" ? "career-description" : undefined} data-portfolio-document={kind === "portfolio" ? "" : undefined} data-portfolio-slug={kind === "portfolio" ? slug : undefined}>
       <header className={styles.header}>

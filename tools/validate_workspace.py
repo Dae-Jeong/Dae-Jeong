@@ -387,7 +387,8 @@ def _validate_common_document_claims(root: Path) -> list[str]:
             errors.append(f"common documents: {name}.json has no sections or claims")
         for claim_id in sorted(used - public):
             errors.append(f"common documents: {name}.json uses unknown/non-public claim {claim_id}")
-        brand = str(hero.get("brand_line_en" if name == "cv" else "brand_line", ""))
+        identities = _load_yaml_file(root, COPY_GATES_PATH).get("common_document_identity") or {}
+        brand = str(identities.get(name, hero.get("brand_line_en" if name == "cv" else "brand_line", "")))
         brand_count = source.count(brand)
         if name == "resume" and isinstance(data, dict):
             # Homepage copy may omit sentence periods; the wording must still match exactly.
@@ -674,7 +675,10 @@ def _validate_public_copy_terms(root: Path) -> list[str]:
         for number, line in enumerate(path.read_text(encoding="utf-8").splitlines(), start=1):
             if skip.search(line):
                 continue
+            allowed = (gates.get("approved_terms_by_path") or {}).get(str(path.relative_to(root)), [])
             for label, pattern in banned:
+                if label in allowed:
+                    continue
                 if pattern.search(line):
                     errors.append(f"public copy: {path.relative_to(root)}:{number} contains banned term '{label}'")
     return errors

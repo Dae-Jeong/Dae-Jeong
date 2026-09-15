@@ -1,0 +1,32 @@
+{
+  "revision": "20260912-R3",
+  "note": "Selective emphasis for the editorial presentation (task miridih-resume-ui, 2026-09-13). Phrases are matched verbatim inside block text at render time; the copy in resume.json stays untouched. Order: outcome → differentiated contribution → key technology. One phrase per bullet by default, two at most. 2026-09-15: 이력서 동기화에 맞춰 구절 갱신(80만원 제안 제거, 비용·템플릿·캐시 문구, SellerCanvas 배치 알고리즘 설계·공동 발명·10분 이내 추가).",
+  "phrases": [
+    "제품의 쓰임과 사업적 가치",
+    "개인의 실행력을 팀의 역량으로",
+    "월 1천만원 수준의 구독 매출 달성",
+    "매출 유지·확대에 기여",
+    "방문 횟수 3.6배 관측",
+    "상담사 만족도 점수 약 15.6% 개선에 기여",
+    "동일 유형 오류 재발 미관찰",
+    "약 30~40% 절감에 기여",
+    "Stripe 선결제 기능 구축 주도",
+    "CES 2024 Best of Innovation AI 부문 수상",
+    "재고·입출고 백엔드 구축 주도",
+    "Celery → TaskIQ·RabbitMQ 전환",
+    "양방향 음성 번역",
+    "중간·확정 전사 분리",
+    "운영 백오피스 기획·디자인·개발",
+    "Redis 공유 세션 재설계",
+    "동기 → 비동기 방식으로 전환",
+    "공통 의료 지식베이스 기획·디자인·개발 주도",
+    "적중 시 DB 조회 7→1회 확인",
+    "디자이너와 공동 기획하며 프로젝트 리딩",
+    "요구사항별 검증 결과 기반 릴리스 판단 체계화",
+    "트랜잭션·세션 정책 표준화",
+    "배치 알고리즘 설계",
+    "공동 발명",
+    "10분 이내",
+    "정성적 품질 평가를 1~10점 척도로 기록"
+  ]
+}

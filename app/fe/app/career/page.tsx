@@ -13,5 +13,5 @@ export const metadata: Metadata = {
 };
 
 export default function CareerPage() {
-  return <CommonDocumentPage kind="career" />;
+  return <CommonDocumentPage kind="career" layout="a4-sheet" />;
 }

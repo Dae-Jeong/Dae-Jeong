@@ -2,7 +2,7 @@ import Link from "next/link";
 import styles from "./common.module.css";
 
 export const COMMON_LINKS = [
-  { href: "/resume", label: "이력서", detail: "대표 성과 · 고전 템플릿" },
+  { href: "/resume", label: "이력서", detail: "Maker · 회사별 프로젝트와 성과" },
   { href: "/career", label: "경력기술서", detail: "프로젝트별 역할 · 판단 · 구현 · 검증" },
   { href: "/portfolio", label: "포트폴리오", detail: "고객 문제 · 제품 구현 · 팀의 개발 기반" },
   { href: "/cv", label: "CV", detail: "영문 · Jake’s Resume · 전체 경력 및 활동" },

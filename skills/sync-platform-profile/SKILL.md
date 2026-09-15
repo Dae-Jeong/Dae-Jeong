@@ -14,7 +14,7 @@ description: Sync the recruiting-platform profiles (Wanted, LinkedIn, Remember, 
 
 ## 절차
 
-1. **파생.** `app/fe/app/resume/resume-view.tsx`·최신 회사별 이력서·[resume-block-library](../../wiki/products/resume/resume-block-library.md)에서 문장을 가져와 `wiki/products/platform-profiles/{platform}.md`의 필드를 갱신한다. 글자 수 상한에 맞춰 **자르기만** 하고 새 사실·수치를 만들지 않는다. claim `allowed_copy` 밖이면 삭제.
+1. **파생.** `app/fe/content/common/resume.json`·최신 회사별 이력서·[resume-block-library](../../wiki/products/resume/resume-block-library.md)에서 문장을 가져와 `wiki/products/platform-profiles/{platform}.md`의 필드를 갱신한다. 글자 수 상한에 맞춰 **자르기만** 하고 새 사실·수치를 만들지 않는다. claim `allowed_copy` 밖이면 삭제.
 2. **검사.** `make verify` — 게이트 12(금지어)·17(글자 수)이 platform 표면에서 돈다. FAIL이면 문안을 고친다. 2회 넘게 안 닫히면 "결정 필요"로 사용자에게.
 3. **적용.** [platform-registry.yaml](../../wiki/products/platform-profiles/platform-registry.yaml)의 `automation`을 따른다.
    - `text_input: auto`(리멤버·그룹바이·로켓펀치): 브라우저로 넣는다. 한글은 `execCommand('insertText')`, `browser_type` 금지(IME).
