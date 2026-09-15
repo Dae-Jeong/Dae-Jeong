@@ -1,10 +1,14 @@
 /** Narrow, lossless reader for this review's Markdown subset; not a CMS parser. */
 export type CopyBlock = {
-  kind: "paragraph" | "bullet" | "skill";
+  kind: "paragraph" | "bullet" | "skill" | "row";
   text: string;
   label?: string;
+  /** "row" only (구분 | 내용 | 시기 credential table): the right-aligned period column. */
+  meta?: string;
   claims: string[];
-  presentation?: "role" | "metadata" | "heading" | "subheading";
+  /** "project-meta": grey one-line stack summary directly under a project heading (R3 adapter). */
+  /** "service-heading": sub-heading one level under a project heading, grouping the bullets of one service (R3 adapter). */
+  presentation?: "role" | "metadata" | "heading" | "subheading" | "project-meta" | "service-heading";
 };
 export type CopyEntry = { title?: string; blocks: CopyBlock[] };
 export type CopySection = { title: string; entries: CopyEntry[] };

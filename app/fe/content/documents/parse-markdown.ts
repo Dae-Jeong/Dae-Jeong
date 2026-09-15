@@ -1,13 +1,22 @@
 /** Import-time adapter for reviewed copy. Public routes consume app-owned JSON, never wiki files. */
-export type TextBlock = { kind: "paragraph" | "bullet"; text: string; claims: string[]; presentation?: "role" | "metadata" };
+/** presentation "label": short bold sub-label inside a career case (문제와 판단 / 구현과 운영 / 결과) — set by the revision exporter, never by hand. */
+export type TextBlock = { kind: "paragraph" | "bullet"; text: string; claims: string[]; presentation?: "role" | "metadata" | "label" };
 export type TableBlock = { kind: "table"; columns: string[]; rows: string[][]; claims: string[] };
-export type ContentBlock = TextBlock | TableBlock;
+/** Lightweight flow diagram (career draft `mermaid flowchart` converted at export time): nodes + directed edges, laid out by the renderer. */
+export type FlowBlock = { kind: "flow"; direction: "LR" | "TD"; nodes: { id: string; label: string }[]; edges: { from: string; to: string }[]; claims: string[] };
+/** Career-only static figure drawn by a React component (see app/common/career-figures.tsx); the id is the only content. */
+export type FigureBlock = { kind: "figure"; id: "thready-approval-publish" | "infra-deployment-boundaries"; claims: string[] };
+/** Career-only rendered diagram image (PNG under /public, 2026-09-14): short heading + full-width image linked to the original + one-line caption. */
+export type ImageBlock = { kind: "image"; src: string; alt: string; title: string; caption: string; width: number; height: number; claims: string[] };
+export type ContentBlock = TextBlock | TableBlock | FlowBlock | FigureBlock | ImageBlock;
 export type CaseVisual = { label: string; steps: { title: string; detail: string; incoming?: string }[]; caption: string; claims: string[] };
 export type ContentSection = { emphasis?: "supporting"; visual?: CaseVisual; visuals?: CaseVisual[]; title: string; period?: string; level: number; blocks: ContentBlock[]; children: ContentSection[] };
 export type ContentDocument = { title: string; header: ContentBlock[]; sections: ContentSection[] };
 
 export function parseReview(markdown: string): ContentDocument {
-  const lines = markdown.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n/, "").split(/\r?\n/);
+  // Markdown hard break: a copy line ending with "\" continues on the next line inside the same paragraph
+  // (renderer Inline draws "\n" as <br>), so one result line can break at a meaning boundary (R3, 2026-09-15).
+  const lines = markdown.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n/, "").replace(/\\\r?\n(?=\S)/g, "\u0000").split(/\r?\n/).map((line) => line.replace(/\u0000/g, "\n"));
   const document: ContentDocument = { title: "", header: [], sections: [] };
   const stack: ContentSection[] = [];
   let claims: string[] = [];
@@ -18,6 +27,21 @@ export function parseReview(markdown: string): ContentDocument {
     if (!line) continue;
     const claim = line.match(/^<!-- claims: (.*?) -->$/);
     if (claim) { claims = claim[1].split(/\s+/).filter(Boolean); continue; }
+    const figure = line.match(/^<!-- figure: ([a-z0-9-]+) -->$/);
+    if (figure) {
+      if (figure[1] !== "thready-approval-publish" && figure[1] !== "infra-deployment-boundaries") throw new Error(`Unknown figure ${figure[1]}`);
+      blocks().push({ kind: "figure", id: figure[1], claims: [...claims] });
+      continue;
+    }
+    const image = line.match(/^<!-- image: (.+) -->$/);
+    if (image) {
+      const spec = JSON.parse(image[1]) as Omit<ImageBlock, "kind" | "claims">;
+      if (!/^\/portfolio\/[a-z0-9-]+\.(png|svg)$/.test(spec.src) || !spec.alt || !spec.title || !spec.caption || !(spec.width > 0) || !(spec.height > 0)) throw new Error(`Invalid image block ${image[1]}`);
+      blocks().push({ kind: "image", claims: [...claims], ...spec });
+      continue;
+    }
+    const flow = line.match(/^<!-- flow: (.+) -->$/);
+    if (flow) { blocks().push({ kind: "flow", claims: [...claims], ...(JSON.parse(flow[1]) as Omit<FlowBlock, "kind" | "claims">) }); continue; }
     const annotation = line.match(/^<!-- (presentation|emphasis|visual|visuals): (.+) -->$/);
     if (annotation) {
       const [, key, value] = annotation;

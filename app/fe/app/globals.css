@@ -75,6 +75,13 @@
   --ease-standard: cubic-bezier(0.2, 0, 0, 1);
 }
 
+/* Approved portrait sheet review layout (career a4-sheet preset): grey stage behind the white A4-width sheet. */
+@media screen {
+  body:has(main[data-document-layout="a4-sheet"]) {
+    background: #eef1f4;
+  }
+}
+
 body {
   background: var(--bg);
   color: var(--fg);

@@ -8,7 +8,7 @@ import {
 } from "@/content/resumes";
 import { ResumePageShell } from "../resume-page-shell";
 import { TailoredResumeView } from "../tailored-resume-view";
-import { CompanyDocumentPage, type DocumentSearch } from "../../documents/company-document";
+import { CompanyDocumentPage, LocalRevisionLinks, type DocumentSearch } from "../../documents/company-document";
 
 type PageProps = {
   params: Promise<{ company: string }>;
@@ -43,8 +43,8 @@ export async function generateMetadata({ params, searchParams }: PageProps): Pro
 }
 export default async function CompanyResumePage({ params, searchParams }: PageProps) {
   const { company } = await params;
-  const { revision } = await searchParams;
-  if (revision || company === "toss-place") return <CompanyDocumentPage company={company} kind="resume" revision={revision ?? "20260910-R1"} />;
+  const { revision, paged } = await searchParams;
+  if (revision || company === "toss-place") return <CompanyDocumentPage company={company} kind="resume" revision={revision ?? "20260910-R1"} paged={paged === "1"} />;
   if (company === "jyp-v2") redirect("/resume/jyp");
   const resume = getTailoredResume(company);
 
@@ -69,6 +69,7 @@ export default async function CompanyResumePage({ params, searchParams }: PagePr
       }
     >
       {company === "jyp" ? <ApplicationVersionNav slug="jyp-v2" label="JYP · 이력서 v1" active="resume" /> : null}
+      <LocalRevisionLinks company={company} kind="resume" />
       <TailoredResumeView resume={resume} roleOptions={roleOptions} />
     </ResumePageShell>
   );

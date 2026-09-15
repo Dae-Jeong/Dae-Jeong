@@ -12,7 +12,7 @@ function Blocks({ blocks }: { blocks: ContentBlock[] }) {
   const nodes: ReactNode[] = [];
   for (let index = 0; index < blocks.length; index++) {
     const block = blocks[index];
-    if (block.kind === "table") throw new Error("Jake CV expects paragraph and bullet records, not tables");
+    if (block.kind === "table" || block.kind === "flow" || block.kind === "figure" || block.kind === "image") throw new Error("Jake CV expects paragraph and bullet records, not tables or figures");
     if (block.kind === "bullet") {
       const items: TextBlock[] = [block];
       while (blocks[index + 1]?.kind === "bullet") items.push(blocks[++index] as TextBlock);

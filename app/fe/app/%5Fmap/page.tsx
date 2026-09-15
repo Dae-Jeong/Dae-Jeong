@@ -7,7 +7,7 @@ import { listCareerDescriptions, listCvs } from "@/content/documents";
 import { listRolePortfolios } from "@/content/portfolios";
 import { listTailoredResumes } from "@/content/resumes";
 import { ROLE_VARIANT_SLUGS } from "@/content/role-catalog";
-import { companyDocuments, documentHref } from "@/content/documents/companies";
+import { companyDocuments, documentHref, revisionDocuments } from "@/content/documents/companies";
 
 // 로컬 전용 지도. 회사 한 줄에 포폴 · 이력서 · CV · 경력기술서.
 // 회사 목록은 요청마다 app/ 폴더와 content 레지스트리에서 합쳐 만들므로 손으로 갱신하지 않는다.
@@ -104,6 +104,11 @@ function buildCompanyRows(): Row[] {
     const draft = row(`${document.slug}-${document.revision}`, `${document.companyName} · ${document.revision}`);
     draft.cells[document.document] = { href: documentHref(document), note: "draft · local · 승인 전" };
     draft.status = "pre-apply";
+  }
+  // 추가 로컬 검토 revision (application attempt 아님): 실제 존재하는 문서 종류만 셀을 만든다.
+  for (const document of revisionDocuments) {
+    const draft = row(`${document.slug}-${document.revision}`, `${document.companyName} · ${document.revision} · 최신 로컬 검토`);
+    draft.cells[document.document] = { href: documentHref(document), note: "draft · local · 승인 전 · R3" };
   }
   for (const r of rows.values()) {
     r.status =

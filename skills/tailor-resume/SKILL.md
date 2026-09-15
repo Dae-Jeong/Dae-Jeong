@@ -5,7 +5,7 @@ description: Prepare, review, adapt, render, or archive a company-specific resum
 
 # Tailor Resume
 
-특정 JD에 맞춘다는 것은 사실을 다시 쓰는 일이 아니라 검증된 claim을 회사가 돈을 주고 맡길 **성과 축**으로 선택·묶음·배열하는 일이다. 프로젝트는 성과를 증명하는 출처이지 문서의 1차 목차가 아니다. Common은 이력서·경력기술서·포트폴리오·CV 네 문서를 유지하고, 회사별 package는 이력서·경력기술서·포트폴리오를 기본으로 조립하며 CV만 선택한다.
+특정 JD에 맞춘다는 것은 사실을 다시 쓰는 일이 아니라 검증된 claim을 회사가 돈을 주고 맡길 **성과 축**으로 선택·묶음·배열하는 일이다. 성과 축은 어떤 경험을 고를지 정하는 내부 분석 도구이며, 독자가 보는 목차는 사용자와 정한 구조를 쓴다 (현재 미리디 R3는 회사 경력 → 회사별 프로젝트). Common은 이력서·경력기술서·포트폴리오·CV 네 문서를 유지하고, 회사별 package는 이력서·경력기술서·포트폴리오를 기본으로 조립하며 CV만 선택한다.
 
 내용과 레이아웃을 분리한다. 먼저 Markdown에서 사용자와 문장을 확정하고, 명시적 승인 뒤에만 HTML/PDF를 만든다.
 
@@ -38,7 +38,7 @@ description: Prepare, review, adapt, render, or archive a company-specific resum
 - 직무명·기술명·프로젝트명 대신 `돈을 주고 맡기면 어떤 상태를 만들어 주는가`로 축을 쓴다.
 - `FastAPI`, `비동기`, `어드민`은 성과가 아니라 수단이다. `실패 가능한 업무를 격리하고 복구한다`, `운영 중인 서비스를 재구축해 안정화한다`처럼 결과와 동작을 함께 쓴다.
 - JD 문장을 그대로 옮기지 말고 업무·자격·우대 요건을 채용사가 구매하는 결과로 번역한다.
-- 서로 겹치는 요구는 하나의 성과 축으로 묶고 지원서 전체에서 같은 순서를 유지한다.
+- 서로 겹치는 요구는 하나의 성과 축으로 묶는다. 지원서 전체에서 지원 전략과 사실은 일치시키되, 목차·순서·깊이는 각 문서의 역할과 사용자 결정을 따른다.
 - 시장 참고가 필요하면 `wiki/products/jd/reports/`를 읽되 특정 JD 원문을 우선한다.
 
 ### 4. Match Claims Many-to-Many
@@ -46,12 +46,17 @@ description: Prepare, review, adapt, render, or archive a company-specific resum
 - JD 요구마다 `wiki/evidence/claims/*.yaml`의 stable claim ID를 연결한다.
 - `성과 축 × claim × source project` 다대다 매트릭스를 만든다. 한 성과는 여러 프로젝트의 claim으로 증명할 수 있고, 한 프로젝트도 서로 다른 성과 축의 근거가 될 수 있다.
 - 각 성과 축은 최소 1개의 verified claim을 가져야 한다. 가능하면 서로 다른 맥락의 프로젝트 2개 이상으로 반복 가능성을 보여준다.
-- 프로젝트명은 proof label로만 사용하고 제목·목차의 중심에 두지 않는다.
+- 프로젝트명은 독자가 무엇을 만든 일인지 알 수 있게 쓴다. 내부 성과 축 분류표를 그대로 공개 목차로 강제하지 않는다.
 - `wiki/products/jd/profile-skills.json`의 `none`은 gap으로 기록한다.
 - `partial`은 evidence가 허용하는 범위로만 쓴다.
 - 대응 claim이 없으면 내용을 만들지 않고 gap으로 남긴다.
 
 ### 5. Create the Markdown Content Draft
+
+성과의 상세 해석과 문서별 압축은 [성과 라이브러리](../../wiki/products/portfolio/cases/README.md)에서
+먼저 고른다. `JD별 활용`과 경력기술서·이력서·CV 후보를 읽고 아래 기존 블록 기본값과 함께
+조립한다. [조립 예](../../wiki/products/resume/achievement-library-assembly.md)를 참고하되
+실제 JD의 관련성과 최신 claim을 우선한다. 인프라 등 Common 비선택 사례도 활용할 수 있다.
 
 엔지니어링 문안은 [개인 판단 기준](../../wiki/profile/decision-principles.md)과 [Application Copy Standard §1-6](../../wiki/rules/application-copy-standard.md)의 `엔지니어링 판단의 구체성`을 적용한다. 경력의 책임 범위를 보존하면서, `구축·안정화`를 해당 경험만의 설계 판단으로 구체화한다. 사고방식의 참고 자료와 실제 구현을 증명하는 claim은 별개 입력으로 취급한다.
 
@@ -59,10 +64,11 @@ description: Prepare, review, adapt, render, or archive a company-specific resum
 
 - 성과·소개·경력 행·기술 문안은 `wiki/products/resume/resume-block-library.md`의 블록에서 시작한다. 사실·수치·기여 강도·mechanism의 의미는 보존하며, 연결 claim과 최신 문안 기준 범위 안에서 선택·순서·연결 문장·헤더 직함을 조정하고 설계 판단을 구체화한다 (`wiki/rules/application-copy-standard.md` §1-6·§3). 블록의 오래된 표현을 최신 owner보다 우선하지 않는다.
 
+- 사례·경력 문단의 읽히는 순서와 이력서/경력기술서 깊이 구분은 §1-6 `경력 문장의 주도성과 성과 의미`(canonical: `wiki/rules/application-copy-standard.md`)를 따른다. 이 skill은 내용을 복제하지 않고 그 규칙과 게이트 45 사람 검사를 읽어 적용한다.
 - resume·career description·portfolio와 선택한 CV에 들어갈 **실제 공개 문장 전체**를 Markdown에 먼저 쓴다.
-- 이력서의 `대표 기술 사례`는 문제·제약 → 실제 대안과 선택 → 구현 경계 → failure mode → 검증·운영 → 결과·한계 순으로 resume 안에서 자립적으로 쓴다.
-- 기술 사례 수와 줄 수를 먼저 고정하지 않는다. JD와 가까운 강한 case를 깊게 쓰고, 추가 case는 새로운 technical signal을 제공할 때만 포함한다.
-- 포트폴리오는 이력서와 같은 성과 축·순서를 사용하고, 각 축 아래 1~N개 프로젝트를 proof block으로 배치한다.
+- 문제·제약 → 대안과 선택 → 구현 경계 → failure mode → 검증 → 결과·한계는 **작성 전 점검 질문**이다. 이력서에는 독자가 역량을 판단하는 데 필요한 것만 선별해 쓰고, 나머지 상세는 경력기술서가 소유한다. 모든 불릿에 같은 밀도를 강제하지 않는다 (§1-6 「경력 문장의 주도성과 성과 의미」).
+- 사용자가 지정한 밀도가 있으면 그것을 우선한다 (현재 합의: 독립 사례는 최소 3줄, 그만한 내용이 없는 사례는 묶는다). 지정이 없으면 수와 줄 수를 먼저 고정하지 않는다. 줄 수를 채우려고 사실을 만들지 않으며, 추가 case는 새로운 technical signal을 제공할 때만 포함한다.
+- 포트폴리오는 이력서와 같은 사실·지원 전략을 공유하되 순서와 깊이는 자기 역할에 맞춘다. 이력서의 압축된 한 줄을 이어받아 선별 사례를 확장하는 관계로 배치한다.
 - 경력기술서는 프로젝트별 `문제 → 담당 범위 → 선택 → 구현 → 검증 → 결과·한계`를 기록하고 이력서 bullet을 길게 복제하지 않는다.
 - CV는 전체 chronology와 credential의 누락 없는 확인을 우선한다. 회사별 CV가 필요 없으면 `omitted`를 정상 상태로 기록하고 빈 문서나 route를 만들지 않는다.
 - 프로젝트별 상세 문제·판단·기여·결과·한계를 분리한다.
@@ -75,11 +81,14 @@ description: Prepare, review, adapt, render, or archive a company-specific resum
 
 사용자가 `바로 PDF까지`, `렌더링까지`, `이대로 확정`처럼 명시하지 않았다면 첫 실행은 Markdown 작성에서 멈춘다.
 
+이 정지 조건은 **문안을 제출 가능한 산출물로 진행시키는 단계**에만 적용한다. 로컬 preview·화면 검토, 스킬·규칙 정합, 분석·검토 기록처럼 이미 허용된 독립 작업은 이 게이트를 이유로 중단하지 않는다.
+
 - `README.md` 상태를 `내용 검토 중`으로 둔다.
 - 사용자에게 `content-draft.md` 링크와 핵심 선택, `[확인 필요]` 항목을 전달한다.
-- 사용자 피드백은 먼저 `content-draft.md`와 `claim-map.yaml`에 반영한다. HTML이나 PDF만 직접 고치지 않는다.
+- 경험의 의미·역할·선택 이유·성과가 모호하거나 **새 우선순위 결정**이 필요하면 임의로 메우지 않는다. 확인된 근거·결정 지점·선택지·권고를 짧게 올리고 **그 결정에 의존하는 문안만** 보류한다. 이미 합의된 순서·표현 방향은 재확인 없이 실행하고, 의미를 바꾸지 않는 문장 정리는 그대로 진행한다 (`wiki/rules/application-copy-standard.md` §1-6 「최신 사용자 합의·사실 동기화·결정 경계」·게이트 51).
+- 사용자 피드백이 **표현·구조 편집**이면 먼저 `content-draft.md`와 `claim-map.yaml`에 반영한다. **경험 사실의 추가·교정**이면 [propagate-copy-decision](../propagate-copy-decision/SKILL.md)의 Wiki 단계(evidence → claim)를 먼저 끝내고 그 다음에 문안을 고친다. HTML이나 PDF만 직접 고치지 않는다.
 - `approved: false` 동안 `package/`의 파일은 제출본이 아니다. 기존 PDF가 있으면 삭제하지 말고 `preview`로 명시한다.
-- 사용자의 명시적 승인 뒤 `approved: true`, `approved_at`을 기록하고 다음 단계로 진행한다.
+- 무엇을 승인했는지 구분한다. **문안 내용 승인**만 `approved: true`·`approved_at`을 기록한다. 로컬에서 화면으로 보자는 요청이나 렌더·열람 허가는 승인 값을 바꾸지 않으며 public·제출을 뜻하지도 않는다.
 
 ### 7. Build the Application Archive
 
@@ -130,18 +139,15 @@ uv run --project tools python skills/tailor-resume/scripts/render_review_preview
 - 검토 메모·회사 리서치·JD 매칭·승인 상태는 이력서 canvas 안에 섞지 않고 바깥 review chrome과 별도 tab에 둔다.
 - 데스크톱 review canvas는 `210mm × 297mm` A4 경계를 사용하고, 모바일에서는 내용 손실 없이 읽기 폭으로 전환한다.
 
-사용자가 회사별 준비 과정을 홈페이지에 공개하기로 승인하면 정적 HTML 사본 대신 app의 typed content 계약을 사용한다.
+app 반영은 **로컬 초안 표시**와 **공개**를 분리한다. 로컬에서 실제 화면으로 검토하는 것은 승인·공개·제출이 아니다.
 
-- `app/fe/content/resumes/{company-slug}.ts`에 승인된 evidence 범위의 문안을 옮긴다.
-- `app/fe/content/documents/{company-slug}.ts`에 맞춤 경력기술서와 선택한 CV 문안을 옮긴다.
-- `app/fe/content/resumes/index.ts` registry에 등록하면 `/resume/{company-slug}`에서 기존 resume shell과 동일한 구성으로 열린다.
-- 경력기술서는 `/career/{company-slug}`, 선택한 CV는 `/cv/{company-slug}`에서 열리며 `omitted`인 CV route는 만들지 않는다.
+현재 경로와 빌더는 [content-contract](../../wiki/products/resume/content-contract.md)가 owner다. 경로를 이 skill에 복제하지 않고 그 문서를 읽어 대상을 정한다. 2026-09-13 기준 회사별 revision은 `app/fe/content/documents/companies/{slug}/revisions/{revision}/`의 JSON이며 Markdown draft에서 빌더로 생성한다. 이 JSON은 직접 손으로 고치지 않는다.
 - `visibility: "local" | "public"`은 production 노출 여부, `status: "draft" | "approved"`는 문안 승인 상태를 각각 소유한다. 두 상태를 섞지 않는다.
 - 공개 draft는 화면에 `DRAFT`를 명시한다. 회사별 route는 sitemap·navigation에 넣지 않고 `noindex`, `nofollow`, `noarchive`, `nosnippet`을 유지한다.
 - `wiki/products/resume/tailored/.../content-draft.md`가 계속 문안 owner다. typed content는 공개 화면을 위한 export이며 독자적인 사실을 추가하지 않는다.
 - A4 PDF는 문안 승인 뒤 `package/`에서 생성한다. 공개 다운로드를 연결할 때는 승인된 PDF만 `app/fe/public/resumes/`로 export한다.
 
-승인 후에만 출력용 HTML/PDF 절차를 실행한다.
+승인 후에만 출력용 HTML/PDF 절차를 실행한다. 로컬에서 화면으로 확인하는 preview는 이 승인 대상이 아니며, preview를 했다고 `approved`·`public`·제출 상태가 바뀌지 않는다.
 
 - `content-draft.md`의 승인된 문장만 `assets/resume-template.html`과 `assets/portfolio-template.html`에 옮긴다.
 - HTML에서 문장을 새로 개선하거나 claim을 추가하지 않는다. 문안 변경이 필요하면 Markdown으로 돌아간다.
@@ -169,10 +175,10 @@ uv run --project tools python skills/tailor-resume/scripts/html_to_pdf.py \
 
 ### 9. Verify and Deliver
 
-0. `wiki/rules/application-copy-standard.md`의 제출 전 게이트 10개를 `content-draft.md`와 대조하고, 위반 항목을 `match-report.md`에 남긴다. 하나라도 걸리면 `approved: true`로 바꾸지 않는다.
+0. `wiki/rules/application-copy-standard.md` §4의 **현재 게이트 표 전체**를 `content-draft.md`와 대조하고, 위반 항목을 `match-report.md`에 남긴다. 게이트 수·번호를 이 skill에 고정하지 않고 그 문서를 읽어 대상을 정한다. 하나라도 걸리면 `approved: true`로 바꾸지 않는다. 게이트 45(경력 문장의 주도성과 성과 의미) 사람 검사는 사례별 읽히는 순서·기전 보존·깊이 구분 결과를 같은 보고에 남긴다.
 1. `uv run --project tools python tools/validate_workspace.py`
 2. JD 요구별 match 또는 gap이 모두 기록됐는지 확인한다.
-3. `content-draft.md`, resume, career description, portfolio의 성과 축 집합·순서가 같은 지원 전략을 유지하는지 확인한다. CV는 chronology 우선이라 같은 목차를 강제하지 않는다.
+3. `content-draft.md`, resume, career description, portfolio가 같은 사실과 지원 전략을 유지하는지 확인한다. 목차·순서·깊이는 문서 역할과 사용자 결정에 따르므로 일치를 강제하지 않는다. 같은 사실이 문서마다 다른 주장으로 읽히면 그것은 수정 대상이다.
 4. 모든 bullet이 claim ID와 역추적되는지 확인한다.
 5. `allowed_copy`와 public-safety 상한을 넘지 않는지 확인한다.
 6. 여러 프로젝트를 묶은 문장이 source별 claim 경계와 metric 귀속을 보존하는지 확인한다.
