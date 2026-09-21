@@ -12,6 +12,14 @@ import tossCareer from "./toss-place/career.json";
 import tossPortfolio from "./toss-place/portfolio.json";
 import miridihR3Resume from "./miridih/revisions/20260912-R3/resume.json";
 import miridihR3Career from "./miridih/revisions/20260912-R3/career.json";
+import sagakR1Resume from "./sagak/revisions/20260921-R1/resume.json";
+import sagakR1Career from "./sagak/revisions/20260921-R1/career.json";
+import ajungR1Resume from "./ajungnetworks/revisions/20260921-R1/resume.json";
+import ajungR1Career from "./ajungnetworks/revisions/20260921-R1/career.json";
+import socarR1Resume from "./socar/revisions/20260921-R1/resume.json";
+import socarR1Career from "./socar/revisions/20260921-R1/career.json";
+import featuringR1Resume from "./featuring/revisions/20260921-R1/resume.json";
+import featuringR1Career from "./featuring/revisions/20260921-R1/career.json";
 import type { ResumeCopy } from "../resume-copy";
 import type { ContentDocument } from "../parse-markdown";
 
@@ -32,8 +40,20 @@ export const documentKinds = [
 // Extra local review revisions. Regenerated from the wiki content-draft by
 // tools/build_revision_documents.mjs; kept out of `companyDocuments` so the 12-document
 // application contract and its registry checks are unchanged.
-export const revisionDocuments = [miridihR3Resume, miridihR3Career] as CompanyDocument[];
+export const revisionDocuments = [miridihR3Resume, miridihR3Career, sagakR1Resume, sagakR1Career, ajungR1Resume, ajungR1Career, socarR1Resume, socarR1Career, featuringR1Resume, featuringR1Career] as CompanyDocument[];
+const publicRevisionKeys = new Set([
+  "sagak:20260921-R1",
+  "ajungnetworks:20260921-R1",
+  "socar:20260921-R1",
+]);
+export function isPublicRevision(document: Pick<CompanyDocument, "slug" | "revision">) {
+  return publicRevisionKeys.has(`${document.slug}:${document.revision}`);
+}
+export function publicRevisionFor(company: string, kind: DocumentKind) {
+  return revisionDocuments.find((document) => document.slug === company && document.document === kind && isPublicRevision(document));
+}
 export function documentHref(document: CompanyDocument, kind = document.document) {
+  if (isPublicRevision(document)) return `/${kind}/${document.slug}`;
   return `/${kind}/${document.slug}?revision=${encodeURIComponent(document.revision)}`;
 }
 export function findCompanyDocument(company: string, kind: DocumentKind, revision?: string) {

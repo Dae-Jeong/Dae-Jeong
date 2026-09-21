@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { canViewDraft, documentHref, documentKinds, findCompanyDocument, hasExtraRevisions, listDocumentRevisions, type DocumentKind } from "@/content/documents/companies";
+import { canViewDraft, documentHref, documentKinds, findCompanyDocument, hasExtraRevisions, isPublicRevision, listDocumentRevisions, type DocumentKind } from "@/content/documents/companies";
 import type { ResumeCopy } from "@/content/documents/resume-copy";
 import type { ContentDocument } from "@/content/documents/parse-markdown";
 import { getCareerPresentation, getResumePresentation } from "@/content/documents/companies/presentation";
@@ -25,16 +25,20 @@ export function LocalRevisionLinks({ company, kind, current }: { company: string
 }
 export function CompanyDocumentPage({ company, kind, revision, paged = false }: { company: string; kind: DocumentKind; revision?: string; paged?: boolean }) {
   const document = findCompanyDocument(company, kind, revision);
-  if (!canViewDraft(process.env.NODE_ENV) || !document || document.revision !== revision || document.approved !== false || document.visibility !== "local" || document.status !== "draft") notFound();
+  const published = document ? isPublicRevision(document) : false;
+  const localDraft = canViewDraft(process.env.NODE_ENV) && document?.approved === false && document.visibility === "local" && document.status === "draft";
+  if (!document || document.revision !== revision || (!published && !localDraft)) notFound();
   // Only link to document kinds that exist for this exact revision (no invented portfolio links).
   const kinds = documentKinds.filter((item) => findCompanyDocument(company, item.slug, document.revision));
   const navigation = <div className="print:hidden">
     <nav className={navStyles.nav} aria-label={`${document.companyName} 문서 전환`}>
-      <Link href="/_map" className={navStyles.navHome}>문서 지도</Link>
+      <Link href={published ? "/" : "/_map"} className={navStyles.navHome}>{published ? "홈" : "문서 지도"}</Link>
       {kinds.map((item) => <Link key={item.slug} href={documentHref(document, item.slug)} aria-current={item.slug === kind ? "page" : undefined}>{item.label}</Link>)}
     </nav>
-    <p className="mx-auto max-w-5xl px-6 py-2 text-sm text-muted">{document.companyName} · {document.position} · DRAFT · LOCAL · 승인 전 · {document.revision}</p>
-    <LocalRevisionLinks company={company} kind={kind} current={document.revision} />
+    <p className="mx-auto max-w-5xl px-6 py-2 text-sm text-muted">{document.companyName} · {document.position} · {published ? document.revision : `DRAFT · LOCAL · 승인 전 · ${document.revision}`}</p>
+    {published || (company === "featuring" && document.revision === "20260921-R1")
+      ? null
+      : <LocalRevisionLinks company={company} kind={kind} current={document.revision} />}
   </div>;
   if (kind !== "resume") return <CommonDocumentPage kind={kind} document={document.content as ContentDocument} navigation={navigation} slug={company} layout={kind === "career" ? getCareerPresentation(company, document.revision)?.layout : undefined} />;
   const copy = document.content as ResumeCopy;
@@ -49,7 +53,7 @@ export function CompanyDocumentPage({ company, kind, revision, paged = false }: 
       <PagedResume author={copy.name} role={document.position} />
     </main>;
   }
-  return <ResumePageShell crumb={`${document.companyName} · 이력서`} tag="DRAFT · LOCAL">
+  return <ResumePageShell crumb={`${document.companyName} · 이력서`} tag={published ? undefined : "DRAFT · LOCAL"}>
     {navigation}
     <main className={`${styles.pane} ${styles.standalone}`} data-template={template} data-company-document="resume">
       <ComparisonDocument copy={copy} prefix={`${company}-resume`} presentation={presentation} />

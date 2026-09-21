@@ -1,0 +1,843 @@
+{
+  "slug": "featuring",
+  "companyName": "피처링",
+  "position": "Backend Engineer",
+  "status": "draft",
+  "approved": false,
+  "visibility": "local",
+  "updatedAt": "2026-09-21",
+  "revision": "20260921-R1",
+  "applicationId": "featuring-2026-08-31-wanted-backend-engineer",
+  "focus": "SNS 수집·데이터 적재·Python 백엔드의 모듈화와 운영 안정성",
+  "document": "resume",
+  "content": {
+    "name": "김대정",
+    "role": "Backend Engineer",
+    "careerLine": "MediSolve AI · 2025.04 — 재직 중",
+    "specialtyLine": "Python · FastAPI · SQLAlchemy 2.0 async · PostgreSQL · Node.js · SQL",
+    "contacts": [
+      {
+        "label": "marin.backend@gmail.com",
+        "href": "mailto:marin.backend@gmail.com"
+      },
+      {
+        "label": "github.com/Dae-Jeong",
+        "href": "https://github.com/Dae-Jeong"
+      },
+      {
+        "label": "marinkim.xyz",
+        "href": "https://marinkim.xyz"
+      }
+    ],
+    "sections": [
+      {
+        "title": "소개",
+        "entries": [
+          {
+            "blocks": [
+              {
+                "kind": "paragraph",
+                "text": "호기심을 현실로, 메이커 김대정입니다",
+                "claims": [
+                  "career.ai-pm-backend-continuity",
+                  "thready.product-zero-to-one-contribution",
+                  "thready.frontend-product-delivery",
+                  "be-template.backend-standard",
+                  "be-template.team-leverage",
+                  "be-template.agent-context"
+                ]
+              },
+              {
+                "kind": "paragraph",
+                "text": "Python·FastAPI로 SNS 콘텐츠 서비스의 백엔드를 구축·운영해 왔습니다. 데이터 적재와 트랜잭션·세션 관리, 외부 연동의 실패 처리를 구현하고 검증하며 운영 기반을 다져 왔습니다.",
+                "claims": [
+                  "thready.product-zero-to-one-contribution",
+                  "thready.ai-service-boundary",
+                  "thready.labeling-corpus-workbench",
+                  "thready.ai-replica-outbox",
+                  "be-template.fastapi-sqlalchemy-standard"
+                ]
+              },
+              {
+                "kind": "paragraph",
+                "text": "사용자와 운영 현장의 문제를 기능으로 구체화하고, 기획·QA·운영 담당자와 직접 구현부터 출시 이후 개선까지 이어갑니다.",
+                "claims": [
+                  "thready.product-zero-to-one-contribution",
+                  "nexus.mso-driven-crm-operation"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "경력",
+        "entries": [
+          {
+            "title": "MediSolve AI · 2025.04 — 재직 중",
+            "blocks": [
+              {
+                "kind": "paragraph",
+                "text": "Tech Lead · Backend Engineer",
+                "claims": [
+                  "career.medisolve-role-evolution"
+                ],
+                "presentation": "role"
+              },
+              {
+                "kind": "paragraph",
+                "text": "법인 설립 전 더데이랩스 프리랜서 선행 개발 · 2025.02 — 2025.04",
+                "claims": [
+                  "career.thedaylabs-freelance"
+                ],
+                "presentation": "metadata"
+              },
+              {
+                "kind": "paragraph",
+                "text": "SNS 콘텐츠 서비스의 백엔드·AI 실행부와 데이터 처리, 병원 업무 시스템, 공통 개발 기반·Azure 인프라 운영 담당",
+                "claims": [
+                  "career.medisolve-role-evolution",
+                  "thready.product-zero-to-one-contribution",
+                  "infra.company-infrastructure-owner"
+                ]
+              },
+              {
+                "kind": "paragraph",
+                "text": "Thready — SNS 데이터 처리와 콘텐츠 서비스 백엔드",
+                "claims": [
+                  "thready.product-zero-to-one-contribution",
+                  "thready.release-operation"
+                ],
+                "presentation": "heading"
+              },
+              {
+                "kind": "paragraph",
+                "text": "Node.js 수집·보고 · Python 데이터 적재 · FastAPI · PostgreSQL",
+                "claims": [
+                  "thready.trend-crawler-pipeline",
+                  "thready.labeling-corpus-workbench",
+                  "thready.ai-service-boundary"
+                ],
+                "presentation": "project-meta"
+              },
+              {
+                "kind": "paragraph",
+                "text": "기존 채널 운영자의 Threads 확장과 의료진의 병원 홍보 수요에 맞춰, 제한된 시간·인력으로 기존 콘텐츠를 활용해 새 채널을 운영하도록 돕는 AI 콘텐츠 서비스",
+                "claims": [
+                  "thready.creator-adoption-context",
+                  "thready.product-zero-to-one-contribution"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "Node.js로 Threads 게시물·성과 시계열 수집·정제 파이프라인을 직접 구축하고, 전일·작성자별 비교와 조회 증가 상위 게시물 보고 기능 구현",
+                "claims": [
+                  "thready.trend-crawler-pipeline"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "Python 적재 작업에서 입력 검증·source key upsert·이어쓰기 교체를 구현, 십만 건 규모 한국어 본문·이어쓰기를 독립 평가 데이터로 정제하고 로컬 재적재 검증에서 기존 평가 보존 확인",
+                "claims": [
+                  "thready.labeling-corpus-workbench"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "외부 콘텐츠 조회와 DB 저장 트랜잭션을 분리, 외부 응답 대기 중 연결 미점유·독립 조회 진행·취소와 오류의 원장 미변경을 로컬 격리 DB에서 확인",
+                "claims": [
+                  "thready.external-io-db-boundary-verification"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "AI 실행부를 독립 FastAPI 애플리케이션·DB로 분리해 제품 백엔드와 HTTP 계약으로 연결, STG·Prod 운영",
+                "claims": [
+                  "thready.ai-service-boundary"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "원장 변경과 Outbox 기록을 같은 트랜잭션으로 처리하고 전달은 재시도·버전 검증으로 분리, 중복·지연 전달과 worker 중단을 다루는 복구 경계 구현",
+                "claims": [
+                  "thready.ai-replica-outbox"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "제품화·출시·운영을 주도하고 마케팅·운영지원 팀과 월 1천만원 수준의 구독 매출 달성 · 2026년 8월 기준",
+                "claims": [
+                  "thready.product-zero-to-one-contribution",
+                  "thready.subscription-revenue-band"
+                ]
+              },
+              {
+                "kind": "paragraph",
+                "text": "공통 FastAPI 기반 — 모듈 구조·트랜잭션·세션 관리",
+                "claims": [
+                  "be-template.backend-standard",
+                  "be-template.fastapi-sqlalchemy-standard"
+                ],
+                "presentation": "heading"
+              },
+              {
+                "kind": "bullet",
+                "text": "Router·Service·Repository의 책임과 의존성을 정리한 FastAPI 템플릿 설계·구축, Service의 트랜잭션 정책과 Repository의 SQL 실행 분리",
+                "claims": [
+                  "be-template.fastapi-sqlalchemy-standard",
+                  "be-template.backend-standard"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "DB 세션 수명과 트랜잭션 전파를 기본값으로 제공하고, 잘못된 task 간 세션 공유 차단·예외/취소 rollback·연결 정리를 통합 테스트로 검증",
+                "claims": [
+                  "be-template.fastapi-sqlalchemy-standard"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "반복되는 DB·세션 문제를 기존·신규 서비스의 공통 구조로 개선해 운영 안정화, 동료의 기능 구현 피드백과 배포 지원",
+                "claims": [
+                  "be-template.monitoring-driven-defect-reduction",
+                  "be-template.team-leverage"
+                ]
+              },
+              {
+                "kind": "paragraph",
+                "text": "피부과 CRM·예약·홈페이지 — 백엔드 모듈화·운영",
+                "claims": [
+                  "nexus.mso-driven-crm-operation",
+                  "nexus.admin-backend-ownership"
+                ],
+                "presentation": "heading"
+              },
+              {
+                "kind": "bullet",
+                "text": "병원 운영팀과 요구를 직접 협의하고 디자이너와 공동 기획, 백엔드·인프라 구축·출시·운영 주도",
+                "claims": [
+                  "nexus.mso-driven-crm-operation"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "기존 운영을 이어가며 레거시 재구축 진행, 공개·관리 API를 독립 모듈로 두고 관리 API의 작업 지점·접근 범위를 서버 인증 상태로 제어",
+                "claims": [
+                  "nexus.backend-architecture",
+                  "nexus.admin-backend-ownership",
+                  "nexus.branch-access-boundary"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "Ruff·Pyright·pre-commit 정적 검사와 배포 파이프라인 구성, 커넥션 풀 타임아웃 분석과 세션 생명주기 재조정",
+                "claims": [
+                  "nexus.quality-automation",
+                  "nexus.pool-stabilization"
+                ]
+              },
+              {
+                "kind": "paragraph",
+                "text": "병원 운영 시스템 — 비동기 작업·실시간 세션·인증",
+                "claims": [
+                  "centurion.hospital-system-operational-use"
+                ],
+                "presentation": "heading"
+              },
+              {
+                "kind": "bullet",
+                "text": "재고·발주 백엔드 구축 주도, FastAPI async 코드와 실행 모델을 맞춰 TaskIQ·RabbitMQ로 전환하고 알림 상태·실패 이력·수동 재발송 구현",
+                "claims": [
+                  "centurion.inventory-order-workflow",
+                  "centurion.bay-async-backend",
+                  "centurion.async-migration"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "실시간 상담·전사 세션 처리 공동 주도, 양방향 번역 흐름 직접 구현과 발화 식별자 기반 보정·WebSocket 재연결 경합 수정",
+                "claims": [
+                  "centurion.say-realtime-ai",
+                  "centurion.realtime-translation"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "Redis 공유 세션·서비스/기기별 로그인 정책 재설계와 운영 백오피스 개발, 재고·발주 API 테스트·Docker CI 구축",
+                "claims": [
+                  "centurion.sso-session",
+                  "centurion.sso-internal-backoffice",
+                  "centurion.test-ci-foundation"
+                ]
+              },
+              {
+                "kind": "paragraph",
+                "text": "의료 지식베이스 — 데이터 구조·조회·검수 경계",
+                "claims": [
+                  "procedure-hub.product-design-development-lead",
+                  "procedure-hub.knowledge-base-operational-use"
+                ],
+                "presentation": "heading"
+              },
+              {
+                "kind": "bullet",
+                "text": "상담 용어 오해석에 대응한 지식베이스 기획·개발 주도, AI 번역의 비용·효용을 검토해 전문 번역 데이터 조회로 전환하고 상담 서비스에 연계",
+                "claims": [
+                  "procedure-hub.product-design-development-lead",
+                  "procedure-hub.consultation-knowledge-base-role",
+                  "procedure-hub.translation-sourcing-decision"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "항목 식별·관계형 조회·문헌 근거를 구분하고 검색 API·검수·발행 경계 구현, 기존 API 계약과 승인·발행 상태를 테스트로 검증하며 고도화 진행",
+                "claims": [
+                  "procedure-hub.hybrid-retrieval-design",
+                  "procedure-hub.canonical-data-platform",
+                  "procedure-hub.review-contract-verification"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "동일 인터뷰 기준 상담사 만족도 3.2→3.7점 개선에 기여(5점 만점)",
+                "claims": [
+                  "procedure-hub.shared-terminology-correction"
+                ]
+              },
+              {
+                "kind": "paragraph",
+                "text": "사내 인프라·개발 운영 — 배포·관측·비용 개선",
+                "claims": [
+                  "infra.company-infrastructure-owner",
+                  "infra.instance-consolidation-cost-reduction"
+                ],
+                "presentation": "heading"
+              },
+              {
+                "kind": "bullet",
+                "text": "Azure 인프라 운영 전담, 환경별 Terraform 구성·state 분리와 변경 계획·실제 자원 대조, 로그·모니터링·알림 구성·운영 담당",
+                "claims": [
+                  "infra.company-infrastructure-owner",
+                  "infra.terraform-state-safety",
+                  "infra.azure-observability"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "분산 인스턴스의 자원 통합을 제안·추진해 월 서버 비용 약 30~40% 절감에 기여",
+                "claims": [
+                  "infra.instance-consolidation-cost-reduction"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "제품 명세·변경 이력·QA·릴리스 기준과 개발 문맥을 정비하고 사내 업무 AX 구조 설계 참여",
+                "claims": [
+                  "mediness.product-operations",
+                  "mediness.company-work-ax-design",
+                  "be-template.agent-context"
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Memento AI · 2024.10 — 2025.01",
+            "blocks": [
+              {
+                "kind": "paragraph",
+                "text": "Backend Engineer · 인턴 합류 후 정규직 전환 · PM Intern 1개월 병행 · 회사 폐업으로 종료",
+                "claims": [
+                  "career.memento-payment"
+                ],
+                "presentation": "role"
+              },
+              {
+                "kind": "paragraph",
+                "text": "예약·결제 백엔드",
+                "claims": [
+                  "career.memento-payment",
+                  "career.memento-stripe-prepayment"
+                ],
+                "presentation": "heading"
+              },
+              {
+                "kind": "paragraph",
+                "text": "Python · FastAPI · SQLAlchemy · MySQL · Stripe",
+                "claims": [
+                  "career.memento-fastapi-backend",
+                  "career.memento-stripe-prepayment"
+                ],
+                "presentation": "project-meta"
+              },
+              {
+                "kind": "bullet",
+                "text": "FastAPI 예약·결제 개발 참여, Stripe 선결제 기능 구축 주도",
+                "claims": [
+                  "career.memento-fastapi-backend",
+                  "career.memento-stripe-prepayment"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "예약 실패 시 결제 상태별 취소·환불 처리, 환불 완료와 이용권·마일리지 후속 처리 연계",
+                "claims": [
+                  "career.memento-stripe-prepayment",
+                  "career.memento-payment"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "다국어 해피콜의 즉시·예약 발송, 일정 변경·발송 이력 관리 기능 개발",
+                "claims": [
+                  "career.memento-payment",
+                  "career.memento-happycall-survey"
+                ]
+              }
+            ]
+          },
+          {
+            "title": "STUDIO LAB · 2021.12 — 2024.01",
+            "blocks": [
+              {
+                "kind": "paragraph",
+                "text": "Product Manager · AI Engineer → PM(주 역할) → Backend Engineer",
+                "claims": [
+                  "career.ai-pm-backend-continuity"
+                ],
+                "presentation": "role"
+              },
+              {
+                "kind": "paragraph",
+                "text": "SellerCanvas — AI 상세페이지·에디터 제품 기획",
+                "claims": [
+                  "career.sellercanvas-product-system"
+                ],
+                "presentation": "heading"
+              },
+              {
+                "kind": "paragraph",
+                "text": "현 gency.ai · 제품 기획 · 데이터·배치 기준 설계 · 기업 PoC",
+                "claims": [
+                  "career.sellercanvas-product-system",
+                  "career.sellercanvas-enterprise-poc"
+                ],
+                "presentation": "project-meta"
+              },
+              {
+                "kind": "bullet",
+                "text": "회사의 제품 방향(사업 구상·경쟁 제품 분석·고객 인터뷰)을 제품 요구·우선순위로 구체화, AI 상세페이지·에디터 사용 흐름 기획",
+                "claims": [
+                  "career.sellercanvas-product-system"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "외부 패션 브랜드의 기업 PoC 진행 — 요구사항의 기능·기술 검증 항목 구체화와 일정·검증 범위 조율",
+                "claims": [
+                  "career.sellercanvas-enterprise-poc"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "패션 전공자와 상품 데이터 기준·라벨링을 정리하고 배치 알고리즘 설계, AI 엔지니어의 CNN 기반 모델 구현(알고리즘 fallback)으로 연결해 특허 「페이지 출력 방법」 공동 발명",
+                "claims": [
+                  "career.sellercanvas-product-system",
+                  "credentials.page-output-patent"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "완성 상세페이지 생성 10분 이내(외부 안내 30분) 제품의 기획·데이터 설계에 기여, 참여 제품의 CES 2024 Best of Innovation AI 부문 수상",
+                "claims": [
+                  "career.sellercanvas-creation-time-reduction",
+                  "credentials.ces-2024"
+                ]
+              },
+              {
+                "kind": "paragraph",
+                "text": "Deep Scan — 의류 검출 모델 개발",
+                "claims": [
+                  "career.deep-scan-detection-development",
+                  "credentials.ai-accuracy-certification"
+                ],
+                "presentation": "heading"
+              },
+              {
+                "kind": "paragraph",
+                "text": "Python · PyTorch · FastAPI · YOLO",
+                "claims": [
+                  "career.deep-scan-detection-development"
+                ],
+                "presentation": "project-meta"
+              },
+              {
+                "kind": "bullet",
+                "text": "의류 분류 기준 정리와 국가 데이터 사업을 통한 학습 데이터 확보 참여",
+                "claims": [
+                  "career.deep-scan-detection-development"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "확보한 데이터로 YOLO 모델을 학습해 의류 검출 모델 개발",
+                "claims": [
+                  "career.deep-scan-detection-development"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "한국건설생활환경시험연구원(KCL) AI 정확도 부문 인증 통과 제품 참여",
+                "claims": [
+                  "credentials.ai-accuracy-certification"
+                ]
+              }
+            ]
+          },
+          {
+            "title": "아이즈솔 · 2020.08 — 2021.06",
+            "blocks": [
+              {
+                "kind": "paragraph",
+                "text": "Vision AI Engineer · 인턴",
+                "claims": [
+                  "career.ai-pm-backend-continuity"
+                ],
+                "presentation": "role"
+              },
+              {
+                "kind": "paragraph",
+                "text": "Kidsly — 안면 인식 자동 출결 시스템 개발",
+                "claims": [
+                  "career.kidsly-student-startup-engineering"
+                ],
+                "presentation": "heading"
+              },
+              {
+                "kind": "paragraph",
+                "text": "Python · PyTorch · FastAPI · YOLO",
+                "claims": [
+                  "career.kidsly-student-startup-engineering"
+                ],
+                "presentation": "project-meta"
+              },
+              {
+                "kind": "bullet",
+                "text": "Kidsly를 기반으로 학생 스타트업 아이즈솔 창업 참여, 팀의 유일한 엔지니어로 안면 인식 자동 출결 시스템 개발 담당",
+                "claims": [
+                  "career.kidsly-student-startup-engineering"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "국가 사업을 통해 학습 데이터를 확보하고 YOLO 기반 안면 인식 시스템 개발, 정확도 99.8% 달성",
+                "claims": [
+                  "career.kidsly-student-startup-engineering"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "학생 창업유망팀 300 모의 크라우드펀딩에서 Kidsly로 모집액 2.8억원 기록",
+                "claims": [
+                  "career.kidsly-student-startup-engineering"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "기술",
+        "entries": [
+          {
+            "blocks": [
+              {
+                "kind": "skill",
+                "label": "Backend · Data",
+                "text": "Python · FastAPI · SQLAlchemy 2.0 async · PostgreSQL · MySQL · Redis · SQL",
+                "claims": [
+                  "thready.trend-crawler-pipeline",
+                  "thready.labeling-corpus-workbench",
+                  "thready.ai-service-boundary",
+                  "thready.langgraph-generation-graph",
+                  "thready.generation-quality-system",
+                  "thready.frontend-product-delivery",
+                  "be-template.fastapi-sqlalchemy-standard",
+                  "centurion.bay-async-backend",
+                  "centurion.sso-session",
+                  "centurion.say-realtime-ai",
+                  "infra.company-azure-ownership",
+                  "infra.terraform-state-safety",
+                  "career.coding-agent-usage",
+                  "nexus.quality-automation",
+                  "thready.release-operation"
+                ]
+              },
+              {
+                "kind": "skill",
+                "label": "Collection · Async",
+                "text": "Node.js · TaskIQ · RabbitMQ · WebSocket",
+                "claims": [
+                  "thready.trend-crawler-pipeline",
+                  "thready.labeling-corpus-workbench",
+                  "thready.ai-service-boundary",
+                  "thready.langgraph-generation-graph",
+                  "thready.generation-quality-system",
+                  "thready.frontend-product-delivery",
+                  "be-template.fastapi-sqlalchemy-standard",
+                  "centurion.bay-async-backend",
+                  "centurion.sso-session",
+                  "centurion.say-realtime-ai",
+                  "infra.company-azure-ownership",
+                  "infra.terraform-state-safety",
+                  "career.coding-agent-usage",
+                  "nexus.quality-automation",
+                  "thready.release-operation"
+                ]
+              },
+              {
+                "kind": "skill",
+                "label": "AI · Frontend",
+                "text": "LangGraph · LLM judge 평가 · TypeScript · Next.js · React",
+                "claims": [
+                  "thready.trend-crawler-pipeline",
+                  "thready.labeling-corpus-workbench",
+                  "thready.ai-service-boundary",
+                  "thready.langgraph-generation-graph",
+                  "thready.generation-quality-system",
+                  "thready.frontend-product-delivery",
+                  "be-template.fastapi-sqlalchemy-standard",
+                  "centurion.bay-async-backend",
+                  "centurion.sso-session",
+                  "centurion.say-realtime-ai",
+                  "infra.company-azure-ownership",
+                  "infra.terraform-state-safety",
+                  "career.coding-agent-usage",
+                  "nexus.quality-automation",
+                  "thready.release-operation"
+                ]
+              },
+              {
+                "kind": "skill",
+                "label": "Delivery · Quality",
+                "text": "Docker · GitHub Actions · Terraform · Azure · pytest · Ruff · Pyright",
+                "claims": [
+                  "thready.trend-crawler-pipeline",
+                  "thready.labeling-corpus-workbench",
+                  "thready.ai-service-boundary",
+                  "thready.langgraph-generation-graph",
+                  "thready.generation-quality-system",
+                  "thready.frontend-product-delivery",
+                  "be-template.fastapi-sqlalchemy-standard",
+                  "centurion.bay-async-backend",
+                  "centurion.sso-session",
+                  "centurion.say-realtime-ai",
+                  "infra.company-azure-ownership",
+                  "infra.terraform-state-safety",
+                  "career.coding-agent-usage",
+                  "nexus.quality-automation",
+                  "thready.release-operation"
+                ]
+              },
+              {
+                "kind": "skill",
+                "label": "Tools · Monitoring",
+                "text": "Claude Code · Codex · Sentry · Jira",
+                "claims": [
+                  "thready.trend-crawler-pipeline",
+                  "thready.labeling-corpus-workbench",
+                  "thready.ai-service-boundary",
+                  "thready.langgraph-generation-graph",
+                  "thready.generation-quality-system",
+                  "thready.frontend-product-delivery",
+                  "be-template.fastapi-sqlalchemy-standard",
+                  "centurion.bay-async-backend",
+                  "centurion.sso-session",
+                  "centurion.say-realtime-ai",
+                  "infra.company-azure-ownership",
+                  "infra.terraform-state-safety",
+                  "career.coding-agent-usage",
+                  "nexus.quality-automation",
+                  "thready.release-operation"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "프로젝트·외부 활동",
+        "entries": [
+          {
+            "blocks": [
+              {
+                "kind": "skill",
+                "label": "누크베리 — SM1팀 팀장",
+                "text": "머니워크 UX 컨설팅을 통해 보상 포인트 인지·재방문 흐름 개선안 제안, 반영된 제품의 순위·DAU 상승에 기여",
+                "claims": [
+                  "career.product-ux-practice",
+                  "career.ux-consulting-product-outcome",
+                  "career.tellingme-backend-infra",
+                  "career.orcarouter-oss-developer-partnership"
+                ]
+              },
+              {
+                "kind": "skill",
+                "label": "IPS — 제품 분석·개선안 발표",
+                "text": "Speak의 학습 후 추천 흐름을 분석해 개선 요구사항 설계·발표, IPS 12기 MVP 선정",
+                "claims": [
+                  "career.product-ux-practice",
+                  "career.ux-consulting-product-outcome",
+                  "career.tellingme-backend-infra",
+                  "career.orcarouter-oss-developer-partnership"
+                ]
+              },
+              {
+                "kind": "skill",
+                "label": "TellingMe — 백엔드 개발",
+                "text": "TellingMe 팀에 합류해 Spring Boot 백엔드 개발과 AWS 배포·모니터링 리드",
+                "claims": [
+                  "career.product-ux-practice",
+                  "career.ux-consulting-product-outcome",
+                  "career.tellingme-backend-infra",
+                  "career.orcarouter-oss-developer-partnership"
+                ]
+              },
+              {
+                "kind": "skill",
+                "label": "[OrcaRouter](https://www.orcarouter.ai/) — 개발자 파트너",
+                "text": "개발자 파트너 프로그램 참여 · 2026.09",
+                "claims": [
+                  "career.product-ux-practice",
+                  "career.ux-consulting-product-outcome",
+                  "career.tellingme-backend-infra",
+                  "career.orcarouter-oss-developer-partnership"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "학력·수상·특허·자격",
+        "entries": [
+          {
+            "blocks": [
+              {
+                "kind": "row",
+                "label": "학력",
+                "text": "우송대학교 게임멀티미디어 전공",
+                "meta": "2016.03–2021.08",
+                "claims": [
+                  "credentials.education",
+                  "credentials.ces-2024",
+                  "credentials.student-competition-awards",
+                  "credentials.page-output-patent",
+                  "credentials.ai-accuracy-certification",
+                  "credentials.adsp"
+                ]
+              },
+              {
+                "kind": "row",
+                "label": "수상",
+                "text": "CES 2024 Best of Innovation · AI 부문 수상 제품 참여",
+                "meta": "2023.12",
+                "claims": [
+                  "credentials.education",
+                  "credentials.ces-2024",
+                  "credentials.student-competition-awards",
+                  "credentials.page-output-patent",
+                  "credentials.ai-accuracy-certification",
+                  "credentials.adsp"
+                ]
+              },
+              {
+                "kind": "row",
+                "label": "수상",
+                "text": "전국 SW중심대학 공동 해커톤 · 우수상",
+                "meta": "2021.02",
+                "claims": [
+                  "credentials.education",
+                  "credentials.ces-2024",
+                  "credentials.student-competition-awards",
+                  "credentials.page-output-patent",
+                  "credentials.ai-accuracy-certification",
+                  "credentials.adsp"
+                ]
+              },
+              {
+                "kind": "row",
+                "label": "수상",
+                "text": "SW 창업 아이디어 경진대회 · 아이디어 부문 2등",
+                "meta": "2020.10",
+                "claims": [
+                  "credentials.education",
+                  "credentials.ces-2024",
+                  "credentials.student-competition-awards",
+                  "credentials.page-output-patent",
+                  "credentials.ai-accuracy-certification",
+                  "credentials.adsp"
+                ]
+              },
+              {
+                "kind": "row",
+                "label": "수상",
+                "text": "SW 창업 아이디어 경진대회 · 개발·구현 부문 2등",
+                "meta": "2019.10",
+                "claims": [
+                  "credentials.education",
+                  "credentials.ces-2024",
+                  "credentials.student-competition-awards",
+                  "credentials.page-output-patent",
+                  "credentials.ai-accuracy-certification",
+                  "credentials.adsp"
+                ]
+              },
+              {
+                "kind": "row",
+                "label": "특허",
+                "text": "페이지 출력 방법 · 등록 10-2898273",
+                "meta": "2025.12",
+                "claims": [
+                  "credentials.education",
+                  "credentials.ces-2024",
+                  "credentials.student-competition-awards",
+                  "credentials.page-output-patent",
+                  "credentials.ai-accuracy-certification",
+                  "credentials.adsp"
+                ]
+              },
+              {
+                "kind": "row",
+                "label": "인증",
+                "text": "Deep Scan · 한국건설생활환경시험연구원(KCL) AI 정확도 부문 인증 통과 제품 참여",
+                "meta": "2023.01",
+                "claims": [
+                  "credentials.education",
+                  "credentials.ces-2024",
+                  "credentials.student-competition-awards",
+                  "credentials.page-output-patent",
+                  "credentials.ai-accuracy-certification",
+                  "credentials.adsp"
+                ]
+              },
+              {
+                "kind": "row",
+                "label": "자격",
+                "text": "ADsP · 데이터분석 준전문가",
+                "meta": "2021.09",
+                "claims": [
+                  "credentials.education",
+                  "credentials.ces-2024",
+                  "credentials.student-competition-awards",
+                  "credentials.page-output-patent",
+                  "credentials.ai-accuracy-certification",
+                  "credentials.adsp"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

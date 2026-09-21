@@ -1,0 +1,16 @@
+{
+  "revision": "20260921-R1",
+  "note": "Selective emphasis for the Sagak local review resume. Presentation only; source copy and claims remain in the reviewed Markdown projection.",
+  "phrases": [
+    "월 1천만원 수준의 구독 매출 달성",
+    "한 트랜잭션으로 저장",
+    "재고·입출고 백엔드 구축 주도",
+    "Celery → TaskIQ·RabbitMQ 전환",
+    "양방향 음성 번역",
+    "Redis 공유 세션 재설계",
+    "공통 의료 지식베이스 기획·디자인·개발 주도",
+    "상담사 만족도 3.2→3.7점 개선에 기여",
+    "트랜잭션·세션 정책 표준화",
+    "Stripe 선결제 기능 구축 주도"
+  ]
+}

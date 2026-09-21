@@ -9,6 +9,7 @@ import {
 import { ResumePageShell } from "../resume-page-shell";
 import { TailoredResumeView } from "../tailored-resume-view";
 import { CompanyDocumentPage, LocalRevisionLinks, type DocumentSearch } from "../../documents/company-document";
+import { publicRevisionFor } from "@/content/documents/companies";
 
 type PageProps = {
   params: Promise<{ company: string }>;
@@ -17,8 +18,12 @@ type PageProps = {
 
 export async function generateMetadata({ params, searchParams }: PageProps): Promise<Metadata> {
   const { company } = await params;
-  if ((await searchParams).revision || company === "toss-place") return {
-    title: `${company} 이력서 초안 — 김대정`,
+  const requestedRevision = (await searchParams).revision;
+  const published = requestedRevision
+    ? publicRevisionFor(company, "resume")?.revision === requestedRevision
+    : publicRevisionFor(company, "resume")?.revision;
+  if (requestedRevision || published || company === "toss-place") return {
+    title: `${company} 이력서${published ? "" : " 초안"} — 김대정`,
     robots: { index: false, follow: false, noarchive: true, nosnippet: true },
   };
   if (company === "jyp-v2") redirect("/resume/jyp");
@@ -44,7 +49,8 @@ export async function generateMetadata({ params, searchParams }: PageProps): Pro
 export default async function CompanyResumePage({ params, searchParams }: PageProps) {
   const { company } = await params;
   const { revision, paged } = await searchParams;
-  if (revision || company === "toss-place") return <CompanyDocumentPage company={company} kind="resume" revision={revision ?? "20260910-R1"} paged={paged === "1"} />;
+  const publicDocument = publicRevisionFor(company, "resume");
+  if (revision || publicDocument || company === "toss-place") return <CompanyDocumentPage company={company} kind="resume" revision={revision ?? publicDocument?.revision ?? "20260910-R1"} paged={paged === "1"} />;
   if (company === "jyp-v2") redirect("/resume/jyp");
   const resume = getTailoredResume(company);
 

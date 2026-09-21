@@ -5,6 +5,7 @@ import { canViewDocument, getCareerDescription } from "@/content/documents";
 import { CareerDescriptionView } from "../../documents/professional-document";
 import { ResumePageShell } from "../../resume/resume-page-shell";
 import { CompanyDocumentPage, LocalRevisionLinks, type DocumentSearch } from "../../documents/company-document";
+import { publicRevisionFor } from "@/content/documents/companies";
 
 type PageProps = {
   params: Promise<{ company: string }>;
@@ -13,8 +14,12 @@ type PageProps = {
 
 export async function generateMetadata({ params, searchParams }: PageProps): Promise<Metadata> {
   const { company } = await params;
-  if ((await searchParams).revision || company === "toss-place") return {
-    title: `${company} 경력기술서 초안 — 김대정`,
+  const requestedRevision = (await searchParams).revision;
+  const published = requestedRevision
+    ? publicRevisionFor(company, "career")?.revision === requestedRevision
+    : publicRevisionFor(company, "career")?.revision;
+  if (requestedRevision || published || company === "toss-place") return {
+    title: `${company} 경력기술서${published ? "" : " 초안"} — 김대정`,
     robots: { index: false, follow: false, noarchive: true, nosnippet: true },
   };
   const document = getCareerDescription(company);
@@ -29,7 +34,8 @@ export async function generateMetadata({ params, searchParams }: PageProps): Pro
 export default async function TailoredCareerPage({ params, searchParams }: PageProps) {
   const { company } = await params;
   const { revision } = await searchParams;
-  if (revision || company === "toss-place") return <CompanyDocumentPage company={company} kind="career" revision={revision ?? "20260910-R1"} />;
+  const publicDocument = publicRevisionFor(company, "career");
+  if (revision || publicDocument || company === "toss-place") return <CompanyDocumentPage company={company} kind="career" revision={revision ?? publicDocument?.revision ?? "20260910-R1"} />;
   if (company === "common") redirect("/career");
   const document = getCareerDescription(company);
   if (!document || !canViewDocument(document)) notFound();

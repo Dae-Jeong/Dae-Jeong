@@ -5,7 +5,20 @@ export type TableBlock = { kind: "table"; columns: string[]; rows: string[][]; c
 /** Lightweight flow diagram (career draft `mermaid flowchart` converted at export time): nodes + directed edges, laid out by the renderer. */
 export type FlowBlock = { kind: "flow"; direction: "LR" | "TD"; nodes: { id: string; label: string }[]; edges: { from: string; to: string }[]; claims: string[] };
 /** Career-only static figure drawn by a React component (see app/common/career-figures.tsx); the id is the only content. */
-export type FigureBlock = { kind: "figure"; id: "thready-approval-publish" | "infra-deployment-boundaries"; claims: string[] };
+export type FigureBlock = {
+  kind: "figure";
+  id:
+    | "thready-approval-publish"
+    | "infra-deployment-boundaries"
+    | "sagak-approval-recovery"
+    | "sagak-medical-knowledge-boundary"
+    | "ajung-product-learning-paths"
+    | "socar-approval-recovery"
+    | "socar-shared-development-roles"
+    | "featuring-data-workflows"
+    | "featuring-external-io-db-boundary";
+  claims: string[];
+};
 /** Career-only rendered diagram image (PNG under /public, 2026-09-14): short heading + full-width image linked to the original + one-line caption. */
 export type ImageBlock = { kind: "image"; src: string; alt: string; title: string; caption: string; width: number; height: number; claims: string[] };
 export type ContentBlock = TextBlock | TableBlock | FlowBlock | FigureBlock | ImageBlock;
@@ -29,8 +42,8 @@ export function parseReview(markdown: string): ContentDocument {
     if (claim) { claims = claim[1].split(/\s+/).filter(Boolean); continue; }
     const figure = line.match(/^<!-- figure: ([a-z0-9-]+) -->$/);
     if (figure) {
-      if (figure[1] !== "thready-approval-publish" && figure[1] !== "infra-deployment-boundaries") throw new Error(`Unknown figure ${figure[1]}`);
-      blocks().push({ kind: "figure", id: figure[1], claims: [...claims] });
+      if (!["thready-approval-publish", "infra-deployment-boundaries", "sagak-approval-recovery", "sagak-medical-knowledge-boundary", "ajung-product-learning-paths", "socar-approval-recovery", "socar-shared-development-roles", "featuring-data-workflows", "featuring-external-io-db-boundary"].includes(figure[1])) throw new Error(`Unknown figure ${figure[1]}`);
+      blocks().push({ kind: "figure", id: figure[1] as FigureBlock["id"], claims: [...claims] });
       continue;
     }
     const image = line.match(/^<!-- image: (.+) -->$/);

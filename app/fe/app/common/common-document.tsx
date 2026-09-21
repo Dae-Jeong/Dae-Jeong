@@ -123,7 +123,7 @@ export function CommonDocumentPage({ kind, document = documents[kind], navigatio
   const contents = contentsEntries(document, kind, layout);
   return <ResumePageShell crumb={document.title} tag={kind === "portfolio" || layout === "a4-sheet" ? undefined : "LOCAL REVIEW"}>
     {navigation ?? <CommonNav active={`/${kind}`} />}
-    <main className={styles.document} data-common-document={kind} data-document-layout={layout} data-professional-document={kind === "career" ? "career-description" : undefined} data-portfolio-document={kind === "portfolio" ? "" : undefined} data-portfolio-slug={kind === "portfolio" ? slug : undefined}>
+    <main className={styles.document} data-common-document={kind} data-document-layout={layout} data-document-slug={slug} data-professional-document={kind === "career" ? "career-description" : undefined} data-portfolio-document={kind === "portfolio" ? "" : undefined} data-portfolio-slug={kind === "portfolio" ? slug : undefined}>
       <header className={styles.header}>
         <div className={styles.identityRow}><h1>{document.title}</h1><p data-copy>{identity && <Inline text={identity.text} />}</p></div>
         {brand && <p className={styles.brand} data-copy>{brand.text}</p>}

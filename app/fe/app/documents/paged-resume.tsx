@@ -130,10 +130,36 @@ export function PagedResume({ author, role }: { author: string; role: string }) 
             if (current.length) groups.push(current);
             groups[0] = [...head, ...groups[0]];
           }
-          const headUnit = wrapSection(section, entry, groups[0].map((node) => clone(node)));
+          // The first project can be taller than the remaining space on page 1. Fill that space block by block
+          // instead of moving the whole company to page 2 and leaving only the section title behind. Project
+          // headings stay with their first block; later fragments receive the existing "회사 · 계속" label.
+          const firstGroupChunks: HTMLElement[][] = [];
+          const firstProjectHeading = groups[0].findIndex((node) => node.tagName === "H4");
+          const firstChunkEnd = firstProjectHeading >= 0 ? Math.min(groups[0].length, firstProjectHeading + 2) : Math.min(groups[0].length, 1);
+          if (firstChunkEnd > 0) firstGroupChunks.push(groups[0].slice(0, firstChunkEnd));
+          for (let index = firstChunkEnd; index < groups[0].length; index++) {
+            const node = groups[0][index];
+            if (node.tagName === "H4" && groups[0][index + 1]) firstGroupChunks.push([node, groups[0][++index]]);
+            else firstGroupChunks.push([node]);
+          }
+          let headUnit = wrapSection(section, entry, []);
           if (heading) headUnit.querySelector(":scope > div")!.prepend(clone(heading));
           flow!.append(headUnit);
-          if (!fits()) { headUnit.remove(); newPage(); flow!.append(headUnit); if (!fits()) pages[pages.length - 1].classList.add(styles.overflow); }
+          let headBlocks = headUnit.querySelector<HTMLElement>(":scope > div > div")!;
+          for (const chunk of firstGroupChunks) {
+            const copies = chunk.map((node) => clone(node));
+            headBlocks.append(...copies);
+            if (fits()) continue;
+            copies.forEach((node) => node.remove());
+            const moveCompanyHeading = headBlocks.childElementCount === 0 && Boolean(heading);
+            if (moveCompanyHeading) headUnit.remove();
+            newPage(!moveCompanyHeading);
+            headUnit = wrapSection(section, entry, chunk.map((node) => clone(node)), !moveCompanyHeading);
+            if (moveCompanyHeading && heading) headUnit.querySelector(":scope > div")!.prepend(clone(heading));
+            flow!.append(headUnit);
+            headBlocks = headUnit.querySelector<HTMLElement>(":scope > div > div")!;
+            if (!fits()) pages[pages.length - 1].classList.add(styles.overflow);
+          }
           for (const group of groups.slice(1)) add(wrapSection(section, entry, group.map((node) => clone(node)), true), true);
         }
       }

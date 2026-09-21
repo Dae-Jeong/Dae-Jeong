@@ -1,4 +1,8 @@
 import miridihR3Emphasis from "./miridih/revisions/20260912-R3/emphasis.json";
+import sagakR1Emphasis from "./sagak/revisions/20260921-R1/emphasis.json";
+import ajungR1Emphasis from "./ajungnetworks/revisions/20260921-R1/emphasis.json";
+import socarR1Emphasis from "./socar/revisions/20260921-R1/emphasis.json";
+import featuringR1Emphasis from "./featuring/revisions/20260921-R1/emphasis.json";
 
 /** Presentation-only preset for one local review revision. Copy, order, claims and approval
  *  state live in the revision JSON and are not touched here; this only selects a template and
@@ -11,6 +15,26 @@ const presentations: Record<string, ResumePresentation> = {
     template: "editorial",
     emphasis: miridihR3Emphasis.phrases,
     // 2026-09-13 user approval: reuse content/resumes/miridih.ts photoSrc (public/profile/daejeong-profile-v2.png, 1122×1402, natural ratio).
+    photo: { src: "/profile/daejeong-profile-v2.png", alt: "", width: 1122, height: 1402 },
+  },
+  "sagak:20260921-R1": {
+    template: "editorial",
+    emphasis: sagakR1Emphasis.phrases,
+    photo: { src: "/profile/daejeong-profile-v2.png", alt: "", width: 1122, height: 1402 },
+  },
+  "ajungnetworks:20260921-R1": {
+    template: "editorial",
+    emphasis: ajungR1Emphasis.phrases,
+    photo: { src: "/profile/daejeong-profile-v2.png", alt: "", width: 1122, height: 1402 },
+  },
+  "socar:20260921-R1": {
+    template: "editorial",
+    emphasis: socarR1Emphasis.phrases,
+    photo: { src: "/profile/daejeong-profile-v2.png", alt: "", width: 1122, height: 1402 },
+  },
+  "featuring:20260921-R1": {
+    template: "editorial",
+    emphasis: featuringR1Emphasis.phrases,
     photo: { src: "/profile/daejeong-profile-v2.png", alt: "", width: 1122, height: 1402 },
   },
 };
@@ -28,6 +52,10 @@ export type CareerPresentation = { layout: "a4-sheet" };
 const careerPresentations: Record<string, CareerPresentation> = {
   // 2026-09-14 user approval: output/reviews/miridih-career-vertical-full-20260914 (A4 폭 세로 시안).
   "miridih:20260912-R3": { layout: "a4-sheet" },
+  "sagak:20260921-R1": { layout: "a4-sheet" },
+  "ajungnetworks:20260921-R1": { layout: "a4-sheet" },
+  "socar:20260921-R1": { layout: "a4-sheet" },
+  "featuring:20260921-R1": { layout: "a4-sheet" },
 };
 
 export function getCareerPresentation(slug: string, revision: string): CareerPresentation | undefined {
