@@ -95,13 +95,37 @@ function parseResume(text) {
   return { name, role: role.join(" · "), careerLine: header[2], specialtyLine: header[3], contacts, sections: sections.map((item) => ({ ...item, entries: item.entries.filter((e) => e.title || e.blocks.length) })) };
 }
 
-// position/focus: the Markdown frontmatter owns them when present (R3 metadata adapter exception); otherwise keep the original values.
+// Company revision metadata belongs to the Markdown frontmatter. Keep the existing
+// Miridih defaults only as a compatibility adapter for its frozen R3 source; every
+// new company revision must identify itself instead of inheriting Miridih metadata.
+const slug = frontmatter.projection.split("/").at(-3);
+const legacyMeta = slug === "miridih" ? {
+  companyName: "미리디",
+  position: "Product Engineer · Technical Product Manager",
+  applicationId: "miridih-2026-09-12-engineering-depth-review",
+  focus: "R2 구성은 유지하고 데이터 검수·검색·생성 품질·상태 경계·팀 개발 기반의 설계 선택·처리 방식·실패 경계·검증 범위를 엔지니어가 평가할 수 있는 밀도로 복원한 R3 검토본입니다",
+} : {};
+if (!common) {
+  const requiredMeta = {
+    company_name: frontmatter.company_name || legacyMeta.companyName,
+    position: frontmatter.position || legacyMeta.position,
+    application_id: frontmatter.application_id || legacyMeta.applicationId,
+    focus: frontmatter.focus || legacyMeta.focus,
+  };
+  for (const [key, value] of Object.entries(requiredMeta)) assert(value, `frontmatter.${key}`);
+}
 const meta = {
-  slug: frontmatter.projection.split("/").at(-3), companyName: "미리디", position: frontmatter.position || "Product Engineer · Technical Product Manager",
-  status: "draft", approved: false, visibility: "local", updatedAt: frontmatter.timestamp, revision: frontmatter.revision,
-  applicationId: "miridih-2026-09-12-engineering-depth-review", focus: frontmatter.focus || "R2 구성은 유지하고 데이터 검수·검색·생성 품질·상태 경계·팀 개발 기반의 설계 선택·처리 방식·실패 경계·검증 범위를 엔지니어가 평가할 수 있는 밀도로 복원한 R3 검토본입니다",
+  slug,
+  companyName: frontmatter.company_name || legacyMeta.companyName,
+  position: frontmatter.position || legacyMeta.position,
+  status: "draft",
+  approved: false,
+  visibility: "local",
+  updatedAt: frontmatter.timestamp,
+  revision: frontmatter.revision,
+  applicationId: frontmatter.application_id || legacyMeta.applicationId,
+  focus: frontmatter.focus || legacyMeta.focus,
 };
-if (!common) assert.equal(meta.slug, "miridih");
 const projections = {};
 if (!only || only === "resume") projections.resume = { ...meta, document: "resume", content: parseResume(bodies.resume) };
 // Separate career draft → submission body only: drop frontmatter, cut the internal memo (`---` + `## 내부 편집·검토 메모` to EOF,

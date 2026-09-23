@@ -17,6 +17,9 @@
 
 ## Layer Ownership
 
+PM 조율·직무 간 인계는 [오케스트레이션 연결](wiki/context/orchestration.md)을 읽는다.
+공통 모델은 참조하고 이 repo의 owner·기존 skill·검증 경로를 유지한다.
+
 | Layer | Owns | Does not own |
 | --- | --- | --- |
 | `wiki/context/` | routing, current snapshot | canonical profile facts |

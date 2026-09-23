@@ -6,6 +6,7 @@ version = "0.1.0"
 description = "Dae-Jeong monorepo의 root 도구 환경 (validator, export, JD, PDF 렌더)"
 requires-python = ">=3.12,<3.13"
 dependencies = [
+  "mkdocs-material>=9.7.7",
   "pillow>=12.3.0",
   "playwright==1.61.0",
   "pyyaml==6.0.3",
