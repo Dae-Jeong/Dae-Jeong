@@ -27,6 +27,27 @@ def copy_strings(value):
     return []
 
 
+def is_superseded_review(data: dict, attempt: dict) -> bool:
+    """A dated local draft may precede the verified, frozen submission revision."""
+    snapshot = attempt.get("snapshot", {})
+    revision = data.get("revision", "")
+    routes = [item.get("route", "") for item in attempt.get("artifacts", {}).values()]
+    submitted = [re.search(r"[?&]revision=(\d{8}-R\d+)(?:&|$)", route) for route in routes]
+    versions = [match.group(1) for match in submitted if match]
+    def version(value):
+        date, number = value.split("-R")
+        return int(date), int(number)
+    return (
+        data.get("visibility") == "local"
+        and data.get("approved") is False
+        and attempt.get("artifact_state") == "frozen"
+        and snapshot.get("verification") == "verified"
+        and bool(re.fullmatch(r"\d{8}-R\d+", revision))
+        and bool(versions)
+        and all(version(revision) < version(item) for item in versions)
+    )
+
+
 def validate_documents(root: Path, claims: list[dict], gates: dict, attempts: list[dict]) -> list[str]:
     errors = []
     public = {claim["id"] for claim in claims if claim.get("public") is True and claim.get("confidence") in {"high", "medium"}}
@@ -55,9 +76,10 @@ def validate_documents(root: Path, claims: list[dict], gates: dict, attempts: li
             continue
         if data.get("slug") != slug or data.get("status") != "draft" or data.get("visibility") != "local" or data.get("approved") is not False:
             errors.append(f"company review: {slug} must be local/draft/approved:false")
-        if not attempt or attempt.get("artifact_state") != "mutable" or attempt.get("status") != "pre-apply":
+        superseded = is_superseded_review(data, attempt)
+        if not superseded and (attempt.get("artifact_state") != "mutable" or attempt.get("status") != "pre-apply"):
             errors.append(f"company review: {slug} missing mutable pre-apply registry connection")
-        elif not data["resume"]["role"].startswith(attempt.get("header_role", "")):
+        elif not superseded and not data["resume"]["role"].startswith(attempt.get("header_role", "")):
             errors.append(f"company review: {slug} header role drift")
         skills = "\n".join(copy_strings([section for section in data["resume"]["sections"] if section.get("title") == "기술"]))
         for term in ("Claude Code", "Codex", "SQLAlchemy 2.0 async", "Sentry", "Jira"):
@@ -81,7 +103,7 @@ def validate_documents(root: Path, claims: list[dict], gates: dict, attempts: li
             if brand and text.count(brand) != 1:
                 errors.append(f"company review: {slug}/{name} brand line drift")
             key = "career-description" if name == "career" else name
-            if attempt and attempt.get("artifacts", {}).get(key) != {"mode": "tailored", "route": f"/{name}/{slug}?revision={data['revision']}"}:
+            if not superseded and attempt.get("artifacts", {}).get(key) != {"mode": "tailored", "route": f"/{name}/{slug}?revision={data['revision']}"}:
                 errors.append(f"company review: {slug}/{name} registry route drift")
             if source.exists():
                 mapping = yaml.safe_load(source.with_name("claim-map.yaml").read_text())

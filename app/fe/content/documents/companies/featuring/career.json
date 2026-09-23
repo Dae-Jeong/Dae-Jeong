@@ -943,8 +943,7 @@
               "laughtale.local-growth-observations",
               "laughtale.component-contract-verification",
               "career.tellingme-backend-infra",
-              "infra.k8s-lab-rebuild",
-              "paperthin.evidence-first-agent-cycle"
+              "infra.k8s-lab-rebuild"
             ]
           },
           {
@@ -956,8 +955,7 @@
               "laughtale.local-growth-observations",
               "laughtale.component-contract-verification",
               "career.tellingme-backend-infra",
-              "infra.k8s-lab-rebuild",
-              "paperthin.evidence-first-agent-cycle"
+              "infra.k8s-lab-rebuild"
             ]
           },
           {
@@ -969,21 +967,7 @@
               "laughtale.local-growth-observations",
               "laughtale.component-contract-verification",
               "career.tellingme-backend-infra",
-              "infra.k8s-lab-rebuild",
-              "paperthin.evidence-first-agent-cycle"
-            ]
-          },
-          {
-            "kind": "bullet",
-            "text": "**Paperthin · 공개 개발 도구:** 실제 동작 확인·실패 원인·재발 방지 기준을 다음 구현에 반영하는 coding agent 작업 절차를 공개 skill로 구현.",
-            "claims": [
-              "laughtale.personal-distributed-design",
-              "laughtale.proactive-reliability-experiments",
-              "laughtale.local-growth-observations",
-              "laughtale.component-contract-verification",
-              "career.tellingme-backend-infra",
-              "infra.k8s-lab-rebuild",
-              "paperthin.evidence-first-agent-cycle"
+              "infra.k8s-lab-rebuild"
             ]
           }
         ],
