@@ -190,7 +190,7 @@ export default function DesignPage() {
                 trailing="2025.02 — 2025.04"
               >
                 <span className="text-base text-fg-2">
-                  Centurion 초기 backend 구축 · 개발팀 시스템·기준 수립
+                  피부과 운영 제품군 초기 backend 구축 · 개발팀 시스템·기준 수립
                 </span>
               </NumberedRow>
             </NumberedList>

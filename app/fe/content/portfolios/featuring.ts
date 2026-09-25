@@ -141,7 +141,7 @@ export const FEATURING_CASE_DETAILS: readonly FeaturingCaseDetail[] = [
       {
         label: "구현·검증",
         title: "실패 상태와 복구 방법을 주문 흐름에 연결했습니다",
-        text: "발송 결과를 PENDING·FAILED 상태와 연결하고 자동 retry·최종 실패·수동 재발송 경계를 구현했습니다.",
+        text: "발송 결과를 PENDING·FAILED 상태와 연결하고 실패 기록·최종 실패·수동 재발송 경계를 구현했습니다.",
         items: [
           "실패 기록을 남겨 API 성공 뒤 남은 작업을 다시 찾을 수 있게 구성",
           "API test infrastructure·Docker CI와 local 실행·onboarding 문서 구축",
@@ -151,7 +151,7 @@ export const FEATURING_CASE_DETAILS: readonly FeaturingCaseDetail[] = [
     boundary:
       "주문·재고 backend와 worker 구축은 주도했고, Gateway·SSO는 연동 범위에서 담당했습니다.",
     jdFit:
-      "피처링 engine의 service 배포·운영과 데이터 작업 실패 복구를 상태·retry·재처리 관점에서 설명하는 근거입니다.",
+      "피처링 engine의 service 배포·운영과 데이터 작업 실패 복구를 상태·실패 기록·재처리 관점에서 설명하는 근거입니다.",
   },
   {
     slug: "be-template",
@@ -231,7 +231,7 @@ export const FEATURING_PORTFOLIO = {
     {
       title: "실패를 상태와 복구 흐름으로",
       description:
-        "외부 작업이 실패해도 주문이 멈추지 않도록 재시도·최종 실패·수동 재처리를 제품 흐름에 넣었습니다.",
+        "외부 작업이 실패해도 주문이 멈추지 않도록 실패 기록·최종 실패·수동 재처리를 제품 흐름에 넣었습니다.",
     },
     {
       title: "팀이 같은 기준으로 만드는 FastAPI 표준",
@@ -261,7 +261,7 @@ export const FEATURING_PORTFOLIO = {
       slug: "centurion-platform",
       label: "MSA·비동기 작업 복구",
       focus:
-        "주문 transaction과 외부 작업을 분리하고 상태·retry·최종 실패·수동 재처리를 제품 흐름에 연결한 경험을 봅니다.",
+        "주문 transaction과 외부 작업을 분리하고 상태·실패 기록·최종 실패·수동 재처리를 제품 흐름에 연결한 경험을 봅니다.",
       scope: "주문·재고 Backend · Worker 주도",
     },
     {

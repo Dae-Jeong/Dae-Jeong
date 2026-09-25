@@ -361,7 +361,7 @@ export const TECH_LEAD_PRODUCT_RESUME = makeBase({
         },
       ],
       "백엔드 전환을 위한 validation harness를 먼저 구축하고 FastAPI backend를 병렬 재구축·전환했습니다. 기존 화면의 API 계약을 유지하며 응답 비교와 검증을 거쳐 실사용 backend의 개발·운영으로 연결했습니다.",
-      "Centurion 초기 backend와 개발 기준을 세우고, 의료 MSA에서 주문·재고 worker의 상태·retry·실패 기록·재처리와 DAY 예약 정책의 backend·frontend·QA·release 연결을 주도했습니다.",
+      "피부과 운영 제품군 초기 backend와 개발 기준을 세우고, 의료 MSA에서 주문·재고 worker의 상태·실패 기록·재처리와 DAY 예약 정책의 backend·frontend·QA·release 연결을 주도했습니다.",
       "별도의 여러 피부과 운영·예약 backend architecture와 migration 흐름 구축을 주도했습니다. 제품은 예약률 개선을 통해 고객사 매출에 기여했습니다.",
       "MEDINESS의 제품 요구·운영 흐름 설계에 참여하고, 제품별 Decision·SPEC·Work Package·QA approval·release gate 적용과 운영을 리드했습니다. 회사 AX 구조는 회의·의사결정·업무 배정·승인·후속 작업에서 agent가 맥락·실행안을 준비하고 판단은 사람이 확정하도록 설계하는 데 참여했습니다.",
       "layered architecture·DI·ADR·runbook을 갖춘 조직 표준 FastAPI template과 agent context를 직접 구축했습니다.",
@@ -404,10 +404,10 @@ export const TECH_LEAD_PRODUCT_RESUME = makeBase({
     },
     {
       no: "03",
-      title: "재시도 이후에도 복구할 수 있는 주문·재고 worker",
+      title: "실패 이후에도 복구할 수 있는 주문·재고 worker",
       description: [
         "실패 가능한 후속 작업을 API 요청에서 분리하고, 실패가 사라지지 않고 운영자가 다시 처리할 수 있는 상태로 남겼습니다.",
-        { text: "RabbitMQ·TaskIQ worker와 상태·retry·terminal failure·manual reprocess 경계", source: "Centurion · 주문·재고" },
+        { text: "RabbitMQ·TaskIQ worker와 상태·실패 기록·terminal failure·manual reprocess 경계", source: "피부과 운영 제품군 · 주문·재고" },
         { text: "async FastAPI 실행 모델을 기준으로 Celery에서 TaskIQ로 전환", source: "worker migration" },
         { text: "worker image를 API와 분리하고 API test·Docker CI 기반 마련", source: "delivery" },
       ],
@@ -571,7 +571,7 @@ export const PRODUCT_OWNER_RESUME = makeBase({
       title: "예약 정책을 backend 판단에서 화면·QA·출시까지 연결",
       description: [
         "운영 정책이 API와 화면에서 다르게 해석되지 않도록 예약 상태와 예외 조건을 backend contract로 정하고, frontend 표시·QA 시나리오·release까지 같은 기준으로 맞췄습니다.",
-        { text: "예약 정책의 backend·frontend·QA·release 연결 주도", source: "Centurion · DAY" },
+        { text: "예약 정책의 backend·frontend·QA·release 연결 주도", source: "피부과 운영 제품군 · DAY" },
         { text: "실시간 AI 상담 구조 설계·통합 공동 주 기여", source: "AI 상담" },
       ],
       claimIds: ["centurion.day-product-integration", "centurion.say-realtime-ai"],
@@ -662,7 +662,7 @@ export const BACKEND_RESUME = makeBase({
       ],
     },
     {
-      text: "기존 제품 흐름을 유지한 backend cutover, 원장 변경을 AI 실행부로 전달하는 Outbox·lease·version fence, 재시도 소진 뒤에도 실패 상태를 남기는 worker, 외부 결제 보상 흐름을 구현했습니다. Vision AI와 PM을 거쳐 제품과 운영을 함께 보는 실무 4년차입니다.",
+      text: "기존 제품 흐름을 유지한 backend cutover, 원장 변경을 AI 실행부로 전달하는 Outbox·lease·version fence, 실패 상태를 남겨 운영자가 재처리할 수 있게 한 worker, 외부 결제 보상 흐름을 구현했습니다. Vision AI와 PM을 거쳐 제품과 운영을 함께 보는 실무 4년차입니다.",
       claimIds: [
         "career.tenure",
         "career.ai-pm-backend-continuity",
@@ -692,7 +692,7 @@ export const BACKEND_RESUME = makeBase({
     currentDetails: [
       "Thready의 기존 화면과 release 흐름을 유지한 채 백엔드를 FastAPI로 병렬 재구축·cutover했습니다. contract·component·운영 흐름을 확인하는 validation harness를 전환 전에 세웠습니다.",
       "제품 원장과 AI 실행을 독립 application·DB로 분리하고, 원장 변경과 Outbox를 같은 transaction에 기록했습니다. lease 재점유·attempt token·delivery version fence·멱등 consumer로 worker 중단과 중복·역순 전달을 제어했습니다.",
-      "Centurion 주문·재고 backend의 Celery 작업을 TaskIQ·RabbitMQ로 전환하고, PENDING→SENDING→SUCCESS/FAILED 상태·retry 상한·최종 실패 기록·수동 재처리 경계를 구축했습니다.",
+      "피부과 운영 제품군 주문·재고 backend의 Celery 작업을 TaskIQ·RabbitMQ로 전환하고, PENDING→SENDING→SUCCESS/FAILED 상태·retry 상한·최종 실패 기록·수동 재처리 경계를 구축했습니다.",
       "외부 병원 운영·예약 backend의 service boundary와 migration을 주도하고, client header 대신 검증된 server auth state가 작업 지점을 결정하는 접근 경계를 구현 중입니다.",
       "2~3명의 백엔드 엔지니어가 다수 제품을 담당하는 환경에서 layered architecture·DI·ADR·runbook·agent context를 갖춘 조직 표준 FastAPI template을 구축했습니다.",
     ],
@@ -721,7 +721,7 @@ export const BACKEND_RESUME = makeBase({
         "제품 원장과 AI 실행 상태를 독립 application·DB로 나누면서, commit 뒤 event 유실과 worker 중단·중복·역순 전달까지 함께 다뤘습니다.",
         { text: "STG migration rehearsal과 row count·MD5·FK·생성 API E2E", source: "데이터 이전 검증" },
         { text: "원장 변경과 Outbox를 같은 transaction에 기록하고 lease로 전달 row 재점유", source: "durable delivery" },
-        { text: "attempt·delivery version fence, 멱등 consumer, 최대 재시도 뒤 실패 상태 보존", source: "수렴·복구" },
+        { text: "attempt·delivery version fence, 멱등 consumer, 실패 상태·원인 보존", source: "수렴·복구" },
       ],
       claimIds: [
         "thready.ai-service-boundary",
@@ -731,9 +731,9 @@ export const BACKEND_RESUME = makeBase({
     },
     {
       no: "03",
-      title: "재시도가 끝난 작업도 운영자가 다시 처리할 수 있게 설계",
+      title: "실패한 작업도 운영자가 다시 처리할 수 있게 설계",
       description: [
-        "실패 가능한 주문·재고 후속 작업을 API 요청에서 분리하고, 자동 재시도가 끝나도 원인과 상태를 확인해 실패 건만 다시 처리할 수 있게 했습니다.",
+        "실패 가능한 주문·재고 후속 작업을 API 요청에서 분리하고, 실패 원인과 상태를 기록해 실패 건만 조건 검증 후 다시 처리할 수 있게 했습니다.",
         { text: "async FastAPI 실행 모델에 맞춰 Celery에서 TaskIQ·RabbitMQ로 전환", source: "worker 선택" },
         { text: "PENDING→SENDING→SUCCESS/FAILED와 retry 상한", source: "상태 전이" },
         { text: "최종 실패 기록·수동 재처리·worker 별도 배포", source: "운영 복구" },
@@ -862,7 +862,7 @@ export const AI_PRODUCT_BACKEND_RESUME = makeBase({
       "고객 문제를 제품 기능·품질 기준으로 구체화하고 기획·QA·마케팅과 Thready의 출시·운영을 리드했습니다. 팀과 실제 고객이 결제하는 유료 제품으로 만들었고, FastAPI backend·AI 생성/평가 system과 Next.js 핵심 사용자·관리 흐름을 직접 구현했습니다.",
       "AI application과 DB를 product backend에서 분리하고 STG 생성 이력 2,616건·품질 snapshot 795건·trace 7,111건을 이관했습니다. MD5·FK·API E2E와 Outbox·version fence로 정합성을 검증했습니다.",
       "최근 1년 내 게시된 Threads 공개 콘텐츠와 반응 추이를 중심으로 outcome 후보를 설계하고, 본문·이어쓰기 labeling workflow와 3단계 생성 품질 기준을 구축했습니다.",
-      "실시간 AI 상담 backend의 session lifecycle과 provider 경계 안정화에 공동 주 기여하고, 주문·재고 worker의 상태·retry·재처리 경계를 구축했습니다.",
+      "실시간 AI 상담 backend의 session lifecycle과 provider 경계 안정화에 공동 주 기여하고, 주문·재고 worker의 상태·실패 기록·재처리 경계를 구축했습니다.",
     ],
   }),
   outcomes: [
@@ -1228,7 +1228,7 @@ export const PLATFORM_RESUME = makeBase({
     ],
     currentDetails: [
       "layered architecture·DI·ADR·convention·runbook 기반 조직 FastAPI template과 agent context를 구축했습니다.",
-      "AI application·DB migration과 Outbox·version fence, 주문·재고 worker의 retry·terminal failure·수동 재처리 경계를 구현했습니다.",
+      "AI application·DB migration과 Outbox·version fence, 주문·재고 worker의 실패 기록·terminal failure·수동 재처리 경계를 구현했습니다.",
       "여러 사내 서비스의 Azure·Vercel 배포 환경을 서비스가 동작하도록 구성하고 기본 운영을 맡았습니다.",
     ],
     studioDetails: [
@@ -1268,11 +1268,11 @@ export const PLATFORM_RESUME = makeBase({
     },
     {
       no: "03",
-      title: "재시도 이후에도 운영자가 복구할 수 있는 주문·재고 worker",
+      title: "실패 이후에도 운영자가 복구할 수 있는 주문·재고 worker",
       description: [
-        "실패 가능한 후속 작업을 API 요청에서 분리하고, 자동 재시도가 끝난 뒤에도 원인과 상태를 남겨 다시 처리할 수 있게 했습니다.",
-        { text: "RabbitMQ·TaskIQ worker와 API 실행 경계 분리", source: "Centurion · 주문·재고" },
-        { text: "상태·retry·terminal failure·manual reprocess", source: "worker lifecycle" },
+        "실패 가능한 후속 작업을 API 요청에서 분리하고, 실패 원인과 상태를 남겨 조건 검증 후 다시 처리할 수 있게 했습니다.",
+        { text: "RabbitMQ·TaskIQ worker와 API 실행 경계 분리", source: "피부과 운영 제품군 · 주문·재고" },
+        { text: "상태·실패 기록·terminal failure·manual reprocess", source: "worker lifecycle" },
         { text: "API test·Docker CI·onboarding 기반", source: "delivery" },
       ],
       claimIds: [
@@ -1298,7 +1298,7 @@ export const PLATFORM_RESUME = makeBase({
     {
       no: "03",
       title: "운영자가 복구할 수 있는 상태를 남깁니다",
-      body: "retry가 끝난 worker와 불확실한 외부 상태를 기록·조회·수동 재처리할 수 있게 만들고 runbook에 운영 경계를 남깁니다.",
+      body: "실패한 worker와 불확실한 외부 상태를 기록·조회·수동 재처리할 수 있게 만들고 runbook에 운영 경계를 남깁니다.",
       claimIds: ["centurion.bay-async-backend", "be-template.backend-standard"],
     },
   ],

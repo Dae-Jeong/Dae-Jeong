@@ -207,8 +207,8 @@ export const DETAILS: Record<string, CaseDetail> = {
         방식이 달랐다.
       </>,
       <>
-        worker를 교체하는 것만으로는 충분하지 않았다. 작업 상태와 retry, 최종
-        실패 기록, 수동 재처리, API·worker를 함께 검증하는 환경까지 하나의 운영
+        worker를 교체하는 것만으로는 충분하지 않았다. 작업 상태와 실패 기록,
+        수동 재처리, API·worker를 함께 검증하는 환경까지 하나의 운영
         경계로 만들어야 했다.
       </>,
     ],
@@ -269,7 +269,7 @@ export const DETAILS: Record<string, CaseDetail> = {
         t: (
           <>
             알림 작업을 <strong>PENDING · SENDING · SUCCESS · FAILED</strong>{" "}
-            상태로 기록하고 retry와 최종 실패 이력을 남겼다.
+            상태로 기록하고 최종 실패 이력을 남겼다.
           </>
         ),
       },
@@ -277,8 +277,8 @@ export const DETAILS: Record<string, CaseDetail> = {
         k: "Recovery Boundary",
         t: (
           <>
-            자동 retry 이후에도 실패한 작업은 수동 재발송으로 복구하고, 재고
-            연동은 별도 worker retry 경계에서 다시 처리하게 했다.
+            실패한 작업은 실패 기록과 조건 검증 후 수동 재발송으로 복구하고,
+            재고 연동은 별도 worker 경계에서 다시 처리하게 했다.
           </>
         ),
       },
@@ -300,18 +300,19 @@ export const DETAILS: Record<string, CaseDetail> = {
       },
       {
         title: "Worker · External",
-        desc: "외부 연동을 수행하고 성공·실패 상태와 retry 이력을 기록.",
+        desc: "외부 연동을 수행하고 성공·실패 상태와 실패 이력을 기록.",
       },
       {
-        title: "Retry · Manual Recovery",
-        desc: "자동 retry와 수동 재발송 경로로 실패한 작업을 다시 처리.",
+        title: "Failure · Manual Recovery",
+        desc: "실패 기록과 조건 검증 후 수동 재발송 경로로 실패한 작업을 다시 처리.",
       },
     ],
     opsIntro: (
       <>
-        알림 작업은 최대 3회·10초 간격으로 retry하고, 재고 worker도 최대 3회
-        retry한다. API test, Docker CI와 local setup으로 API·broker·worker 흐름을
-        함께 재현한다. exactly-once나 전환 전후 성능 개선 수치는 주장하지 않는다.
+        알림·재고 작업은 실패 상태와 이력을 남기고, 실패 건은 조건 검증 후 수동
+        재발송으로 복구한다. API test, Docker CI와 local setup으로
+        API·broker·worker 흐름을 함께 재현한다. exactly-once, 자동 재시도 수렴,
+        전환 전후 성능 개선 수치는 주장하지 않는다.
       </>
     ),
     evidence: [
@@ -320,15 +321,15 @@ export const DETAILS: Record<string, CaseDetail> = {
         label: "Celery → TaskIQ 전환",
         claim:
           "async FastAPI 실행 모델과의 정합성을 기준으로 Celery 기반 처리를 TaskIQ·RabbitMQ로 전환",
-        source: "Centurion 주문·재고 backend Git history·dependency",
+        source: "피부과 운영 제품군 주문·재고 backend Git history·dependency",
         claimIds: ["centurion.async-migration"],
       },
       {
         index: "근거 2",
-        label: "상태·retry·재처리 경계",
+        label: "상태·실패·재처리 경계",
         claim:
-          "알림 상태·retry·최종 실패 기록·수동 재발송과 재고 worker retry 경계 구축 주도",
-        source: "Centurion 주문·재고 backend code·test",
+          "알림 상태·최종 실패 기록·수동 재발송과 재고 worker 경계 구축 주도",
+        source: "피부과 운영 제품군 주문·재고 backend code·test",
         claimIds: ["centurion.bay-async-backend"],
       },
       {
@@ -336,7 +337,7 @@ export const DETAILS: Record<string, CaseDetail> = {
         label: "test·CI·onboarding",
         claim:
           "API test infrastructure, Docker CI, local setup·onboarding 구축 주도",
-        source: "Centurion 주문·재고 backend 개발 기록",
+        source: "피부과 운영 제품군 주문·재고 backend 개발 기록",
         claimIds: ["centurion.test-ci-foundation"],
       },
     ],
@@ -436,7 +437,7 @@ export const DETAILS: Record<string, CaseDetail> = {
       label: "session lifecycle·provider 경계",
       claim:
         "realtime AI 상담 backend의 세션 lifecycle과 STT/LLM provider 경계 안정화에 공동 주 기여",
-      source: "Centurion 실시간 상담 AI 개발 기록",
+      source: "피부과 운영 제품군 실시간 상담 AI 개발 기록",
       claimIds: ["centurion.say-realtime-ai"],
       },
       {
@@ -444,7 +445,7 @@ export const DETAILS: Record<string, CaseDetail> = {
       label: "translation·audio pipeline",
       claim:
         "zombie session cleanup, reconnect race 처리, translation/audio pipeline 변경이 확인됨",
-      source: "Centurion Evidence · 실시간 상담 AI",
+      source: "피부과 운영 제품군 Evidence · 실시간 상담 AI",
       claimIds: ["centurion.say-realtime-ai"],
       },
       {
@@ -452,7 +453,7 @@ export const DETAILS: Record<string, CaseDetail> = {
       label: "structured output·fallback",
       claim:
         "dashboard AI analysis의 structured output·fallback과 boundary test가 확인됨",
-      source: "Centurion Evidence · 실시간 상담 AI",
+      source: "피부과 운영 제품군 Evidence · 실시간 상담 AI",
       claimIds: ["centurion.say-realtime-ai"],
       },
     ],

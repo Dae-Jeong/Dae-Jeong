@@ -121,7 +121,7 @@ export function SayRealtimeDiagram() {
   return (
     <figure className="portfolio-keep m-0 mt-6" data-say-realtime-diagram>
       <ArchitectureFrame
-        product="CENTURION · SAY"
+        product="피부과 운영 제품군 · 실시간 상담 session"
         status="REALTIME CONSULTATION"
         title="Session · transcription · advice reference architecture"
       >

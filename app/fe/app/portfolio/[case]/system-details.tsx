@@ -17,7 +17,7 @@ export const SYSTEM_DETAILS: Record<string, SystemCaseDetail> = {
     eyebrow: "AI Content Product · Zero-to-One / Operation",
     summary: (
       <>
-        고객이 돈을 내는 이유를 기획·QA·마케팅과 함께 구체화하고,
+        고객이 구독하는 이유를 기획·QA·마케팅과 함께 구체화하고,
         기능·실험 우선순위부터 구현·출시·운영까지 연결했습니다.
         <strong> 아이디어를 실제 고객이 구독하는 제품으로 만들고</strong>
         운영하는 데 필요한 frontend·backend·data·AI를 직접 구축했습니다.
@@ -77,7 +77,7 @@ export const SYSTEM_DETAILS: Record<string, SystemCaseDetail> = {
       <>모든 workload를 같은 runtime과 transaction에 묶지 않으면서도 인증·지점·권한 context는 service 사이에서 일관되게 전달해야 했습니다.</>,
     ],
     failures: [
-      { trigger: "외부 알림·재고 연동 실패", risk: "API 요청과 핵심 업무가 함께 실패", boundary: "RabbitMQ·TaskIQ worker · 상태·retry·terminal failure·수동 재처리" },
+      { trigger: "외부 알림·재고 연동 실패", risk: "API 요청과 핵심 업무가 함께 실패", boundary: "RabbitMQ·TaskIQ worker · 상태·실패 기록·terminal failure·수동 재처리" },
       { trigger: "WebSocket reconnect·중복 event", risk: "zombie session·잘못된 turn 연결", boundary: "cancellation·debounce·retry·turn-state guard·GC" },
       { trigger: "중간·확정·보정 전사 도착", risk: "늦은 결과가 다른 발화를 덮어씀", boundary: "DELTA·COMPLETE·optional CORRECTED를 같은 sequence로 연결" },
       { trigger: "시설→재고 publish 실패", risk: "시술 완료 transaction 중단", boundary: "핵심 업무 완료와 외부 event publish의 실행 경계 분리" },
@@ -91,15 +91,15 @@ export const SYSTEM_DETAILS: Record<string, SystemCaseDetail> = {
     flow: [
       { label: "ENTRY", title: "API Gateway · SSO", desc: "공통 진입점과 인증 context 전달" },
       { label: "SYNC", title: "FastAPI product services", desc: "예약·주문·재고·병원 운영의 업무 상태 소유" },
-      { label: "ASYNC", title: "RabbitMQ · TaskIQ", desc: "실패 가능한 외부 작업의 상태·retry·재처리" },
+      { label: "ASYNC", title: "RabbitMQ · TaskIQ", desc: "실패 가능한 외부 작업의 상태·실패 기록·재처리" },
       { label: "LIVE", title: "WebSocket runtime", desc: "상담 session과 STT/LLM provider lifecycle" },
     ],
     evidence: [
-      { label: "Order / Inventory", value: "구축 주도", note: "API·worker flow·retry boundary", claimIds: ["centurion.bay-async-backend"] },
+      { label: "Order / Inventory", value: "구축 주도", note: "API·worker flow·실패 기록·수동 재발송 경계", claimIds: ["centurion.bay-async-backend"] },
       { label: "Realtime E2E", value: "586 / 25 / 14", note: "4분 37초 replay의 DELTA / COMPLETE / ADVICE · seq 1—25 무결성", claimIds: ["centurion.say-realtime-ai"] },
       { label: "Session regression", value: "13 scenarios", note: "reconnect race 8개 · GC TTL 5개", claimIds: ["centurion.say-realtime-ai"] },
       { label: "Provider benchmark", value: "383 domain terms", note: "WER·CER·용어 보존율·latency 비교 환경", claimIds: ["centurion.say-realtime-ai"] },
-      { label: "VAD trade-off", value: "P50 3.0~3.2초", note: "무음 200·350·500ms 비교 · 모델 추론 약 80%", claimIds: ["centurion.say-realtime-ai"] },
+      { label: "VAD trade-off", value: "무음 임계 비교", note: "무음 후보별 latency·감지 trade-off 비교 환경", claimIds: ["centurion.say-realtime-ai"] },
       { label: "Facility / SSO", value: "주요 기능 기여", note: "재고 연동·multi-service session policy", claimIds: ["centurion.ray-backend", "centurion.sso-session"] },
     ],
   },
@@ -136,9 +136,9 @@ export const SYSTEM_DETAILS: Record<string, SystemCaseDetail> = {
       { label: "OPS", title: "Monitor · Log Analytics", desc: "App diagnostics·VM logs·Production alerts" },
     ],
     evidence: [
-      { label: "Terraform scope", value: "6 state · 400+ object", note: "독립 root·remote state", claimIds: ["infra.terraform-state-safety"] },
-      { label: "Central logs", value: "10 VM", note: "Azure Monitor·Log Analytics·AMA/DCR", claimIds: ["infra.azure-observability"] },
-      { label: "Production alerts", value: "8", note: "health·5xx·DB·storage·system metric", claimIds: ["infra.azure-observability"] },
+      { label: "Terraform scope", value: "제품군·환경별 독립 root", note: "remote state로 변경 범위 격리", claimIds: ["infra.terraform-state-safety"] },
+      { label: "Central logs", value: "Azure Monitor·Log Analytics", note: "VM·runtime 로그 공통 관측(AMA/DCR)", claimIds: ["infra.azure-observability"] },
+      { label: "Production alerts", value: "health·5xx·DB·storage·system", note: "배포 후 runtime 검증 지표 alert", claimIds: ["infra.azure-observability"] },
     ],
   },
   "memento-payment": {
