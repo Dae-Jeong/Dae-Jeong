@@ -51,16 +51,35 @@ PM 조율·직무 간 인계는 [오케스트레이션 연결](wiki/context/orch
 
 skill의 canonical 위치는 `.agents/skills/`다. Claude Code는 `.claude/skills` → `../.agents/skills` symlink로 같은 파일을 읽는다. 별도 adapter나 사본을 두지 않는다. `.agents/skills/impeccable`는 외부 설치 skill이라 Git에서 제외한다.
 
+### 이름 규칙
+
+`{영역}-{동사}[-{대상}]`. 영역을 앞에 두어 정렬했을 때 같은 영역이 묶이게 한다. 대상이 영역 자체이면 생략한다.
+
+| 영역 | 뜻 |
+| --- | --- |
+| `application-` | 지원 한 건(회사 × 공고) 단위 흐름 |
+| `copy-` | 회사를 가로지르는 공개 문안 규칙·품질 |
+| `platform-` | 외부 채용 플랫폼 |
+| `diagram-` | 도식 산출물 |
+
+| 동사 | 성격 |
+| --- | --- |
+| `check`, `analyze`, `review` | 읽기·판단 (지정된 기록 파일 외 수정 없음) |
+| `write`, `apply`, `sync`, `draw` | 산출물·문서를 쓴다 |
+| `prepare` | 같은 영역의 skill을 조율한다 |
+
+### 목록
+
 | Skill | 위치 | 용도 |
 | --- | --- | --- |
-| analyze-jd-fit | [.agents/skills/analyze-jd-fit/SKILL.md](.agents/skills/analyze-jd-fit/SKILL.md) | JD 링크·본문을 검증된 profile/evidence와 대조해 지원 판단·강점·공백 분석 |
-| report-application-status | [.agents/skills/report-application-status/SKILL.md](.agents/skills/report-application-status/SKILL.md) | 지원 현황 조회·지원 전 공고의 마감 임박 표시. `현황 알려줘` 요청 시 사용 |
-| run-application-team | [.agents/skills/run-application-team/SKILL.md](.agents/skills/run-application-team/SKILL.md) | 실무자 방식의 분석·작성·독립 검토 협업. 지원 준비를 팀으로 진행할 때 사용 |
-| tailor-resume | [.agents/skills/tailor-resume/SKILL.md](.agents/skills/tailor-resume/SKILL.md) | 검증된 claim 기반 회사/JD 맞춤 이력서 생성 |
-| review-application-copy | [.agents/skills/review-application-copy/SKILL.md](.agents/skills/review-application-copy/SKILL.md) | active 회사·공통 표면의 공개 문안을 규칙 대비 전수 검토 (파일 수정 없음) |
-| sync-platform-profile | [.agents/skills/sync-platform-profile/SKILL.md](.agents/skills/sync-platform-profile/SKILL.md) | 채용 플랫폼 프로필을 canonical 문안(`wiki/products/platform-profiles`)에 맞춰 파생·검사·적용·reload 검증·registry 기록 |
-| propagate-copy-decision | [.agents/skills/propagate-copy-decision/SKILL.md](.agents/skills/propagate-copy-decision/SKILL.md) | 사용자 결정 한 문장을 evidence → claim → 규칙 → 게이트 → 표면 순으로 전파하고 verify |
-| render-server-architecture | [.agents/skills/render-server-architecture/SKILL.md](.agents/skills/render-server-architecture/SKILL.md) | 서버·배포 구성도를 공개 가능한 수준으로 작성·검토 |
+| application-check-status | [.agents/skills/application-check-status/SKILL.md](.agents/skills/application-check-status/SKILL.md) | 지원 현황 조회·지원 전 공고의 마감 임박 표시. `현황 알려줘` 요청 시 사용 |
+| application-analyze-posting | [.agents/skills/application-analyze-posting/SKILL.md](.agents/skills/application-analyze-posting/SKILL.md) | 공고 수집·Eligibility·요구별 claim 판정·지원 판단·키워드 누적. 지원 폴더에서는 `jd.md`·`match-report.md` 작성 |
+| application-write-docs | [.agents/skills/application-write-docs/SKILL.md](.agents/skills/application-write-docs/SKILL.md) | `match-report.md`를 입력으로 성과 축을 정하고 회사별 이력서·경력기술서·포트폴리오(선택 CV) 작성·렌더·보관 |
+| application-prepare | [.agents/skills/application-prepare/SKILL.md](.agents/skills/application-prepare/SKILL.md) | 분석·작성·독립 검토 팀으로 위 skill들을 조율. 지원 준비를 팀으로 진행할 때 사용 |
+| copy-review | [.agents/skills/copy-review/SKILL.md](.agents/skills/copy-review/SKILL.md) | active 회사·공통 표면의 공개 문안을 규칙 대비 전수 검토 (파일 수정 없음) |
+| copy-apply-decision | [.agents/skills/copy-apply-decision/SKILL.md](.agents/skills/copy-apply-decision/SKILL.md) | 사용자 결정 한 문장을 evidence → claim → 규칙 → 게이트 → 표면 순으로 전파하고 verify |
+| platform-sync-profiles | [.agents/skills/platform-sync-profiles/SKILL.md](.agents/skills/platform-sync-profiles/SKILL.md) | 채용 플랫폼 프로필을 canonical 문안(`wiki/products/platform-profiles`)에 맞춰 파생·검사·적용·reload 검증·registry 기록 |
+| diagram-draw-architecture | [.agents/skills/diagram-draw-architecture/SKILL.md](.agents/skills/diagram-draw-architecture/SKILL.md) | 서버·배포 구성도를 공개 가능한 수준으로 작성·검토 |
 
 ## 검증
 

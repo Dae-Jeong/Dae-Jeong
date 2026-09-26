@@ -1,9 +1,9 @@
 ---
-name: sync-platform-profile
+name: platform-sync-profiles
 description: Sync the recruiting-platform profiles (Wanted, LinkedIn, Remember, Groupby, RocketPunch) to the canonical platform copy — derive field text from the app/fe surfaces and rules, verify with make verify, apply through the browser only where automation is known to persist, confirm by reload, and record live state in the platform registry. Use when the user asks to update, check, or sync platform profiles. Never invent copy on a platform.
 ---
 
-# Sync Platform Profile
+# Platform Sync Profiles
 
 플랫폼 프로필은 표현 SoT(`app/fe` 공개 surface)에서 **파생**한다. 플랫폼에서 문안을 새로 쓰지 않는다. canonical 문안·registry·제약은 [wiki/products/platform-profiles](../../../wiki/products/platform-profiles/README.md)가 소유한다.
 

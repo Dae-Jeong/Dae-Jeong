@@ -1,9 +1,9 @@
 ---
-name: render-server-architecture
+name: diagram-draw-architecture
 description: Create or review a compact server/deployment architecture diagram as a real HTML, SVG, or Markdown artifact. Use for 서버 구성도, 네트워크·클러스터 배치도, or infrastructure topology; not for general charts, ERDs, or sequence diagrams.
 ---
 
-# Render Server Architecture
+# Diagram Draw Architecture
 
 ## Owner와 적용 범위
 

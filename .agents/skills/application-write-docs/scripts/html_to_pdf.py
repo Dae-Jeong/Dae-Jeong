@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """이력서 HTML을 A4 PDF로 변환한다 (@page CSS 존중, 웹폰트 로드 대기).
 
-사용법: python3 .agents/skills/tailor-resume/scripts/html_to_pdf.py <input.html> [output.pdf]
+사용법: python3 .agents/skills/application-write-docs/scripts/html_to_pdf.py <input.html> [output.pdf]
 출력 생략 시 입력과 같은 위치에 .pdf 로 생성.
 """
 import sys

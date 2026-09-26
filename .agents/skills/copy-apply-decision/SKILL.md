@@ -1,9 +1,9 @@
 ---
-name: propagate-copy-decision
+name: copy-apply-decision
 description: Apply one user decision about public application copy end to end — evidence, claim, then the rule row and gate when the error repeats, and the surfaces within the approved scope — and verify that scope. Use when the user decides a wording, a disclosure boundary, a metric form, or a collaboration credit. Do not use for review-only requests.
 ---
 
-# Propagate Copy Decision
+# Copy Apply Decision
 
 입력은 **결정 한 문장**이다. 예: "Centurion은 내부 제품이야", "약 94%가 좋을 것 같아", "QA 팀원 한 분의 서포트를 받았어".
 

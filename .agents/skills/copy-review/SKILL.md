@@ -1,11 +1,11 @@
 ---
-name: review-application-copy
+name: copy-review
 description: Review the public application copy (tailored resume, career description, portfolio, and common surfaces) of active companies against the copy standard and report findings by severity without editing files. Use when the user asks to check, audit, or list what needs fixing in application documents. Do not use for writing or propagating changes.
 ---
 
-# Review Application Copy
+# Copy Review
 
-전수 검토는 **파일을 고치지 않는다.** 출력은 심각도별 목록과 "결정 필요" 항목이다. 고치는 일은 [propagate-copy-decision](../propagate-copy-decision/SKILL.md)이 한다.
+전수 검토는 **파일을 고치지 않는다.** 출력은 심각도별 목록과 "결정 필요" 항목이다. 고치는 일은 [copy-apply-decision](../copy-apply-decision/SKILL.md)이 한다.
 
 기준은 이 skill 안에 복제하지 않는다. 아래 두 문서가 소유한다.
 

@@ -1,9 +1,9 @@
 ---
-name: tailor-resume
-description: Prepare, review, adapt, render, or archive a company-specific resume, career-description, portfolio, and optional CV package when the user asks for application artifacts. Uses a Markdown-first content review before HTML/PDF rendering. Do not use for fit-only JD analysis.
+name: application-write-docs
+description: Write, adapt, render, or archive a company-specific resume, career-description, portfolio, and optional CV package from an analyzed posting (jd.md + match-report.md). Uses a Markdown-first content review before HTML/PDF rendering. For posting fit analysis alone, use application-analyze-posting.
 ---
 
-# Tailor Resume
+# Application Write Docs
 
 특정 JD에 맞춘다는 것은 사실을 다시 쓰는 일이 아니라 검증된 claim을 회사가 돈을 주고 맡길 **성과 축**으로 선택·묶음·배열하는 일이다. 성과 축은 어떤 경험을 고를지 정하는 내부 분석 도구이며, 독자가 보는 목차는 사용자와 정한 구조를 쓴다 (현재 미리디 R3는 회사 경력 → 회사별 프로젝트). Common은 이력서·경력기술서·포트폴리오·CV 네 문서를 유지하고, 회사별 package는 이력서·경력기술서·포트폴리오를 기본으로 조립하며 CV만 선택한다.
 
@@ -17,21 +17,15 @@ description: Prepare, review, adapt, render, or archive a company-specific resum
 
 ## Workflow
 
-### 1. Acquire and Normalize the JD
+### 1. Take the Posting Analysis
 
-- URL이면 가능한 browser/fetch 수단으로 현재 원문을 읽는다. 원티드는 공개 API detail을 우선할 수 있다.
-- 채팅에 공고 전문을 붙여 넣거나 파일로 주면 제공된 내용을 원문으로 사용한다. URL을 다시 요구하지 않는다.
-- URL과 복붙을 함께 주면 URL 원문을 우선하고, 접근 실패 시 복붙 본문을 fallback으로 사용해 차이를 기록한다.
-- 공고 URL이 만료·리다이렉트되면 현재 원문, 캐시 여부, 확인 시점을 분리해 기록한다.
-- 자격 요건, 우대 사항, 주요 업무, 기술, 연차, 도메인, AI/LLM/agent 기대를 구조화한다.
+공고 수집·Eligibility gate·요구별 claim 판정은 [application-analyze-posting](../application-analyze-posting/SKILL.md)이 소유한다. 이 skill은 그 결과를 입력으로 받아 문서 설계부터 시작하며, 같은 판정을 다시 하지 않는다.
 
-### 2. Apply the Eligibility Gate
+- 입력은 지원 폴더의 `jd.md`와 `match-report.md`다.
+- 둘 중 하나가 없거나 공고 ID·원문이 바뀌었으면 application-analyze-posting을 지원 폴더 모드로 먼저 실행해 만든다. 같은 공고이고 원문이 그대로면 기존 파일을 재사용한다.
+- 판단이 `비추천`이거나 hard blocker가 있으면 문안 작성 전에 사용자에게 알리고 진행 여부를 받는다.
 
-- 연차, 학력, 근무지, 언어, 필수 기술처럼 합불을 먼저 가르는 조건을 판정한다.
-- 즉시 탈락 위험이 있는 조건은 `match-report.md` 상단에 둔다.
-- 불확실한 조건은 `[확인 필요]`로 남기고 사실을 만들지 않는다.
-
-### 3. Decide Outcome Axes
+### 2. Decide Outcome Axes
 
 회사가 가장 원하는 결과를 판정한다. 축의 수를 미리 고정하지 않고 JD 우선순위와 검증 가능한 case가 결정하게 한다.
 
@@ -41,17 +35,16 @@ description: Prepare, review, adapt, render, or archive a company-specific resum
 - 서로 겹치는 요구는 하나의 성과 축으로 묶는다. 지원서 전체에서 지원 전략과 사실은 일치시키되, 목차·순서·깊이는 각 문서의 역할과 사용자 결정을 따른다.
 - 시장 참고가 필요하면 `wiki/products/jd/reports/`를 읽되 특정 JD 원문을 우선한다.
 
-### 4. Match Claims Many-to-Many
+### 3. Match Claims Many-to-Many
 
-- JD 요구마다 `wiki/evidence/claims/*.yaml`의 stable claim ID를 연결한다.
+- `match-report.md`의 요구별 판정(strong/partial/gap/check)과 claim ID에서 출발한다. 요구 단위 판정을 여기서 바꾸지 않으며, 판정이 틀렸으면 match-report를 먼저 고친다.
 - `성과 축 × claim × source project` 다대다 매트릭스를 만든다. 한 성과는 여러 프로젝트의 claim으로 증명할 수 있고, 한 프로젝트도 서로 다른 성과 축의 근거가 될 수 있다.
 - 각 성과 축은 최소 1개의 verified claim을 가져야 한다. 가능하면 서로 다른 맥락의 프로젝트 2개 이상으로 반복 가능성을 보여준다.
 - 프로젝트명은 독자가 무엇을 만든 일인지 알 수 있게 쓴다. 내부 성과 축 분류표를 그대로 공개 목차로 강제하지 않는다.
-- `wiki/products/jd/profile-skills.json`의 `none`은 gap으로 기록한다.
 - `partial`은 evidence가 허용하는 범위로만 쓴다.
-- 대응 claim이 없으면 내용을 만들지 않고 gap으로 남긴다.
+- `gap`은 문안으로 메우지 않는다. 대응 claim이 없으면 내용을 만들지 않는다.
 
-### 5. Create the Markdown Content Draft
+### 4. Create the Markdown Content Draft
 
 성과의 상세 해석과 문서별 압축은 [성과 라이브러리](../../../wiki/products/portfolio/cases/README.md)에서
 먼저 고른다. `JD별 활용`과 경력기술서·이력서·CV 후보를 읽고 아래 기존 블록 기본값과 함께
@@ -77,7 +70,7 @@ description: Prepare, review, adapt, render, or archive a company-specific resum
 - FIXED contact와 credentials는 확인 없이 변경하지 않는다.
 - `claim-map.yaml`은 section mapping과 함께 `outcomes` 아래에 `title`, `employer_need`, `claim_ids`, `source_cases`를 기록한다.
 
-### 6. Stop at the Content Review Gate
+### 5. Stop at the Content Review Gate
 
 사용자가 `바로 PDF까지`, `렌더링까지`, `이대로 확정`처럼 명시하지 않았다면 첫 실행은 Markdown 작성에서 멈춘다.
 
@@ -86,11 +79,11 @@ description: Prepare, review, adapt, render, or archive a company-specific resum
 - `README.md` 상태를 `내용 검토 중`으로 둔다.
 - 사용자에게 `content-draft.md` 링크와 핵심 선택, `[확인 필요]` 항목을 전달한다.
 - 경험의 의미·역할·선택 이유·성과가 모호하거나 **새 우선순위 결정**이 필요하면 임의로 메우지 않는다. 확인된 근거·결정 지점·선택지·권고를 짧게 올리고 **그 결정에 의존하는 문안만** 보류한다. 이미 합의된 순서·표현 방향은 재확인 없이 실행하고, 의미를 바꾸지 않는 문장 정리는 그대로 진행한다 (`wiki/rules/application-copy-standard.md` §1-6 「최신 사용자 합의·사실 동기화·결정 경계」·게이트 51).
-- 사용자 피드백이 **표현·구조 편집**이면 먼저 `content-draft.md`와 `claim-map.yaml`에 반영한다. **경험 사실의 추가·교정**이면 [propagate-copy-decision](../propagate-copy-decision/SKILL.md)의 Wiki 단계(evidence → claim)를 먼저 끝내고 그 다음에 문안을 고친다. HTML이나 PDF만 직접 고치지 않는다.
+- 사용자 피드백이 **표현·구조 편집**이면 먼저 `content-draft.md`와 `claim-map.yaml`에 반영한다. **경험 사실의 추가·교정**이면 [copy-apply-decision](../copy-apply-decision/SKILL.md)의 Wiki 단계(evidence → claim)를 먼저 끝내고 그 다음에 문안을 고친다. HTML이나 PDF만 직접 고치지 않는다.
 - `approved: false` 동안 `package/`의 파일은 제출본이 아니다. 기존 PDF가 있으면 삭제하지 말고 `preview`로 명시한다.
 - 무엇을 승인했는지 구분한다. **문안 내용 승인**만 `approved: true`·`approved_at`을 기록한다. 로컬에서 화면으로 보자는 요청이나 렌더·열람 허가는 승인 값을 바꾸지 않으며 public·제출을 뜻하지도 않는다.
 
-### 7. Build the Application Archive
+### 6. Build the Application Archive
 
 공고 URL이나 본문만 주어지고 별도 지시가 없으면 개인용 지원 초안 모드로 동작한다. 회사·포지션·플랫폼은 공고 원문에서 추출하고 확인할 수 없는 값만 `[확인 필요]`로 남긴다. 플랫폼을 알 수 없으면 slug는 `platform-unknown`으로 만들고 작업을 계속한다.
 
@@ -116,18 +109,18 @@ wiki/products/resume/tailored/{company-slug}/{YYYY-MM-DD}_{platform}_{position-s
 ```
 
 - 폴더 하나는 회사 × 공고 × 지원 플랫폼 1회를 뜻한다.
-- `jd.md`에는 URL만 남기지 말고 수집 시점의 원문을 저장한다.
+- `jd.md`와 `match-report.md`는 application-analyze-posting이 지원 폴더 모드로 만든다. 이 skill은 두 파일을 읽기만 한다.
 - `source/`와 `package/`는 승인 후 생성한다. 승인 전 이미 존재하면 preview 상태로 유지한다. 회사별 artifact mode는 `common | tailored | omitted`로 기록한다.
 - 플랫폼이 파일 하나만 받으면 `resume-portfolio.pdf`, 포트폴리오 URL을 받으면 `portfolio-url.md`를 만든다.
 - 실제 플랫폼 업로드나 지원 완료 표시는 사용자가 명시적으로 요청하거나 제출 사실을 알려준 뒤에만 한다.
 - 지원 완료 뒤 해당 폴더는 덮어쓰지 않는다. 재지원·다른 공고·다른 플랫폼은 새 날짜 폴더로 만든다.
 
-### 8. Render the Review Screen, Then Only the Approved Draft
+### 7. Render the Review Screen, Then Only the Approved Draft
 
 PDF 승인 전 화면 검토가 필요하면 local-only review preview를 만든다. 이 preview는 Markdown을 읽기 화면으로만 변환하며 `source/`와 `package/`를 수정하지 않는다.
 
 ```bash
-uv run --project tools python .agents/skills/tailor-resume/scripts/render_review_preview.py \
+uv run --project tools python .agents/skills/application-write-docs/scripts/render_review_preview.py \
   wiki/products/resume/tailored/{company-slug}/{application-folder}
 ```
 
@@ -155,25 +148,25 @@ app 반영은 **로컬 초안 표시**와 **공개**를 분리한다. 로컬에�
 - case의 `diagram:`은 `->` node와 `[soft]` node convention으로 변환한다.
 
 ```bash
-uv run --project tools python .agents/skills/tailor-resume/scripts/html_to_pdf.py \
+uv run --project tools python .agents/skills/application-write-docs/scripts/html_to_pdf.py \
   wiki/products/resume/tailored/{company-slug}/{application-folder}/source/resume.html \
   wiki/products/resume/tailored/{company-slug}/{application-folder}/package/resume.pdf
 
-uv run --project tools python .agents/skills/tailor-resume/scripts/html_to_pdf.py \
+uv run --project tools python .agents/skills/application-write-docs/scripts/html_to_pdf.py \
   wiki/products/resume/tailored/{company-slug}/{application-folder}/source/portfolio.html \
   wiki/products/resume/tailored/{company-slug}/{application-folder}/package/portfolio.pdf
 
-uv run --project tools python .agents/skills/tailor-resume/scripts/html_to_pdf.py \
+uv run --project tools python .agents/skills/application-write-docs/scripts/html_to_pdf.py \
   wiki/products/resume/tailored/{company-slug}/{application-folder}/source/career-description.html \
   wiki/products/resume/tailored/{company-slug}/{application-folder}/package/career-description.pdf
 
 # CV를 선택한 package에서만 실행한다.
-uv run --project tools python .agents/skills/tailor-resume/scripts/html_to_pdf.py \
+uv run --project tools python .agents/skills/application-write-docs/scripts/html_to_pdf.py \
   wiki/products/resume/tailored/{company-slug}/{application-folder}/source/cv.html \
   wiki/products/resume/tailored/{company-slug}/{application-folder}/package/cv.pdf
 ```
 
-### 9. Verify and Deliver
+### 8. Verify and Deliver
 
 0. `wiki/rules/application-copy-standard.md` §4의 **현재 게이트 표 전체**를 `content-draft.md`와 대조하고, 위반 항목을 `match-report.md`에 남긴다. 게이트 수·번호를 이 skill에 고정하지 않고 그 문서를 읽어 대상을 정한다. 하나라도 걸리면 `approved: true`로 바꾸지 않는다. 게이트 45(경력 문장의 주도성과 성과 의미) 사람 검사는 사례별 읽히는 순서·기전 보존·깊이 구분 결과를 같은 보고에 남긴다.
 1. `uv run --project tools python tools/validate_workspace.py`

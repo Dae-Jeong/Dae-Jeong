@@ -1,11 +1,11 @@
 ---
-name: analyze-jd-fit
-description: Analyze job-posting URLs or JD text against Kim Daejeong's verified profile, accumulate source-backed keywords, and report recurring requirements across reviewed postings. Use for 공고 검토, JD 분석, or accumulated 채용 키워드 분석. Not for non-job links or resume/portfolio creation.
+name: application-analyze-posting
+description: Analyze a job-posting URL or JD text against Kim Daejeong's verified profile — collect the posting, apply the eligibility gate, judge each requirement against claims, decide whether to apply, and accumulate source-backed keywords. Writes jd.md and match-report.md when run for an application folder. Use for 공고 검토, JD 분석, or 누적 채용 키워드 분석. Not for non-job links or writing application documents.
 ---
 
-# Analyze JD Fit
+# Application Analyze Posting
 
-JD 하나를 보고 지원 여부를 판단하는 local-only workflow다. 사용자가 링크만 보내도 분석 요청으로 간주한다. 외부 LLM 서비스는 호출하지 않고, 현재 Codex의 추론과 이 repo의 canonical source만 사용한다.
+JD 하나를 보고 지원 여부를 판단하는 local-only workflow다. 사용자가 링크만 보내도 분석 요청으로 간주한다. 외부 LLM 서비스는 호출하지 않고, 현재 실행 중인 agent의 추론과 이 repo의 canonical source만 사용한다.
 
 전체 실행 구조는 [flow diagram](references/flow.md)에서 확인할 수 있다.
 
@@ -16,6 +16,8 @@ JD 하나를 보고 지원 여부를 판단하는 local-only workflow다. 사용
 ## 입력 수집
 
 - URL이면 현재 원문을 browser/fetch 수단으로 읽고 URL과 확인 시점을 남긴다. 검색 snippet만으로 판정하지 않는다.
+- 원티드는 공개 API detail(`/api/v4/jobs/{id}`)을 우선할 수 있다.
+- 공고 URL이 만료·리다이렉트되면 현재 원문, 캐시 여부, 확인 시점을 분리해 기록한다.
 - 현재 지원 후보 추천에는 [공고 접수 상태 규칙·게이트 52](../../../wiki/rules/application-copy-standard.md)를 적용한다. 종료 공고의 역량 분석과 현재 지원 가능 추천을 구분한다.
 - URL의 page title과 본문으로 채용공고임이 확인되면 `해줘`, `봐줘`처럼 짧은 요청에도 추가 질문 없이 분석을 시작한다.
 - 일반 문서·상품·프로필 등 채용공고가 아닌 링크에는 이 skill을 사용하지 않는다.
@@ -73,6 +75,22 @@ JD 하나를 보고 지원 여부를 판단하는 local-only workflow다. 사용
 
 현재 공고의 주요 키워드와 관련 누적 표본의 반복 요구를 짧게 설명한다. 기록이 한 건이면 첫 관측이라고 말하고 추세를 만들지 않는다. 저장 후 프로젝트 검증을 실행하고 저장 경로·집계 범위·검증 결과를 보고한다. 원문 접근 실패는 키워드 0건 공고로 저장하지 않는다.
 
+## 출력 모드
+
+| 모드 | 언제 | 결과물 |
+| --- | --- | --- |
+| 채팅 | 공고 검토·적합도 질문 (기본) | 아래 `기본 응답` 형식의 채팅 답변 |
+| 지원 폴더 | [application-write-docs](../application-write-docs/SKILL.md)·[application-prepare](../application-prepare/SKILL.md)가 호출했거나 사용자가 지원 준비를 요청 | 지원 폴더의 `jd.md`(수집 시점 원문·URL·확인 시점)와 `match-report.md` |
+
+`match-report.md`는 이 skill이 형식을 소유한다.
+
+- frontmatter: `type: jd-match-report`, `title`, `status`, `checked_at`
+- `# 판단`: 지원 권장/조건부 지원/비추천과 가장 큰 이유
+- `## Eligibility gate`: 조건 · 원문 구분 · 판정 표
+- `## 요구별 근거`: ID(필수 R, 우대 P, 업무 D) · 요구 · 구분 · 판정과 claim ID · 범위 표
+
+같은 공고 ID이고 원문이 그대로면 기존 `jd.md`·`match-report.md`를 재사용한다. 공고 ID나 원문이 바뀌었으면 다시 분석한다. 재지원·다른 공고는 새 지원 폴더에 쓴다.
+
 ## 기본 응답
 
 사용자가 별도 형식을 지정하지 않으면 채팅에 아래 순서로 간결하게 답한다.
@@ -89,7 +107,7 @@ JD 하나를 보고 지원 여부를 판단하는 local-only workflow다. 사용
 
 ## 변경 경계
 
-- 기본 쓰기 범위는 JD keyword contract의 정규화 관측 기록과 파생 키워드 보고서뿐이다. 개인 profile/evidence나 기존 시장 리포트는 자동 변경하지 않는다.
+- 기본 쓰기 범위는 JD keyword contract의 정규화 관측 기록과 파생 키워드 보고서, 그리고 지원 폴더 모드의 `jd.md`·`match-report.md`뿐이다. 개인 profile/evidence나 기존 시장 리포트는 자동 변경하지 않는다.
 - public homepage, `/chat`, API route를 만들거나 배포하지 않는다.
-- 원문 전체·브라우저 로그·지원 기록은 저장하지 않는다. 공고 분석을 지원 의사로 간주하지 않으며 지원 registry는 변경하지 않는다. 과거 공고 일괄 적재·정기 수집·외부 공개는 별도 요청이 필요하다.
-- 이력서·포트폴리오 문안이나 PDF를 만들지 않는다. 사용자가 지원 패키지 제작을 요청하면 분석 결과를 입력으로 삼아 `$tailor-resume` 단계로 전환한다.
+- 채팅 모드에서는 원문 전체·브라우저 로그를 저장하지 않는다. 원문은 지원 폴더 모드의 `jd.md`에만 남긴다. 공고 분석을 지원 의사로 간주하지 않으며 지원 registry는 변경하지 않는다. 과거 공고 일괄 적재·정기 수집·외부 공개는 별도 요청이 필요하다.
+- 이력서·포트폴리오 문안이나 PDF를 만들지 않는다. 사용자가 지원 문서 작성을 요청하면 `match-report.md`를 입력으로 [application-write-docs](../application-write-docs/SKILL.md)로 넘긴다.

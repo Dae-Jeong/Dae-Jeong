@@ -1,9 +1,9 @@
 ---
-name: run-application-team
+name: application-prepare
 description: Coordinate company and JD research, evidence-based application writing, and independent review as a collaborating team. Use when Kim Daejeong asks to prepare or reassess applications with an analysis, writing, and review team. For a simple status query or a single fit-only assessment without team work, use the dedicated skill instead.
 ---
 
-# Run Application Team
+# Application Prepare
 
 지원자가 회사를 선택하고 자신의 근거를 전달하도록 돕는 협업 workflow다. 실제 채용 담당자·채용 매니저·면접관·기술문서 작성자의 방식을 차용하되, 해당 기업의 채용위원회인 것처럼 판단하거나 합격을 예측하지 않는다.
 
@@ -40,10 +40,10 @@ description: Coordinate company and JD research, evidence-based application writ
 
 | 단계 | 실행 owner | 팀이 추가하는 것 |
 | --- | --- | --- |
-| 현재 지원 대상·마감 확인 | [report-application-status](../report-application-status/SKILL.md) | 마감 임박은 작업 순서 신호이지 지원 여부·직무 적합도 판정이 아님 |
-| 회사·JD 분석 | [analyze-jd-fit](../analyze-jd-fit/SKILL.md) | 공식 회사·제품 자료를 더해 왜 이 역할이 필요한지 해석. 공고 밖 채용 의도·성공 목표는 Inference/Unknown으로 표시 |
-| 실제 문안 작성 요청 | [tailor-resume](../tailor-resume/SKILL.md) | 분석 brief의 요구와 claim을 전달하고 관련성 순서·독자 질문을 점검. 재분석만이면 작성 brief에서 종료 |
-| 기존/작성된 지원 문안 검토 | [review-application-copy](../review-application-copy/SKILL.md) | 요청 회사·문서로 범위를 명시. 분석만이면 이 문안 전수 검토 workflow를 호출하지 않음 |
+| 현재 지원 대상·마감 확인 | [application-check-status](../application-check-status/SKILL.md) | 마감 임박은 작업 순서 신호이지 지원 여부·직무 적합도 판정이 아님 |
+| 회사·JD 분석 | [application-analyze-posting](../application-analyze-posting/SKILL.md) | 공식 회사·제품 자료를 더해 왜 이 역할이 필요한지 해석. 공고 밖 채용 의도·성공 목표는 Inference/Unknown으로 표시 |
+| 실제 문안 작성 요청 | [application-write-docs](../application-write-docs/SKILL.md) | 분석 brief의 요구와 claim을 전달하고 관련성 순서·독자 질문을 점검. 재분석만이면 작성 brief에서 종료 |
+| 기존/작성된 지원 문안 검토 | [copy-review](../copy-review/SKILL.md) | 요청 회사·문서로 범위를 명시. 분석만이면 이 문안 전수 검토 workflow를 호출하지 않음 |
 | 문안·제출 보호 | [Application Copy Standard](../../../wiki/rules/application-copy-standard.md), [lifecycle](../../../wiki/products/resume/application-lifecycle.md) | 변경 권한·기여 강도·검증·동결 규칙은 원래 owner가 소유 |
 
 회사 사실은 원문 URL·확인일·직접 확인한 범위를, 개인 사실은 canonical profile/evidence의 claim ID·공개 범위·기여 강도를 붙인다. 기존 지원 문안은 검토 대상이지 개인 사실의 증거가 아니다. 구버전 skill 분류와 최신 claim이 충돌하면 owner·날짜·범위를 대조하고 drift를 밝힌다.

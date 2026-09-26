@@ -102,7 +102,7 @@ def main() -> int:
             "--project",
             "tools",
             "python",
-            ".agents/skills/tailor-resume/scripts/html_to_pdf.py",
+            ".agents/skills/application-write-docs/scripts/html_to_pdf.py",
             "wiki/products/resume/master/v1/resume.html",
             str(output),
         )

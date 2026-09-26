@@ -1,6 +1,6 @@
 """local dev server의 회사별 route(/resume, /career, /portfolio)를 A4 PDF로 렌더한다.
 
-사용법: uv run --project tools python .agents/skills/tailor-resume/scripts/route_to_pdf.py <slug> [<slug> ...] [--base http://127.0.0.1:4000]
+사용법: uv run --project tools python .agents/skills/application-write-docs/scripts/route_to_pdf.py <slug> [<slug> ...] [--base http://127.0.0.1:4000]
 출력: output/pdf/<slug>/{resume,career-description,portfolio}.pdf
 승인된 문안에만 사용한다 (content-draft.md approved: true).
 """

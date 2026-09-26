@@ -1,9 +1,9 @@
 ---
-name: report-application-status
+name: application-check-status
 description: Report Kim Daejeong's registered job application history and current progress, highlighting pre-apply postings within three calendar days of their deadline. Use for "지원 현황 알려줘", "지금까지 어디 지원했지?", "마감 임박인 곳 있어?", or "현황 알려줘" in a job-application context.
 ---
 
-# Report Application Status
+# Application Check Status
 
 지원 현황은 [application-registry.yaml](../../../wiki/products/resume/application-registry.yaml),
 상태와 마감 판정은 [Application Lifecycle](../../../wiki/products/resume/application-lifecycle.md#deadline-and-status-report)가 소유한다.
@@ -14,7 +14,7 @@ canonical 원장에서 읽으며 현재 대화·과거 보고서·PDF 존재만�
 1. lifecycle의 `Compact Status`와 `Deadline And Status Report`를 읽고 repo root에서 실행한다.
 
    ```bash
-   uv run --project tools python .agents/skills/report-application-status/scripts/report_status.py
+   uv run --project tools python .agents/skills/application-check-status/scripts/report_status.py
    ```
 
 2. 지원 전 공고의 `deadline.source_url`을 읽기 전용 web/browser로 확인한다. 이미 같은 날 확인한 출처는 재사용할 수 있다. URL이 없으면 `source_path`가 가리키는 local README·인접 `jd.md`에서 찾는다. local 파일이 없는 portable checkout에서도 registry만으로 현황을 보고한다.

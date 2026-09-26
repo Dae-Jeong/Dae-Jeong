@@ -6,7 +6,7 @@
 JD 링크 · 본문 · 파일
           │
           ▼
-  $analyze-jd-fit
+  $application-analyze-posting
           │
           ├─ URL ───────► 현재 공고 원문 수집
           │               URL · 확인 시점 기록
@@ -53,15 +53,15 @@ JD 링크 · 본문 · 파일
                   아니오         예
                     │            │
                     ▼            ▼
-             관측 결과 보고   $tailor-resume
-                             이력서·포트폴리오
+             관측 결과 보고   jd.md · match-report.md
+                             → $application-write-docs
 ```
 
 ## Mermaid
 
 ```mermaid
 flowchart TD
-    U["JD 링크 · 본문 · 파일"] --> S["$analyze-jd-fit"]
+    U["JD 링크 · 본문 · 파일"] --> S["$application-analyze-posting"]
 
     S --> I{"입력 형태"}
     I -->|URL| URL["현재 공고 원문 수집<br/>URL · 확인 시점 기록"]
@@ -92,13 +92,14 @@ flowchart TD
     RESULT --> KEYWORDS["키워드 추출 · 근거 기록 · 공고 단위 집계<br/>읽기 전용 요청은 저장 생략"]
     KEYWORDS --> NEXT{"지원 문서도 필요한가?"}
     NEXT -->|아니오| END["분석 · 키워드 관측 결과 보고"]
-    NEXT -->|사용자 요청| TAILOR["$tailor-resume<br/>이력서 · 포트폴리오 제작"]
+    NEXT -->|사용자 요청| FILES["지원 폴더에 jd.md · match-report.md 작성"]
+    FILES --> TAILOR["$application-write-docs<br/>성과 축 · 문서 작성"]
 ```
 
 ## 실행 경계
 
-- `$analyze-jd-fit`은 현재 Codex와 repo의 canonical source로 분석한다.
+- `$application-analyze-posting`은 현재 실행 중인 agent와 repo의 canonical source로 분석한다.
 - 외부 LLM을 호출하지 않는다.
 - 기본 실행은 [키워드 계약](../../../../wiki/products/jd/keyword-analysis.md)에 따라 정규화 관측과 파생 보고서만 저장한다. 읽기 전용 요청은 저장하지 않는다.
-- 홈페이지, `/chat`, API, JD 원문 전체, 지원 기록은 변경하거나 저장하지 않는다.
-- 지원 문서 제작은 사용자가 요청할 때만 `$tailor-resume`로 넘긴다.
+- 홈페이지, `/chat`, API, 지원 기록은 변경하지 않는다. JD 원문은 지원 폴더 모드의 `jd.md`에만 저장한다.
+- 지원 문서 제작은 사용자가 요청할 때만 `$application-write-docs`로 넘긴다.

@@ -1,4 +1,4 @@
 interface:
   display_name: "지원 현황"
   short_description: "등록된 지원 현황과 지원 전 공고의 3일 이내 마감을 확인합니다"
-  default_prompt: "$report-application-status로 지원 현황과 마감 임박인 곳을 알려줘."
+  default_prompt: "$application-check-status로 지원 현황과 마감 임박인 곳을 알려줘."
