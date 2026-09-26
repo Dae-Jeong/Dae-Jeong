@@ -1,6 +1,6 @@
 # app/fe — marinkim.xyz (Next.js)
 
-Next.js(App Router) + TypeScript + Tailwind v4. 구조·스택의 canonical은 [Phase 1 stack plan](../../wiki/docs/superpowers/plans/2026-07-17-site-phase1-stack-and-structure.md), 디자인 기준은 [DESIGN.md](DESIGN.md), 확정 시안 스냅샷은 [app/design](../design/README.md).
+Next.js(App Router) + TypeScript + Tailwind v4. 디자인 기준은 [DESIGN.md](DESIGN.md), 확정 시안 스냅샷은 [app/design](../design/README.md).
 
 - 배포: Vercel, Root Directory=`app/fe`, marinkim.xyz
 - 회사별 맞춤 이력서는 `content/resumes/{company}.ts`가 문안을 소유하고 `/resume/{company}`에서 같은 resume shell로 렌더링한다. `visibility=public`만 production에서 열리며, `status=draft`는 공개 검토 중임을 화면에 표시한다. 검색 sitemap에는 등록하지 않고 page metadata는 `noindex`로 유지한다.

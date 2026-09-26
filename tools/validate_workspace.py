@@ -25,8 +25,6 @@ LAYER_SENTINELS = {
     "products": "resume/README.md",
     "rules": "document-routing.md",
     "backlog": "README.md",
-    "docs": "superpowers/specs/2026-07-11-resume-knowledge-harness-design.md",
-    "archive": "README.md",
     "profile": "identity.md",
     "evidence": "claims/README.md",
 }
