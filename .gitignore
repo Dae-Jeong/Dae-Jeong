@@ -19,7 +19,6 @@ graphify-out/
 
 # Canonical wiki lives in the local LLM Wiki. No trailing slash: wiki is a symlink.
 /wiki
-/wiki.pre-ssot-20260910/
 # Local evidence, application artifacts, projections, and review snapshots.
 /output/
 
