@@ -108,12 +108,12 @@ wiki/products/resume/tailored/{company-slug}/{YYYY-MM-DD}_{platform}_{position-s
     cv.pdf                  # selected only
 ```
 
-- 폴더 하나는 회사 × 공고 × 지원 플랫폼 1회를 뜻한다.
+- 폴더 하나는 회사 × 채용 건 1회를 뜻한다. 같은 채용 건이 여러 플랫폼에 올라와 있으면 기존 attempt를 재사용하고 새 폴더·문안을 만들지 않는다. 폴더 이름의 `{platform}`은 처음 확인한 경로일 뿐이다.
 - `jd.md`와 `match-report.md`는 application-analyze-posting이 지원 폴더 모드로 만든다. 이 skill은 두 파일을 읽기만 한다.
 - `source/`와 `package/`는 승인 후 생성한다. 승인 전 이미 존재하면 preview 상태로 유지한다. 회사별 artifact mode는 `common | tailored | omitted`로 기록한다.
-- 플랫폼이 파일 하나만 받으면 `resume-portfolio.pdf`, 포트폴리오 URL을 받으면 `portfolio-url.md`를 만든다.
+- 플랫폼 제출 형식에 맞춰 package를 만든다. **원티드는 이력서 PDF를 한 개만 받으므로 `이력서 → 경력기술서` 순서의 합본 PDF**를 만든다. 다른 플랫폼이 파일 하나만 받으면 요구 문서를 같은 원칙으로 합치고, 포트폴리오 URL을 받으면 `portfolio-url.md`를 만든다.
 - 실제 플랫폼 업로드나 지원 완료 표시는 사용자가 명시적으로 요청하거나 제출 사실을 알려준 뒤에만 한다.
-- 지원 완료 뒤 해당 폴더는 덮어쓰지 않는다. 재지원·다른 공고·다른 플랫폼은 새 날짜 폴더로 만든다.
+- 지원 완료 뒤 해당 폴더는 덮어쓰지 않는다. 재지원·다른 채용 건은 새 날짜 폴더로 만든다. 같은 채용 건의 다른 플랫폼은 새 폴더가 아니다.
 
 ### 7. Render the Review Screen, Then Only the Approved Draft
 
