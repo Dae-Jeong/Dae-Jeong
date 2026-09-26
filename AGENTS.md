@@ -28,7 +28,7 @@ PM 조율·직무 간 인계는 [오케스트레이션 연결](wiki/context/orch
 | `wiki/products/` | output contracts, selection policy, artifact mapping | raw evidence, deployed expression |
 | `wiki/rules/` | cross-product policy | task-specific progress |
 | `app/` (fe→Vercel) | marinkim.xyz 제품 코드와 현재 공개 표현 | canonical fact·evidence |
-| `skills/` | executable workflows and adapters | duplicated canonical policy |
+| `.agents/skills/` | executable workflows (`.claude/skills`는 이 폴더의 symlink) | duplicated canonical policy |
 | `archive/` | superseded history | active dependencies |
 
 미구현 backend·실험 서비스·인프라 구성은 현재 실행 폴더가 아니다. 향후 구상은 vault의 `wiki/docs/superpowers/specs/2026-07-15-personal-site-architecture-design.md`와 `wiki/backlog/`에서 확인한다. 기존 `app/fe/app/labs`는 홈페이지 기능으로 유지한다.
@@ -49,17 +49,18 @@ PM 조율·직무 간 인계는 [오케스트레이션 연결](wiki/context/orch
 
 ## Skills
 
-tool-agnostic skill의 canonical 위치는 `skills/`다. tool-specific 폴더는 adapter만 둔다.
+skill의 canonical 위치는 `.agents/skills/`다. Claude Code는 `.claude/skills` → `../.agents/skills` symlink로 같은 파일을 읽는다. 별도 adapter나 사본을 두지 않는다. `.agents/skills/impeccable`는 외부 설치 skill이라 Git에서 제외한다.
 
 | Skill | 위치 | 용도 |
 | --- | --- | --- |
-| analyze-jd-fit | [skills/analyze-jd-fit/SKILL.md](skills/analyze-jd-fit/SKILL.md) | JD 링크·본문을 검증된 profile/evidence와 대조해 지원 판단·강점·공백 분석 |
-| report-application-status | [skills/report-application-status/SKILL.md](skills/report-application-status/SKILL.md) | 지원 현황 조회·지원 전 공고의 마감 임박 표시. `현황 알려줘` 요청 시 사용 |
-| run-application-team | [skills/run-application-team/SKILL.md](skills/run-application-team/SKILL.md) | 실무자 방식의 분석·작성·독립 검토 협업. 지원 준비를 팀으로 진행할 때 사용 |
-| tailor-resume | [skills/tailor-resume/SKILL.md](skills/tailor-resume/SKILL.md) | 검증된 claim 기반 회사/JD 맞춤 이력서 생성 |
-| review-application-copy | [skills/review-application-copy/SKILL.md](skills/review-application-copy/SKILL.md) | active 회사·공통 표면의 공개 문안을 규칙 대비 전수 검토 (파일 수정 없음) |
-| sync-platform-profile | [skills/sync-platform-profile/SKILL.md](skills/sync-platform-profile/SKILL.md) | 채용 플랫폼 프로필을 canonical 문안(`wiki/products/platform-profiles`)에 맞춰 파생·검사·적용·reload 검증·registry 기록 |
-| propagate-copy-decision | [skills/propagate-copy-decision/SKILL.md](skills/propagate-copy-decision/SKILL.md) | 사용자 결정 한 문장을 evidence → claim → 규칙 → 게이트 → 표면 순으로 전파하고 verify |
+| analyze-jd-fit | [.agents/skills/analyze-jd-fit/SKILL.md](.agents/skills/analyze-jd-fit/SKILL.md) | JD 링크·본문을 검증된 profile/evidence와 대조해 지원 판단·강점·공백 분석 |
+| report-application-status | [.agents/skills/report-application-status/SKILL.md](.agents/skills/report-application-status/SKILL.md) | 지원 현황 조회·지원 전 공고의 마감 임박 표시. `현황 알려줘` 요청 시 사용 |
+| run-application-team | [.agents/skills/run-application-team/SKILL.md](.agents/skills/run-application-team/SKILL.md) | 실무자 방식의 분석·작성·독립 검토 협업. 지원 준비를 팀으로 진행할 때 사용 |
+| tailor-resume | [.agents/skills/tailor-resume/SKILL.md](.agents/skills/tailor-resume/SKILL.md) | 검증된 claim 기반 회사/JD 맞춤 이력서 생성 |
+| review-application-copy | [.agents/skills/review-application-copy/SKILL.md](.agents/skills/review-application-copy/SKILL.md) | active 회사·공통 표면의 공개 문안을 규칙 대비 전수 검토 (파일 수정 없음) |
+| sync-platform-profile | [.agents/skills/sync-platform-profile/SKILL.md](.agents/skills/sync-platform-profile/SKILL.md) | 채용 플랫폼 프로필을 canonical 문안(`wiki/products/platform-profiles`)에 맞춰 파생·검사·적용·reload 검증·registry 기록 |
+| propagate-copy-decision | [.agents/skills/propagate-copy-decision/SKILL.md](.agents/skills/propagate-copy-decision/SKILL.md) | 사용자 결정 한 문장을 evidence → claim → 규칙 → 게이트 → 표면 순으로 전파하고 verify |
+| render-server-architecture | [.agents/skills/render-server-architecture/SKILL.md](.agents/skills/render-server-architecture/SKILL.md) | 서버·배포 구성도를 공개 가능한 수준으로 작성·검토 |
 
 ## 검증
 

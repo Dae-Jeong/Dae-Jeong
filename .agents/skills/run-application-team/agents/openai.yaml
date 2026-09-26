@@ -1,0 +1,4 @@
+interface:
+  display_name: "지원 준비팀"
+  short_description: "실무자 방식으로 회사 분석·지원 문안 작성·독립 검토를 연결합니다"
+  default_prompt: "$run-application-team으로 지원 전 회사들을 분석·작성·검토 팀이 함께 재검토해줘."

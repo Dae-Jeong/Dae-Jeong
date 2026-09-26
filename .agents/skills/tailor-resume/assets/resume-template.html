@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>김대정 — Backend Engineer, AI Product Systems</title>
+<!--
+  resume-template.html — 이력서 기본 템플릿 (tailor-resume 스킬 asset)
+
+  사용법:
+  - 이 템플릿은 정적 프레임이다 — 섹션 구성/개수/분량 규칙은 references/content-rules.md 준수.
+  - 문체: 소개는 필요할 때 문단형을 허용하고, 경력·technical case는 명사형 bullet을 기본으로 한다. 판단 연결에 필요한 문장을 억지로 압축하지 않으며 마케팅 수사는 금지한다.
+  - [[SLOT:...]] 주석 영역만 JD 맞춤 내용으로 채운다. JD 맞춤 = 선별과 순서, 프레임 변경 금지.
+  - FIXED 표기 영역(연락처, 수상/특허/교육, 푸터)은 검증된 값 — 변경 금지.
+  - 디자인 토큰은 :root 블록에서만 수정한다 (색/폰트 일관성 유지).
+  - PDF 변환: python3 .agents/skills/tailor-resume/scripts/html_to_pdf.py <이 파일>
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* ===== resume design tokens ===== */
+  :root {
+    --ink: #141414;
+    --ink-soft: #3d3d3d;
+    --muted: #6f6f6f;
+    --paper: #ffffff;
+    --card: #ffffff;
+    --line: #d9d9d9;
+    --accent: #141414;
+    --accent-soft: #f0f0f0;
+    --mono: "IBM Plex Mono", ui-monospace, monospace;
+    --sans: "IBM Plex Sans KR", -apple-system, sans-serif;
+  }
+  /* ===== base ===== */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { font-family: var(--sans); background: var(--paper); color: var(--ink); font-size: 13px; line-height: 1.55; letter-spacing: -0.01em; }
+  .sheet { max-width: 800px; margin: 0 auto; padding: 42px 44px 32px; }
+  /* ===== header ===== */
+  header { margin-bottom: 24px; }
+  .role-line { margin-top: 6px; font-family: var(--mono); font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
+  h1 { font-size: 31px; font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; }
+  .contact { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--line); font-family: var(--mono); font-size: 11px; color: var(--ink-soft); }
+  .contact a { color: var(--ink-soft); text-decoration: none; border-bottom: 1px solid var(--line); }
+  /* ===== sections ===== */
+  section { margin-bottom: 20px; }
+  .sec-label { display: flex; align-items: baseline; gap: 12px; margin-bottom: 10px; }
+  .sec-label .num { font-family: var(--mono); font-size: 11px; font-weight: 600; color: var(--accent); letter-spacing: 0.08em; }
+  .sec-label h2 { font-size: 15px; font-weight: 700; letter-spacing: 0.02em; }
+  .sec-label::after { content: ""; flex: 1; height: 1px; background: var(--line); align-self: center; }
+  /* ===== part divider (A: 무엇을 할 수 있는가 / B: 어떤 사람인가) ===== */
+  .part { display: flex; align-items: baseline; gap: 10px; margin: 26px 0 14px; padding-top: 10px; border-top: 2px solid var(--ink); }
+  .part .en { font-family: var(--mono); font-size: 10.5px; font-weight: 600; letter-spacing: 0.14em; }
+  .part .ko { font-size: 11.5px; color: var(--muted); }
+  .summary { border-left: 3px solid var(--accent); padding: 4px 0 4px 18px; font-size: 14px; }
+  .summary strong { font-weight: 600; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .cap { background: var(--card); border: 1px solid var(--line); border-radius: 2px; padding: 10px 12px; }
+  .cap h3 { font-family: var(--mono); font-size: 11px; font-weight: 600; letter-spacing: 0.06em; color: var(--accent); text-transform: uppercase; margin-bottom: 5px; }
+  .cap p { font-size: 12.5px; color: var(--ink-soft); line-height: 1.55; }
+  .skills { display: grid; gap: 6px; }
+  .skill-row { display: flex; gap: 14px; align-items: baseline; }
+  .skill-row dt { font-family: var(--mono); font-size: 10.5px; font-weight: 600; letter-spacing: 0.05em; color: var(--muted); text-transform: uppercase; flex: 0 0 128px; }
+  .skill-row dd { font-size: 12.5px; }
+  /* ===== capability groups (02) ===== */
+  .cgroups { display: grid; gap: 9px; }
+  .cgroup { display: flex; gap: 14px; break-inside: avoid; }
+  .cgroup dt { font-family: var(--mono); font-size: 10.5px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; flex: 0 0 128px; padding-top: 2px; }
+  .cgroup .claim { font-size: 12.8px; font-weight: 500; }
+  .cgroup .ev { font-size: 11.5px; color: var(--muted); margin-top: 1px; }
+  /* ===== career timeline (05) ===== */
+  .tl { display: grid; gap: 10px; }
+  .tl .co { font-size: 13.5px; }
+  .tl .co em { font-style: normal; font-weight: 500; font-size: 12px; color: var(--ink-soft); }
+  .tl-desc { font-size: 12.3px; color: var(--ink-soft); margin-top: 1px; }
+  /* ===== career ===== */
+  .job { margin-bottom: 16px; }
+  .job-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 2px; }
+  .job-head .co { font-size: 15.5px; font-weight: 700; letter-spacing: -0.01em; }
+  .job-head .co em { font-style: normal; font-weight: 400; font-size: 12px; color: var(--muted); }
+  .job-head .period { font-family: var(--mono); font-size: 11px; color: var(--muted); white-space: nowrap; }
+  .job-role { font-size: 12.5px; font-weight: 500; color: var(--accent); margin-bottom: 6px; }
+  .job-intro { font-size: 12.5px; color: var(--ink-soft); margin-bottom: 10px; }
+  .proj { margin: 0 0 9px 0; break-inside: avoid; }
+  .proj-name { display: inline-flex; align-items: baseline; gap: 8px; margin-bottom: 4px; }
+  .proj-name .tag { font-family: var(--mono); font-size: 10px; font-weight: 600; letter-spacing: 0.05em; color: var(--accent); background: var(--accent-soft); padding: 1.5px 7px; border-radius: 2px; }
+  .proj-name .desc { font-size: 13px; font-weight: 600; }
+  ul.bullets { list-style: none; }
+  ul.bullets li { position: relative; padding-left: 14px; font-size: 12.8px; margin-bottom: 3px; }
+  ul.bullets li::before { content: ""; position: absolute; left: 0; top: 0.62em; width: 5px; height: 1.5px; background: var(--accent); }
+  .bullets code, .job-intro code { font-family: var(--mono); font-size: 11px; background: #f2f2f2; padding: 0.5px 4px; border-radius: 2px; }
+  /* ===== agent workflow ===== */
+  .agent-note { font-size: 12.8px; margin-bottom: 10px; }
+  .agent-list { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 18px; }
+  .agent-list div { font-size: 12px; color: var(--ink-soft); padding-left: 14px; position: relative; }
+  .agent-list div::before { content: "→"; position: absolute; left: 0; color: var(--accent); font-family: var(--mono); font-size: 11px; }
+  /* ===== awards / edu ===== */
+  .flat-list { display: grid; gap: 5px; }
+  .flat-row { display: flex; gap: 14px; align-items: baseline; }
+  .flat-row .when { font-family: var(--mono); font-size: 11px; color: var(--muted); flex: 0 0 128px; white-space: nowrap; }
+  .flat-row .what { font-size: 12.8px; }
+  .flat-row .what em { font-style: normal; color: var(--ink-soft); font-size: 12px; }
+  footer { margin-top: 24px; padding-top: 10px; border-top: 1px solid var(--line); font-family: var(--mono); font-size: 10.5px; color: var(--muted); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 6px; }
+  /* ===== print ===== */
+  @page { size: A4; margin: 14mm 13mm; }
+  @media print {
+    body { background: #fff; font-size: 12.5px; }
+    .sheet { max-width: none; padding: 0; }
+    section { margin-bottom: 16px; }
+    .cap, .proj, .job-head, .sec-label { break-inside: avoid; }
+    a { color: inherit; }
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <header>
+    <h1>김대정</h1>
+    <!-- [[SLOT:role-line]] JD 포지션명에 맞춰 조정 가능 -->
+    <div class="role-line">Backend Engineer · AI Product Systems</div>
+    <!-- FIXED: 연락처 — 변경 금지 (검증된 값, 주소는 시 단위) -->
+    <div class="contact">
+      <a href="mailto:marin.backend@gmail.com">marin.backend@gmail.com</a>
+      <span>010-8854-7934</span>
+      <a href="https://github.com/Dae-Jeong">github.com/Dae-Jeong</a>
+      <span>경기 안양시</span>
+    </div>
+  </header>
+
+  <!-- A구역: 경력직 어필 본체 — 회사/개인 무관하게 "할 수 있는 것"의 근거 -->
+  <div class="part"><span class="en">A — CAPABILITY</span><span class="ko">무엇을 할 수 있는가</span></div>
+
+  <section>
+    <div class="sec-label"><span class="num">01</span><h2>소개</h2></div>
+    <!-- [[SLOT:summary]] 선택 섹션. 고정 줄 수 없음. category·specialty·경력 궤적만 프레이밍하고 뒤의 technical case를 대신 요약하지 않음. -->
+    <div class="summary">
+      <ul class="bullets">
+        <li>(필요한 경우에만 쓰는 orientation — 현재 역할과 경력 궤적)</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label"><span class="num">02</span><h2>핵심 역량</h2></div>
+    <!-- [[SLOT:capabilities]] 선택 섹션. 고정 그룹 수 없음. 뒤 technical case에서 이미 증명되는 선언은 반복하지 않고,
+         여러 case를 가로지르는 반복 가능성만 claim과 근거로 제시. -->
+    <dl class="cgroups">
+      <div class="cgroup"><dt>(역량 라벨)</dt><dd>
+        <p class="claim">(할 수 있는 것 선언 1줄)</p>
+        <p class="ev">(근거 — 프로젝트 태그 포함)</p>
+      </dd></div>
+      <div class="cgroup"><dt>(역량 라벨)</dt><dd>
+        <p class="claim">(선언)</p>
+        <p class="ev">(근거)</p>
+      </dd></div>
+    </dl>
+  </section>
+
+  <section>
+    <div class="sec-label"><span class="num">03</span><h2>기술</h2></div>
+    <!-- [[SLOT:skills]] 4행 고정 (Language/FW, Data/Messaging, Infra, AI). profile_skills.json의 strong/partial만, none 금지. 행 내부 순서만 JD 조정 -->
+    <dl class="skills">
+      <div class="skill-row"><dt>Language / FW</dt><dd>(스킬 목록)</dd></div>
+      <div class="skill-row"><dt>Data / Messaging</dt><dd>(스킬 목록)</dd></div>
+      <div class="skill-row"><dt>Infra</dt><dd>(스킬 목록)</dd></div>
+      <div class="skill-row"><dt>AI</dt><dd>(스킬 목록)</dd></div>
+    </dl>
+  </section>
+
+  <section>
+    <div class="sec-label"><span class="num">04</span><h2>대표 기술 사례</h2></div>
+    <!-- [[SLOT:outcomes]] JD와 가까운 verified technical case를 필요한 만큼 선별한다. 고정 개수 없음.
+         각 case는 문제·제약, 대안·선택, 구현 경계, failure mode, 검증·운영, 결과·한계를 resume 안에서 자립적으로 설명한다.
+         Portfolio는 diagram·상세 evidence·긴 failure analysis를 확장할 뿐 필수 전제가 아니다. -->
+    <div class="proj outcome" data-outcome="(outcome-slug)">
+      <div class="proj-name"><span class="tag">(성과 축)</span><span class="desc">(채용사가 맡길 수 있는 일)</span></div>
+      <ul class="bullets">
+        <li><strong>문제·제약</strong> (실제 failure mode와 선택 조건)</li>
+        <li><strong>선택·구현</strong> (대안, trade-off, 본인의 구현 경계)</li>
+        <li><strong>검증·운영·결과</strong> (test, 배포·운영, metric 또는 확인된 한계)</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label"><span class="num">05</span><h2>경력</h2></div>
+    <!-- [[SLOT:career]] 검증된 전체 경력을 시간 역순으로 제시한다. 회사·역할·기간·scope가 먼저 보이게 하고,
+         대표 technical case와 중복하지 않는 세부 성과는 필요한 만큼 bullet로 추가한다. 회사·개인 project 수 고정 없음. -->
+    <div class="tl">
+      <div>
+        <div class="job-head">
+          <span class="co">(회사명) <em>— (역할)</em></span>
+          <span class="period">(YYYY.MM — YYYY.MM)</span>
+        </div>
+        <p class="tl-desc">(한 줄 요약)</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- B구역: 어떤 사람인가 — 일하는 방식, 학력, 기타 특징 -->
+  <div class="part"><span class="en">B — PROFILE</span><span class="ko">어떤 사람인가</span></div>
+
+  <!-- [[SLOT:agent-workflow]] 유지 또는 삭제, 두 상태만 (부분 수정 없음). AI/자동화 관심 회사면 유지, 순수 backend JD면 section 통째로 삭제 -->
+  <section>
+    <div class="sec-label"><span class="num">06</span><h2>일하는 방식 — Agent Workflow</h2></div>
+    <p class="agent-note">(agent workflow 서술 — 10번 문서 기준)</p>
+    <div class="agent-list">
+      <div>(artifact)</div>
+      <div>(artifact)</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label"><span class="num">07</span><h2>학력 · 교육</h2></div>
+    <!-- FIXED: 검증된 값 — 변경 금지 -->
+    <div class="flat-list">
+      <div class="flat-row"><span class="when">2016 — 2021</span><span class="what">우송대학교 게임멀티미디어 전공</span></div>
+      <div class="flat-row"><span class="when">2019 — 2024</span><span class="what">부트캠프 — OZ 코딩스쿨 백엔드(2024) · 쏘카×멋쟁이사자처럼 AI(2021–22) · 비트컴퓨터(2019–20)</span></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label"><span class="num">08</span><h2>수상 · 특허 · 자격</h2></div>
+    <!-- FIXED: 검증된 값 — 변경 금지 (CES/특허는 외부 검증 완료) -->
+    <div class="flat-list">
+      <div class="flat-row"><span class="when">2023.12</span><span class="what">CES 2024 Best of Innovation — AI 부문 (SellerCanvas, Studio Lab)</span></div>
+      <div class="flat-row"><span class="when">2025.12</span><span class="what">특허 등록 「페이지 출력 방법」 — 등록 10-2898273 <em>(출원 10-2022-0130234)</em></span></div>
+      <div class="flat-row"><span class="when">2021.02</span><span class="what">전국 SW 중심대학 공동 해커톤 우수상</span></div>
+      <div class="flat-row"><span class="when">2019 · 2020</span><span class="what">SW 창업 아이디어 경진대회 2등 (개발·구현 부문 / 아이디어 부문)</span></div>
+      <div class="flat-row"><span class="when">2021.09</span><span class="what">ADsP (데이터분석 준전문가)</span></div>
+    </div>
+  </section>
+
+  <!-- FIXED: 푸터 — 변경 금지 -->
+  <footer>
+    <span>김대정 — Backend Engineer, AI Product Systems</span>
+    <span>본 이력서의 모든 서술은 저장소·커밋 근거 검증 기준으로 작성되었습니다</span>
+  </footer>
+
+</div>
+</body>
+</html>

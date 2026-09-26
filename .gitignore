@@ -5,7 +5,9 @@ Thumbs.db
 *.swp
 
 # ── Local agent/plugin installations ─────────────────────────
-.agents/
+.agents/*
+!.agents/skills/
+.agents/skills/impeccable/
 .impeccable/
 skills-lock.json
 

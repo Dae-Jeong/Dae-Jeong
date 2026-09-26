@@ -24,7 +24,7 @@ WIKI = "wiki"
 CONCEPT_DIRS = tuple(
     f"{WIKI}/{name}" for name in ("context", "profile", "evidence", "products", "rules", "backlog")
 )
-SCAN_DIRS = CONCEPT_DIRS + ("skills", "tools")
+SCAN_DIRS = CONCEPT_DIRS + (".agents/skills", "tools")
 TEXT_SUFFIXES = {".md", ".yaml", ".yml", ".json", ".py", ".html"}
 FORBIDDEN_PATH_PATTERNS = (
     "/Users/marin",
