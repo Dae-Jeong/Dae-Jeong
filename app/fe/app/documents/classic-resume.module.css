@@ -101,6 +101,8 @@
 /* Project stack line (2026-09-13): small grey line tucked under the project heading (h4 keeps 13px bottom margin → pulled up), clear gap before the bullets. */
 .pane[data-template="editorial"] .section[data-kind="career"] .paragraph[data-presentation="project-meta"] { margin: -7px 0 12px 18px; font-size: 11.5px; font-weight: 500; line-height: 1.5; letter-spacing: -.1px; color: #727981; break-after: avoid; }
 .pane[data-template="editorial"] .section[data-kind="career"] .bullet { margin: 9px 0 9px 18px; padding-left: 16px; break-inside: avoid; }
+/* Project description (2026-09-26): a plain paragraph after a project heading belongs to that project, so it starts on the same 18px line as the heading, stack line and bullets. Company-level paragraphs before the first heading stay flush. */
+.pane[data-template="editorial"] .section[data-kind="career"] :is(.careerHeading, .careerSubheading) ~ .paragraph:not([data-presentation]) { margin-left: 18px; }
 .pane[data-template="editorial"] .section[data-kind="career"] .entry[data-continued] .careerHeading { margin-top: 0; }
 .pane[data-template="editorial"] .bullet::before { left: 3px; top: .82em; background: #969ca2; }
 .pane[data-template="editorial"] .section[data-kind="other"] .blocks { margin-left: 18px; }
@@ -147,6 +149,7 @@
   .pane[data-template="editorial"] .period { position: static; display: block; margin-top: 4px; text-align: left; }
   .pane[data-template="editorial"] .careerHeading, .pane[data-template="editorial"] .careerSubheading, .pane[data-template="editorial"] .careerSubheading[data-presentation="service-heading"], .pane[data-template="editorial"] .section[data-kind="career"] .paragraph[data-presentation="project-meta"] { margin-left: 0; }
   .pane[data-template="editorial"] .section[data-kind="career"] .bullet { margin-left: 0; }
+  .pane[data-template="editorial"] .section[data-kind="career"] :is(.careerHeading, .careerSubheading) ~ .paragraph:not([data-presentation]) { margin-left: 0; }
   .pane[data-template="editorial"] .section[data-kind="other"] .blocks { margin-left: 0; }
   .row { grid-template-columns: 3.5em minmax(0, 1fr); gap: 2px 12px; }
   .rowMeta { grid-column: 2; text-align: left; white-space: normal; }
