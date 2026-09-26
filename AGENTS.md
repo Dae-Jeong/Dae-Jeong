@@ -1,8 +1,8 @@
 # AGENTS
 
-이 repo는 김대정의 resume, portfolio, homepage, agent workflow, writing, JD 분석을 위한 제품 workspace다. wiki 8계층(context/products/rules/backlog/docs/archive/profile/evidence)의 물리 정본은 로컬 LLM Wiki의 `Wiki/sources/Dae-Jeong/wiki`가 소유하며, repo의 `wiki` 전체는 Git-ignored 단일 로컬 symlink다. 새 환경은 Git에 포함된 [지식 연결 설정](tools/knowledge-setup.md)을 먼저 따른다. 연결 후 아래 `wiki/` 진입 문서를 읽는다. bootstrap은 repo의 `wiki` 링크만 만들며 vault의 bridge를 생성하거나 수정하지 않는다.
+이 repo는 김대정의 resume, portfolio, homepage, agent workflow, writing, JD 분석을 위한 제품 workspace다. wiki 8계층(context/products/rules/backlog/docs/archive/profile/evidence)의 물리 정본은 로컬 LLM Wiki의 `Wiki/sources/Dae-Jeong/wiki`가 소유하며, repo의 `wiki` 전체는 Git-ignored 단일 로컬 symlink다. 아래 `wiki/` 진입 문서를 읽는다.
 
-이 문서가 agent 규칙의 **단독 소유자**다. 도구별 진입 파일([CLAUDE.md](CLAUDE.md))은 이 문서를 가리키는 포인터일 뿐이며, Codex는 이 파일을 네이티브로 읽는다. 규칙 변경은 여기서만 한다.
+이 문서가 agent 규칙의 **단독 소유자**다. 도구별 진입 파일(`CLAUDE.md` 등)은 두지 않는다. 규칙 변경은 여기서만 한다.
 
 ## 시작할 때 읽는 문서
 
@@ -49,7 +49,7 @@ PM 조율·직무 간 인계는 [오케스트레이션 연결](wiki/context/orch
 
 ## Skills
 
-skill의 canonical 위치는 `.agents/skills/`다. Claude Code는 `.claude/skills` → `../.agents/skills` symlink로 같은 파일을 읽는다. 별도 adapter나 사본을 두지 않는다. `.agents/skills/impeccable`는 외부 설치 skill이라 Git에서 제외한다.
+skill의 canonical 위치는 `.agents/skills/`다. Claude Code는 `.claude/skills` → `../.agents/skills` symlink로 같은 파일을 읽는다. 별도 adapter나 사본을 두지 않는다.
 
 ### 이름 규칙
 

@@ -7,9 +7,6 @@ Thumbs.db
 # ── Local agent/plugin installations ─────────────────────────
 .agents/*
 !.agents/skills/
-.agents/skills/impeccable/
-.impeccable/
-skills-lock.json
 
 # ── Tool runtime and render scratch ──────────────────────────
 .playwright-mcp/
@@ -18,7 +15,6 @@ skills-lock.json
 .tmp/
 tmp/
 .local/
-tools/.visual-baseline/
 graphify-out/
 
 # Canonical wiki lives in the local LLM Wiki. No trailing slash: wiki is a symlink.

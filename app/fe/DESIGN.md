@@ -1,8 +1,24 @@
 # Design
 
-이 문서는 `marinkim.xyz`와 지원 문서 화면에 공통으로 적용하는 시각 판단 기준을
-소유한다. 정확한 token 값과 현재 렌더링은 `app/fe/app/globals.css`와 각 component가
-소유하며, 이 문서는 그 값을 어디에 왜 사용하는지 정의한다.
+`marinkim.xyz`와 지원 문서 화면의 제품 방향과 시각 판단 기준을 소유한다. 정확한 token 값과
+현재 렌더링은 `app/fe/app/globals.css`와 각 component가 소유하며, 이 문서는 그 값을 어디에
+왜 사용하는지 정의한다.
+
+## Product
+
+- 사용자: 공개 화면은 채용 담당자·hiring manager·협업자, 로컬 작업 화면은 김대정 본인.
+- 목적: 검증된 엔지니어링 근거를 공개적으로 쉽게 확인하게 하고, 같은 근거로 역할 선택과
+  맞춤 지원 준비를 실무 흐름으로 만든다.
+- 포지셔닝: 근거 우선의 엔지니어링 프로필. 범위와 공백을 솔직하게, 만든 시스템은 구체적으로
+  보여 주며 과시보다 신중한 기술 평가에 맞춘다.
+- 전환: 공개 화면은 이력서·포트폴리오 근거·직접 연락으로, 작업 화면은 공고 확인·문서 맞춤·
+  제출 같은 구체적인 다음 행동으로 이어진다. 근거는 stable claim ID와 검증된 프로젝트 evidence다.
+- 피할 것: 장식 지표와 교체 가능한 카드뿐인 SaaS 대시보드, 근거를 가리는 화려한 포트폴리오
+  연출, 검증할 수 없는 경력 과장, 공개·비공개 정보 경계를 흐리는 화면.
+- 원칙: 설득보다 근거, 장식보다 판단과 다음 행동. 운영 화면은 카드 그리드보다 compact한
+  master-detail을 쓰고 출처·검증일·불확실성을 드러낸다.
+- 접근성: WCAG AA 대비, 보이는 keyboard focus, 색만으로 상태를 전달하지 않기, reduced motion
+  지원, mobile부터 wide desktop까지 작업 화면 사용 가능.
 
 ## Direction
 
@@ -113,9 +129,9 @@ UI 변경은 코드와 CSS 수치만 보고 완료하지 않는다.
 
 ## Implementation Owners
 
-- Global color·type·motion token: `app/fe/app/globals.css`
-- Resume expression: `app/fe/app/resume/`
-- Career Description·CV: `app/fe/app/documents/`
-- Portfolio expression: `app/fe/app/portfolio/`
-- Shared site shell: `app/fe/components/site/`
+- Global color·type·motion token: `app/globals.css`
+- Resume expression: `app/resume/`
+- Career Description·CV: `app/documents/`
+- Portfolio expression: `app/portfolio/`
+- Shared site shell: `components/site/`
 - Content facts and claim strength: `wiki/profile/`, `wiki/evidence/`

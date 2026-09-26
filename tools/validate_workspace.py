@@ -10,7 +10,6 @@ from pathlib import Path
 from typing import Any
 
 import yaml
-from bootstrap_knowledge import knowledge_errors
 from validate_documents import validate_documents
 
 from build_application_projection import (
@@ -21,6 +20,42 @@ from build_application_projection import (
 
 
 WIKI = "wiki"
+LAYER_SENTINELS = {
+    "context": "index.md",
+    "products": "resume/README.md",
+    "rules": "document-routing.md",
+    "backlog": "README.md",
+    "docs": "superpowers/specs/2026-07-11-resume-knowledge-harness-design.md",
+    "archive": "README.md",
+    "profile": "identity.md",
+    "evidence": "claims/README.md",
+}
+REQUIRED_INPUTS = (
+    "context/manifest.yaml",
+    "products/site/copy-surfaces.yaml",
+    "products/resume/application-registry.yaml",
+    "products/resume/common-package.yaml",
+    "products/resume/claim-map.yaml",
+    "rules/copy-gates.yaml",
+)
+
+
+def knowledge_errors(wiki: Path) -> list[str]:
+    """Check every physical layer before consumers can silently skip missing inputs."""
+    errors = []
+    for layer, sentinel in LAYER_SENTINELS.items():
+        directory = wiki / layer
+        if directory.is_symlink():
+            errors.append(f"knowledge layer must be a real directory: {directory}")
+        if not directory.is_dir():
+            errors.append(f"knowledge root missing: {directory}")
+        if not (directory / sentinel).is_file():
+            errors.append(f"knowledge root missing: {directory / sentinel} (layer {layer} sentinel)")
+    for relative in REQUIRED_INPUTS:
+        if not (wiki / relative).is_file():
+            errors.append(f"knowledge root missing: {wiki / relative} (required validation input)")
+    return errors
+
 CONCEPT_DIRS = tuple(
     f"{WIKI}/{name}" for name in ("context", "profile", "evidence", "products", "rules", "backlog")
 )
