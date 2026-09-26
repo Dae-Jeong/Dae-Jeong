@@ -53,7 +53,7 @@ def validate_documents(root: Path, claims: list[dict], gates: dict, attempts: li
     public = {claim["id"] for claim in claims if claim.get("public") is True and claim.get("confidence") in {"high", "medium"}}
     base = root / "app/fe/content/documents/companies"
     sources = []
-    for slug in ("miridih", "featuring", "toss-place"):
+    for slug in ("miridih", "toss-place"):
         paths = {kind: base / slug / f"{kind}.json" for kind in ("resume", "career", "portfolio")}
         if any(not path.is_file() for path in paths.values()):
             errors.extend(f"company document: missing {path.relative_to(root)}" for path in paths.values() if not path.is_file())

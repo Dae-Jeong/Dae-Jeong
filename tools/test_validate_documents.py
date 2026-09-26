@@ -38,14 +38,14 @@ class SupersededReviewTests(unittest.TestCase):
             repo = Path(temp)
             base = repo / "app/fe/content/documents/companies"
             base.mkdir(parents=True)
-            for slug in ("miridih", "featuring", "toss-place"):
+            for slug in ("miridih", "toss-place"):
                 (base / slug).mkdir()
                 for kind in ("resume", "career", "portfolio"):
                     (base / slug / f"{kind}.json").write_text(json.dumps({"applicationId": slug, "document": kind, "content": {}}))
-            attempts = [{"id": slug, "source_path": f"wiki/products/{slug}/README.md"} for slug in ("miridih", "featuring", "toss-place")]
+            attempts = [{"id": slug, "source_path": f"wiki/products/{slug}/README.md"} for slug in ("miridih", "toss-place")]
             with patch("validate_documents.subprocess.run") as exporter:
                 errors = validate_documents(repo, [], {}, attempts)
-            self.assertEqual(len(errors), 6)
+            self.assertEqual(len(errors), 4)
             self.assertTrue(all("required source missing" in error for error in errors))
             exporter.assert_not_called()
 
