@@ -68,7 +68,8 @@ def validate_documents(root: Path, claims: list[dict], gates: dict, attempts: li
         if not attempt or not isinstance(attempt.get("source_path"), str):
             errors.append(f"company document: {slug} missing application registry source")
             continue
-        source = root / Path(attempt["source_path"]).with_name("content-draft.md")
+        # The registered package owns metadata; app JSON owns current prose.
+        source = root / Path(attempt["source_path"])
         sources.append(source)
         missing = [item for item in (source, source.with_name("claim-map.yaml")) if not item.is_file()]
         if missing:
