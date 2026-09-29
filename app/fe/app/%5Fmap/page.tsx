@@ -139,7 +139,6 @@ function buildCommonRow(): Row {
     key: "common",
     name: "공통",
     cells: {
-      portfolio: { href: "/portfolio" },
       resume: { href: "/resume" },
       cv: { href: "/cv" },
       career: { href: "/career" },

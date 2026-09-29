@@ -30,7 +30,7 @@ function expectedCopy(data) {
   return { texts, claims: [...claims].sort() };
 }
 const records = [];
-for (const [route, file] of (process.argv.includes("--copy-only") ? [] : [["resume", "resume"], ["career", "career-description"], ["portfolio", "portfolio"], ["cv", "cv"]])) {
+for (const [route, file] of (process.argv.includes("--copy-only") ? [] : [["resume", "resume"], ["career", "career-description"], ["cv", "cv"]])) {
   const expected = expectedCopy(JSON.parse(readFileSync(new URL(`../../content/common/${file}.json`, import.meta.url), "utf8")));
   orca("goto", "--url", `${base}/${route}`);
   // Wait for fonts and two layout frames, not an arbitrary fixed sleep.
@@ -101,6 +101,6 @@ const frozen = evaluate("document.body.innerText");
 assert(frozen.includes("37% → 11%") && frozen.includes("94%"), "Frozen Hypernova copy changed");
 orca("goto", "--url", `${base}/_map`);
 const links = evaluate("[...document.querySelectorAll('main a')].map(a => a.getAttribute('href'))");
-for (const route of ["/resume", "/career", "/portfolio", "/cv"]) assert(links.includes(route), route);
+for (const route of ["/resume", "/career", "/cv"]) assert(links.includes(route), route);
 writeFileSync(path.join(output, process.argv.includes("--copy-only") ? "copy-selection.json" : "checks.json"), JSON.stringify({ checkedAt: new Date().toISOString(), result: "PASS", records, selectionRecords, frozenHypernova: "preserved" }, null, 2));
 console.log(`PASS: common hub links, ${records.length} document viewports. Screenshots: ${output}`);

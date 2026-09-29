@@ -4,7 +4,7 @@ import { cn } from "@/lib/cn";
 const LINKS: { label: string; href: string; disabled?: boolean; external?: boolean }[] = [
   { label: "GitHub ↗", href: "https://github.com/Dae-Jeong", external: true },
   { label: "Resume", href: "/resume" },
-  { label: "Portfolio", href: "/portfolio" },
+  { label: "Career", href: "/career" },
   { label: "Blog", href: "/blog" },
   { label: "Labs", href: "/labs" },
 ];

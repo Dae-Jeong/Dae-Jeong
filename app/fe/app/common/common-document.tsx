@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import career from "@/content/common/career-description.json";
-import portfolio from "@/content/common/portfolio.json";
+import { CAREER_SECTION_IDS } from "@/lib/career-links";
 import type { CaseVisual, ContentBlock, ContentDocument, ContentSection, TextBlock } from "@/content/documents/parse-markdown";
 import { ResumePageShell } from "../resume/resume-page-shell";
 import { CommonNav } from "./common-nav";
@@ -11,7 +11,7 @@ import styles from "./common.module.css";
 
 type Kind = "career" | "portfolio";
 type Layout = "a4-sheet";
-const documents = { career, portfolio } as Record<Kind, ContentDocument>;
+
 
 function Blocks({ blocks, kind, layout }: { blocks: ContentBlock[]; kind: Kind; layout?: Layout }) {
   const output: ReactNode[] = [];
@@ -87,7 +87,7 @@ function Section({ section, kind, id, layout }: { section: ContentSection; kind:
   const Heading = `h${section.level}` as "h2" | "h3" | "h4";
   const title = kind === "portfolio" ? section.title.replace(/^\d+\. /, "") : section.title;
   const datedTitle = kind === "career" && section.level === 2 ? title.match(/^(.*?) · (\d{4}\.\d{2}.*)$/) : null;
-  return <section id={id} className={styles.section} data-level={section.level} data-dated={datedTitle ? "" : undefined} data-emphasis={kind === "career" ? section.emphasis : undefined}>
+  return <section id={kind === "career" ? CAREER_SECTION_IDS[section.title] ?? id : id} className={styles.section} data-level={section.level} data-dated={datedTitle ? "" : undefined} data-emphasis={kind === "career" ? section.emphasis : undefined}>
     <Heading data-copy className={datedTitle ? styles.datedHeading : undefined}>{datedTitle ? <><span>{datedTitle[1]}</span><span className={styles.period}><span className="sr-only"> · </span>{datedTitle[2]}</span></> : title}</Heading>
     <div className={styles.sectionBody}>
       <div className={styles.prose}><Blocks blocks={section.blocks} kind={kind} layout={layout} /></div>
@@ -106,15 +106,16 @@ function contentsEntries(document: ContentDocument, kind: Kind, layout?: Layout)
   const entries: { href: string; title: string }[] = [];
   document.sections.forEach((section, index) => {
     const id = `${kind}-${index + 1}`;
-    const company = layout === "a4-sheet" && / · \d{4}\.\d{2}/.test(section.title);
-    const projects = company ? section.children.map((child, childIndex) => ({ child, childIndex })).filter(({ child }) => child.level === 3) : [];
-    if (projects.length) projects.forEach(({ child, childIndex }) => entries.push({ href: `#${id}-${childIndex + 1}`, title: child.title }));
+    const projects = layout === "a4-sheet" ? section.children.map((child, childIndex) => ({ child, childIndex })).filter(({ child }) => child.level === 3) : [];
+    if (projects.length) projects.forEach(({ child, childIndex }) => entries.push({ href: `#${CAREER_SECTION_IDS[child.title] ?? `${id}-${childIndex + 1}`}`, title: child.title }));
     else entries.push({ href: `#${id}`, title: section.title.replace(/^\d+\. /, "") });
   });
   return entries;
 }
 
-export function CommonDocumentPage({ kind, document = documents[kind], navigation, slug = "common", layout }: { kind: Kind; document?: ContentDocument; navigation?: ReactNode; slug?: string; layout?: Layout }) {
+export function CommonDocumentPage({ kind, document: suppliedDocument, navigation, slug = "common", layout }: { kind: Kind; document?: ContentDocument; navigation?: ReactNode; slug?: string; layout?: Layout }) {
+  if (kind === "portfolio" && !suppliedDocument) throw new Error("Historical portfolio requires an explicit document");
+  const document = suppliedDocument ?? career as ContentDocument;
   const headerText = document.header.filter((block): block is TextBlock => block.kind === "paragraph");
   const identity = headerText.find((block) => block.text.startsWith("김대정 ·") || /^\*\*[^*]+\*\*$/.test(block.text));
   const contacts = headerText.find((block) => block.text.includes("mailto:"));
@@ -130,7 +131,7 @@ export function CommonDocumentPage({ kind, document = documents[kind], navigatio
         {contacts && <p className={styles.contacts} data-copy><Inline text={contacts.text} /></p>}
         {!!introduction.length && <div className={styles.introduction}><Blocks blocks={introduction} kind={kind} /></div>}
       </header>
-      {layout !== "a4-sheet" && <nav className={styles.contents} aria-label={`${document.title} 목차`}>
+      {<nav className={styles.contents} aria-label={`${document.title} 목차`}>
         {contents.map((entry, index) => <a key={entry.href} href={entry.href}><span>{String(index + 1).padStart(2, "0")}</span>{entry.title}</a>)}
       </nav>}
       {document.sections.map((section, index) => <Section key={index} section={section} kind={kind} id={`${kind}-${index + 1}`} layout={layout} />)}

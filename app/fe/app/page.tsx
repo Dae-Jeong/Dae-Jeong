@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/ui/reveal";
 import { SectionHead } from "@/components/ui/section-head";
 import { PRIMARY_CASES, SUPPORTING_CASES } from "@/lib/cases";
+import { CAREER_CASE_LINKS } from "@/lib/career-links";
 import { cn } from "@/lib/cn";
 
 function Arrow() {
@@ -35,19 +36,12 @@ const DOCUMENTS = [
   },
   {
     no: "02",
-    name: "Portfolio",
-    localName: "포트폴리오",
-    href: "/portfolio",
-    review: false,
-  },
-  {
-    no: "03",
     name: "Career Description",
     localName: "경력기술서",
     href: "/career",
-    review: true,
+    review: false,
   },
-  { no: "04", name: "CV", localName: "", href: "/cv", review: true },
+  { no: "03", name: "CV", localName: "", href: "/cv", review: true },
 ] as const;
 
 const HOME_CASES = [
@@ -72,7 +66,7 @@ export default function Home() {
                 Maker Profile · Product / Backend / AI
               </p>
               <h1 className="mt-7 max-w-[22ch] text-pretty text-[clamp(2.5rem,4.4vw,4.25rem)] font-semibold leading-[1.16] tracking-[-0.045em] max-md:max-w-none">
-                가능성을 기회로 바꾸고, 제품으로 가치를 전하는 메이커 김대정입니다.
+                호기심을 현실로, 메이커 김대정입니다
               </h1>
               <p className="mt-6 font-mono text-sm tracking-[0.025em] text-fg-2">
                 <strong className="font-semibold text-fg">
@@ -81,12 +75,16 @@ export default function Home() {
                 · AI Product Systems
               </p>
               <p className="mt-7 max-w-[780px] text-lg leading-[1.75] text-fg-2 max-md:text-base">
-                팀과 함께 고객 문제를 실제 결제가 발생하는 제품으로 만들고, 필요한
-                Backend·AI·핵심 화면을 직접 구현해 출시 이후 운영까지 이끌었습니다.
+                사용자가 겪는 불편과 반복되는 비효율에서 더 나은 방법을 찾아
+                구현하고, 사용자 반응을 살피며 제품의 쓰임과 사업적 가치를 키워갑니다.
+              </p>
+              <p className="mt-4 max-w-[780px] text-lg leading-[1.75] text-fg-2 max-md:text-base">
+                개발 경험을 도구와 기준으로 남겨, 다양한 직군의 동료가 AI와 함께
+                아이디어를 제품으로 완성하도록 돕습니다.
               </p>
               <div className="mt-9 flex flex-wrap gap-3">
-                <Button href="/portfolio" className="px-[14px] py-[10px]">
-                  Portfolio 보기
+                <Button href="/career" className="px-[14px] py-[10px]">
+                  경력기술서 보기
                 </Button>
                 <Link
                   href="/resume"
@@ -162,7 +160,7 @@ export default function Home() {
             <Reveal stagger>
               <div className="border-y border-border">
                 {HOME_CASES.map((c) => {
-                  const href = c.available ? `/portfolio/${c.slug}` : "/portfolio";
+                  const href = CAREER_CASE_LINKS[c.slug] ?? "/career";
                   return (
                     <Link
                       key={c.slug}
@@ -212,7 +210,7 @@ export default function Home() {
                         </span>
                       ) : (
                         <span className="justify-self-end whitespace-nowrap border border-border px-[11px] py-1.5 font-mono text-xs tracking-[0.04em] text-muted">
-                          → /portfolio
+                          → /career
                         </span>
                       )}
                     </Link>

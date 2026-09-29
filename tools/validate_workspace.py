@@ -404,7 +404,7 @@ def _validate_common_document_claims(root: Path) -> list[str]:
     public = {str(claim.get("id")) for claim in claims if claim.get("public") is True}
     hero = _load_yaml_file(root, COPY_GATES_PATH).get("hero") or {}
     errors: list[str] = _validate_resume_selection(root)
-    for name in ("resume", "career-description", "portfolio", "cv"):
+    for name in ("resume", "career-description", "cv"):
         artifact = root / "app" / "fe" / "content" / "common" / f"{name}.json"
         if not artifact.exists():
             errors.append(f"common documents: missing {name}.json")

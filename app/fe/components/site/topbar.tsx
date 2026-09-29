@@ -6,11 +6,10 @@ import { Wordmark } from "./wordmark";
 const PRIMARY_NAV = [
   { label: "Home", href: "/" },
   { label: "Resume", href: "/resume" },
-  { label: "Portfolio", href: "/portfolio" },
+  { label: "Career", href: "/career" },
 ] as const;
 
 const REVIEW_NAV = [
-  { label: "Career", href: "/career" },
   { label: "CV", href: "/cv" },
 ] as const;
 

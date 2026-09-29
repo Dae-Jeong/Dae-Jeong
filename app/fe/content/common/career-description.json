@@ -90,6 +90,19 @@
               "caption": "제품과 AI 실행의 데이터 소유 경계, 그리고 검수 결과가 콘텐츠 생성에 활용되는 흐름",
               "width": 3402,
               "height": 1832
+            },
+            {
+              "kind": "paragraph",
+              "text": "인플루언서는 이미 여러 SNS를 운영하면서 Threads로 채널을 넓히려 했고, 의료진에게는 병원을 알릴 새로운 채널이 필요했습니다. 추가 인력과 시간을 투입하기 어렵고 플랫폼마다 글의 문화가 다르다는 제약을 함께 다뤘습니다.",
+              "claims": [
+                "thready.creator-adoption-context",
+                "thready.product-zero-to-one-contribution",
+                "thready.threads-content-workflow-automation",
+                "thready.frontend-product-delivery",
+                "thready.subscription-revenue-band",
+                "thready.customer-follower-growth",
+                "thready.customer-view-growth"
+              ]
             }
           ],
           "children": [
@@ -387,6 +400,225 @@
                 }
               ],
               "children": []
+            },
+            {
+              "title": "E. 생성 평가 데이터와 판단 기준 검증",
+              "level": 4,
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "글을 만드는 과정에서 어떤 역할이 무엇을 판단하는지 분리했습니다. 생성 파이프라인을 기획·작성 역할로 나누고, 콘텐츠 유형 분기를 작성 역할에 뒀을 때 실제로 수행되지 않는 문제를 확인해 기획 역할로 옮겼습니다. 생성·검수·보정 흐름은 LangGraph로 구현했고, LLM 검수의 점수·통과 여부·판단 사유·개선안을 저장해 생성과 프롬프트의 1차 품질 근거로 사용했습니다.",
+                  "claims": [
+                    "thready.agent-pipeline-design",
+                    "thready.langgraph-generation-graph",
+                    "thready.generation-quality-system",
+                    "thready.quality-criteria-system",
+                    "thready.measurement-correction",
+                    "thready.trend-crawler-pipeline",
+                    "thready.threads-market-outcome-design",
+                    "thready.labeling-corpus-workbench",
+                    "thready.corpus-batch-verification",
+                    "thready.prompt-domain-composition",
+                    "thready.hook-rubric-experiment"
+                  ]
+                },
+                {
+                  "kind": "paragraph",
+                  "text": "평가는 자동 게이트·실측 분포 대조·사람 판정으로 나눴습니다. 형식 검사를 통과한 결과라도 사람의 콘텐츠 판단은 별도로 남겼습니다. 자체 생성 결과가 다시 프롬프트 기준값의 근거가 되는 순환을 재실측으로 발견하고, 평가 기준과 문제 축을 교정한 경험도 있습니다.",
+                  "claims": [
+                    "thready.agent-pipeline-design",
+                    "thready.langgraph-generation-graph",
+                    "thready.generation-quality-system",
+                    "thready.quality-criteria-system",
+                    "thready.measurement-correction",
+                    "thready.trend-crawler-pipeline",
+                    "thready.threads-market-outcome-design",
+                    "thready.labeling-corpus-workbench",
+                    "thready.corpus-batch-verification",
+                    "thready.prompt-domain-composition",
+                    "thready.hook-rubric-experiment"
+                  ]
+                },
+                {
+                  "kind": "paragraph",
+                  "text": "콘텐츠 기준을 확인할 데이터도 직접 구축했습니다. Threads 게시물과 성과 시계열을 수집·정규화·동기화하고 전일·작성자별 비교 보고를 구현했습니다. 2026년 8월 분석 스냅샷의 십만 건 규모 URL별 최신 상태와 수백만 건 규모 시계열 관측을 구분해, 절대 조회수뿐 아니라 작성자·분야 대비 성과를 비교하는 기준을 설계했습니다. 수만 건 규모 도입부 품질 분석은 실험용 생성 프롬프트와 LLM 평가에 연결했습니다.",
+                  "claims": [
+                    "thready.agent-pipeline-design",
+                    "thready.langgraph-generation-graph",
+                    "thready.generation-quality-system",
+                    "thready.quality-criteria-system",
+                    "thready.measurement-correction",
+                    "thready.trend-crawler-pipeline",
+                    "thready.threads-market-outcome-design",
+                    "thready.labeling-corpus-workbench",
+                    "thready.corpus-batch-verification",
+                    "thready.prompt-domain-composition",
+                    "thready.hook-rubric-experiment"
+                  ]
+                },
+                {
+                  "kind": "paragraph",
+                  "text": "사람 검수 도구에서는 본문·이어쓰기와 평가를 나눠 관리하고 점수·판단 사유·검수 진행을 기록했습니다. 로컬 전체 데이터 적재와 증분 재적재에서 기존 평가 보존과 건수 정합성을 확인했습니다. 별도의 사후 시험에서는 실제 importer로 십만 건 규모 합성 원문·이어쓰기를 갱신한 뒤 전체 식별자·내용·건수를 기대값과 대조했습니다. 이어쓰기 교체 직후 오류를 넣었을 때 기존 원문이 보존되고 신규 데이터가 rollback되는 것도 확인했습니다.",
+                  "claims": [
+                    "thready.agent-pipeline-design",
+                    "thready.langgraph-generation-graph",
+                    "thready.generation-quality-system",
+                    "thready.quality-criteria-system",
+                    "thready.measurement-correction",
+                    "thready.trend-crawler-pipeline",
+                    "thready.threads-market-outcome-design",
+                    "thready.labeling-corpus-workbench",
+                    "thready.corpus-batch-verification",
+                    "thready.prompt-domain-composition",
+                    "thready.hook-rubric-experiment"
+                  ]
+                }
+              ],
+              "children": []
+            },
+            {
+              "title": "F. 외부 I/O와 DB 연결 분리",
+              "level": 4,
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "기존 YouTube 소재를 가져오는 기능은 채널 조회와 DB 반영의 경계를 나눴습니다. 외부 응답을 기다리는 동안 DB 연결을 잡아 두지 않고, 조회가 끝난 뒤 저장 트랜잭션을 열어 upsert하도록 구현했습니다. 외부 실패는 채널별로 격리하고, 내부 상태를 보존하며, 성공적으로 사용한 소재를 계정별로 제외했습니다.",
+                  "claims": [
+                    "thready.youtube-source-reuse",
+                    "thready.external-io-db-boundary-verification",
+                    "thready.synthetic-io-comparison"
+                  ]
+                },
+                {
+                  "kind": "table",
+                  "columns": [
+                    "처리 구간",
+                    "책임과 보호 조건"
+                  ],
+                  "rows": [
+                    [
+                      "외부 채널 조회",
+                      "외부 대기 중 DB 연결 미점유, 실패 채널과 내부 저장 상태 분리"
+                    ],
+                    [
+                      "조회 결과 저장",
+                      "DB 트랜잭션 안에서 실제 upsert 수행"
+                    ],
+                    [
+                      "취소·오류",
+                      "해당 동기화의 원장 미변경과 연결 정리 확인"
+                    ],
+                    [
+                      "다음 콘텐츠 생성",
+                      "성공 소비 이력을 확인하고 소재가 고갈되면 중단"
+                    ]
+                  ],
+                  "claims": [
+                    "thready.youtube-source-reuse",
+                    "thready.external-io-db-boundary-verification",
+                    "thready.synthetic-io-comparison"
+                  ]
+                },
+                {
+                  "kind": "paragraph",
+                  "text": "2026년 9월 사후 기술 검증에서는 실제 동기화 서비스와 격리 PostgreSQL DB를 사용했습니다. 비교 대상은 외부 대기를 트랜잭션에 넣은 **새 비교용 구현**이며 과거 제품 코드가 아닙니다. 제한된 연결 풀과 mock 외부 지연을 동일하게 둔 짧은 로컬 합성 시험에서 현재 구조가 비교군 대비 약 2배의 완료 처리량을 보였습니다. 외부 대기 중에도 독립 DB 조회가 진행되는지, 종료 후 연결이 반환되는지, 최종 저장 내용이 기대값과 같은지를 함께 확인했습니다.",
+                  "claims": [
+                    "thready.youtube-source-reuse",
+                    "thready.external-io-db-boundary-verification",
+                    "thready.synthetic-io-comparison"
+                  ]
+                },
+                {
+                  "kind": "paragraph",
+                  "text": "외부 I/O를 저장 경계 밖에 둔 선택이 제한된 연결 풀의 경합에 미치는 영향을 확인한 사후 비교입니다.",
+                  "claims": [
+                    "thready.youtube-source-reuse",
+                    "thready.external-io-db-boundary-verification",
+                    "thready.synthetic-io-comparison"
+                  ]
+                }
+              ],
+              "children": []
+            },
+            {
+              "title": "G. AI 실행 분리와 Outbox 전달 검증",
+              "level": 4,
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "생성 실행은 별도 AI 애플리케이션·DB로 분리하고 STG·production에서 운영했습니다. 제품 정책과 원장은 백엔드가, 생성 lifecycle과 실행 상태는 AI 애플리케이션이 소유합니다. 원장 변경과 Outbox 기록을 같은 트랜잭션에 넣고, 외부 전달은 이후 worker가 수행합니다. lease와 attempt token은 재점유한 작업의 소유권을, 전달 버전은 오래된 응답과 역순 전달을 통제합니다.",
+                  "claims": [
+                    "thready.auto-generation-approval-flow",
+                    "thready.approval-command-consistency",
+                    "thready.publish-recovery-boundary",
+                    "thready.ai-service-boundary",
+                    "thready.ai-replica-outbox"
+                  ]
+                },
+                {
+                  "kind": "table",
+                  "columns": [
+                    "실패 상황",
+                    "구현한 처리"
+                  ],
+                  "rows": [
+                    [
+                      "승인 결정 경합",
+                      "대기 상태의 조건부 갱신으로 하나의 결정만 반영"
+                    ],
+                    [
+                      "전달 worker 중단",
+                      "만료된 lease를 기준으로 재점유"
+                    ],
+                    [
+                      "새 변경 이후 이전 ACK·실패 응답 도착",
+                      "버전·시도 식별자로 오래된 결과의 반영 통제"
+                    ],
+                    [
+                      "전달 재시도 소진",
+                      "실패 행을 보존해 운영자가 상태 확인"
+                    ],
+                    [
+                      "외부 발행 호출 전 실패",
+                      "발행 시도 전 상태와 실패 원인을 구분"
+                    ],
+                    [
+                      "외부 발행 호출 후 결과 불명",
+                      "저장된 발행 시도에서 재개하고 이미 발행된 이어쓰기는 건너뜀"
+                    ]
+                  ],
+                  "claims": [
+                    "thready.auto-generation-approval-flow",
+                    "thready.approval-command-consistency",
+                    "thready.publish-recovery-boundary",
+                    "thready.ai-service-boundary",
+                    "thready.ai-replica-outbox"
+                  ]
+                },
+                {
+                  "kind": "paragraph",
+                  "text": "사후 격리 시험에서는 실제 승인 repository·Outbox service·Relay facade를 실행했습니다. 승인 경합의 단일 결정, 오래된 ACK·실패 응답 무효화, 외부 실패 후 최신 원장 재전달, 재시도 소진 상태 보존을 확인했습니다. 실패한 전달 작업 뒤에도 정상 작업이 진행되는지 함께 검증했습니다.",
+                  "claims": [
+                    "thready.auto-generation-approval-flow",
+                    "thready.approval-command-consistency",
+                    "thready.publish-recovery-boundary",
+                    "thready.ai-service-boundary",
+                    "thready.ai-replica-outbox"
+                  ]
+                },
+                {
+                  "kind": "paragraph",
+                  "text": "외부 AI client를 기록용 mock으로 대체한 시험으로, 검증 범위는 승인과 AI 복제본 전달의 서비스 계약입니다. 외부 발행은 별도의 복구 경계에서 다루며 작업·콘텐츠·실패 알림의 최종 상태를 함께 저장합니다.",
+                  "claims": [
+                    "thready.auto-generation-approval-flow",
+                    "thready.approval-command-consistency",
+                    "thready.publish-recovery-boundary",
+                    "thready.ai-service-boundary",
+                    "thready.ai-replica-outbox"
+                  ]
+                }
+              ],
+              "children": []
             }
           ]
         },
@@ -580,14 +812,14 @@
                 },
                 {
                   "kind": "bullet",
-                  "text": "기존 JSON 지식을 관계형 데이터로 옮기며 기존 API 동작을 테스트로 고정. 검수 승인과 근거 검증을 거친 발행본만 서비스에 제공하고, 문제가 있으면 이전 발행본으로 복구하는 발행 관리 구현",
+                  "text": "기존 JSON 지식을 관계형 데이터로 옮기며 기존 API 동작을 테스트로 고정. 검수 승인과 근거 검증을 거친 발행본만 제공하고 문제가 있으면 이전 발행본으로 복구하도록 발행 관리 구현. 데이터 전환·임상 fixture 검수·운영 공개 완료는 별도 확인 필요",
                   "claims": [
                     "procedure-hub.canonical-data-platform"
                   ]
                 },
                 {
                   "kind": "bullet",
-                  "text": "항목 식별·발행 전이·검수 승인·감사 기록과 검색 품질(기대 항목·근거·안전 판정·응답 시간)을 검수 승인된 시험 데이터로만 자동 검증",
+                  "text": "검수 승인 없는 시험 데이터를 거부하고, 항목 식별·발행 전이·검수 승인·감사 기록과 검색 품질(기대 항목·근거·안전 판정·응답 시간)을 검사하는 평가 실행기 구현",
                   "claims": [
                     "procedure-hub.review-contract-verification",
                     "procedure-hub.retrieval-evaluation-gate"
@@ -938,7 +1170,116 @@
               ]
             }
           ],
-          "children": []
+          "children": [
+            {
+              "title": "트랜잭션 소유권과 취소 처리",
+              "level": 4,
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "한 트랜잭션은 하나의 asyncio task와 AsyncSession이 소유하도록 했습니다. ContextVar로 전파된 세션에 child task가 접근하면 owner-task guard가 즉시 차단합니다. 병렬 DB 작업을 수행하려면 task별 트랜잭션과 연결 비용, 데이터 가시성·실패 복구를 먼저 결정하도록 규칙과 문서를 남겼습니다.",
+                  "claims": [
+                    "be-template.backend-standard",
+                    "be-template.fastapi-sqlalchemy-standard",
+                    "be-template.team-leverage",
+                    "be-template.agent-context",
+                    "thready.db-session-contract-verification"
+                  ]
+                },
+                {
+                  "kind": "table",
+                  "columns": [
+                    "정책",
+                    "의미"
+                  ],
+                  "rows": [
+                    [
+                      "REQUIRED",
+                      "기존 트랜잭션에 참여"
+                    ],
+                    [
+                      "REQUIRES_NEW",
+                      "새로운 연결·세션으로 독립 트랜잭션 실행"
+                    ],
+                    [
+                      "NESTED",
+                      "기존 트랜잭션 안에서 SAVEPOINT 사용"
+                    ],
+                    [
+                      "child task의 동일 세션 접근",
+                      "소유권 검사로 차단"
+                    ],
+                    [
+                      "작업 취소·예외",
+                      "rollback과 세션·연결 정리"
+                    ]
+                  ],
+                  "claims": [
+                    "be-template.backend-standard",
+                    "be-template.fastapi-sqlalchemy-standard",
+                    "be-template.team-leverage",
+                    "be-template.agent-context",
+                    "thready.db-session-contract-verification"
+                  ]
+                },
+                {
+                  "kind": "paragraph",
+                  "text": "정상 결과만으로는 이 경계를 확인할 수 없어 취소·예외·전파·잘못된 공유를 통합 시험에 포함했습니다. 2026년 9월에는 Thready에 적용된 실제 DB 모듈을 격리 PostgreSQL DB에서 다시 검증했습니다. 정상·예외·취소가 섞인 수백 회 규모 병렬 실행의 데이터 상태와 종료 후 연결 반환을 확인했습니다.",
+                  "claims": [
+                    "be-template.backend-standard",
+                    "be-template.fastapi-sqlalchemy-standard",
+                    "be-template.team-leverage",
+                    "be-template.agent-context",
+                    "thready.db-session-contract-verification"
+                  ]
+                }
+              ],
+              "children": []
+            },
+            {
+              "title": "구현 지원과 릴리스 판단",
+              "level": 4,
+              "blocks": [
+                {
+                  "kind": "paragraph",
+                  "text": "신규 사내 프로그램은 전체 템플릿으로 시작하고 기존 제품은 DB 세션 관리부터 점진적으로 적용했습니다. 설계 결정·컨벤션·실행 문서를 coding agent가 읽는 공통 맥락으로 구성했고 기획·QA·디자인 담당자가 기능을 구현했습니다. 저는 템플릿과 기준을 만들고 구현 결과에 피드백하며 배포를 지원했습니다.",
+                  "claims": [
+                    "be-template.backend-standard",
+                    "be-template.fastapi-sqlalchemy-standard",
+                    "be-template.team-leverage",
+                    "be-template.agent-context",
+                    "thready.db-session-contract-verification",
+                    "mediness.product-operations",
+                    "mediness.quality-evidence-harness",
+                    "mediness.ai-qa-team-operation",
+                    "mediness.company-work-ax-design",
+                    "career.coding-agent-usage",
+                    "infra.company-azure-ownership",
+                    "infra.terraform-state-safety"
+                  ]
+                },
+                {
+                  "kind": "paragraph",
+                  "text": "제품 운영에서는 결정·명세·구현·QA·릴리스가 같은 변경을 가리키도록 연결했습니다. 실제 완료 시점에 릴리스 승인·버전·노트 생성을 묶고, QA 팀원의 지원을 받아 요구별 근거로 PASS·FAIL·UNKNOWN을 판정하는 규칙을 설계했습니다. AI가 결과물을 생성했다는 사실과 요구를 충족했다는 판정을 구분하고, 설계·검증 기준·릴리스 판단의 책임은 사람이 갖도록 했습니다. 회사 업무 AX로 확장하는 구조 설계에는 참여했으며 제품 운영 리드와 설계 참여의 범위를 구분했습니다.",
+                  "claims": [
+                    "be-template.backend-standard",
+                    "be-template.fastapi-sqlalchemy-standard",
+                    "be-template.team-leverage",
+                    "be-template.agent-context",
+                    "thready.db-session-contract-verification",
+                    "mediness.product-operations",
+                    "mediness.quality-evidence-harness",
+                    "mediness.ai-qa-team-operation",
+                    "mediness.company-work-ax-design",
+                    "career.coding-agent-usage",
+                    "infra.company-azure-ownership",
+                    "infra.terraform-state-safety"
+                  ]
+                }
+              ],
+              "children": []
+            }
+          ]
         },
         {
           "title": "실시간 서비스·인증",
@@ -973,6 +1314,63 @@
               "text": "중간·확정·보정 전사에 **같은 발화 식별자를 부여**해 보정이 해당 발화만 교체하도록 구현. 세션 종료·재연결의 정리 책임을 보강하고 회귀 테스트로 고정",
               "claims": [
                 "centurion.say-realtime-ai"
+              ]
+            },
+            {
+              "kind": "paragraph",
+              "text": "양방향 번역에서는 상담사와 고객의 언어에 맞춰 모드를 선택하고 원문·번역문·통역 음성을 연결하는 화면과 이벤트 흐름을 직접 설계·구현했습니다. 상담 전체의 전사·세션 처리는 다른 담당자와 함께 주도했습니다.",
+              "claims": [
+                "centurion.realtime-translation",
+                "centurion.say-realtime-ai",
+                "centurion.say-post-consultation-evaluation"
+              ]
+            },
+            {
+              "kind": "table",
+              "columns": [
+                "입력·상태",
+                "처리"
+              ],
+              "rows": [
+                [
+                  "중간 전사",
+                  "도메인 키워드 조기 판단"
+                ],
+                [
+                  "확정 전사",
+                  "문맥 판단·저장"
+                ],
+                [
+                  "늦은 보정",
+                  "같은 발화 식별자의 내용만 갱신"
+                ],
+                [
+                  "세션 종료",
+                  "timer·task·GC·shutdown 정리와 재연결 차단"
+                ]
+              ],
+              "claims": [
+                "centurion.realtime-translation",
+                "centurion.say-realtime-ai",
+                "centurion.say-post-consultation-evaluation"
+              ]
+            },
+            {
+              "kind": "paragraph",
+              "text": "음성 인식 후보는 오류율·키워드 보존·지연으로 비교하는 도구를 만들었습니다. 발화 종료 감지 설정을 바꿔도 모델 추론이 주 병목인 것을 확인해, 중간 전사를 활용한 조기 판단과 외부 모델 연동 분리에 집중했습니다. 상담 E2E의 이벤트·발화 sequence를 대조했고 종료 후 재연결 문제는 정리 경계와 회귀 시나리오로 고정했습니다.",
+              "claims": [
+                "centurion.realtime-translation",
+                "centurion.say-realtime-ai",
+                "centurion.say-post-consultation-evaluation"
+              ]
+            },
+            {
+              "kind": "paragraph",
+              "text": "상담 후 평가는 실시간 응답 경로와 분리했습니다. 근거 기반 응답의 품질 평가와 자유 생성 응답의 키워드 추출을 나눠 관리 조회에 연결했습니다. 평가 작업을 선점하는 트랜잭션 뒤에 외부 LLM 분석을 수행하고, 분석이 실패해도 템플릿으로 검토 사례를 남기는 기능을 구현했습니다.",
+              "claims": [
+                "centurion.realtime-translation",
+                "centurion.say-realtime-ai",
+                "centurion.say-post-consultation-evaluation"
               ]
             },
             {
@@ -1055,6 +1453,30 @@
               "claims": [
                 "centurion.bay-async-backend",
                 "centurion.async-migration"
+              ]
+            },
+            {
+              "kind": "paragraph",
+              "text": "발송 결과에 따른 주문 상태 분기·실패 기록·수동 재발송 경로를 구현했습니다. 운영자가 실패를 확인하고 재발송할 수 있는 상태를 남겼으며, worker 실행 성공과 공급사의 실제 수신을 같은 결과로 취급하지 않았습니다. API 테스트 기반·Docker CI·로컬 실행 문서를 함께 구성해 변경을 검증하는 절차를 갖췄습니다.",
+              "claims": [
+                "centurion.inventory-order-workflow",
+                "centurion.bay-async-backend",
+                "centurion.async-migration",
+                "centurion.test-ci-foundation",
+                "centurion.ray-status-management-implementation",
+                "centurion.day-product-integration"
+              ]
+            },
+            {
+              "kind": "paragraph",
+              "text": "다른 기능에서도 업무 완료와 외부 연동 결과를 구분했습니다. 시설·시술 현황 조회와 긴급 호출 알림 생성을 구현하고, 시술 완료 시 필요한 품목을 재고 차감 요청으로 전달했습니다. 이 연동의 실패는 시술 완료와 분리해 기록했습니다.",
+              "claims": [
+                "centurion.inventory-order-workflow",
+                "centurion.bay-async-backend",
+                "centurion.async-migration",
+                "centurion.test-ci-foundation",
+                "centurion.ray-status-management-implementation",
+                "centurion.day-product-integration"
               ]
             },
             {

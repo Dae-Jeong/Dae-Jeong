@@ -37,6 +37,7 @@ CHECKPOINT_KINDS = {"checkpoint", "legacy-import"}
 SNAPSHOT_VERIFICATIONS = {"unknown", "partial", "verified"}
 WORK_SESSION_STATES = {"active", "waiting-review", "paused", "complete", "unknown"}
 ARTIFACT_KEYS = {"resume", "career-description", "portfolio", "cv"}
+COMMON_ARTIFACT_KEYS = {"resume", "career-description", "cv"}
 ARTIFACT_MODES = {"common", "tailored", "omitted"}
 COMMON_ARTIFACT_STATES = {"drafting", "review-ready", "active"}
 ARTIFACT_VISIBILITIES = {"local", "public"}
@@ -370,9 +371,9 @@ def validate_common_package_data(data: Any) -> list[str]:
     artifacts = package.get("artifacts")
     if not isinstance(artifacts, dict):
         return errors + ["common package: package.artifacts must be an object"]
-    if set(artifacts) != ARTIFACT_KEYS:
+    if set(artifacts) != COMMON_ARTIFACT_KEYS:
         errors.append(
-            f"common package: package.artifacts must contain exactly {sorted(ARTIFACT_KEYS)}"
+            f"common package: package.artifacts must contain exactly {sorted(COMMON_ARTIFACT_KEYS)}"
         )
     for artifact, config in artifacts.items():
         label = f"common package: package.artifacts.{artifact}"

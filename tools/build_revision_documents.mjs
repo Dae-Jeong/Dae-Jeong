@@ -14,6 +14,8 @@ assert(source && outDir, "usage: build_revision_documents.mjs <content-draft.md>
 const check = args.includes("--check");
 // Common baseline owns independent Markdown; company submission revisions remain immutable.
 const common = args.includes("--common");
+const localPreview = args.includes("--local-preview");
+assert(!localPreview || common, "--local-preview requires --common");
 // --only=<kind>: build/gate/write just that document (R3 adapter, 2026-09-13). The other document is left
 // untouched on disk and is not parsed or claim-gated here — it is out of scope, not bypassed.
 // --career-source=<file>: build the career document from a separate reviewed draft (career-draft-v1.md, 2026-09-13)
@@ -28,7 +30,9 @@ const markdown = readFileSync(source, "utf8");
 const frontmatter = Object.fromEntries((markdown.match(/^---\r?\n([\s\S]*?)\r?\n---/) ?? ["", ""])[1].split(/\r?\n/)
   .map((line) => line.match(/^([\w-]+):\s*(.*)$/)).filter(Boolean).map(([, key, value]) => [key, value.trim()]));
 for (const key of ["revision", "status", "visibility", "approved", "content_owner", "projection"]) assert(frontmatter[key] !== undefined, `frontmatter.${key}`);
-assert.equal(frontmatter.approved, common ? "true" : "false"); assert.equal(frontmatter.status, common ? "approved" : "draft"); assert.equal(frontmatter.visibility, common ? "public" : "local");
+assert.equal(frontmatter.approved, common && !localPreview ? "true" : "false");
+assert.equal(frontmatter.status, common ? (localPreview ? "review-required" : "approved") : "draft");
+assert.equal(frontmatter.visibility, common ? "public" : "local");
 assert.equal(frontmatter.content_owner, "content-draft.md", "the Markdown draft is the only editable copy");
 assert.equal(path.relative(root, path.resolve(outDir)), frontmatter.projection, "projection must equal the app output directory");
 if (common) {

@@ -29,7 +29,7 @@ APP = ROOT / "app" / "fe"
 RUNS = ROOT / "output" / "harness" / "runs"
 SURFACES = ROOT / "wiki" / "products" / "site" / "copy-surfaces.yaml"
 REGISTRY = ROOT / "wiki" / "products" / "resume" / "application-registry.yaml"
-COMMON_ROUTES = ["/resume", "/career/common", "/cv/common", "/portfolio"]
+COMMON_ROUTES = ["/resume", "/career", "/cv/common"]
 
 
 def changed_files() -> list[str]:

@@ -75,9 +75,11 @@
   --ease-standard: cubic-bezier(0.2, 0, 0, 1);
 }
 
-/* Approved portrait sheet review layout (career a4-sheet preset): grey stage behind the white A4-width sheet. */
+/* Common resume and career documents share a grey screen stage behind the white sheet. */
 @media screen {
-  body:has(main[data-document-layout="a4-sheet"]) {
+  body:has(main[data-document-layout="a4-sheet"]),
+  body:has(main[data-common-document="resume"]),
+  main[data-common-document="resume"][data-paged] {
     background: #eef1f4;
   }
 }

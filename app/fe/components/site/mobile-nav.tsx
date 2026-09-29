@@ -7,11 +7,10 @@ import { cn } from "@/lib/cn";
 const ROUTES = [
   { no: "01", label: "Home", href: "/", primary: true, review: false },
   { no: "02", label: "Resume", href: "/resume", primary: true, review: false },
-  { no: "03", label: "Portfolio", href: "/portfolio", primary: true, review: false },
-  { no: "04", label: "Career", href: "/career", primary: true, review: true },
-  { no: "05", label: "CV", href: "/cv", primary: true, review: true },
-  { no: "06", label: "Blog", href: "/blog", primary: false, review: false },
-  { no: "07", label: "Labs", href: "/labs", primary: false, review: false },
+  { no: "03", label: "Career", href: "/career", primary: true, review: false },
+  { no: "04", label: "CV", href: "/cv", primary: true, review: true },
+  { no: "05", label: "Blog", href: "/blog", primary: false, review: false },
+  { no: "06", label: "Labs", href: "/labs", primary: false, review: false },
 ] as const;
 
 const VISIBLE_ROUTES = ROUTES.filter(

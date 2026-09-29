@@ -1,6 +1,8 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { test } from "node:test";
+import { spawnSync } from "node:child_process";
+import { fileURLToPath } from "node:url";
 import { parseReview } from "../documents/parse-markdown.ts";
 
 test("the import adapter preserves hierarchy, claims, bullets, and complete table cells", () => {
@@ -18,8 +20,8 @@ test("unsupported HTML and malformed tables fail instead of disappearing", () =>
   assert.throws(() => parseReview("# CV\n## Test\n| A | B |\n| --- | --- |\n| one |"));
 });
 
-test("all four app-owned copies have the expected shape and no private import metadata", () => {
-  for (const name of ["resume", "career-description", "portfolio", "cv"]) {
+test("all three current app-owned copies have the expected shape and no private import metadata", () => {
+  for (const name of ["resume", "career-description", "cv"]) {
     const data = JSON.parse(readFileSync(new URL(`./${name}.json`, import.meta.url), "utf8"));
     assert(data.sections.length >= 3, name);
     const source = JSON.stringify(data);
@@ -119,4 +121,17 @@ test("Jake attribution stays in the source and license, outside the CV presentat
   assert(view.includes("tools/templates/jake-cv/"));
   assert(license.includes("Copyright (c) 2020 Jake Gutierrez"));
   assert(license.includes("Permission is hereby granted"));
+});
+
+
+test("local career preview preserves approval metadata and strict export still requires approval", () => {
+  const root = fileURLToPath(new URL("../../../../", import.meta.url));
+  const owner = new URL("../../../../wiki/products/resume/common-baseline/content-draft.md", import.meta.url);
+  const before = readFileSync(owner, "utf8");
+  const args = ["--experimental-strip-types", "tools/build_revision_documents.mjs",
+    "wiki/products/resume/common-baseline/content-draft.md", "app/fe/content/common", "--common", "--only=career",
+    "--career-source=wiki/products/resume/common-baseline/career-draft.md", "--check"];
+  assert.equal(spawnSync(process.execPath, [...args, "--local-preview"], { cwd: root }).status, 0);
+  if (/approved: false/.test(before)) assert.notEqual(spawnSync(process.execPath, args, { cwd: root }).status, 0);
+  assert.equal(readFileSync(owner, "utf8"), before);
 });

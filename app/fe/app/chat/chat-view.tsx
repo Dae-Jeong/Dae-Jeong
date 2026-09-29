@@ -154,7 +154,7 @@ export function ChatView() {
               <Related
                 items={[
                   { label: "→ Resume 전체 보기", href: "/resume" },
-                  { label: "→ Portfolio · case 5건", href: "/portfolio" },
+                  { label: "→ 경력기술서 · 상세 경험", href: "/career" },
                 ]}
               />
             </AgentMsg>
@@ -175,7 +175,7 @@ export function ChatView() {
               <p>
                 더 깊은 배경과 트레이드오프는{" "}
                 <Link
-                  href="/portfolio/thready"
+                  href="/career#thready"
                   className="text-fg underline underline-offset-[3px]"
                 >
                   Portfolio의 Thready case
@@ -190,7 +190,7 @@ export function ChatView() {
                   "thready.qa-reopen-reduction",
                 ]}
               />
-              <Related items={[{ label: "→ Thready Rebuild · CASE", href: "/portfolio/thready" }]} />
+              <Related items={[{ label: "→ Thready · 경력기술서", href: "/career#thready" }]} />
             </AgentMsg>
           </main>
         )}
