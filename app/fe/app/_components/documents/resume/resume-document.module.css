@@ -1,0 +1,759 @@
+.pane {
+  min-width: 0;
+  min-height: 0;
+  display: none;
+  flex-direction: column;
+}
+.reader {
+  overflow: auto;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+  min-height: 0;
+  flex: 1;
+}
+.document {
+  max-width: 210mm;
+  margin: 0 auto;
+  padding: 40px 38px 64px;
+  background: white;
+  color: #111;
+  border: 1px solid #deded8;
+  overflow-wrap: anywhere;
+}
+.meta {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 12px;
+}
+.contacts {
+  justify-content: flex-start;
+}
+.section {
+  padding-top: 44px;
+}
+.sectionTitle {
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  border-bottom: 1px solid #111;
+  padding-bottom: 12px;
+  margin-bottom: 28px;
+}
+.entry + .entry {
+  border-top: 1px solid #eee;
+  padding-top: 20px;
+  margin-top: 20px;
+}
+.entryTitle {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.4;
+  margin: 0 0 10px;
+}
+.entryNumber {
+  position: absolute;
+  left: 0;
+  font:
+    400 12px/1.6 var(--font-plex-mono),
+    monospace;
+  color: #707070;
+  padding-top: 3px;
+}
+.section[data-kind="outcomes"] .entry {
+  position: relative;
+  padding-left: 56px;
+}
+.blocks {
+  display: grid;
+  gap: 10px;
+}
+.careerHeading {
+  margin: 24px 0 0;
+  padding-top: 16px;
+  border-top: 1px solid #ddd;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: #111;
+  text-wrap: balance;
+  break-after: avoid;
+}
+.careerSubheading {
+  margin: 12px 0 0;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: #333;
+  text-wrap: balance;
+  break-after: avoid;
+}
+.paragraph,
+.bullet {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.55;
+  color: #3a3a3a;
+}
+.bullet {
+  padding-left: 15px;
+  position: relative;
+}
+.bullet::before {
+  content: "";
+  position: absolute;
+  left: 1px;
+  top: 0.7em;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #707070;
+}
+.section[data-kind="career"] .entry {
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr);
+  gap: 16px;
+}
+.section[data-kind="career"] .entryTitle {
+  font-size: 14px;
+}
+.section[data-kind="career"] .paragraph,
+.section[data-kind="career"] .bullet {
+  font-size: 14px;
+}
+.skill {
+  display: grid;
+  grid-template-columns: 140px minmax(0, 1fr);
+  gap: 16px;
+  font-size: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid #eee;
+}
+.skillLabel {
+  font:
+    500 13px/1.55 var(--font-plex-mono),
+    var(--font-ko);
+}
+/* Credential row (구분 | 내용 | 시기): real columns, light horizontal rules only, no vertical lines. */
+.row {
+  display: grid;
+  grid-template-columns: 3.5em minmax(0, 1fr) max-content;
+  gap: 0 14px;
+  align-items: baseline;
+  padding: 8px 0;
+  border-bottom: 1px solid #e6e8ea;
+  font-size: 15px;
+  line-height: 1.6;
+}
+.rowLabel {
+  font-weight: 600;
+  color: #555;
+}
+.rowText {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.rowMeta {
+  text-align: right;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+  color: #666;
+}
+/* Gate 21: rows without a label or period reserve no column for it. */
+.row[data-row-columns="text-meta"] {
+  grid-template-columns: minmax(0, 1fr) max-content;
+}
+.row[data-row-columns="label-text"] {
+  grid-template-columns: 3.5em minmax(0, 1fr);
+}
+.row[data-row-columns="text"] {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+/* Single resume presentation (2026-09-29): every common, company and legacy-source resume uses this one style (the
+   former editorial V2, 2026-09-13). Company name left / period right, light project indent, selective emphasis.
+   Emphasis phrases, portrait and print composition come from document data, never from a template choice. */
+.pane.standalone {
+  display: block;
+  margin: 36px auto 80px;
+}
+.pane.standalone .document {
+  border: 0;
+}
+.pane[data-resume-document] {
+  display: block;
+  margin: 36px auto 80px;
+}
+.pane[data-resume-document] .document {
+  max-width: 794px;
+  padding: 48px 52px 56px;
+  border: 0;
+  color: #202020;
+}
+.pane[data-resume-document] .documentHeader {
+  border: 0;
+  border-bottom: 2px solid #202020;
+  padding-bottom: 22px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  column-gap: 24px;
+  align-items: start;
+}
+/* Header photo (2026-09-13): right column beside name/role/contacts, natural ratio (no crop); brand + intro stay full width below. */
+.pane[data-resume-document] .identity,
+.pane[data-resume-document] .meta {
+  grid-column: 1;
+}
+.pane[data-resume-document] .photo {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  width: 100px;
+  height: auto;
+  object-fit: contain;
+  border-radius: 3px;
+  margin: 4px 0 0;
+}
+.pane[data-resume-document] .summary {
+  grid-column: 1 / -1;
+}
+.pane[data-resume-document] .identity {
+  display: block;
+  text-align: left;
+}
+.pane[data-resume-document] .identity h1 {
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -1px;
+  margin: 0 0 7px;
+}
+.pane[data-resume-document] .identity p {
+  margin: 6px 0 0;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: #222;
+}
+.pane[data-resume-document] .meta {
+  display: block;
+  border: 0;
+  margin-top: 8px;
+  padding: 0;
+  text-align: left;
+}
+.pane[data-resume-document] .meta > p {
+  margin: 4px 0;
+  font: 400 11px/1.5 var(--font-ko);
+  color: #555;
+}
+.pane[data-resume-document] .contacts {
+  display: flex;
+  justify-content: flex-start;
+  gap: 0 15px;
+  margin-top: 6px;
+}
+.pane[data-resume-document] .contacts a {
+  border: 0;
+  background: none;
+  padding: 0;
+  min-height: 0;
+  font: 400 11px/1.6 var(--font-ko);
+  color: #555;
+  text-decoration: none;
+}
+.pane[data-resume-document] .contacts svg {
+  display: none;
+}
+.pane[data-resume-document] .summary {
+  display: block;
+  border: 0;
+  margin-top: 24px;
+  padding: 0;
+}
+.pane[data-resume-document] .summary p {
+  margin: 8px 0;
+  color: #202020;
+}
+/* Brand sentence (2026-09-13 user approval): one step under the name (36) and the company heading (27), above section titles (22). */
+.pane[data-resume-document] .summary p:first-of-type {
+  margin-top: 0;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -0.5px;
+  color: #20262d;
+}
+.pane[data-resume-document] .summary p:not(:first-of-type) {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.7;
+}
+.pane[data-resume-document] .section {
+  padding-top: 0;
+}
+.pane[data-resume-document] .sectionTitle {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -0.5px;
+  color: #20262d;
+  border: 0;
+  padding: 0;
+  margin: 34px 0 24px;
+}
+.pane[data-resume-document] .entry {
+  display: block;
+  padding-left: 0;
+}
+.pane[data-resume-document] .section[data-kind="career"] .entry {
+  position: relative;
+  border-top: 1px solid #969ca2;
+  padding-top: 20px;
+  margin: 0 0 26px;
+}
+.pane[data-resume-document] .section[data-kind="career"] .entry + .entry {
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid #969ca2;
+}
+.pane[data-resume-document]
+  .section[data-kind="career"]
+  .entry[data-continued] {
+  border-top: 0;
+  padding-top: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.pane[data-resume-document] .section[data-kind="career"] .entryTitle {
+  font-size: 27px;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.7px;
+  color: #20262d;
+  margin: 0 0 10px;
+  padding-right: 170px;
+  break-after: avoid;
+}
+.pane[data-resume-document] .titleSep {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+.pane[data-resume-document] .period {
+  position: absolute;
+  top: 24px;
+  right: 0;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: #666;
+  line-height: 1.65;
+  text-align: right;
+}
+.pane[data-resume-document] .blocks {
+  display: block;
+}
+.pane[data-resume-document] .paragraph,
+.pane[data-resume-document] .bullet {
+  font-size: 14px;
+  line-height: 1.75;
+  color: #34383d;
+}
+.pane[data-resume-document] .paragraph[data-presentation="role"] {
+  margin: 6px 0;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #555e68;
+}
+.pane[data-resume-document] .paragraph[data-presentation="metadata"] {
+  margin: 4px 0;
+  font-size: 11px;
+  line-height: 1.6;
+  color: #727981;
+}
+.pane[data-resume-document]
+  .section[data-kind="career"]
+  .paragraph:not([data-presentation]) {
+  margin: 10px 0 0;
+  font-size: 13px;
+  line-height: 1.7;
+}
+.pane[data-resume-document] .careerHeading {
+  border: 0;
+  padding: 0;
+  margin: 32px 0 13px 18px;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.45;
+  letter-spacing: -0.4px;
+  color: #20262d;
+}
+.pane[data-resume-document] .careerSubheading {
+  margin: 18px 0 8px 18px;
+}
+/* Service heading (2026-09-13): one step under the project h4 (18px) and above bullets (14px); stays with its bullet group. */
+.pane[data-resume-document]
+  .careerSubheading[data-presentation="service-heading"] {
+  margin: 14px 0 4px 18px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: -0.2px;
+  color: #20262d;
+  break-after: avoid;
+}
+.pane[data-resume-document]
+  .careerSubheading[data-presentation="service-heading"]
+  + .bullet {
+  margin-top: 6px;
+}
+/* Project stack line (2026-09-13): small grey line tucked under the project heading (h4 keeps 13px bottom margin → pulled up), clear gap before the bullets. */
+.pane[data-resume-document]
+  .section[data-kind="career"]
+  .paragraph[data-presentation="project-meta"] {
+  margin: -7px 0 12px 18px;
+  font-size: 11.5px;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: -0.1px;
+  color: #727981;
+  break-after: avoid;
+}
+.pane[data-resume-document] .section[data-kind="career"] .bullet {
+  margin: 9px 0 9px 18px;
+  padding-left: 16px;
+  break-inside: avoid;
+}
+/* Project description (2026-09-26): a plain paragraph after a project heading belongs to that project, so it starts on the same 18px line as the heading, stack line and bullets. Company-level paragraphs before the first heading stay flush. */
+.pane[data-resume-document]
+  .section[data-kind="career"]
+  :is(.careerHeading, .careerSubheading)
+  ~ .paragraph:not([data-presentation]) {
+  margin-left: 18px;
+}
+.pane[data-resume-document]
+  .section[data-kind="career"]
+  .entry[data-continued]
+  .careerHeading {
+  margin-top: 0;
+}
+.pane[data-resume-document] .bullet::before {
+  left: 3px;
+  top: 0.82em;
+  background: #969ca2;
+}
+.pane[data-resume-document] .section[data-kind="other"] .blocks {
+  margin-left: 18px;
+}
+.pane[data-resume-document]
+  .section[data-kind="other"]
+  :is(.paragraph, .bullet, .skill) {
+  margin: 10px 0;
+  font-size: 14px;
+  line-height: 1.75;
+  color: #34383d;
+}
+.pane[data-resume-document] .section[data-kind="other"] .bullet {
+  padding-left: 16px;
+}
+.pane[data-resume-document] .skill {
+  display: block;
+  padding: 0;
+  border: 0;
+}
+.pane[data-resume-document] .skillLabel {
+  font: 600 14px/1.75 var(--font-ko);
+  color: #20262d;
+  margin-right: 12px;
+}
+/* 기술 · 외부 활동 tables (2026-09-13): fixed label column so every description starts on the same line and wrapped lines stay in the description column. A long label wraps inside its own column. No tags/icons; copy unchanged. */
+.pane[data-resume-document]
+  section:is(
+    [data-title="기술"],
+    [data-title="외부 활동"],
+    [data-title="프로젝트·외부 활동"]
+  )
+  .skill {
+  display: grid;
+  grid-template-columns: var(--label-col, 8.5em) minmax(0, 1fr);
+  gap: 0 14px;
+  align-items: baseline;
+}
+.pane[data-resume-document]
+  section:is(
+    [data-title="기술"],
+    [data-title="외부 활동"],
+    [data-title="프로젝트·외부 활동"]
+  )
+  .skillLabel {
+  margin-right: 0;
+}
+.pane[data-resume-document]
+  section:is([data-title="외부 활동"], [data-title="프로젝트·외부 활동"]) {
+  --label-col: 13.5em;
+}
+.pane[data-resume-document] .section[data-kind="other"] .row {
+  margin: 0;
+  padding: 7px 0;
+  font-size: 14px;
+  line-height: 1.75;
+  color: #34383d;
+  border-bottom: 1px solid #e3e5e8;
+}
+.pane[data-resume-document] .section[data-kind="other"] .row:first-of-type {
+  border-top: 1px solid #e3e5e8;
+}
+.pane[data-resume-document] .rowLabel {
+  font-weight: 600;
+  color: #555e68;
+}
+.pane[data-resume-document] .rowMeta {
+  font-size: 13px;
+  color: #666;
+}
+.pane[data-resume-document] strong {
+  font-weight: 750;
+  color: #171c22;
+}
+/* Body emphasis (2026-09-13 final): bullets/paragraphs use 600 so a bold phrase sits under the 16px/700 service heading. Intro (header) strong keeps 750. */
+.pane[data-resume-document] .section :is(.bullet, .paragraph) strong {
+  font-weight: 600;
+  font-size: 14px;
+}
+.pane[data-resume-document] :is(.sectionTitle, .entryTitle, .careerHeading) {
+  text-wrap: balance;
+}
+.pane[data-resume-document] :is(.paragraph, .bullet, .summary p) {
+  text-wrap: pretty;
+}
+
+/* Print composition (formerly the separate `?paged=1` view): the same page renders the continuous article on screen
+   and an A4 page projection of it for print/PDF. The projection is laid out off screen at fixed A4 size so it can be
+   measured; it is inert, hidden from assistive technology and shown only in print. */
+.pages {
+  position: absolute;
+  left: -100000px;
+  top: 0;
+  width: 794px;
+  visibility: hidden;
+  pointer-events: none;
+  contain: layout paint;
+}
+.page {
+  width: 794px;
+  height: 1123px;
+  background: #fff;
+  margin: 0 auto 24px;
+  position: relative;
+  padding: 48px 52px;
+  box-shadow: 0 8px 32px #0000000b;
+  overflow: hidden;
+  color: #202020;
+}
+.flow {
+  height: 1014px;
+}
+.pageFooter {
+  position: absolute;
+  bottom: 22px;
+  left: 52px;
+  right: 52px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: #818581;
+  border-top: 1px solid #ddd;
+  padding-top: 10px;
+}
+.continued {
+  margin: 0 0 28px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #b9bdb9;
+  font-size: 15px;
+  font-weight: 700;
+  color: #555e68;
+}
+.overflow {
+  outline: 3px solid #d33;
+}
+.pane .pages .page .documentHeader {
+  margin: 0;
+}
+.pane .pages .flow > :first-child .sectionTitle {
+  margin-top: 0;
+}
+.pane .pages .flow > .continued + .section .entry {
+  margin-top: 0;
+}
+.pane .pages .section[data-kind="career"] .entry {
+  margin-bottom: 32px;
+}
+.pane .pages .section[data-kind="career"] .entry[data-continued] {
+  margin-bottom: 32px;
+}
+@media (max-width: 640px) {
+  .pane[data-resume-document] .document {
+    padding: 26px 20px 44px;
+  }
+  .pane[data-resume-document] .document .identity h1 {
+    font-size: 30px;
+  }
+  .pane[data-resume-document] .document .photo {
+    width: 80px;
+  }
+  .pane[data-resume-document] .document .documentHeader {
+    column-gap: 16px;
+  }
+  .pane[data-resume-document]
+    .document
+    .section[data-kind="career"]
+    .entryTitle {
+    font-size: 22px;
+    padding-right: 0;
+  }
+  .pane[data-resume-document] .document .period {
+    position: static;
+    display: block;
+    margin-top: 4px;
+    text-align: left;
+  }
+  .pane[data-resume-document] .document .careerHeading,
+  .pane[data-resume-document] .document .careerSubheading,
+  .pane[data-resume-document]
+    .document
+    .careerSubheading[data-presentation="service-heading"],
+  .pane[data-resume-document]
+    .document
+    .section[data-kind="career"]
+    .paragraph[data-presentation="project-meta"] {
+    margin-left: 0;
+  }
+  .pane[data-resume-document] .document .section[data-kind="career"] .bullet {
+    margin-left: 0;
+  }
+  .pane[data-resume-document]
+    .document
+    .section[data-kind="career"]
+    :is(.careerHeading, .careerSubheading)
+    ~ .paragraph:not([data-presentation]) {
+    margin-left: 0;
+  }
+  .pane[data-resume-document] .document .section[data-kind="other"] .blocks {
+    margin-left: 0;
+  }
+  .document .row {
+    grid-template-columns: 3.5em minmax(0, 1fr);
+    gap: 2px 12px;
+  }
+  .document .rowMeta {
+    grid-column: 2;
+    text-align: left;
+    white-space: normal;
+  }
+  .document .row[data-row-columns^="text"] {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .document .row[data-row-columns^="text"] .rowMeta {
+    grid-column: 1;
+  }
+  .pane[data-resume-document] .document section[data-title="기술"] .skill {
+    grid-template-columns: 6.5em minmax(0, 1fr);
+    gap: 0 10px;
+  }
+  .pane[data-resume-document] .document .summary p:first-of-type {
+    font-size: 20px;
+  }
+  /* Narrow screens: activity label above its description (label column would leave too little room). */
+  .pane[data-resume-document]
+    .document
+    section:is([data-title="외부 활동"], [data-title="프로젝트·외부 활동"])
+    .skill {
+    display: block;
+  }
+  .pane[data-resume-document]
+    .document
+    section:is([data-title="외부 활동"], [data-title="프로젝트·외부 활동"])
+    .skillLabel {
+    display: block;
+  }
+}
+@media print {
+  .pane[data-resume-document] .document {
+    padding: 0;
+  }
+  .pane[data-resume-document] .careerHeading {
+    break-after: avoid;
+  }
+  /* Once the projection is composed, print it instead of the continuous article. */
+  .pane .pages[data-paged-done] {
+    position: static;
+    left: auto;
+    width: auto;
+    visibility: visible;
+    contain: none;
+  }
+  .pane:has(.pages[data-paged-done]) > .document {
+    display: none;
+  }
+  .pane .pages .page {
+    margin: 0;
+    box-shadow: none;
+    break-after: page;
+  }
+  .pane .pages .page:last-child {
+    break-after: auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .reader {
+    scrollbar-gutter: auto;
+  }
+  .document {
+    padding: 26px 20px 44px;
+    border-left: 0;
+    border-right: 0;
+  }
+  .section[data-kind="outcomes"] .entry {
+    padding-left: 0;
+  }
+  .entryNumber {
+    display: none;
+  }
+  .section[data-kind="career"] .entry {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 4px;
+  }
+  .skill {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 5px;
+  }
+}
+@media print {
+  .pane.standalone {
+    display: block !important;
+    margin: 0;
+  }
+  .pane {
+    display: none !important;
+  }
+  .reader {
+    overflow: visible;
+  }
+  .document {
+    max-width: none;
+    border: 0;
+    padding: 0;
+  }
+  .document h2,
+  .document h3 {
+    break-after: avoid;
+  }
+  .document p {
+    orphans: 3;
+    widows: 3;
+  }
+}

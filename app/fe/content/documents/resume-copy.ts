@@ -11,7 +11,9 @@ export type CopyBlock = {
   presentation?: "role" | "metadata" | "heading" | "subheading" | "project-meta" | "service-heading";
 };
 export type CopyEntry = { title?: string; blocks: CopyBlock[] };
-export type CopySection = { title: string; entries: CopyEntry[] };
+/** kind: section meaning for styling. Omitted in exported JSON, where the renderer derives it from the title
+ *  (대표 성과 → outcomes, 경력 → career); adapters of other resume sources set it explicitly. */
+export type CopySection = { title: string; kind?: "outcomes" | "career" | "other"; entries: CopyEntry[] };
 export type ResumeCopy = {
   name: string;
   role: string;

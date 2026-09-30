@@ -117,6 +117,37 @@ def _iter_files(root: Path, directories: tuple[str, ...]):
                 yield path
 
 
+def _validate_manifest_layers(root: Path) -> list[str]:
+    """Gate 56: the manifest must describe the current physical wiki layers."""
+    wiki = root / WIKI
+    path = wiki / "context/manifest.yaml"
+    try:
+        manifest = yaml.safe_load(path.read_text(encoding="utf-8"))
+    except (OSError, yaml.YAMLError) as exc:
+        return [f"manifest layers: cannot read manifest: {exc}"]
+    if not isinstance(manifest, dict):
+        return ["manifest layers: manifest must be a mapping"]
+    external = manifest.get("external_knowledge")
+    declared = external.get("layers") if isinstance(external, dict) else None
+    if not isinstance(declared, list) or not all(isinstance(name, str) for name in declared):
+        return ["manifest layers: external_knowledge.layers must be a list of names"]
+    expected = set(LAYER_SENTINELS)
+    errors = []
+    if set(declared) != expected or len(declared) != len(expected):
+        errors.append("manifest layers: external_knowledge.layers must match the six validated wiki layers")
+    actual = {p.name for p in wiki.iterdir() if p.is_dir()}
+    if actual != expected:
+        errors.append(f"manifest layers: physical directories differ: missing={sorted(expected - actual)}, extra={sorted(actual - expected)}")
+    owners = manifest.get("layers")
+    if not isinstance(owners, dict):
+        errors.append("manifest layers: layers must be an ownership mapping")
+    else:
+        allowed = expected | {"app", "skills", "operations"}
+        if not expected.issubset(owners) or set(owners) - allowed:
+            errors.append("manifest layers: ownership must cover the six wiki layers; other owners are app, skills, and operations")
+    return errors
+
+
 def _validate_metadata(root: Path) -> list[str]:
     errors: list[str] = []
     for path in _iter_files(root, CONCEPT_DIRS):
@@ -512,8 +543,7 @@ def _validate_professional_document_claims(root: Path) -> list[str]:
 def _validate_portfolio_artifact_claims(root: Path) -> list[str]:
     artifacts = (
         root / "app" / "fe" / "lib" / "cases.ts",
-        root / "app" / "fe" / "app" / "portfolio" / "[case]" / "case-details.tsx",
-        root / "app" / "fe" / "app" / "portfolio" / "[case]" / "system-details.tsx",
+        # [case] detail components were retired with the portfolio screens (site-remove-extra-surfaces, 2026-09-30).
     )
     claims, _ = _load_claims(root)
     known = {str(claim.get("id")) for claim in claims}
@@ -895,9 +925,9 @@ def _validate_platform_fields(root: Path) -> list[str]:
 
 
 def _validate_resume_row_layout(root: Path) -> list[str]:
-    """Gate 21: exercise blank and populated metadata using the actual React component."""
+    """Gate 21: exercise blank and populated metadata using the actual React row of the single resume renderer."""
     frontend = root / "app/fe"
-    test = frontend / "scripts/numbered-row.test.mjs"
+    test = frontend / "scripts/resume-row.test.mjs"
     # A wiki-only checkout may not have frontend dependencies; copy verification installs/requires them.
     if not test.exists() or not (frontend / "node_modules/typescript").exists():
         return []
@@ -933,7 +963,8 @@ def validate(root: Path) -> list[str]:
     if missing:
         return missing
     return (
-        _validate_metadata(root)
+        _validate_manifest_layers(root)
+        + _validate_metadata(root)
         + _validate_paths(root)
         + _validate_claims(root)
         + _validate_links(root)

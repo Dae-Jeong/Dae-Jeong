@@ -9,9 +9,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/", priority: 1 },
     { path: "/resume", priority: 0.9 },
     { path: "/career", priority: 0.8 },
-    { path: "/blog", priority: 0.5 },
-    { path: "/labs", priority: 0.5 },
-    { path: "/chat", priority: 0.5 },
   ];
 
   return routes.map(({ path, priority }) => ({

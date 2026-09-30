@@ -58,3 +58,4 @@ next-env.d.ts
 crash.log
 kubeconfig
 *.kubeconfig
+.env*

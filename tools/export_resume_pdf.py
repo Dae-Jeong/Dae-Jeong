@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
-"""Local review revision → A4 PDF via the paged view (`?paged=1`).
+"""Resume page → A4 PDF via the print composition of the single resume renderer.
 
-Usage: uv run --project tools python tools/export_resume_pdf.py <url-with-paged=1> <output.pdf>
+The document page itself composes its A4 pages off screen (`[data-paged-done]`) and prints them; there is no
+separate view mode (2026-09-29).
+Usage: uv run --project tools python tools/export_resume_pdf.py <resume-url> <output.pdf>
 Reads the running dev server; does not restart it, does not publish anything.
 """
 import sys
@@ -19,7 +21,7 @@ def main() -> None:
         browser = p.chromium.launch()
         page = browser.new_page(viewport={"width": 1000, "height": 1400})
         page.goto(url, wait_until="networkidle")
-        page.wait_for_selector("[data-paged-done]", timeout=30_000)
+        page.wait_for_selector("[data-paged-done]", state="attached", timeout=30_000)
         count = page.get_attribute("[data-paged-done]", "data-paged-done")
         overflow = page.evaluate("document.querySelectorAll('[data-paged-root] > article').length")
         page.emulate_media(media="print")

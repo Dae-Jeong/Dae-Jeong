@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { JakeCv } from "./jake-cv";
+import { CvDocument } from "../_components/documents/cv/cv-document";
 
 export const metadata: Metadata = {
   title: "Daejeong Kim | CV",
@@ -13,5 +13,5 @@ export const metadata: Metadata = {
 };
 
 export default function CvPage() {
-  return <JakeCv />;
+  return <CvDocument />;
 }

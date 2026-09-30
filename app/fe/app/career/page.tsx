@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { CommonDocumentPage } from "../common/common-document";
+import { CareerDocument } from "../_components/documents/career/career-document";
 
 export const metadata: Metadata = {
   title: "경력기술서 — 김대정",
@@ -8,5 +8,5 @@ export const metadata: Metadata = {
 };
 
 export default function CareerPage() {
-  return <CommonDocumentPage kind="career" layout="a4-sheet" />;
+  return <CareerDocument kind="career" />;
 }

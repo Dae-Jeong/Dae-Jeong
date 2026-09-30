@@ -12,6 +12,8 @@ const args = process.argv.slice(2);
 const [source, outDir] = args;
 assert(source && outDir, "usage: build_revision_documents.mjs <content-draft.md> <out-dir> [--check] [--only=resume|career] [--common] [--career-source=<file>]");
 const check = args.includes("--check");
+// Application packages keep portfolio/CV in their Markdown owner; export only the two review documents.
+const application = args.includes("--application");
 // Common baseline owns independent Markdown; company submission revisions remain immutable.
 const common = args.includes("--common");
 const localPreview = args.includes("--local-preview");
@@ -40,10 +42,14 @@ if (common) {
   assert(only === "resume" || careerSource, "common career export requires --career-source; do not export the placeholder block");
 }
 
-const parts = markdown.split(/^<!-- document: (\w+) -->\r?\n/m);
+const parts = markdown.split(/^<!-- document: ([\w-]+) -->\r?\n/m);
 const bodies = {};
 for (let index = 1; index < parts.length; index += 2) bodies[parts[index]] = parts[index + 1];
-assert.deepEqual(Object.keys(bodies).sort(), ["career", "resume"], "expected exactly resume + career sections");
+if (application) {
+  assert(bodies.resume && bodies["career-description"], "application needs resume and career-description");
+  assert(Object.keys(bodies).every((key) => ["resume", "career-description", "portfolio", "cv"].includes(key)), "unknown application document");
+  bodies.career = bodies["career-description"];
+} else assert.deepEqual(Object.keys(bodies).sort(), ["career", "resume"], "expected exactly resume + career sections");
 
 // Resume reader — same output shape the classic renderer consumes (see companies/*/resume.json).
 function parseResume(text) {
@@ -67,6 +73,10 @@ function parseResume(text) {
     if (pres) { assert(["role", "metadata", "heading", "subheading", "project-meta", "service-heading"].includes(pres[1])); presentation = pres[1]; continue; } // project-meta: one grey stack line under a project heading (R3, 2026-09-13)
     if (line.startsWith("## ")) { section = { title: line.slice(3), entries: [] }; sections.push(section); entry = { blocks: [] }; section.entries.push(entry); claims = []; continue; }
     if (line.startsWith("### ")) { entry = { title: line.slice(4), blocks: [] }; section.entries.push(entry); claims = []; continue; }
+    if (application && /^#{4,5} /.test(line)) {
+      entry.blocks.push({ kind: "paragraph", text: line.replace(/^#{4,5} /, ""), claims: [], presentation: line.startsWith("#####") ? "subheading" : "heading" });
+      claims = []; continue;
+    }
     if (line.startsWith("|")) {
       const cells = line.split("|").slice(1, -1).map((cell) => cell.trim());
       if (cells.every((cell) => /^-+$/.test(cell))) continue;

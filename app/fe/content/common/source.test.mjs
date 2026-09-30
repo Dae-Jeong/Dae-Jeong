@@ -115,7 +115,7 @@ test("the common resume and CV retain concrete STUDIO LAB PM contributions", () 
 });
 
 test("Jake attribution stays in the source and license, outside the CV presentation", () => {
-  const view = readFileSync(new URL("../../app/cv/jake-cv.tsx", import.meta.url), "utf8");
+  const view = readFileSync(new URL("../../app/_components/documents/cv/cv-document.tsx", import.meta.url), "utf8");
   const license = readFileSync(new URL("../../../../tools/templates/jake-cv/LICENSE", import.meta.url), "utf8");
   assert(!view.includes("Layout adapted from") && !view.includes("styles.templateNote"));
   assert(view.includes("tools/templates/jake-cv/"));

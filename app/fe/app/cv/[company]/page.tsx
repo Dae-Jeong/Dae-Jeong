@@ -1,27 +1,13 @@
-import type { Metadata } from "next";
-import { notFound, redirect } from "next/navigation";
-import { canViewDocument, getCv } from "@/content/documents";
-import { CvView } from "../../documents/professional-document";
-import { ResumePageShell } from "../../resume/resume-page-shell";
+import { resolveCompanyRequest } from "@/features/company-documents/urls";
+import { notFound, permanentRedirect } from "next/navigation";
 
-type PageProps = {
-  params: Promise<{ company: string }>;
-};
+type PageProps = { params: Promise<{ company: string }> };
 
-export const metadata: Metadata = {
-  title: "CV — 김대정",
-  robots: { index: false, follow: false, noarchive: true, nosnippet: true },
-};
-
-export default async function TailoredCvPage({ params }: PageProps) {
+/** Former /cv/{company} address (with or without ?revision=): normalised to the same company's representative
+ *  /{company}/cv URL without the query. /cv/common is the common document. Unknown companies are not redirected. */
+export default async function FormerCvPage({ params }: PageProps) {
   const { company } = await params;
-  if (company === "common") redirect("/cv");
-  const document = getCv(company);
-  if (!document || !canViewDocument(document)) notFound();
-
-  return (
-    <ResumePageShell crumb={<>CV / {document.companyName}</>} tag="DRAFT · LOCAL">
-      <CvView document={document} />
-    </ResumePageShell>
-  );
+  const resolved = resolveCompanyRequest(company, "cv", false, true);
+  if (!resolved) notFound();
+  permanentRedirect(resolved.href!);
 }

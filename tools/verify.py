@@ -29,7 +29,34 @@ APP = ROOT / "app" / "fe"
 RUNS = ROOT / "output" / "harness" / "runs"
 SURFACES = ROOT / "wiki" / "products" / "site" / "copy-surfaces.yaml"
 REGISTRY = ROOT / "wiki" / "products" / "resume" / "application-registry.yaml"
-COMMON_ROUTES = ["/resume", "/career", "/cv/common"]
+COMMON_ROUTES = ["/resume", "/career", "/cv"]
+PROTECTED_ROUTES = ["/admin", "/admin/map", "/api/admin/data/x"]
+# Surfaces retired by site-remove-extra-surfaces (2026-09-30): they must answer 404. Registry records keep their old
+# portfolio routes as submission facts; those routes are checked here instead of as active 200 routes.
+RETIRED_PORTFOLIO_SLUGS = ["miridih", "jyp", "jyp-v2", "featuring", "hypernova", "pinokiolab", "whatssub", "mgrv", "teamreboot", "design-lab", "toss-place"]
+# The platform comparison screen was removed by site-remove-platform-comparison (2026-09-30): its route and old
+# aliases answer 404 with no redirect.
+RETIRED_ROUTES = ["/blog", "/labs", "/chat", "/design", "/portfolio/role/backend",
+                  "/admin/platforms", "/_platforms", "/%5Fplatforms",
+                  *[f"/portfolio/{slug}" for slug in RETIRED_PORTFOLIO_SLUGS]]
+# Compatibility redirects: requested path -> exact expected Location (path, query and fragment), checked without following.
+REDIRECT_ROUTES = {
+    "/portfolio": "/career",
+    "/portfolio/thready": "/career#thready",
+    "/resume/sagak?revision=20260921-R1": "/sagak/resume",
+    "/sagak/resume?revision=x": "/sagak/resume",
+    "/career/common": "/career",
+    "/cv/common": "/cv",
+    "/dashboard": "/admin",
+    "/applications": "/admin",
+    "/_map": "/admin/map",
+    "/%5Fmap": "/admin/map",
+}
+
+
+def is_retired_route(route: str) -> bool:
+    path = route.split("?")[0]
+    return path in RETIRED_ROUTES or path.startswith("/portfolio/role/")
 
 
 def changed_files() -> list[str]:
@@ -74,10 +101,14 @@ def active_routes() -> list[str]:
     statuses = set(active.get("statuses") or [])
     excluded = set(active.get("exclude_artifact_states") or [])
     routes = list(COMMON_ROUTES)
-    routes.append("/_map")
-    for path in sorted((APP / "content/documents/companies").glob("*/*.json")):
+    # One representative URL per company and kind (/{company}/{kind}); revision queries are not routes.
+    for path in sorted((APP / "content/documents/companies").glob("**/*.json")):
         document = json.loads(path.read_text(encoding="utf-8"))
-        routes.append(f"/{document['document']}/{document['slug']}?revision={document['revision']}")
+        if not isinstance(document, dict) or document.get("document") not in ("resume", "career"):
+            continue
+        route = f"/{document['slug']}/{document['document']}"
+        if route not in routes:
+            routes.append(route)
     # per_company 표면: route template → path template. 표면 파일이 없는 route(typed content 전)는 검사하지 않는다.
     templates = [(str(s["route"]), str(s["path"])) for s in (cfg.get("surfaces") or []) if s.get("per_company") and s.get("route")]
     def has_surface(route: str) -> bool:
@@ -97,6 +128,11 @@ def active_routes() -> list[str]:
             continue
         for artifact in (attempt.get("artifacts") or {}).values():
             route = artifact.get("route") if isinstance(artifact, dict) else None
+            if isinstance(route, str) and is_retired_route(route):
+                # Submitted retired portfolio URL: kept as a registry fact and verified to answer 404, not 200.
+                if route not in RETIRED_ROUTES:
+                    RETIRED_ROUTES.append(route)
+                continue
             if isinstance(route, str) and route not in routes and has_surface(route):
                 routes.append(route)
     return routes
@@ -118,12 +154,38 @@ def check_routes(port: int) -> dict:
             results[route] = exc.code
         except (urllib.error.URLError, OSError):
             results[route] = 0
-    bad = {r: c for r, c in results.items() if c != 200}
+    # Admin surfaces must answer 404 without an admin session (site-admin-auth).
+    for route in [*PROTECTED_ROUTES, *RETIRED_ROUTES]:
+        try:
+            with urllib.request.urlopen(base + route, timeout=60) as resp:
+                results[route] = resp.status
+        except urllib.error.HTTPError as exc:
+            results[route] = exc.code
+        except (urllib.error.URLError, OSError):
+            results[route] = 0
+    class _NoRedirect(urllib.request.HTTPRedirectHandler):
+        def redirect_request(self, *args, **kwargs):
+            return None
+    opener = urllib.request.build_opener(_NoRedirect)
+    redirect_bad = {}
+    for route, target in REDIRECT_ROUTES.items():
+        try:
+            opener.open(base + route, timeout=60)
+            redirect_bad[route] = "no redirect"
+        except urllib.error.HTTPError as exc:
+            location = (exc.headers.get("Location") or "").replace(base, "")
+            if exc.code not in (301, 302, 303, 307, 308) or location != target:
+                redirect_bad[route] = f"{exc.code} {location}"
+        except (urllib.error.URLError, OSError) as exc:
+            redirect_bad[route] = str(exc)
+    expect_404 = set(PROTECTED_ROUTES) | set(RETIRED_ROUTES)
+    bad = {r: c for r, c in results.items() if c != (404 if r in expect_404 else 200)}
+    bad.update(redirect_bad)
     return {
         "name": "routes",
         "status": "PASS" if not bad else "FAIL",
         "count": len(bad),
-        "tail": [f"{r} {c}" for r, c in bad.items()] or [f"{len(results)} routes 200"],
+        "tail": [f"{r} {c}" for r, c in bad.items()] or [f"{len(results) - len(PROTECTED_ROUTES) - len(RETIRED_ROUTES)} routes 200, {len(PROTECTED_ROUTES)} admin routes 404 without session, {len(RETIRED_ROUTES)} retired routes 404, {len(REDIRECT_ROUTES)} redirects"],
         "duration_s": round(time.time() - started, 1),
         "routes": results,
     }

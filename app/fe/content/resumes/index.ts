@@ -27,21 +27,6 @@ export function getTailoredResume(slug: string) {
   return TAILORED_RESUMES[slug];
 }
 
-export function canViewTailoredResume(resume: TailoredResume) {
-  if (process.env.NODE_ENV !== "production") return true;
-  return resume.visibility === "public";
-}
-
-export function listRoleResumes() {
-  return ROLE_RESUMES.map((resume) => ({
-    slug: resume.slug,
-    label: resume.roleVariant?.label ?? resume.position,
-    shortLabel: resume.roleVariant?.shortLabel ?? resume.position,
-    description: resume.roleVariant?.description ?? "",
-    signals: resume.roleVariant?.signals ?? [],
-  }));
-}
-
 export function listTailoredResumes() {
   return Object.values(TAILORED_RESUMES).map((resume) => ({
     slug: resume.slug,

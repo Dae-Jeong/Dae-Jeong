@@ -1,7 +1,6 @@
 import Link from "next/link";
-import { AskLauncher } from "@/components/site/ask-launcher";
 import { Container } from "@/components/site/container";
-import { SiteFooter } from "@/components/site/site-footer";
+import { SiteFooter } from "@/app/_components/site-footer";
 import { TopBar } from "@/components/site/topbar";
 import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/ui/reveal";
@@ -32,16 +31,15 @@ const DOCUMENTS = [
     name: "Resume",
     localName: "이력서",
     href: "/resume",
-    review: false,
   },
   {
     no: "02",
     name: "Career Description",
     localName: "경력기술서",
     href: "/career",
-    review: false,
   },
-  { no: "03", name: "CV", localName: "", href: "/cv", review: true },
+  // CV is part of the approved visitor IA (menu, footer); its search noindex stays on the /cv page itself.
+  { no: "03", name: "CV", localName: "", href: "/cv" },
 ] as const;
 
 const HOME_CASES = [
@@ -50,9 +48,7 @@ const HOME_CASES = [
 ];
 
 export default function Home() {
-  const visibleDocuments = DOCUMENTS.filter(
-    (document) => !document.review || process.env.NODE_ENV !== "production",
-  );
+  const visibleDocuments = DOCUMENTS;
 
   return (
     <>
@@ -223,7 +219,6 @@ export default function Home() {
       </main>
 
       <SiteFooter />
-      <AskLauncher />
     </>
   );
 }

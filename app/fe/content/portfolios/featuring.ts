@@ -1,5 +1,5 @@
 import type { RolePortfolio } from "./types";
-import type { DesignDiagramKey } from "@/app/portfolio/diagrams/design-diagrams";
+import type { DesignDiagramKey } from "./types";
 
 export type FeaturingCaseDetail = {
   slug: "thready" | "thready-rebuild" | "centurion-platform" | "be-template";

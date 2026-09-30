@@ -1,5 +1,5 @@
 /* size: 지면별 계약 변형. 12차(2026-08-13)에서 doc도 2xl로 통일돼 현재는 동일값 —
-   향후 분기 대비로 prop만 유지한다. app/design 승격본이 소유. */
+   향후 분기 대비로 prop만 유지한다. */
 export function SectionHead({
   no,
   title,

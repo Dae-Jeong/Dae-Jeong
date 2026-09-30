@@ -30,7 +30,7 @@ PM 조율·직무 간 인계는 [오케스트레이션 연결](wiki/context/orch
 | `app/` (fe→Vercel) | marinkim.xyz 제품 코드와 현재 공개 표현 | canonical fact·evidence |
 | `.agents/skills/` | executable workflows (`.claude/skills`는 이 폴더의 symlink) | duplicated canonical policy |
 
-미구현 backend·실험 서비스·인프라 구성은 현재 실행 폴더가 아니다. 향후 구상은 `wiki/backlog/`에서 확인한다. 기존 `app/fe/app/labs`는 홈페이지 기능으로 유지한다.
+미구현 backend·실험 서비스·인프라 구성은 현재 실행 폴더가 아니다. 향후 구상은 `wiki/backlog/`에서 확인한다. Blog·Labs·Chat·Design 화면은 승인 IA에 따라 제거했다(2026-09-30).
 
 ## 작성 원칙
 

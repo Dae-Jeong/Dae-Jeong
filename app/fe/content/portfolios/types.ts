@@ -1,6 +1,27 @@
 import type { RoleVariantSlug } from "@/content/role-catalog";
 import type { DossierCaseSlug, SupportingCaseSlug } from "@/lib/cases";
-import type { DesignDiagramKey } from "@/app/portfolio/diagrams/design-diagrams";
+
+/** Diagram ids referenced by stored portfolio records (the retired portfolio renderer drew them; kept for the records). */
+export type DesignDiagramKey =
+  | "outbox-delivery"
+  | "bay-worker"
+  | "transaction-template"
+  | "tenant-boundary"
+  | "azure-topology"
+  | "thready-ax-pipeline"
+  | "thready-ax-roles"
+  | "mediness-work-division"
+  | "thready-agent"
+  | "say-overlap-sessions"
+  | "sequence-fence"
+  | "split-migration"
+  | "idempotent-importer"
+  | "quality-layers"
+  | "rebuild-decision"
+  | "rebuild-contract"
+  | "stripe-prepayment"
+  | "agent-prototype";
+
 
 export type RolePortfolioCaseSelection =
   | {

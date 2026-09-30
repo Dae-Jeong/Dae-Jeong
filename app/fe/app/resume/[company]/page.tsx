@@ -1,82 +1,13 @@
-import type { Metadata } from "next";
-import { notFound, redirect } from "next/navigation";
-import { ApplicationVersionNav } from "@/components/site/application-version-nav";
-import {
-  canViewTailoredResume,
-  getTailoredResume,
-  listRoleResumes,
-} from "@/content/resumes";
-import { ResumePageShell } from "../resume-page-shell";
-import { TailoredResumeView } from "../tailored-resume-view";
-import { CompanyDocumentPage, LocalRevisionLinks, type DocumentSearch } from "../../documents/company-document";
-import { publicRevisionFor } from "@/content/documents/companies";
+import { resolveCompanyRequest } from "@/features/company-documents/urls";
+import { notFound, permanentRedirect } from "next/navigation";
 
-type PageProps = {
-  params: Promise<{ company: string }>;
-  searchParams: DocumentSearch;
-};
+type PageProps = { params: Promise<{ company: string }> };
 
-export async function generateMetadata({ params, searchParams }: PageProps): Promise<Metadata> {
+/** Former /resume/{company} address (with or without ?revision=): normalised to the same company's representative
+ *  /{company}/resume URL without the query. /resume/common is the common document. Unknown companies are not redirected. */
+export default async function FormerResumePage({ params }: PageProps) {
   const { company } = await params;
-  const requestedRevision = (await searchParams).revision;
-  const published = requestedRevision
-    ? publicRevisionFor(company, "resume")?.revision === requestedRevision
-    : publicRevisionFor(company, "resume")?.revision;
-  if (requestedRevision || published || company === "toss-place") return {
-    title: `${company} 이력서${published ? "" : " 초안"} — 김대정`,
-    robots: { index: false, follow: false, noarchive: true, nosnippet: true },
-  };
-  if (company === "jyp-v2") redirect("/resume/jyp");
-  const resume = getTailoredResume(company);
-
-  if (!resume || !canViewTailoredResume(resume)) {
-    return { title: "Resume — 김대정" };
-  }
-
-  const target = resume.roleVariant?.label ?? `${resume.companyName} ${resume.position}`;
-
-  return {
-    title: `${target} Resume — 김대정`,
-    description: resume.roleVariant?.description ?? `김대정 이력서 · ${target}`,
-    robots: {
-      index: false,
-      follow: false,
-      noarchive: true,
-      nosnippet: true,
-    },
-  };
-}
-export default async function CompanyResumePage({ params, searchParams }: PageProps) {
-  const { company } = await params;
-  const { revision, paged } = await searchParams;
-  const publicDocument = publicRevisionFor(company, "resume");
-  if (revision || publicDocument || company === "toss-place") return <CompanyDocumentPage company={company} kind="resume" revision={revision ?? publicDocument?.revision ?? "20260910-R1"} paged={paged === "1"} />;
-  if (company === "jyp-v2") redirect("/resume/jyp");
-  const resume = getTailoredResume(company);
-
-  if (!resume || !canViewTailoredResume(resume)) notFound();
-
-  const roleOptions = resume.roleVariant ? listRoleResumes() : undefined;
-  const crumbLabel = resume.roleVariant?.shortLabel ?? resume.companyName;
-
-  return (
-    <ResumePageShell
-      crumb={
-        <>
-          Resume / {crumbLabel}
-        </>
-      }
-      tag={
-        resume.status === "draft"
-          ? "DRAFT"
-          : resume.status === "closed"
-            ? "CLOSED"
-            : undefined
-      }
-    >
-      {company === "jyp" ? <ApplicationVersionNav slug="jyp-v2" label="JYP · 이력서 v1" active="resume" /> : null}
-      <LocalRevisionLinks company={company} kind="resume" />
-      <TailoredResumeView resume={resume} roleOptions={roleOptions} />
-    </ResumePageShell>
-  );
+  const resolved = resolveCompanyRequest(company, "resume", false, true);
+  if (!resolved) notFound();
+  permanentRedirect(resolved.href!);
 }

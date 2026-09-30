@@ -95,11 +95,10 @@ for (const route of [...new Set([...selection.routes, "/portfolio/thready"])]) {
   selectionRecords.push(route);
   console.log(`PASS rendered copy selection ${route}`);
 }
-// Hypernova is frozen and consumes the preserved diagram/case branch.
-orca("goto", "--url", base + "/portfolio/hypernova");
-const frozen = evaluate("document.body.innerText");
-assert(frozen.includes("37% → 11%") && frozen.includes("94%"), "Frozen Hypernova copy changed");
-orca("goto", "--url", `${base}/_map`);
+// The Hypernova portfolio screen was retired (2026-09-30); its frozen submission copy stays in the stored record.
+const frozen = readFileSync(new URL("../../content/portfolios/hypernova.ts", import.meta.url), "utf8");
+assert(frozen.includes("37%") && frozen.includes("94%"), "Frozen Hypernova record changed");
+orca("goto", "--url", `${base}/admin/map`);
 const links = evaluate("[...document.querySelectorAll('main a')].map(a => a.getAttribute('href'))");
 for (const route of ["/resume", "/career", "/cv"]) assert(links.includes(route), route);
 writeFileSync(path.join(output, process.argv.includes("--copy-only") ? "copy-selection.json" : "checks.json"), JSON.stringify({ checkedAt: new Date().toISOString(), result: "PASS", records, selectionRecords, frozenHypernova: "preserved" }, null, 2));

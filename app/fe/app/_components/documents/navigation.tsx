@@ -1,0 +1,41 @@
+import { ROUTES } from "@/lib/routes";
+import Link from "next/link";
+import styles from "./career/career.module.css";
+
+export const COMMON_LINKS = [
+  {
+    href: ROUTES.resume,
+    label: "이력서",
+    detail: "Maker · 회사별 프로젝트와 성과",
+  },
+  {
+    href: ROUTES.career,
+    label: "경력기술서",
+    detail: "프로젝트별 역할 · 판단 · 구현 · 검증",
+  },
+  {
+    href: ROUTES.cv,
+    label: "CV",
+    detail: "영문 · Jake’s Resume · 전체 경력 및 활동",
+  },
+] as const;
+
+export function CommonNav({ active }: { active?: string }) {
+  if (process.env.NODE_ENV === "production") return null;
+  return (
+    <nav className={styles.nav} aria-label="공용 지원 문서">
+      <Link href={ROUTES.admin.map} className={styles.navHome}>
+        문서 지도
+      </Link>
+      {COMMON_LINKS.map((link) => (
+        <Link
+          key={link.href}
+          href={link.href}
+          aria-current={active === link.href ? "page" : undefined}
+        >
+          {link.label}
+        </Link>
+      ))}
+    </nav>
+  );
+}

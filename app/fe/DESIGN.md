@@ -130,8 +130,10 @@ UI 변경은 코드와 CSS 수치만 보고 완료하지 않는다.
 ## Implementation Owners
 
 - Global color·type·motion token: `app/globals.css`
-- Resume expression: `app/resume/`
-- Career Description·CV: `app/documents/`
-- Portfolio expression: `app/portfolio/`
-- Shared site shell: `components/site/`
+- Document routes: `app/resume/`, `app/career/`, `app/cv/`, `app/[company]/`
+- Single document renderers and print CSS: `app/_components/documents/{resume,career,cv}/`
+- Portfolio compatibility redirects: `app/portfolio/`
+- Domain-aware site shell/admin UI: `app/_components/`
+- Domain logic and server loaders: `features/`
+- Domain-independent site UI: `components/site/`
 - Content facts and claim strength: `wiki/profile/`, `wiki/evidence/`

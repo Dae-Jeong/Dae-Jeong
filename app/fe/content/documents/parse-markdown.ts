@@ -4,7 +4,7 @@ export type TextBlock = { kind: "paragraph" | "bullet"; text: string; claims: st
 export type TableBlock = { kind: "table"; columns: string[]; rows: string[][]; claims: string[] };
 /** Lightweight flow diagram (career draft `mermaid flowchart` converted at export time): nodes + directed edges, laid out by the renderer. */
 export type FlowBlock = { kind: "flow"; direction: "LR" | "TD"; nodes: { id: string; label: string }[]; edges: { from: string; to: string }[]; claims: string[] };
-/** Career-only static figure drawn by a React component (see app/common/career-figures.tsx); the id is the only content. */
+/** Career-only static figure drawn by a React component (see app/_components/documents/career/figures.tsx); the id is the only content. */
 export type FigureBlock = {
   kind: "figure";
   id:
@@ -23,7 +23,8 @@ export type FigureBlock = {
 export type ImageBlock = { kind: "image"; src: string; alt: string; title: string; caption: string; width: number; height: number; claims: string[] };
 export type ContentBlock = TextBlock | TableBlock | FlowBlock | FigureBlock | ImageBlock;
 export type CaseVisual = { label: string; steps: { title: string; detail: string; incoming?: string }[]; caption: string; claims: string[] };
-export type ContentSection = { emphasis?: "supporting"; visual?: CaseVisual; visuals?: CaseVisual[]; title: string; period?: string; level: number; blocks: ContentBlock[]; children: ContentSection[] };
+/** anchor: stable element id for sections adapted from typed sources (project ids); exported JSON derives ids instead. */
+export type ContentSection = { anchor?: string; emphasis?: "supporting"; visual?: CaseVisual; visuals?: CaseVisual[]; title: string; period?: string; level: number; blocks: ContentBlock[]; children: ContentSection[] };
 export type ContentDocument = { title: string; header: ContentBlock[]; sections: ContentSection[] };
 
 export function parseReview(markdown: string): ContentDocument {
@@ -59,7 +60,7 @@ export function parseReview(markdown: string): ContentDocument {
     if (annotation) {
       const [, key, value] = annotation;
       if (key === "presentation") {
-        if (value !== "role" && value !== "metadata") throw new Error("Invalid presentation");
+        if (value !== "role" && value !== "metadata" && value !== "label") throw new Error("Invalid presentation");
         presentation = value;
       } else {
         const section = stack.at(-1);

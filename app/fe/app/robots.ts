@@ -1,13 +1,13 @@
 import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/site";
 
-/* /design은 토큰·컴포넌트 living specimen이다 — 내부 계약 문서라 색인하지 않는다 */
+/* Visitor pages are indexable; admin surfaces answer 404 without a session and company documents opt out per page. */
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
       userAgent: "*",
       allow: "/",
-      disallow: "/design",
+      disallow: ["/admin", "/api/admin"],
     },
     sitemap: `${SITE_URL}/sitemap.xml`,
     host: SITE_URL,

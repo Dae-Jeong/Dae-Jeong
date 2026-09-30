@@ -23,7 +23,15 @@
     {
       "title": "Experience",
       "level": 2,
-      "blocks": [],
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "Working language: Korean",
+          "claims": [
+            "career.korean-working-language"
+          ]
+        }
+      ],
       "children": [
         {
           "title": "MediSolve AI",
@@ -40,24 +48,34 @@
             },
             {
               "kind": "bullet",
-              "text": "Proposed Thready and led its development, launch, and operation as a paid subscription product with teammates in product planning, QA, and marketing. It helps creators already active on Instagram, YouTube, or blogs establish a presence on Threads despite limited time and unfamiliar platform conventions.",
+              "text": "Proposed Thready and led product design, development, launch, and operation, working with planning, QA, and marketing teammates to build a paid AI content service for creators expanding to Threads.",
               "claims": [
                 "thready.product-zero-to-one-contribution",
+                "thready.product-design-development-lead",
                 "thready.creator-adoption-context"
               ]
             },
             {
               "kind": "bullet",
-              "text": "Built and operated the product backend and AI generation and evaluation systems; implemented core user and admin workflows with coding agents.",
+              "text": "Built the backend, AI generation and evaluation systems, and core user and admin workflows. Used human-rated examples to guide generation and recorded LLM evaluation history for review.",
               "claims": [
                 "thready.backend-rebuild",
                 "thready.generation-quality-system",
-                "thready.frontend-product-delivery"
+                "thready.frontend-product-delivery",
+                "thready.example-rag-generation"
               ]
             },
             {
               "kind": "bullet",
-              "text": "Separated product policy and records from AI execution in an independent service and database. Implemented a transactional outbox with leases, attempt tokens, retries, and version checks to control stale workers and duplicate or out-of-order delivery.",
+              "text": "Moved generation to background processing after observing users prepare content in advance. Built an agent prototype exposing existing APIs through MCP and began customer A/B testing of conversational workflows.",
+              "claims": [
+                "thready.usage-driven-generation-flow",
+                "thready.usage-driven-mcp-agent-experiment"
+              ]
+            },
+            {
+              "kind": "bullet",
+              "text": "Separated AI execution into its own service and database, retaining product records in the main backend. Used a transactional outbox, retries, and version checks to protect newer state from duplicate or out-of-order delivery.",
               "claims": [
                 "thready.ai-service-boundary",
                 "thready.ai-replica-outbox"
@@ -65,7 +83,7 @@
             },
             {
               "kind": "bullet",
-              "text": "Implemented scheduled draft generation and approval notifications, transactional approval commands, and publishing recovery that distinguishes pre-call failures from uncertain external results.",
+              "text": "Implemented scheduled drafts, approval notifications, and transactional approval commands. Designed recovery to distinguish pre-call failures from unknown external outcomes and resume the existing publishing attempt.",
               "claims": [
                 "thready.auto-generation-approval-flow",
                 "thready.approval-command-consistency",
@@ -74,41 +92,43 @@
             },
             {
               "kind": "bullet",
-              "text": "Led order and inventory backend development and a Redis-based SSO session redesign for a dermatology operations product suite. Co-led real-time AI consultation backend development and implemented reservation policies and operational integrations.",
+              "text": "Led planning, design, and development of a medical knowledge base used in internal consultations. Connected terminology curated by clinic operations teams to help correct medical terms in speech-to-text and translation.",
+              "claims": [
+                "procedure-hub.product-design-development-lead",
+                "procedure-hub.knowledge-base-operational-use",
+                "procedure-hub.shared-terminology-correction",
+                "procedure-hub.consultation-knowledge-base-role"
+              ]
+            },
+            {
+              "kind": "bullet",
+              "text": "Led inventory and ordering backends, Redis-based SSO session redesign, and multi-clinic reservation APIs and policies. Co-led the real-time AI consultation backend and implemented operational integrations.",
               "claims": [
                 "centurion.bay-async-backend",
                 "centurion.sso-session",
                 "centurion.say-realtime-ai",
                 "centurion.day-product-integration",
-                "centurion.ray-backend"
-              ]
-            },
-            {
-              "kind": "bullet",
-              "text": "Led backend architecture and website and admin API development for multi-clinic operations and reservations.",
-              "claims": [
+                "centurion.ray-backend",
                 "nexus.backend-architecture",
                 "nexus.admin-backend-ownership"
               ]
             },
             {
               "kind": "bullet",
-              "text": "Implemented APIs, review workflows, and publication controls for a procedure-information knowledge service; preparing clinical evaluation materials and search-data release approval.",
+              "text": "Owned operations of the company’s Azure infrastructure, managed with Terraform. Consolidated service instances, contributing to an approximately 30–40% reduction in monthly server costs.",
               "claims": [
-                "procedure-hub.hybrid-retrieval-design",
-                "procedure-hub.canonical-data-platform",
-                "procedure-hub.retrieval-evaluation-gate"
+                "infra.company-infrastructure-owner",
+                "infra.instance-consolidation-cost-reduction"
               ]
             },
             {
               "kind": "bullet",
-              "text": "Built the organization’s standard backend template, enabling teammates across disciplines to implement features with coding agents. Led product planning, issue tracking, and releases; contributed to the design of AI-assisted company workflows and handled service deployment and routine cloud operations.",
+              "text": "Built a standard FastAPI template to help planning, QA, and design teammates implement features with coding agents. Led product planning, issue tracking, and releases, and helped design AI-assisted company workflows.",
               "claims": [
                 "be-template.backend-standard",
                 "be-template.team-leverage",
                 "mediness.product-operations",
-                "mediness.company-work-ax-design",
-                "infra.company-azure-ownership"
+                "mediness.company-work-ax-design"
               ]
             }
           ],
@@ -144,14 +164,14 @@
           "blocks": [
             {
               "kind": "paragraph",
-              "text": "Backend Engineer | Intern to full-time; company closed",
+              "text": "Backend Engineer | Intern, then full-time; company later closed",
               "claims": [
                 "career.memento-fastapi-backend"
               ]
             },
             {
               "kind": "bullet",
-              "text": "Built reservation and payment APIs, including payment authorization and capture, cancellation and refunds after reservation failures, and refund-triggered loyalty-point restoration and pass removal.",
+              "text": "Led the manual-capture prepayment integration and added cancellation/refund handling for failed reservations. Moved loyalty-point restoration and pass removal to refund completion.",
               "claims": [
                 "career.memento-fastapi-backend",
                 "career.memento-stripe-prepayment",
@@ -160,7 +180,7 @@
             },
             {
               "kind": "bullet",
-              "text": "Implemented immediate and scheduled multilingual follow-up surveys through messaging and email, with cancellation, rescheduling, and delivery history.",
+              "text": "Added immediate and scheduled message/email delivery to an existing multilingual follow-up survey flow, with cancellation, rescheduling, and delivery history.",
               "claims": [
                 "career.memento-happycall-survey"
               ]
@@ -203,7 +223,7 @@
             },
             {
               "kind": "bullet",
-              "text": "Redesigned the product-page creation workflow and contributed to the related patent, METHOD FOR DISPLAYING PAGE.",
+              "text": "Redesigned the product-page creation workflow, defined product-data criteria with fashion specialists, and designed the page-layout algorithm, contributing as a co-inventor of METHOD FOR DISPLAYING PAGE.",
               "claims": [
                 "career.sellercanvas-product-system",
                 "credentials.page-output-patent"
@@ -231,9 +251,9 @@
             },
             {
               "kind": "bullet",
-              "text": "Contributed to a facial-recognition-based automated attendance system.",
+              "text": "Helped establish the student startup Izsol and developed Kidsly, a facial-recognition attendance system. Acquired training data through a national program and trained YOLO models.",
               "claims": [
-                "career.ai-pm-backend-continuity"
+                "career.kidsly-student-startup-engineering"
               ]
             }
           ],
@@ -253,7 +273,7 @@
           "blocks": [
             {
               "kind": "paragraph",
-              "text": "Backend & Infrastructure Lead | Personal project",
+              "text": "Backend & Infrastructure Lead | Team side project",
               "claims": [
                 "career.tellingme-backend-infra"
               ]
@@ -287,16 +307,18 @@
         },
         {
           "kind": "paragraph",
-          "text": "**AI / LLM:** LangGraph, LLM integration and evaluation, speech-to-text",
+          "text": "**AI / LLM:** LangGraph, RAG, MCP, LLM integration and evaluation, speech-to-text",
           "claims": [
             "thready.generation-quality-system",
             "thready.langgraph-generation-graph",
-            "centurion.say-realtime-ai"
+            "centurion.say-realtime-ai",
+            "thready.example-rag-generation",
+            "thready.usage-driven-mcp-agent-experiment"
           ]
         },
         {
           "kind": "paragraph",
-          "text": "**Frontend:** Next.js, TypeScript - core user and admin workflows",
+          "text": "**Frontend:** Next.js, TypeScript (core user and admin workflows)",
           "claims": [
             "thready.frontend-product-delivery"
           ]
@@ -313,11 +335,12 @@
         },
         {
           "kind": "paragraph",
-          "text": "**Additional:** Java, Spring, Spring Boot (side projects); Azure, AWS, Terraform, Vercel (deployment, environment setup, routine operations)",
+          "text": "**Additional:** Java, Spring, Spring Boot (side projects); Azure, Terraform (infrastructure operations); AWS, Vercel (deployment and environment setup)",
           "claims": [
             "career.java-spring-side-projects",
             "career.tellingme-backend-infra",
-            "infra.company-azure-ownership"
+            "infra.company-azure-ownership",
+            "infra.company-infrastructure-owner"
           ]
         }
       ],
@@ -336,17 +359,23 @@
             {
               "kind": "paragraph",
               "text": "Radio Communications Operator | Discharged as Sergeant",
-              "claims": ["career.military-service"]
+              "claims": [
+                "career.military-service"
+              ]
             },
             {
               "kind": "bullet",
               "text": "Set up, operated, and maintained military radio communications infrastructure. Assigned wartime duties included antenna installation and communications-node operation to establish and sustain military communications networks.",
-              "claims": ["career.military-service"]
+              "claims": [
+                "career.military-service"
+              ]
             },
             {
               "kind": "bullet",
               "text": "Completed full-term military service.",
-              "claims": ["career.military-service"]
+              "claims": [
+                "career.military-service"
+              ]
             }
           ],
           "children": []
@@ -416,14 +445,14 @@
       "blocks": [
         {
           "kind": "bullet",
-          "text": "**OSS Developer Partnership (Sep 2026):** Received and accepted an invitation to an external LLM API platform’s developer partner program after the team discovered my public GitHub work.",
+          "text": "**OSS Developer Partnership (Sep 2026):** Received and accepted an invitation to an external LLM API platform’s developer partner program based on my public GitHub projects.",
           "claims": [
             "career.orcarouter-oss-developer-partnership"
           ]
         },
         {
           "kind": "bullet",
-          "text": "**UX Consulting:** Proposed hypotheses and interface improvements to make reward points easier to understand and encourage repeat visits. The changes were adopted alongside other product improvements and contributed to ranking and daily-active-user growth.",
+          "text": "**UX Consulting:** Contributed improvement proposals to a team engagement on reward-point visibility and repeat visits. Adopted proposals, together with other product improvements, contributed to App Store ranking and daily-active-user growth.",
           "claims": [
             "career.product-ux-practice",
             "career.ux-consulting-product-outcome"
@@ -431,7 +460,7 @@
         },
         {
           "kind": "bullet",
-          "text": "**UX Study:** Presented improvements to Speak’s post-lesson recommendation flow and was selected as MVP of IPS cohort 12. Also analyzed and presented UX principles using YouTube Music.",
+          "text": "**UX Study:** Presented improvements to Speak’s post-lesson recommendation flow and was selected as MVP of IPS cohort 12. Also presented a UX-principles analysis of YouTube Music.",
           "claims": [
             "career.product-ux-practice",
             "career.ux-consulting-product-outcome"

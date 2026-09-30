@@ -1,21 +1,18 @@
 "use client";
 
+import { ROUTES } from "@/lib/routes";
+
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/cn";
 
-const ROUTES = [
-  { no: "01", label: "Home", href: "/", primary: true, review: false },
-  { no: "02", label: "Resume", href: "/resume", primary: true, review: false },
-  { no: "03", label: "Career", href: "/career", primary: true, review: false },
-  { no: "04", label: "CV", href: "/cv", primary: true, review: true },
-  { no: "05", label: "Blog", href: "/blog", primary: false, review: false },
-  { no: "06", label: "Labs", href: "/labs", primary: false, review: false },
+/* Visitor IA (2026-09-29 approval): Home · Resume · Career · CV. */
+const VISIBLE_ROUTES = [
+  { no: "01", label: "Home", href: "/", primary: true },
+  { no: "02", label: "Resume", href: ROUTES.resume, primary: true },
+  { no: "03", label: "Career", href: ROUTES.career, primary: true },
+  { no: "04", label: "CV", href: ROUTES.cv, primary: true },
 ] as const;
-
-const VISIBLE_ROUTES = ROUTES.filter(
-  (route) => !route.review || process.env.NODE_ENV !== "production",
-);
 
 /* 시각부 — specimen 정적 렌더에서 재사용. 크기·배치는 wrapper 가 소유한다 */
 export function MobileNavPanel({
@@ -50,7 +47,10 @@ export function MobileNavPanel({
           CLOSE
         </button>
       </div>
-      <nav aria-label="모바일 메뉴" className="grid content-start self-start p-6">
+      <nav
+        aria-label="모바일 메뉴"
+        className="grid content-start self-start p-6"
+      >
         {VISIBLE_ROUTES.map((route, index) => (
           <Link
             key={route.no}
