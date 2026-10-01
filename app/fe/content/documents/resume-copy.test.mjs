@@ -9,7 +9,7 @@ test("common routes consume independent app copy and the single document rendere
   assert.match(resume, /import copy from "@\/content\/common\/resume.json"/);
   assert.match(resume, /presentation=\{commonResumePresentation\}/);
   assert.match(resume, /<ResumeDocument /);
-  assert.match(career, /<CareerDocument kind="career"/);
+  assert.match(career, /<CareerDocument \/>/);
   assert.doesNotMatch(resume + career + presentation, /readFile|parseResumeCopy|wiki\/|companies\/miridih/);
 });
 
@@ -127,7 +127,12 @@ test("approved IA only: retired surfaces, launchers and menu entries are gone; c
   assert.match(read("../../app/portfolio/[case]/page.tsx"), /CAREER_CASE_LINKS/);
   const nav = ["../../components/site/topbar.tsx", "../../components/site/mobile-nav.tsx", "../../components/site/footer-bar.tsx", "../../app/sitemap.ts", "../../app/robots.ts", "../../app/page.tsx"].map(read).join("\n");
   assert.doesNotMatch(nav, /\/blog|\/labs|\/chat|\/design|AskLauncher|ReviewLauncher/);
-  for (const href of ["ROUTES.resume", "ROUTES.career", "ROUTES.cv"]) assert(read("../../components/site/topbar.tsx").includes(`href: ${href}`), href);
+  const { PRIMARY_NAV } = await import("../../lib/routes.ts");
+  assert.deepEqual(PRIMARY_NAV, [
+    { label: "Home", href: "/" }, { label: "Resume", href: "/resume" },
+    { label: "Career", href: "/career" }, { label: "CV", href: "/cv" },
+  ]);
+  assert(PRIMARY_NAV.every(({ href }) => !/blog|labs|chat|design|platforms/.test(href)));
 });
 
 test("platform comparison screen removed: no route, loader, menu link or redirect; applications admin stays", async () => {
@@ -140,8 +145,55 @@ test("platform comparison screen removed: no route, loader, menu link or redirec
   assert(ADMIN_REDIRECTS.every((item) => !/platforms/i.test(`${item.source} ${item.destination}`)));
   const { ADMIN_DATA } = await import("../../features/admin-data/mapping.ts");
   assert.deepEqual(Object.keys(ADMIN_DATA), ["applications"]);
-  const links = ["../../app/_components/admin/admin-menu.tsx", "../../app/admin/page.tsx", "../../app/admin/map/page.tsx"].map(read).join("\n");
+  const links = ["../../app/_components/site-topbar.tsx", "../../app/admin/page.tsx", "../../app/admin/map/page.tsx"].map(read).join("\n");
   assert.doesNotMatch(links, /platforms|플랫폼/);
   assert.match(links, /ROUTES\.admin\.dashboard/);
   assert.match(links, /ROUTES\.admin\.map/);
+});
+
+
+test("career output preserves section anchors, claims and section-only case grouping", async () => {
+  const { default: Module, createRequire } = await import("node:module");
+  const { fileURLToPath } = await import("node:url");
+  const require = createRequire(import.meta.url);
+  const ts = require("typescript"), React = require("react");
+  const { renderToStaticMarkup } = require("react-dom/server");
+  const load = (url) => {
+    const filename = fileURLToPath(url);
+    const loaded = new Module(filename);
+    loaded.filename = filename;
+    loaded.paths = Module._nodeModulePaths(new URL(".", url).pathname);
+    const normalRequire = loaded.require.bind(loaded);
+    loaded.require = (name) => {
+      if (name.endsWith(".module.css")) return { default: new Proxy({}, { get: (_, key) => key }) };
+      if (name === "../document-shell") return { DocumentShell: ({ children }) => children };
+      if (name === "../document-frame") return { DocumentFrame: (props) => React.createElement("main", props) };
+      if (name === "./figures") return { CareerFigure: ({ id, claims }) => React.createElement("figure", { "data-figure": id, "data-claim": claims.join(" ") }) };
+      if (name === "./flow-diagram") return { FlowDiagram: () => null };
+      if (name === "../inline") return load(new URL("../inline.tsx", url));
+      if (name.endsWith("career-links")) return load(new URL(name + ".ts", url));
+      return normalRequire(name);
+    };
+    loaded._compile(ts.transpileModule(readFileSync(url, "utf8"), {
+      compilerOptions: { module: ts.ModuleKind.CommonJS, jsx: ts.JsxEmit.ReactJSX }, fileName: filename,
+    }).outputText, filename);
+    return loaded.exports;
+  };
+  const { CareerDocument } = load(new URL("../../app/_components/documents/career/career-document.tsx", import.meta.url));
+  const paragraph = (text, presentation) => ({ kind: "paragraph", text, claims: ["fixture.claim"], ...(presentation ? { presentation } : {}) });
+  const document = { title: "Fixture", header: [paragraph("Intro label", "label"), paragraph("Intro body")], sections: [
+    { title: "Company · 2020.01", level: 2, blocks: [], children: [
+      { title: "Project", anchor: "project", level: 3, blocks: [paragraph("Case label", "label"), paragraph("Case body"),
+        { kind: "figure", id: "fixture", claims: ["fixture.figure"] }, paragraph("Next label", "label"), paragraph("Next body")], children: [] },
+    ] },
+    { title: "Other", level: 2, blocks: [paragraph("Closing")], children: [] },
+  ] };
+  const html = renderToStaticMarkup(React.createElement(CareerDocument, { document }));
+  assert.match(html, /data-common-document="career" data-document-layout="a4-sheet" data-document-slug="common" data-professional-document="career-description"/);
+  assert.match(html, /href="#project"/); assert.match(html, /id="project"/);
+  assert.match(html, /href="#career-2"/); assert.match(html, /id="career-2"/);
+  assert.equal((html.match(/class="caseGroup"/g) ?? []).length, 2);
+  assert.match(html, /class="introduction"><p data-copy="true" data-claim="fixture.claim" class="caseLabel">Intro label/);
+  assert.match(html, /class="caseGroup"><p[^>]*>Case label<\/p><p[^>]*>Case body<\/p><\/div><figure data-figure="fixture" data-claim="fixture.figure"/);
+  assert.match(html, /data-dated=""/);
 });

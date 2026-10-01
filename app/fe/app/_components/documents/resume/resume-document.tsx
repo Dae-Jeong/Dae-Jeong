@@ -9,6 +9,7 @@ import type {
 import type { ResumePresentation } from "../../../../content/documents/companies/presentation";
 import styles from "./resume-document.module.css";
 import { Inline } from "../inline";
+import { DocumentFrame } from "../document-frame";
 import { ResumePrintPages } from "./resume-print-pages";
 import { ResumeRow } from "./resume-row";
 
@@ -202,7 +203,6 @@ function ResumeArticle({
             {copy.contacts.map((contact) => (
               <Chip
                 key={contact.href}
-                variant="contact"
                 href={contact.href}
                 external={contact.href.startsWith("https:")}
               >
@@ -301,8 +301,8 @@ export function ResumeDocument({
   scope: "common" | "company";
 }) {
   return (
-    <main
-      className={`${styles.pane} ${styles.standalone}`}
+    <DocumentFrame
+      className={styles.pane}
       data-resume-document=""
       {...(scope === "common"
         ? { "data-common-document": "resume" }
@@ -311,6 +311,6 @@ export function ResumeDocument({
       <style>{"@media print{@page{size:A4;margin:0}}"}</style>
       <ResumeArticle copy={copy} prefix={prefix} presentation={presentation} />
       <ResumePrintPages author={copy.name} role={footerRole} />
-    </main>
+    </DocumentFrame>
   );
 }

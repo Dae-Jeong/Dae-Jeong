@@ -4,13 +4,20 @@ import { FooterBar } from "@/components/site/footer-bar";
 import { useAdminSession } from "@/features/admin-auth/use-admin-session";
 import { AdminTrigger } from "./admin/admin-trigger";
 import { AdminLoginDialog } from "./admin/admin-login-dialog";
-import { AdminMenu } from "./admin/admin-menu";
-export function SiteFooter({ className = "" }: { className?: string }) {
+import type { ContainerVariant } from "@/components/site/container";
+export function SiteFooter({
+  className = "",
+  containerVariant = "hub",
+}: {
+  className?: string;
+  containerVariant?: ContainerVariant;
+}) {
   const [open, setOpen] = useState(false);
-  const { session, authenticate, logout, logoutError } = useAdminSession();
+  const { session, authenticate } = useAdminSession();
   return (
     <FooterBar
       className={className}
+      containerVariant={containerVariant}
       name={
         <>
           <AdminTrigger
@@ -24,9 +31,6 @@ export function SiteFooter({ className = "" }: { className?: string }) {
             onClose={() => setOpen(false)}
             onSuccess={authenticate}
           />
-          {session.admin && (
-            <AdminMenu logout={logout} logoutError={logoutError} />
-          )}
         </>
       }
     />

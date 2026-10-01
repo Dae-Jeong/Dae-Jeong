@@ -1,24 +1,21 @@
 import { Container } from "../../../components/site/container";
 import { SiteFooter } from "../site-footer";
-import { TopBar } from "../../../components/site/topbar";
+import { SiteTopBar } from "../site-topbar";
+import styles from "./document-frame.module.css";
 
 export function DocumentShell({
-  crumb = "Resume",
-  tag,
   children,
 }: {
-  crumb?: React.ReactNode;
-  tag?: string;
   children: React.ReactNode;
 }) {
   return (
     <>
-      <div className="print:hidden">
-        <TopBar variant="subpage" crumb={crumb} tag={tag} />
+      <SiteTopBar />
+      <div className={styles.stage}>
+        <Container variant="doc" className={styles.container}>
+          {children}
+        </Container>
       </div>
-      <Container variant="doc" className="flex-1">
-        {children}
-      </Container>
       <SiteFooter className="relative z-50 bg-bg print:hidden" />
     </>
   );

@@ -1,13 +1,14 @@
 import Link from "next/link";
 import { Container } from "@/components/site/container";
 import { SiteFooter } from "@/app/_components/site-footer";
-import { TopBar } from "@/components/site/topbar";
+import { SiteTopBar } from "@/app/_components/site-topbar";
 import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/ui/reveal";
 import { SectionHead } from "@/components/ui/section-head";
 import { PRIMARY_CASES, SUPPORTING_CASES } from "@/lib/cases";
 import { CAREER_CASE_LINKS } from "@/lib/career-links";
 import { cn } from "@/lib/cn";
+import { ROUTES } from "@/lib/routes";
 
 function Arrow() {
   return (
@@ -30,16 +31,16 @@ const DOCUMENTS = [
     no: "01",
     name: "Resume",
     localName: "이력서",
-    href: "/resume",
+    href: ROUTES.resume,
   },
   {
     no: "02",
     name: "Career Description",
     localName: "경력기술서",
-    href: "/career",
+    href: ROUTES.career,
   },
   // CV is part of the approved visitor IA (menu, footer); its search noindex stays on the /cv page itself.
-  { no: "03", name: "CV", localName: "", href: "/cv" },
+  { no: "03", name: "CV", localName: "", href: ROUTES.cv },
 ] as const;
 
 const HOME_CASES = [
@@ -48,11 +49,9 @@ const HOME_CASES = [
 ];
 
 export default function Home() {
-  const visibleDocuments = DOCUMENTS;
-
   return (
     <>
-      <TopBar />
+      <SiteTopBar />
 
       <main className="flex-1">
         <section className="border-b border-border-soft pb-20 pt-[88px] max-md:pb-14 max-md:pt-14">
@@ -79,11 +78,11 @@ export default function Home() {
                 아이디어를 제품으로 완성하도록 돕습니다.
               </p>
               <div className="mt-9 flex flex-wrap gap-3">
-                <Button href="/career" className="px-[14px] py-[10px]">
+                <Button href={ROUTES.career} className="px-[14px] py-[10px]">
                   경력기술서 보기
                 </Button>
                 <Link
-                  href="/resume"
+                  href={ROUTES.resume}
                   className="focus-ring inline-flex items-center border border-border px-[14px] py-[10px] font-mono text-xs font-medium tracking-[0.03em] text-fg transition-colors duration-100 hover:border-fg hover:bg-surface"
                 >
                   Resume 보기
@@ -107,11 +106,11 @@ export default function Home() {
               <SectionHead
                 no="01"
                 title="Documents"
-                meta={`${visibleDocuments.length} documents`}
+                meta={`${DOCUMENTS.length} documents`}
               />
             </Reveal>
             <Reveal stagger className="border-y border-border">
-              {visibleDocuments.map((document) => (
+              {DOCUMENTS.map((document) => (
                 <Link
                   key={document.href}
                   href={document.href}

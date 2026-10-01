@@ -1,9 +1,9 @@
 import Link from "next/link";
 
-export function Wordmark({ href = "/" }: { href?: string }) {
+export function Wordmark() {
   return (
     <Link
-      href={href}
+      href="/"
       aria-label="marinkim.xyz 홈"
       className="focus-ring inline-flex items-center gap-2 font-mono text-sm font-semibold tracking-[0.02em]"
     >

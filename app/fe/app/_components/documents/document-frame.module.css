@@ -1,0 +1,36 @@
+/* Submitted PDFs use the paper width while retaining the existing slot alignment. */
+.downloadSlot {
+  max-width: 794px;
+}
+/* Screen geometry has one owner. No paper styles reach the A4 print projection. */
+@media screen {
+  .stage {
+    flex: 1;
+    min-width: 0;
+    background: #eef1f4;
+  }
+  .paper {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 794px;
+    min-width: 0;
+    margin: 36px auto 80px;
+    padding: 48px 52px 56px;
+    background: #fff;
+    box-shadow: 0 0 0 1px #d8dfe7;
+  }
+}
+@media screen and (max-width: 720px) {
+  .paper {
+    margin: 24px auto 40px;
+    padding: 28px 20px 40px;
+  }
+}
+/* Only the measured resume projection needs the site's outer gutter removed. */
+@media print {
+  .container:has(> main[data-resume-document]) {
+    max-width: none;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}

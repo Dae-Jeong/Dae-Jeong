@@ -8,5 +8,5 @@ export const metadata: Metadata = {
 };
 
 export default function CareerPage() {
-  return <CareerDocument kind="career" />;
+  return <CareerDocument />;
 }

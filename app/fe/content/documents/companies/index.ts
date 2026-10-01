@@ -1,3 +1,21 @@
+import MiridihPeResume from "./miridih-pe/resume.json";
+import MiridihPeCareer from "./miridih-pe/career.json";
+import AblyResume from "./ably/resume.json";
+import AblyCareer from "./ably/career.json";
+import NriseResume from "./nrise/resume.json";
+import NriseCareer from "./nrise/career.json";
+import SoomgoResume from "./soomgo/resume.json";
+import SoomgoCareer from "./soomgo/career.json";
+import PaytalabResume from "./paytalab/resume.json";
+import PaytalabCareer from "./paytalab/career.json";
+import WrtnResume from "./wrtn/resume.json";
+import WrtnCareer from "./wrtn/career.json";
+import HybeResume from "./hybe/resume.json";
+import HybeCareer from "./hybe/career.json";
+import featuringR2Resume from "./featuring/revisions/20260921-R2/resume.json";
+import featuringR2Career from "./featuring/revisions/20260921-R2/career.json";
+import tossR2Resume from "./toss-place/revisions/20261001-R2/resume.json";
+import tossR2Career from "./toss-place/revisions/20261001-R2/career.json";
 import gnaR2Resume from "./gna-company/revisions/20260928-R2/resume.json";
 import gnaR2Career from "./gna-company/revisions/20260928-R2/career.json";
 import featuringResume from "./featuring/resume.json";
@@ -31,11 +49,11 @@ export type CompanyDocument = {
   document: DocumentKind; content: ResumeCopy | ContentDocument;
 };
 export const companyDocuments = [featuringResume, featuringCareer, miridihResume, miridihCareer,
-  jypResume, jypCareer, tossResume, tossCareer] as CompanyDocument[];
-// Extra review revisions. Regenerated from the wiki content-draft by tools/build_revision_documents.mjs; kept out of
-// `companyDocuments` so the 12-document application contract and its registry checks are unchanged. Which stored
-// revision is shown on the web is decided only by features/company-documents/policy.ts.
-export const revisionDocuments = [gnaR2Resume, gnaR2Career, miridihR3Resume, miridihR3Career, sagakR1Resume, sagakR1Career, ajungR1Resume, ajungR1Career, socarR1Resume, socarR1Career, featuringR1Resume, featuringR1Career] as CompanyDocument[];
+  jypResume, jypCareer, tossResume, tossCareer,
+  MiridihPeResume, MiridihPeCareer, AblyResume, AblyCareer, NriseResume, NriseCareer, SoomgoResume, SoomgoCareer, PaytalabResume, PaytalabCareer, WrtnResume, WrtnCareer, HybeResume, HybeCareer] as CompanyDocument[];
+// Preserved review revisions, regenerated from their Markdown owners by the revision/company preview tools.
+// Historical base records and submission artifacts stay intact. The policy selects one representative per URL.
+export const revisionDocuments = [gnaR2Resume, gnaR2Career, miridihR3Resume, miridihR3Career, sagakR1Resume, sagakR1Career, ajungR1Resume, ajungR1Career, socarR1Resume, socarR1Career, featuringR1Resume, featuringR1Career, featuringR2Resume, featuringR2Career, tossR2Resume, tossR2Career] as CompanyDocument[];
 /** Review routes which consume current common copy, without authoring tailored documents. */
 export const commonDocumentCompanies: readonly {
   slug: string;

@@ -8,10 +8,11 @@ import {
   type Representative,
 } from "@/features/company-documents/types";
 import { ResumeDocument } from "./resume/resume-document";
-import navStyles from "./career/career.module.css";
+import navStyles from "./company-document.module.css";
 import { CareerDocument } from "./career/career-document";
 import { CvDocument } from "./cv/cv-document";
 import { DocumentShell } from "./document-shell";
+import frameStyles from "./document-frame.module.css";
 
 /** Links between the kinds that exist for this company (representative documents only; no version links). */
 function CompanyNavigation({ document }: { document: Representative }) {
@@ -63,32 +64,24 @@ export function CompanyDocumentPage({
   if (document.kind === "career")
     return (
       <CareerDocument
-        kind="career"
         document={document.content}
         navigation={navigation}
         slug={company}
-        crumb={`${document.companyName} · 경력기술서`}
-        tag={document.public ? undefined : (document.tag ?? "DRAFT · LOCAL")}
       />
     );
   if (document.kind === "cv")
     return (
       <CvDocument
         document={document.content}
-        crumb={`${document.companyName} · CV`}
-        tag={document.public ? "ENGLISH" : "DRAFT · LOCAL"}
         navigation={navigation}
       />
     );
   return (
-    <DocumentShell
-      crumb={`${document.companyName} · 이력서`}
-      tag={document.public ? document.tag : (document.tag ?? "DRAFT · LOCAL")}
-    >
+    <DocumentShell>
       {navigation}
       {document.pdfHref && (
         // The submitted A4 PDF of this document stays downloadable from the same page.
-        <p className="mx-auto flex max-w-[794px] justify-end py-3 print:hidden">
+        <p className={`${frameStyles.downloadSlot} mx-auto flex justify-end py-3 print:hidden`}>
           <a
             href={document.pdfHref}
             download

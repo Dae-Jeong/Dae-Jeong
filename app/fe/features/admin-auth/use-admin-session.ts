@@ -1,29 +1,45 @@
 "use client";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { getSession, logout as logoutRequest } from "./apis";
 import type { AdminSession } from "./types";
 import { isAdminPath } from "@/lib/routes";
 const hasUiCookie = () =>
   document.cookie.split("; ").some((item) => item === "admin_ui=1");
+const SESSION_CHANGED = "admin-session-changed";
 export function useAdminSession() {
   const [session, setSession] = useState<AdminSession>({ admin: false });
   const [logoutError, setLogoutError] = useState(false);
+  const refreshVersion = useRef(0);
   // On an admin surface the session is always asked from the server; losing it (logout elsewhere, expiry) leaves the
   // protected page for the home page instead of keeping private data on screen.
   const apply = useCallback((next: AdminSession) => {
-    setSession(next);
-    if (!next.admin && isAdminPath(location.pathname)) location.replace("/");
+    // A GET started before expiry must not restore an already expired menu.
+    const current = next.admin && next.expiresAt * 1000 <= Date.now()
+      ? { admin: false } as const
+      : next;
+    setSession(current);
+    if (!current.admin && isAdminPath(location.pathname)) location.replace("/");
   }, []);
-  const refresh = useCallback(() => {
-    if (hasUiCookie() || isAdminPath(location.pathname))
-      void getSession().then(apply);
-    else setSession({ admin: false });
+  const refreshFromServer = useCallback(() => {
+    const version = ++refreshVersion.current;
+    void getSession().then((next) => {
+      if (version === refreshVersion.current) apply(next);
+    });
   }, [apply]);
+  const refresh = useCallback(() => {
+    if (hasUiCookie() || isAdminPath(location.pathname)) refreshFromServer();
+    else {
+      ++refreshVersion.current;
+      setSession({ admin: false });
+    }
+  }, [refreshFromServer]);
 
   // Show the menu only for a server-verified session; re-check when the tab returns and hide it at expiry.
   useEffect(() => {
-    if (hasUiCookie() || isAdminPath(location.pathname))
-      void getSession().then(apply);
+    // Initial state is already anonymous. Only synchronize an existing session;
+    // later events may also reset the state when the UI cookie disappears.
+    if (hasUiCookie() || isAdminPath(location.pathname)) refreshFromServer();
+    const version = refreshVersion;
     const onVisible = () => {
       if (document.visibilityState === "visible") refresh();
     };
@@ -34,11 +50,20 @@ export function useAdminSession() {
     };
     document.addEventListener("visibilitychange", onVisible);
     window.addEventListener("pageshow", onPageShow);
+    // Footer login and top navigation consume the same verified state without a Provider.
+    // The event carries no credential; the server still guards every private request.
+    const onSessionChanged = (event: Event) => {
+      ++refreshVersion.current;
+      apply((event as CustomEvent<AdminSession>).detail);
+    };
+    window.addEventListener(SESSION_CHANGED, onSessionChanged);
     return () => {
+      ++version.current;
       document.removeEventListener("visibilitychange", onVisible);
       window.removeEventListener("pageshow", onPageShow);
+      window.removeEventListener(SESSION_CHANGED, onSessionChanged);
     };
-  }, [refresh, apply]);
+  }, [refreshFromServer, refresh, apply]);
   useEffect(() => {
     if (!session.admin) return;
     const timer = window.setTimeout(
@@ -53,7 +78,7 @@ export function useAdminSession() {
     setLogoutError(false);
     const confirmed = await logoutRequest();
     if (confirmed) {
-      apply({ admin: false });
+      window.dispatchEvent(new CustomEvent<AdminSession>(SESSION_CHANGED, { detail: { admin: false } }));
       return;
     }
     setLogoutError(true);
@@ -62,9 +87,10 @@ export function useAdminSession() {
 
   return {
     session,
-    refresh,
     logout,
     logoutError,
-    authenticate: (expiresAt: number) => setSession({ admin: true, expiresAt }),
+    authenticate: (expiresAt: number) => {
+      window.dispatchEvent(new CustomEvent<AdminSession>(SESSION_CHANGED, { detail: { admin: true, expiresAt } }));
+    },
   };
 }

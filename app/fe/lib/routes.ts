@@ -9,6 +9,14 @@ export const ROUTES = {
   },
 } as const;
 
+/** Visitor menu shared by the desktop TopBar and MobileNav; the footer keeps its own external-link set. */
+export const PRIMARY_NAV = [
+  { label: "Home", href: ROUTES.home },
+  { label: "Resume", href: ROUTES.resume },
+  { label: "Career", href: ROUTES.career },
+  { label: "CV", href: ROUTES.cv },
+] as const;
+
 /** Old admin addresses only redirect; all private screens live under /admin. */
 export const ADMIN_REDIRECTS = [
   {

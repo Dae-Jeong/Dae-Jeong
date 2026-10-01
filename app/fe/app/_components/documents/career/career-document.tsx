@@ -8,26 +8,21 @@ import type {
   TextBlock,
 } from "../../../../content/documents/parse-markdown";
 import { DocumentShell } from "../document-shell";
-import { CommonNav } from "../navigation";
+import { DocumentFrame } from "../document-frame";
 import { Inline } from "../inline";
 import { FlowDiagram } from "./flow-diagram";
 import { CareerFigure } from "./figures";
 import styles from "./career.module.css";
 
-type Kind = "career";
-type Layout = "a4-sheet";
-
 function Blocks({
   blocks,
-  kind,
-  layout,
+  groupCases = false,
 }: {
   blocks: ContentBlock[];
-  kind: Kind;
-  layout?: Layout;
+  groupCases?: boolean;
 }) {
   const output: ReactNode[] = [];
-  /** Block kinds in output order, used by the sheet layout to keep a case label with what follows it in print. */
+  /** Block kinds in output order, used by case grouping to keep a case label with what follows it in print. */
   const kinds: ("label" | "image" | "other")[] = [];
   const push = (
     node: ReactNode,
@@ -54,50 +49,48 @@ function Blocks({
     } else if (block.kind === "flow") {
       push(<FlowDiagram key={index} block={block} />);
     } else if (block.kind === "figure") {
-      if (kind === "career")
-        push(
-          <CareerFigure key={index} id={block.id} claims={block.claims} />,
-          "image",
-        );
+      push(
+        <CareerFigure key={index} id={block.id} claims={block.claims} />,
+        "image",
+      );
     } else if (block.kind === "image") {
       // Career-only rendered diagram (2026-09-14): full prose width, the image itself opens the original PNG for zooming.
-      if (kind === "career")
-        push(
-          <figure
-            key={index}
-            className={styles.imageFigure}
-            data-image={block.src}
-            data-claim={block.claims.join(" ")}
+      push(
+        <figure
+          key={index}
+          className={styles.imageFigure}
+          data-image={block.src}
+          data-claim={block.claims.join(" ")}
+        >
+          <p className={styles.imageTitle} data-copy>
+            {block.title}
+          </p>
+          <a
+            href={block.src}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`${block.title} 원본 크게 보기`}
           >
-            <p className={styles.imageTitle} data-copy>
-              {block.title}
-            </p>
-            <a
-              href={block.src}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`${block.title} 원본 크게 보기`}
-            >
-              {/* Plain <img> like the resume photo: static PNG under /public with intrinsic size, so print and the paged clone measure it. */}
-              {/* Eager: a lazy image below the fold is not fetched before print/PDF and prints as an empty box (site-code-quality). */}
-              <img
-                src={block.src}
-                alt={block.alt}
-                width={block.width}
-                height={block.height}
-                loading="eager"
-                decoding="async"
-              />
+            {/* Plain <img> like the resume photo: static PNG under /public with intrinsic size, so print and the paged clone measure it. */}
+            {/* Eager: a lazy image below the fold is not fetched before print/PDF and prints as an empty box (site-code-quality). */}
+            <img
+              src={block.src}
+              alt={block.alt}
+              width={block.width}
+              height={block.height}
+              loading="eager"
+              decoding="async"
+            />
+          </a>
+          <figcaption>
+            <span data-copy>{block.caption}</span>
+            <a href={block.src} target="_blank" rel="noopener noreferrer">
+              크게 보기 ↗
             </a>
-            <figcaption>
-              <span data-copy>{block.caption}</span>
-              <a href={block.src} target="_blank" rel="noopener noreferrer">
-                크게 보기 ↗
-              </a>
-            </figcaption>
-          </figure>,
-          "image",
-        );
+          </figcaption>
+        </figure>,
+        "image",
+      );
     } else if (block.kind === "table") {
       push(
         <div
@@ -162,7 +155,7 @@ function Blocks({
         block.presentation === "label" ? "label" : "other",
       );
   }
-  if (layout !== "a4-sheet") return output;
+  if (!groupCases) return output;
   // Sheet layout: a case label (선택의 이유 · 구현 · 검증 …) travels with the paragraphs, lists and tables that follow it,
   // up to the next label or diagram, so print never leaves the label alone at a page end (styles.caseGroup: break-inside avoid).
   const grouped: ReactNode[] = [];
@@ -185,31 +178,26 @@ function Blocks({
 
 function Section({
   section,
-  kind,
   id,
-  layout,
 }: {
   section: ContentSection;
-  kind: Kind;
   id: string;
-  layout?: Layout;
 }) {
   const Heading = `h${section.level}` as "h2" | "h3" | "h4";
   const title = section.title;
   const datedTitle =
-    kind === "career" && section.level === 2
+    section.level === 2
       ? title.match(/^(.*?) · (\d{4}\.\d{2}.*)$/)
       : null;
   const sectionId =
-    section.anchor ??
-    (kind === "career" ? (CAREER_SECTION_IDS[section.title] ?? id) : id);
+    section.anchor ?? CAREER_SECTION_IDS[section.title] ?? id;
   return (
     <section
       id={sectionId}
       className={styles.section}
       data-level={section.level}
       data-dated={datedTitle ? "" : undefined}
-      data-emphasis={kind === "career" ? section.emphasis : undefined}
+      data-emphasis={section.emphasis}
     >
       <Heading
         data-copy
@@ -229,15 +217,13 @@ function Section({
       </Heading>
       <div className={styles.sectionBody}>
         <div className={styles.prose}>
-          <Blocks blocks={section.blocks} kind={kind} layout={layout} />
+          <Blocks blocks={section.blocks} groupCases />
         </div>
         {section.children.map((child, index) => (
           <Section
             key={index}
             section={child}
-            kind={kind}
             id={`${id}-${index + 1}`}
-            layout={layout}
           />
         ))}
       </div>
@@ -245,23 +231,14 @@ function Section({
   );
 }
 
-/** Contents entries. The A4 sheet layout lists the projects under each dated company heading and keeps any other
- *  section (e.g. the closing capabilities section) as one entry, as in the approved portrait draft; the default
- *  layout lists the level-2 sections. */
-function contentsEntries(
-  document: ContentDocument,
-  kind: Kind,
-  layout?: Layout,
-) {
+/** List projects under each dated company heading, and other sections as one entry. */
+function contentsEntries(document: ContentDocument) {
   const entries: { href: string; title: string }[] = [];
   document.sections.forEach((section, index) => {
-    const id = `${kind}-${index + 1}`;
-    const projects =
-      layout === "a4-sheet"
-        ? section.children
-            .map((child, childIndex) => ({ child, childIndex }))
-            .filter(({ child }) => child.level === 3)
-        : [];
+    const id = `career-${index + 1}`;
+    const projects = section.children
+      .map((child, childIndex) => ({ child, childIndex }))
+      .filter(({ child }) => child.level === 3);
     if (projects.length)
       projects.forEach(({ child, childIndex }) =>
         entries.push({
@@ -280,23 +257,16 @@ function contentsEntries(
 
 /** The only career-description renderer (2026-09-29): common, company-revision and legacy-source career descriptions
  *  all render as the approved portrait A4 sheet with one print policy and differ only by document copy.
- *  kind "portfolio" is the historical portfolio projection kept for its existing screens. */
+ */
 export function CareerDocument({
-  kind,
   document: suppliedDocument,
   navigation,
   slug = "common",
-  crumb,
-  tag,
 }: {
-  kind: Kind;
   document?: ContentDocument;
   navigation?: ReactNode;
   slug?: string;
-  crumb?: ReactNode;
-  tag?: string;
 }) {
-  const layout: Layout | undefined = kind === "career" ? "a4-sheet" : undefined;
   const document = suppliedDocument ?? (career as ContentDocument);
   const headerText = document.header.filter(
     (block): block is TextBlock => block.kind === "paragraph",
@@ -312,18 +282,16 @@ export function CareerDocument({
   const introduction = headerText.filter(
     (block) => block !== identity && block !== contacts && block !== brand,
   );
-  const contents = contentsEntries(document, kind, layout);
+  const contents = contentsEntries(document);
   return (
-    <DocumentShell crumb={crumb ?? document.title} tag={tag}>
-      {navigation ?? <CommonNav active={`/${kind}`} />}
-      <main
+    <DocumentShell>
+      {navigation}
+      <DocumentFrame
         className={styles.document}
-        data-common-document={kind}
-        data-document-layout={layout}
+        data-common-document="career"
+        data-document-layout="a4-sheet"
         data-document-slug={slug}
-        data-professional-document={
-          kind === "career" ? "career-description" : undefined
-        }
+        data-professional-document="career-description"
       >
         <header className={styles.header}>
           <div className={styles.identityRow}>
@@ -342,33 +310,29 @@ export function CareerDocument({
           )}
           {!!introduction.length && (
             <div className={styles.introduction}>
-              <Blocks blocks={introduction} kind={kind} />
+              <Blocks blocks={introduction} />
             </div>
           )}
         </header>
-        {
-          <nav
-            className={styles.contents}
-            aria-label={`${document.title} 목차`}
-          >
-            {contents.map((entry, index) => (
-              <a key={entry.href} href={entry.href}>
-                <span>{String(index + 1).padStart(2, "0")}</span>
-                {entry.title}
-              </a>
-            ))}
-          </nav>
-        }
+        <nav
+          className={styles.contents}
+          aria-label={`${document.title} 목차`}
+        >
+          {contents.map((entry, index) => (
+            <a key={entry.href} href={entry.href}>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              {entry.title}
+            </a>
+          ))}
+        </nav>
         {document.sections.map((section, index) => (
           <Section
             key={index}
             section={section}
-            kind={kind}
-            id={`${kind}-${index + 1}`}
-            layout={layout}
+            id={`career-${index + 1}`}
           />
         ))}
-      </main>
+      </DocumentFrame>
     </DocumentShell>
   );
 }

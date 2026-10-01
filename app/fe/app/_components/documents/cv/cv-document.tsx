@@ -6,9 +6,9 @@ import type {
   ContentSection,
   TextBlock,
 } from "../../../../content/documents/parse-markdown";
-import { CommonNav } from "../navigation";
 import { Inline } from "../inline";
 import { DocumentShell } from "../document-shell";
+import { DocumentFrame } from "../document-frame";
 import styles from "./cv.module.css";
 
 const commonCv = cv as ContentDocument;
@@ -76,19 +76,15 @@ function Section({ section, id }: { section: ContentSection; id: string }) {
  *  Web adaptation of Jake Gutierrez's MIT-licensed template; see tools/templates/jake-cv/. */
 export function CvDocument({
   document = commonCv,
-  crumb = "CV",
-  tag = "ENGLISH",
   navigation,
 }: {
   document?: ContentDocument;
-  crumb?: ReactNode;
-  tag?: string;
   navigation?: ReactNode;
 } = {}) {
   return (
-    <DocumentShell crumb={crumb} tag={tag}>
-      {navigation === undefined ? <CommonNav active="/cv" /> : navigation}
-      <main
+    <DocumentShell>
+      {navigation}
+      <DocumentFrame
         lang="en"
         className={styles.document}
         data-common-document="cv"
@@ -102,7 +98,7 @@ export function CvDocument({
         {document.sections.map((section, i) => (
           <Section key={section.title} section={section} id={`cv-${i + 1}`} />
         ))}
-      </main>
+      </DocumentFrame>
     </DocumentShell>
   );
 }

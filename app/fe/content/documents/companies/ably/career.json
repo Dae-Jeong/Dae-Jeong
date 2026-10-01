@@ -1,0 +1,900 @@
+{
+  "slug": "ably",
+  "companyName": "에이블리코퍼레이션",
+  "position": "백엔드 엔지니어",
+  "status": "draft",
+  "approved": false,
+  "visibility": "local",
+  "updatedAt": "2026-10-01",
+  "revision": "20261001-R1",
+  "applicationId": "ably-2026-09-30-wanted-backend-engineer-359638",
+  "focus": "다른 직군과 정의한 문제를 주문·결제·운영 도메인의 상태·실패 설계로 구현하고 운영 제품까지 끝낸 백엔드",
+  "document": "career",
+  "content": {
+    "title": "김대정 · Backend Engineer",
+    "header": [
+      {
+        "kind": "paragraph",
+        "text": "가능성을 기회로 바꾸고, 제품으로 가치를 전하는 메이커 김대정입니다.",
+        "claims": [
+          "career.ai-pm-backend-continuity"
+        ]
+      },
+      {
+        "kind": "paragraph",
+        "text": "기획자로 시작해 백엔드로 왔고, Thready의 아이디어 제안부터 제품화·출시·운영까지 주도하며 백엔드·AI·핵심 화면을 구현했습니다. 이 문서는 승인·발행, 주문·발주, 예약·결제처럼 상태가 바뀌고 외부 연동이 실패할 수 있는 업무를 어떤 경계와 검증으로 다뤘는지 설명합니다.",
+        "claims": [
+          "career.ai-pm-backend-continuity",
+          "thready.product-zero-to-one-contribution",
+          "thready.frontend-product-delivery",
+          "centurion.inventory-order-workflow",
+          "career.memento-payment"
+        ]
+      },
+      {
+        "kind": "paragraph",
+        "text": "여러 직군이 coding agent로 제품을 만드는 팀에서 공통 백엔드 템플릿과 agent 작업 기준을 구축했습니다. 백엔드 경험이 적은 담당자도 같은 트랜잭션·세션·검증 규칙으로 기능을 구현하도록 지원했습니다.",
+        "claims": [
+          "be-template.backend-standard",
+          "be-template.fastapi-sqlalchemy-standard",
+          "be-template.team-leverage",
+          "be-template.agent-context"
+        ]
+      }
+    ],
+    "sections": [
+      {
+        "title": "MediSolve AI · 2025.04 — [확인 필요: 종료 월·표기]",
+        "level": 2,
+        "blocks": [
+          {
+            "kind": "paragraph",
+            "text": "Tech Lead · Backend Engineer",
+            "claims": [
+              "career.medisolve-role-evolution"
+            ],
+            "presentation": "role"
+          },
+          {
+            "kind": "paragraph",
+            "text": "법인 설립 전 더데이랩스 프리랜서 선행 개발 · 2025.02 — 2025.04",
+            "claims": [
+              "career.thedaylabs-freelance"
+            ],
+            "presentation": "metadata"
+          },
+          {
+            "kind": "paragraph",
+            "text": "AI 콘텐츠 제품의 출시·운영, 병원 운영 시스템 백엔드 개발, 공통 개발 기반과 Azure 인프라 운영 담당",
+            "claims": [
+              "career.medisolve-role-evolution",
+              "infra.company-infrastructure-owner"
+            ]
+          }
+        ],
+        "children": [
+          {
+            "title": "Thready — AI 콘텐츠 구독 서비스 기획·개발·운영",
+            "level": 3,
+            "blocks": [
+              {
+                "kind": "paragraph",
+                "text": "Python · FastAPI · SQLAlchemy 2.0 async · PostgreSQL · Next.js",
+                "claims": [
+                  "be-template.fastapi-sqlalchemy-standard",
+                  "thready.frontend-product-delivery"
+                ],
+                "presentation": "metadata"
+              },
+              {
+                "kind": "paragraph",
+                "text": "**제품 기획·디자인·개발부터 출시·운영까지 주도**\n마케팅·운영지원 팀과 함께 **월 1천만원 수준의 구독 매출 달성**(2026년 8월 기준)",
+                "claims": [
+                  "thready.product-design-development-lead",
+                  "thready.product-zero-to-one-contribution",
+                  "thready.subscription-revenue-band"
+                ]
+              },
+              {
+                "kind": "paragraph",
+                "text": "SNS 콘텐츠를 생성·검토하고 예약 발행하는 구독 서비스. 고객이 반복하던 참고 자료 정리·초안 작성·1차 검수·예약·발행 준비를 하나의 흐름으로 묶고, 최종 수정과 발행 판단은 사람이 내리도록 설계. 사용자 서비스와 운영 백오피스의 핵심 사용 흐름을 백엔드·AI 계약과 함께 구현",
+                "claims": [
+                  "thready.threads-content-workflow-automation",
+                  "thready.frontend-product-delivery"
+                ]
+              }
+            ],
+            "children": [
+              {
+                "title": "A. 승인 정합성과 발행 실패 복구",
+                "level": 4,
+                "blocks": [
+                  {
+                    "kind": "paragraph",
+                    "text": "**승인 데이터의 정합성**을 확보하고, 외부 발행 **실패 유형에 따라 재처리·복구** 경로 설계",
+                    "claims": [
+                      "thready.approval-command-consistency",
+                      "thready.publish-recovery-boundary"
+                    ]
+                  },
+                  {
+                    "kind": "paragraph",
+                    "text": "**선택의 이유**",
+                    "claims": [
+                      "thready.approval-command-consistency",
+                      "thready.publish-recovery-boundary"
+                    ],
+                    "presentation": "label"
+                  },
+                  {
+                    "kind": "paragraph",
+                    "text": "고객의 수정본·승인 결정·예약/발행 작업은 한 번에 확정돼야 하고, 링크 재클릭이나 재전송이 새 결정으로 처리되면 안 됨 — **명령마다 ID와 payload fingerprint를 두어** 같은 명령은 기존 결과로, 다른 payload는 충돌로 구분",
+                    "claims": [
+                      "thready.approval-command-consistency"
+                    ]
+                  },
+                  {
+                    "kind": "paragraph",
+                    "text": "외부 발행 실패는 호출 전 확정 실패와 호출 뒤 결과 불명으로 나뉨. 전자는 실패로 종결하고 후자는 기존 시도 이력으로 이어가, 성공한 발행을 다시 만들지 않고 멈춘 발행만 재개",
+                    "claims": [
+                      "thready.publish-recovery-boundary"
+                    ]
+                  },
+                  {
+                    "kind": "image",
+                    "claims": [
+                      "thready.approval-command-consistency",
+                      "thready.publish-recovery-boundary"
+                    ],
+                    "src": "/portfolio/thready-b-approval-sequence-v1.png",
+                    "alt": "승인·발행 시퀀스: 사용자, 제품 API, 제품 DB, 발행 worker, 외부 SNS API 사이의 명령 검증·트랜잭션 확정·lease 점유·실패 분기",
+                    "title": "승인·발행 정합성과 실패 복구",
+                    "caption": "승인 트랜잭션의 확정과 외부 발행의 실패·재시도 경계",
+                    "width": 1366,
+                    "height": 859
+                  },
+                  {
+                    "kind": "paragraph",
+                    "text": "**구현**",
+                    "claims": [
+                      "thready.approval-command-consistency",
+                      "thready.publish-recovery-boundary"
+                    ],
+                    "presentation": "label"
+                  },
+                  {
+                    "kind": "bullet",
+                    "text": "수정 버전·승인 결정·발행 작업을 한 트랜잭션으로 확정한 뒤 worker로 전달. 승인 링크로 발급한 세션은 갱신돼도 원래 만료 시각을 넘기지 않음",
+                    "claims": [
+                      "thready.approval-command-consistency"
+                    ]
+                  },
+                  {
+                    "kind": "bullet",
+                    "text": "발행 작업은 lease와 attempt token으로 점유해 오래된 worker가 결과를 덮어쓰지 못하게 차단. 이미 발행된 이어쓰기는 건너뜀",
+                    "claims": [
+                      "thready.publish-recovery-boundary"
+                    ]
+                  },
+                  {
+                    "kind": "bullet",
+                    "text": "발행 작업·콘텐츠·실패 알림의 종결을 같은 트랜잭션으로 묶어 부분 성공 상태가 남지 않게 처리",
+                    "claims": [
+                      "thready.publish-recovery-boundary"
+                    ]
+                  },
+                  {
+                    "kind": "paragraph",
+                    "text": "**검증**",
+                    "claims": [
+                      "thready.approval-command-consistency",
+                      "thready.publish-recovery-boundary"
+                    ],
+                    "presentation": "label"
+                  },
+                  {
+                    "kind": "bullet",
+                    "text": "동일 명령의 기존 작업 반환, 상충 명령의 단일 결과 반영, 잘못된 수정의 rollback, 호출 후 예외·lease 만료 복구를 회귀 테스트로 검증하도록 구성",
+                    "claims": [
+                      "thready.approval-command-consistency",
+                      "thready.publish-recovery-boundary"
+                    ]
+                  }
+                ],
+                "children": []
+              },
+              {
+                "title": "B. 동시 생성 요청의 사용량 예약과 확정",
+                "level": 4,
+                "blocks": [
+                  {
+                    "kind": "paragraph",
+                    "text": "요금제 사용량은 **요청 시점에 예약**하고, 확정 사용량과 진행 중 예약을 함께 판정해 **동시 요청의 초과 실행을 차단**",
+                    "claims": [
+                      "thready.generation-quota-admission"
+                    ]
+                  },
+                  {
+                    "kind": "paragraph",
+                    "text": "**선택의 이유**",
+                    "claims": [
+                      "thready.generation-quota-admission"
+                    ],
+                    "presentation": "label"
+                  },
+                  {
+                    "kind": "paragraph",
+                    "text": "완료된 사용량만 세면 동시에 들어온 요청이 모두 한도 안으로 판정됨. 요청 시점에 예약을 잡아 진행 중인 요청까지 한도 판정에 포함",
+                    "claims": [
+                      "thready.generation-quota-admission"
+                    ]
+                  },
+                  {
+                    "kind": "paragraph",
+                    "text": "**구현**",
+                    "claims": [
+                      "thready.generation-quota-admission"
+                    ],
+                    "presentation": "label"
+                  },
+                  {
+                    "kind": "bullet",
+                    "text": "성공과 시작 후 취소만 사용량으로 확정하고, 실패한 요청은 예약을 해제",
+                    "claims": [
+                      "thready.generation-quota-admission"
+                    ]
+                  }
+                ],
+                "children": []
+              },
+              {
+                "title": "C. 사용자 행동에서 출발한 기능 결정",
+                "level": 4,
+                "blocks": [
+                  {
+                    "kind": "paragraph",
+                    "text": "기능을 먼저 늘리기보다 **사용자 행동에서 필요를 찾고, 기존 기능으로 먼저 검증**하는 방식으로 개선 방향 결정",
+                    "claims": [
+                      "thready.usage-driven-generation-flow",
+                      "thready.usage-driven-mcp-agent-experiment"
+                    ]
+                  },
+                  {
+                    "kind": "bullet",
+                    "text": "임시저장으로 소재를 여러 개 미리 만들어 두는 사용 패턴을 파악하고, 완료를 기다려야 하던 동기 생성을 백그라운드 생성으로 전환해 생성 중에도 다른 작업을 이어가도록 변경",
+                    "claims": [
+                      "thready.usage-driven-generation-flow"
+                    ]
+                  },
+                  {
+                    "kind": "bullet",
+                    "text": "전환 뒤 생성 결과를 확인하지 않는 후속 문제를 발견하고, 미확인 사용자 대상 알림을 다음 개선안으로 제안",
+                    "claims": [
+                      "thready.unread-generation-notification-proposal"
+                    ]
+                  },
+                  {
+                    "kind": "bullet",
+                    "text": "소재 입력란에 지시형 요청을 넣는 행동에서 대화형 인터페이스 수요를 파악하고, 새 기능 개발에 앞서 기존 API를 MCP로 연결한 Agent 프로토타입으로 실제 고객 A/B 테스트 진행",
+                    "claims": [
+                      "thready.usage-driven-mcp-agent-experiment"
+                    ]
+                  },
+                  {
+                    "kind": "bullet",
+                    "text": "약 2주간 기존 이용 기준 대비 **방문 횟수 3.6배** 관측, 구독 유지와 상위 요금제 결제 사례로 **매출 유지·확대에 기여**",
+                    "claims": [
+                      "thready.agent-visit-frequency-observation",
+                      "thready.agent-paid-upgrade-contribution"
+                    ]
+                  }
+                ],
+                "children": []
+              },
+              {
+                "title": "D. 제품 원장과 AI 실행의 서비스 경계",
+                "level": 4,
+                "blocks": [
+                  {
+                    "kind": "paragraph",
+                    "text": "AI 실행부를 독립 FastAPI application·DB로 분리하고 제품 백엔드와 HTTP 계약으로 연결. 제품 정책·원장은 백엔드, 생성 lifecycle·실행 상태는 AI application이 소유",
+                    "claims": [
+                      "thready.ai-service-boundary",
+                      "thready.ai-replica-outbox"
+                    ]
+                  },
+                  {
+                    "kind": "bullet",
+                    "text": "원장 변경과 Outbox 기록을 같은 트랜잭션으로 처리하고 전달은 재시도·version fence로 분리해, AI 장애나 역순 전달이 최신 원장 상태를 덮지 않도록 구현",
+                    "claims": [
+                      "thready.ai-replica-outbox"
+                    ]
+                  },
+                  {
+                    "kind": "bullet",
+                    "text": "멱등 consumer와 최대 재시도 뒤 최종 실패 보존으로 운영자가 실패 상태를 확인하도록 설계",
+                    "claims": [
+                      "thready.ai-replica-outbox"
+                    ]
+                  },
+                  {
+                    "kind": "bullet",
+                    "text": "독립 AI application·DB를 STG·Prod에서 운영",
+                    "claims": [
+                      "thready.ai-service-boundary"
+                    ]
+                  }
+                ],
+                "children": []
+              }
+            ]
+          },
+          {
+            "title": "재고·발주 시스템 — 주문 상태·비동기 처리·실패 복구",
+            "level": 3,
+            "blocks": [
+              {
+                "kind": "paragraph",
+                "text": "Python · FastAPI · TaskIQ · RabbitMQ · Docker",
+                "claims": [
+                  "centurion.bay-async-backend",
+                  "centurion.async-migration"
+                ],
+                "presentation": "metadata"
+              },
+              {
+                "kind": "paragraph",
+                "text": "병원의 재고·입출고와 공급사 발주를 관리하는 시스템. 발주 대상 판정부터 승인, 공급사·병원 알림과 실패 건 재처리까지 백엔드 개발을 주도",
+                "claims": [
+                  "centurion.bay-async-backend",
+                  "centurion.inventory-order-workflow"
+                ]
+              },
+              {
+                "kind": "paragraph",
+                "text": "**선택의 이유**",
+                "claims": [
+                  "career.memento-payment",
+                  "centurion.bay-async-backend"
+                ],
+                "presentation": "label"
+              },
+              {
+                "kind": "paragraph",
+                "text": "Memento에서 예약 실패에 따른 결제 취소·환불과 이용권 정합성을 다룬 경험을 바탕으로, 외부 알림처럼 실패할 수 있는 후속 작업은 제품 시작부터 API 요청과 분리된 worker에서 처리하도록 설계",
+                "claims": [
+                  "career.memento-payment",
+                  "centurion.bay-async-backend"
+                ]
+              },
+              {
+                "kind": "paragraph",
+                "text": "**구현·운영**",
+                "claims": [
+                  "centurion.bay-async-backend",
+                  "centurion.inventory-order-workflow",
+                  "centurion.async-migration"
+                ],
+                "presentation": "label"
+              },
+              {
+                "kind": "bullet",
+                "text": "안전재고·자동발주 수량과 발주 대기·진행 중 주문을 확인해 대상을 정하고 승인 상태에 따라 주문 처리",
+                "claims": [
+                  "centurion.inventory-order-workflow"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "발송 결과를 주문 상태·실패 이력과 연결해 운영자가 처리 상태를 확인하도록 구현. 실패 주문은 재발송 조건을 확인한 뒤 수동 재발송하고 결과를 주문 상태·이력에 반영",
+                "claims": [
+                  "centurion.bay-async-backend"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "당시 Celery 5.3.6의 공식 worker pool에 asyncio 실행 모델이 없어, **FastAPI의 async 코드와 실행 방식을 맞추기 위해** async-native TaskIQ·RabbitMQ로 전환. 알림 발송 책임을 서비스·worker로 나누고 worker 이미지를 분리해 배포 단위 구성",
+                "claims": [
+                  "centurion.async-migration"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "API 테스트와 Docker 기반 CI를 구축하고 로컬 실행·온보딩 문서를 정비해 재현 가능한 개발·검증 환경 제공",
+                "claims": [
+                  "centurion.test-ci-foundation"
+                ]
+              }
+            ],
+            "children": []
+          },
+          {
+            "title": "사내 CRM·예약·홈페이지 — 운영 요구 구현과 관리 API",
+            "level": 3,
+            "blocks": [
+              {
+                "kind": "paragraph",
+                "text": "Python · FastAPI · Tortoise ORM · MySQL · Docker · Azure · Terraform",
+                "claims": [
+                  "nexus.backend-architecture",
+                  "nexus.terraform-infra"
+                ],
+                "presentation": "metadata"
+              },
+              {
+                "kind": "paragraph",
+                "text": "피부과 운영팀이 사용하는 CRM·예약 관리와 고객 접점인 홈페이지의 백엔드·인프라를 개발·운영. 운영팀과 요구사항을 정리하고 디자이너와 기능·화면 흐름을 공동 기획하며 개발·출시를 주도",
+                "claims": [
+                  "nexus.mso-driven-crm-operation",
+                  "nexus.backend-architecture",
+                  "nexus.terraform-infra"
+                ]
+              },
+              {
+                "kind": "paragraph",
+                "text": "**다른 직군과 문제 정의**",
+                "claims": [
+                  "nexus.mso-driven-crm-operation",
+                  "centurion.day-product-integration"
+                ],
+                "presentation": "label"
+              },
+              {
+                "kind": "bullet",
+                "text": "병원 운영팀과 직접 요구사항을 협의하고 디자이너와 기능·화면 흐름·우선순위 공동 기획",
+                "claims": [
+                  "nexus.mso-driven-crm-operation"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "예약 정책·운영 요구를 구현 범위로 구체화하고 일정·이슈·검증 기준을 조율하며 백엔드·프론트엔드·QA·릴리스를 연결",
+                "claims": [
+                  "centurion.day-product-integration"
+                ]
+              },
+              {
+                "kind": "paragraph",
+                "text": "**관리 API 구조와 접근 경계**",
+                "claims": [
+                  "nexus.admin-backend-ownership",
+                  "nexus.branch-access-boundary"
+                ],
+                "presentation": "label"
+              },
+              {
+                "kind": "bullet",
+                "text": "관리자·홈페이지 API를 독립 모듈로 두고 gateway로 단일 엔드포인트를 제공하는 계층 구조 설계·구축 주도. Generic Repository로 공통 CRUD를 표준화하고 멀티테넌시·Soft Delete 자동 필터링으로 데이터 격리",
+                "claims": [
+                  "nexus.admin-backend-ownership"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "관리자 API에서 운영자의 소속 지점과 현재 작업 지점을 분리하고, 요청의 지점 id 헤더로 작업 지점을 바꾸지 못하게 해 권한 검증 전용 API로만 전환하도록 설계·구현 진행",
+                "claims": [
+                  "nexus.branch-access-boundary"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "본사 미선택과 권한 밖 지점 접근을 409와 403으로 구분해 차단하고, 공용 인증 미들웨어와 홈페이지 API의 기존 지점 식별 계약은 유지",
+                "claims": [
+                  "nexus.branch-access-boundary"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "실제 병원 업무에 적용한 시스템을 유지·운영하며 운영 정책 변경과 현업 요청에 대응, 기존 운영을 이어가며 레거시 마이그레이션 진행 중",
+                "claims": [
+                  "nexus.backend-architecture",
+                  "nexus.mso-driven-crm-operation"
+                ]
+              }
+            ],
+            "children": []
+          },
+          {
+            "title": "공통 인증·운영 백오피스",
+            "level": 3,
+            "blocks": [
+              {
+                "kind": "paragraph",
+                "text": "NestJS · Redis",
+                "claims": [
+                  "centurion.sso-session"
+                ],
+                "presentation": "metadata"
+              },
+              {
+                "kind": "paragraph",
+                "text": "여러 제품이 공유하는 인증에서 중복 로그인·계정 전환·그룹 로그아웃 범위를 구분하고, **오래된 로그아웃 요청이 갱신된 세션을 삭제하는 문제**에 대응",
+                "claims": [
+                  "centurion.sso-session"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "사용자·서비스·기기별 로그인 정책과 Redis 공유 세션을 재설계해 구현. 로그아웃 요청의 토큰 소유권을 확인해 **교체된 유효 세션을 보호**하고, 정책 분기를 단위 시나리오 테스트로 검증",
+                "claims": [
+                  "centurion.sso-session",
+                  "centurion.sso-contract-verification"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "내부 운영팀용 계정·접근 관리 백오피스를 기획·디자인·개발해 실제 운영 업무에 적용",
+                "claims": [
+                  "centurion.sso-internal-backoffice",
+                  "centurion.hospital-system-operational-use"
+                ]
+              }
+            ],
+            "children": []
+          },
+          {
+            "title": "공통 개발 기반 — 백엔드 템플릿·릴리스 운영",
+            "level": 3,
+            "blocks": [
+              {
+                "kind": "paragraph",
+                "text": "Python · FastAPI · SQLAlchemy 2.0 async · pytest",
+                "claims": [
+                  "be-template.fastapi-sqlalchemy-standard"
+                ],
+                "presentation": "metadata"
+              },
+              {
+                "kind": "paragraph",
+                "text": "여러 사내 제품에 공통으로 적용하는 FastAPI·SQLAlchemy 백엔드 템플릿과 개발·검증 기준. 반복되던 DB·세션 문제를 제품별 대응 대신 **공통 기본값으로 해결**해 담당자가 제품 정책에 집중하도록 지원",
+                "claims": [
+                  "be-template.backend-standard",
+                  "be-template.team-leverage",
+                  "be-template.monitoring-driven-defect-reduction"
+                ]
+              },
+              {
+                "kind": "paragraph",
+                "text": "**문제**",
+                "claims": [
+                  "be-template.monitoring-driven-defect-reduction"
+                ],
+                "presentation": "label"
+              },
+              {
+                "kind": "paragraph",
+                "text": "여러 초기 제품의 모니터링에서 DB 연결·세션 관리 오류가 반복적으로 확인됨",
+                "claims": [
+                  "be-template.monitoring-driven-defect-reduction"
+                ]
+              },
+              {
+                "kind": "paragraph",
+                "text": "**판단·구현**",
+                "claims": [
+                  "be-template.fastapi-sqlalchemy-standard"
+                ],
+                "presentation": "label"
+              },
+              {
+                "kind": "bullet",
+                "text": "Service method가 `@transactional`로 트랜잭션 정책을 선언하도록 하고, REQUIRED의 기존 트랜잭션 참여·REQUIRES_NEW의 새 연결·NESTED의 SAVEPOINT를 구현",
+                "claims": [
+                  "be-template.fastapi-sqlalchemy-standard"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "ContextVar에 현재 AsyncSession을 bind해 계층마다 session을 넘기던 반복을 제거. 하나의 트랜잭션은 하나의 asyncio task가 소유하도록 child task의 같은 session 접근을 차단하고, 취소 시 rollback·연결 정리를 integration test로 검증",
+                "claims": [
+                  "be-template.fastapi-sqlalchemy-standard"
+                ]
+              },
+              {
+                "kind": "paragraph",
+                "text": "**운영 변화**",
+                "claims": [
+                  "be-template.monitoring-driven-defect-reduction",
+                  "be-template.team-leverage",
+                  "be-template.agent-context"
+                ],
+                "presentation": "label"
+              },
+              {
+                "kind": "bullet",
+                "text": "기존 서비스에 개선 구조를 적용하고 신규 서비스의 개발 기본값으로 정착시켜 동일 유형의 문제 재발 방지",
+                "claims": [
+                  "be-template.monitoring-driven-defect-reduction"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "기획·QA·디자인 담당자가 coding agent로 사내 프로그램을 구현할 때도 같은 패턴·검증 규칙을 적용. 기능 구현은 각 담당자가 수행하고, 본인은 구현 결과 피드백과 배포를 지원",
+                "claims": [
+                  "be-template.team-leverage",
+                  "be-template.agent-context"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "제품팀의 일정·이슈·릴리스 운영을 리드하고, 릴리스 게이트·버전 확정을 실제 완료 시점에 연결해 릴리스 노트 생성을 자동화하고 버전 변경 이력 추적",
+                "claims": [
+                  "mediness.product-operations"
+                ]
+              }
+            ],
+            "children": []
+          },
+          {
+            "title": "사내 인프라 — Azure 구축·운영과 비용 개선",
+            "level": 3,
+            "blocks": [
+              {
+                "kind": "paragraph",
+                "text": "Azure · Terraform · Docker · GitHub Actions",
+                "claims": [
+                  "infra.terraform-state-safety",
+                  "infra.company-infrastructure-owner"
+                ],
+                "presentation": "metadata"
+              },
+              {
+                "kind": "paragraph",
+                "text": "전담자 없이 서비스별로 분산 운영되던 인프라의 구조와 관리 체계를 정비하고, 자원 통합을 제안·추진해 **월 서버 비용 약 30~40% 절감**에 기여",
+                "claims": [
+                  "infra.company-infrastructure-owner",
+                  "infra.instance-consolidation-cost-reduction"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "서버를 Private 네트워크에 배치하고 관리 접근은 Bastion 인증 경로로만 연결",
+                "claims": [
+                  "infra.private-server-bastion-access"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "제품군·환경별 Terraform 구성과 remote state를 분리. plan·state·실제 자원을 대조해 의도하지 않은 삭제·교체와 다른 환경으로의 변경 전파를 적용 전에 차단",
+                "claims": [
+                  "infra.terraform-state-safety"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "환경별 Log Analytics와 Azure Monitor alert(CPU·memory·disk·API 5xx·DB 가용성)를 Terraform으로 구성·운영",
+                "claims": [
+                  "infra.azure-observability"
+                ]
+              }
+            ],
+            "children": []
+          },
+          {
+            "title": "병원 상담 서비스 — 실시간 전사·의료 지식베이스",
+            "level": 3,
+            "blocks": [
+              {
+                "kind": "paragraph",
+                "text": "Python · WebSocket · Next.js · FastAPI",
+                "claims": [
+                  "centurion.say-realtime-ai",
+                  "procedure-hub.fullstack-development"
+                ],
+                "presentation": "metadata"
+              },
+              {
+                "kind": "bullet",
+                "text": "실시간 상담 전사·세션 처리를 공동 주도하고, 상담사·고객 언어에 따른 양방향 음성 번역 기능 설계·구현",
+                "claims": [
+                  "centurion.say-realtime-ai",
+                  "centurion.realtime-translation"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "완료 뒤 비동기로 도착하는 보정 결과를 같은 발화 순번에 반영해 동일 문장이 반복돼도 다른 발화를 덮어쓰지 않도록 구성. 종료 뒤 재연결되던 세션의 타이머·정리 경계를 보강하고 회귀 테스트로 고정",
+                "claims": [
+                  "centurion.say-realtime-ai"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "상담 현장에서 발견된 시술 용어 오해석이 다른 고객 응대 서비스에서도 반복될 것으로 보고, 여러 서비스가 함께 쓰는 공통 의료 지식베이스를 제안·기획·개발 주도",
+                "claims": [
+                  "procedure-hub.product-design-development-lead",
+                  "procedure-hub.shared-terminology-correction"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "병원 운영 글로벌 팀이 정리한 용어를 상담 응답 보정에 연결해 운영 중, 동일 인터뷰 기준 **상담사 만족도 3.2→3.7점 개선**에 기여(5점 만점)",
+                "claims": [
+                  "procedure-hub.shared-terminology-correction",
+                  "procedure-hub.knowledge-base-operational-use"
+                ]
+              }
+            ],
+            "children": []
+          }
+        ]
+      },
+      {
+        "title": "Memento AI · 2024.10 — 2025.01",
+        "level": 2,
+        "blocks": [
+          {
+            "kind": "paragraph",
+            "text": "Backend Engineer · 인턴 합류 후 정규직 전환 · PM Intern 1개월 병행 · 회사 폐업으로 종료",
+            "claims": [
+              "career.memento-payment"
+            ],
+            "presentation": "role"
+          }
+        ],
+        "children": [
+          {
+            "title": "예약·결제 백엔드",
+            "level": 3,
+            "blocks": [
+              {
+                "kind": "paragraph",
+                "text": "Python · FastAPI · SQLAlchemy · MySQL · 외부 결제 서비스",
+                "claims": [
+                  "career.memento-fastapi-backend",
+                  "career.memento-stripe-prepayment"
+                ],
+                "presentation": "metadata"
+              },
+              {
+                "kind": "paragraph",
+                "text": "FastAPI·MySQL 기반 병원 예약·결제 API 개발. 결제 경로마다 달랐던 **상태 변경 순서를 환불 완료 시점에 맞춰 정리**하고, 외부 결제 선결제 영역 구축을 주도",
+                "claims": [
+                  "career.memento-fastapi-backend",
+                  "career.memento-payment"
+                ]
+              },
+              {
+                "kind": "paragraph",
+                "text": "**환불 흐름의 상태 순서**",
+                "claims": [
+                  "career.memento-payment"
+                ],
+                "presentation": "label"
+              },
+              {
+                "kind": "bullet",
+                "text": "환불 요청과 완료를 분리하고, 마일리지 복원·이용권 삭제를 환불 완료 전이로 이동",
+                "claims": [
+                  "career.memento-payment"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "현금·외부 결제·0원·전액 마일리지 경로별 상태 변경 순서를 보완",
+                "claims": [
+                  "career.memento-payment"
+                ]
+              },
+              {
+                "kind": "paragraph",
+                "text": "**외부 결제 연동**",
+                "claims": [
+                  "career.memento-stripe-prepayment"
+                ],
+                "presentation": "label"
+              },
+              {
+                "kind": "bullet",
+                "text": "Checkout 기반 manual-capture 선결제 영역 구축. 내부 거래 ID를 결제 서비스 metadata에 연결해 결제 이력과 Checkout·Webhook 이벤트를 매핑",
+                "claims": [
+                  "career.memento-stripe-prepayment"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "예약 처리 실패 시 결제 상태에 따라 취소·환불하는 결제 서비스 측 보상 처리 구현",
+                "claims": [
+                  "career.memento-stripe-prepayment"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "다국어 해피콜의 알림톡·이메일 즉시·예약 발송과 작업 취소·재등록·발송 이력 구현",
+                "claims": [
+                  "career.memento-happycall-survey"
+                ]
+              }
+            ],
+            "children": []
+          }
+        ]
+      },
+      {
+        "title": "STUDIO LAB · 2021.12 — 2024.01",
+        "level": 2,
+        "blocks": [
+          {
+            "kind": "paragraph",
+            "text": "Product Manager · AI Engineer → PM(주 역할) → Backend Engineer",
+            "claims": [
+              "career.ai-pm-backend-continuity"
+            ],
+            "presentation": "role"
+          }
+        ],
+        "children": [
+          {
+            "title": "SellerCanvas — 패션 커머스 AI 상세페이지 제품 기획",
+            "level": 3,
+            "blocks": [
+              {
+                "kind": "paragraph",
+                "text": "현 gency.ai · 제품 기획 · 상품 데이터 기준 설계 · 기업 PoC",
+                "claims": [
+                  "career.sellercanvas-product-system",
+                  "career.sellercanvas-enterprise-poc"
+                ],
+                "presentation": "metadata"
+              },
+              {
+                "kind": "paragraph",
+                "text": "하루 이상 걸리던 상세페이지 제작 시간을 줄이는 생성형 AI 커머스 콘텐츠 제품. PM 메인 역할로 프로토타입에서 v1.0까지 제품 흐름·기능 범위·출시 우선순위를 정함",
+                "claims": [
+                  "career.sellercanvas-product-system",
+                  "career.sellercanvas-creation-time-reduction"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "회사의 사업 구상·경쟁 제품 분석·고객 인터뷰를 바탕으로 에디터를 포함한 제품의 기능 범위·출시 우선순위·사용 흐름 기획",
+                "claims": [
+                  "career.sellercanvas-product-system"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "확보한 패션 상품 데이터를 패션 전공자들과 분류 기준으로 정리·라벨링하고, 상세페이지 배치 알고리즘을 설계해 특허 「페이지 출력 방법」 공동 발명에 기여. 모델 구현은 AI 엔지니어가 이 방식을 차용해 수행",
+                "claims": [
+                  "career.sellercanvas-product-system",
+                  "credentials.page-output-patent"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "외부 패션 브랜드의 비즈니스 요구사항을 기술 스펙으로 구체화하고 기획·일정·기술 검증 범위를 조율해 기업 PoC 진행",
+                "claims": [
+                  "career.sellercanvas-enterprise-poc"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "생성 요청부터 완성 상세페이지 반환까지 10분 이내(외부 안내 30분) 제품의 기획·데이터 설계에 기여, 참여 제품의 CES 2024 Best of Innovation AI 부문 수상",
+                "claims": [
+                  "career.sellercanvas-creation-time-reduction",
+                  "credentials.ces-2024"
+                ]
+              },
+              {
+                "kind": "paragraph",
+                "text": "**지금의 백엔드 판단으로 이어진 점**",
+                "claims": [
+                  "career.ai-pm-backend-continuity"
+                ],
+                "presentation": "label"
+              },
+              {
+                "kind": "paragraph",
+                "text": "Vision AI에서 PM을 거쳐 Backend Engineer로 확장한 제품·시스템 경험. 이전 AI·PM 경험을 제품 판단과 기술 구현을 연결하는 배경으로 활용",
+                "claims": [
+                  "career.ai-pm-backend-continuity"
+                ]
+              }
+            ],
+            "children": []
+          }
+        ]
+      }
+    ]
+  }
+}

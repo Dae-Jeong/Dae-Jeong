@@ -1,54 +1,23 @@
 import { cn } from "@/lib/cn";
 
 /* D3 확정 (2026-07-18): accent-fill 은 전부 Button — Chip 은 bordered 전용 */
-type ButtonProps = {
-  href?: string;
-  external?: boolean;
-  disabled?: boolean;
-  title?: string;
-  onClick?: () => void;
-  className?: string;
-  children: React.ReactNode;
-};
-
 const BASE =
   "focus-ring inline-flex items-center gap-2 whitespace-nowrap border border-accent bg-accent px-3.5 py-2 " +
   "font-mono text-xs font-medium tracking-[0.04em] text-accent-on " +
-  "transition-colors duration-100 hover:bg-accent-hover active:bg-accent-active " +
-  "aria-disabled:pointer-events-none aria-disabled:opacity-65";
+  "transition-colors duration-100 hover:bg-accent-hover active:bg-accent-active";
 
 export function Button({
   href,
-  external,
-  disabled,
-  title,
-  onClick,
   className = "",
   children,
-}: ButtonProps) {
-  const cls = cn(BASE, className);
-  if (href !== undefined) {
-    return (
-      <a
-        href={href}
-        title={title}
-        aria-disabled={disabled}
-        {...(external ? { target: "_blank", rel: "noopener" } : {})}
-        className={cls}
-      >
-        {children}
-      </a>
-    );
-  }
+}: {
+  href: string;
+  className?: string;
+  children: React.ReactNode;
+}) {
   return (
-    <button
-      type="button"
-      title={title}
-      disabled={disabled}
-      onClick={onClick}
-      className={cls}
-    >
+    <a href={href} className={cn(BASE, className)}>
       {children}
-    </button>
+    </a>
   );
 }

@@ -75,24 +75,6 @@
   --ease-standard: cubic-bezier(0.2, 0, 0, 1);
 }
 
-/* Resume and career documents (common and company) share a grey screen stage behind the white sheet. */
-@media screen {
-  body:has(main[data-document-layout="a4-sheet"]), body:has(main[data-resume-document]) {
-    background: #eef1f4;
-  }
-}
-/* Admin menu space (components/site/admin-entry.tsx): screen only, never in print. */
-@media screen {
-  body { padding-bottom: var(--admin-menu-space, 0px); }
-}
-/* Resume print composition: the A4 projection is already page-sized, so the site's document gutter must not shift it. */
-@media print {
-  div:has(> main[data-resume-document]) {
-    max-width: none !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-  }
-}
 
 body {
   background: var(--bg);
