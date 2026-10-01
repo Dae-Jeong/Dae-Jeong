@@ -16,7 +16,7 @@ export async function generateMetadata({
   const document = getRepresentative(company, "cv");
   return {
     title: document
-      ? `${document.companyName} CV${document.public ? "" : " 초안"} — 김대정`
+      ? `${document.companyName} CV — 김대정`
       : "CV — 김대정",
     robots: { index: false, follow: false, noarchive: true, nosnippet: true },
   };

@@ -260,11 +260,9 @@ function contentsEntries(document: ContentDocument) {
  */
 export function CareerDocument({
   document: suppliedDocument,
-  navigation,
   slug = "common",
 }: {
   document?: ContentDocument;
-  navigation?: ReactNode;
   slug?: string;
 }) {
   const document = suppliedDocument ?? (career as ContentDocument);
@@ -285,7 +283,6 @@ export function CareerDocument({
   const contents = contentsEntries(document);
   return (
     <DocumentShell>
-      {navigation}
       <DocumentFrame
         className={styles.document}
         data-common-document="career"

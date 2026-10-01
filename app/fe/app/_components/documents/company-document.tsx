@@ -1,53 +1,10 @@
-import { ROUTES } from "@/lib/routes";
-import Link from "next/link";
 import { notFound } from "next/navigation";
-import { companyDocumentHref } from "@/features/company-documents/urls";
 import { getRepresentative } from "@/features/company-documents/policy";
-import {
-  companyKinds,
-  type Representative,
-} from "@/features/company-documents/types";
 import { ResumeDocument } from "./resume/resume-document";
-import navStyles from "./company-document.module.css";
 import { CareerDocument } from "./career/career-document";
 import { CvDocument } from "./cv/cv-document";
 import { DocumentShell } from "./document-shell";
 import frameStyles from "./document-frame.module.css";
-
-/** Links between the kinds that exist for this company (representative documents only; no version links). */
-function CompanyNavigation({ document }: { document: Representative }) {
-  const kinds = companyKinds.filter((item) =>
-    getRepresentative(document.company, item.slug),
-  );
-  return (
-    <div className="print:hidden">
-      <nav
-        className={navStyles.nav}
-        aria-label={`${document.companyName} 문서 전환`}
-      >
-        <Link
-          href={document.public ? ROUTES.home : ROUTES.admin.map}
-          className={navStyles.navHome}
-        >
-          {document.public ? "홈" : "문서 지도"}
-        </Link>
-        {kinds.map((item) => (
-          <Link
-            key={item.slug}
-            href={companyDocumentHref(document.company, item.slug)}
-            aria-current={item.slug === document.kind ? "page" : undefined}
-          >
-            {item.label}
-          </Link>
-        ))}
-      </nav>
-      <p className="mx-auto max-w-5xl px-6 py-2 text-sm text-muted">
-        {[document.companyName, document.position].filter(Boolean).join(" · ")}
-        {document.public ? "" : " · DRAFT · LOCAL · 승인 전"}
-      </p>
-    </div>
-  );
-}
 
 /** The company document page for /{company}/{kind}: the representative document rendered with the common renderer
  *  of that kind. Unknown company/kind, reserved segments and drafts outside dev/test are not found. */
@@ -60,12 +17,10 @@ export function CompanyDocumentPage({
 }) {
   const document = getRepresentative(company, kind);
   if (!document) notFound();
-  const navigation = <CompanyNavigation document={document} />;
   if (document.kind === "career")
     return (
       <CareerDocument
         document={document.content}
-        navigation={navigation}
         slug={company}
       />
     );
@@ -73,12 +28,10 @@ export function CompanyDocumentPage({
     return (
       <CvDocument
         document={document.content}
-        navigation={navigation}
       />
     );
   return (
     <DocumentShell>
-      {navigation}
       {document.pdfHref && (
         // The submitted A4 PDF of this document stays downloadable from the same page.
         <p className={`${frameStyles.downloadSlot} mx-auto flex justify-end py-3 print:hidden`}>
@@ -101,3 +54,4 @@ export function CompanyDocumentPage({
     </DocumentShell>
   );
 }
+

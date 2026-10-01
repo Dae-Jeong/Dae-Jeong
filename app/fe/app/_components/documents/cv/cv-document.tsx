@@ -76,14 +76,11 @@ function Section({ section, id }: { section: ContentSection; id: string }) {
  *  Web adaptation of Jake Gutierrez's MIT-licensed template; see tools/templates/jake-cv/. */
 export function CvDocument({
   document = commonCv,
-  navigation,
 }: {
   document?: ContentDocument;
-  navigation?: ReactNode;
 } = {}) {
   return (
     <DocumentShell>
-      {navigation}
       <DocumentFrame
         lang="en"
         className={styles.document}
