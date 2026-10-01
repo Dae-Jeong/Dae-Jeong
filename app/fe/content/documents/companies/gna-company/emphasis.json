@@ -9,5 +9,11 @@
     "동일 유형의 DB·세션 오류 재발이 관찰되지 않음",
     "운영 전환 준비 중",
     "환불 완료 시점"
-  ]
+  ],
+  "photo": {
+    "src": "/profile/daejeong-profile-v2.png",
+    "alt": "김대정",
+    "width": 1122,
+    "height": 1402
+  }
 }

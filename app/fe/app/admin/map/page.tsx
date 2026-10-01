@@ -9,7 +9,7 @@ import { AdminShell } from "@/app/_components/admin/admin-shell";
 import { loadApplications } from "@/features/applications/load-applications";
 import { requireAdmin } from "@/features/admin-auth/guard";
 import { companyDocumentHref } from "@/features/company-documents/urls";
-import { listRepresentativeEntries } from "@/features/company-documents/policy";
+import { listDocumentEntries } from "@/lib/documents/repository";
 import { companyKinds, type CompanyKind } from "@/features/company-documents/types";
 
 // 관리자 문서 지도. 회사 한 줄에 대표 이력서 · 경력기술서 · CV. 대표 선정은 features/company-documents/policy.ts가 소유한다.
@@ -37,21 +37,21 @@ async function buildRows(): Promise<{
   statusKind: "ready" | "missing" | "error";
 }> {
   const rows = new Map<string, Row>();
-  for (const { document, viewable } of listRepresentativeEntries()) {
-    const row = rows.get(document.company) ?? {
-      key: document.company,
-      name: document.companyName,
+  for (const document of await listDocumentEntries()) {
+    const row = rows.get(document.slug) ?? {
+      key: document.slug,
+      name: document.companyName ?? document.title,
       cells: {},
     };
-    const href = companyDocumentHref(document.company, document.kind);
-    row.cells[document.kind] = viewable
+    const href = companyDocumentHref(document.slug, document.kind);
+    row.cells[document.kind] = document.viewable
       ? {
           href,
           label: href,
-          note: document.public ? "public" : "draft · local",
+          note: document.visibility === "public" ? "public" : "draft · local",
         }
       : { label: "초안", note: "배포 비공개 · 승인 전" };
-    rows.set(document.company, row);
+    rows.set(document.slug, row);
   }
   const applications = await loadApplications();
   if (applications.kind === "ready") {

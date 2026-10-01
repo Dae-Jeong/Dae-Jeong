@@ -1,6 +1,5 @@
 import "server-only";
 import { readDocumentJson } from "@/content/documents/storage";
-import { companyDocuments, revisionDocuments } from "@/content/documents/companies";
 import type { CompanyDocument } from "@/content/documents/companies";
 import type { ResumeCopy } from "@/content/documents/resume-copy";
 import type { ContentDocument } from "@/content/documents/parse-markdown";
@@ -56,14 +55,11 @@ export async function getDocument(query: DocumentQuery): Promise<DocumentRecord 
   const slug = companySlug(query.company);
   const representative = getRepresentative(slug, query.kind);
   if (!representative) return null;
-  const source = [...companyDocuments, ...revisionDocuments].find(record =>
-    record.slug === slug && record.document === query.kind && record.revision === representative.label);
-  if (!source) throw new Error(`Missing representative source: ${slug}/${query.kind}`);
   const metadata: DocumentMetadata = {
     scope: "company", slug, title: representative.companyName,
     companyName: representative.companyName, position: representative.position,
-    status: source.status, visibility: representative.public ? "public" : "local",
-    revision: source.revision, pdfHref: source.pdfHref,
+    status: representative.status, visibility: representative.public ? "public" : "local",
+    revision: representative.label, pdfHref: representative.pdfHref,
   };
   return representative.kind === "resume"
     ? { ...metadata, kind: "resume", content: representative.copy, presentation: representative.presentation }
@@ -84,4 +80,14 @@ export async function listDocuments(filter: Partial<DocumentQuery> = {}): Promis
     (filter.company === undefined || query.company === companySlug(filter.company)));
   const records = await Promise.all(selected.map(getDocument));
   return records.filter((record): record is DocumentRecord => record !== null);
+}
+
+/** Admin inventory includes unavailable drafts as metadata only, never their bodies. */
+export async function listDocumentEntries(): Promise<(DocumentMetadata & { kind: "resume" | "career"; viewable: boolean })[]> {
+  return listRepresentativeEntries().map(({ document, viewable }) => ({
+    scope: "company", slug: document.company, title: document.companyName,
+    companyName: document.companyName, position: document.position,
+    status: document.status, visibility: document.public ? "public" : "local",
+    revision: document.label, pdfHref: document.pdfHref, kind: document.kind, viewable,
+  }));
 }

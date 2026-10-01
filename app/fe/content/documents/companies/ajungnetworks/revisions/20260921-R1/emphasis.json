@@ -11,5 +11,11 @@
     "상담사 만족도 3.2→3.7점 개선에 기여",
     "월 서버 비용 약 30~40% 절감에 기여",
     "AARRR 기반 사용자 퍼널 설계"
-  ]
+  ],
+  "photo": {
+    "src": "/profile/daejeong-profile-v2.png",
+    "alt": "",
+    "width": 1122,
+    "height": 1402
+  }
 }

@@ -1,9 +1,9 @@
-import { getRepresentative } from "./policy";
+import { getDocument } from "@/lib/documents/repository";
 import { companySlug, type CompanyKind } from "./types";
 /** Only validated representative paths can become redirect destinations. */
 export const companyDocumentHref = (company: string, kind: CompanyKind) =>
   `/${company}/${kind}`;
-export function resolveCompanyRequest(
+export async function resolveCompanyRequest(
   company: string,
   kind: CompanyKind,
   hasQuery = false,
@@ -11,13 +11,13 @@ export function resolveCompanyRequest(
 ) {
   if (former && company === "common") return { href: `/${kind}` };
   const canonical = companySlug(company);
-  const document = getRepresentative(canonical, kind);
+  const document = await getDocument({ scope: "company", company: canonical, kind });
   if (!document) return undefined;
   return {
     document,
     href:
       former || canonical !== company || hasQuery
-        ? companyDocumentHref(document.company, kind)
+        ? companyDocumentHref(document.slug, kind)
         : undefined,
   };
 }

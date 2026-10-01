@@ -15,13 +15,8 @@ export type CompanyDocument = {
 const sources = loadCompanySources<CompanyDocument>();
 export const companyDocuments = sources.base;
 export const revisionDocuments = sources.revisions;
-const publicRevisionKeys = new Set([
-  "sagak:20260921-R1",
-  "ajungnetworks:20260921-R1",
-  "socar:20260921-R1",
-]);
-export function isPublicRevision(document: Pick<CompanyDocument, "slug" | "revision" | "visibility">) {
-  return document.visibility === "public" || publicRevisionKeys.has(`${document.slug}:${document.revision}`);
+export function isPublicRevision(document: Pick<CompanyDocument, "visibility">) {
+  return document.visibility === "public";
 }
 export function canViewDraft(environment: string | undefined) {
   return environment === "development" || environment === "test";

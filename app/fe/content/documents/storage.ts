@@ -8,10 +8,21 @@ const root = existsSync(join(process.cwd(), "content/common"))
   : resolve(process.cwd(), "app/fe");
 
 /** Paths are internal identifiers, never unchecked request strings. */
-export function readDocumentJson<T>(...segments: string[]): T {
+function documentPath(segments: string[]): string {
   if (segments.some(segment => !/^[a-zA-Z0-9_.-]+$/.test(segment) || segment === "." || segment === ".."))
     throw new Error("Invalid document storage path");
-  return JSON.parse(readFileSync(join(root, "content", ...segments), "utf8")) as T;
+  return join(root, "content", ...segments);
+}
+
+export function readDocumentJson<T>(...segments: string[]): T {
+  return JSON.parse(readFileSync(documentPath(segments), "utf8")) as T;
+}
+
+/** Missing optional presentation files are normal; malformed files still fail. */
+export function readOptionalDocumentJson<T>(...segments: string[]): T | undefined {
+  const path = documentPath(segments);
+  if (!existsSync(path)) return undefined;
+  return JSON.parse(readFileSync(path, "utf8")) as T;
 }
 
 /** New company/revision folders need no TypeScript registration. */

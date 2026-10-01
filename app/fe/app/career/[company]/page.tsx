@@ -7,7 +7,7 @@ type PageProps = { params: Promise<{ company: string }> };
  *  /{company}/career URL without the query. /career/common is the common document. Unknown companies are not redirected. */
 export default async function FormerCareerPage({ params }: PageProps) {
   const { company } = await params;
-  const resolved = resolveCompanyRequest(company, "career", false, true);
+  const resolved = await resolveCompanyRequest(company, "career", false, true);
   if (!resolved) notFound();
   permanentRedirect(resolved.href!);
 }

@@ -1,3 +1,4 @@
+import type { CompanyDocument } from "@/content/documents/companies";
 import type { ResumePresentation } from "@/content/documents/companies/presentation";
 import type { ContentDocument } from "@/content/documents/parse-markdown";
 import type { ResumeCopy } from "@/content/documents/resume-copy";
@@ -46,6 +47,8 @@ type RepresentativeBase = {
   order: string;
   public: boolean;
   label: string;
+  status: CompanyDocument["status"];
+  pdfHref?: string;
   /** The document consumes the common body; no company-specific copy was authored. */
   mode?: "common";
 };
@@ -54,7 +57,6 @@ export type Representative =
       kind: "resume";
       copy: ResumeCopy;
       presentation?: ResumePresentation;
-      pdfHref?: string;
     })
   | (RepresentativeBase & {
       kind: "career";

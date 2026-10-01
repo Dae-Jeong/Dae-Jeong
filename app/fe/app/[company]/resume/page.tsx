@@ -27,14 +27,14 @@ export async function generateMetadata({
  *  never selects another version: it is dropped by redirecting to the validated canonical URL, as is a version alias. */
 export default async function CompanyPage({ params, searchParams }: PageProps) {
   const { company } = await params;
-  const resolved = resolveCompanyRequest(
+  const resolved = await resolveCompanyRequest(
     company,
     "resume",
     Object.keys(await searchParams).length > 0,
   );
   if (!resolved?.document) notFound();
   if (resolved.href) permanentRedirect(resolved.href);
-  const document = await getDocument({ scope: "company", company: resolved.document.company, kind: "resume" });
+  const document = resolved.document;
   if (!document || document.kind !== "resume") notFound();
   return <CompanyDocumentPage document={document} />;
 }

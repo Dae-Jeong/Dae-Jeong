@@ -35,7 +35,7 @@ const { companyKinds, companySlug, RESERVED_SEGMENTS } = await load("features/co
 const { collectCandidates } = await load("features/company-documents/mapping.ts");
 const { selectRepresentative, getRepresentative, listRepresentativeEntries } = await load("features/company-documents/policy.ts");
 const { companyDocumentHref, resolveCompanyRequest } = await load("features/company-documents/urls.ts");
-const { getDocument, listDocuments } = await load("lib/documents/repository.ts");
+const { getDocument, listDocuments, listDocumentEntries } = await load("lib/documents/repository.ts");
 const { readDocumentJson } = await load("content/documents/storage.ts");
 
 // Exercise the actual repository, including invalid requests and production visibility.
@@ -114,7 +114,7 @@ for (const record of [...registry.companyDocuments, ...registry.revisionDocument
   assert(["local", "public"].includes(record.visibility));
   assert.equal(record.approved, record.status === "approved");
   if (!["hypernova", "mgrv", "pinokiolab", "teamreboot", "whatssub"].includes(record.slug)) {
-    assert.equal(record.status, "draft"); assert.equal(record.visibility, "local"); assert.equal(record.approved, false);
+    assert.equal(record.status, "draft"); assert.equal(record.visibility, ["sagak", "ajungnetworks", "socar"].includes(record.slug) && record.revision === "20260921-R1" ? "public" : "local"); assert.equal(record.approved, false);
   }
   for (const field of ["slug", "companyName", "position", "revision", "updatedAt", "applicationId"]) assert.equal(typeof record[field], "string", field);
   assert(record.revision && record.applicationId && record.content.sections.length);
@@ -151,6 +151,31 @@ assert.throws(() => inspect({ sourcePath: "fixture-private" }), /Private source 
 assert.throws(() => inspect({ kind: "paragraph", text: "fixture" }), /claim references/);
 assert.throws(() => inspect({ kind: "unknown", claims: [], text: "fixture" }), /Unknown block kind/);
 assert.throws(() => inspect({ kind: "table", claims: [], columns: ["a"], rows: [["a", "b"]] }));
+
+// Every formerly registered presentation keeps its emphasis and portrait; unrelated
+// revisions must not inherit a base resume's presentation.
+const { getResumePresentation } = await load("content/documents/companies/presentation.ts");
+for (const [slug, revision] of [
+  ["hypernova", "20260904-R1"], ["mgrv", "20260818-R1"], ["pinokiolab", "20260828-R1"],
+  ["teamreboot", "20260901-R1"], ["whatssub", "20260826-R1"],
+]) {
+  const expected = JSON.parse(readFileSync(new URL(`content/documents/companies/${slug}/presentation.json`, fe), "utf8"));
+  assert.deepEqual(getResumePresentation(slug, revision), expected);
+  assert.equal(getResumePresentation(slug, "unregistered-revision"), undefined);
+}
+for (const [slug, revision] of [
+  ["gna-company", "20260928-R2"], ["miridih", "20260912-R3"],
+  ...["sagak", "ajungnetworks", "socar", "featuring"].map(slug => [slug, "20260921-R1"]),
+]) {
+  const folder = slug === "gna-company" ? slug : `${slug}/revisions/${revision}`;
+  const source = JSON.parse(readFileSync(new URL(`content/documents/companies/${folder}/emphasis.json`, fe), "utf8"));
+  assert.deepEqual(getResumePresentation(slug, revision), {
+    emphasis: source.phrases,
+    photo: { src: "/profile/daejeong-profile-v2.png", alt: slug === "gna-company" ? "김대정" : "", width: 1122, height: 1402 },
+  });
+}
+assert.equal(getResumePresentation("unregistered-company", "unregistered-revision"), undefined);
+assert.throws(() => getResumePresentation("..", "unregistered-revision"), /Invalid document storage path/);
 
 const candidates = collectCandidates(companySlug);
 const chosen = selectRepresentative(candidates);
@@ -200,23 +225,28 @@ try {
     for (const { document, viewable } of listRepresentativeEntries()) {
       const allowed = document.public || registry.canViewDraft(environment);
       assert.equal(viewable, allowed);
-      const canonical = resolveCompanyRequest(document.company, document.kind);
+      const entry = (await listDocumentEntries()).find(entry => entry.slug === document.company && entry.kind === document.kind);
+      assert.equal(entry.viewable, allowed);
+      assert.equal(entry.status, document.status);
+      assert.equal(entry.pdfHref, document.pdfHref);
+      assert(!("content" in entry), "Admin inventory never includes draft bodies");
+      const canonical = await resolveCompanyRequest(document.company, document.kind);
       if (!allowed) {
         assert.equal(canonical, undefined);
-        assert.equal(resolveCompanyRequest(document.company, document.kind, true, true), undefined, "Reject draft before redirect");
+        assert.equal((await resolveCompanyRequest(document.company, document.kind, true, true)), undefined, "Reject draft before redirect");
       } else {
-        assert.equal(canonical.document, document); assert.equal(canonical.href, undefined);
+        assert.deepEqual(canonical.document, await getDocument({ scope: "company", company: document.company, kind: document.kind })); assert.equal(canonical.href, undefined);
         for (const [query, former] of [[true, false], [false, true], [true, true]]) {
-          assert.equal(resolveCompanyRequest(document.company, document.kind, query, former).href, companyDocumentHref(document.company, document.kind));
+          assert.equal((await resolveCompanyRequest(document.company, document.kind, query, former)).href, companyDocumentHref(document.company, document.kind));
         }
       }
     }
-    for (const reserved of RESERVED_SEGMENTS) for (const { slug: kind } of companyKinds) assert.equal(resolveCompanyRequest(reserved, kind, true), undefined);
+    for (const reserved of RESERVED_SEGMENTS) for (const { slug: kind } of companyKinds) assert.equal((await resolveCompanyRequest(reserved, kind, true)), undefined);
     assert.equal(getRepresentative("unknown", "resume"), undefined);
     assert.equal(getRepresentative("featuring", "portfolio"), undefined);
-    assert.equal(resolveCompanyRequest("unknown", "resume", true, true), undefined);
-    for (const { slug: kind } of companyKinds) assert.equal(resolveCompanyRequest("common", kind, false, true).href, `/${kind}`);
-    const alias = resolveCompanyRequest("jyp-v2", "resume", true);
+    assert.equal((await resolveCompanyRequest("unknown", "resume", true, true)), undefined);
+    for (const { slug: kind } of companyKinds) assert.equal((await resolveCompanyRequest("common", kind, false, true)).href, `/${kind}`);
+    const alias = await resolveCompanyRequest("jyp-v2", "resume", true);
     assert.equal(alias?.href, registry.canViewDraft(environment) ? "/jyp/resume" : undefined);
   }
 } finally {

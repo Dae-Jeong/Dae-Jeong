@@ -6,5 +6,11 @@
     "AI 실행부를 독립 FastAPI 애플리케이션·DB로 분리",
     "FastAPI 템플릿 설계·구축",
     "월 1천만원 수준의 구독 매출 달성"
-  ]
+  ],
+  "photo": {
+    "src": "/profile/daejeong-profile-v2.png",
+    "alt": "",
+    "width": 1122,
+    "height": 1402
+  }
 }

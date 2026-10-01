@@ -23,6 +23,8 @@ function fromRevision(
     order: `${revisionDate(document.revision)}-2-${document.revision}`,
     public: isPublicRevision(document),
     label: document.revision,
+    status: document.status,
+    pdfHref: document.pdfHref,
   };
   if (document.document === "resume")
     return {
@@ -30,7 +32,6 @@ function fromRevision(
       kind: "resume",
       copy: document.content as ResumeCopy,
       presentation: getResumePresentation(document.slug, document.revision),
-      pdfHref: document.pdfHref,
     };
   if (document.document === "career")
     return {

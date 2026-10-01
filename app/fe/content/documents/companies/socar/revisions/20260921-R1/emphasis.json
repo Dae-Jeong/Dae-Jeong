@@ -6,5 +6,11 @@
     "FastAPI 템플릿 설계·구축",
     "여러 서비스가 함께 쓰는 의료 지식베이스 기획·디자인·개발 주도",
     "월 서버 비용 약 30~40% 절감에 기여"
-  ]
+  ],
+  "photo": {
+    "src": "/profile/daejeong-profile-v2.png",
+    "alt": "",
+    "width": 1122,
+    "height": 1402
+  }
 }

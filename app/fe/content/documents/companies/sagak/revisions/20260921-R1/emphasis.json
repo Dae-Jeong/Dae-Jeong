@@ -12,5 +12,11 @@
     "상담사 만족도 3.2→3.7점 개선에 기여",
     "트랜잭션·세션 정책 표준화",
     "Stripe 선결제 기능 구축 주도"
-  ]
+  ],
+  "photo": {
+    "src": "/profile/daejeong-profile-v2.png",
+    "alt": "",
+    "width": 1122,
+    "height": 1402
+  }
 }
