@@ -1,7 +1,7 @@
 {
   "slug": "hybe",
   "companyName": "하이브(HYBE)",
-  "position": "IT시스템 기획/운영 및 PM",
+  "position": "Project Manager",
   "status": "draft",
   "approved": false,
   "visibility": "local",
@@ -15,7 +15,7 @@
     "header": [
       {
         "kind": "paragraph",
-        "text": "김대정 · IT시스템 기획/운영 및 PM",
+        "text": "김대정 · Project Manager",
         "claims": []
       },
       {

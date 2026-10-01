@@ -1,7 +1,7 @@
 {
   "slug": "ably",
   "companyName": "에이블리코퍼레이션",
-  "position": "백엔드 엔지니어",
+  "position": "Backend Engineer",
   "status": "draft",
   "approved": false,
   "visibility": "local",
@@ -12,7 +12,7 @@
   "document": "resume",
   "content": {
     "name": "김대정",
-    "role": "백엔드 엔지니어",
+    "role": "Backend Engineer",
     "careerLine": "MediSolve AI · 2025.04 — 2026.09",
     "specialtyLine": "Python · FastAPI · SQLAlchemy · PostgreSQL · MySQL · Redis · Azure",
     "contacts": [
