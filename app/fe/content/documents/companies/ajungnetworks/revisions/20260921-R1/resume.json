@@ -1,7 +1,7 @@
 {
   "slug": "ajungnetworks",
   "companyName": "아정네트웍스",
-  "position": "Maker",
+  "position": "AI Builder (서울)",
   "status": "draft",
   "approved": false,
   "visibility": "public",
@@ -12,7 +12,7 @@
   "document": "resume",
   "content": {
     "name": "김대정",
-    "role": "Maker",
+    "role": "AI Builder (서울)",
     "careerLine": "MediSolve AI · 2025.04 — 재직 중",
     "specialtyLine": "Python · FastAPI · SQLAlchemy 2.0 async · PostgreSQL · TypeScript · Next.js · LangGraph",
     "contacts": [

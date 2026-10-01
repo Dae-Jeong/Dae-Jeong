@@ -1,7 +1,7 @@
 {
   "slug": "toss-place",
   "companyName": "토스플레이스",
-  "position": "Server Developer · 3~6년차 집중채용",
+  "position": "Server Developer (Product)",
   "status": "draft",
   "approved": false,
   "visibility": "local",
@@ -12,7 +12,7 @@
   "document": "resume",
   "content": {
     "name": "김대정",
-    "role": "Server Developer · Tech Lead | AI Product Systems",
+    "role": "Server Developer (Product)",
     "careerLine": "MediSolve AI · 2025.04 — 재직 중",
     "specialtyLine": "Python · FastAPI · SQLAlchemy · PostgreSQL",
     "contacts": [
