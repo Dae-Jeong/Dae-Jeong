@@ -5,6 +5,7 @@ import { requireAdmin } from "@/features/admin-auth/guard";
 import type { Metadata } from "next";
 import { AdminShell } from "@/app/_components/admin/admin-shell";
 import { loadApplications } from "@/features/applications/load-applications";
+import { listAvailableAnalyses } from "@/features/applications/analysis";
 
 export const dynamic = "force-dynamic";
 
@@ -16,7 +17,10 @@ export const metadata: Metadata = {
 /** Admin application dashboard: company, posting and progress status only (site-admin-surfaces). */
 export default async function DashboardPage() {
   await requireAdmin();
-  const state = await loadApplications();
+  const [state, availableAnalyses] = await Promise.all([
+    loadApplications(),
+    listAvailableAnalyses(),
+  ]);
   const attempts = state.kind === "ready" ? state.data.attempts : [];
   const groups = groupByStatus(attempts);
 
@@ -49,7 +53,11 @@ export default async function DashboardPage() {
         {state.kind === "ready" && (
           <div className="grid gap-6 sm:gap-8">
             {groups.map((group) => (
-              <StatusSection key={group.status} {...group} />
+              <StatusSection
+                key={group.status}
+                {...group}
+                availableAnalyses={availableAnalyses}
+              />
             ))}
             <p className="m-0 text-[12px] leading-4 text-muted">
               최종 갱신{" "}

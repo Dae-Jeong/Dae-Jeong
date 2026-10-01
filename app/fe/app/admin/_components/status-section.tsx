@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { StatusSectionHeading } from "@/app/_components/admin/status-section-heading";
 import {
   STATUS_LABEL,
@@ -8,9 +9,11 @@ import type { ApplicationAttempt } from "@/features/applications/mapping";
 export function StatusSection({
   status,
   attempts,
+  availableAnalyses,
 }: {
   status: ApplicationStatus;
   attempts: ApplicationAttempt[];
+  availableAnalyses?: Set<string>;
 }) {
   return (
     <section aria-labelledby={`status-${status}`} className="min-w-0">
@@ -20,9 +23,10 @@ export function StatusSection({
         className="w-full table-fixed border-collapse text-[14px] leading-5"
       >
         <colgroup>
-          <col className="w-[38%] sm:w-[30%]" />
+          <col className="w-[34%] sm:w-[28%]" />
           <col />
-          <col className="w-16 sm:w-24" />
+          <col className="w-20 sm:w-24 text-center" />
+          <col className="w-16 sm:w-20" />
         </colgroup>
         <thead>
           <tr className="border-b border-border text-left text-[12px] leading-4 text-muted">
@@ -31,6 +35,9 @@ export function StatusSection({
             </th>
             <th scope="col" className="py-2 pr-2 font-medium sm:pr-4">
               공고
+            </th>
+            <th scope="col" className="py-2 pr-2 text-center font-medium sm:pr-4">
+              공고 분석
             </th>
             <th scope="col" className="py-2 font-medium">
               상태
@@ -54,6 +61,18 @@ export function StatusSection({
                     #{attempt.postingId}
                   </span>
                 ) : null}
+              </td>
+              <td className="py-3 pr-2 text-center [overflow-wrap:anywhere] sm:pr-4">
+                {availableAnalyses?.has(attempt.id) ? (
+                  <Link
+                    href={`/admin/analysis/${attempt.id}`}
+                    className="inline-flex items-center text-[13px] font-medium text-fg underline decoration-border-soft underline-offset-4 hover:decoration-fg"
+                  >
+                    공고 분석
+                  </Link>
+                ) : (
+                  <span className="text-[13px] text-muted">-</span>
+                )}
               </td>
               <td className="py-3 [overflow-wrap:anywhere]">
                 {STATUS_LABEL[attempt.status]}
