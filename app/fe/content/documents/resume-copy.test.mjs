@@ -15,8 +15,8 @@ test("common routes consume independent app copy and the single document rendere
 
 test("each document kind has one render path without view modes or company template exceptions", () => {
   const read = (path) => readFileSync(new URL(path, import.meta.url), "utf8");
-  const routes = ["../../app/resume/page.tsx", "../../app/resume/[company]/page.tsx", "../../app/career/[company]/page.tsx", "../../app/cv/[company]/page.tsx",
-    "../../app/[company]/resume/page.tsx", "../../app/[company]/career/page.tsx", "../../app/[company]/cv/page.tsx", "../../app/_components/documents/company-document.tsx"].map(read).join("\n");
+  const routes = ["../../app/resume/page.tsx", "../../app/resume/[company]/page.tsx", "../../app/career/[company]/page.tsx",
+    "../../app/[company]/resume/page.tsx", "../../app/[company]/career/page.tsx", "../../app/_components/documents/company-document.tsx"].map(read).join("\n");
   assert.doesNotMatch(routes, /paged|TailoredResumeView|CareerDescriptionView|CvView|ComparisonDocument|template|layout=/);
   const renderers = ["../../app/_components/documents/resume/resume-document.tsx", "../../app/_components/documents/resume/resume-print-pages.tsx", "../../app/_components/documents/career/career-document.tsx", "../../app/_components/documents/cv/cv-document.tsx"].map(read).join("\n");
   assert.doesNotMatch(renderers, /gna-company|miridih|sagak|socar|ajungnetworks|featuring|data-template|"classic"|"editorial"/);
@@ -40,15 +40,15 @@ test("company documents have one representative URL per company and kind without
   const representative = read("../../features/company-documents/policy.ts") + read("../../features/company-documents/types.ts");
   assert.match(representative, /Public-first/);
   assert.match(representative, /RESERVED_SEGMENTS/);
-  const pages = ["../../app/[company]/resume/page.tsx", "../../app/[company]/career/page.tsx", "../../app/[company]/cv/page.tsx", "../../app/_components/documents/company-document.tsx"].map(read).join("\n");
+  const pages = ["../../app/[company]/resume/page.tsx", "../../app/[company]/career/page.tsx", "../../app/_components/documents/company-document.tsx"].map(read).join("\n");
   assert.doesNotMatch(pages, /revision=|searchParams\)?\.revision|LocalRevisionLinks|ApplicationVersionNav|gna-company/);
-  for (const kind of ["resume", "career", "cv"]) {
+  for (const kind of ["resume", "career"]) {
     const former = read(`../../app/${kind}/[company]/page.tsx`);
     assert.match(former, /resolveCompanyRequest\(\s*company/);
     assert.match(former, /permanentRedirect\(resolved\.href/);
     assert(former.indexOf("notFound()") < former.lastIndexOf("permanentRedirect("));
   }
-  for (const kind of ["resume", "career", "cv"]) {
+  for (const kind of ["resume", "career"]) {
     const page = read(`../../app/[company]/${kind}/page.tsx`);
     // Validate before any redirect; Location only from the validated representative.
     assert(page.indexOf("notFound()") < page.indexOf("permanentRedirect("));

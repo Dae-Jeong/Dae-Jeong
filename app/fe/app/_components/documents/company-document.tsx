@@ -2,7 +2,6 @@ import { notFound } from "next/navigation";
 import { getRepresentative } from "@/features/company-documents/policy";
 import { ResumeDocument } from "./resume/resume-document";
 import { CareerDocument } from "./career/career-document";
-import { CvDocument } from "./cv/cv-document";
 import { DocumentShell } from "./document-shell";
 import frameStyles from "./document-frame.module.css";
 
@@ -13,7 +12,7 @@ export function CompanyDocumentPage({
   kind,
 }: {
   company: string;
-  kind: string;
+  kind: "resume" | "career";
 }) {
   const document = getRepresentative(company, kind);
   if (!document) notFound();
@@ -22,12 +21,6 @@ export function CompanyDocumentPage({
       <CareerDocument
         document={document.content}
         slug={company}
-      />
-    );
-  if (document.kind === "cv")
-    return (
-      <CvDocument
-        document={document.content}
       />
     );
   return (

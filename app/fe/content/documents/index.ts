@@ -31,7 +31,6 @@ export type {
   CareerCompany,
   CareerDescriptionDocument,
   CareerProject,
-  CvDocument,
   DocumentContact,
-  ProfessionalDocument,
 } from "./types";
+

@@ -35,7 +35,7 @@ const { collectCandidates } = await load("features/company-documents/mapping.ts"
 const { selectRepresentative, getRepresentative, listRepresentativeEntries } = await load("features/company-documents/policy.ts");
 const { companyDocumentHref, resolveCompanyRequest } = await load("features/company-documents/urls.ts");
 
-assert.deepEqual(companyKinds.map(item => item.slug), ["resume", "career", "cv"]);
+assert.deepEqual(companyKinds.map(item => item.slug), ["resume", "career"]);
 assert.deepEqual(registry.companyDocuments.map(record => `${record.slug}/${record.document}`).sort(),
   ["featuring", "miridih", "jyp", "toss-place", "miridih-pe", "ably", "nrise", "soomgo", "paytalab", "wrtn", "hybe"].flatMap(slug => ["resume", "career"].map(kind => `${slug}/${kind}`)).sort());
 assert.equal(new Set(registry.revisionDocuments.map(record => `${record.slug}/${record.document}/${record.revision}`)).size, registry.revisionDocuments.length);

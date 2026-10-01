@@ -1,11 +1,10 @@
 import type { ResumePresentation } from "@/content/documents/companies/presentation";
 import type { ContentDocument } from "@/content/documents/parse-markdown";
 import type { ResumeCopy } from "@/content/documents/resume-copy";
-export type CompanyKind = "resume" | "career" | "cv";
+export type CompanyKind = "resume" | "career";
 export const companyKinds = [
   { slug: "resume", label: "이력서" },
   { slug: "career", label: "경력기술서" },
-  { slug: "cv", label: "CV" },
 ] as const;
 
 /** Top-level path segments owned by other routes; a company slug may never use them. */
@@ -60,5 +59,4 @@ export type Representative =
   | (RepresentativeBase & {
       kind: "career";
       content: ContentDocument;
-    })
-  | (RepresentativeBase & { kind: "cv"; content: ContentDocument });
+    });

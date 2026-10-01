@@ -182,7 +182,6 @@ export default async function MapPage() {
     cells: {
       resume: { href: ROUTES.resume, label: ROUTES.resume, note: "public" },
       career: { href: ROUTES.career, label: ROUTES.career, note: "public" },
-      cv: { href: ROUTES.cv, label: ROUTES.cv, note: "public" },
     },
   };
   return (
@@ -190,7 +189,7 @@ export default async function MapPage() {
       page="map"
       description={
         <>
-          회사별 대표 이력서 · 경력기술서 · CV · 회사 {rows.length} · {statusSource}
+          회사별 대표 이력서 · 경력기술서 · 회사 {rows.length} · {statusSource}
         </>
       }
     >

@@ -1,4 +1,4 @@
-import type { CareerDescriptionDocument, CvDocument } from "./types";
+import type { CareerDescriptionDocument } from "./types";
 
 const CONTACTS = [
   { label: "marin.backend@gmail.com", href: "mailto:marin.backend@gmail.com" },
@@ -335,91 +335,5 @@ export const COMMON_CAREER_DESCRIPTION: CareerDescriptionDocument = {
   ],
 };
 
-export const COMMON_CV: CvDocument = {
-  kind: "cv",
-  slug: "common",
-  status: "review-ready",
-  visibility: "local",
-  locale: "ko",
-  updatedAt: "2026-09-03",
-  title: "Curriculum Vitae",
-  name: "김대정",
-  role: "Tech Lead · Backend Engineer · 실무 4년차",
-  contacts: CONTACTS,
-  summary:
-    "가능성을 기회로 바꾸고, 제품으로 가치를 전하는 메이커 김대정입니다. Vision AI Engineer와 Product Manager를 거쳐 Backend Engineer로 역할을 넓혔고, 현재는 고객이 구독하는 AI 제품의 제품 운영과 FastAPI Backend·AI application을 함께 맡고 있습니다.",
-  employment: [
-    {
-      organization: "MediSolve AI",
-      period: "2025.04 — 현재",
-      role: "Tech Lead · Backend Engineer",
-      highlights: ["Thready 유료 AI 제품 운영", "피부과 운영 제품군 Backend", "여러 피부과 운영·예약 Backend", "FastAPI Backend Template"],
-      claimIds: ["career.medisolve-role-evolution"],
-    },
-    {
-      organization: "더데이랩스",
-      period: "2025.02 — 2025.04",
-      role: "Backend Engineer · Freelance",
-      highlights: ["MediSolve AI 법인 설립 전 피부과 운영 제품군 선행 개발"],
-      claimIds: ["career.thedaylabs-freelance"],
-    },
-    {
-      organization: "Memento AI",
-      period: "2024.10 — 2025.01",
-      role: "Backend Engineer",
-      highlights: ["예약·결제 API", "고객 알림 작업"],
-      claimIds: ["career.memento-fastapi-backend", "career.memento-payment"],
-    },
-    {
-      organization: "STUDIO LAB",
-      period: "2021.12 — 2024.01",
-      role: "Vision AI Engineer → Product Manager → Backend Engineer",
-      highlights: ["SellerCanvas 제품 시스템", "외부 기업 PoC"],
-      claimIds: ["career.ai-pm-backend-continuity", "career.sellercanvas-product-system"],
-    },
-    {
-      organization: "아이즈솔",
-      period: "2020.08 — 2021.06",
-      role: "Vision AI Engineer · Intern",
-      highlights: ["Vision AI 모델·데이터 파이프라인 개발·검증 참여"],
-      claimIds: ["career.ai-pm-backend-continuity"],
-    },
-  ],
-  projects: [
-    {
-      title: "Thready",
-      description: "Threads 콘텐츠 탐색·생성·검수·예약·발행을 연결한 유료 AI 제품",
-      claimIds: ["thready.product-zero-to-one-contribution", "thready.subscription-revenue-band"],
-    },
-    {
-      title: "피부과 운영 제품군",
-      description: "피부과 운영 CRM·ERP의 주문·재고 비동기 Backend와 실시간 AI 상담",
-      claimIds: ["centurion.bay-async-backend", "centurion.say-realtime-ai"],
-    },
-    {
-      title: "Backend Template",
-      description: "FastAPI·SQLAlchemy async의 session·transaction·API contract 기본값",
-      claimIds: ["be-template.backend-standard", "be-template.fastapi-sqlalchemy-standard"],
-    },
-    {
-      title: "TellingMe",
-      description: "개인 프로젝트 Backend Lead · Spring Boot Backend와 AWS 배포",
-      claimIds: ["career.tellingme-backend-infra"],
-    },
-  ],
-  skills: [
-    { label: "Language / Framework", value: "Python · FastAPI · TypeScript · NestJS · Java · Spring Boot" },
-    { label: "Data / Messaging", value: "PostgreSQL · MySQL · Redis · RabbitMQ · TaskIQ" },
-    { label: "AI / Realtime", value: "LLM integration/evaluation · structured output · WebSocket · SSE · STT" },
-    { label: "Cloud / Delivery", value: "Docker · GitHub Actions · Terraform · Azure · AWS · Kubernetes(kubeadm · Calico · MetalLB · ArgoCD)" },
-  ],
-  education: ["우송대학교 게임멀티미디어 전공 · 2016.03 — 2021.08"],
-  credentials: [
-    "CES 2024 Best of Innovation · AI 부문 대상 제품 참여",
-    "특허 등록 · 페이지 출력 방법 · 10-2898273",
-    "KCL AI 정확도 부문 인증 통과 제품 참여",
-    "ADsP · 2021.09",
-  ],
-};
-
 export { MEDISOLVE_COMPANY };
+
