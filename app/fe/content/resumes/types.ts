@@ -63,13 +63,6 @@ export type ResumeExternalActivity = {
   claimIds?: readonly string[];
 };
 
-export type ResumeRoleVariant = {
-  label: string;
-  shortLabel: string;
-  description: string;
-  signals: readonly string[];
-};
-
 export type ResumeSectionKey =
   | "profile"
   | "outcomes"
@@ -83,7 +76,6 @@ export type TailoredResume = {
   slug: string;
   companyName: string;
   position: string;
-  roleVariant?: ResumeRoleVariant;
   sectionOrder?: readonly ResumeSectionKey[];
   status: "draft" | "approved" | "closed";
   visibility: "local" | "public";

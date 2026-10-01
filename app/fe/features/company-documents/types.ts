@@ -55,12 +55,10 @@ export type Representative =
       kind: "resume";
       copy: ResumeCopy;
       presentation?: ResumePresentation;
-      tag?: string;
       pdfHref?: string;
     })
   | (RepresentativeBase & {
       kind: "career";
       content: ContentDocument;
-      tag?: string;
     })
   | (RepresentativeBase & { kind: "cv"; content: ContentDocument });

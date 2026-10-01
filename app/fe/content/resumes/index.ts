@@ -5,7 +5,6 @@ import { JYP_RESUME } from "./jyp";
 import { MGRV_RESUME } from "./mgrv";
 import { MIRIDIH_RESUME } from "./miridih";
 import { PINOKIOLAB_RESUME } from "./pinokiolab";
-import { ROLE_RESUMES } from "./role-variants";
 import { TEAMREBOOT_RESUME } from "./teamreboot";
 import { WHATSSUB_RESUME } from "./whatssub";
 import type { TailoredResume } from "./types";
@@ -20,7 +19,6 @@ const TAILORED_RESUMES: Readonly<Record<string, TailoredResume>> = {
   [PINOKIOLAB_RESUME.slug]: PINOKIOLAB_RESUME,
   [TEAMREBOOT_RESUME.slug]: TEAMREBOOT_RESUME,
   [WHATSSUB_RESUME.slug]: WHATSSUB_RESUME,
-  ...Object.fromEntries(ROLE_RESUMES.map((resume) => [resume.slug, resume])),
 };
 
 export function getTailoredResume(slug: string) {
@@ -30,7 +28,7 @@ export function getTailoredResume(slug: string) {
 export function listTailoredResumes() {
   return Object.values(TAILORED_RESUMES).map((resume) => ({
     slug: resume.slug,
-    label: resume.roleVariant?.label ?? `${resume.companyName} · ${resume.position}`,
+    label: `${resume.companyName} · ${resume.position}`,
     visibility: resume.visibility,
   }));
 }

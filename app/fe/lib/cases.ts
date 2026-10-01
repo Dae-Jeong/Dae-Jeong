@@ -378,6 +378,3 @@ export const PRIMARY_CASES = CASES.filter((item) => item.tier === "primary").sor
   (a, b) => a.no.localeCompare(b.no),
 );
 export const SUPPORTING_CASES = CASES.filter((item) => item.tier === "supporting");
-export const NAVIGABLE_CASES = [...PRIMARY_CASES, ...SUPPORTING_CASES].filter(
-  (item) => item.available,
-);

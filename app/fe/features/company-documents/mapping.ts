@@ -80,7 +80,7 @@ export function collectCandidates(
   }
   for (const entry of listTailoredResumes()) {
     const resume = getTailoredResume(entry.slug);
-    if (!resume || resume.roleVariant) continue;
+    if (!resume) continue;
     const { copy, presentation } = tailoredResumeToCopy(resume);
     list.push({
       kind: "resume",
@@ -94,12 +94,6 @@ export function collectCandidates(
       copy,
       presentation,
       pdfHref: resume.pdfHref,
-      tag:
-        resume.status === "draft"
-          ? "DRAFT"
-          : resume.status === "closed"
-            ? "CLOSED"
-            : undefined,
     });
   }
   for (const entry of listCareerDescriptions()) {
@@ -116,7 +110,6 @@ export function collectCandidates(
       public: document.visibility === "public",
       label: `typed ${document.updatedAt}`,
       content: careerDescriptionToContent(document),
-      tag: "DRAFT · LOCAL",
     });
   }
   return list;
