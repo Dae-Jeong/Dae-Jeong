@@ -1,8 +1,10 @@
 # AGENTS
 
-이 repo는 김대정의 resume, portfolio, homepage, agent workflow, writing, JD 분석을 위한 제품 workspace다. wiki 6계층(context/products/rules/backlog/profile/evidence)의 물리 정본은 로컬 LLM Wiki의 `Wiki/sources/Dae-Jeong/wiki`가 소유하며, repo의 `wiki` 전체는 Git-ignored 단일 로컬 symlink다. 아래 `wiki/` 진입 문서를 읽는다.
+공통 작업 탐색·기록·인수는 `/Users/marin/.agents/AGENTS.md`가 연결하는 [중앙 작업 규약](../Obsidian/wiki/notes/agents/work-management-policy.md)을 따른다. 프로젝트 Task 정본은 Obsidian의 해당 `wiki/projects/`에 둔다.
 
-이 문서가 agent 규칙의 **단독 소유자**다. 도구별 진입 파일(`CLAUDE.md` 등)은 두지 않는다. 규칙 변경은 여기서만 한다.
+이 repo는 김대정의 resume, portfolio, homepage, agent workflow, writing, JD 분석을 위한 제품 workspace다. wiki 6계층(context/products/rules/backlog/profile/evidence)의 물리 정본은 로컬 LLM Wiki의 `wiki/sources/Dae-Jeong/wiki`가 소유하며, repo의 `wiki` 전체는 Git-ignored 단일 로컬 symlink다. 아래 `wiki/` 진입 문서를 읽는다.
+
+이 문서는 프로젝트 고유 규칙을 소유한다. 도구별 진입 파일(`CLAUDE.md` 등)은 두지 않는다. 규칙 변경은 여기서만 한다.
 
 ## 시작할 때 읽는 문서
 

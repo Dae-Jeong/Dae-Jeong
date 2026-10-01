@@ -29,7 +29,7 @@ AI 콘텐츠 생성·평가 시스템, 비동기 백엔드, 사람과 agent가 �
 <details>
 <summary>이 저장소 안내</summary>
 
-이 저장소는 개인 홈페이지와 이력서·포트폴리오 제품 코드, 실행 도구를 관리합니다. 프로필·경력 근거와 작업 문서의 정본은 별도로 복원하는 로컬 Obsidian vault의 `Wiki/sources/Dae-Jeong/wiki`에 있습니다.
+이 저장소는 개인 홈페이지와 이력서·포트폴리오 제품 코드, 실행 도구를 관리합니다. 프로필·경력 근거와 작업 문서의 정본은 별도로 복원하는 로컬 Obsidian vault의 `sources/Dae-Jeong/wiki`에 있습니다.
 
 - [Agent 작업 규칙](AGENTS.md) · [제품 코드](app/README.md)
 - `wiki`는 vault를 가리키는 Git-ignored 로컬 symlink입니다. GitHub에서는 정본 문서를 제공하지 않습니다.

@@ -147,7 +147,7 @@ export function project(input, markdown, owner, claims) {
       assert(claim?.public === true && ["high", "medium"].includes(claim.confidence), `${input.slug}/${kind}: unknown/non-public/low claim ${id}`);
     }
     assert(record.content.sections.length, "Empty document");
-    assert(/MediSolve AI.*\[확인 필요/.test(bodies[kind]), "MediSolve end remains unresolved");
+    assert(/MediSolve AI.*(2026\.09|\[확인 필요)/.test(bodies[kind]), "MediSolve end valid");
     assert(!/Laughtale|\/Users\/|면접 대비 메모/.test(JSON.stringify(record)), "Excluded or private text leaked");
   }
   return { records, bodies };

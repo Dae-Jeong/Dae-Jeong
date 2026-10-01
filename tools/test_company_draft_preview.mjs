@@ -16,7 +16,7 @@ function renderedStrings(value) {
 test("all 18 accepted projections regenerate exactly from unchanged Markdown and claim-map", () => {
   assert.equal(build(true).length, 18);
 });
-test("every source copy line survives projection, including inline bold, tables and unresolved periods", () => {
+test("every source copy line survives projection, including inline bold, tables and source-matched periods", () => {
   for (const [index, input] of inputs.entries()) {
     const { records, bodies } = project(input, drafts[index], owners.owners[index], owners.claims);
     for (const kind of ["resume", "career"]) {
@@ -32,7 +32,9 @@ test("every source copy line survives projection, including inline bold, tables 
           assert(strings.includes(normalize(part)), `${input.slug}/${kind}: lost source line ${line}`);
         }
       }
-      assert.match(strings, /MediSolve AI.*\[확인 필요/);
+      const period = bodies[kind].match(/MediSolve AI · 2025\.04 — (?:2026\.09|\[확인 필요(?:: 종료 월·표기)?\])/);
+      assert(period, `${input.slug}/${kind}: missing valid source period`);
+      assert(strings.includes(period[0]), `${input.slug}/${kind}: source period changed during projection`);
       assert(!/확인 필요 \| 결정|면접 대비 메모|mode: deferred|사용자 검토 체크/.test(strings));
     }
   }
@@ -64,4 +66,15 @@ test("unknown, private and low-confidence claim references cannot become a proje
     if (replacement) claims.push(replacement);
     assert.throws(() => project(inputs[0], drafts[0], owner, claims), /unknown\/non-public\/low claim/);
   }
+});
+
+test("confirmed and unresolved periods project, while an unsupported period fails", () => {
+  const input = inputs[0], owner = owners.owners[0];
+  const confirmed = drafts[0];
+  assert(confirmed.includes("MediSolve AI · 2025.04 — 2026.09"));
+  assert.doesNotThrow(() => project(input, confirmed, owner, owners.claims));
+  const unresolved = confirmed.replaceAll("2025.04 — 2026.09", "2025.04 — [확인 필요]");
+  assert.doesNotThrow(() => project(input, unresolved, owner, owners.claims));
+  const malformed = confirmed.replaceAll("2025.04 — 2026.09", "2025.04 — 2027.09");
+  assert.throws(() => project(input, malformed, owner, owners.claims), /MediSolve end valid/);
 });
