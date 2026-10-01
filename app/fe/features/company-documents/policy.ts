@@ -1,4 +1,3 @@
-import { canViewDraft } from "@/content/documents/companies";
 import { collectCandidates } from "./mapping";
 import {
   RESERVED_SEGMENTS,
@@ -22,11 +21,6 @@ export function selectRepresentative(candidates: readonly Representative[]) {
       chosen.set(key, candidate);
       continue;
     }
-    // Public-first: a public candidate beats any draft; otherwise the latest wins.
-    if (candidate.public !== current.public) {
-      if (candidate.public) chosen.set(key, candidate);
-      continue;
-    }
     chosen.set(key, latest(current, candidate));
   }
   return chosen;
@@ -40,7 +34,7 @@ function representatives() {
   return chosen;
 }
 
-/** The viewable representative, or undefined: unknown company/kind, reserved segment, or a draft in production. */
+/** The latest representative, or undefined for an unknown company/kind or reserved segment. */
 export function getRepresentative(
   company: string,
   kind: string,
@@ -50,15 +44,10 @@ export function getRepresentative(
     !companyKinds.some((item) => item.slug === kind)
   )
     return undefined;
-  const document = representatives().get(`${company}/${kind}`);
-  if (!document) return undefined;
-  return document.public || canViewDraft(process.env.NODE_ENV)
-    ? document
-    : undefined;
+  return representatives().get(`${company}/${kind}`);
 }
 
-/** Every representative with whether it can be opened in this environment (admin map: drafts outside dev/test are
- *  listed as unavailable text, never as links). */
+/** Every latest representative is available in every environment. */
 export function listRepresentativeEntries(): {
   document: Representative;
   viewable: boolean;
@@ -66,7 +55,7 @@ export function listRepresentativeEntries(): {
   return [...representatives().values()]
     .map((document) => ({
       document,
-      viewable: getRepresentative(document.company, document.kind) === document,
+      viewable: true,
     }))
     .sort(
       (a, b) =>

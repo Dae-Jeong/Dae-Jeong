@@ -43,7 +43,7 @@ test("common copy excludes company review metadata and preserves the Maker ident
 test("company documents have one representative URL per company and kind without version selection", () => {
   const read = (path) => readFileSync(new URL(path, import.meta.url), "utf8");
   const representative = read("../../features/company-documents/policy.ts") + read("../../features/company-documents/types.ts");
-  assert.match(representative, /Public-first/);
+  assert.doesNotMatch(representative, /Public-first|canViewDraft|candidate\.public|NODE_ENV/);
   assert.match(representative, /RESERVED_SEGMENTS/);
   const pages = ["../../app/[company]/resume/page.tsx", "../../app/[company]/career/page.tsx", "../../app/_components/documents/company-document.tsx"].map(read).join("\n");
   assert.doesNotMatch(pages, /revision=|searchParams\)?\.revision|LocalRevisionLinks|ApplicationVersionNav|gna-company/);
@@ -104,7 +104,8 @@ test("admin surfaces: dashboard shows company/posting/status only, data read pri
   assert.match(redirects, /source: "\/applications",\s*destination: ROUTES.admin.dashboard/);
   const map = read("../../app/admin/map/page.tsx");
   assert.doesNotMatch(map, /\/portfolio|design-lab|href=[^\n]*\/applications|readFileSync|node:fs/);
-  assert.match(map, /배포 비공개/);
+  assert.doesNotMatch(map, /배포 비공개|document\.viewable|document\.visibility/);
+  assert.match(map, /href=\{cell\.href\}/);
 });
 
 test("admin projections: builders produce valid minimal data; malformed schema-1 copies are rejected; empty data is valid", async () => {

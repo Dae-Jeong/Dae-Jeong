@@ -21,7 +21,6 @@ type DocumentMetadata = {
   companyName?: string;
   position: string;
   status: CompanyDocument["status"] | "active" | "review-ready";
-  visibility: CompanyDocument["visibility"];
   revision?: string;
   pdfHref?: string;
   presentation?: ResumePresentation;
@@ -32,7 +31,7 @@ export type DocumentRecord = DocumentMetadata & (
   | { kind: "cv"; content: ContentDocument }
 );
 
-/** Returns only a viewable representative; raw drafts and historical versions stay internal. */
+/** Returns the latest representative through the common document interface. */
 export async function getDocument(query: DocumentQuery): Promise<DocumentRecord | null> {
   if (!["resume", "career", "cv"].includes(query.kind)) return null;
   if (query.scope === "common") {
@@ -40,8 +39,6 @@ export async function getDocument(query: DocumentQuery): Promise<DocumentRecord 
     const metadata: DocumentMetadata = {
       scope: "common", slug: "common", title: "", position: "",
       status: query.kind === "cv" ? "review-ready" : "active",
-      // CV retains its local review intent; the existing /cv route remains available with noindex.
-      visibility: query.kind === "cv" ? "local" : "public",
     };
     if (query.kind === "resume") {
       const content = readDocumentJson<ResumeCopy>("common", "resume.json");
@@ -58,7 +55,7 @@ export async function getDocument(query: DocumentQuery): Promise<DocumentRecord 
   const metadata: DocumentMetadata = {
     scope: "company", slug, title: representative.companyName,
     companyName: representative.companyName, position: representative.position,
-    status: representative.status, visibility: representative.public ? "public" : "local",
+    status: representative.status,
     revision: representative.label, pdfHref: representative.pdfHref,
   };
   return representative.kind === "resume"
@@ -66,11 +63,11 @@ export async function getDocument(query: DocumentQuery): Promise<DocumentRecord 
     : { ...metadata, kind: "career", content: representative.content };
 }
 
-/** Lists the same viewable records as getDocument; never exposes inaccessible draft bodies. */
+/** Lists all latest representatives using the same interface as getDocument. */
 export async function listDocuments(filter: Partial<DocumentQuery> = {}): Promise<DocumentRecord[]> {
   const queries: DocumentQuery[] = [
     ...(["resume", "career", "cv"] as const).map(kind => ({ scope: "common" as const, kind })),
-    ...listRepresentativeEntries().filter(entry => entry.viewable).map(({ document }) => ({
+    ...listRepresentativeEntries().map(({ document }) => ({
       scope: "company" as const, kind: document.kind, company: document.company,
     })),
   ];
@@ -82,12 +79,12 @@ export async function listDocuments(filter: Partial<DocumentQuery> = {}): Promis
   return records.filter((record): record is DocumentRecord => record !== null);
 }
 
-/** Admin inventory includes unavailable drafts as metadata only, never their bodies. */
+/** Admin inventory lists metadata for all latest representatives. */
 export async function listDocumentEntries(): Promise<(DocumentMetadata & { kind: "resume" | "career"; viewable: boolean })[]> {
-  return listRepresentativeEntries().map(({ document, viewable }) => ({
+  return listRepresentativeEntries().map(({ document }) => ({
     scope: "company", slug: document.company, title: document.companyName,
     companyName: document.companyName, position: document.position,
-    status: document.status, visibility: document.public ? "public" : "local",
-    revision: document.label, pdfHref: document.pdfHref, kind: document.kind, viewable,
+    status: document.status,
+    revision: document.label, pdfHref: document.pdfHref, kind: document.kind, viewable: true,
   }));
 }

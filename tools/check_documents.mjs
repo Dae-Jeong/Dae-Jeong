@@ -1,4 +1,4 @@
-// App-owned records and the current representative URL/visibility contract.
+// App-owned records and the current latest representative URL contract.
 import assert from "node:assert/strict";
 import { readFileSync, existsSync, statSync } from "node:fs";
 import { spawnSync } from "node:child_process";
@@ -38,7 +38,7 @@ const { companyDocumentHref, resolveCompanyRequest } = await load("features/comp
 const { getDocument, listDocuments, listDocumentEntries } = await load("lib/documents/repository.ts");
 const { readDocumentJson } = await load("content/documents/storage.ts");
 
-// Exercise the actual repository, including invalid requests and production visibility.
+// Exercise the actual repository, including invalid requests and environment-independent access.
 for (const kind of ["resume", "career", "cv"]) {
   const document = await getDocument({ scope: "common", kind });
   assert.equal(document.kind, kind);
@@ -57,16 +57,17 @@ try {
   for (const environment of ["development", "production"]) {
     process.env.NODE_ENV = environment;
     const all = await listDocuments();
+    assert.equal(all.length, listRepresentativeEntries().length + 3);
     assert.equal((await listDocuments({ scope: "common" })).length, 3);
     assert.deepEqual(await listDocuments({ kind: "cv" }), [await getDocument({ scope: "common", kind: "cv" })]);
     for (const record of all) {
       assert.deepEqual(record, await getDocument({ scope: record.scope, kind: record.kind,
         ...(record.scope === "company" ? { company: record.slug } : {}) }));
-      if (environment === "production" && record.scope === "company") assert.equal(record.visibility, "public");
     }
     for (const { document, viewable } of listRepresentativeEntries()) {
       const record = await getDocument({ scope: "company", company: document.company, kind: document.kind });
-      if (!viewable) { assert.equal(record, null); continue; }
+      assert.equal(viewable, true);
+      assert(record, `${environment}: every representative is available`);
       assert.equal(record.revision, document.label);
       assert.deepEqual(record.content, document.kind === "resume" ? document.copy : document.content);
       if (document.kind === "resume") {
@@ -87,8 +88,6 @@ assert.deepEqual(registry.companyDocuments.map(record => `${record.slug}/${recor
   [...["featuring", "miridih", "jyp", "toss-place", "miridih-pe", "ably", "nrise", "soomgo", "paytalab", "wrtn", "hybe", "hypernova", "gna-company"].flatMap(slug => ["resume", "career"].map(kind => `${slug}/${kind}`)),
     ...["mgrv", "pinokiolab", "teamreboot", "whatssub"].map(slug => `${slug}/resume`)].sort());
 assert.equal(new Set(registry.revisionDocuments.map(record => `${record.slug}/${record.document}/${record.revision}`)).size, registry.revisionDocuments.length);
-for (const environment of ["production", undefined, "staging", ""]) assert.equal(registry.canViewDraft(environment), false);
-for (const environment of ["development", "test"]) assert.equal(registry.canViewDraft(environment), true);
 
 function inspect(value) {
   if (Array.isArray(value)) { value.forEach(inspect); return; }
@@ -180,11 +179,10 @@ assert.throws(() => getResumePresentation("..", "unregistered-revision"), /Inval
 const candidates = collectCandidates(companySlug);
 const chosen = selectRepresentative(candidates);
 assert.equal(candidates.length, registry.companyDocuments.length + registry.revisionDocuments.length);
-for (const [slug, kind, revision, , visibility] of migrated) {
+for (const [slug, kind, revision] of migrated) {
   const representative = chosen.get(`${slug}/${kind}`);
   const record = registry.companyDocuments.find(record => record.slug === slug && record.document === kind);
   assert.equal(representative.label, revision);
-  assert.equal(representative.public, visibility === "public");
   assert.deepEqual(kind === "resume" ? representative.copy : representative.content, record.content);
   if (kind === "resume") {
     assert.equal(representative.pdfHref, record.pdfHref);
@@ -196,49 +194,42 @@ for (const [slug, kind, revision, , visibility] of migrated) {
 }
 assert.equal(chosen.get("mgrv/resume").pdfHref, "/resumes/mgrv-resume.pdf");
 assert.equal(chosen.get("whatssub/resume").copy.specialtyLine, undefined, "Submission salary must not enter public JSON");
-// Accepted local drafts must beat the old local candidate/common fallback without changing public-first.
+// The latest accepted revision must beat older candidates and common fallbacks.
 for (const [slug, revision] of [["featuring", "20260921-R2"], ["toss-place", "20261001-R2"],
   ...["miridih-pe", "ably", "nrise", "soomgo", "paytalab", "wrtn"].map(slug => [slug, "20261001-R1"]), ["hybe", "20261001-R2"]]) {
   for (const kind of ["resume", "career"]) {
     const representative = chosen.get(`${slug}/${kind}`);
     assert(representative, `${slug}/${kind}: missing latest draft`);
     assert.equal(representative.label, revision, `${slug}/${kind}: latest accepted draft must be representative`);
-    assert.equal(representative.public, false, `${slug}/${kind}: review does not promote public access`);
     assert.equal(representative.mode, undefined, `${slug}/${kind}: show tailored draft, not common fallback`);
   }
 }
 assert(chosen.size > 0);
 for (const [key, representative] of chosen) {
   const group = candidates.filter(candidate => `${candidate.company}/${candidate.kind}` === key);
-  const eligible = group.some(candidate => candidate.public) ? group.filter(candidate => candidate.public) : group;
-  assert.equal(representative.order, eligible.map(candidate => candidate.order).sort().at(-1));
+  assert.equal(representative.order, group.map(candidate => candidate.order).sort().at(-1));
   assert.equal(companyDocumentHref(representative.company, representative.kind), `/${key}`);
 }
-const sample = candidates.find(candidate => candidate.public);
-assert(sample, "At least one existing public representative is exercised");
-assert.equal(selectRepresentative([{ ...sample, public: false, order: "99999999" }, { ...sample, order: "00000000" }]).values().next().value.public, true);
+const sample = candidates[0];
+assert(sample, "At least one existing representative is exercised");
+assert.equal(selectRepresentative([{ ...sample, order: "99999999" }, { ...sample, order: "00000000" }]).values().next().value.order, "99999999");
 assert.throws(() => selectRepresentative([{ ...sample, company: "admin" }]), /reserved route/);
 const originalEnvironment = process.env.NODE_ENV;
 try {
   for (const environment of ["development", "test", "production", "staging"]) {
     process.env.NODE_ENV = environment;
     for (const { document, viewable } of listRepresentativeEntries()) {
-      const allowed = document.public || registry.canViewDraft(environment);
-      assert.equal(viewable, allowed);
+      assert.equal(viewable, true);
       const entry = (await listDocumentEntries()).find(entry => entry.slug === document.company && entry.kind === document.kind);
-      assert.equal(entry.viewable, allowed);
+      assert.equal(entry.viewable, true);
       assert.equal(entry.status, document.status);
       assert.equal(entry.pdfHref, document.pdfHref);
       assert(!("content" in entry), "Admin inventory never includes draft bodies");
       const canonical = await resolveCompanyRequest(document.company, document.kind);
-      if (!allowed) {
-        assert.equal(canonical, undefined);
-        assert.equal((await resolveCompanyRequest(document.company, document.kind, true, true)), undefined, "Reject draft before redirect");
-      } else {
-        assert.deepEqual(canonical.document, await getDocument({ scope: "company", company: document.company, kind: document.kind })); assert.equal(canonical.href, undefined);
-        for (const [query, former] of [[true, false], [false, true], [true, true]]) {
-          assert.equal((await resolveCompanyRequest(document.company, document.kind, query, former)).href, companyDocumentHref(document.company, document.kind));
-        }
+      assert.deepEqual(canonical.document, await getDocument({ scope: "company", company: document.company, kind: document.kind }));
+      assert.equal(canonical.href, undefined);
+      for (const [query, former] of [[true, false], [false, true], [true, true]]) {
+        assert.equal((await resolveCompanyRequest(document.company, document.kind, query, former)).href, companyDocumentHref(document.company, document.kind));
       }
     }
     for (const reserved of RESERVED_SEGMENTS) for (const { slug: kind } of companyKinds) assert.equal((await resolveCompanyRequest(reserved, kind, true)), undefined);
@@ -247,13 +238,13 @@ try {
     assert.equal((await resolveCompanyRequest("unknown", "resume", true, true)), undefined);
     for (const { slug: kind } of companyKinds) assert.equal((await resolveCompanyRequest("common", kind, false, true)).href, `/${kind}`);
     const alias = await resolveCompanyRequest("jyp-v2", "resume", true);
-    assert.equal(alias?.href, registry.canViewDraft(environment) ? "/jyp/resume" : undefined);
+    assert.equal(alias?.href, "/jyp/resume");
   }
 } finally {
   if (originalEnvironment === undefined) delete process.env.NODE_ENV;
   else process.env.NODE_ENV = originalEnvironment;
 }
-console.log(`PASS ${registry.companyDocuments.length} base + ${registry.revisionDocuments.length} revision records; ${chosen.size} representatives; canonical/draft/public-first/reserved/alias/query and violating fixtures`);
+console.log(`PASS ${registry.companyDocuments.length} base + ${registry.revisionDocuments.length} revision records; ${chosen.size} representatives; canonical/latest/all-environments/reserved/alias/query and violating fixtures`);
 const result = spawnSync(process.execPath, ["--test", "app/fe/content/documents/resume-copy.test.mjs", "app/fe/content/common/source.test.mjs"], { encoding: "utf8" });
 process.stdout.write(result.stdout); process.stderr.write(result.stderr);
 if (result.status !== 0) process.exit(result.status ?? 1);

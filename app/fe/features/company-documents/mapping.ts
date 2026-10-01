@@ -2,7 +2,6 @@ import type { ResumeCopy } from "@/content/documents/resume-copy";
 import type { ContentDocument } from "@/content/documents/parse-markdown";
 import {
   companyDocuments,
-  isPublicRevision,
   revisionDocuments,
   type CompanyDocument,
 } from "@/content/documents/companies";
@@ -21,7 +20,6 @@ function fromRevision(
     position: document.position,
     date: revisionDate(document.revision),
     order: `${revisionDate(document.revision)}-2-${document.revision}`,
-    public: isPublicRevision(document),
     label: document.revision,
     status: document.status,
     pdfHref: document.pdfHref,

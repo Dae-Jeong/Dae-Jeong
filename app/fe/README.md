@@ -33,7 +33,7 @@ private 읽기 직전 loader·관리자 page·proxy·API의 세션 검증을 유
 프론트엔드 화면은 데이터를 직접 import하지 않고, 백엔드/DB 추상화와 동일하게 `lib/documents/repository.ts`를 통해서만 단일 인터페이스(`getDocument`, `listDocumentEntries`)로 데이터를 서빙받아 렌더링합니다.
 
 ### 1. 핵심 아키텍처 원칙
-- **Single Source of Truth (SSOT)**: 공개 여부(`visibility`), 승인 상태(`status`) 등 모든 메타데이터는 TypeScript 코드가 아닌 JSON 파일 자체가 소유합니다.
+- **Single Source of Truth (SSOT)**: 리비전(`revision`), 승인 상태(`status`) 등 모든 메타데이터는 TypeScript 코드가 아닌 JSON 파일 자체가 소유합니다.
 - **개방-폐쇄 원칙 (OCP)**: 새로운 회사나 리비전이 추가되어도 **TypeScript 코드는 단 1줄도 수정하지 않습니다 (Zero Code Change)**.
 - **서버 격리 (`server-only`)**: 파일 I/O와 데이터 파싱 로직(`storage.ts`, `repository.ts`)은 서버에서만 실행되며, 클라이언트 번들에 0바이트로 격리됩니다.
 
@@ -66,7 +66,6 @@ make verify-all ARGS='--port 3001'
   "slug": "company-slug",
   "document": "resume",
   "revision": "20261001-R1",
-  "visibility": "public",
   "status": "approved",
   "approved": true,
   "companyName": "회사명",
@@ -75,8 +74,8 @@ make verify-all ARGS='--port 3001'
   "content": { ... }
 }
 ```
-- `visibility`: `"public"`이면 외부 방문객 공개, `"local"`이면 개발/로컬 환경 전용.
-- `status`: `"approved"`이면 정식 승인본, `"draft"`이면 초안 상태.
+- 회사와 문서 종류별 최신 리비전을 하나의 대표 문서로 제공하며, 모든 환경에서 동일하게 조회합니다. 기존 `visibility` 값은 보관 메타데이터이며 조회를 제한하지 않습니다.
+- `status`: `"approved"`·`"draft"` 등은 작성 상태를 기록하며 조회 여부나 대표 선정에 영향을 주지 않습니다.
 
 ### 4. ❌ 절대 금지 사항 (Anti-Patterns)
 
@@ -84,9 +83,9 @@ make verify-all ARGS='--port 3001'
 1. **UI 컴포넌트에서 특정 회사 JSON을 정적 import하는 행위**
    - ❌ `import resumeData from '@/content/documents/companies/...'`
    - ⭕ `await getDocument({ scope: "company", company: slug, kind: "resume" })`
-2. **TypeScript 코드에 회사 목록이나 공개 여부를 하드코딩하는 행위**
+2. **TypeScript 코드에 회사 목록이나 환경별 조회 제한을 하드코딩하는 행위**
    - ❌ `const publicCompanies = new Set(["socar", "sagak"]);`
-   - ⭕ 데이터 파일의 `"visibility": "public"` 속성으로 제어
+   - ⭕ 자동 스캔한 데이터에서 회사·문서 종류별 최신 리비전을 조회
 3. **`companies/index.ts`에 수동 import 목록을 작성하는 행위**
    - `storage.ts`의 `loadCompanySources()`가 런타임에 디렉토리를 자동 감지하므로 수동 등록 불필요.
 4. **하위 레이어(`policy.ts`, `storage.ts`)를 화면에서 직접 우회 호출하는 행위**

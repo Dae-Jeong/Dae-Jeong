@@ -45,7 +45,6 @@ type RepresentativeBase = {
   position: string;
   date: string;
   order: string;
-  public: boolean;
   label: string;
   status: CompanyDocument["status"];
   pdfHref?: string;

@@ -15,9 +15,3 @@ export type CompanyDocument = {
 const sources = loadCompanySources<CompanyDocument>();
 export const companyDocuments = sources.base;
 export const revisionDocuments = sources.revisions;
-export function isPublicRevision(document: Pick<CompanyDocument, "visibility">) {
-  return document.visibility === "public";
-}
-export function canViewDraft(environment: string | undefined) {
-  return environment === "development" || environment === "test";
-}

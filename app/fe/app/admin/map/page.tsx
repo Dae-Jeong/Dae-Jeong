@@ -13,7 +13,7 @@ import { listDocumentEntries } from "@/lib/documents/repository";
 import { companyKinds, type CompanyKind } from "@/features/company-documents/types";
 
 // 관리자 문서 지도. 회사 한 줄에 대표 이력서 · 경력기술서 · CV. 대표 선정은 features/company-documents/policy.ts가 소유한다.
-// 현재 환경에서 열 수 없는 초안은 링크 없이 표시하고, 폐기된 포트폴리오·역할·디자인 화면으로는 연결하지 않는다.
+// 존재하는 모든 대표 문서를 같은 링크로 연결한다.
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
 
 const EMPHASIZED_STATUSES: readonly ApplicationStatus[] = ["in-progress", "pre-apply"];
 
-type Cell = { href?: string; label: string; note: string };
+type Cell = { href: string; label: string; note: string };
 type Row = {
   key: string;
   name: string;
@@ -44,13 +44,7 @@ async function buildRows(): Promise<{
       cells: {},
     };
     const href = companyDocumentHref(document.slug, document.kind);
-    row.cells[document.kind] = document.viewable
-      ? {
-          href,
-          label: href,
-          note: document.visibility === "public" ? "public" : "draft · local",
-        }
-      : { label: "초안", note: "배포 비공개 · 승인 전" };
+    row.cells[document.kind] = { href, label: href, note: document.revision ?? "" };
     rows.set(document.slug, row);
   }
   const applications = await loadApplications();
@@ -82,16 +76,12 @@ function CellView({ cell }: { cell?: Cell }) {
   if (!cell) return <span className="text-muted">—</span>;
   return (
     <>
-      {cell.href ? (
-        <Link
-          href={cell.href}
-          className="focus-ring font-mono text-[12px] leading-4 underline underline-offset-4 [overflow-wrap:anywhere]"
-        >
-          {cell.label}
-        </Link>
-      ) : (
-        <span className="text-[12px] leading-4">{cell.label}</span>
-      )}
+      <Link
+        href={cell.href}
+        className="focus-ring font-mono text-[12px] leading-4 underline underline-offset-4 [overflow-wrap:anywhere]"
+      >
+        {cell.label}
+      </Link>
       <span className="mt-1 block text-[12px] leading-4 text-muted">{cell.note}</span>
     </>
   );
@@ -180,8 +170,8 @@ export default async function MapPage() {
     key: "common",
     name: "공통",
     cells: {
-      resume: { href: ROUTES.resume, label: ROUTES.resume, note: "public" },
-      career: { href: ROUTES.career, label: ROUTES.career, note: "public" },
+      resume: { href: ROUTES.resume, label: ROUTES.resume, note: "" },
+      career: { href: ROUTES.career, label: ROUTES.career, note: "" },
     },
   };
   return (
