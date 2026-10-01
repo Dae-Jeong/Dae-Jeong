@@ -2,15 +2,20 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { test } from "node:test";
 
-test("common routes consume independent app copy and the single document renderers", () => {
-  const resume = readFileSync(new URL("../../app/resume/page.tsx", import.meta.url), "utf8");
-  const career = readFileSync(new URL("../../app/career/page.tsx", import.meta.url), "utf8");
-  const presentation = readFileSync(new URL("../common/presentation.ts", import.meta.url), "utf8");
-  assert.match(resume, /import copy from "@\/content\/common\/resume.json"/);
-  assert.match(resume, /presentation=\{commonResumePresentation\}/);
-  assert.match(resume, /<ResumeDocument /);
-  assert.match(career, /<CareerDocument \/>/);
-  assert.doesNotMatch(resume + career + presentation, /readFile|parseResumeCopy|wiki\/|companies\/miridih/);
+test("document routes query the repository and renderers receive explicit content", () => {
+  const read = path => readFileSync(new URL(path, import.meta.url), "utf8");
+  for (const kind of ["resume", "career", "cv"]) {
+    const page = read(`../../app/${kind}/page.tsx`);
+    assert.match(page, /getDocument\(\{ scope: "common", kind:/);
+    assert.doesNotMatch(page, /content\/common|readFile|parseResumeCopy|wiki\//);
+    assert.match(page, /document\.content/);
+  }
+  for (const kind of ["resume", "career"]) {
+    assert.match(read(`../../app/[company]/${kind}/page.tsx`), /getDocument\(\{ scope: "company"/);
+  }
+  const renderers = ["career/career-document.tsx", "cv/cv-document.tsx", "company-document.tsx"]
+    .map(path => read(`../../app/_components/documents/${path}`)).join("\n");
+  assert.doesNotMatch(renderers, /content\/common\/.*json|getRepresentative/);
 });
 
 test("each document kind has one render path without view modes or company template exceptions", () => {

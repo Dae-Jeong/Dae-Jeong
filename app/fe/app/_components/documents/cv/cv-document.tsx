@@ -1,5 +1,4 @@
 import type { ReactNode } from "react";
-import cv from "../../../../content/common/cv.json";
 import type {
   ContentBlock,
   ContentDocument,
@@ -10,7 +9,6 @@ import { Inline } from "../inline";
 import { DocumentFrame } from "../document-frame";
 import styles from "./cv.module.css";
 
-const commonCv = cv as ContentDocument;
 
 function Blocks({ blocks }: { blocks: ContentBlock[] }) {
   const nodes: ReactNode[] = [];
@@ -74,10 +72,10 @@ function Section({ section, id }: { section: ContentSection; id: string }) {
 /** The only CV renderer (2026-09-29): common and company CVs render here and differ only by document data.
  *  Web adaptation of Jake Gutierrez's MIT-licensed template; see tools/templates/jake-cv/. */
 export function CvDocument({
-  document = commonCv,
+  document,
 }: {
-  document?: ContentDocument;
-} = {}) {
+  document: ContentDocument;
+}) {
   return (
     <DocumentFrame
       lang="en"

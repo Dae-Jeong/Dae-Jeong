@@ -1,5 +1,4 @@
-import { notFound } from "next/navigation";
-import { getRepresentative } from "@/features/company-documents/policy";
+import type { DocumentRecord } from "@/lib/documents/repository";
 import { ResumeDocument } from "./resume/resume-document";
 import { CareerDocument } from "./career/career-document";
 import { DocumentShell } from "./document-shell";
@@ -8,14 +7,11 @@ import frameStyles from "./document-frame.module.css";
 /** The company document page for /{company}/{kind}: the representative document rendered with the common renderer
  *  of that kind. Unknown company/kind, reserved segments and drafts outside dev/test are not found. */
 export function CompanyDocumentPage({
-  company,
-  kind,
+  document,
 }: {
-  company: string;
-  kind: "resume" | "career";
+  document: DocumentRecord & { kind: "resume" | "career" };
 }) {
-  const document = getRepresentative(company, kind);
-  if (!document) notFound();
+  const company = document.slug;
 
   return (
     <DocumentShell>
@@ -39,7 +35,7 @@ export function CompanyDocumentPage({
             </p>
           )}
           <ResumeDocument
-            copy={document.copy}
+            copy={document.content}
             prefix={`${company}-resume`}
             presentation={document.presentation}
             footerRole={document.position}

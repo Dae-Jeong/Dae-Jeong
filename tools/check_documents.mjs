@@ -17,6 +17,7 @@ function moduleUrl(url) {
     module: ts.ModuleKind.ESNext, target: ts.ScriptTarget.ES2022,
   } }).outputText;
   source = source.replace(/(from\s*|import\s*)(["'])([^"']+)\2/g, (statement, prefix, quote, specifier) => {
+    if (specifier === "server-only") return `${prefix}${quote}data:text/javascript,export default undefined${quote}`;
     if (!specifier.startsWith(".") && !specifier.startsWith("@/")) return statement;
     const base = specifier.startsWith("@/") ? new URL(specifier.slice(2), fe) : new URL(specifier, url);
     const dependency = [base, new URL(base.href + ".ts"), new URL(base.href + "/index.ts")]
@@ -34,6 +35,52 @@ const { companyKinds, companySlug, RESERVED_SEGMENTS } = await load("features/co
 const { collectCandidates } = await load("features/company-documents/mapping.ts");
 const { selectRepresentative, getRepresentative, listRepresentativeEntries } = await load("features/company-documents/policy.ts");
 const { companyDocumentHref, resolveCompanyRequest } = await load("features/company-documents/urls.ts");
+const { getDocument, listDocuments } = await load("lib/documents/repository.ts");
+const { readDocumentJson } = await load("content/documents/storage.ts");
+
+// Exercise the actual repository, including invalid requests and production visibility.
+for (const kind of ["resume", "career", "cv"]) {
+  const document = await getDocument({ scope: "common", kind });
+  assert.equal(document.kind, kind);
+  assert.deepEqual(document.content, JSON.parse(readFileSync(new URL(
+    `content/common/${kind === "career" ? "career-description" : kind}.json`, fe), "utf8")));
+}
+for (const company of ["../common", "../../", "admin", "unknown", "JYP", "jyp/resume", "jyp%2fresume"])
+  assert.equal(await getDocument({ scope: "company", company, kind: "resume" }), null);
+assert.equal(await getDocument({ scope: "company", company: "jyp", kind: "cv" }), null);
+assert.equal(await getDocument({ scope: "company", kind: "resume" }), null);
+assert.equal(await getDocument({ scope: "common", company: "jyp", kind: "resume" }), null);
+assert.equal(await getDocument({ scope: "common", kind: "portfolio" }), null);
+assert.throws(() => readDocumentJson("..", "package.json"), /Invalid document storage path/);
+const repositoryEnvironment = process.env.NODE_ENV;
+try {
+  for (const environment of ["development", "production"]) {
+    process.env.NODE_ENV = environment;
+    const all = await listDocuments();
+    assert.equal((await listDocuments({ scope: "common" })).length, 3);
+    assert.deepEqual(await listDocuments({ kind: "cv" }), [await getDocument({ scope: "common", kind: "cv" })]);
+    for (const record of all) {
+      assert.deepEqual(record, await getDocument({ scope: record.scope, kind: record.kind,
+        ...(record.scope === "company" ? { company: record.slug } : {}) }));
+      if (environment === "production" && record.scope === "company") assert.equal(record.visibility, "public");
+    }
+    for (const { document, viewable } of listRepresentativeEntries()) {
+      const record = await getDocument({ scope: "company", company: document.company, kind: document.kind });
+      if (!viewable) { assert.equal(record, null); continue; }
+      assert.equal(record.revision, document.label);
+      assert.deepEqual(record.content, document.kind === "resume" ? document.copy : document.content);
+      if (document.kind === "resume") {
+        assert.deepEqual(record.presentation, document.presentation);
+        assert.equal(record.pdfHref, document.pdfHref);
+      }
+    }
+    assert.deepEqual(await listDocuments({ company: "jyp-v2" }), await listDocuments({ company: "jyp" }));
+    assert.deepEqual(await listDocuments({ company: "../common" }), []);
+  }
+} finally {
+  if (repositoryEnvironment === undefined) delete process.env.NODE_ENV;
+  else process.env.NODE_ENV = repositoryEnvironment;
+}
 
 assert.deepEqual(companyKinds.map(item => item.slug), ["resume", "career"]);
 assert.deepEqual(registry.companyDocuments.map(record => `${record.slug}/${record.document}`).sort(),

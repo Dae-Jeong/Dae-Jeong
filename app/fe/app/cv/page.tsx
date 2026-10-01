@@ -1,3 +1,5 @@
+import { notFound } from "next/navigation";
+import { getDocument } from "@/lib/documents/repository";
 import type { Metadata } from "next";
 import { DocumentShell } from "../_components/documents/document-shell";
 import { CvDocument } from "../_components/documents/cv/cv-document";
@@ -13,10 +15,12 @@ export const metadata: Metadata = {
   },
 };
 
-export default function CvPage() {
+export default async function CvPage() {
+  const document = await getDocument({ scope: "common", kind: "cv" });
+  if (!document || document.kind !== "cv") notFound();
   return (
     <DocumentShell>
-      <CvDocument />
+      <CvDocument document={document.content} />
     </DocumentShell>
   );
 }

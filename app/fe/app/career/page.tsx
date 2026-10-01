@@ -1,3 +1,5 @@
+import { notFound } from "next/navigation";
+import { getDocument } from "@/lib/documents/repository";
 import type { Metadata } from "next";
 import { DocumentShell } from "../_components/documents/document-shell";
 import { CareerDocument } from "../_components/documents/career/career-document";
@@ -7,10 +9,12 @@ export const metadata: Metadata = {
   description: "제품 판단을 운영 가능한 Backend와 AI 기능으로 연결해 온 김대정의 경력기술서",
 };
 
-export default function CareerPage() {
+export default async function CareerPage() {
+  const document = await getDocument({ scope: "common", kind: "career" });
+  if (!document || document.kind !== "career") notFound();
   return (
     <DocumentShell>
-      <CareerDocument />
+      <CareerDocument document={document.content} />
     </DocumentShell>
   );
 }

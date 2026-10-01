@@ -1,5 +1,4 @@
 import type { ReactNode } from "react";
-import career from "../../../../content/common/career-description.json";
 import { CAREER_SECTION_IDS } from "../../../../lib/career-links";
 import type {
   ContentBlock,
@@ -258,13 +257,12 @@ function contentsEntries(document: ContentDocument) {
  *  all render as the approved portrait A4 sheet with one print policy and differ only by document copy.
  */
 export function CareerDocument({
-  document: suppliedDocument,
+  document,
   slug = "common",
 }: {
-  document?: ContentDocument;
+  document: ContentDocument;
   slug?: string;
 }) {
-  const document = suppliedDocument ?? (career as ContentDocument);
   const headerText = document.header.filter(
     (block): block is TextBlock => block.kind === "paragraph",
   );

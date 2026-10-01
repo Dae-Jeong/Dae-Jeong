@@ -1,47 +1,4 @@
-import hypernovaResume from "./hypernova/resume.json";
-import mgrvResume from "./mgrv/resume.json";
-import pinokiolabResume from "./pinokiolab/resume.json";
-import teamrebootResume from "./teamreboot/resume.json";
-import whatssubResume from "./whatssub/resume.json";
-import hypernovaCareer from "./hypernova/career.json";
-import MiridihPeResume from "./miridih-pe/resume.json";
-import MiridihPeCareer from "./miridih-pe/career.json";
-import AblyResume from "./ably/resume.json";
-import AblyCareer from "./ably/career.json";
-import NriseResume from "./nrise/resume.json";
-import NriseCareer from "./nrise/career.json";
-import SoomgoResume from "./soomgo/resume.json";
-import SoomgoCareer from "./soomgo/career.json";
-import PaytalabResume from "./paytalab/resume.json";
-import PaytalabCareer from "./paytalab/career.json";
-import WrtnResume from "./wrtn/resume.json";
-import WrtnCareer from "./wrtn/career.json";
-import HybeResume from "./hybe/resume.json";
-import HybeCareer from "./hybe/career.json";
-import featuringR2Resume from "./featuring/revisions/20260921-R2/resume.json";
-import featuringR2Career from "./featuring/revisions/20260921-R2/career.json";
-import tossR2Resume from "./toss-place/revisions/20261001-R2/resume.json";
-import tossR2Career from "./toss-place/revisions/20261001-R2/career.json";
-import gnaResume from "./gna-company/resume.json";
-import gnaCareer from "./gna-company/career.json";
-import featuringResume from "./featuring/resume.json";
-import featuringCareer from "./featuring/career.json";
-import miridihResume from "./miridih/resume.json";
-import miridihCareer from "./miridih/career.json";
-import jypResume from "./jyp/resume.json";
-import jypCareer from "./jyp/career.json";
-import tossResume from "./toss-place/resume.json";
-import tossCareer from "./toss-place/career.json";
-import miridihR3Resume from "./miridih/revisions/20260912-R3/resume.json";
-import miridihR3Career from "./miridih/revisions/20260912-R3/career.json";
-import sagakR1Resume from "./sagak/revisions/20260921-R1/resume.json";
-import sagakR1Career from "./sagak/revisions/20260921-R1/career.json";
-import ajungR1Resume from "./ajungnetworks/revisions/20260921-R1/resume.json";
-import ajungR1Career from "./ajungnetworks/revisions/20260921-R1/career.json";
-import socarR1Resume from "./socar/revisions/20260921-R1/resume.json";
-import socarR1Career from "./socar/revisions/20260921-R1/career.json";
-import featuringR1Resume from "./featuring/revisions/20260921-R1/resume.json";
-import featuringR1Career from "./featuring/revisions/20260921-R1/career.json";
+import { loadCompanySources } from "../storage";
 import type { ResumeCopy } from "../resume-copy";
 import type { ContentDocument } from "../parse-markdown";
 
@@ -54,12 +11,10 @@ export type CompanyDocument = {
   revision: string; updatedAt: string; applicationId: string; focus: string;
   document: DocumentKind; content: ResumeCopy | ContentDocument; pdfHref?: string;
 };
-export const companyDocuments = [hypernovaResume, hypernovaCareer, mgrvResume, pinokiolabResume, teamrebootResume, whatssubResume, gnaResume, gnaCareer, featuringResume, featuringCareer, miridihResume, miridihCareer,
-  jypResume, jypCareer, tossResume, tossCareer,
-  MiridihPeResume, MiridihPeCareer, AblyResume, AblyCareer, NriseResume, NriseCareer, SoomgoResume, SoomgoCareer, PaytalabResume, PaytalabCareer, WrtnResume, WrtnCareer, HybeResume, HybeCareer] as CompanyDocument[];
-// Preserved review revisions, regenerated from their Markdown owners by the revision/company preview tools.
-// Historical base records and submission artifacts stay intact. The policy selects one representative per URL.
-export const revisionDocuments = [miridihR3Resume, miridihR3Career, sagakR1Resume, sagakR1Career, ajungR1Resume, ajungR1Career, socarR1Resume, socarR1Career, featuringR1Resume, featuringR1Career, featuringR2Resume, featuringR2Career, tossR2Resume, tossR2Career] as CompanyDocument[];
+// Discover document files on the server. Portfolio files remain submission evidence only.
+const sources = loadCompanySources<CompanyDocument>();
+export const companyDocuments = sources.base;
+export const revisionDocuments = sources.revisions;
 const publicRevisionKeys = new Set([
   "sagak:20260921-R1",
   "ajungnetworks:20260921-R1",

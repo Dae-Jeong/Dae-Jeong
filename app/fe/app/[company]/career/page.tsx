@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound, permanentRedirect } from "next/navigation";
 import { CompanyDocumentPage } from "../../_components/documents/company-document";
 import { resolveCompanyRequest } from "@/features/company-documents/urls";
-import { getRepresentative } from "@/features/company-documents/policy";
+import { getDocument } from "@/lib/documents/repository";
 
 type PageProps = {
   params: Promise<{ company: string }>;
@@ -13,7 +13,7 @@ export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
   const { company } = await params;
-  const document = getRepresentative(company, "career");
+  const document = await getDocument({ scope: "company", company, kind: "career" });
   return {
     title: document
       ? `${document.companyName} 경력기술서 — 김대정`
@@ -34,6 +34,7 @@ export default async function CompanyPage({ params, searchParams }: PageProps) {
   );
   if (!resolved?.document) notFound();
   if (resolved.href) permanentRedirect(resolved.href);
-  const document = resolved.document;
-  return <CompanyDocumentPage company={document.company} kind="career" />;
+  const document = await getDocument({ scope: "company", company: resolved.document.company, kind: "career" });
+  if (!document || document.kind !== "career") notFound();
+  return <CompanyDocumentPage document={document} />;
 }
