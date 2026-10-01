@@ -54,14 +54,20 @@ function parseInline(text: string): ReactNode[] {
   return nodes.length > 0 ? nodes : [text];
 }
 
-export function MarkdownPanel({ markdown }: { markdown: string }) {
-  const lines = markdown.split(/\r?\n/);
+const ORDERED_ITEM = /^\d+\.\s+/;
+// "## 1. 회사가 진짜 찾는 사람" 같은 번호 섹션은 실전 4단 카드로 묶는다.
+const NUMBERED_SECTION = /^##\s+(\d+)\.\s+(.+)$/;
+// "## 부록 …" 이후 전부는 claim 근거 원장이므로 기본 접힘으로 보여준다.
+const APPENDIX_SECTION = /^##\s+부록/;
+
+function renderBlocks(lines: string[], keyPrefix: string): ReactNode[] {
   const elements: ReactNode[] = [];
 
   let i = 0;
   while (i < lines.length) {
     const line = lines[i];
     const trimmed = line.trim();
+    const key = `${keyPrefix}-${i}`;
 
     if (!trimmed) {
       i++;
@@ -71,7 +77,7 @@ export function MarkdownPanel({ markdown }: { markdown: string }) {
     // Heading 1
     if (trimmed.startsWith("# ")) {
       elements.push(
-        <h1 key={i} className="mt-6 mb-3 text-[20px] font-bold leading-tight text-fg first:mt-0">
+        <h1 key={key} className="mt-6 mb-3 text-[20px] font-bold leading-tight text-fg first:mt-0">
           {parseInline(trimmed.slice(2))}
         </h1>
       );
@@ -82,7 +88,7 @@ export function MarkdownPanel({ markdown }: { markdown: string }) {
     // Heading 2
     if (trimmed.startsWith("## ")) {
       elements.push(
-        <h2 key={i} className="mt-5 mb-2.5 border-b border-border pb-1.5 text-[16px] font-semibold leading-snug text-fg">
+        <h2 key={key} className="mt-5 mb-2.5 border-b border-border pb-1.5 text-[16px] font-semibold leading-snug text-fg">
           {parseInline(trimmed.slice(3))}
         </h2>
       );
@@ -93,7 +99,7 @@ export function MarkdownPanel({ markdown }: { markdown: string }) {
     // Heading 3
     if (trimmed.startsWith("### ")) {
       elements.push(
-        <h3 key={i} className="mt-4 mb-2 text-[14px] font-semibold leading-normal text-fg">
+        <h3 key={key} className="mt-4 mb-2 text-[14px] font-semibold leading-normal text-fg">
           {parseInline(trimmed.slice(4))}
         </h3>
       );
@@ -104,7 +110,7 @@ export function MarkdownPanel({ markdown }: { markdown: string }) {
     // Heading 4
     if (trimmed.startsWith("#### ")) {
       elements.push(
-        <h4 key={i} className="mt-3 mb-1.5 text-[13px] font-medium leading-normal text-fg">
+        <h4 key={key} className="mt-3 mb-1.5 text-[13px] font-medium leading-normal text-fg">
           {parseInline(trimmed.slice(5))}
         </h4>
       );
@@ -115,7 +121,7 @@ export function MarkdownPanel({ markdown }: { markdown: string }) {
     // Blockquote
     if (trimmed.startsWith("> ")) {
       elements.push(
-        <blockquote key={i} className="my-2 border-l-2 border-border pl-3 text-[13px] italic text-muted">
+        <blockquote key={key} className="my-2 border-l-2 border-border pl-3 text-[13px] italic text-muted">
           {parseInline(trimmed.slice(2))}
         </blockquote>
       );
@@ -144,7 +150,7 @@ export function MarkdownPanel({ markdown }: { markdown: string }) {
         );
 
         elements.push(
-          <div key={`table-${i}`} className="my-3 overflow-x-auto rounded border border-border">
+          <div key={`${key}-table`} className="my-3 overflow-x-auto rounded border border-border">
             <table className="w-full border-collapse text-left text-[12px] leading-relaxed">
               <thead className="border-b border-border bg-fg/5 text-fg">
                 <tr>
@@ -181,7 +187,7 @@ export function MarkdownPanel({ markdown }: { markdown: string }) {
         i++;
       }
       elements.push(
-        <ul key={`ul-${i}`} className="my-2.5 ml-4 list-disc space-y-1 text-[13px] leading-relaxed text-fg-2">
+        <ul key={`${key}-ul`} className="my-2.5 ml-4 list-disc space-y-1 text-[13px] leading-relaxed text-fg-2">
           {listItems.map((item, idx) => (
             <li key={idx}>{parseInline(item)}</li>
           ))}
@@ -190,14 +196,115 @@ export function MarkdownPanel({ markdown }: { markdown: string }) {
       continue;
     }
 
+    // Ordered List: 1. 2. 3.
+    if (ORDERED_ITEM.test(trimmed)) {
+      const listItems: string[] = [];
+      while (i < lines.length && ORDERED_ITEM.test(lines[i].trim())) {
+        listItems.push(lines[i].trim().replace(ORDERED_ITEM, ""));
+        i++;
+      }
+      elements.push(
+        <ol key={`${key}-ol`} className="my-2.5 ml-5 list-decimal space-y-1.5 text-[13px] leading-relaxed text-fg-2 marker:font-semibold marker:text-muted">
+          {listItems.map((item, idx) => (
+            <li key={idx} className="pl-1">{parseInline(item)}</li>
+          ))}
+        </ol>
+      );
+      continue;
+    }
+
     // Regular paragraph
     elements.push(
-      <p key={i} className="my-2 text-[13px] leading-relaxed text-fg-2 [overflow-wrap:anywhere]">
+      <p key={key} className="my-2 text-[13px] leading-relaxed text-fg-2 [overflow-wrap:anywhere]">
         {parseInline(trimmed)}
       </p>
     );
     i++;
   }
 
-  return <div className="markdown-content">{elements}</div>;
+  return elements;
+}
+
+type Section =
+  | { kind: "plain"; lines: string[] }
+  | { kind: "numbered"; number: string; title: string; lines: string[] }
+  | { kind: "appendix"; title: string; lines: string[] };
+
+function splitSections(lines: string[]): Section[] {
+  const sections: Section[] = [];
+  let current: Section = { kind: "plain", lines: [] };
+
+  for (const line of lines) {
+    const trimmed = line.trim();
+    // 부록 이후는 하위 ## 제목까지 모두 한 접힘 영역에 둔다.
+    if (current.kind === "appendix") {
+      current.lines.push(line);
+      continue;
+    }
+    if (APPENDIX_SECTION.test(trimmed)) {
+      sections.push(current);
+      current = { kind: "appendix", title: trimmed.replace(/^##\s+/, ""), lines: [] };
+      continue;
+    }
+    const numbered = trimmed.match(NUMBERED_SECTION);
+    if (numbered) {
+      sections.push(current);
+      current = { kind: "numbered", number: numbered[1], title: numbered[2], lines: [] };
+      continue;
+    }
+    if (trimmed.startsWith("## ") && current.kind === "numbered") {
+      sections.push(current);
+      current = { kind: "plain", lines: [line] };
+      continue;
+    }
+    current.lines.push(line);
+  }
+  sections.push(current);
+
+  return sections.filter((section) => section.kind !== "plain" || section.lines.some((l) => l.trim()));
+}
+
+export function MarkdownPanel({ markdown }: { markdown: string }) {
+  const sections = splitSections(markdown.split(/\r?\n/));
+
+  return (
+    <div className="markdown-content">
+      {sections.map((section, sIdx) => {
+        const keyPrefix = `s${sIdx}`;
+        if (section.kind === "numbered") {
+          return (
+            <section
+              key={keyPrefix}
+              data-report-section={section.number}
+              className="my-4 rounded-lg border border-border bg-surface p-4 [&_strong]:rounded-sm [&_strong]:bg-accent/10 [&_strong]:px-0.5"
+            >
+              <h2 className="mb-2 flex items-center gap-2.5 text-[15px] font-semibold leading-snug text-fg">
+                <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-accent text-[12px] font-bold text-accent-on">
+                  {section.number}
+                </span>
+                {parseInline(section.title)}
+              </h2>
+              {renderBlocks(section.lines, keyPrefix)}
+            </section>
+          );
+        }
+        if (section.kind === "appendix") {
+          return (
+            <details
+              key={keyPrefix}
+              data-report-appendix
+              className="group my-5 rounded-lg border border-dashed border-border px-4 py-3"
+            >
+              <summary className="cursor-pointer select-none text-[14px] font-semibold text-muted hover:text-fg">
+                {parseInline(section.title)}
+                <span className="ml-2 text-[12px] font-normal">(claim 근거·검증 기록, 펼쳐 보기)</span>
+              </summary>
+              <div className="mt-3">{renderBlocks(section.lines, keyPrefix)}</div>
+            </details>
+          );
+        }
+        return <div key={keyPrefix}>{renderBlocks(section.lines, keyPrefix)}</div>;
+      })}
+    </div>
+  );
 }
