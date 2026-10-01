@@ -7,7 +7,6 @@ import type {
   TextBlock,
 } from "../../../../content/documents/parse-markdown";
 import { Inline } from "../inline";
-import { DocumentShell } from "../document-shell";
 import { DocumentFrame } from "../document-frame";
 import styles from "./cv.module.css";
 
@@ -80,22 +79,20 @@ export function CvDocument({
   document?: ContentDocument;
 } = {}) {
   return (
-    <DocumentShell>
-      <DocumentFrame
-        lang="en"
-        className={styles.document}
-        data-common-document="cv"
-        data-professional-document="cv"
-        data-cv-template="jake"
-      >
-        <header className={styles.header}>
-          <h1 data-copy>{document.title}</h1>
-          <Blocks blocks={document.header} />
-        </header>
-        {document.sections.map((section, i) => (
-          <Section key={section.title} section={section} id={`cv-${i + 1}`} />
-        ))}
-      </DocumentFrame>
-    </DocumentShell>
+    <DocumentFrame
+      lang="en"
+      className={styles.document}
+      data-common-document="cv"
+      data-professional-document="cv"
+      data-cv-template="jake"
+    >
+      <header className={styles.header}>
+        <h1 data-copy>{document.title}</h1>
+        <Blocks blocks={document.header} />
+      </header>
+      {document.sections.map((section, i) => (
+        <Section key={section.title} section={section} id={`cv-${i + 1}`} />
+      ))}
+    </DocumentFrame>
   );
 }

@@ -1,12 +1,8 @@
 import type { ResumeCopy } from "@/content/documents/resume-copy";
-import commonResume from "@/content/common/resume.json";
-import commonCareer from "@/content/common/career-description.json";
-import { commonResumePresentation } from "@/content/common/presentation";
 import type { ContentDocument } from "@/content/documents/parse-markdown";
 import { careerDescriptionToContent } from "@/content/documents/career-content-adapter";
 import {
   companyDocuments,
-  commonDocumentCompanies,
   isPublicRevision,
   revisionDocuments,
   type CompanyDocument,
@@ -57,23 +53,6 @@ export function collectCandidates(
   normalizeCompany: (slug: string) => string,
 ): Representative[] {
   const list: Representative[] = [];
-  for (const config of commonDocumentCompanies) {
-    const base = {
-      company: normalizeCompany(config.slug),
-      companyName: config.companyName,
-      position: config.position,
-      date: isoDate(config.updatedAt),
-      order: `${isoDate(config.updatedAt)}-common`,
-      public: config.visibility === "public",
-      label: config.mode,
-      mode: config.mode,
-    };
-    for (const kind of config.documents) {
-      list.push(kind === "resume"
-        ? { ...base, kind, copy: commonResume as ResumeCopy, presentation: commonResumePresentation }
-        : { ...base, kind, content: commonCareer as ContentDocument });
-    }
-  }
   for (const document of [...companyDocuments, ...revisionDocuments]) {
     const candidate = fromRevision(document, normalizeCompany);
     if (candidate) list.push(candidate);

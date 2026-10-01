@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { DocumentShell } from "../_components/documents/document-shell";
 import { CvDocument } from "../_components/documents/cv/cv-document";
 
 export const metadata: Metadata = {
@@ -13,5 +14,9 @@ export const metadata: Metadata = {
 };
 
 export default function CvPage() {
-  return <CvDocument />;
+  return (
+    <DocumentShell>
+      <CvDocument />
+    </DocumentShell>
+  );
 }

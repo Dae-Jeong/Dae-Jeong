@@ -16,34 +16,37 @@ export function CompanyDocumentPage({
 }) {
   const document = getRepresentative(company, kind);
   if (!document) notFound();
-  if (document.kind === "career")
-    return (
-      <CareerDocument
-        document={document.content}
-        slug={company}
-      />
-    );
+
   return (
     <DocumentShell>
-      {document.pdfHref && (
-        // The submitted A4 PDF of this document stays downloadable from the same page.
-        <p className={`${frameStyles.downloadSlot} mx-auto flex justify-end py-3 print:hidden`}>
-          <a
-            href={document.pdfHref}
-            download
-            className="focus-ring inline-flex min-h-11 items-center border border-accent bg-accent px-3.5 font-mono text-xs font-medium tracking-[0.04em] text-accent-on transition-colors duration-100 hover:bg-accent-hover"
-          >
-            ↓ PDF 다운로드 (A4)
-          </a>
-        </p>
+      {document.kind === "career" ? (
+        <CareerDocument
+          document={document.content}
+          slug={company}
+        />
+      ) : (
+        <>
+          {document.pdfHref && (
+            // The submitted A4 PDF of this document stays downloadable from the same page.
+            <p className={`${frameStyles.downloadSlot} mx-auto flex justify-end py-3 print:hidden`}>
+              <a
+                href={document.pdfHref}
+                download
+                className="focus-ring inline-flex min-h-11 items-center border border-accent bg-accent px-3.5 font-mono text-xs font-medium tracking-[0.04em] text-accent-on transition-colors duration-100 hover:bg-accent-hover"
+              >
+                ↓ PDF 다운로드 (A4)
+              </a>
+            </p>
+          )}
+          <ResumeDocument
+            copy={document.copy}
+            prefix={`${company}-resume`}
+            presentation={document.presentation}
+            footerRole={document.position}
+            scope="company"
+          />
+        </>
       )}
-      <ResumeDocument
-        copy={document.copy}
-        prefix={`${company}-resume`}
-        presentation={document.presentation}
-        footerRole={document.position}
-        scope="company"
-      />
     </DocumentShell>
   );
 }

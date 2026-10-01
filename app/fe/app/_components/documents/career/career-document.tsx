@@ -7,7 +7,6 @@ import type {
   ContentSection,
   TextBlock,
 } from "../../../../content/documents/parse-markdown";
-import { DocumentShell } from "../document-shell";
 import { DocumentFrame } from "../document-frame";
 import { Inline } from "../inline";
 import { FlowDiagram } from "./flow-diagram";
@@ -282,54 +281,52 @@ export function CareerDocument({
   );
   const contents = contentsEntries(document);
   return (
-    <DocumentShell>
-      <DocumentFrame
-        className={styles.document}
-        data-common-document="career"
-        data-document-layout="a4-sheet"
-        data-document-slug={slug}
-        data-professional-document="career-description"
-      >
-        <header className={styles.header}>
-          <div className={styles.identityRow}>
-            <h1>{document.title}</h1>
-            <p data-copy>{identity && <Inline text={identity.text} />}</p>
+    <DocumentFrame
+      className={styles.document}
+      data-common-document="career"
+      data-document-layout="a4-sheet"
+      data-document-slug={slug}
+      data-professional-document="career-description"
+    >
+      <header className={styles.header}>
+        <div className={styles.identityRow}>
+          <h1>{document.title}</h1>
+          <p data-copy>{identity && <Inline text={identity.text} />}</p>
+        </div>
+        {brand && (
+          <p className={styles.brand} data-copy>
+            {brand.text}
+          </p>
+        )}
+        {contacts && (
+          <p className={styles.contacts} data-copy>
+            <Inline text={contacts.text} />
+          </p>
+        )}
+        {!!introduction.length && (
+          <div className={styles.introduction}>
+            <Blocks blocks={introduction} />
           </div>
-          {brand && (
-            <p className={styles.brand} data-copy>
-              {brand.text}
-            </p>
-          )}
-          {contacts && (
-            <p className={styles.contacts} data-copy>
-              <Inline text={contacts.text} />
-            </p>
-          )}
-          {!!introduction.length && (
-            <div className={styles.introduction}>
-              <Blocks blocks={introduction} />
-            </div>
-          )}
-        </header>
-        <nav
-          className={styles.contents}
-          aria-label={`${document.title} 목차`}
-        >
-          {contents.map((entry, index) => (
-            <a key={entry.href} href={entry.href}>
-              <span>{String(index + 1).padStart(2, "0")}</span>
-              {entry.title}
-            </a>
-          ))}
-        </nav>
-        {document.sections.map((section, index) => (
-          <Section
-            key={index}
-            section={section}
-            id={`career-${index + 1}`}
-          />
+        )}
+      </header>
+      <nav
+        className={styles.contents}
+        aria-label={`${document.title} 목차`}
+      >
+        {contents.map((entry, index) => (
+          <a key={entry.href} href={entry.href}>
+            <span>{String(index + 1).padStart(2, "0")}</span>
+            {entry.title}
+          </a>
         ))}
-      </DocumentFrame>
-    </DocumentShell>
+      </nav>
+      {document.sections.map((section, index) => (
+        <Section
+          key={index}
+          section={section}
+          id={`career-${index + 1}`}
+        />
+      ))}
+    </DocumentFrame>
   );
 }

@@ -54,24 +54,6 @@ export const companyDocuments = [featuringResume, featuringCareer, miridihResume
 // Preserved review revisions, regenerated from their Markdown owners by the revision/company preview tools.
 // Historical base records and submission artifacts stay intact. The policy selects one representative per URL.
 export const revisionDocuments = [gnaR2Resume, gnaR2Career, miridihR3Resume, miridihR3Career, sagakR1Resume, sagakR1Career, ajungR1Resume, ajungR1Career, socarR1Resume, socarR1Career, featuringR1Resume, featuringR1Career, featuringR2Resume, featuringR2Career, tossR2Resume, tossR2Career] as CompanyDocument[];
-/** Review routes which consume current common copy, without authoring tailored documents. */
-export const commonDocumentCompanies: readonly {
-  slug: string;
-  companyName: string;
-  position: string;
-  updatedAt: string;
-  visibility: "local" | "public";
-  mode: "common";
-  documents: readonly ("resume" | "career")[];
-}[] = [{
-  slug: "miridih-pe",
-  companyName: "미리디",
-  position: "Product Engineer · 공통 본문",
-  updatedAt: "2026-09-30",
-  visibility: "local",
-  mode: "common",
-  documents: ["resume", "career"],
-}];
 const publicRevisionKeys = new Set([
   "sagak:20260921-R1",
   "ajungnetworks:20260921-R1",
