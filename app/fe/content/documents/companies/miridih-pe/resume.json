@@ -1,7 +1,7 @@
 {
   "slug": "miridih-pe",
   "companyName": "미리디",
-  "position": "[미리캔버스] Product Engineer",
+  "position": "Product Engineer",
   "status": "draft",
   "approved": false,
   "visibility": "local",
@@ -12,7 +12,7 @@
   "document": "resume",
   "content": {
     "name": "김대정",
-    "role": "[미리캔버스] Product Engineer",
+    "role": "Product Engineer",
     "careerLine": "MediSolve AI · 2025.04 — [확인 필요] · 실무 4년차",
     "specialtyLine": "TypeScript · Next.js · Python · FastAPI · PostgreSQL · LangGraph · Claude Code · Codex",
     "contacts": [

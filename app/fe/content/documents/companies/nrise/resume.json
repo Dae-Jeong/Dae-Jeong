@@ -1,7 +1,7 @@
 {
   "slug": "nrise",
   "companyName": "엔라이즈(NRISE)",
-  "position": "AI Product Builder (신사업/AI 실행 담당)",
+  "position": "AI Product Builder",
   "status": "draft",
   "approved": false,
   "visibility": "local",
@@ -12,7 +12,7 @@
   "document": "resume",
   "content": {
     "name": "김대정",
-    "role": "AI Product Builder (신사업/AI 실행 담당)",
+    "role": "AI Product Builder",
     "careerLine": "MediSolve AI · 2025.04 — 2026.09 · 실무 4년차",
     "specialtyLine": "Python · FastAPI · LangGraph · Next.js · PostgreSQL · Claude Code · Codex",
     "contacts": [

@@ -11,7 +11,7 @@ export type CompanyDocument = {
   revision: string; updatedAt: string; applicationId: string; focus: string;
   document: DocumentKind; content: ResumeCopy | ContentDocument; pdfHref?: string;
 };
-// Discover document files on the server. Portfolio files remain submission evidence only (2026-10-01).
+// Discover document files on the server. Portfolio files remain submission evidence only (2026-10-02).
 const sources = loadCompanySources<CompanyDocument>();
 export const companyDocuments = sources.base;
 export const revisionDocuments = sources.revisions;

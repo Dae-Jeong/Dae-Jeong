@@ -1,3 +1,4 @@
+// Representative selection policy for company documents (2026-10-02).
 import { collectCandidates } from "./mapping";
 import {
   RESERVED_SEGMENTS,
