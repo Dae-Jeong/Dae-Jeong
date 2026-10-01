@@ -159,6 +159,13 @@ function sectionKind(section: CopySection) {
   );
 }
 
+const DEFAULT_PHOTO = {
+  src: "/profile/daejeong-profile-v2.png",
+  alt: "김대정",
+  width: 1122,
+  height: 1402,
+};
+
 /** The resume article: one semantic document shared by every resume. */
 function ResumeArticle({
   copy,
@@ -171,6 +178,7 @@ function ResumeArticle({
 }) {
   const profile = copy.sections[0];
   const emphasis = presentation?.emphasis;
+  const photo = presentation?.photo ?? DEFAULT_PHOTO;
   return (
     <article
       className={styles.document}
@@ -211,15 +219,15 @@ function ResumeArticle({
             ))}
           </div>
         </div>
-        {presentation?.photo && (
+        {photo && (
           // Plain <img> with intrinsic size so the print projection measures the header before the file loads. Decorative: no text, no copy.
           // eslint-disable-next-line @next/next/no-img-element
           <img
             className={styles.photo}
-            src={presentation.photo.src}
-            alt={presentation.photo.alt}
-            width={presentation.photo.width}
-            height={presentation.photo.height}
+            src={photo.src}
+            alt={photo.alt}
+            width={photo.width}
+            height={photo.height}
             data-presentation="photo"
           />
         )}
