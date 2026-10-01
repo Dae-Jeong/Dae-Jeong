@@ -485,31 +485,49 @@ def _validate_common_document_claims(root: Path) -> list[str]:
 
 
 def _validate_tailored_resume_claims(root: Path) -> list[str]:
-    base = root / "app" / "fe" / "content" / "resumes"
-    if not base.exists():
-        return []
-
     claims, _ = _load_claims(root)
     known = {str(claim.get("id")) for claim in claims}
     public = {str(claim.get("id")) for claim in claims if claim.get("public") is True}
     errors: list[str] = []
 
-    for artifact in sorted(base.glob("*.ts")):
-        text = artifact.read_text(encoding="utf-8")
-        used = {
-            claim_id
-            for block in TAILORED_CLAIM_IDS_BLOCK.findall(text)
-            for claim_id in STRING_LITERAL.findall(block)
-        }
-        for claim_id in sorted(used - known):
-            errors.append(
-                f"tailored resume: {artifact.relative_to(root)} has unknown claimIds value {claim_id}"
-            )
-        for claim_id in sorted(used - public):
-            errors.append(
-                f"tailored resume: {artifact.relative_to(root)} claimIds value {claim_id} is not public"
-            )
+    companies_base = root / "app" / "fe" / "content" / "documents" / "companies"
+    if companies_base.exists():
+        import json
+        for artifact in sorted(companies_base.rglob("*.json")):
+            try:
+                data = json.loads(artifact.read_text(encoding="utf-8"))
+            except (json.JSONDecodeError, OSError) as exc:
+                errors.append(f"company document: {artifact.relative_to(root)} invalid json: {exc}")
+                continue
+            used = _json_copy_claims(data)
+            for claim_id in sorted(used - known):
+                errors.append(
+                    f"company document: {artifact.relative_to(root)} has unknown claim {claim_id}"
+                )
+            for claim_id in sorted(used - public):
+                errors.append(
+                    f"company document: {artifact.relative_to(root)} claim {claim_id} is not public"
+                )
+
+    legacy_base = root / "app" / "fe" / "content" / "resumes"
+    if legacy_base.exists():
+        for artifact in sorted(legacy_base.glob("*.ts")):
+            text = artifact.read_text(encoding="utf-8")
+            used = {
+                claim_id
+                for block in TAILORED_CLAIM_IDS_BLOCK.findall(text)
+                for claim_id in STRING_LITERAL.findall(block)
+            }
+            for claim_id in sorted(used - known):
+                errors.append(
+                    f"tailored resume: {artifact.relative_to(root)} has unknown claimIds value {claim_id}"
+                )
+            for claim_id in sorted(used - public):
+                errors.append(
+                    f"tailored resume: {artifact.relative_to(root)} claimIds value {claim_id} is not public"
+                )
     return errors
+
 
 
 def _validate_professional_document_claims(root: Path) -> list[str]:
@@ -834,11 +852,23 @@ def _validate_header_role(root: Path) -> list[str]:
             if require:
                 errors.append(f"header role: attempt {attempt.get('id')} has no header_role (registry owns the header title)")
             continue
-        source = resume.read_text(encoding="utf-8")
-        header = re.search(r"\bheader:\s*\{", source)
-        block = _brace_block(source, header.end() - 1) if header else ""
-        role = re.search(r'\brole:\s*"([^"]*)"', block)
-        actual = role.group(1) if role else ""
+        if resume.suffix == ".json":
+            try:
+                import json
+                rdata = json.loads(resume.read_text(encoding="utf-8"))
+                actual = (
+                    rdata.get("content", {}).get("role", "")
+                    or rdata.get("header", {}).get("role", "")
+                    or rdata.get("position", "")
+                )
+            except Exception:
+                actual = ""
+        else:
+            source = resume.read_text(encoding="utf-8")
+            header = re.search(r"\bheader:\s*\{", source)
+            block = _brace_block(source, header.end() - 1) if header else ""
+            role = re.search(r'\brole:\s*"([^"]*)"', block)
+            actual = role.group(1) if role else ""
         if not actual.startswith(expected.strip()):
             errors.append(
                 f"header role: {resume.relative_to(root)} header.role '{actual}' must start with '{expected}' (registry)"
@@ -882,17 +912,35 @@ def _validate_hero_sentences(root: Path) -> list[str]:
                 errors.append(f"brand line: {portfolio.relative_to(root)} headline must be the brand line, got '{hm.group(1)[:40]}…'")
         resume = files.get("resume.tailored")
         if resume is not None:
-            source = resume.read_text(encoding="utf-8")
-            block = _bracket_block(source, "summary")
-            first = block.find("{")
-            if first != -1:
-                obj = _brace_block(block, first)
-                text = " ".join(re.findall(r'\btext:\s*"((?:[^"\\]|\\.)*)"', obj))
-                n = _sentence_count(text)
-                if n > limit:
-                    errors.append(f"hero sentences: {resume.relative_to(root)} summary[0] has {n} sentences (max {limit})")
-                if brand and text.strip() != str(brand).strip():
-                    errors.append(f"brand line: {resume.relative_to(root)} summary[0] must be the brand line, got '{text[:40]}…'")
+            if resume.suffix == ".json":
+                try:
+                    import json
+                    rdata = json.loads(resume.read_text(encoding="utf-8"))
+                    sections = rdata.get("content", {}).get("sections", [])
+                    text = ""
+                    if sections and sections[0].get("entries"):
+                        blocks = sections[0]["entries"][0].get("blocks", [])
+                        if blocks:
+                            text = blocks[0].get("text", "")
+                    n = _sentence_count(text)
+                    if n > limit:
+                        errors.append(f"hero sentences: {resume.relative_to(root)} summary[0] has {n} sentences (max {limit})")
+                    if brand and text.strip() != str(brand).strip():
+                        errors.append(f"brand line: {resume.relative_to(root)} summary[0] must be the brand line, got '{text[:40]}…'")
+                except Exception:
+                    pass
+            else:
+                source = resume.read_text(encoding="utf-8")
+                block = _bracket_block(source, "summary")
+                first = block.find("{")
+                if first != -1:
+                    obj = _brace_block(block, first)
+                    text = " ".join(re.findall(r'\btext:\s*"((?:[^"\\]|\\.)*)"', obj))
+                    n = _sentence_count(text)
+                    if n > limit:
+                        errors.append(f"hero sentences: {resume.relative_to(root)} summary[0] has {n} sentences (max {limit})")
+                    if brand and text.strip() != str(brand).strip():
+                        errors.append(f"brand line: {resume.relative_to(root)} summary[0] must be the brand line, got '{text[:40]}…'")
     return errors
 
 

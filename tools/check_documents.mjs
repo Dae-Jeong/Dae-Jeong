@@ -37,7 +37,8 @@ const { companyDocumentHref, resolveCompanyRequest } = await load("features/comp
 
 assert.deepEqual(companyKinds.map(item => item.slug), ["resume", "career"]);
 assert.deepEqual(registry.companyDocuments.map(record => `${record.slug}/${record.document}`).sort(),
-  ["featuring", "miridih", "jyp", "toss-place", "miridih-pe", "ably", "nrise", "soomgo", "paytalab", "wrtn", "hybe"].flatMap(slug => ["resume", "career"].map(kind => `${slug}/${kind}`)).sort());
+  [...["featuring", "miridih", "jyp", "toss-place", "miridih-pe", "ably", "nrise", "soomgo", "paytalab", "wrtn", "hybe", "hypernova", "gna-company"].flatMap(slug => ["resume", "career"].map(kind => `${slug}/${kind}`)),
+    ...["mgrv", "pinokiolab", "teamreboot", "whatssub"].map(slug => `${slug}/resume`)].sort());
 assert.equal(new Set(registry.revisionDocuments.map(record => `${record.slug}/${record.document}/${record.revision}`)).size, registry.revisionDocuments.length);
 for (const environment of ["production", undefined, "staging", ""]) assert.equal(registry.canViewDraft(environment), false);
 for (const environment of ["development", "test"]) assert.equal(registry.canViewDraft(environment), true);
@@ -62,11 +63,36 @@ function inspect(value) {
 }
 for (const record of [...registry.companyDocuments, ...registry.revisionDocuments]) {
   assert(companyKinds.some(kind => kind.slug === record.document));
-  assert.equal(record.status, "draft"); assert.equal(record.visibility, "local"); assert.equal(record.approved, false);
+  assert(["draft", "approved", "closed"].includes(record.status));
+  assert(["local", "public"].includes(record.visibility));
+  assert.equal(record.approved, record.status === "approved");
+  if (!["hypernova", "mgrv", "pinokiolab", "teamreboot", "whatssub"].includes(record.slug)) {
+    assert.equal(record.status, "draft"); assert.equal(record.visibility, "local"); assert.equal(record.approved, false);
+  }
   for (const field of ["slug", "companyName", "position", "revision", "updatedAt", "applicationId"]) assert.equal(typeof record[field], "string", field);
   assert(record.revision && record.applicationId && record.content.sections.length);
   inspect(record);
 }
+// JSON migration preserves each document's metadata and its representative renderer inputs.
+const migrated = [
+  ["hypernova", "resume", "20260904-R1", "approved", "local"],
+  ["hypernova", "career", "20260904-R1", "approved", "local"],
+  ["mgrv", "resume", "20260818-R1", "closed", "local"],
+  ["pinokiolab", "resume", "20260828-R1", "approved", "public"],
+  ["teamreboot", "resume", "20260901-R1", "draft", "local"],
+  ["whatssub", "resume", "20260826-R1", "approved", "public"],
+  ["gna-company", "resume", "20260928-R2", "draft", "local"],
+  ["gna-company", "career", "20260928-R2", "draft", "local"],
+];
+for (const [slug, kind, revision, status, visibility] of migrated) {
+  const record = registry.companyDocuments.find(record => record.slug === slug && record.document === kind);
+  assert(record, `${slug}/${kind}: missing JSON registration`);
+  assert.deepEqual([record.revision, record.status, record.visibility], [revision, status, visibility]);
+  assert.deepEqual(record, JSON.parse(readFileSync(new URL(`content/documents/companies/${slug}/${kind}.json`, fe), "utf8")));
+}
+for (const retired of ["content/resumes", "content/documents/hypernova.ts", "content/documents/career-content-adapter.ts", "content/documents/index.ts"])
+  assert(!existsSync(new URL(retired, fe)), `${retired}: legacy source must be deleted`);
+assert(!registry.revisionDocuments.some(record => record.slug === "gna-company"), "GNA has one current R2 record per kind");
 // Retired portfolio records remain submission evidence, never active route kinds.
 for (const slug of ["featuring", "miridih", "jyp", "toss-place"]) {
   const record = JSON.parse(readFileSync(new URL(`content/documents/companies/${slug}/portfolio.json`, fe), "utf8"));
@@ -81,6 +107,23 @@ assert.throws(() => inspect({ kind: "table", claims: [], columns: ["a"], rows: [
 
 const candidates = collectCandidates(companySlug);
 const chosen = selectRepresentative(candidates);
+assert.equal(candidates.length, registry.companyDocuments.length + registry.revisionDocuments.length);
+for (const [slug, kind, revision, , visibility] of migrated) {
+  const representative = chosen.get(`${slug}/${kind}`);
+  const record = registry.companyDocuments.find(record => record.slug === slug && record.document === kind);
+  assert.equal(representative.label, revision);
+  assert.equal(representative.public, visibility === "public");
+  assert.deepEqual(kind === "resume" ? representative.copy : representative.content, record.content);
+  if (kind === "resume") {
+    assert.equal(representative.pdfHref, record.pdfHref);
+    if (slug !== "gna-company") {
+      const presentation = JSON.parse(readFileSync(new URL(`content/documents/companies/${slug}/presentation.json`, fe), "utf8"));
+      assert.deepEqual(representative.presentation, presentation);
+    } else assert(representative.presentation?.photo, "GNA: preserve R2 portrait");
+  }
+}
+assert.equal(chosen.get("mgrv/resume").pdfHref, "/resumes/mgrv-resume.pdf");
+assert.equal(chosen.get("whatssub/resume").copy.specialtyLine, undefined, "Submission salary must not enter public JSON");
 // Accepted local drafts must beat the old local candidate/common fallback without changing public-first.
 for (const [slug, revision] of [["featuring", "20260921-R2"], ["toss-place", "20261001-R2"],
   ...["miridih-pe", "ably", "nrise", "soomgo", "paytalab", "wrtn"].map(slug => [slug, "20261001-R1"]), ["hybe", "20261001-R2"]]) {

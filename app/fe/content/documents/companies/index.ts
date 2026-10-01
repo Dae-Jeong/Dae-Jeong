@@ -1,3 +1,9 @@
+import hypernovaResume from "./hypernova/resume.json";
+import mgrvResume from "./mgrv/resume.json";
+import pinokiolabResume from "./pinokiolab/resume.json";
+import teamrebootResume from "./teamreboot/resume.json";
+import whatssubResume from "./whatssub/resume.json";
+import hypernovaCareer from "./hypernova/career.json";
 import MiridihPeResume from "./miridih-pe/resume.json";
 import MiridihPeCareer from "./miridih-pe/career.json";
 import AblyResume from "./ably/resume.json";
@@ -16,8 +22,8 @@ import featuringR2Resume from "./featuring/revisions/20260921-R2/resume.json";
 import featuringR2Career from "./featuring/revisions/20260921-R2/career.json";
 import tossR2Resume from "./toss-place/revisions/20261001-R2/resume.json";
 import tossR2Career from "./toss-place/revisions/20261001-R2/career.json";
-import gnaR2Resume from "./gna-company/revisions/20260928-R2/resume.json";
-import gnaR2Career from "./gna-company/revisions/20260928-R2/career.json";
+import gnaResume from "./gna-company/resume.json";
+import gnaCareer from "./gna-company/career.json";
 import featuringResume from "./featuring/resume.json";
 import featuringCareer from "./featuring/career.json";
 import miridihResume from "./miridih/resume.json";
@@ -44,23 +50,23 @@ export type DocumentKind = "resume" | "career" | "portfolio";
 // validator; the retired portfolio screens no longer import it (site-remove-extra-surfaces, 2026-09-30).
 export type CompanyDocument = {
   slug: string; companyName: string; position: string;
-  status: "draft"; visibility: "local"; approved: false;
+  status: "draft" | "approved" | "closed"; visibility: "local" | "public"; approved: boolean;
   revision: string; updatedAt: string; applicationId: string; focus: string;
-  document: DocumentKind; content: ResumeCopy | ContentDocument;
+  document: DocumentKind; content: ResumeCopy | ContentDocument; pdfHref?: string;
 };
-export const companyDocuments = [featuringResume, featuringCareer, miridihResume, miridihCareer,
+export const companyDocuments = [hypernovaResume, hypernovaCareer, mgrvResume, pinokiolabResume, teamrebootResume, whatssubResume, gnaResume, gnaCareer, featuringResume, featuringCareer, miridihResume, miridihCareer,
   jypResume, jypCareer, tossResume, tossCareer,
   MiridihPeResume, MiridihPeCareer, AblyResume, AblyCareer, NriseResume, NriseCareer, SoomgoResume, SoomgoCareer, PaytalabResume, PaytalabCareer, WrtnResume, WrtnCareer, HybeResume, HybeCareer] as CompanyDocument[];
 // Preserved review revisions, regenerated from their Markdown owners by the revision/company preview tools.
 // Historical base records and submission artifacts stay intact. The policy selects one representative per URL.
-export const revisionDocuments = [gnaR2Resume, gnaR2Career, miridihR3Resume, miridihR3Career, sagakR1Resume, sagakR1Career, ajungR1Resume, ajungR1Career, socarR1Resume, socarR1Career, featuringR1Resume, featuringR1Career, featuringR2Resume, featuringR2Career, tossR2Resume, tossR2Career] as CompanyDocument[];
+export const revisionDocuments = [miridihR3Resume, miridihR3Career, sagakR1Resume, sagakR1Career, ajungR1Resume, ajungR1Career, socarR1Resume, socarR1Career, featuringR1Resume, featuringR1Career, featuringR2Resume, featuringR2Career, tossR2Resume, tossR2Career] as CompanyDocument[];
 const publicRevisionKeys = new Set([
   "sagak:20260921-R1",
   "ajungnetworks:20260921-R1",
   "socar:20260921-R1",
 ]);
-export function isPublicRevision(document: Pick<CompanyDocument, "slug" | "revision">) {
-  return publicRevisionKeys.has(`${document.slug}:${document.revision}`);
+export function isPublicRevision(document: Pick<CompanyDocument, "slug" | "revision" | "visibility">) {
+  return document.visibility === "public" || publicRevisionKeys.has(`${document.slug}:${document.revision}`);
 }
 export function canViewDraft(environment: string | undefined) {
   return environment === "development" || environment === "test";

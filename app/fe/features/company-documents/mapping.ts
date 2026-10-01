@@ -1,6 +1,5 @@
 import type { ResumeCopy } from "@/content/documents/resume-copy";
 import type { ContentDocument } from "@/content/documents/parse-markdown";
-import { careerDescriptionToContent } from "@/content/documents/career-content-adapter";
 import {
   companyDocuments,
   isPublicRevision,
@@ -8,17 +7,9 @@ import {
   type CompanyDocument,
 } from "@/content/documents/companies";
 import { getResumePresentation } from "@/content/documents/companies/presentation";
-import {
-  getCareerDescription,
-  listCareerDescriptions,
-} from "@/content/documents/index";
-import { getTailoredResume, listTailoredResumes } from "@/content/resumes";
-import { tailoredResumeToCopy } from "@/content/resumes/resume-copy-adapter";
-
 import type { Representative } from "./types";
 
 const revisionDate = (revision: string) => revision.slice(0, 8);
-const isoDate = (date: string) => date.replaceAll("-", "");
 
 function fromRevision(
   document: CompanyDocument,
@@ -39,6 +30,7 @@ function fromRevision(
       kind: "resume",
       copy: document.content as ResumeCopy,
       presentation: getResumePresentation(document.slug, document.revision),
+      pdfHref: document.pdfHref,
     };
   if (document.document === "career")
     return {
@@ -56,40 +48,6 @@ export function collectCandidates(
   for (const document of [...companyDocuments, ...revisionDocuments]) {
     const candidate = fromRevision(document, normalizeCompany);
     if (candidate) list.push(candidate);
-  }
-  for (const entry of listTailoredResumes()) {
-    const resume = getTailoredResume(entry.slug);
-    if (!resume) continue;
-    const { copy, presentation } = tailoredResumeToCopy(resume);
-    list.push({
-      kind: "resume",
-      company: normalizeCompany(resume.slug),
-      companyName: resume.companyName,
-      position: resume.position,
-      date: isoDate(resume.updatedAt),
-      order: `${isoDate(resume.updatedAt)}-1-typed`,
-      public: resume.visibility === "public",
-      label: `typed ${resume.updatedAt}`,
-      copy,
-      presentation,
-      pdfHref: resume.pdfHref,
-    });
-  }
-  for (const entry of listCareerDescriptions()) {
-    if (entry.slug === "common") continue;
-    const document = getCareerDescription(entry.slug);
-    if (!document) continue;
-    list.push({
-      kind: "career",
-      company: normalizeCompany(entry.slug),
-      companyName: document.companyName ?? entry.slug,
-      position: document.targetRole ?? "",
-      date: isoDate(document.updatedAt),
-      order: `${isoDate(document.updatedAt)}-1-typed-${entry.slug}`,
-      public: document.visibility === "public",
-      label: `typed ${document.updatedAt}`,
-      content: careerDescriptionToContent(document),
-    });
   }
   return list;
 }

@@ -1,0 +1,592 @@
+{
+  "slug": "mgrv",
+  "companyName": "MGRV",
+  "position": "Backend Engineer",
+  "status": "closed",
+  "visibility": "local",
+  "approved": false,
+  "revision": "20260818-R1",
+  "updatedAt": "2026-08-18",
+  "applicationId": "mgrv-2026-08-15-platform-unknown-backend-engineer",
+  "focus": "Backend Engineer",
+  "document": "resume",
+  "content": {
+    "name": "김대정",
+    "role": "Backend Engineer · Python / FastAPI / SQLAlchemy",
+    "careerLine": "**MediSolve AI** · Backend Engineer (2025. 04 — 재직중)",
+    "contacts": [
+      {
+        "label": "marin.backend@gmail.com",
+        "href": "mailto:marin.backend@gmail.com"
+      },
+      {
+        "label": "github.com/Dae-Jeong",
+        "href": "https://github.com/Dae-Jeong"
+      },
+      {
+        "label": "marinkim.xyz",
+        "href": "https://marinkim.xyz"
+      }
+    ],
+    "sections": [
+      {
+        "title": "소개",
+        "entries": [
+          {
+            "blocks": [
+              {
+                "kind": "paragraph",
+                "text": "제품을 실제 사용자에게 전달하고 운영하는 Backend Engineer입니다.",
+                "claims": [
+                  "thready.prototype-to-user-operation",
+                  "thready.backend-rebuild",
+                  "thready.release-operation"
+                ]
+              },
+              {
+                "kind": "paragraph",
+                "text": "AI Engineer와 Product Manager로 일하며 제품의 0→1을 이끌었던 경험을 바탕으로, 사용자·운영자의 흐름을 상태·권한·데이터·실패 복구 규칙으로 설계하고 구현합니다.",
+                "claims": [
+                  "career.sellercanvas-product-system",
+                  "career.ai-pm-backend-continuity",
+                  "centurion.day-product-integration",
+                  "nexus.branch-access-boundary"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "핵심 성과",
+        "kind": "outcomes",
+        "entries": [
+          {
+            "title": "초기 프로토타입의 백엔드 전환부터 실제 사용자 운영까지 책임졌습니다",
+            "blocks": [
+              {
+                "kind": "paragraph",
+                "text": "Next.js·Supabase 기반 초기 프로토타입 단계에 합류해 FastAPI 백엔드를 설계·구축하고, 인증·계정·콘텐츠 생성·발행 흐름을 운영 가능한 구조로 전환했습니다.",
+                "claims": [
+                  "thready.prototype-to-user-operation",
+                  "thready.backend-rebuild",
+                  "thready.release-operation",
+                  "thready.production-operation-quality"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "v1.0~v1.2 동안 출시 준비·QA를 진행하고 v1.1.0에 백엔드를 전환한 뒤, v1.3.0부터 실제 사용자 운영 시작 [Thready · AI 콘텐츠 제품]",
+                "claims": [
+                  "thready.prototype-to-user-operation",
+                  "thready.backend-rebuild",
+                  "thready.release-operation",
+                  "thready.production-operation-quality"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "실제 사용자 운영 시작 이후 릴리스·QA·백엔드 운영을 이어가며, 30일간 수만 건의 요청에서 **HTTP 5xx 약 0.3%**를 확인 [Thready · AI 콘텐츠 제품]",
+                "claims": [
+                  "thready.prototype-to-user-operation",
+                  "thready.backend-rebuild",
+                  "thready.release-operation",
+                  "thready.production-operation-quality"
+                ]
+              }
+            ]
+          },
+          {
+            "title": "비동기 작업의 실패를 확인하고 복구할 수 있게 만들었습니다",
+            "blocks": [
+              {
+                "kind": "paragraph",
+                "text": "API 요청과 후속 작업의 책임을 나누고, 실패가 사라지지 않도록 상태·재시도·최종 실패 기록·수동 재처리 경계를 설계했습니다.",
+                "claims": [
+                  "centurion.bay-async-backend",
+                  "centurion.async-migration",
+                  "career.memento-payment"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "FastAPI의 비동기 실행 모델과 맞는 TaskIQ·RabbitMQ로 전환해 API와 worker의 배포·실행 경계를 분리 [Centurion · 주문·재고]",
+                "claims": [
+                  "centurion.bay-async-backend",
+                  "centurion.async-migration",
+                  "career.memento-payment"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "알림 작업의 상태·최대 3회 재시도·최종 실패 기록·수동 재처리 경로 구축 [Centurion · 주문·재고]",
+                "claims": [
+                  "centurion.bay-async-backend",
+                  "centurion.async-migration",
+                  "career.memento-payment"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "예약 실패 시 환불·마일리지·티켓 상태를 되돌리는 흐름 안정화에 기여 [Memento AI · 예약·결제]",
+                "claims": [
+                  "centurion.bay-async-backend",
+                  "centurion.async-migration",
+                  "career.memento-payment"
+                ]
+              }
+            ]
+          },
+          {
+            "title": "운영자의 권한과 작업 범위를 분리하는 다지점 데이터 경계를 설계·구축하고 있습니다",
+            "blocks": [
+              {
+                "kind": "paragraph",
+                "text": "운영 어드민과 홈페이지를 독립 FastAPI 서비스로 나누고 API Gateway로 연결하는 백엔드를 구축 중입니다. Admin API에서는 운영자의 소속 지점과 현재 작업 지점을 분리해, 데이터 접근 범위를 클라이언트 입력이 아니라 서버 인증 상태가 결정하도록 설계하고 있습니다.",
+                "claims": [
+                  "nexus.branch-access-boundary",
+                  "nexus.backend-architecture",
+                  "nexus.admin-backend-ownership"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "FastAPI·SQLAlchemy 2.0 기반으로 Admin·Homepage API를 분리하고, 공통 모델·Repository와 migration 흐름을 설계·구축 중 [피부과 운영 어드민·홈페이지]",
+                "claims": [
+                  "nexus.branch-access-boundary",
+                  "nexus.backend-architecture",
+                  "nexus.admin-backend-ownership"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "작업 지점 전환을 권한 검증 전용 API로 제한하고, 본사 미선택과 권한 밖 접근을 구분해 차단하도록 구현 중. Homepage API의 기존 지점 식별 계약은 유지 [피부과 운영 어드민·홈페이지]",
+                "claims": [
+                  "nexus.branch-access-boundary",
+                  "nexus.backend-architecture",
+                  "nexus.admin-backend-ownership"
+                ]
+              }
+            ]
+          },
+          {
+            "title": "AI 실행부를 분리하고 데이터 전달의 일관성을 설계했습니다",
+            "blocks": [
+              {
+                "kind": "paragraph",
+                "text": "AI 실행부를 독립 FastAPI 애플리케이션과 DB로 분리했습니다. 제품 정책과 원장 데이터는 백엔드가, 생성 과정과 실행 상태는 AI 애플리케이션이 맡도록 책임을 나눴습니다.",
+                "claims": [
+                  "thready.ai-service-boundary",
+                  "thready.ai-replica-outbox"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "원장 변경과 Outbox 기록을 같은 트랜잭션으로 처리하고, 전달 작업은 트랜잭션 이후로 분리해 재시도·버전 검증으로 보호 [Thready · AI 콘텐츠 제품]",
+                "claims": [
+                  "thready.ai-service-boundary",
+                  "thready.ai-replica-outbox"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "운영 전환 전에 전체 회귀, migration 왕복, 이전 버전의 PUT/DELETE 요청 차단까지 검증 [Thready · AI 콘텐츠 제품]",
+                "claims": [
+                  "thready.ai-service-boundary",
+                  "thready.ai-replica-outbox"
+                ]
+              }
+            ]
+          },
+          {
+            "title": "프로토타입을 v1.0 제품과 기업 PoC로 연결했습니다",
+            "blocks": [
+              {
+                "kind": "paragraph",
+                "text": "AI Engineer로 합류한 SellerCanvas에서 Product Manager 메인 역할을 맡았습니다. 이미지 입력부터 AI 분석·상세페이지 생성·편집·출력까지 제품 흐름을 정의하고, 프로토타입을 v1.0으로 발전시키는 0→1 구간을 이끌었습니다.",
+                "claims": [
+                  "career.sellercanvas-product-system",
+                  "career.sellercanvas-enterprise-poc",
+                  "credentials.page-output-patent"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "사용자·비즈니스 요구를 기능 범위·생성 흐름·출시 우선순위로 구체화 [SellerCanvas · Product Manager]",
+                "claims": [
+                  "career.sellercanvas-product-system",
+                  "career.sellercanvas-enterprise-poc",
+                  "credentials.page-output-patent"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "외부 패션 브랜드 PoC를 진행하고, 상세페이지 출력 흐름을 발전시켜 관련 특허 등록에 기여 [SellerCanvas · Product Manager]",
+                "claims": [
+                  "career.sellercanvas-product-system",
+                  "career.sellercanvas-enterprise-poc",
+                  "credentials.page-output-patent"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "경력",
+        "kind": "career",
+        "entries": [
+          {
+            "title": "MediSolve AI · 2025. 04 — 재직중",
+            "blocks": [
+              {
+                "kind": "paragraph",
+                "text": "**Backend Engineer** · Tech Lead·PO 역할 병행",
+                "claims": [
+                  "career.medisolve-role-evolution",
+                  "thready.prototype-to-user-operation",
+                  "thready.backend-rebuild",
+                  "thready.release-operation",
+                  "centurion.bay-async-backend",
+                  "centurion.day-product-integration",
+                  "centurion.ray-backend",
+                  "nexus.backend-architecture",
+                  "nexus.admin-backend-ownership",
+                  "nexus.branch-access-boundary",
+                  "infra.company-azure-ownership"
+                ],
+                "presentation": "role"
+              },
+              {
+                "kind": "bullet",
+                "text": "**Thready · AI 콘텐츠 제품** — FastAPI 백엔드 개발과 실제 사용자 대상 배포·QA·운영",
+                "claims": [
+                  "career.medisolve-role-evolution",
+                  "thready.prototype-to-user-operation",
+                  "thready.backend-rebuild",
+                  "thready.release-operation",
+                  "centurion.bay-async-backend",
+                  "centurion.day-product-integration",
+                  "centurion.ray-backend",
+                  "nexus.backend-architecture",
+                  "nexus.admin-backend-ownership",
+                  "nexus.branch-access-boundary",
+                  "infra.company-azure-ownership"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "**피부과 운영 어드민·홈페이지** — 백엔드 서비스 경계와 API Gateway를 설계·구축 중",
+                "claims": [
+                  "career.medisolve-role-evolution",
+                  "thready.prototype-to-user-operation",
+                  "thready.backend-rebuild",
+                  "thready.release-operation",
+                  "centurion.bay-async-backend",
+                  "centurion.day-product-integration",
+                  "centurion.ray-backend",
+                  "nexus.backend-architecture",
+                  "nexus.admin-backend-ownership",
+                  "nexus.branch-access-boundary",
+                  "infra.company-azure-ownership"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "**피부과 예약·시설·주문·재고** — API와 RabbitMQ·TaskIQ worker 개발·운영",
+                "claims": [
+                  "career.medisolve-role-evolution",
+                  "thready.prototype-to-user-operation",
+                  "thready.backend-rebuild",
+                  "thready.release-operation",
+                  "centurion.bay-async-backend",
+                  "centurion.day-product-integration",
+                  "centurion.ray-backend",
+                  "nexus.backend-architecture",
+                  "nexus.admin-backend-ownership",
+                  "nexus.branch-access-boundary",
+                  "infra.company-azure-ownership"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "**서비스 배포** — Azure·Vercel 배포 환경을 구성하고 기본 운영",
+                "claims": [
+                  "career.medisolve-role-evolution",
+                  "thready.prototype-to-user-operation",
+                  "thready.backend-rebuild",
+                  "thready.release-operation",
+                  "centurion.bay-async-backend",
+                  "centurion.day-product-integration",
+                  "centurion.ray-backend",
+                  "nexus.backend-architecture",
+                  "nexus.admin-backend-ownership",
+                  "nexus.branch-access-boundary",
+                  "infra.company-azure-ownership"
+                ]
+              }
+            ]
+          },
+          {
+            "title": "더데이랩스 · 2025.02 — 2025.04",
+            "blocks": [
+              {
+                "kind": "paragraph",
+                "text": "**Backend Engineer** — 프리랜서",
+                "claims": [
+                  "career.thedaylabs-freelance"
+                ],
+                "presentation": "role"
+              },
+              {
+                "kind": "bullet",
+                "text": "**제품 초기 백엔드 구축** — FastAPI 구조·개발 규칙·문서·테스트 기반을 마련하고, 이후 같은 제품군의 개발·운영 지속",
+                "claims": [
+                  "career.thedaylabs-freelance"
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Memento AI · 2024.10 — 2025.01",
+            "blocks": [
+              {
+                "kind": "paragraph",
+                "text": "**Backend Engineer** — 인턴 1개월 후 정규직 전환",
+                "claims": [
+                  "career.memento-payment"
+                ],
+                "presentation": "role"
+              },
+              {
+                "kind": "bullet",
+                "text": "**예약·결제 서비스** — FastAPI·SQLAlchemy·MySQL 기반 API 개발과 선결제 실패 시 환불·마일리지·티켓 상태 복구에 기여",
+                "claims": [
+                  "career.memento-payment"
+                ]
+              }
+            ]
+          },
+          {
+            "title": "STUDIO LAB · 2021.12 — 2024.01",
+            "blocks": [
+              {
+                "kind": "paragraph",
+                "text": "**Product Manager** — AI Engineer → PM(메인 역할)",
+                "claims": [
+                  "career.sellercanvas-product-system",
+                  "career.sellercanvas-enterprise-poc"
+                ],
+                "presentation": "role"
+              },
+              {
+                "kind": "bullet",
+                "text": "**SellerCanvas · 생성형 AI 제품** — 프로토타입에서 v1.0까지 0→1 제품 기획·운영",
+                "claims": [
+                  "career.sellercanvas-product-system",
+                  "career.sellercanvas-enterprise-poc"
+                ]
+              },
+              {
+                "kind": "bullet",
+                "text": "**기업 PoC** — 외부 패션 브랜드 요구를 제품 흐름과 검증 범위로 구체화하고 진행",
+                "claims": [
+                  "career.sellercanvas-product-system",
+                  "career.sellercanvas-enterprise-poc"
+                ]
+              }
+            ]
+          },
+          {
+            "title": "아이즈솔 · 2020.08 — 2021.06",
+            "blocks": [
+              {
+                "kind": "paragraph",
+                "text": "**AI Engineer** — 인턴",
+                "claims": [
+                  "career.ai-pm-backend-continuity"
+                ],
+                "presentation": "role"
+              },
+              {
+                "kind": "bullet",
+                "text": "**Vision AI 제품 개발** — AI 모델과 데이터 파이프라인을 제품 기능으로 연결하는 개발·검증에 참여",
+                "claims": [
+                  "career.ai-pm-backend-continuity"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "일하는 방식",
+        "kind": "other",
+        "entries": [
+          {
+            "blocks": [
+              {
+                "kind": "skill",
+                "label": "제품 요구를 실행 가능한 기준으로 바꿉니다",
+                "text": "사용자·운영 흐름과 비즈니스 목표를 먼저 맞춘 뒤 상태·권한·데이터 규칙과 QA·배포 조건으로 구체화합니다.",
+                "claims": [
+                  "centurion.day-product-integration",
+                  "mediness.product-system-design-participation",
+                  "mediness.product-operations"
+                ]
+              }
+            ]
+          },
+          {
+            "blocks": [
+              {
+                "kind": "skill",
+                "label": "반복되는 판단을 공통 기반에 남깁니다",
+                "text": "FastAPI·SQLAlchemy 구조와 ADR·개발 규칙·운영 문서를 정리하고, Ruff·Pyright·테스트·CI로 자동 검증합니다.",
+                "claims": [
+                  "be-template.backend-standard",
+                  "nexus.quality-automation",
+                  "centurion.test-ci-foundation"
+                ]
+              }
+            ]
+          },
+          {
+            "blocks": [
+              {
+                "kind": "skill",
+                "label": "AI의 속도를 검증 가능한 작업으로 바꿉니다",
+                "text": "AI에는 탐색·비교·초안을 맡기되 경계 설계와 완료 판단은 사람이 맡고, 결과를 테스트·CI·배포 근거로 확인합니다.",
+                "claims": [
+                  "be-template.agent-context",
+                  "thready.rebuild-decision-execution"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "기술",
+        "kind": "other",
+        "entries": [
+          {
+            "blocks": [
+              {
+                "kind": "skill",
+                "label": "주력",
+                "text": "Python, FastAPI, SQLAlchemy\n예약·결제, 운영 어드민, AI 콘텐츠 제품 백엔드",
+                "claims": [
+                  "thready.backend-rebuild",
+                  "centurion.bay-async-backend",
+                  "nexus.admin-backend-ownership"
+                ]
+              },
+              {
+                "kind": "skill",
+                "label": "Data / ORM",
+                "text": "PostgreSQL, MySQL, SQLAlchemy\n제품 스키마·트랜잭션·데이터 정합성",
+                "claims": [
+                  "career.memento-payment",
+                  "thready.backend-rebuild"
+                ]
+              },
+              {
+                "kind": "skill",
+                "label": "Async / Queue",
+                "text": "RabbitMQ, TaskIQ\n작업 상태·재시도·백그라운드 처리",
+                "claims": [
+                  "centurion.bay-async-backend",
+                  "centurion.async-migration"
+                ]
+              },
+              {
+                "kind": "skill",
+                "label": "API / Auth",
+                "text": "REST API, Swagger/OpenAPI, JWT/session\nAPI Gateway·다중 서비스 세션·다지점 접근 경계",
+                "claims": [
+                  "nexus.branch-access-boundary",
+                  "nexus.backend-architecture",
+                  "centurion.sso-session"
+                ]
+              },
+              {
+                "kind": "skill",
+                "label": "Quality / CI",
+                "text": "pytest, Ruff, Pyright, pre-commit, GitHub Actions, Docker\nAPI 테스트·정적 분석·Docker CI",
+                "claims": [
+                  "nexus.quality-automation",
+                  "centurion.test-ci-foundation"
+                ]
+              },
+              {
+                "kind": "skill",
+                "label": "Cloud / Delivery",
+                "text": "Docker, GitHub Actions, Azure, Vercel, Terraform, AWS\n서비스 배포·환경 설정·기본 로그 확인",
+                "claims": [
+                  "infra.company-azure-ownership",
+                  "centurion.shared-infra"
+                ]
+              },
+              {
+                "kind": "skill",
+                "label": "보조",
+                "text": "TypeScript, NestJS\nAPI Gateway·다중 서비스 세션",
+                "claims": [
+                  "centurion.sso-session"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "학력·교육 / 수상·특허·자격",
+        "kind": "other",
+        "entries": [
+          {
+            "blocks": [
+              {
+                "kind": "row",
+                "label": "",
+                "text": "우송대학교 게임멀티미디어 전공 · 졸업",
+                "meta": "2016. 03 - 2021.08",
+                "claims": [
+                  "credentials.education"
+                ]
+              },
+              {
+                "kind": "row",
+                "label": "",
+                "text": "CES 2024 Best of Innovation · AI 부문 대상 제품 참여",
+                "meta": "2024.01",
+                "claims": [
+                  "credentials.ces-2024"
+                ]
+              },
+              {
+                "kind": "row",
+                "label": "",
+                "text": "특허 등록 「페이지 출력 방법」 · 등록 10-2898273",
+                "meta": "2025.12",
+                "claims": [
+                  "credentials.page-output-patent"
+                ]
+              },
+              {
+                "kind": "row",
+                "label": "",
+                "text": "ADsP · 데이터분석 준전문가",
+                "meta": "2021.09",
+                "claims": [
+                  "credentials.adsp"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "pdfHref": "/resumes/mgrv-resume.pdf"
+}
